@@ -1,7 +1,7 @@
-# STLSoft 1.11 <!-- omit in toc -->
-STLSoft-1.11.*
+# STLSoft - FAQ <!-- omit in toc -->
 
 T.B.C.
+
 
 
 <!-- ########################### end of file ########################### -->

@@ -1,5 +1,4 @@
-# STLSoft 1.11 <!-- omit in toc -->
-STLSoft-1.11.*
+# STLSoft - How You Can Help <!-- omit in toc -->
 
 T.B.C.
 
