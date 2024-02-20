@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/cwd_stack.hpp
+ * File:    platformstl/filesystem/cwd_stack.hpp
  *
- * Purpose:     Platform header for the filesystem_traits components.
+ * Purpose: Platform header for the filesystem_traits components.
  *
- * Created:     16th July 2006
- * Updated:     22nd January 2024
+ * Created: 16th July 2006
+ * Updated: 20th February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  10
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      38
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +89,7 @@
 # include <stack>
 #endif /* !STLSOFT_INCL_STACK */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -104,6 +106,7 @@ namespace stlsoft
 namespace platformstl_project
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -125,17 +128,17 @@ template<   typename    C
 class basic_cwd_stack
 {
 public:
-    typedef C                                   char_type;
-    typedef XP                                  exception_policy_type;
-    typedef stlsoft::basic_simple_string<C>     string_type;
-    typedef bool                                bool_type;
-    typedef STLSOFT_NS_QUAL(ss_size_t)          size_type;
+    typedef C                                               char_type;
+    typedef XP                                              exception_policy_type;
+    typedef stlsoft::basic_simple_string<C>                 string_type;
+    typedef bool                                            bool_type;
+    typedef STLSOFT_NS_QUAL(ss_size_t)                      size_type;
 private:
-    typedef filesystem_traits<C>                traits_type;
-    typedef std::stack<string_type>             stack_type;
+    typedef filesystem_traits<C>                            traits_type;
+    typedef std::stack<string_type>                         stack_type;
 
 public:
-    string_type const   &top() const;
+    string_type const&  top() const;
 
     void                push(string_type const& directory);
     ///
@@ -149,16 +152,20 @@ public:
 
 public:
     /// Indicates whether the stack is empty
-    bool_type   empty() const;
+    bool_type           empty() const;
     /// [DEPRECATED] Indicates whether the stack is empty
     ///
     /// \deprecated Use empty() instead
-    bool_type   is_empty() const;
+    bool_type           is_empty() const;
     /// Indicates the number of directories in the stack
-    size_type   size() const;
+    size_type           size() const;
 
 private:
-    string_type const   &translate_environment_(string_type const& directory, string_type &trueDirectory);
+    string_type const&
+    translate_environment_(
+        string_type const&  directory
+    ,   string_type&        trueDirectory
+    );
 
 private:
     stack_type  m_stack;
@@ -174,13 +181,15 @@ private:
 #endif /* 0 */
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
-typedef basic_cwd_stack<ss_char_a_t>            cwd_stack_a;
-typedef basic_cwd_stack<ss_char_w_t>            cwd_stack_w;
-typedef basic_cwd_stack<ss_char_a_t>            cwd_stack;
+typedef basic_cwd_stack<ss_char_a_t>                        cwd_stack_a;
+typedef basic_cwd_stack<ss_char_w_t>                        cwd_stack_w;
+typedef basic_cwd_stack<ss_char_a_t>                        cwd_stack;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -189,7 +198,12 @@ typedef basic_cwd_stack<ss_char_a_t>            cwd_stack;
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <typename C, typename XP>
-inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::string_type const& basic_cwd_stack<C, XP>::translate_environment_(ss_typename_type_k basic_cwd_stack<C, XP>::string_type const& directory, ss_typename_type_k basic_cwd_stack<C, XP>::string_type &trueDirectory)
+inline
+ss_typename_type_ret_k basic_cwd_stack<C, XP>::string_type const&
+basic_cwd_stack<C, XP>::translate_environment_(
+    ss_typename_type_k basic_cwd_stack<C, XP>::string_type const&   directory
+,   ss_typename_type_k basic_cwd_stack<C, XP>::string_type&         trueDirectory
+)
 {
     if (directory.end() != std::find(directory.begin(), directory.end(), '%'))
     {
@@ -206,25 +220,33 @@ inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::string_type const& basic_c
 
 
 template <typename C, typename XP>
-inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::size_type basic_cwd_stack<C, XP>::size() const
+inline
+ss_typename_type_ret_k basic_cwd_stack<C, XP>::size_type
+basic_cwd_stack<C, XP>::size() const
 {
     return m_stack.size();
 }
 
 template <typename C, typename XP>
-inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::empty() const
+inline
+ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type
+basic_cwd_stack<C, XP>::empty() const
 {
     return 0 == size();
 }
 
 template <typename C, typename XP>
-inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::is_empty() const
+inline
+ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type
+basic_cwd_stack<C, XP>::is_empty() const
 {
     return empty();
 }
 
 template <typename C, typename XP>
-inline void basic_cwd_stack<C, XP>::push(ss_typename_type_k basic_cwd_stack<C, XP>::string_type const& directory)
+inline
+void
+basic_cwd_stack<C, XP>::push(ss_typename_type_k basic_cwd_stack<C, XP>::string_type const& directory)
 {
     stlsoft::auto_buffer<char_type>     buffer(1 + traits_type::get_current_directory(static_cast<char_type*>(NULL), 0));
     const STLSOFT_NS_QUAL(ss_size_t)    cch = traits_type::get_current_directory(&buffer[0], buffer.size());
@@ -245,7 +267,9 @@ inline void basic_cwd_stack<C, XP>::push(ss_typename_type_k basic_cwd_stack<C, X
 }
 
 template <typename C, typename XP>
-inline void basic_cwd_stack<C, XP>::pop()
+inline
+void
+basic_cwd_stack<C, XP>::pop()
 {
     STLSOFT_ASSERT(!empty());
 
@@ -262,7 +286,9 @@ inline void basic_cwd_stack<C, XP>::pop()
 }
 
 template <typename C, typename XP>
-inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::try_pop()
+inline
+ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type
+basic_cwd_stack<C, XP>::try_pop()
 {
     STLSOFT_ASSERT(!empty());
 
@@ -279,8 +305,8 @@ inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<
         return true;
     }
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -291,6 +317,7 @@ inline ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<
 } /* namespace platformstl_project */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

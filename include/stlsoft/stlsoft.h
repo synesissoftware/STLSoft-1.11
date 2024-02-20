@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/stlsoft.h
+ * File:    stlsoft/stlsoft.h
  *
- * Purpose:     Root header for the STLSoft libraries. Performs various
- *              compiler and platform discriminations, and definitions of
- *              types.
+ * Purpose: Root header for the STLSoft libraries. Performs various
+ *          compiler and platform discriminations, and definitions of
+ *          types.
  *
- * Created:     15th January 2002
- * Updated:     12th February 2024
+ * Created: 15th January 2002
+ * Updated: 20th February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    52
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     545
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     547
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -72,6 +72,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version
@@ -345,12 +346,16 @@
 # define _STLSOFT_VER_1_10_7        0x010a07ff  /*!< Version 1.10.7 (30th January 2024) */
 # define _STLSOFT_VER_1_10_8        0x010a08ff  /*!< Version 1.10.8 (6th February 2024) */
 # define _STLSOFT_VER_1_10_9        0x010a09ff  /*!< Version 1.10.9 (12th February 2024) */
+# define _STLSOFT_VER_1_10_10       0x010a0aff  /*!< Version 1.10.10 (16th February 2024) */
+# define _STLSOFT_VER_1_10_11       0x010a0bff  /*!< Version 1.10.11 (16th February 2024) */
+
+# define _STLSOFT_VER_1_11_1_A01    0x010b0141  /*!< Version 1.11.1 alpha 1 (20th February 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
-#define _STLSOFT_VER_MINOR          10
-#define _STLSOFT_VER_REVISION       9
-#define _STLSOFT_VER                _STLSOFT_VER_1_10_9
+#define _STLSOFT_VER_MINOR          11
+#define _STLSOFT_VER_REVISION       1
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A01
 
 /* /////////////////////////////////////
  * underlying version detection
@@ -365,6 +370,7 @@
  * alpha (LEAD) library. Will never be less than STLSOFT_HEAD_VER.
  */
 #include <stlsoft/internal/lead_version.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * basic macros
@@ -423,6 +429,7 @@
 #  define STLSOFT_FILELINE_MESSAGE(msg)                     STLSOFT_FILELINE_PREFIX_ ## "" msg ""
 # endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * sanity checks - 1
@@ -835,6 +842,7 @@
 # define __STLSOFT_COMPILER_VERSION_STRING                  STLSOFT_COMPILER_VERSION_STRING
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler language feature support
  *
@@ -1001,6 +1009,7 @@
 # define STLSOFT_PRETTY_FUNCTION_SYMBOL                     __FUNCSIG__
 #endif /* __PRETTY_FUNCTION__ or __FUNCSIG__ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * sanity checks - 2
  *
@@ -1028,6 +1037,7 @@
 #  error _STLSOFT_SIZEOF_LONG_LONG not defined
 # endif /* !_STLSOFT_SIZEOF_LONG_LONG */
 #endif /* STLSOFT_CF_BUILTIN_long_long_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * sanity checks - 3
@@ -1186,6 +1196,7 @@
     defined(_STLSOFT_FORCE_KEYWORD_TYPENAME)
 # define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
 #endif /* !STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT && _STLSOFT_FORCE_KEYWORD_TYPENAME */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * calling convention
@@ -1385,6 +1396,7 @@
 # endif /* STLSOFT_STRICT */
 #endif /* sub-project versions */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * deprecation
  */
@@ -1418,6 +1430,7 @@
 # define STLSOFT_DEPRECATED_(msg)                           /* */
 #endif /* STLSOFT_OBSOLETE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -1438,6 +1451,7 @@
 #  include <stdlib.h>    /* standard constants */
 # endif /* !STLSOFT_INCL_H_STDLIB */
 #endif /* !_STLSOFT_NO_STD_INCLUDES */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * contract enforcement
@@ -1635,6 +1649,7 @@
 #define stlsoft_static_assert(expr)                         STLSOFT_STATIC_ASSERT(expr)
 
 /** @} */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * deprecation
@@ -1874,6 +1889,7 @@ namespace stlsoft
 {
 #endif /* !STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace helper macros
  */
@@ -1957,6 +1973,7 @@ namespace stlsoft
 # define STLSOFT_WORKER_NS_USING_(ns, x)
 #endif /* namespaces supported */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * 64-bit warning support
  */
@@ -1969,6 +1986,7 @@ namespace stlsoft
 #else /* ? compiler */
 # define STLSOFT_WARN_64
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -2198,6 +2216,7 @@ typedef ss_streamoff_t                                      streamoff_t;        
 # endif /* compiler */
 #endif /* !STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * keywords
  *
@@ -2372,6 +2391,7 @@ typedef ss_streamoff_t                                      streamoff_t;        
 
 /** @} */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * values
  *
@@ -2389,8 +2409,9 @@ typedef ss_streamoff_t                                      streamoff_t;        
 # define ss_true_v                                          (1)
 # define ss_false_v                                         (0)
 #endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
 /* /////////////////////////////////////////////////////////////////////////
  * exception signature macro(s)
  */
@@ -2700,6 +2721,7 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
 # define stlsoft_num_elements_(ar)                          STLSOFT_NUM_ELEMENTS_(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * structure element access macro(s)
  */
@@ -2779,6 +2801,7 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * destruction function(s)/macro(s)
  */
@@ -2834,6 +2857,7 @@ stlsoft_destroy_instance_fn(
  */
 #define stlsoft_destroy_instance(T1, T2, P)                 STLSOFT_DESTROY_INSTANCE(T1, T2, P)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * handle generator macro(s)
  */
@@ -2861,6 +2885,7 @@ STLSOFT_GEN_OPAQUE(HProcess)
  * \note This is a simple \#define for STLSOFT_GEN_OPAQUE()
  */
 #define stlsoft_gen_opaque(Type)                            STLSOFT_GEN_OPAQUE(Type)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * template friend macro(s)
@@ -2942,6 +2967,7 @@ private:
 # error Compiler not discriminated
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * template support - misc.
  */
@@ -2962,6 +2988,7 @@ STLSOFT_CLOSE_WORKER_NS_(template_ex)
 
 # endif
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * code suppression macro(s)
@@ -3069,6 +3096,7 @@ inline void stlsoft_suppress_unused_func(size_t )
 
 /** @} */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * cast macro(s)
  */
@@ -3146,6 +3174,7 @@ inline void stlsoft_suppress_unused_func(size_t )
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** @} */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inlining macro(s)
@@ -3235,6 +3264,7 @@ stlsoft_C_always_true_(void) STLSOFT_NOEXCEPT
 
 # define STLSOFT_ALWAYS_FALSE()                             STLSOFT_NS_QUAL(stlsoft_C_always_false_)()
 # define STLSOFT_ALWAYS_TRUE()                              STLSOFT_NS_QUAL(stlsoft_C_always_true_)()
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * pointer manipulation functions(s)
@@ -3328,6 +3358,7 @@ ptr_diff(
 #endif /* __cplusplus */
 
 /** @} end of group pointer_manipulation_functions */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * cv qualifier functions(s)
@@ -3447,6 +3478,7 @@ address(
 
 /** @} */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * memory
  */
@@ -3487,6 +3519,7 @@ operator new(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -3494,6 +3527,7 @@ operator new(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* !STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

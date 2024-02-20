@@ -1,27 +1,27 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/reg_value.hpp
+ * File:    winstl/registry/reg_value.hpp
  *
- * Purpose:     Contains the basic_reg_value class template, and multibyte
- *              and wide string specialisations thereof.
+ * Purpose: Contains the basic_reg_value class template, and multibyte and
+ *          wide string specialisations thereof.
  *
- * Notes:       The original implementation of the class had the const_iterator
- *              and value_type as nested classes. Unfortunately, Visual C++ 5 &
- *              6 both had either compilation or linking problems so these are
- *              regretably now implemented as independent classes.
+ * Notes:   The original implementation of the class had the const_iterator
+ *          and value_type as nested classes. Unfortunately, Visual C++ 5 &
+ *          6 both had either compilation or linking problems so these are
+ *          regretably now implemented as independent classes.
  *
- * Created:     19th January 2002
- * Updated:     22nd January 2024
+ * Created: 19th January 2002
+ * Updated: 20th February 2024
  *
- * Thanks:      To Diego Chanoux for spotting a defect in the value_sz() method.
+ * Thanks:  To Diego Chanoux for spotting a defect in the value_sz() method.
  *
- *              To Austin Ziegler for the value_multi_sz() method, and for
- *              fixes to defects evident on x64.
+ *          To Austin Ziegler for the value_multi_sz() method, and for fixes
+ *          to defects evident on x64.
  *
- *              To Sam Fisher for spotting the defect in the value_sz() and
- *              value_multi_sz() methods when accessing a zero-size value that
- *              has one or more non-zero-sized peer values. Ouch!
+ *          To Sam Fisher for spotting the defect in the value_sz() and
+ *          value_multi_sz() methods when accessing a zero-size value that
+ *          has one or more non-zero-sized peer values. Ouch!
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -70,8 +70,9 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  11
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      129
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -127,6 +128,7 @@
 # include <winstl/api/external/Registry.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Registry */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -145,6 +147,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -455,7 +458,8 @@ typedef basic_reg_value<
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_value<C, T, A>::basic_reg_value()
+inline
+basic_reg_value<C, T, A>::basic_reg_value()
     : m_name()
     , m_hkey(NULL)
     , m_type(REG_NONE)
@@ -463,7 +467,8 @@ inline basic_reg_value<C, T, A>::basic_reg_value()
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_value<C, T, A>::basic_reg_value(class_type const& rhs)
+inline
+basic_reg_value<C, T, A>::basic_reg_value(class_type const& rhs)
     : m_name(rhs.m_name)
     , m_hkey(dup_key_(rhs.m_hkey, KEY_READ))
     , m_type(rhs.m_type)
@@ -472,7 +477,8 @@ inline basic_reg_value<C, T, A>::basic_reg_value(class_type const& rhs)
 
 #if 0
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_value<C, T, A>::basic_reg_value(basic_reg_value<C, T, A>::hkey_type hkeyParent, basic_reg_value<C, T, A>::string_type const& value_name)
+inline
+basic_reg_value<C, T, A>::basic_reg_value(basic_reg_value<C, T, A>::hkey_type hkeyParent, basic_reg_value<C, T, A>::string_type const& value_name)
     : m_name(value_name)
     , m_hkey(dup_key_(hkeyParent))
     , m_type(REG_NONE)
@@ -481,7 +487,8 @@ inline basic_reg_value<C, T, A>::basic_reg_value(basic_reg_value<C, T, A>::hkey_
 #endif /* 0 */
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_value<C, T, A>::~basic_reg_value() STLSOFT_NOEXCEPT
+inline
+basic_reg_value<C, T, A>::~basic_reg_value() STLSOFT_NOEXCEPT
 {
     if (m_hkey != NULL)
     {
@@ -490,7 +497,8 @@ inline basic_reg_value<C, T, A>::~basic_reg_value() STLSOFT_NOEXCEPT
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_value<C, T, A>::class_type& basic_reg_value<C, T, A>::operator =(class_type const& rhs)
+inline
+ss_typename_type_ret_k basic_reg_value<C, T, A>::class_type& basic_reg_value<C, T, A>::operator =(class_type const& rhs)
 {
     m_name              =   rhs.m_name;
     m_type              =   rhs.m_type;
@@ -508,7 +516,9 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::class_type& basic_reg_va
 
 // Implementation
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ws_dword_t basic_reg_value<C, T, A>::get_type_() const
+inline
+ws_dword_t
+basic_reg_value<C, T, A>::get_type_() const
 {
     if (!m_bTypeRetrieved)
     {
@@ -534,7 +544,14 @@ inline ws_dword_t basic_reg_value<C, T, A>::get_type_() const
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline /* static */ ss_typename_type_ret_k basic_reg_value<C, T, A>::hkey_type basic_reg_value<C, T, A>::dup_key_(ss_typename_type_k basic_reg_value<C, T, A>::hkey_type hkey, REGSAM accessMask/* , ss_typename_type_k basic_reg_value<C, T, A>::result_type *res */)
+inline
+/* static */
+ss_typename_type_ret_k basic_reg_value<C, T, A>::hkey_type
+basic_reg_value<C, T, A>::dup_key_(
+    ss_typename_type_k basic_reg_value<C, T, A>::hkey_type  hkey
+,   REGSAM                                                  accessMask
+/* ,   ss_typename_type_k basic_reg_value<C, T, A>::result_type*    res */
+)
 {
     if (NULL == hkey)
     {
@@ -571,19 +588,25 @@ inline /* static */ ss_typename_type_ret_k basic_reg_value<C, T, A>::hkey_type b
 
 // Attributes
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ws_dword_t basic_reg_value<C, T, A>::type() const
+inline
+ws_dword_t
+basic_reg_value<C, T, A>::type() const
 {
     return get_type_();
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_value<C, T, A>::name() const
+inline
+ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type
+basic_reg_value<C, T, A>::name() const
 {
     return m_name;
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_value<C, T, A>::value_sz() const
+inline
+ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type
+basic_reg_value<C, T, A>::value_sz() const
 {
     // Does not expand environment strings
     string_type ret;
@@ -644,12 +667,14 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_value<C, T, A>::value_expand_sz() const
+inline
+ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type
+basic_reg_value<C, T, A>::value_expand_sz() const
 {
     // Does expand environment strings
     string_type ret = value_sz();
 
-    if (ret.length() > 0 &&
+    if (ret.size() > 0 &&
         REG_EXPAND_SZ == get_type_())
     {
         size_type size = traits_type::expand_environment_strings(ret.c_str(), NULL, 0);
@@ -685,7 +710,9 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ws_dword_t basic_reg_value<C, T, A>::value_dword() const
+inline
+ws_dword_t
+basic_reg_value<C, T, A>::value_dword() const
 {
     ws_dword_t  dwValue;
     size_type   cbData  =   sizeof(dwValue);
@@ -714,17 +741,24 @@ inline ws_dword_t basic_reg_value<C, T, A>::value_dword() const
 }
 
 #if 0
+
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ws_dword_t basic_reg_value<C, T, A>::value_dword_littleendian() const
+inline
+ws_dword_t
+basic_reg_value<C, T, A>::value_dword_littleendian() const
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ws_dword_t basic_reg_value<C, T, A>::value_dword_bigendian() const
+inline
+ws_dword_t
+basic_reg_value<C, T, A>::value_dword_bigendian() const
 {}
 #endif /* 0 */
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_value<C, T, A>::blob_type basic_reg_value<C, T, A>::value_binary() const
+inline
+ss_typename_type_ret_k basic_reg_value<C, T, A>::blob_type
+basic_reg_value<C, T, A>::value_binary() const
 {
     size_type   data_size   =   0;
     ws_dword_t  dw;
@@ -777,7 +811,9 @@ query_failed:
 
 #ifndef WINSTL_REG_VALUE_NO_MULTI_SZ
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_value<C, T, A>::strings_type basic_reg_value<C, T, A>::value_multi_sz() const
+inline
+ss_typename_type_ret_k basic_reg_value<C, T, A>::strings_type
+basic_reg_value<C, T, A>::value_multi_sz() const
 {
     strings_type    ret;
     size_type       data_size   =   0;
@@ -858,68 +894,86 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::strings_type basic_reg_v
 // reg_blob
 
 template<ss_typename_param_k A>
-inline reg_blob<A>::reg_blob()
+inline
+reg_blob<A>::reg_blob()
     : m_buffer(0)
 {}
 
 template<ss_typename_param_k A>
-inline reg_blob<A>::reg_blob(ss_typename_type_k reg_blob<A>::value_type const* data, ss_typename_type_k reg_blob<A>::size_type n)
+inline
+reg_blob<A>::reg_blob(
+    ss_typename_type_k reg_blob<A>::value_type const*   data
+,   ss_typename_type_k reg_blob<A>::size_type           n
+)
     : m_buffer(n)
 {
     STLSOFT_NS_QUAL_STD(copy)(data, data + m_buffer.size(), m_buffer.begin());
 }
 
 template<ss_typename_param_k A>
-inline reg_blob<A>::reg_blob(ss_typename_type_k reg_blob<A>::class_type const& rhs)
+inline
+reg_blob<A>::reg_blob(ss_typename_type_k reg_blob<A>::class_type const& rhs)
     : m_buffer(rhs.size())
 {
     STLSOFT_NS_QUAL_STD(copy)(rhs.data(), rhs.data() + m_buffer.size(), m_buffer.begin());
 }
 
 template<ss_typename_param_k A>
-inline reg_blob<A>::~reg_blob() STLSOFT_NOEXCEPT
+inline
+reg_blob<A>::~reg_blob() STLSOFT_NOEXCEPT
 {}
 
 template<ss_typename_param_k A>
-inline ss_typename_type_ret_k reg_blob<A>::size_type reg_blob<A>::size() const
+inline
+ss_typename_type_ret_k reg_blob<A>::size_type
+reg_blob<A>::size() const
 {
     return m_buffer.size();
 }
 
 template<ss_typename_param_k A>
-inline ss_typename_type_ret_k reg_blob<A>::const_pointer reg_blob<A>::data() const
+inline
+ss_typename_type_ret_k reg_blob<A>::const_pointer
+reg_blob<A>::data() const
 {
     return m_buffer.data();
 }
 
 template<ss_typename_param_k A>
-inline ss_typename_type_ret_k reg_blob<A>::const_iterator reg_blob<A>::begin() const
+inline
+ss_typename_type_ret_k reg_blob<A>::const_iterator
+reg_blob<A>::begin() const
 {
     return m_buffer.begin();
 }
 
 template<ss_typename_param_k A>
-inline ss_typename_type_ret_k reg_blob<A>::const_iterator reg_blob<A>::end() const
+inline
+ss_typename_type_ret_k reg_blob<A>::const_iterator
+reg_blob<A>::end() const
 {
     return m_buffer.end();
 }
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template<ss_typename_param_k A>
-inline ss_typename_type_ret_k reg_blob<A>::const_reverse_iterator reg_blob<A>::rbegin() const
+inline
+ss_typename_type_ret_k reg_blob<A>::const_reverse_iterator
+reg_blob<A>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
 template<ss_typename_param_k A>
-inline ss_typename_type_ret_k reg_blob<A>::const_reverse_iterator reg_blob<A>::rend() const
+inline
+ss_typename_type_ret_k reg_blob<A>::const_reverse_iterator
+reg_blob<A>::rend() const
 {
     return const_reverse_iterator(begin());
 }
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -932,6 +986,7 @@ inline ss_typename_type_ret_k reg_blob<A>::const_reverse_iterator reg_blob<A>::r
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

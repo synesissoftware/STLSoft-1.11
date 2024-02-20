@@ -1,15 +1,20 @@
 # STLSoft 1.11 <!-- omit in toc -->
 
+>**NOTE**: until such time as **1.11.0** is released, this repository is considered beta-only, and you should consider [STLSoft-1.10](http://github.com/synesissoftware/STLSoft-1.10/) to be the definitive **STLSoft** repository.
+
 ## Table of Contents <!-- omit in toc -->
 
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Components](#components)
+  - [Subprojects](#subprojects)
+  - [Libraries](#libraries)
 - [Examples](#examples)
 - [Project Information](#project-information)
   - [Where to get help](#where-to-get-help)
   - [Contribution guidelines](#contribution-guidelines)
   - [Dependencies](#dependencies)
+    - [Test-only dependencies](#test-only-dependencies)
   - [Related projects](#related-projects)
   - [License](#license)
 
@@ -24,22 +29,20 @@
 The overarching characteristic of STLSoft is that it is *lightweight*. That sounds great, but what does it actually mean? Specifically, the **STLSoft** libraries share the following characteristics:
 
 - "**100% header-only**" - all components within the libraries are entirely defined within header files, meaning that users need only `#include` the requisite files to access the functionality;
-- "**Intersecting Conformance**" -  similar, but not-identical, components from different projects (e.g. **UNIXSTL** and **WinSTL**) are structurally conformant (they share compatible syntax, and corresponding semantics, without being related by type) only to the degree of the intersection of identical functionality, rather than employing significant additional functionality to achieve total structural conformance. For example, though both the `unixstl::filesystem_traits` and `winstl::filesystem_traits` traits classes provide the `stat()` and `fstat()` operations, `lstat()` is provided only by `unixstl::filesystem_traits`;
-- **Maximum Cohesion with Minimal Coupling** - achieved by extensive use of generalising mechanisms, particularly "*shims*", e.g. types that manipulate character strings are able to interact with arbitrary string types, not just `char const*` and `std::string`;
-- **Very High Efficiency** - Second only to *Robustness*, all components in the libraries are implemented with a view to maximum efficient. This is aided by the extensive use of efficient utility classes, such as `stlsoft::auto_buffer` and `stlsoft::scoped_handle`;
+- "**Intersecting Conformance**" -  similar, but not-identical, components from different projects (e.g. **UNIXSTL** and **WinSTL**) are _structurally conformant_ (they share compatible syntax, and corresponding semantics, without being related by type) only to the degree of the intersection of identical functionality, rather than employing significant additional functionality to achieve total structural conformance. For example, though both the `unixstl::filesystem_traits` and `winstl::filesystem_traits` traits classes provide the `stat()` and `fstat()` operations, `lstat()` is provided only by the former;
+- **Maximum Cohesion with Minimal Coupling** - achieved by extensive use of generalising mechanisms, such as "*shims*", e.g. types that manipulate character strings are able to interact with arbitrary string types, not just `char const*` and `std::string`;
+- **Very High Efficiency** - along with *Robustness*, all components in the libraries are implemented with a view to maximum _Efficiency_. This is aided by the extensive use of efficient utility classes, such as `stlsoft::auto_buffer` and `stlsoft::scoped_handle`;
 
 **NOTE**: It is important to understand that _**STLSoft** is not a framework_. Each library component is as "thin" as possible to provide its given function. The intent is that STLSoft components are used as building blocks for writing higher level components - applications, classes, libraries, servers. **STLSoft** has been used extensively in the development of software in all these guises.
-
-... more information TBC as we move towards a full (non-beta) release
 
 
 ## Installation
 
 There are three main ways to install **STLSoft-1.11**:
 
-1. As downloaded archive, using environment variables;
-2. Cloning project, using environment variables;
-3. Cloning project, installing via CMake;
+1. As downloaded archive, then using environment variables;
+2. Cloning project, then using environment variables;
+3. Cloning project, then installing via CMake;
 
 Option 3 is recommended.
 
@@ -48,7 +51,59 @@ See [INSTALL.md](./INSTALL.md) for details of these options, and also for an exp
 
 ## Components
 
-T.B.C.
+The components in **STLSoft** are provided in _sub-projects_, and in _libraries_.
+
+### Subprojects
+
+The following significant sub-projects are provided:
+
+* **STLSoft** - general-purpose components and base-level features;
+* **ACESTL** - components to do with **ACE** framework;
+* **COMSTL** - components to do with **Component Object Model (COM)**;
+* **MFCSTL** - components to do with **Microsoft Foundation Classes (MFC)**;
+* **UnixSTL** - components to do with **Unix** operating system APIs;
+* **WinSTL** - components to do with **Windows** operating system APIs;
+
+### Libraries
+
+The significant libraries include:
+
+ * **algorithms** - T.B.C.
+ * **automation** - T.B.C.
+ * **clipboard** - T.B.C.
+ * **collections** - T.B.C.
+ * **containers** - general- and special-purpose containers, such as `stlsoft::frequency_map<>`;
+ * **controls** - T.B.C.
+ * **conversion** - T.B.C.
+ * **diagnostics** - T.B.C.
+ * **dl** - dynamic-library loading and invocation (for both **Unix** and **Windows**);
+ * **filesystem** - T.B.C.
+ * **function_adaptors** - T.B.C.
+ * **functional** - T.B.C.
+ * **iterator** - T.B.C.
+ * **locale** - T.B.C.
+ * **memory** - T.B.C.
+ * **meta** - T.B.C.
+ * **network** - T.B.C.
+ * **performance** - T.B.C.
+ * **process** - T.B.C.
+ * **quality** - T.B.C.
+ * **reactor** - T.B.C.
+ * **registry** - T.B.C.
+ * **resource** - T.B.C.
+ * **security** - T.B.C.
+ * **shell** - T.B.C.
+ * **shims** - T.B.C.
+ * **smartptr** - T.B.C.
+ * **speech** - T.B.C.
+ * **string** - T.B.C.
+ * **synch** - T.B.C.
+ * **system** - T.B.C.
+ * **time** - T.B.C.
+ * **typelib** - T.B.C.
+ * **view** - T.B.C.
+
+As **STLSoft-1.11** approaches an official release we will provide increasing information on the above _sub-projects_ and _libraries_.
 
 
 ## Examples
@@ -70,7 +125,15 @@ If you'd like to help out with the project, please raise an issue via [GitHub Is
 
 ### Dependencies
 
-There are no dependencies
+There are no dependencies for installation and use of **STLSoft**.
+
+#### Test-only dependencies
+
+The component-/unit-tests depend on the **xTests** project:
+
+* [xTests](http://github.com/synesissoftware/xTests/)
+
+
 
 ### Related projects
 
@@ -85,6 +148,7 @@ Projects that depend on **STLSoft** - though for some it is only for test - incl
 * [**shwild**](https://github.com/synesissoftware/shwild)
 * [**UNIXem**](https://github.com/synesissoftware/UNIXem)
 * [**xTests**](https://github.com/synesissoftware/xTests)
+
 
 ### License
 

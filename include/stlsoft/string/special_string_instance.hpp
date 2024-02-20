@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/special_string_instance.hpp
+ * File:    stlsoft/string/special_string_instance.hpp
  *
- * Purpose:     Special string instance class template.
+ * Purpose: Special string instance class template.
  *
- * Created:     3rd June 2006
- * Updated:     22nd January 2024
+ * Created: 3rd June 2006
+ * Updated: 20th February 2024
  *
- * Thanks to:   Pablo Aguilar for spotting my omission of string access shims
- *              for special_string_instance_1.
+ * Thanks:  Pablo Aguilar for spotting my omission of string access shims
+ *          for special_string_instance_1.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -58,8 +58,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        43
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -108,6 +109,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -116,6 +118,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -154,7 +157,12 @@ public:
     /// The argument type
     typedef T_arg0                                          argument_0_type;
     /// The class type
-    typedef ssi_buffer<T_character, N, T_allocator, T_arg0> class_type;
+    typedef ssi_buffer<
+        T_character
+    ,   N
+    ,   T_allocator
+    ,   T_arg0
+    >                                                       class_type;
 private:
     /// The buffer type
     typedef stlsoft::auto_buffer<
@@ -196,6 +204,7 @@ public:
         m_buffer.resize(initial);
 
 #if 1
+
         size_type cch = pfn(&m_buffer[0], m_buffer.size());
 
         if (cch < m_buffer.size())
@@ -207,6 +216,7 @@ public:
             return;
         }
 #else
+
         // We don't pass NULL here, just in case
         char_type empty =   '\0';
         size_type cch   =   pfn(&empty, 0);
@@ -247,6 +257,7 @@ public:
         m_buffer.resize(initial);
 
 #if 1
+
         size_type cch = pfn(arg0, &m_buffer[0], m_buffer.size());
 
         if (cch < m_buffer.size())
@@ -258,6 +269,7 @@ public:
             return;
         }
 #else
+
         // We don't pass NULL here, just in case
         char_type   empty   =   '\0';
         size_type   cch     =   pfn(arg0, &empty, 0);
@@ -338,11 +350,18 @@ public:
 /// \name Construction
 /// @{
 public:
-    ssi_buffer_non_static(size_type initial, size_type (*pfn)(char_type*, size_type))
+    ssi_buffer_non_static(
+        size_type   initial
+    ,   size_type (*pfn)(char_type*, size_type)
+    )
     {
         parent_class_type::init(initial, pfn);
     }
-    ssi_buffer_non_static(size_type initial, size_type (*pfn)(T_arg0, char_type*, size_type), T_arg0 a0)
+    ssi_buffer_non_static(
+        size_type   initial
+    ,   size_type (*pfn)(T_arg0, char_type*, size_type)
+    ,   T_arg0      a0
+    )
     {
         parent_class_type::init(initial, pfn, a0);
     }
@@ -394,7 +413,12 @@ struct ssi_buffer_static
 /// \name Member Types
 /// @{
 public:
-    typedef ssi_buffer<T_character, N, T_allocator, T_arg0> ssi_buffer_type;
+    typedef ssi_buffer<
+        T_character
+    ,   N
+    ,   T_allocator
+    ,   T_arg0
+    >                                                       ssi_buffer_type;
     typedef ssi_buffer_static<
         T_character
     ,   N
@@ -414,10 +438,17 @@ private:
 /// \name Construction
 /// @{
 public:
-    ssi_buffer_static(size_type initial, size_type (*pfn)(char_type*, size_type))
+    ssi_buffer_static(
+        size_type   initial
+    ,   size_type (*pfn)(char_type*, size_type)
+    )
         : m_buffer(get_buffer(initial, pfn))
     {}
-    ssi_buffer_static(size_type initial, size_type (*pfn)(T_arg0, char_type*, size_type), T_arg0 a0)
+    ssi_buffer_static(
+        size_type   initial
+    ,   size_type (*pfn)(T_arg0, char_type*, size_type)
+    ,   T_arg0      a0
+    )
         : m_buffer(get_buffer(initial, pfn, a0))
     {}
 #if 0 || \
@@ -446,7 +477,12 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static ssi_buffer_type& get_buffer(size_type initial, size_type (*pfn)(char_type*, size_type))
+    static
+    ssi_buffer_type&
+    get_buffer(
+        size_type   initial
+    ,   size_type (*pfn)(char_type*, size_type)
+    )
     {
         static atomic_int_type                  s_count =   0;
         static bool                             s_bInit =   false;
@@ -464,7 +500,13 @@ private:
 
         return s_buffer;
     }
-    static ssi_buffer_type& get_buffer(size_type initial, size_type (*pfn)(T_arg0, char_type*, size_type), T_arg0 a0)
+    static
+    ssi_buffer_type&
+    get_buffer(
+        size_type   initial
+    ,   size_type (*pfn)(T_arg0, char_type*, size_type)
+    ,   T_arg0      a0
+    )
     {
         static atomic_int_type                  s_count =   0;
         static bool                             s_bInit =   false;
@@ -636,7 +678,6 @@ private: // implementation
     ;
 #endif
 };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** Base type for policies
@@ -678,7 +719,6 @@ public:
 
     enum { internalBufferSize = -1 };
 };
-
 
 /** Special string instance class template.
  *
@@ -886,7 +926,12 @@ public:
 /// \name Operations
 /// @{
 public:
-    static size_type get(char_type* buffer, size_type cchBuffer)
+    static
+    size_type
+    get(
+        char_type*  buffer
+    ,   size_type   cchBuffer
+    )
     {
         return (policy_type::get_fn())(buffer, cchBuffer);
     }
@@ -1051,7 +1096,13 @@ public:
 /// \name Operations
 /// @{
 public:
-    static size_type get(argument_0_type argument, char_type* buffer, size_type cchBuffer)
+    static
+    size_type
+    get(
+        argument_0_type argument
+    ,   char_type*      buffer
+    ,   size_type       cchBuffer
+    )
     {
         return (policy_type::get_fn())(argument, buffer, cchBuffer);
     }
@@ -1106,6 +1157,7 @@ private:
     buffer_type_ m_buffer;
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -1166,6 +1218,7 @@ operator !=(
 {
     return !rhs.equal(lhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -1543,6 +1596,7 @@ c_str_len_w(
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1550,6 +1604,7 @@ c_str_len_w(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

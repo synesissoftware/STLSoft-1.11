@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/limits/integral_format_width_limits.hpp
+ * File:    stlsoft/limits/integral_format_width_limits.hpp
  *
- * Purpose:     integral_format_width_limits traits class template.
+ * Purpose: integral_format_width_limits traits class template.
  *
- * Created:     10th July 2012
- * Updated:     26th December 2020
+ * Created: 10th July 2012
+ * Updated: 18th February 2024
  *
- * Thanks:      To Jonathan Wakely for help with Solaris compatibility.
+ * Thanks:  To Jonathan Wakely for help with Solaris compatibility.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,10 +55,11 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_MAJOR      1
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_MINOR      0
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_REVISION   7
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_EDIT       12
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_MINOR      1
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_REVISION   1
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -80,6 +82,7 @@ namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -87,8 +90,9 @@ namespace stlsoft
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 /// Limits-traits class template that specifies the maximum length of
-/// integer-to-string conversion strings, for octal, decimal, and
-/// hexadecimal conversion of integral types.
+/// integer-to-string conversion strings, for octal, decimal,
+/// hexadecimal, duotrigesimal (base-32), and hexatridecimal (base-36)
+/// conversion of integral types.
 ///
 /// \note The lengths given do <strong>not</strong> assume any kind of
 ///   integral promotion, such as occurs, for example, with variadic
@@ -124,6 +128,20 @@ struct integral_format_width_limits
             /// value in the range of the type, excluding the sign (for
             /// negative values; signed types only)
         ,   maxHexadecimalWidthWithoutSign
+            /// The maximum width of duotrigesimal (base-32) representation
+            /// of any value in the range of the type
+        ,   maxDuotrigesimalWidth
+            /// The maximum width of duotrigesimal (base-32) representation
+            /// of any value in the range of the type, excluding the sign
+            /// (for negative values; signed types only)
+        ,   maxDuotrigesimalWidthWithoutSign
+            /// The maximum width of hexatridecimal (base-32) representation
+            /// of any value in the range of the type
+        ,   maxHexatridecimalWidth
+            /// The maximum width of hexatridecimal (base-32) representation
+            /// of any value in the range of the type, excluding the sign
+            /// (for negative values; signed types only)
+        ,   maxHexatridecimalWidthWithoutSign
     };
 };
 
@@ -137,12 +155,16 @@ struct integral_format_width_limits<ss_sint8_t>
 {
     enum
     {
-            maxOctalWidth                   =   4
-        ,   maxOctalWidthWithoutSign        =   3
-        ,   maxDecimalWidth                 =   4
-        ,   maxDecimalWidthWithoutSign      =   3
-        ,   maxHexadecimalWidth             =   3
-        ,   maxHexadecimalWidthWithoutSign  =   2
+            maxOctalWidth                       =   4
+        ,   maxOctalWidthWithoutSign            =   3
+        ,   maxDecimalWidth                     =   4
+        ,   maxDecimalWidthWithoutSign          =   3
+        ,   maxHexadecimalWidth                 =   3
+        ,   maxHexadecimalWidthWithoutSign      =   2
+        ,   maxDuotrigesimalWidth               =   3
+        ,   maxDuotrigesimalWidthWithoutSign    =   2
+        ,   maxHexatridecimalWidth              =   3
+        ,   maxHexatridecimalWidthWithoutSign   =   2
     };
 };
 
@@ -151,12 +173,16 @@ struct integral_format_width_limits<ss_uint8_t>
 {
     enum
     {
-            maxOctalWidth                   =   3
-        ,   maxOctalWidthWithoutSign        =   3
-        ,   maxDecimalWidth                 =   3
-        ,   maxDecimalWidthWithoutSign      =   3
-        ,   maxHexadecimalWidth             =   2
-        ,   maxHexadecimalWidthWithoutSign  =   2
+            maxOctalWidth                       =   3
+        ,   maxOctalWidthWithoutSign            =   3
+        ,   maxDecimalWidth                     =   3
+        ,   maxDecimalWidthWithoutSign          =   3
+        ,   maxHexadecimalWidth                 =   2
+        ,   maxHexadecimalWidthWithoutSign      =   2
+        ,   maxDuotrigesimalWidth               =   2
+        ,   maxDuotrigesimalWidthWithoutSign    =   2
+        ,   maxHexatridecimalWidth              =   2
+        ,   maxHexatridecimalWidthWithoutSign   =   2
     };
 };
 
@@ -165,12 +191,16 @@ struct integral_format_width_limits<ss_sint16_t>
 {
     enum
     {
-            maxOctalWidth                   =   7
-        ,   maxOctalWidthWithoutSign        =   6
-        ,   maxDecimalWidth                 =   6
-        ,   maxDecimalWidthWithoutSign      =   5
-        ,   maxHexadecimalWidth             =   5
-        ,   maxHexadecimalWidthWithoutSign  =   4
+            maxOctalWidth                       =   7
+        ,   maxOctalWidthWithoutSign            =   6
+        ,   maxDecimalWidth                     =   6
+        ,   maxDecimalWidthWithoutSign          =   5
+        ,   maxHexadecimalWidth                 =   5
+        ,   maxHexadecimalWidthWithoutSign      =   4
+        ,   maxDuotrigesimalWidth               =   5
+        ,   maxDuotrigesimalWidthWithoutSign    =   4
+        ,   maxHexatridecimalWidth              =   4
+        ,   maxHexatridecimalWidthWithoutSign   =   3
     };
 };
 
@@ -179,12 +209,16 @@ struct integral_format_width_limits<ss_uint16_t>
 {
     enum
     {
-            maxOctalWidth                   =   5
-        ,   maxOctalWidthWithoutSign        =   5
-        ,   maxDecimalWidth                 =   5
-        ,   maxDecimalWidthWithoutSign      =   5
-        ,   maxHexadecimalWidth             =   4
-        ,   maxHexadecimalWidthWithoutSign  =   4
+            maxOctalWidth                       =   5
+        ,   maxOctalWidthWithoutSign            =   5
+        ,   maxDecimalWidth                     =   5
+        ,   maxDecimalWidthWithoutSign          =   5
+        ,   maxHexadecimalWidth                 =   4
+        ,   maxHexadecimalWidthWithoutSign      =   4
+        ,   maxDuotrigesimalWidth               =   4
+        ,   maxDuotrigesimalWidthWithoutSign    =   4
+        ,   maxHexatridecimalWidth              =   4
+        ,   maxHexatridecimalWidthWithoutSign   =   4
     };
 };
 
@@ -193,12 +227,16 @@ struct integral_format_width_limits<ss_sint32_t>
 {
     enum
     {
-            maxOctalWidth                   =   12
-        ,   maxOctalWidthWithoutSign        =   11
-        ,   maxDecimalWidth                 =   11
-        ,   maxDecimalWidthWithoutSign      =   10
-        ,   maxHexadecimalWidth             =   9
-        ,   maxHexadecimalWidthWithoutSign  =   8
+            maxOctalWidth                       =   12
+        ,   maxOctalWidthWithoutSign            =   11
+        ,   maxDecimalWidth                     =   11
+        ,   maxDecimalWidthWithoutSign          =   10
+        ,   maxHexadecimalWidth                 =   9
+        ,   maxHexadecimalWidthWithoutSign      =   8
+        ,   maxDuotrigesimalWidth               =   8
+        ,   maxDuotrigesimalWidthWithoutSign    =   7
+        ,   maxHexatridecimalWidth              =   7
+        ,   maxHexatridecimalWidthWithoutSign   =   6
     };
 };
 
@@ -207,12 +245,16 @@ struct integral_format_width_limits<ss_uint32_t>
 {
     enum
     {
-            maxOctalWidth                   =   11
-        ,   maxOctalWidthWithoutSign        =   11
-        ,   maxDecimalWidth                 =   10
-        ,   maxDecimalWidthWithoutSign      =   10
-        ,   maxHexadecimalWidth             =   8
-        ,   maxHexadecimalWidthWithoutSign  =   8
+            maxOctalWidth                       =   11
+        ,   maxOctalWidthWithoutSign            =   11
+        ,   maxDecimalWidth                     =   10
+        ,   maxDecimalWidthWithoutSign          =   10
+        ,   maxHexadecimalWidth                 =   8
+        ,   maxHexadecimalWidthWithoutSign      =   8
+        ,   maxDuotrigesimalWidth               =   7
+        ,   maxDuotrigesimalWidthWithoutSign    =   7
+        ,   maxHexatridecimalWidth              =   7
+        ,   maxHexatridecimalWidthWithoutSign   =   7
     };
 };
 
@@ -221,12 +263,16 @@ struct integral_format_width_limits<ss_sint64_t>
 {
     enum
     {
-            maxOctalWidth                   =   23
-        ,   maxOctalWidthWithoutSign        =   22
-        ,   maxDecimalWidth                 =   20
-        ,   maxDecimalWidthWithoutSign      =   19
-        ,   maxHexadecimalWidth             =   17
-        ,   maxHexadecimalWidthWithoutSign  =   16
+            maxOctalWidth                       =   23
+        ,   maxOctalWidthWithoutSign            =   22
+        ,   maxDecimalWidth                     =   20
+        ,   maxDecimalWidthWithoutSign          =   19
+        ,   maxHexadecimalWidth                 =   17
+        ,   maxHexadecimalWidthWithoutSign      =   16
+        ,   maxDuotrigesimalWidth               =   14
+        ,   maxDuotrigesimalWidthWithoutSign    =   13
+        ,   maxHexatridecimalWidth              =   14
+        ,   maxHexatridecimalWidthWithoutSign   =   13
     };
 };
 
@@ -235,12 +281,16 @@ struct integral_format_width_limits<ss_uint64_t>
 {
     enum
     {
-            maxOctalWidth                   =   21
-        ,   maxOctalWidthWithoutSign        =   21
-        ,   maxDecimalWidth                 =   20
-        ,   maxDecimalWidthWithoutSign      =   20
-        ,   maxHexadecimalWidth             =   16
-        ,   maxHexadecimalWidthWithoutSign  =   16
+            maxOctalWidth                       =   21
+        ,   maxOctalWidthWithoutSign            =   21
+        ,   maxDecimalWidth                     =   20
+        ,   maxDecimalWidthWithoutSign          =   20
+        ,   maxHexadecimalWidth                 =   16
+        ,   maxHexadecimalWidthWithoutSign      =   16
+        ,   maxDuotrigesimalWidth               =   13
+        ,   maxDuotrigesimalWidthWithoutSign    =   13
+        ,   maxHexatridecimalWidth              =   13
+        ,   maxHexatridecimalWidthWithoutSign   =   13
     };
 };
 
@@ -366,11 +416,13 @@ struct integral_format_width_limits<unsigned long>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

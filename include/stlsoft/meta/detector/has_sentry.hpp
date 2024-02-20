@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    atlstl/string/string_traits.hpp
+ * File:        stlsoft/meta/detector/has_sentry.hpp
  *
- * Purpose: Contains string_traits for ATL.
+ * Purpose:     Definition of the has_sentry member type detector.
  *
- * Created: 28th April 2005
- * Updated: 20th February 2024
+ * Created:     16th February 2024
+ * Updated:     16th February 2024
  *
- * Home:    http://stlsoft.org/
+ * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
- * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
+ * Copyright (c) 2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,21 +40,21 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file atlstl/string/string_traits.hpp
+/** \file stlsoft/meta/detector/has_sentry.hpp
  *
- * \brief [C++] Specialisation of the stlsoft::string_traits traits class
- *   for ATL types
- *   (\ref group__library__String "String" Library).
+ * \brief [C++] Definition of the stlsoft::has_sentry member type
+ *   detector class template
+ *   (\ref group__library__Metaprogramming "Metaprogramming" Library).
  */
 
-#ifndef ATLSTL_INCL_ATLSTL_STRING_HPP_STRING_TRAITS
-#define ATLSTL_INCL_ATLSTL_STRING_HPP_STRING_TRAITS
+#ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY
+#define STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define ATLSTL_VER_ATLSTL_STRING_HPP_STRING_TRAITS_MAJOR      3
-# define ATLSTL_VER_ATLSTL_STRING_HPP_STRING_TRAITS_MINOR      0
-# define ATLSTL_VER_ATLSTL_STRING_HPP_STRING_TRAITS_REVISION   6
-# define ATLSTL_VER_ATLSTL_STRING_HPP_STRING_TRAITS_EDIT       32
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_MAJOR     1
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_MINOR     0
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_REVISION  1
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_EDIT      1
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -63,16 +62,19 @@
  * includes
  */
 
-#ifndef ATLSTL_INCL_ATLSTL_HPP_ATLSTL
-# include <atlstl/atlstl.hpp>
-#endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD
-# include <stlsoft/string/string_traits_fwd.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
+# include <stlsoft/meta/n_types.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,50 +91,36 @@ namespace stlsoft
  * classes
  */
 
+template <ss_typename_param_k T>
+one_t has_sentry_function(...);
+
+template <ss_typename_param_k T>
+two_t has_sentry_function(ss_typename_type_k T::sentry const volatile *);
+
+/** traits type to determine whether a given type has member type \c sentry
+ *
+ * \ingroup group__library__Metaprogramming
+ */
+template <ss_typename_param_k T>
+struct has_sentry
+{
+    typedef T   test_type;
+
+private:
+    static T    t;
+public:
+
+    enum { value = sizeof(has_sentry_function<T>(0)) == sizeof(two_t) };
+};
+
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-/* ATL's CComBSTR */
 STLSOFT_TEMPLATE_SPECIALISATION
-struct string_traits<CComBSTR>
+struct has_sentry<void>
 {
-    typedef CComBSTR                                    value_type;
-    typedef WCHAR                                       char_type;
-    typedef ss_size_t                                   size_type;
-    typedef char_type const                             const_char_type;
-    typedef value_type                                  string_type;
-    typedef LPOLESTR                                    pointer;
-    typedef LPCOLESTR                                   const_pointer;
-    typedef pointer                                     iterator;
-    typedef const_pointer                               const_iterator;
-    enum
-    {
-            is_pointer          =   false
-        ,   is_pointer_to_const =   false
-        ,   char_type_size      =   sizeof(char_type)
-    };
+    typedef void    test_type;
 
-    static string_type empty_string()
-    {
-        return string_type();
-    }
-
-    static string_type construct(string_type const& src, size_type pos, size_type len)
-    {
-        return string_type(static_cast<int>(len), static_cast<const_pointer>(src) + pos);
-    }
-    static string_type& assign_inplace(string_type& str, const_iterator first, const_iterator last)
-    {
-        return (str = string_type(static_cast<int>(last - first), first), str);
-    }
-
-    static iterator begin(string_type& str)
-    {
-        return &(str[0]);
-    }
-    static iterator end(string_type& str)
-    {
-        return begin(str) + str.Length();
-    }
+    enum { value = 0 };
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -152,7 +140,7 @@ struct string_traits<CComBSTR>
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-#endif /* !ATLSTL_INCL_ATLSTL_STRING_HPP_STRING_TRAITS */
+#endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY */
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

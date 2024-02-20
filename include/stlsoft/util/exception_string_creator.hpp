@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/exception_string_creator.hpp
+ * File:    stlsoft/util/exception_string_creator.hpp
  *
- * Purpose:     Contains the exception_string_creator class.
+ * Purpose: Contains the exception_string_creator class.
  *
- * Created:     25th May 2010
- * Updated:     16th February 2021
+ * Created: 25th May 2010
+ * Updated: 20th February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,9 +53,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MINOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     28
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -113,6 +114,7 @@
 # include <stdlib.h>                     // for wcstombs()
 #endif /* !STLSOFT_INCL_H_STDLIB */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -121,6 +123,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -152,13 +155,21 @@ public:
     /// The allocator type
     typedef A                                               allocator_type;
     /// This type
-    typedef basic_exception_string_creator<C, T, A>         class_type;
+    typedef basic_exception_string_creator<
+        C
+    ,   T
+    ,   A
+    >                                                       class_type;
     /// The size type
     typedef ss_size_t                                       size_type;
     /// The exception string type
     typedef exception_string                                exception_string_type;
 private:
-    typedef STLSOFT_NS_QUAL_STD(basic_string)<C, T, A>      string_type_;
+    typedef STLSOFT_NS_QUAL_STD(basic_string)<
+        C
+    ,   T
+    ,   A
+    >                                                       string_type_;
 /// @}
 
 /// \name Construction
@@ -388,7 +399,7 @@ public:
     /// Indicates whether or not the message is blank
     ss_bool_t   empty() const
     {
-        return 0 == this->length();
+        return 0 == size();
     }
     /// Returns the number of characters in the message
     size_type   length() const
@@ -500,6 +511,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -522,6 +534,7 @@ typedef basic_exception_string_creator<
 
 typedef exception_string_creator_a                          exception_string_creator;
 typedef exception_string_creator_w                          exception_wstring_creator;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -618,8 +631,8 @@ c_str_ptr_w(
 {
     return xs.c_str();
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -628,6 +641,7 @@ c_str_ptr_w(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

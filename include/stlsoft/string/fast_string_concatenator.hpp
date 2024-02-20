@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/fast_string_concatenator.hpp
+ * File:    stlsoft/string/fast_string_concatenator.hpp
  *
- * Purpose:     Fast string concatenator.
+ * Purpose: Fast string concatenator.
  *
- * Created:     4th November 2003 (the time added to STLSoft libraries)
- * Updated:     22nd January 2024
+ * Created: 4th November 2003 (the time added to STLSoft libraries)
+ * Updated: 20th February 2024
  *
- * Thanks to:   Sean Kelly for picking up on my gratuitous use of pointers
- *              in the first implementation.
+ * Thanks:  Sean Kelly for picking up on my gratuitous use of pointers in
+ *          the first implementation.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_REVISION    8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        150
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        151
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -195,7 +195,7 @@ private:
         return m_lhs.length() + m_rhs.length();
     }
 #if defined(STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE)
-    char_type *write(char_type *s) const
+    char_type* write(char_type *s) const
     {
         return m_rhs.write(m_lhs.write(s));
     }
@@ -270,18 +270,26 @@ private:
 
             switch (type)
             {
-                case    seed:
-                    len = 0;
-                    break;
-                case    single:
-                    len = 1;
-                    break;
-                case    cstring:
-                    len = ref.cstring.len;
-                    break;
-                case    concat:
-                    len = ref.concat->length();
-                    break;
+            case seed:
+
+                len = 0;
+
+                break;
+            case single:
+
+                len = 1;
+
+                break;
+            case cstring:
+
+                len = ref.cstring.len;
+
+                break;
+            case concat:
+
+                len = ref.concat->length();
+
+                break;
             }
 
             STLSOFT_ASSERT(!(len < 0));
@@ -290,7 +298,7 @@ private:
         }
 
 #if defined(STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE)
-        char_type *write(char_type *s) const
+        char_type* write(char_type *s) const
 #else /* ? STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE */
         string_iterator_type write(string_iterator_type s) const
 #endif /* STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE */
@@ -311,23 +319,30 @@ private:
 
             switch (type)
             {
-                case    seed:
-                    break;
-                case    single:
-                    *(s++) = ref.ch;
-                    break;
-                case    cstring:
-                    len = ref.cstring.len;
+            case seed:
+
+                break;
+            case single:
+
+                *(s++) = ref.ch;
+
+                break;
+            case cstring:
+
+                len = ref.cstring.len;
 #if defined(STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE)
-                    STLSOFT_API_INTERNAL_memfns_memcpy(s, ref.cstring.s, sizeof(C) * (len));
+                STLSOFT_API_INTERNAL_memfns_memcpy(s, ref.cstring.s, sizeof(C) * (len));
 #else /* ? STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE */
-                    std::copy(&ref.cstring.s[0], &ref.cstring.s[0] + len, s);
+                std::copy(&ref.cstring.s[0], &ref.cstring.s[0] + len, s);
 #endif /* STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE */
-                    s += len;
-                    break;
-                case    concat:
-                    s = ref.concat->write(s);
-                    break;
+                s += len;
+
+                break;
+            case concat:
+
+                s = ref.concat->write(s);
+
+                break;
             }
 
             return s;

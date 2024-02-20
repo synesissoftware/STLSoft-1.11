@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/string_view.hpp
+ * File:    stlsoft/string/string_view.hpp
  *
- * Purpose:     basic_string_view class.
+ * Purpose: basic_string_view class.
  *
- * Created:     16th October 2004
- * Updated:     30th January 2024
+ * Created: 16th October 2004
+ * Updated: 20th February 2024
  *
- * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
- *              naming and design issues. Thanks also to Pablo Aguilar for
- *              his eagle eyed reviews of beta code. :-)
+ * Thanks:  Bjorn Karlsson and Scott Patterson for discussions on various
+ *          naming and design issues. Thanks also to Pablo Aguilar for
+ *          his eagle eyed reviews of beta code. :-)
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       6
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        114
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -518,9 +518,9 @@ struct string_traits<basic_string_view<C, T, A> >
     }
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
-    static string_type &assign_inplace(string_type &str, I first, I last)
+    static string_type& assign_inplace(string_type& str, I first, I last)
 # else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+    static string_type& assign_inplace(string_type& str, const_iterator first, const_iterator last)
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // string view cannot assign in-place
@@ -561,9 +561,9 @@ struct string_traits<string_view>
     }
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
-    static string_type &assign_inplace(string_type &str, I first, I last)
+    static string_type& assign_inplace(string_type& str, I first, I last)
 # else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+    static string_type& assign_inplace(string_type& str, const_iterator first, const_iterator last)
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // string view cannot assign in-place
@@ -604,9 +604,9 @@ struct string_traits<wstring_view>
     }
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
-    static string_type &assign_inplace(string_type &str, I first, I last)
+    static string_type& assign_inplace(string_type& str, I first, I last)
 # else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+    static string_type& assign_inplace(string_type& str, const_iterator first, const_iterator last)
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // string view cannot assign in-place
@@ -1274,7 +1274,7 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic
 {
     STLSOFT_ASSERT(is_valid());
 
-    size_type   lhs_len =   length();
+    size_type   lhs_len =   size();
 
     if (!(pos < lhs_len))
     {
@@ -1312,7 +1312,7 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic
 {
     STLSOFT_ASSERT(is_valid());
 
-    size_type   lhs_len =   length();
+    size_type   lhs_len =   size();
 
     if (!(pos < lhs_len))
     {
@@ -1343,7 +1343,7 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(ss_typename_type_k basic_st
 {
     STLSOFT_ASSERT(is_valid());
 
-    size_type   lhs_len =   length();
+    size_type   lhs_len =   size();
     size_type   rhs_len =   (NULL == rhs) ? 0 : traits_type::length(rhs);
 
     return compare_(m_base, lhs_len, rhs, rhs_len);
@@ -1360,10 +1360,10 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic
                                                     ,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cchRhs) const STLSOFT_NOEXCEPT
 {
     STLSOFT_ASSERT(is_valid());
-    STLSOFT_ASSERT(pos <= length());
-    STLSOFT_ASSERT(posRhs <= rhs.length());
+    STLSOFT_ASSERT(pos <= size());
+    STLSOFT_ASSERT(posRhs <= rhs.size());
 
-    size_type lhs_len = length();
+    size_type lhs_len = size();
 
     if (pos == lhs_len)
     {
@@ -1379,7 +1379,7 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic
         lhs_len = cch;
     }
 
-    size_type rhs_len = rhs.length();
+    size_type rhs_len = rhs.size();
 
     if (posRhs == rhs_len)
     {
@@ -1410,7 +1410,7 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic
 {
     STLSOFT_ASSERT(is_valid());
 
-    size_type lhs_len = length();
+    size_type lhs_len = size();
 
     if (pos == lhs_len)
     {
@@ -1426,7 +1426,7 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic
         lhs_len = cch;
     }
 
-    size_type rhs_len = rhs.length();
+    size_type rhs_len = rhs.size();
 
     STLSOFT_ASSERT(is_valid());
 
@@ -1441,8 +1441,8 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(ss_typename_type_k basic_st
 {
     STLSOFT_ASSERT(is_valid());
 
-    size_type   lhs_len =   length();
-    size_type   rhs_len =   rhs.length();
+    size_type   lhs_len =   size();
+    size_type   rhs_len =   rhs.size();
 
     STLSOFT_ASSERT(is_valid());
 
@@ -1516,9 +1516,9 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::class_type
 
     STLSOFT_ASSERT(is_valid());
 
-    if (cch > (this->length() - pos))
+    if (cch > (this->size() - pos))
     {
-        cch = this->length() - pos;
+        cch = this->size() - pos;
     }
 
     return class_type(this->data() + pos, cch);
@@ -1543,7 +1543,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::class_type
 
     STLSOFT_ASSERT(is_valid());
 
-    return class_type(this->data() + pos, this->length() - pos);
+    return class_type(this->data() + pos, this->size() - pos);
 }
 
 template<
@@ -1582,9 +1582,9 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::value_type const* basi
             // Must allocate the m_cstr member
             allocator_type& ator   =   const_cast<class_type&>(*this);
 #ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
-            char_type*      s      =   ator.allocate(1 + length(), NULL);
+            char_type*      s      =   ator.allocate(1 + size(), NULL);
 #else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
-            char_type*      s      =   ator.allocate(1 + length());
+            char_type*      s      =   ator.allocate(1 + size());
 #endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
 
             STLSOFT_SUPPRESS_UNUSED(ator);  // Need this for silly old Borland
@@ -1669,7 +1669,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::reference basic_string
 {
     STLSOFT_ASSERT(is_valid());
 
-    return (*this)[length() - 1];
+    return (*this)[size() - 1];
 }
 #endif /* 0 */
 
@@ -1692,7 +1692,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_reference basic_
 {
     STLSOFT_ASSERT(is_valid());
 
-    return (*this)[length() - 1];
+    return (*this)[size() - 1];
 }
 
 template<   ss_typename_param_k C
@@ -1705,7 +1705,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::size_type basic_string
 {
     STLSOFT_ASSERT(is_valid());
 
-    size_type   len =   length();
+    size_type const len = size();
 
     if (pos < len)
     {

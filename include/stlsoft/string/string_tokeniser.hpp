@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/string_tokeniser.hpp
+ * File:    stlsoft/string/string_tokeniser.hpp
  *
- * Purpose:     String token parsing class.
+ * Purpose: String token parsing class.
  *
- * Created:     6th January 2001
- * Updated:     22nd January 2024
+ * Created: 6th January 2001
+ * Updated: 20th February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2001-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  14
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      239
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      240
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -93,6 +94,7 @@
 # include <iterator>                     // for std::distance()
 #endif /* !STLSOFT_INCL_ITERATOR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -103,8 +105,10 @@
         (   defined(STLSOFT_COMPILER_IS_INTEL) && \
             defined(WIN32) && \
             _MSC_VER < 1300))
+
 # define STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -114,6 +118,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -128,7 +133,6 @@ struct skip_discriminator_type_
 STLSOFT_TEMPLATE_SPECIALISATION
 struct skip_discriminator_type_<0>
 {};
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 // string_tokeniser_ignore_blanks
@@ -188,24 +192,25 @@ struct skip_blank_tokens
  * \param S The string tokeniser string type
  * \param V The string tokeniser value type
  */
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k V
-        >
+template <
+    ss_typename_param_k S
+,   ss_typename_param_k V
+>
 struct string_tokeniser_type_traits
 {
 /// \name Member Types
 /// @{
 private:
     /// The string type
-    typedef S                                       string_type;
+    typedef S                                               string_type;
     /// The tokeniser value type
-    typedef V                                       tokeniser_value_type;
+    typedef V                                               tokeniser_value_type;
 
 public:
     /// The value type
-    typedef ss_typename_type_k S::value_type        value_type;
+    typedef ss_typename_type_k S::value_type                value_type;
     /// The non-mutable (const) iterator type
-    typedef ss_typename_type_k S::const_iterator    const_iterator_type;
+    typedef ss_typename_type_k S::const_iterator            const_iterator_type;
 /// @}
 
 /// \name Operations
@@ -259,25 +264,31 @@ public:
  * \param S The string type
  * \param T The traits type
  */
-template<   ss_typename_param_k D
-        ,   ss_typename_param_k S
-        ,   ss_typename_param_k T
-        >
+template <
+    ss_typename_param_k D
+,   ss_typename_param_k S
+,   ss_typename_param_k T
+>
 struct string_tokeniser_comparator
 {
 /// \name Member Types
 /// @{
 public:
     /// The delimiter type
-    typedef D                                                   delimiter_type;
+    typedef D                                               delimiter_type;
     /// The string type
-    typedef S                                                   string_type;
+    typedef S                                               string_type;
     /// The traits type
-    typedef T                                                   traits_type;
+    typedef T                                               traits_type;
     /// The non-mutating (const) iterator type
-    typedef ss_typename_type_k traits_type::const_iterator_type const_iterator;
+    typedef ss_typename_type_k traits_type::const_iterator_type
+                                                            const_iterator;
 private:
-    typedef string_tokeniser_comparator<D, S, T>                class_type;
+    typedef string_tokeniser_comparator<
+        D
+    ,   S
+    ,   T
+    >                                                       class_type;
 /// @}
 
 /// \name Implementation
@@ -286,10 +297,12 @@ private:
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200)
+
     /// Evaluates whether the contents of the two sequences are equivalent to the given extent
-    template<   ss_typename_param_k I1
-            ,   ss_typename_param_k I2
-            >
+    template <
+        ss_typename_param_k I1
+    ,   ss_typename_param_k I2
+    >
     static ss_bool_t is_equal_(I1 p1, I2 p2, ss_size_t n)
     {
         for (; n-- > 0; ++p1, ++p2)
@@ -304,9 +317,10 @@ private:
     }
 
     /// Evaluates whether the delimiter and the sequence are equivalent to the extent of the delimiter
-    template<   ss_typename_param_k D1
-            ,   ss_typename_param_k I
-            >
+    template <
+        ss_typename_param_k D1
+    ,   ss_typename_param_k I
+    >
     static ss_bool_t is_equal_(D1 const& delim, I &p2)
     {
         return class_type::is_equal_(delim.begin(), p2, delim.length());
@@ -319,8 +333,14 @@ private:
         return delim.length();
     }
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+
     /// Evaluates whether the contents of the two sequences are equivalent to the given extent
-    static ss_bool_t is_equal_(string_type const& lhs, ss_typename_type_k string_type::value_type const* rhs)
+    static
+    ss_bool_t
+    is_equal_(
+        string_type const&                                  lhs
+    ,   ss_typename_type_k string_type::value_type const*   rhs
+    )
     {
         { for (ss_size_t i = 0, n = lhs.length(); i < n; ++i)
         {
@@ -362,6 +382,7 @@ private:
     }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
     static const_iterator advance_(const_iterator it, delimiter_type const& delim)
     {
         return it + get_length_(delim);
@@ -385,6 +406,7 @@ public:
     }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
     static ss_bool_t test_start_token_advance(const_iterator &it, const_iterator end, delimiter_type const& delim)
     {
         return is_equal_(delim, it) ? (it = advance_(it, delim), true) : false;
@@ -543,9 +565,16 @@ class string_tokeniser
 /// @{
 public:
     /// The current specialisation of the type
-    typedef string_tokeniser<S, D, B, V, T, P>              class_type;
+    typedef string_tokeniser<
+        S
+    ,   D
+    ,   B
+    ,   V
+    ,   T
+    ,   P
+    >                                                       class_type;
     /// The current specialisation of the type
-    typedef string_tokeniser<S, D, B, V, T, P>              tokeniser_type;
+    typedef class_type                                      tokeniser_type;
     /// The sequence string type
     typedef S                                               string_type;
     /// The delimiter type
@@ -588,7 +617,10 @@ public:
     /// \param delim The delimiter to perform the tokenisation
     ///
     /// \note The tokeniser class takes a copy of \c psz. It does not alter the contents of \c psz
-    string_tokeniser(char_type const* psz, delimiter_type const& delim)
+    string_tokeniser(
+        char_type const*        psz
+    ,   delimiter_type const&   delim
+    )
         : m_str(psz)
         , m_delimiter(delim)
     {
@@ -601,13 +633,17 @@ public:
 // they are correctly discriminated
 #if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
+
     /// Tokenise the given string with the given delimiter
     ///
     /// \param str The string whose contents will be tokenised
     /// \param delim The delimiter to perform the tokenisation
     ///
     /// \note The tokeniser class takes a copy of \c str. It does not alter the contents of \c str
-    string_tokeniser(string_type const& str, delimiter_type const& delim)
+    string_tokeniser(
+        string_type const&      str
+    ,   delimiter_type const&   delim
+    )
         : m_str(str)
         , m_delimiter(delim)
     {
@@ -619,6 +655,7 @@ public:
 
 // Define the template overload if member template ctors are supported
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+
     /// Tokenise the given string with the given delimiter
     ///
     /// \param str The string whose contents will be tokenised
@@ -626,7 +663,10 @@ public:
     ///
     /// \note The tokeniser class takes a copy of \c str. It does not alter the contents of \c str
     template <ss_typename_param_k S1>
-    string_tokeniser(S1 const& str, delimiter_type const& delim)
+    string_tokeniser(
+        S1 const&               str
+    ,   delimiter_type const&   delim
+    )
         : m_str(c_str_data(str), c_str_len(str))
         , m_delimiter(delim)
     {
@@ -643,7 +683,11 @@ public:
     /// \param delim The delimiter to perform the tokenisation
     ///
     /// \note The tokeniser class takes a copy of \c psz. It does not alter the contents of \c psz
-    string_tokeniser(char_type const* psz, size_type cch, delimiter_type const& delim)
+    string_tokeniser(
+        char_type const*        psz
+    ,   size_type               cch
+    ,   delimiter_type const&   delim
+    )
         : m_str(psz, cch)
         , m_delimiter(delim)
     {
@@ -654,6 +698,7 @@ public:
 
 #if !defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) || \
     defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED)
+
     /// Tokenise the given range with the given delimiter
     ///
     /// \param from The start of the asymmetric range to tokenise
@@ -670,13 +715,18 @@ public:
 #endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+
     /// Tokenise the given range with the given delimiter
     ///
     /// \param from The start of the asymmetric range to tokenise
     /// \param to The start of the asymmetric range to tokenise
     /// \param delim The delimiter to use
     template <ss_typename_param_k I>
-    string_tokeniser(I from, I to, delimiter_type const& delim)
+    string_tokeniser(
+        I                       from
+    ,   I                       to
+    ,   delimiter_type const&   delim
+    )
         : m_str(from, to)
         , m_delimiter(delim)
     {
@@ -737,7 +787,11 @@ public:
         friend class    string_tokeniser<S, D, B, V, T, P>;
 
         /// Conversion constructor
-        const_iterator(underlying_iterator_type first, underlying_iterator_type last, delimiter_type const& delimiter)
+        const_iterator(
+            underlying_iterator_type    first
+        ,   underlying_iterator_type    last
+        ,   delimiter_type const&       delimiter
+        )
             : m_find0(first)
             , m_find1(first)
             , m_next(first)
@@ -846,7 +900,9 @@ public:
     /// \name Implementation
     /// @{
     private:
-        static delimiter_type const& get_delim_ref_(delimiter_ref_type const& delim)
+        static
+        delimiter_type const&
+        get_delim_ref_(delimiter_ref_type const& delim)
         {
 # if defined(STLSOFT_STRING_TOKENISER_CF_REQUIRE_DELIMITER_INDIRECTION)
             return *delim;
@@ -986,11 +1042,13 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
 
 #if 0
+
 /** Evaluates whether \c this and \c rhs are equivalent
  *
  * \ingroup group__library__String
@@ -1026,6 +1084,7 @@ inline ss_bool_t operator !=(   ss_typename_type_k string_tokeniser<S, D, B, V, 
 }
 #endif /* 0 */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(STLSOFT_COMPILER_IS_DMC) && \
@@ -1055,11 +1114,13 @@ inline ss_ptrdiff_t* distance_type(string_tokeniser<S, D, B, V, T, P>::const_ite
 }
 #endif /* compiler */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

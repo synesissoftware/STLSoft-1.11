@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/readdir_sequence.hpp
+ * File:    unixstl/filesystem/readdir_sequence.hpp
  *
- * Purpose:     readdir_sequence class.
+ * Purpose: readdir_sequence class.
  *
- * Created:     15th January 2002
- * Updated:     22nd January 2024
+ * Created: 15th January 2002
+ * Updated: 20th February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -53,9 +53,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       156
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       157
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -111,6 +112,7 @@
 # include <dirent.h>
 #endif /* !STLSOFT_INCL_H_DIRENT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -140,6 +142,7 @@ namespace unixstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -154,9 +157,9 @@ class readdir_sequence_exception
 /// \name Types
 /// @{
 public:
-    typedef unixstl_exception               parent_class_type;
-    typedef readdir_sequence_exception      class_type;
-    typedef parent_class_type::string_type  string_type;
+    typedef unixstl_exception                               parent_class_type;
+    typedef readdir_sequence_exception                      class_type;
+    typedef parent_class_type::string_type                  string_type;
 /// @}
 
 /// \name Construction
@@ -347,12 +350,13 @@ private:
  * readdir_sequence class.
  */
 class readdir_sequence::const_iterator
-    : public STLSOFT_NS_QUAL(iterator_base)<STLSOFT_NS_QUAL_STD(input_iterator_tag)
-                                        ,   readdir_sequence::value_type
-                                        ,   us_ptrdiff_t
-                                        ,   void                            // By-Value Temporary reference
-                                        ,   readdir_sequence::value_type    // By-Value Temporary reference
-                                        >
+    : public STLSOFT_NS_QUAL(iterator_base)<
+            STLSOFT_NS_QUAL_STD(input_iterator_tag)
+        ,   readdir_sequence::value_type
+        ,   us_ptrdiff_t
+        ,   void                            // By-Value Temporary reference
+        ,   readdir_sequence::value_type    // By-Value Temporary reference
+        >
 {
 /// \name Members
 /// @{
@@ -491,6 +495,7 @@ private:
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 ////////////////////////////////////////////////////////////////////////////
 // Operators
 
@@ -513,6 +518,7 @@ operator !=(
 {
     return !lhs.equal(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -716,7 +722,7 @@ readdir_sequence::const_iterator::const_iterator(
     , m_entry(NULL)
     , m_flags(flags)
     , m_scratch(directory)
-    , m_dirLen(directory.length())
+    , m_dirLen(directory.size())
 {
     UNIXSTL_ASSERT(traits_type::has_dir_end(m_scratch.c_str()));
 
@@ -939,8 +945,8 @@ readdir_sequence::const_iterator::equal(
 
     return m_entry == rhs.m_entry;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -953,6 +959,7 @@ readdir_sequence::const_iterator::equal(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

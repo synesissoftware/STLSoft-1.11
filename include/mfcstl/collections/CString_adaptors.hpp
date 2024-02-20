@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/collections/CString_adaptors.hpp
+ * File:    mfcstl/collections/CString_adaptors.hpp
  *
- * Purpose:     Contains the definition of the CString_cadaptor and CString_iadaptor
- *              class templates.
+ * Purpose: Contains the definition of the CString_cadaptor and
+ *          CString_iadaptor class templates.
  *
- * Created:     1st October 2002
- * Updated:     22nd January 2024
+ * Created: 1st October 2002
+ * Updated: 20th February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,9 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MAJOR       4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MINOR       1
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    10
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        105
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -94,6 +95,7 @@
 # include <stlsoft/string/string_traits_fwd.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -112,6 +114,7 @@ namespace mfcstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -206,12 +209,12 @@ public:
 /// @{
 public:
     /// Returns a mutating (non-const) reference to the underlying CString
-    CString         &get_CString()
+    CString&        get_CString()
     {
         return static_cast<interface_type*>(this)->get_actual_string();
     }
     /// Returns a non-mutating (const) reference to the underlying CString
-    CString const   &get_CString() const
+    CString const&  get_CString() const
     {
         return static_cast<interface_type const*>(this)->get_actual_string();
     }
@@ -374,11 +377,11 @@ public:
 private:
     friend class CString_adaptor_base<CString_cadaptor>;
 
-    CString         &get_actual_string()
+    CString&        get_actual_string()
     {
         return *this;
     }
-    CString const   &get_actual_string() const
+    CString const&  get_actual_string() const
     {
         return *this;
     }
@@ -438,11 +441,11 @@ public:
 private:
     friend class CString_adaptor_base<CString_iadaptor>;
 
-    CString         &get_actual_string()
+    CString&        get_actual_string()
     {
         return *m_str;
     }
-    CString const   &get_actual_string() const
+    CString const&  get_actual_string() const
     {
         return *m_str;
     }
@@ -451,7 +454,7 @@ private:
 /// \name Members
 /// @{
 private:
-    CString *m_str;
+    CString* m_str;
 /// @}
 };
 
@@ -494,7 +497,7 @@ public:
 private:
     friend class CString_adaptor_base<const_CString_iadaptor>;
 
-    CString const   &get_actual_string() const
+    CString const&  get_actual_string() const
     {
         return *m_str;
     }
@@ -503,9 +506,10 @@ private:
 /// \name Members
 /// @{
 private:
-    CString const   *m_str;
+    CString const* m_str;
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -1189,6 +1193,7 @@ inline ms_bool_t operator >=(unsigned char const* lhs, const_CString_iadaptor co
     return CString(lhs) >= rhs.get_CString();
 }
 
+
 ////////////////////////////////////////////////////////////////////////////
 // string traits
 
@@ -1234,7 +1239,7 @@ struct string_traits<MFCSTL_NS_QUAL(CString_cadaptor)>
     {
         return string_type(src, pos, len);
     }
-    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+    static string_type& assign_inplace(string_type& str, const_iterator first, const_iterator last)
     {
         return (str = string_type(first, last), str);
     }
@@ -1253,6 +1258,7 @@ namespace mfcstl_project
 
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -1448,7 +1454,7 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::size_type CString_adaptor
 template<ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::bool_type CString_adaptor_base<I>::empty() const
 {
-    return 0 == this->length();
+    return 0 == size();
 }
 template<ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::const_pointer CString_adaptor_base<I>::c_str() const
@@ -1589,6 +1595,7 @@ inline const_CString_iadaptor::const_reference const_CString_iadaptor::operator 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1602,6 +1609,7 @@ inline const_CString_iadaptor::const_reference const_CString_iadaptor::operator 
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

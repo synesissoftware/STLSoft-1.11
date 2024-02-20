@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/filesystem_traits.hpp
+ * File:    unixstl/filesystem/filesystem_traits.hpp
  *
- * Purpose:     Contains the filesystem_traits template class, and ANSI and
- *              Unicode specialisations thereof.
+ * Purpose: Contains the filesystem_traits template class, and ANSI and
+ *          Unicode specialisations thereof.
  *
- * Created:     15th November 2002
- * Updated:     22nd January 2024
+ * Created: 15th November 2002
+ * Updated: 20th February 2024
  *
- * Thanks:      To Sergey Nikulov, for spotting a preprocessor typo that
- *              broke GCC -pedantic; to Michal Makowski and Zar Eindl for
- *              reporting GCC 4.5+ problem with use of NULL in return
- *              of invalid_file_handle_value().
+ * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
+ *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
+ *          GCC 4.5+ problem with use of NULL in return of
+ *          invalid_file_handle_value().
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,8 +61,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     15
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      181
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      182
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -171,6 +172,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -189,6 +191,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -1508,11 +1511,13 @@ public: // path classification and analysis
 
         switch (len)
         {
-            case    0:
-            case    1:
-                return false;
-            default:
-                return '\\' == path[0] && '\\' == path[1];
+        case    0:
+        case    1:
+
+            return false;
+        default:
+
+            return '\\' == path[0] && '\\' == path[1];
         }
 #else /* ? _WIN32 */
 
@@ -1718,7 +1723,7 @@ public:
     }
 
 private:
-#if _STLSOFT_VER >= 0x010b0000
+#if _STLSOFT_VER >= 0x010b01ff
 
 # error Sort get_root_len_() properly
 #endif
@@ -2296,6 +2301,7 @@ public:
             size_type   n;
             char_type*  p;
         };
+
         path_max_buffer         local;
         size_type const         cchLocal = local.size();
 #endif /* _WIN32 */
@@ -3140,8 +3146,8 @@ public: // file-system control
     )
     ;
 };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -3154,6 +3160,7 @@ public: // file-system control
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/path.hpp
+ * File:    winstl/filesystem/path.hpp
  *
- * Purpose:     Simple class that represents a path.
+ * Purpose: Simple class that represents a path.
  *
- * Created:     1st May 1993
- * Updated:     20th January 2024
+ * Created: 1st May 1993
+ * Updated: 20th February 2024
  *
- * Thanks to:   Pablo Aguilar for reporting defect in push_ext() (which
- *              doesn't work for wide-string builds).
+ * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which
+ *          doesn't work for wide-string builds).
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1993-2019, Matthew Wilson and Synesis Software
@@ -56,9 +56,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    7
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     319
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 8
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     322
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -106,6 +107,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION
+# include <stlsoft/util/streams/string_insertion.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION */
 
 #ifndef STLSOFT_INCL_STDEXCEPT
 # define STLSOFT_INCL_STDEXCEPT
@@ -119,6 +123,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -138,6 +143,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * basic_path
@@ -193,7 +199,7 @@ private:
     ,   allocator_type
     >::type                                                 path_buffer_type_;
 
-    typedef ss_typename_param_k path_buffer_type_::buffer_type
+    typedef ss_typename_type_k path_buffer_type_::buffer_type
                                                             buffer_type_;
 public:
     typedef STLSOFT_NS_QUAL(string_slice)<
@@ -612,6 +618,7 @@ private: // fields
     path_buffer_type_   m_buffer;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -631,6 +638,7 @@ typedef basic_path<ws_char_w_t, filesystem_traits<ws_char_w_t> >       path_w;
  * \ingroup group__library__FileSystem
  */
 typedef basic_path<TCHAR, filesystem_traits<TCHAR> >                   path;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Support for PlatformSTL redefinition by inheritance+namespace, for confused
@@ -718,6 +726,7 @@ typedef basic_path<TCHAR, filesystem_traits<TCHAR> >                   path;
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -872,6 +881,7 @@ operator /(
     return basic_path<C, T, A>(lhs) /= rhs;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -899,6 +909,7 @@ make_path(
 # endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -917,6 +928,7 @@ swap(
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -1127,6 +1139,7 @@ c_str_ptr_null_w(
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
@@ -1136,25 +1149,29 @@ c_str_ptr_null_w(
  * \ingroup group__concept__Shim__stream_insertion
  */
 template<
-    ss_typename_param_k S
+    ss_typename_param_k T_stream
 ,   ss_typename_param_k C
 ,   ss_typename_param_k T
 ,   ss_typename_param_k A
 >
 inline
-S&
+T_stream&
 operator <<(
-    S&                                          s
+    T_stream&                                   stm
 ,   WINSTL_NS_QUAL(basic_path)<C, T, A> const&  b
 )
 {
-    s.write(b.data(), b.size());
+    STLSOFT_NS_USING(util::string_insert);
 
-    return s;
+    string_insert(stm, b.data(), b.size());
+
+    return stm;
 }
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -1518,8 +1535,8 @@ basic_path<C, T, A>::push_(
 ,   bool_type           bAddPathNameSeparator
 )
 {
-    typedef ss_typename_param_k traits_type::path_classification_results_type       results_t_;
-    typedef ss_typename_param_k traits_type::path_classification_string_slice_type  slice_t_;
+    typedef ss_typename_type_k traits_type::path_classification_results_type        results_t_;
+    typedef ss_typename_type_k traits_type::path_classification_string_slice_type   slice_t_;
 
     // Algorithm:
     //
@@ -1738,8 +1755,8 @@ basic_path<C, T, A>::pop(
     bool_type bRemoveTrailingPathNameSeparator /* = true */
 ) STLSOFT_NOEXCEPT
 {
-    typedef ss_typename_param_k traits_type::path_classification_type               classification_t_;
-    typedef ss_typename_param_k traits_type::path_classification_results_type       results_t_;
+    typedef ss_typename_type_k traits_type::path_classification_type            classification_t_;
+    typedef ss_typename_type_k traits_type::path_classification_results_type    results_t_;
 
     results_t_              results;
     int const               parseFlags  =   0
@@ -1822,8 +1839,8 @@ basic_path<C, T, A>::pop_sep() STLSOFT_NOEXCEPT
     //   - if rooted, has 2+ directories, OR
     //   - if !rooted, has 1+ directories
 
-    typedef ss_typename_param_k traits_type::path_classification_type               classification_t_;
-    typedef ss_typename_param_k traits_type::path_classification_results_type       results_t_;
+    typedef ss_typename_type_k traits_type::path_classification_type            classification_t_;
+    typedef ss_typename_type_k traits_type::path_classification_results_type    results_t_;
 
     results_t_              results;
     int const               parseFlags  =   0
@@ -1858,8 +1875,8 @@ inline
 basic_path<C, T, A>&
 basic_path<C, T, A>::pop_ext() STLSOFT_NOEXCEPT
 {
-    typedef ss_typename_param_k traits_type::path_classification_type               classification_t_;
-    typedef ss_typename_param_k traits_type::path_classification_results_type       results_t_;
+    typedef ss_typename_type_k traits_type::path_classification_type            classification_t_;
+    typedef ss_typename_type_k traits_type::path_classification_results_type    results_t_;
 
     results_t_              results;
     int const               parseFlags  =   0
@@ -1937,7 +1954,7 @@ basic_path<C, T, A>::make_absolute(
     bool_type bRemoveTrailingPathNameSeparator /* = true */
 )
 {
-    typedef ss_typename_param_k traits_type::path_classification_string_slice_type  slice_t_;
+    typedef ss_typename_type_k traits_type::path_classification_string_slice_type   slice_t_;
 
     int const               parseFlags  =   0
                                         |   WINSTL_PATH_CLASSIFY_F_IGNOREINVALIDCHARSINLONGPATH
@@ -2032,8 +2049,8 @@ basic_path<C, T, A>::canonicalise(
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
-    typedef ss_typename_param_k traits_type::path_classification_type               classification_t_;
-    typedef ss_typename_param_k traits_type::path_classification_results_type       results_t_;
+    typedef ss_typename_type_k traits_type::path_classification_type            classification_t_;
+    typedef ss_typename_type_k traits_type::path_classification_results_type    results_t_;
 
     results_t_              results;
     int const               parseFlags  =   0
@@ -2080,7 +2097,7 @@ basic_path<C, T, A>::canonicalise(
 
     // 0. Handle special path prefixes
 
-    part_buffer_type_   parts(this->length() / 2);  // Uncanonicalised directory parts
+    part_buffer_type_   parts(this->size() / 2);  // Uncanonicalised directory parts
     char_type*          dest    =   &newPath.m_buffer[0] + results.root.len;
     char_type const*    p1      =   data_() + results.root.len;
     char_type const*    p2;
@@ -2664,6 +2681,7 @@ basic_path<C, T, A>::equal(
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef WINSTL_NO_NAMESPACE
@@ -2702,6 +2720,7 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -2743,6 +2762,7 @@ using ::winstl::c_str_ptr_null_w;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/string/CComBSTR_veneer.hpp
+ * File:    atlstl/string/CComBSTR_veneer.hpp
  *
- * Purpose:     Contains the definition of the CComBSTR_veneer template.
+ * Purpose: Contains the definition of the CComBSTR_veneer template.
  *
- * Created:     1st October 2002
- * Updated:     17th December 2020
+ * Created: 1st October 2002
+ * Updated: 20th February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MAJOR    5
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    3
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 10
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     91
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -96,6 +97,7 @@
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -114,6 +116,7 @@ namespace atlstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -254,6 +257,7 @@ public:
     const_pointer   data() const;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
 * backwards compatibility
 */
@@ -262,6 +266,7 @@ public:
 
 typedef CComBSTR_veneer                                     ccombstr_veneer;
 #endif /* !STLSOFT_OBSOLETE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -338,9 +343,8 @@ bool CComBSTR::operator==(LPCSTR pszSrc) const
 // _ATL_VER  0x0202
 
 #endif /* 0 */
-
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -437,6 +441,7 @@ inline as_bool_t operator !=(CComBSTR_veneer const& lhs, LPCWSTR rhs)
     return !operator ==(lhs, rhs);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -445,6 +450,7 @@ inline void swap(CComBSTR_veneer& lhs, CComBSTR_veneer& rhs)
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -519,6 +525,7 @@ inline S& operator <<(S& s, ATLSTL_NS_QUAL(CComBSTR_veneer) const& str)
 
     return s;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -726,6 +733,7 @@ inline CComBSTR_veneer::const_pointer CComBSTR_veneer::data() const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef ATLSTL_NO_NAMESPACE
@@ -752,6 +760,7 @@ namespace stlsoft
     }
 } /* namespace stlsoft */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -781,6 +790,7 @@ using ::atlstl::c_str_ptr_w;
 
 using ::atlstl::c_str_ptr_null;
 using ::atlstl::c_str_ptr_null_w;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * traits
@@ -823,9 +833,9 @@ struct string_traits< ::atlstl::CComBSTR_veneer>
     }
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k I>
-    static string_type &assign_inplace(string_type &str, I first, I last)
+    static string_type& assign_inplace(string_type& str, I first, I last)
 # else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
-    static string_type &assign_inplace(string_type &str, const_iterator first, const_iterator last)
+    static string_type& assign_inplace(string_type& str, const_iterator first, const_iterator last)
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     {
         // comstl::bstr cannot assign in-place
@@ -841,6 +851,7 @@ struct string_traits< ::atlstl::CComBSTR_veneer>
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
