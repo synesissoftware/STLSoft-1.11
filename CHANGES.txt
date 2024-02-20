@@ -17,6 +17,92 @@ STLSoft - Changes
    **************************************
 
 
+Changes for 1.11.1-alpha1 (20th February 2024)
+
+General:
+========
+
+ * added `stlsoft::integer_to_base32_string<>()` integer to Base-32-string conversion
+ * added `stlsoft::integer_to_base36_string<>()` integer to Base-36-string conversion
+ * `stlsoft::basic_simple_string<>` now has `#starts_with()` and `#ends_with()`
+ * `stlsoft::basic_static_string<>` now has `#starts_with()` and `#ends_with()`
+ * `stlsoft::basic_static_string<>` now has `#substr()`
+ * `stlsoft::basic_static_string<>` now has `#front()` and `#back()`
+ * `stlsoft::basic_static_string<>` consistently and correctly throws exceptions on any operations that would cause exceeding of internal storage
+ * improvement to string insertion helper `string_insert()` to work with stream types that do and do not provide `sentry`
+ * added **test.unit.unixstl.filesystem.path** unit-test project
+
+Changes:
+========
+
+Integer to Base-32/36 string conversion:
+ * include/stlsoft/limits/integral_format_width_limits.hpp
+ * include/stlsoft/conversion/integer_to_string.hpp
+ * include/stlsoft/conversion/integer_to_string/integer_to_base32_string.hpp
+ * include/stlsoft/conversion/integer_to_string/integer_to_base36_string.hpp
+ * test/unit/stlsoft/conversion/CMakeLists.txt
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_base32_string/CMakeLists.txt
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_base32_string/entry.cpp
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_base36_string/CMakeLists.txt
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_base36_string/entry.cpp
+
+`#starts_with()` and `#ends_with()`:
+ * include/stlsoft/string/simple_string.hpp
+ * include/stlsoft/string/static_string.hpp
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.simple_string/entry.cpp
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.static_string/CMakeLists.txt
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.static_string/entry.cpp
+
+Stream insertion improvements (including adding and applying `has_sentry` TMP type):
+ * include/stlsoft/meta/detectors.hpp
+ * include/stlsoft/meta/detector/has_sentry.hpp
+ * include/stlsoft/util/streams/string_insertion.hpp
+ * test/unit/CMakeLists.txt
+ * test/unit/unixstl/CMakeLists.txt
+ * test/unit/unixstl/filesystem/CMakeLists.txt
+ * test/unit/unixstl/filesystem/test.unit.unixstl.filesystem.path/CMakeLists.txt
+ * test/unit/unixstl/filesystem/test.unit.unixstl.filesystem.path/entry.cpp
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.shim_string/entry.cpp
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.string_slice/entry.cpp
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.string_view/entry.cpp
+
+Miscellaneous:
+ * .vscode/settings.json - added settings
+ * include/stlsoft/stlsoft.h - version
+
+Minor tidying and consistency changes:
+ * include/atlstl/string/CComBSTR_veneer.hpp
+ * include/atlstl/string/string_traits.hpp
+ * include/inetstl/filesystem/findfile_sequence.hpp
+ * include/inetstl/network/connection.hpp
+ * include/inetstl/network/session.hpp
+ * include/mfcstl/collections/CString_adaptors.hpp
+ * include/mfcstl/string/string_traits.hpp
+ * include/platformstl/filesystem/cwd_stack.hpp
+ * include/unixstl/filesystem/filesystem_traits.hpp
+ * include/unixstl/filesystem/path.hpp
+ * include/unixstl/filesystem/readdir_sequence.hpp
+ * include/unixstl/filesystem/squeeze_functions.hpp
+ * include/winstl/filesystem/path.hpp
+ * include/winstl/filesystem/squeeze_functions.hpp
+ * include/winstl/registry/reg_key_sequence.hpp
+ * include/winstl/registry/reg_value.hpp
+ * include/winstl/security/token_information.hpp
+ * include/stlsoft/conversion/truncation_test.hpp
+ * include/stlsoft/iterators/filter_transform_iterator.hpp
+ * include/stlsoft/iterators/transform_filter_iterator.hpp
+ * include/stlsoft/string/fast_string_concatenator.hpp
+ * include/stlsoft/string/special_string_instance.hpp
+ * include/stlsoft/string/string_tokeniser.hpp
+ * include/stlsoft/string/string_traits_fwd.hpp
+ * include/stlsoft/string/string_view.hpp
+ * include/stlsoft/util/exception_string_creator.hpp
+ * include/stlsoft/util/operator_bool.hpp
+
+
+
+============================================================================
+
 Changes for 1.10.11 (16th February 2024)
 
 General:

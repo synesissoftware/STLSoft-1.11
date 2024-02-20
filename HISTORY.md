@@ -4,6 +4,20 @@
 ----
 
 
+20th February 2024 - 1.11.1-alpha1 released
+-------------------------------------------
+
+ * added `stlsoft::integer_to_base32_string<>()` integer to Base-32-string conversion
+ * added `stlsoft::integer_to_base36_string<>()` integer to Base-36-string conversion
+ * `stlsoft::basic_simple_string<>` now has `#starts_with()` and `#ends_with()`
+ * `stlsoft::basic_static_string<>` now has `#starts_with()` and `#ends_with()`
+ * `stlsoft::basic_static_string<>` now has `#substr()`
+ * `stlsoft::basic_static_string<>` now has `#front()` and `#back()`
+ * `stlsoft::basic_static_string<>` consistently and correctly throws exceptions on any operations that would cause exceeding of internal storage
+ * improvement to string insertion helper `string_insert()` to work with stream types that do and do not provide `sentry`
+ * added **test.unit.unixstl.filesystem.path** unit-test project
+
+
 16th February 2024 - 1.10.11 released
 -------------------------------------
 
