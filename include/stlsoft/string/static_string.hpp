@@ -447,6 +447,13 @@ public:
     ss_sint_t compare(class_type const& rhs) const STLSOFT_NOEXCEPT;
 
     /// Indicates whether the string starts with the string \c s
+    bool contains(class_type const& s) const STLSOFT_NOEXCEPT;
+    /// Indicates whether the string starts with the C-style string \c s
+    bool contains(char_type const* s) const STLSOFT_NOEXCEPT;
+    /// Indicates whether the string starts with the character \c ch
+    bool contains(char_type ch) const STLSOFT_NOEXCEPT;
+
+    /// Indicates whether the string starts with the string \c s
     bool starts_with(class_type const& s) const STLSOFT_NOEXCEPT;
     /// Indicates whether the string starts with the C-style string \c s
     bool starts_with(char_type const* s) const STLSOFT_NOEXCEPT;
@@ -612,6 +619,10 @@ private:
     ,   size_type           rhs_len
     ) STLSOFT_NOEXCEPT;
 
+    bool contains_(
+        char_type const*    s
+    ,   size_type           n
+    ) const STLSOFT_NOEXCEPT;
     bool starts_with_(
         char_type const*    s
     ,   size_type           n
@@ -2238,6 +2249,44 @@ ss_bool_t
 basic_static_string<C, V_internalSize, T>::starts_with(ss_typename_type_k basic_static_string<C, V_internalSize, T>::char_type ch) const STLSOFT_NOEXCEPT
 {
     return empty() ? false : (front() == ch);
+}
+
+template <
+    ss_typename_param_k C
+,   ss_size_t           V_internalSize
+,   ss_typename_param_k T
+>
+inline
+ss_bool_t
+basic_static_string<C, V_internalSize, T>::contains(ss_typename_type_k basic_static_string<C, V_internalSize, T>::class_type const& s) const STLSOFT_NOEXCEPT
+{
+    return false;
+}
+
+template <
+    ss_typename_param_k C
+,   ss_size_t           V_internalSize
+,   ss_typename_param_k T
+>
+inline
+ss_bool_t
+basic_static_string<C, V_internalSize, T>::contains(ss_typename_type_k basic_static_string<C, V_internalSize, T>::char_type const* s) const STLSOFT_NOEXCEPT
+{
+    size_type const n = (NULL == s) ? 0 : traits_type::length(s);
+
+    return false;
+}
+
+template <
+    ss_typename_param_k C
+,   ss_size_t           V_internalSize
+,   ss_typename_param_k T
+>
+inline
+ss_bool_t
+basic_static_string<C, V_internalSize, T>::contains(ss_typename_type_k basic_static_string<C, V_internalSize, T>::char_type ch) const STLSOFT_NOEXCEPT
+{
+    return false;
 }
 
 template <
