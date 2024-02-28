@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION  7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT      89
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION  8
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT      90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,7 +123,7 @@ template <
 >
 class true_typedef
 {
-public:
+public: // types
     /// The value type
     typedef T                                               value_type;
     /// The unique type
@@ -138,8 +138,7 @@ public:
     /// The non-mutating (const) reference type
     typedef T const&                                        const_reference;
 
-// Construction
-public:
+public: // construction
     /// Default constructor
     true_typedef()
         : m_value(value_type())
@@ -159,9 +158,12 @@ public:
 
         return *this;
     }
+private:
+    // Not provided, as the syntax is less ambiguous when
+    // assignment from an explicit temporary is made
+    void operator =(value_type const& value);
 
-// Accessors
-public:
+public: // accessors
     /// Provides non-mutating (const) access to the base type value
     const_reference base_type_value() const
     {
@@ -173,20 +175,47 @@ public:
         return m_value;
     }
 
-// Members
-private:
-    value_type  m_value;
-
-// Not to be implemented
-private:
-    // Not provided, as the syntax is less ambiguous when
-    // assignment from an explicit temporary is made
-    class_type const& operator =(value_type const& value);
+private: // fields
+    value_type m_value;
 };
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1310
+#  define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS_true_typedef
+# endif /* compiler */
+
+# if 0 || \
+     defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED) || \
+     0
+
+#  define STLSOFT_true_typedef_pt_(pt)                      ss_typename_type_ret_k true_typedef<T, U>::pt
+# else
+
+#  define STLSOFT_true_typedef_pt_(pt)                      pt
+# endif
+
+# if 0 || \
+     defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED) || \
+     defined(STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS_true_typedef) || \
+     0
+
+#  define STLSOFT_true_typedef_rt_(qrt, rrt)                ss_typename_type_k true_typedef<T, U>::qrt
+# else
+
+#  define STLSOFT_true_typedef_rt_(qrt, rrt)                rrt
+# endif
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * operators
  */
 
 // Pre-increment
@@ -276,12 +305,8 @@ template <
 inline
 ss_bool_t
 operator ==(
-    true_typedef<T, U> const&                                   lhs
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-,   ss_typename_type_k true_typedef<T, U>::value_type const&    rhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   T const&                                                    rhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
 )
 {
     return lhs.base_type_value() == rhs;
@@ -294,12 +319,8 @@ template <
 inline
 ss_bool_t
 operator ==(
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-    ss_typename_type_k true_typedef<T, U>::value_type const&    lhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-    T const&                                                    lhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   true_typedef<T, U> const&                                   rhs
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
 )
 {
     return lhs == rhs.base_type_value();
@@ -329,12 +350,8 @@ template <
 inline
 ss_bool_t
 operator !=(
-    true_typedef<T, U> const&                                   lhs
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-,   ss_typename_type_k true_typedef<T, U>::value_type const&    rhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   T const&                                                    rhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
 )
 {
     return ! operator ==(lhs, rhs);
@@ -347,12 +364,8 @@ template <
 inline
 ss_bool_t
 operator !=(
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-    ss_typename_type_k true_typedef<T, U>::value_type const&    lhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-    T const&                                                    lhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   true_typedef<T, U> const&                                   rhs
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
 )
 {
     return ! operator ==(lhs, rhs);
@@ -381,12 +394,8 @@ template <
 inline
 ss_bool_t
 operator <(
-    true_typedef<T, U> const&                                   lhs
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-,   ss_typename_type_k true_typedef<T, U>::value_type const&    rhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   T const&                                                    rhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
 )
 {
     return lhs.base_type_value() < rhs;
@@ -399,12 +408,8 @@ template <
 inline
 ss_bool_t
 operator <(
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-    ss_typename_type_k true_typedef<T, U>::value_type const&    lhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-    T const&                                                    lhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   true_typedef<T, U> const&                                   rhs
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
 )
 {
     return lhs < rhs.base_type_value();
@@ -433,12 +438,8 @@ template <
 inline
 ss_bool_t
 operator <=(
-    true_typedef<T, U> const&                                   lhs
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-,   ss_typename_type_k true_typedef<T, U>::value_type const&    rhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   T const&                                                    rhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
 )
 {
     return lhs.base_type_value() <= rhs;
@@ -451,12 +452,8 @@ template <
 inline
 ss_bool_t
 operator <=(
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-    ss_typename_type_k true_typedef<T, U>::value_type const&    lhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-    T const&                                                    lhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   true_typedef<T, U> const&                                   rhs
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
 )
 {
     return lhs <= rhs.base_type_value();
@@ -485,12 +482,8 @@ template <
 inline
 ss_bool_t
 operator >(
-    true_typedef<T, U> const&                                   lhs
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-,   ss_typename_type_k true_typedef<T, U>::value_type const&    rhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   T const&                                                    rhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
 )
 {
     return lhs.base_type_value() > rhs;
@@ -503,12 +496,8 @@ template <
 inline
 ss_bool_t
 operator >(
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-    ss_typename_type_k true_typedef<T, U>::value_type const&    lhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-    T const&                                                    lhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   true_typedef<T, U> const&                                   rhs
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
 )
 {
     return lhs > rhs.base_type_value();
@@ -537,12 +526,8 @@ template <
 inline
 ss_bool_t
 operator >=(
-    true_typedef<T, U> const&                                   lhs
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-,   ss_typename_type_k true_typedef<T, U>::value_type const&    rhs
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-,   T const&                                                    rhs
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
 )
 {
     return lhs.base_type_value() >= rhs;
@@ -554,11 +539,10 @@ template <
 >
 inline
 ss_bool_t
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator >=(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator >=(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator >=(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return lhs >= rhs.base_type_value();
 }
@@ -585,11 +569,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator +(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator +(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator +(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() + rhs);
 }
@@ -600,11 +583,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator +(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator +(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator +(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs + rhs.base_type_value());
 }
@@ -631,11 +613,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator -(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator -(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator -(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() - rhs);
 }
@@ -646,11 +627,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator -(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator -(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator -(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs - rhs.base_type_value());
 }
@@ -677,11 +657,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator *(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator *(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator *(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() * rhs);
 }
@@ -692,11 +671,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator *(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator *(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator *(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs * rhs.base_type_value());
 }
@@ -723,11 +701,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator /(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator /(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator /(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() / rhs);
 }
@@ -739,11 +716,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator /(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator /(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator /(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs / rhs.base_type_value());
 }
@@ -770,11 +746,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator %(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator %(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator %(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() % rhs);
 }
@@ -785,11 +760,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator %(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator %(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator %(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs % rhs.base_type_value());
 }
@@ -816,11 +790,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator ^(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator ^(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator ^(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() ^ rhs);
 }
@@ -831,11 +804,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator ^(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator ^(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator ^(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs ^ rhs.base_type_value());
 }
@@ -875,11 +847,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator <<(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator <<(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator <<(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() << rhs);
 }
@@ -890,11 +861,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator <<(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator <<(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator <<(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs << rhs.base_type_value());
 }
@@ -921,11 +891,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator >>(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator >>(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator >>(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() >> rhs);
 }
@@ -936,11 +905,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator >>(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator >>(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator >>(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs >> rhs.base_type_value());
 }
@@ -967,11 +935,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator &(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator &(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator &(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() & rhs);
 }
@@ -982,11 +949,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator &(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator &(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator &(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs & rhs.base_type_value());
 }
@@ -1013,11 +979,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator |(true_typedef<T, U> const& lhs, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator |(true_typedef<T, U> const& lhs, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator |(
+    true_typedef<T, U> const&                   lhs
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     return true_typedef<T, U>(lhs.base_type_value() | rhs);
 }
@@ -1028,11 +993,10 @@ template <
 >
 inline
 true_typedef<T, U>
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator |(ss_typename_type_k true_typedef<T, U>::value_type const& lhs, true_typedef<T, U> const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator |(T const& lhs, true_typedef<T, U> const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator |(
+    STLSOFT_true_typedef_pt_(value_type) const& lhs
+,   true_typedef<T, U> const&                   rhs
+)
 {
     return true_typedef<T, U>(lhs | rhs.base_type_value());
 }
@@ -1045,11 +1009,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator +=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator +=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator +=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() += rhs;
 
@@ -1062,7 +1025,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator +=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator +=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() += rhs.base_type_value();
 
@@ -1077,11 +1043,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator -=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator -=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator -=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() -= rhs;
 
@@ -1094,7 +1059,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator -=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator -=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() -= rhs.base_type_value();
 
@@ -1109,11 +1077,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator *=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator *=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator *=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() *= rhs;
 
@@ -1126,7 +1093,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator *=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator *=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() *= rhs.base_type_value();
 
@@ -1141,11 +1111,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator /=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator /=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator /=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() /= rhs;
 
@@ -1158,7 +1127,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator /=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator /=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() /= rhs.base_type_value();
 
@@ -1173,11 +1145,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator %=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator %=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator %=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() %= rhs;
 
@@ -1190,7 +1161,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator %=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator %=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() %= rhs.base_type_value();
 
@@ -1205,11 +1179,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator ^=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator ^=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator ^=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() ^= rhs;
 
@@ -1222,7 +1195,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator ^=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator ^=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() ^= rhs.base_type_value();
 
@@ -1237,11 +1213,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator <<=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator <<=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator <<=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() <<= rhs;
 
@@ -1254,7 +1229,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator <<=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator <<=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() <<= rhs.base_type_value();
 
@@ -1269,11 +1247,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator >>=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator >>=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator >>=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() >>= rhs;
 
@@ -1286,7 +1263,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator >>=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator >>=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() >>= rhs.base_type_value();
 
@@ -1301,11 +1281,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator &=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator &=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator &=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() &= rhs;
 
@@ -1318,7 +1297,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator &=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator &=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() &= rhs.base_type_value();
 
@@ -1333,11 +1315,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-#ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-operator |=(true_typedef<T, U> &v, ss_typename_type_k true_typedef<T, U>::value_type const& rhs)
-#else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-operator |=(true_typedef<T, U> &v, T const& rhs)
-#endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
+operator |=(
+    true_typedef<T, U>&                         v
+,   STLSOFT_true_typedef_pt_(value_type) const& rhs
+)
 {
     v.base_type_value() |= rhs;
 
@@ -1350,7 +1331,10 @@ template <
 >
 inline
 true_typedef<T, U> const&
-operator |=(true_typedef<T, U> &v, true_typedef<T, U> const& rhs)
+operator |=(
+    true_typedef<T, U>&         v
+,   true_typedef<T, U> const&   rhs
+)
 {
     v.base_type_value() |= rhs.base_type_value();
 
