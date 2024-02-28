@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *
  * Created: 27th February 2024
- * Updated: 27th February 2024
+ * Updated: 28th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,6 +28,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
+#include <stlsoft/conversion/integer_to_string/integer_to_decimal_string.hpp>
 
 /* Standard C++ header files */
 #include <sstream>
@@ -85,6 +86,57 @@ int main(int argc, char **argv)
 
 namespace
 {
+    struct SimpleStream
+    {
+        std::string     contents;
+
+        SimpleStream&
+        write(
+            char const*     s
+        ,   std::streamsize n
+        )
+        {
+            contents.append(s, n);
+
+            return *this;
+        }
+
+        std::string
+        str() const
+        {
+            return contents;
+        }
+    };
+
+    SimpleStream&
+    operator <<(
+        SimpleStream&       stm
+    ,   int                 v
+    )
+    {
+        char                buff[21];
+        size_t              n;
+        char const* const   s   =   stlsoft::integer_to_decimal_string(buff, STLSOFT_NUM_ELEMENTS(buff), v, &n);
+
+        stm.write(s, n);
+
+        return stm;
+    }
+
+#if 0
+
+    SimpleStream&
+    operator <<(
+        SimpleStream&       stm
+    ,   std::string const&  s
+    )
+    {
+        stm.write(s.data(), s.size());
+
+        return stm;
+    }
+#endif
+
 
 static void test_int_spec()
 {
@@ -406,12 +458,14 @@ static void test_int_spec()
         type_t  v2 = 0x4 >> v1;
         type_t  v3 = v2 >> v0 | v1 >> v0;
         type_t  v4 = 4 >> v0;
+        type_t  v5 = short(5) >> v0;
 
         XTESTS_TEST(0 == v0);
         XTESTS_TEST(1 == v1);
         XTESTS_TEST(2 == v2);
         XTESTS_TEST(3 == v3);
         XTESTS_TEST(4 == v4);
+        XTESTS_TEST(5 == v5);
     }
 
     // >>=
@@ -433,16 +487,18 @@ static void test_int_spec()
 
     // <<
     {
-        type_t  v0(0x0);
-        type_t  v1(0x1);
-        type_t  v2 = v1 << 1;
-        type_t  v3 = 0x1 << v0 | 0x1 << v1;
-        type_t  v4 = v1 << v2;
+        type_t const    v0(0x0);
+        type_t          v1(0x1);
+        type_t const    v2 = (v1 << 1) | (v0 << 0);
+        type_t          v3 = (0x1 << v0) | (0x1 << v1);
+        type_t          v4 = (v1 << v2) | (v0 << v1);
+        type_t          v5 = short(5) << v0;
 
         XTESTS_TEST(1 == v1);
         XTESTS_TEST(2 == v2);
         XTESTS_TEST(3 == v3);
         XTESTS_TEST(4 == v4);
+        XTESTS_TEST(5 == v5);
     }
 
     // <<=
@@ -460,6 +516,51 @@ static void test_int_spec()
 
         XTESTS_TEST(61680 == v);
     }
+
+#if __cplusplus >= 201402L
+
+    // << (as insertion operator)
+    {
+        {
+            std::stringstream stm;
+
+            type_t const v(1);
+
+            stm << v;
+
+            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", stm.str());
+        }
+
+        {
+            std::stringstream stm;
+
+            type_t v(12345678);
+
+            stm << v;
+
+            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("12345678", stm.str());
+        }
+        {
+            SimpleStream stm;
+
+            type_t const v(1);
+
+            stm << v;
+
+            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", stm.str());
+        }
+
+        {
+            SimpleStream stm;
+
+            type_t v(12345678);
+
+            stm << v;
+
+            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("12345678", stm.str());
+        }
+    }
+#endif
 
 
     // &

@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MAJOR     4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION  8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT      90
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR     1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION  1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT      91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -68,6 +68,16 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
+# include <stlsoft/meta/is_same_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
+# include <stlsoft/meta/select_first_type_if.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
+# include <stlsoft/meta/yesno.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -211,6 +221,84 @@ private: // fields
 
 #  define STLSOFT_true_typedef_rt_(qrt, rrt)                rrt
 # endif
+
+
+struct true_typedef_impl_
+{
+# if __cplusplus >= 201402L
+
+    /// Traits for implementing `operator <<()`, discriminating on whether
+    /// `T_lhs` is a true-typedef
+    template <
+        ss_typename_param_k T_lhs
+    ,   ss_typename_param_k T
+    ,   ss_typename_param_k U
+    >
+    struct op_lshift_traits
+    {
+    public: // types
+        /// \brief T.B.C.
+        typedef T_lhs                                       lhs_type;
+        /// \brief T.B.C.
+        typedef true_typedef<T, U>                          tt_type;
+    private:
+        enum { lhs_is_tt = 0 != is_same_type<lhs_type, tt_type>::value };
+
+    public:
+        /// \brief The return-type of the operator
+        typedef ss_typename_type_k select_first_type_if<
+            lhs_type
+        ,   lhs_type&
+        ,   lhs_is_tt
+        >::type                                             return_type;
+
+
+    private: // implementation
+        /// \brief Implementation for lhs of true-typedef
+        static
+        tt_type
+        op_lshift_impl(
+            T_lhs&              lhs
+        ,   tt_type const&      rhs
+        ,   yes_type
+        )
+        {
+            return tt_type(lhs.base_type_value() << rhs.base_type_value());
+        }
+
+        /// \brief Implementation for lhs as a stream
+        static
+        T_lhs&
+        op_lshift_impl(
+            T_lhs&              stm
+        ,   tt_type const&      v
+        ,   no_type
+        )
+        {
+            stm << v.base_type_value();
+
+            return stm;
+        }
+
+
+    public: // operators
+        return_type
+        operator ()(
+            lhs_type&                   lhs
+        ,   true_typedef<T, U> const&   v
+        ) const
+        {
+            typedef ss_typename_type_k value_to_yesno_type<lhs_is_tt>::type is_same_type_yesno_t;
+
+            return op_lshift_impl(
+                        lhs
+                    ,   v
+                    ,   is_same_type_yesno_t()
+                    );
+        }
+    };
+# endif /* C++ version */
+};
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -855,6 +943,58 @@ operator <<(
     return true_typedef<T, U>(lhs.base_type_value() << rhs);
 }
 
+#if __cplusplus >= 201402L
+
+/*
+template <
+    ss_typename_param_k T
+,   ss_typename_param_k U
+>
+inline
+true_typedef<T, U>
+operator <<(
+    true_typedef<T, U>&         lhs
+,   true_typedef<T, U> const&   rhs
+)
+{
+    return true_typedef<T, U>(lhs.base_type_value() << rhs.base_type_value());
+}
+*/
+
+template <
+    ss_typename_param_k T
+,   ss_typename_param_k U
+>
+inline
+true_typedef<T, U>
+operator <<(
+    STLSOFT_true_typedef_pt_(value_type) const  lhs
+,   true_typedef<T, U> const&                   rhs
+)
+{
+    return true_typedef<T, U>(lhs << rhs.base_type_value());
+}
+
+/// \brief T.B.C.
+///
+/// \tparam T_lhs The type of the lhs of the expression, which might be a
+///   numeric type to be shifted or m
+template <
+    ss_typename_param_k T_lhs
+,   ss_typename_param_k T
+,   ss_typename_param_k U
+>
+inline
+ss_typename_type_k true_typedef_impl_::op_lshift_traits<T_lhs, T, U>::return_type
+operator <<(
+    T_lhs&                      lhs
+,   true_typedef<T, U> const&   v
+)
+{
+    return true_typedef_impl_::op_lshift_traits<T_lhs, T, U>()(lhs, v);
+}
+#else /* C++ version ? */
+
 template <
     ss_typename_param_k T
 ,   ss_typename_param_k U
@@ -868,6 +1008,8 @@ operator <<(
 {
     return true_typedef<T, U>(lhs << rhs.base_type_value());
 }
+#endif /* C++ version */
+
 
 // operator >>
 
