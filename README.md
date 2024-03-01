@@ -48,6 +48,8 @@ Option 3 is recommended.
 
 See [INSTALL.md](./INSTALL.md) for details of these options, and also for an explanation of the top-level build scripts in the project.
 
+> **IMPORTANT**: If you are installing **STLSoft** _for the first time_ you **must** do the **CMake**-based build step specifying that you do _not_ want to run tests - by specifying the flags `-E` and `-T` to **prepare_cmake.sh** - otherwise you will end up with a circular dependency on **xTests** (which depends on **STLSoft**). [INSTALL.md](./INSTALL.md) explains this in detail.
+
 
 ## Components
 

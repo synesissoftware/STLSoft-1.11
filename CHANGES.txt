@@ -17,6 +17,52 @@ STLSoft - Changes
    **************************************
 
 
+
+Changes for 1.11.1-alpha2 (1st March 2024)
+
+General:
+========
+
+ * True-Typedef supports stream-insertion (`operator <<()`):
+ * added `stlsoft::write_string<>()`;
+ * miscellaneous fixes (including C++14/17/20 compatibility);
+
+Changes:
+========
+
+True-Typedef supports stream-insertion (`operator <<()`), refactored, and added **test.unit.stlsoft.util.true_typedef**:
+ * include/stlsoft/util/true_typedef.hpp
+ * test/unit/stlsoft/CMakeLists.txt
+ * test/unit/stlsoft/util/CMakeLists.txt
+ * test/unit/stlsoft/util/test.unit.stlsoft.util.true_typedef/CMakeLists.txt
+ * test/unit/stlsoft/util/test.unit.stlsoft.util.true_typedef/entry.cpp
+
+Added `stlsoft::write_string<>()`, moved `stlsoft::read_line<>()`, unit-tests for each:
+ * include/stlsoft/filesystem/io_functions/write_string.hpp - added `stlsoft::write_string<>()`
+ * moved `stlsoft::read_line<>()` from **include/stlsoft/filesystem/read_line.hpp** to => **include/stlsoft/filesystem/io_functions/read_line.hpp**:
+   * include/stlsoft/filesystem/io_functions/read_line.hpp
+   * include/stlsoft/filesystem/io_functions.hpp
+   * include/stlsoft/filesystem/read_line.hpp
+ * added **test.unit.stlsoft.filesystem.io_functions.read_line** and **test.unit.stlsoft.filesystem.io_functions.write_string**
+   * test/unit/stlsoft/CMakeLists.txt
+   * test/unit/stlsoft/filesystem/CMakeLists.txt
+   * test/unit/stlsoft/filesystem/test.unit.stlsoft.filesystem.io_functions.read_line/CMakeLists.txt
+   * test/unit/stlsoft/filesystem/test.unit.stlsoft.filesystem.io_functions.read_line/entry.cpp
+   * test/unit/stlsoft/filesystem/test.unit.stlsoft.filesystem.io_functions.write_string/CMakeLists.txt
+   * test/unit/stlsoft/filesystem/test.unit.stlsoft.filesystem.io_functions.write_string/entry.cpp
+
+Miscellaneous:
+ * stlsoft/memory/util/allocator_features.hpp - fix to C++ language discrimination
+ * include/stlsoft/exception/out_of_memory_exception.hpp - language compatibility
+ * include/stlsoft/string/string_tokeniser.hpp - unused parameter warnings
+ * include/stlsoft/util/string_switch.hpp - trivial changes
+ * include/stlsoft/filesystem/read_line.hpp : + applied `STLSOFT_NOEXCEPT` where appropriate
+ * include/unixstl/filesystem/handles/memory_mapped_file_view_handle.hpp - language compatibility
+ * include/winstl/filesystem/handles/memory_mapped_file_view_handle.hpp - language compatibility
+
+
+============================================================================
+
 Changes for 1.11.1-alpha1 (20th February 2024)
 
 General:
@@ -98,7 +144,6 @@ Minor tidying and consistency changes:
  * include/stlsoft/string/string_view.hpp
  * include/stlsoft/util/exception_string_creator.hpp
  * include/stlsoft/util/operator_bool.hpp
-
 
 
 ============================================================================

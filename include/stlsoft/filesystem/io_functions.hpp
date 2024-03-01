@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/filesystem/io_functions.hpp
+ * File:    stlsoft/filesystem/io_functions.hpp
  *
- * Purpose:     File-system functions.
+ * Purpose: File-system functions.
  *
- * Created:     2nd January 2007
- * Updated:     26th December 2020
+ * Created: 2nd January 2007
+ * Updated: 22nd February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,10 +53,11 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MAJOR      2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MINOR      0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   4
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       18
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MINOR      1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -69,9 +70,13 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_READ_LINE
-# include <stlsoft/filesystem/read_line.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_READ_LINE */
+#ifndef STLSOFT_INCL_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE
+# include <stlsoft/filesystem/io_functions/read_line.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE */
+#ifndef STLSOFT_INCL_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_WRITE_STRING
+# include <stlsoft/filesystem/io_functions/write_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_WRITE_STRING */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -82,15 +87,18 @@ namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * functions
  */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

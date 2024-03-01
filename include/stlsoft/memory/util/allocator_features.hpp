@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/memory/util/allocator_features.hpp
+ * File:    stlsoft/memory/util/allocator_features.hpp
  *
- * Purpose:     Allocator commmon features.
+ * Purpose: Allocator commmon features.
  *
- * Created:     20th August 2003
- * Updated:     22nd January 2024
+ * Created: 20th August 2003
+ * Updated: 28th February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_MAJOR       6
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_MINOR       1
-# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_EDIT        56
+# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_REVISION    2
+# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -254,7 +254,7 @@
 #elif __cplusplus >= 201703L
 
 # define STLSOFT_LF_ALLOCATOR_TRAITS_SUPPORT
-#elif __cplusplus >= 201403L
+#elif __cplusplus >= 201402L
 
 # if 0 || \
      defined(STLSOFT_COMPILER_IS_CLANG) || \
