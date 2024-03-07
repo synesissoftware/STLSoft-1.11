@@ -4,11 +4,11 @@
  * Purpose:     Window function classes and predicates.
  *
  * Created:     19th January 2001
- * Updated:     26th December 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2001-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MAJOR      4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MINOR      1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   6
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       55
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   7
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,15 +107,15 @@ namespace winstl_project
  */
 // [[synesis:class:function-class:unary-predicate: is_visible]]
 struct is_visible
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<HWND, BOOL>
+#endif
 {
-private:
-    typedef STLSOFT_NS_QUAL_STD(unary_function)<HWND, BOOL> parent_class_type;
 public:
     /// The argument type
-    typedef parent_class_type::argument_type                argument_type;
+    typedef HWND                                            argument_type;
     /// The result type
-    typedef parent_class_type::result_type                  result_type;
+    typedef BOOL                                            result_type;
 
 // Operations
 public:
@@ -141,15 +141,15 @@ public:
  */
 // [[synesis:class:function-class:unary-predicate: is_enabled]]
 struct is_enabled
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<HWND, BOOL>
+#endif
 {
-private:
-    typedef STLSOFT_NS_QUAL_STD(unary_function)<HWND, BOOL> parent_class_type;
 public:
     /// The argument type
-    typedef parent_class_type::argument_type                argument_type;
+    typedef HWND                                            argument_type;
     /// The result type
-    typedef parent_class_type::result_type                  result_type;
+    typedef BOOL                                            result_type;
 
 // Operations
 public:
@@ -179,11 +179,18 @@ public:
  */
 // [[synesis:class:unary-functor: window_show]]
 struct window_show
-    : public std::unary_function<HWND, void>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<HWND, void>
+#endif
 {
 public:
+    /// The argument type
+    typedef HWND                                            argument_type;
+    /// The result type
+    typedef void                                            result_type;
     /// This type
-    typedef window_show     class_type;
+    typedef window_show                                     class_type;
+
 public:
     ss_explicit_k window_show(ws_bool_t bShow = true)
         : m_bShow(bShow)
@@ -220,11 +227,18 @@ private:
  */
 // [[synesis:class:unary-functor: window_enable]]
 struct window_enable
-    : public std::unary_function<HWND, void>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<HWND, void>
+#endif
 {
 public:
+    /// The argument type
+    typedef HWND                                            argument_type;
+    /// The result type
+    typedef void                                            result_type;
     /// This type
-    typedef window_enable   class_type;
+    typedef window_enable                                   class_type;
+
 public:
     ss_explicit_k window_enable(ws_bool_t bEnable = true)
         : m_bEnable(bEnable)

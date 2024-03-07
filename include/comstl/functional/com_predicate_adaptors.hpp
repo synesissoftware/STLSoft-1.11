@@ -4,11 +4,11 @@
  * Purpose:     Contains the comstl::com_SUCCEEDED and comstl::com_S_OK.
  *
  * Created:     3rd April 2007
- * Updated:     26th December 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://comstl.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,13 +54,10 @@
 #ifndef COMSTL_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MAJOR    1
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_MINOR    0
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_REVISION 5
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_EDIT     15
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_REVISION 6
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_COM_PREDICATE_ADAPTORS_EDIT     16
 #endif /* !COMSTL_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +74,7 @@
 # define STLSOFT_INCL_FUNCTIONAL
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -97,6 +95,7 @@ namespace comstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -110,17 +109,20 @@ namespace comstl_project
 // [[synesis:class:function-class:unary-function: com_SUCCEEDED_tester_1_stdcall<T<R>, T<A>>]]
 template <ss_typename_param_k A0>
 struct com_SUCCEEDED_tester_1_stdcall
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A0, bool>
+#endif
 {
 public:
-    typedef bool                        return_type;
-    typedef A0                          argument_type;
-    typedef HRESULT (STLSOFT_STDCALL*   function_type)(argument_type);
+    typedef A0                                              argument_type;
+    typedef bool                                            result_type;
+    typedef result_type                                     return_type;
+    typedef HRESULT                       (STLSOFT_STDCALL* function_type)(argument_type);
 public:
     ss_explicit_k com_SUCCEEDED_tester_1_stdcall(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(argument_type a) const
+    result_type operator ()(argument_type a) const
     {
         return SUCCEEDED((*m_func)(a));
     }
@@ -139,18 +141,21 @@ template<   ss_typename_param_k A0
         ,   ss_typename_param_k A1
         >
 struct com_SUCCEEDED_tester_2_stdcall
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, bool>
+#endif
 {
 public:
-    typedef bool                        return_type;
-    typedef A0                          first_argument_type;
-    typedef A1                          second_argument_type;
-    typedef HRESULT (STLSOFT_STDCALL*   function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef bool                                            result_type;
+    typedef result_type                                     return_type;
+    typedef HRESULT                       (STLSOFT_STDCALL* function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k com_SUCCEEDED_tester_2_stdcall(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(first_argument_type a0, second_argument_type a1) const
+    result_type operator ()(first_argument_type a0, second_argument_type a1) const
     {
         return SUCCEEDED((*m_func)(a0, a1));
     }
@@ -169,17 +174,20 @@ private:
 // [[synesis:class:function-class:unary-function: com_SUCCEEDED_tester_1_stdcall<T<R>, T<A>>]]
 template <ss_typename_param_k A0>
 struct com_S_OK_tester_1_stdcall
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A0, bool>
+#endif
 {
 public:
-    typedef bool                        return_type;
-    typedef A0                          argument_type;
-    typedef HRESULT (STLSOFT_STDCALL*   function_type)(argument_type);
+    typedef A0                                              argument_type;
+    typedef bool                                            result_type;
+    typedef result_type                                     return_type;
+    typedef HRESULT                       (STLSOFT_STDCALL* function_type)(argument_type);
 public:
     ss_explicit_k com_S_OK_tester_1_stdcall(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(argument_type a) const
+    result_type operator ()(argument_type a) const
     {
         return S_OK == (*m_func)(a);
     }
@@ -198,18 +206,21 @@ template<   ss_typename_param_k A0
         ,   ss_typename_param_k A1
         >
 struct com_S_OK_tester_2_stdcall
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, bool>
+#endif
 {
 public:
-    typedef bool                        return_type;
-    typedef A0                          first_argument_type;
-    typedef A1                          second_argument_type;
-    typedef HRESULT (STLSOFT_STDCALL*   function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef bool                                            result_type;
+    typedef result_type                                     return_type;
+    typedef HRESULT                       (STLSOFT_STDCALL* function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k com_S_OK_tester_2_stdcall(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(first_argument_type a0, second_argument_type a1) const
+    result_type operator ()(first_argument_type a0, second_argument_type a1) const
     {
         return S_OK == (*m_func)(a0, a1);
     }
@@ -227,17 +238,20 @@ private:
 // [[synesis:class:function-class:unary-function: com_SUCCEEDED_tester_1_cdecl<T<R>, T<A>>]]
 template <ss_typename_param_k A0>
 struct com_SUCCEEDED_tester_1_cdecl
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A0, bool>
+#endif
 {
 public:
-    typedef bool                        return_type;
-    typedef A0                          argument_type;
-    typedef HRESULT (STLSOFT_CDECL*     function_type)(argument_type);
+    typedef A0                                              argument_type;
+    typedef bool                                            result_type;
+    typedef result_type                                     return_type;
+    typedef HRESULT                         (STLSOFT_CDECL* function_type)(argument_type);
 public:
     ss_explicit_k com_SUCCEEDED_tester_1_cdecl(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(argument_type a) const
+    result_type operator ()(argument_type a) const
     {
         return SUCCEEDED((*m_func)(a));
     }
@@ -256,18 +270,21 @@ template<   ss_typename_param_k A0
         ,   ss_typename_param_k A1
         >
 struct com_SUCCEEDED_tester_2_cdecl
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, bool>
+#endif
 {
 public:
-    typedef bool                        return_type;
-    typedef A0                          first_argument_type;
-    typedef A1                          second_argument_type;
-    typedef HRESULT (STLSOFT_CDECL*     function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef bool                                            result_type;
+    typedef result_type                                     return_type;
+    typedef HRESULT                         (STLSOFT_CDECL* function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k com_SUCCEEDED_tester_2_cdecl(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(first_argument_type a0, second_argument_type a1) const
+    result_type operator ()(first_argument_type a0, second_argument_type a1) const
     {
         return SUCCEEDED((*m_func)(a0, a1));
     }
@@ -286,17 +303,20 @@ private:
 // [[synesis:class:function-class:unary-function: com_SUCCEEDED_tester_1_cdecl<T<R>, T<A>>]]
 template <ss_typename_param_k A0>
 struct com_S_OK_tester_1_cdecl
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A0, bool>
+#endif
 {
 public:
-    typedef bool                        return_type;
-    typedef A0                          argument_type;
-    typedef HRESULT (STLSOFT_CDECL*     function_type)(argument_type);
+    typedef A0                                              argument_type;
+    typedef bool                                            result_type;
+    typedef result_type                                     return_type;
+    typedef HRESULT                         (STLSOFT_CDECL* function_type)(argument_type);
 public:
     ss_explicit_k com_S_OK_tester_1_cdecl(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(argument_type a) const
+    result_type operator ()(argument_type a) const
     {
         return S_OK == (*m_func)(a);
     }
@@ -315,18 +335,21 @@ template<   ss_typename_param_k A0
         ,   ss_typename_param_k A1
         >
 struct com_S_OK_tester_2_cdecl
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, bool>
+#endif
 {
 public:
-    typedef bool                        return_type;
-    typedef A0                          first_argument_type;
-    typedef A1                          second_argument_type;
-    typedef HRESULT (STLSOFT_CDECL*     function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef bool                                            result_type;
+    typedef result_type                                     return_type;
+    typedef HRESULT                         (STLSOFT_CDECL* function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k com_S_OK_tester_2_cdecl(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(first_argument_type a0, second_argument_type a1) const
+    result_type operator ()(first_argument_type a0, second_argument_type a1) const
     {
         return S_OK == (*m_func)(a0, a1);
     }
@@ -334,6 +357,7 @@ public:
 private:
     function_type m_func;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * creator functions
@@ -443,6 +467,7 @@ inline com_S_OK_tester_2_cdecl<A0, A1> com_S_OK(HRESULT (STLSOFT_CDECL *pfn)(A0,
     return com_S_OK_tester_2_cdecl<A0, A1>(pfn);
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef COMSTL_NO_NAMESPACE
@@ -454,6 +479,7 @@ inline com_S_OK_tester_2_cdecl<A0, A1> com_S_OK(HRESULT (STLSOFT_CDECL *pfn)(A0,
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

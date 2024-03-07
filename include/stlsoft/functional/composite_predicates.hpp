@@ -4,11 +4,11 @@
  * Purpose:     Definition of composite predicates function templates.
  *
  * Created:     27th March 2007
- * Updated:     26th December 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,9 +53,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_MAJOR      1
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_MINOR      1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_REVISION   5
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_EDIT       15
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_REVISION   6
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 # include <functional>
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -80,6 +82,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -97,13 +100,14 @@ template<
 >
 // [[synesis:class:function-class:unary-predicate: any_of]]
 struct any_of_tester
-#ifdef STLSOFT_CF_std_NAMESPACE
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<ss_typename_type_k P1::argument_type, ss_bool_t>
-#endif /* STLSOFT_CF_std_NAMESPACE */
+#endif
 {
 public:
-    typedef ss_bool_t                               bool_type;
-    typedef ss_typename_type_k P1::argument_type    arg_type;
+    typedef ss_bool_t                                       bool_type;
+    typedef ss_typename_type_k P1::argument_type            argument_type;
+    typedef bool_type                                       result_type;
 
 public:
     any_of_tester(P1 p1, P2 p2)
@@ -113,7 +117,7 @@ public:
 
 public:
     /// Returns true if either predicate is satisfied
-    bool_type operator ()(arg_type a) const
+    bool_type operator ()(argument_type a) const
     {
         return m_p1(a) || m_p2(a);
     }
@@ -127,7 +131,8 @@ template<
     ss_typename_param_k P1
 ,   ss_typename_param_k P2
 >
-inline any_of_tester<P1, P2> any_of(P1 p1, P2 p2)
+inline
+any_of_tester<P1, P2> any_of(P1 p1, P2 p2)
 {
     return any_of_tester<P1, P2>(p1, p2);
 }
@@ -137,7 +142,8 @@ template<
 ,   ss_typename_param_k P2
 ,   ss_typename_param_k P3
 >
-inline any_of_tester<P1, any_of_tester<P2, P3> > any_of(P1 p1, P2 p2, P3 p3)
+inline
+any_of_tester<P1, any_of_tester<P2, P3> > any_of(P1 p1, P2 p2, P3 p3)
 {
     return any_of(p1, any_of(p2, p3));
 }
@@ -148,7 +154,8 @@ template<
 ,   ss_typename_param_k P3
 ,   ss_typename_param_k P4
 >
-inline any_of_tester<any_of_tester<P1, P2>, any_of_tester<P3, P4> > any_of(P1 p1, P2 p2, P3 p3, P4 p4)
+inline
+any_of_tester<any_of_tester<P1, P2>, any_of_tester<P3, P4> > any_of(P1 p1, P2 p2, P3 p3, P4 p4)
 {
     return any_of(any_of(p1, p2), any_of(p3, p4));
 }
@@ -165,13 +172,14 @@ template<
 >
 // [[synesis:class:function-class:unary-predicate: all_of]]
 struct all_of_tester
-#ifdef STLSOFT_CF_std_NAMESPACE
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<ss_typename_type_k P1::argument_type, ss_bool_t>
-#endif /* STLSOFT_CF_std_NAMESPACE */
+#endif
 {
 public:
-    typedef ss_bool_t                               bool_type;
-    typedef ss_typename_type_k P1::argument_type    arg_type;
+    typedef ss_bool_t                                       bool_type;
+    typedef ss_typename_type_k P1::argument_type            argument_type;
+    typedef bool_type                                       result_type;
 
 public:
     all_of_tester(P1 p1, P2 p2)
@@ -181,7 +189,7 @@ public:
 
 public:
     /// Returns true if both predicates are satisfied
-    bool_type operator ()(arg_type a) const
+    bool_type operator ()(argument_type a) const
     {
         return m_p1(a) && m_p2(a);
     }
@@ -195,7 +203,8 @@ template<
     ss_typename_param_k P1
 ,   ss_typename_param_k P2
 >
-inline all_of_tester<P1, P2> all_of(P1 p1, P2 p2)
+inline
+all_of_tester<P1, P2> all_of(P1 p1, P2 p2)
 {
     return all_of_tester<P1, P2>(p1, p2);
 }
@@ -205,7 +214,8 @@ template<
 ,   ss_typename_param_k P2
 ,   ss_typename_param_k P3
 >
-inline all_of_tester<P1, all_of_tester<P2, P3> > all_of(P1 p1, P2 p2, P3 p3)
+inline
+all_of_tester<P1, all_of_tester<P2, P3> > all_of(P1 p1, P2 p2, P3 p3)
 {
     return all_of(p1, all_of(p2, p3));
 }
@@ -216,16 +226,21 @@ template<
 ,   ss_typename_param_k P3
 ,   ss_typename_param_k P4
 >
-inline all_of_tester<all_of_tester<P1, P2>, all_of_tester<P3, P4> > all_of(P1 p1, P2 p2, P3 p3, P4 p4)
+inline
+all_of_tester<all_of_tester<P1, P2>, all_of_tester<P3, P4> > all_of(P1 p1, P2 p2, P3 p3, P4 p4)
 {
     return all_of(all_of(p1, p2), all_of(p3, p4));
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

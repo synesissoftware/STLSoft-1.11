@@ -4,7 +4,7 @@
  * Purpose:     String function classes
  *
  * Created:     22nd April 2005
- * Updated:     22nd January 2024
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    10
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        48
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    11
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -85,6 +86,7 @@
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@ namespace stlsoft
 # pragma message(_sscomp_fileline_message("TODO: Need a function that can do quoting (or anything else)"))
 #endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * function classes
  */
@@ -109,8 +112,14 @@ namespace stlsoft
  */
 template <ss_typename_param_k S>
 struct quoter
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<char const*, void>
+#endif
 {
+public:
+    typedef char const*                                     argument_type;
+    typedef void                                            result_type;
+
 public:
     S operator()(S const& s) const
     {
@@ -133,7 +142,9 @@ public:
     }
 };
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+/* /////////////////////////////////////////////////////////////////////////
+ * predicate classes
+ */
 
 /**
  *
@@ -143,9 +154,13 @@ public:
  */
 template <ss_typename_param_k C>
 struct string_begins_with_function
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<C const*, ss_bool_t>
+#endif
 {
 public:
+    typedef char const*                                     argument_type;
+    typedef ss_bool_t                                       result_type;
 
 public:
     string_begins_with_function(C const* prefix)
@@ -166,7 +181,7 @@ public:
 
 private:
     C const* const  m_prefix;
-    const ss_size_t m_prefixLen;
+    ss_size_t const m_prefixLen;
 };
 
 /** \note This is a work-in-progress, and is subject to change in a later release
@@ -179,11 +194,6 @@ inline string_begins_with_function<C> string_begins_with(C const* prefix)
     return string_begins_with_function<C>(prefix);
 }
 
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* /////////////////////////////////////////////////////////////////////////
- * predicate classes
- */
 
 #if 0
 /** Predicate used to test the equivalence of strings (of
@@ -196,8 +206,14 @@ template<   ss_typename_param_k C
         >
 // [[synesis:class:function-class:binary-predicate: string_equal]]
 struct string_equal
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<C const*, C const*, ss_bool_t>
+#endif
 {
+public:
+    typedef char const*                                     argument_type;
+    typedef ss_bool_t                                       result_type;
+
 public:
     template<   ss_typename_param_k S0
             ,   ss_typename_param_k S1
@@ -222,11 +238,15 @@ private:
 };
 #endif /* 0 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
