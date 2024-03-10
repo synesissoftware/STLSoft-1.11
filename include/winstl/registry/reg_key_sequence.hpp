@@ -563,7 +563,7 @@ private:
 /// \name Members
 /// @{
 private:
-    registry_util::shared_handle*   m_handle;      // Shared context for registry key and event object
+    registry_util::shared_handle*   m_handle;       // Shared context for registry key and event object
     index_type                      m_index;        // Current iteration index
     string_type                     m_name;         // The value name
     REGSAM                          m_accessMask;   // Security access mask
@@ -571,8 +571,9 @@ private:
 };
 
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+/* /////////////////////////////////////////////////////////////////////////
+ * Implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 

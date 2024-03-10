@@ -96,7 +96,10 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * classes
+ */
 
 /** Root exception thrown by
  *   the \ref group__library__Windows_Registry "Windows Registry" Library.
@@ -143,6 +146,7 @@ public:
 /// @}
 };
 
+
 /** Indicates that a registry key could not be duplicated.
  *
  * \ingroup group__library__Windows_Registry
@@ -153,8 +157,8 @@ class key_not_duplicated_exception
 /// \name Member Types
 /// @{
 public:
-    typedef registry_exception              parent_class_type;
-    typedef key_not_duplicated_exception    class_type;
+    typedef registry_exception                              parent_class_type;
+    typedef key_not_duplicated_exception                    class_type;
 /// @}
 
 /// \name Construction
@@ -174,6 +178,7 @@ private:
     class_type& operator =(class_type const&);
 /// @}
 };
+
 
 /** Indicates a registry value type mismatch.
  *
@@ -223,6 +228,7 @@ private:
 /// @}
 };
 
+
 /** Indicates insufficient rights to access a registry key.
  *
  * \ingroup group__library__Windows_Registry
@@ -233,8 +239,8 @@ class access_denied_exception
 /// \name Member Types
 /// @{
 public:
-    typedef registry_exception          parent_class_type;
-    typedef access_denied_exception     class_type;
+    typedef registry_exception                              parent_class_type;
+    typedef access_denied_exception                         class_type;
 /// @}
 
 /// \name Construction
@@ -251,7 +257,10 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

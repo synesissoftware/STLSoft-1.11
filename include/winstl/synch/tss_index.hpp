@@ -165,15 +165,15 @@ class tss_index
 /// @{
 public:
     /// This class
-    typedef tss_index   class_type;
+    typedef tss_index                                       class_type;
     /// The type of the TSS key
-    typedef ws_dword_t  key_type;
+    typedef ws_dword_t                                      key_type;
     /// The type of the TSS key
     ///
     /// \deprecated Deprecated in favour of key_type
-    typedef key_type    index_type;
+    typedef key_type                                        index_type;
     /// The type of the slot values
-    typedef void*       value_type;
+    typedef void*                                           value_type;
 /// @}
 
 /// \name Construction
@@ -267,7 +267,10 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

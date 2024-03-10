@@ -148,7 +148,8 @@ public:
 /// \name Construction
 /// @{
 public:
-    ss_explicit_k range_exception(char const* reason = NULL)
+    ss_explicit_k
+    range_exception(char const* reason = NULL)
         : m_reason((NULL == reason) ? "" : reason)
     {}
     /// Destructor

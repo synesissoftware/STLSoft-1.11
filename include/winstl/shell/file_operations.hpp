@@ -231,9 +231,7 @@ shell_delete_w_(
         return res;
     }
 }
-
 } /* namespace ximpl_winstl_shell_functions_ */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** Requests the shell to delete the given file
@@ -1214,7 +1212,10 @@ shell_delete(
     return shell_delete_w_(hwnd, from, progressTitle, flags, &bAborted);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

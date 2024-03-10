@@ -223,6 +223,7 @@ typedef basic_findvolume_sequence<ws_char_w_t, filesystem_traits<ws_char_w_t> > 
  */
 typedef basic_findvolume_sequence<TCHAR, filesystem_traits<TCHAR> >                 findvolume_sequence;
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 // class basic_findvolume_sequence_value_type
@@ -405,8 +406,9 @@ private:
 };
 
 
-////////////////////////////////////////////////////////////////////////////
-// Shims
+/* /////////////////////////////////////////////////////////////////////////
+ * shims
+ */
 
 // c_str_data
 
@@ -531,12 +533,12 @@ inline ws_bool_t is_empty(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C
 {
     return '\0' == v[0];
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -661,7 +663,6 @@ inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>:
 
     return *this;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
@@ -724,10 +725,12 @@ inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator !=(
 {
     return ! operator ==(rhs);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -738,6 +741,7 @@ inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator !=(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

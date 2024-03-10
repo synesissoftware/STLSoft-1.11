@@ -445,8 +445,9 @@ private:
 };
 
 
-////////////////////////////////////////////////////////////////////////////
-// Functions
+/* /////////////////////////////////////////////////////////////////////////
+ * functions
+ */
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
@@ -477,10 +478,12 @@ inline iterator_range<T const*, const_pointer_iterator_range_traits<const T> > m
 {
     return iterator_range<T const*, const_pointer_iterator_range_traits<const T> >(first, last);
 }
-
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef RANGELIB_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

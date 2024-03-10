@@ -300,12 +300,14 @@ private:
 };
 
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline cmdargs::cmdargs(int argc, char /*const*/ **argv)
+inline
+cmdargs::cmdargs(int argc, char /*const*/ **argv)
 {
     for (int i = 1; i < argc; ++i)
     {
@@ -330,61 +332,84 @@ inline cmdargs::cmdargs(int argc, char /*const*/ **argv)
     }
 }
 
-inline cmdargs::~cmdargs() STLSOFT_NOEXCEPT
+inline
+cmdargs::~cmdargs() STLSOFT_NOEXCEPT
 {
 }
 
-inline cmdargs::options_type const& cmdargs::options() const
+inline
+cmdargs::options_type const&
+cmdargs::options() const
 {
     return m_options;
 }
 
-inline cmdargs::values_type const& cmdargs::values() const
+inline
+cmdargs::values_type const&
+cmdargs::values() const
 {
     return m_values;
 }
 
-inline cmdargs::const_options_iterator cmdargs::options_begin() const
+inline
+cmdargs::const_options_iterator
+cmdargs::options_begin() const
 {
     return m_options.begin();
 }
 
-inline cmdargs::const_options_iterator cmdargs::options_end() const
+inline
+cmdargs::const_options_iterator
+cmdargs::options_end() const
 {
     return m_options.end();
 }
 
-inline cmdargs::const_values_iterator cmdargs::values_begin() const
+inline
+cmdargs::const_values_iterator
+cmdargs::values_begin() const
 {
     return m_values.begin();
 }
 
-inline cmdargs::const_values_iterator cmdargs::values_end() const
+inline
+cmdargs::const_values_iterator
+cmdargs::values_end() const
 {
     return m_values.end();
 }
 
-inline cmdargs::size_type cmdargs::options_size() const
+inline
+cmdargs::size_type
+cmdargs::options_size() const
 {
     return m_options.size();
 }
 
-inline cmdargs::size_type cmdargs::values_size() const
+inline
+cmdargs::size_type
+cmdargs::values_size() const
 {
     return m_values.size();
 }
 
-inline cmdargs::size_type cmdargs::size() const
+inline
+cmdargs::size_type
+cmdargs::size() const
 {
     return options_size() + values_size();
 }
 
-inline cmdargs::bool_type cmdargs::empty() const
+inline
+cmdargs::bool_type
+cmdargs::empty() const
 {
     return 0 == size();
 }
 
-inline cmdargs::values_type::const_iterator cmdargs::has_value_(char const* valueName) const
+inline
+cmdargs::values_type::const_iterator
+cmdargs::has_value_(char const* valueName) const
 {
     STLSOFT_ASSERT(NULL != valueName);
 
@@ -401,7 +426,9 @@ inline cmdargs::values_type::const_iterator cmdargs::has_value_(char const* valu
     return b;
 }
 
-inline cmdargs::options_type::const_iterator cmdargs::has_option_(char const* optionName, int type) const
+inline
+cmdargs::options_type::const_iterator
+cmdargs::has_option_(char const* optionName, int type) const
 {
     STLSOFT_ASSERT(NULL != optionName);
 
@@ -419,11 +446,15 @@ inline cmdargs::options_type::const_iterator cmdargs::has_option_(char const* op
 
     return b;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 template <ss_typename_param_k S>
-inline S& operator <<(S &stm, cmdargs::option const& option)
+inline
+S&
+operator <<(
+    S&                      stm
+,   cmdargs::option const&  option
+)
 {
     static const char   s_dashes[] =
     {
@@ -446,14 +477,22 @@ inline S& operator <<(S &stm, cmdargs::option const& option)
 }
 
 template <ss_typename_param_k S>
-inline S& operator <<(S &stm, cmdargs::value const& value)
+inline
+S&
+operator <<(
+    S&                      stm
+,   cmdargs::value const&   value
+)
 {
     stm << value.name;
 
     return stm;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

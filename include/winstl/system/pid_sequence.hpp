@@ -143,33 +143,42 @@ class pid_sequence
 /// @{
 public:
     /// The value type
-    typedef DWORD                                                           value_type;
+    typedef DWORD                                           value_type;
     /// The allocator type
-    typedef processheap_allocator<value_type>                               allocator_type;
+    typedef processheap_allocator<value_type>               allocator_type;
     /// The class type
-    typedef pid_sequence                                                    class_type;
+    typedef pid_sequence                                    class_type;
     /// The non-mutating (const) pointer type
-    typedef value_type const*                                               const_pointer;
+    typedef value_type const*                               const_pointer;
     /// The non-mutating (const) reference type
-    typedef value_type const&                                               const_reference;
+    typedef value_type const&                               const_reference;
     /// The non-mutating (const) iterator type
-    typedef STLSOFT_NS_QUAL(pointer_iterator)<  value_type
-                                            ,   const_pointer
-                                            ,   const_reference
-                                            >::type                         const_iterator;
+    typedef STLSOFT_NS_QUAL(pointer_iterator)<
+        value_type
+    ,   const_pointer
+    ,   const_reference
+    >::type                                                 const_iterator;
     /// The size type
-    typedef ws_size_t                                                       size_type;
+    typedef ws_size_t                                       size_type;
     /// The difference type
-    typedef ws_ptrdiff_t                                                    difference_type;
+    typedef ws_ptrdiff_t                                    difference_type;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
-    typedef STLSOFT_NS_QUAL(const_reverse_bidirectional_iterator_base)< const_iterator
-                                                                    ,   value_type
-                                                                    ,   const_reference
-                                                                    ,   const_pointer
-                                                                    ,   difference_type
-                                                                    >       const_reverse_iterator;
+    typedef STLSOFT_NS_QUAL(const_reverse_bidirectional_iterator_base)<
+        const_iterator
+    ,   value_type
+    ,   const_reference
+    ,   const_pointer
+    ,   difference_type
+    >                                                       const_reverse_iterator;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+private:
+    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+        value_type
+    ,   allocator_type
+    ,   64
+    >                                                       buffer_type_;
+public:
 
     enum
     {
@@ -279,11 +288,6 @@ public:
 /// \name Members
 /// @{
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<   value_type
-                                            ,   allocator_type
-                                            ,   64
-                                            >       buffer_type_;
-
     buffer_type_    m_pids;
 /// @}
 
@@ -301,7 +305,8 @@ private:
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline pid_sequence::pid_sequence(ws_uint32_t flags)
+inline
+pid_sequence::pid_sequence(ws_uint32_t flags)
     : m_pids(buffer_type_::internal_size())
 {
     DWORD   cbReturned;
@@ -391,54 +396,70 @@ inline pid_sequence::pid_sequence(ws_uint32_t flags)
     }
 }
 
-inline pid_sequence::pid_sequence(pid_sequence const& rhs)
+inline
+pid_sequence::pid_sequence(pid_sequence const& rhs)
     : m_pids(rhs.m_pids.size())
 {
     STLSOFT_NS_QUAL_STD(copy)(rhs.m_pids.begin(), rhs.m_pids.end(), m_pids.begin());
 }
 
-inline pid_sequence::~pid_sequence() STLSOFT_NOEXCEPT
+inline
+pid_sequence::~pid_sequence() STLSOFT_NOEXCEPT
 {}
 
-inline pid_sequence::const_iterator pid_sequence::begin() const
+inline
+pid_sequence::const_iterator
+pid_sequence::begin() const
 {
     return &*m_pids.begin();
 }
 
-inline pid_sequence::const_iterator pid_sequence::end() const
+inline
+pid_sequence::const_iterator
+pid_sequence::end() const
 {
     return &*m_pids.end();
 }
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-inline pid_sequence::const_reverse_iterator pid_sequence::rbegin() const
+
+inline
+pid_sequence::const_reverse_iterator
+pid_sequence::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
-inline pid_sequence::const_reverse_iterator pid_sequence::rend() const
+inline
+pid_sequence::const_reverse_iterator
+pid_sequence::rend() const
 {
     return const_reverse_iterator(begin());
 }
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
-inline pid_sequence::const_reference pid_sequence::operator [](pid_sequence::size_type index) const
+inline
+pid_sequence::const_reference
+pid_sequence::operator [](pid_sequence::size_type index) const
 {
     WINSTL_MESSAGE_ASSERT("Index out of range", index < size());
 
     return m_pids[index];
 }
 
-inline ws_bool_t pid_sequence::empty() const
+inline
+ws_bool_t
+pid_sequence::empty() const
 {
     return m_pids.empty();
 }
 
-inline pid_sequence::size_type pid_sequence::size() const
+inline
+pid_sequence::size_type
+pid_sequence::size() const
 {
     return m_pids.size();
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

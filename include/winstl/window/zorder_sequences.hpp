@@ -284,7 +284,6 @@ inline ws_bool_t zorder_sequence_base<B, E>::empty() const
 {
     return end() == begin();
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

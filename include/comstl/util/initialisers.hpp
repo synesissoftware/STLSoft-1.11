@@ -144,8 +144,9 @@ private:
 };
 
 
-////////////////////////////////////////////////////////////////////////////
-// Exception policies
+/* /////////////////////////////////////////////////////////////////////////
+ * exception policies
+ */
 
 /** Exception policy whose action is to do nothing
  *
@@ -178,7 +179,8 @@ public:
  *
  * \ingroup group__library__Exception
  */
-typedef STLSOFT_NS_QUAL(null_exception_policy)  ignore_initialisation_exception_policy;
+typedef STLSOFT_NS_QUAL(null_exception_policy)              ignore_initialisation_exception_policy;
+
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -295,8 +297,9 @@ private:
 };
 
 
-////////////////////////////////////////////////////////////////////////////
-// value policies
+/* /////////////////////////////////////////////////////////////////////////
+ * value policies
+ */
 
 /** A policy type, for use with comstl::initialiser, that causes
  *    initialisation/uninitialisation of the COM libraries with
@@ -348,8 +351,9 @@ public:
 };
 
 
-////////////////////////////////////////////////////////////////////////////
-// typedefs for common instantiations
+/* /////////////////////////////////////////////////////////////////////////
+ * typedefs for common instantiations
+ */
 
 /** Specialisation of comstl::initialiser that initialises via CoInitialize() but does not throw on failure.
  *
@@ -357,14 +361,20 @@ public:
  *
  * \see comstl::initialiser
  */
-typedef initialiser<CoInitialize_policy, ignore_initialisation_exception_policy>    com_init_nothrow;
+typedef initialiser<
+    CoInitialize_policy
+,   ignore_initialisation_exception_policy
+>                                                           com_init_nothrow;
 /** Specialisation of comstl::initialiser that initialises via OleInitialize() but does not throw on failure.
  *
  * \ingroup group__library__COM_Utility
  *
  * \see comstl::initialiser
  */
-typedef initialiser<OleInitialize_policy, ignore_initialisation_exception_policy>   ole_init_nothrow;
+typedef initialiser<
+    OleInitialize_policy
+,   ignore_initialisation_exception_policy
+>                                                           ole_init_nothrow;
 
 /** Specialisation of comstl::initialiser that initialises via CoInitialize() and throws on failure.
  *
@@ -372,14 +382,20 @@ typedef initialiser<OleInitialize_policy, ignore_initialisation_exception_policy
  *
  * \see comstl::initialiser
  */
-typedef initialiser<CoInitialize_policy, com_initialisation_exception_policy>       com_init;
+typedef initialiser<
+    CoInitialize_policy
+,   com_initialisation_exception_policy
+>                                                           com_init;
 /** Specialisation of comstl::initialiser that initialises via OleInitialize() and throws on failure.
  *
  * \ingroup group__library__COM_Utility
  *
  * \see comstl::initialiser
  */
-typedef initialiser<OleInitialize_policy, com_initialisation_exception_policy>      ole_init;
+typedef initialiser<
+    OleInitialize_policy
+,   com_initialisation_exception_policy
+>                                                           ole_init;
 
 /** [DEPRECATED] Specialisation of comstl::initialiser that initialises via CoInitialize() but does not throw on failure.
  *
@@ -389,7 +405,7 @@ typedef initialiser<OleInitialize_policy, com_initialisation_exception_policy>  
  *
  * \see comstl::initialiser
  */
-typedef com_init_nothrow                                                            com_initialiser;
+typedef com_init_nothrow                                    com_initialiser;
 /** [DEPRECATED] Specialisation of comstl::initialiser that initialises via OleInitialize() but does not throw on failure.
  *
  * \ingroup group__library__COM_Utility
@@ -398,26 +414,24 @@ typedef com_init_nothrow                                                        
  *
  * \see comstl::initialiser
  */
-typedef ole_init_nothrow                                                            ole_initialiser;
+typedef ole_init_nothrow                                    ole_initialiser;
 
-
-////////////////////////////////////////////////////////////////////////////
-// u for US-English spellers
 
 /** Equivalent to com_initialiser
  *
  * \ingroup group__library__COM_Utility
  */
-typedef com_initialiser com_initializer;
+typedef com_initialiser                                     com_initializer;
 /** Equivalent to ole_initialiser
  *
  * \ingroup group__library__COM_Utility
  */
-typedef ole_initialiser ole_initializer;
+typedef ole_initialiser                                     ole_initializer;
 
 
-////////////////////////////////////////////////////////////////////////////
-// implementation
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 // initialiser
 
@@ -486,7 +500,10 @@ inline HRESULT initialiser<IP, XP>::get_HRESULT() const
     return m_hr;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

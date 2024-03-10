@@ -423,6 +423,7 @@ private:
 /// @}
 };
 
+
 /* Typedefs to commonly encountered types. */
 /** Specialisation of the basic_reg_value template for the ANSI character type \c char
  *

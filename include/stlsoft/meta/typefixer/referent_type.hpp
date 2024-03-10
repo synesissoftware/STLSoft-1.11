@@ -59,23 +59,6 @@
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
-
-/*
-[<[STLSOFT-AUTO:NO-UNITTEST]>]
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
-[Incompatibilies-end]
-*/
-
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_MWERKS: (__MWERKS__ & 0xFF00) < 0x3000
-[Incompatibilies-end]
- */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -136,7 +119,10 @@ struct fixer_referent_type<T, false>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace typefixer */

@@ -244,7 +244,8 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
     template <ss_typename_param_k S>
-    ss_explicit_k multibyte2wide(S const& s)
+    ss_explicit_k
+    multibyte2wide(S const& s)
         : parent_class_type(calc_length_(s) + 1)
     {
         prepare_(STLSOFT_NS_QUAL(c_str_data_a)(s), parent_class_type::estimated_length_());

@@ -89,6 +89,7 @@ namespace mfcstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * grab_CString_buffer
  *
@@ -161,10 +162,12 @@ typedef grab_CString_buffer                                 grab_cstring_buffer;
 #endif /* !STLSOFT_OBSOLETE */
 
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
-inline grab_CString_buffer::grab_CString_buffer(CString &str, int length) stlsoft_throw_1(CMemoryException *)
+inline
+grab_CString_buffer::grab_CString_buffer(CString &str, int length) stlsoft_throw_1(CMemoryException *)
     : m_str(str)
     , m_len(length)
     , m_originalLen(str.GetLength())
@@ -178,7 +181,8 @@ inline grab_CString_buffer::grab_CString_buffer(CString &str, int length) stlsof
     m_psz[m_len] = '\0';
 }
 
-inline grab_CString_buffer::~grab_CString_buffer() STLSOFT_NOEXCEPT
+inline
+grab_CString_buffer::~grab_CString_buffer() STLSOFT_NOEXCEPT
 {
     // Best to check that the end character has not been overwritten
     MFCSTL_MESSAGE_ASSERT("The client code has overwritten the managed area of the grab_CString_buffer instance", '\0' == m_psz[m_len]);
@@ -189,34 +193,42 @@ inline grab_CString_buffer::~grab_CString_buffer() STLSOFT_NOEXCEPT
     m_str.ReleaseBuffer();
 }
 
-inline LPCTSTR grab_CString_buffer::c_str() const
+inline
+LPCTSTR grab_CString_buffer::c_str() const
 {
     return m_psz;
 }
 
-inline grab_CString_buffer::operator LPTSTR()
+inline
+grab_CString_buffer::operator LPTSTR()
 {
     return m_psz;
 }
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-inline grab_CString_buffer::operator LPCTSTR() const
+inline
+grab_CString_buffer::operator LPCTSTR() const
 {
     return m_psz;
 }
 #endif /* compiler */
 
-inline int grab_CString_buffer::length() const
+inline
+int grab_CString_buffer::length() const
 {
     return m_len;
 }
 
-inline int grab_CString_buffer::original_length() const
+inline
+int grab_CString_buffer::original_length() const
 {
     return m_originalLen;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

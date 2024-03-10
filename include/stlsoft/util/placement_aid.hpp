@@ -113,7 +113,8 @@ public:
     /// Create an instance of the \c value_type at the given location
     ///
     /// \param pv The location at which to in-place construct the object instance
-    ss_explicit_k placement_aid(void* pv)
+    ss_explicit_k
+    placement_aid(void* pv)
         : m_t(*new(pv) T())
     {}
 
@@ -126,7 +127,7 @@ public:
 // Accessors
 public:
     /// Implicit conversion operator to a reference to the in-place object instance
-    operator T &()
+    operator T&()
     {
         return m_t;
     }
@@ -137,7 +138,7 @@ public:
     }
 
     /// Address-of operator, providing pointer access to the in-place object instance
-    T *operator &()
+    T* operator &()
     {
         return &m_t;
     }
@@ -157,7 +158,10 @@ private:
     class_type const& operator =(class_type const&);
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

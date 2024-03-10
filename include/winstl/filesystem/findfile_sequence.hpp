@@ -729,8 +729,9 @@ private:
 };
 
 
-////////////////////////////////////////////////////////////////////////////
-// Operators
+/* /////////////////////////////////////////////////////////////////////////
+ * operators
+ */
 
 // basic_findfile_sequence_const_input_iterator
 
@@ -843,8 +844,9 @@ operator <<(
 }
 
 
-////////////////////////////////////////////////////////////////////////////
-// Shims
+/* /////////////////////////////////////////////////////////////////////////
+ * shims
+ */
 
 // c_str_data
 
@@ -996,12 +998,12 @@ is_empty(
 {
     return s.empty();
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -1061,11 +1063,9 @@ struct fff_traits_<ws_char_w_t>
         return T_fs_traits::find_first_file(searchSpec_l.data(), findData);
     }
 };
-
 #endif /* !WINSTL_FFS_NO_LONG_PATH_SUPPORT_*/
 
 STLSOFT_CLOSE_WORKER_NS_(ximpl_winstl_ffs_)
-
 
 
 // basic_findfile_sequence
@@ -2056,7 +2056,6 @@ basic_findfile_sequence_const_input_iterator<C, T, V>::equal(
 
     return m_handle == rhs.m_handle;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -2073,6 +2072,7 @@ basic_findfile_sequence_const_input_iterator<C, T, V>::equal(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -108,7 +108,10 @@ namespace mfcstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * classes
+ */
 
 // resource_string
 /** Instances of this class represent Windows string resources, and are
@@ -188,54 +191,71 @@ public:
  * shims
  */
 
-inline LPCTSTR c_str_ptr_null(resource_string const& s)
+inline
+LPCTSTR
+c_str_ptr_null(resource_string const& s)
 {
     return s.empty() ? NULL : s.c_str();
 }
+inline
+LPCTSTR
 #ifdef UNICODE
-inline LPCTSTR c_str_ptr_null_w(resource_string const& s)
+c_str_ptr_null_w(resource_string const& s)
 #else /* ? UNICODE */
-inline LPCTSTR c_str_ptr_null_a(resource_string const& s)
+c_str_ptr_null_a(resource_string const& s)
 #endif /* UNICODE */
 {
     return c_str_ptr_null(s);
 }
 
-inline LPCTSTR c_str_ptr(resource_string const& s)
+inline
+LPCTSTR
+c_str_ptr(resource_string const& s)
 {
     return s.c_str();
 }
+inline
+LPCTSTR
 #ifdef UNICODE
-inline LPCTSTR c_str_ptr_w(resource_string const& s)
+c_str_ptr_w(resource_string const& s)
 #else /* ? UNICODE */
-inline LPCTSTR c_str_ptr_a(resource_string const& s)
+c_str_ptr_a(resource_string const& s)
 #endif /* UNICODE */
 {
     return c_str_ptr(s);
 }
 
-inline LPCTSTR c_str_data(resource_string const& s)
+inline
+LPCTSTR
+c_str_data(resource_string const& s)
 {
     return s.data();
 }
+inline
+LPCTSTR
 #ifdef UNICODE
-inline LPCTSTR c_str_data_w(resource_string const& s)
+c_str_data_w(resource_string const& s)
 #else /* ? UNICODE */
-inline LPCTSTR c_str_data_a(resource_string const& s)
+c_str_data_a(resource_string const& s)
 #endif /* UNICODE */
 {
     return c_str_data(s);
 }
 
-inline ms_size_t c_str_len(resource_string const& s)
+inline
+ms_size_t
+c_str_len(resource_string const& s)
 {
     return s.length();
 }
 
-
-
 template<ss_typename_param_k S>
-inline S& operator <<(S& s, resource_string const& str)
+inline
+S&
+operator <<(
+    S& s
+,   resource_string const& str
+)
 {
     s << str.c_str();
 
@@ -243,10 +263,12 @@ inline S& operator <<(S& s, resource_string const& str)
 }
 
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
-inline resource_string::resource_string(ms_uint_t id) stlsoft_throw_2(CMemoryException*, CResourceException*)
+inline
+resource_string::resource_string(ms_uint_t id) stlsoft_throw_2(CMemoryException*, CResourceException*)
 {
     if (!parent_class_type::LoadString(id))
     {
@@ -254,7 +276,8 @@ inline resource_string::resource_string(ms_uint_t id) stlsoft_throw_2(CMemoryExc
     }
 }
 
-inline resource_string::resource_string(HINSTANCE hinst, ms_uint_t id) stlsoft_throw_2(CMemoryException*, CResourceException*)
+inline
+resource_string::resource_string(HINSTANCE hinst, ms_uint_t id) stlsoft_throw_2(CMemoryException*, CResourceException*)
 {
     TCHAR sz[1024];
 
@@ -270,15 +293,19 @@ inline resource_string::resource_string(HINSTANCE hinst, ms_uint_t id) stlsoft_t
     }
 }
 
-inline resource_string::resource_string(resource_string const& rhs)
+inline
+resource_string::resource_string(resource_string const& rhs)
   : parent_class_type(rhs)
 {}
 
-inline resource_string::resource_string(CString const& rhs)
+inline
+resource_string::resource_string(CString const& rhs)
   : parent_class_type(rhs)
 {}
 
-inline resource_string const& resource_string::operator =(resource_string const& rhs)
+inline
+resource_string const&
+resource_string::operator =(resource_string const& rhs)
 {
     parent_class_type   *pThis = this;
 
@@ -287,7 +314,9 @@ inline resource_string const& resource_string::operator =(resource_string const&
     return *this;
 }
 
-inline resource_string const& resource_string::operator =(CString const& rhs)
+inline
+resource_string const&
+resource_string::operator =(CString const& rhs)
 {
     parent_class_type   *pThis = this;
 
@@ -296,42 +325,59 @@ inline resource_string const& resource_string::operator =(CString const& rhs)
     return *this;
 }
 
-inline resource_string::const_iterator resource_string::begin() const
+inline
+resource_string::const_iterator
+resource_string::begin() const
 {
     return *this;
 }
 
-inline resource_string::const_iterator resource_string::end() const
+inline
+resource_string::const_iterator
+resource_string::end() const
 {
     return begin() + length();
 }
 
-inline resource_string::size_type resource_string::size() const
+inline
+resource_string::size_type
+resource_string::size() const
 {
     return GetLength();
 }
 
-inline resource_string::size_type resource_string::length() const
+inline
+resource_string::size_type
+resource_string::length() const
 {
     return GetLength();
 }
 
-inline ms_bool_t resource_string::empty() const
+inline
+ms_bool_t
+resource_string::empty() const
 {
     return 0 == length();
 }
 
-inline LPCTSTR resource_string::c_str() const
+inline
+LPCTSTR
+resource_string::c_str() const
 {
     return *this;
 }
 
-inline LPCTSTR resource_string::data() const
+inline
+LPCTSTR
+resource_string::data() const
 {
     return c_str();
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -342,6 +388,7 @@ inline LPCTSTR resource_string::data() const
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

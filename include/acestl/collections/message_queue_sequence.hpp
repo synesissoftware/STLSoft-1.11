@@ -725,7 +725,7 @@ private:
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ACESTL_NO_NAMESPACE */
 
-// Define specialisations in the std namespace
+// define specialisations in the std namespace
 
 #ifdef STLSOFT_CF_std_NAMESPACE
 namespace std
@@ -875,7 +875,7 @@ inline ACESTL_NS_QUAL(message_queue_sequence)<ACE_MT_SYNCH>::iterator copy(     
 } /* namespace std */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
-// Define specialisations in the stlsoft namespace
+// define specialisations in the stlsoft namespace
 
 #ifndef STLSOFT_NO_NAMESPACE
 namespace stlsoft

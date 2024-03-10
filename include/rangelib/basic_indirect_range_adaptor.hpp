@@ -54,17 +54,6 @@
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
-
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
-STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
-[Incompatibilies-end]
- */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -441,7 +430,6 @@ namespace
     };
 
 } // anonymous namespace
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -640,7 +628,10 @@ private:
     range_type  m_r;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef RANGELIB_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

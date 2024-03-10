@@ -58,20 +58,9 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
-
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_DMC:
-STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
-STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
-[Incompatibilies-end]
- */
-
-/* /////////////////////////////////////////////////////////////////////////
  * includes
  */
+
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGELIB
 # include <rangelib/rangelib.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGELIB */
@@ -474,8 +463,9 @@ private:
 };
 
 
-////////////////////////////////////////////////////////////////////////////
-// Functions
+/* /////////////////////////////////////////////////////////////////////////
+ * functions
+ */
 
 template<ss_typename_param_k S>
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
@@ -487,7 +477,10 @@ inline sequence_range<S> make_sequence_range(S const& s)
     return sequence_range<S>(s);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef RANGELIB_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
