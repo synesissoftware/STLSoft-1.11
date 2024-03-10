@@ -66,6 +66,43 @@ public: // types
         {}
 
     public:
+        value_type&
+        operator *()
+        {
+            STLSOFT_MESSAGE_ASSERT("calling increment on an end-iterator", ss_nullptr_k != cb);
+
+            return cb->at(ix);
+        }
+
+        class_type&
+        operator ++()
+        {
+            STLSOFT_MESSAGE_ASSERT("calling increment on an end-iterator", ss_nullptr_k != cb);
+
+            if (++ix == cb->size())
+            {
+                cb = ss_nullptr_k;
+                ix = std::numeric_limits<size_type>::max();
+            }
+
+            return *this;
+        }
+        class_type
+        operator ++(int)
+        {
+            STLSOFT_MESSAGE_ASSERT("calling increment on an end-iterator", ss_nullptr_k != cb);
+
+            if (ix + 1 == cb->size())
+            {
+                return iterator();
+            }
+            else
+            {
+                return iterator(cb, ix + 1);
+            }
+        }
+
+    public:
         bool
         operator == (
             class_type const& rhs
@@ -102,8 +139,8 @@ public: // types
         }
 
     private:
-        cb_type_* const cb;
-        size_type       ix;
+        cb_type_*   cb;
+        size_type   ix;
     };
 
     class const_iterator;

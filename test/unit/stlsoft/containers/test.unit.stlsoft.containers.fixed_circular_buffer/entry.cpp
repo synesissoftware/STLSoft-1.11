@@ -29,6 +29,12 @@
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
+/* Standard C++ header files */
+#include <numeric>
+
+/* Standard C header files */
+#include <stdlib.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -95,6 +101,10 @@ static void test_empty(void)
         XTESTS_TEST_INTEGER_EQUAL(16, b.capacity());
 
         XTESTS_TEST(b.end() == b.begin());
+
+        int const sum = std::accumulate(b.begin(), b.end(), 0);
+
+        XTESTS_TEST_INTEGER_EQUAL(0, sum);
     }
 }
 
@@ -111,6 +121,10 @@ static void test_try_push_back(void)
 
         XTESTS_TEST(b.end() == b.begin());
 
+        int const sum = std::accumulate(b.begin(), b.end(), 0);
+
+        XTESTS_TEST_INTEGER_EQUAL(0, sum);
+
 
         bool r = b.try_push_back(1);
 
@@ -123,6 +137,10 @@ static void test_try_push_back(void)
         XTESTS_TEST_INTEGER_EQUAL(16, b.capacity());
 
         XTESTS_TEST(b.end() != b.begin());
+
+        int const sum_after = std::accumulate(b.begin(), b.end(), 0);
+
+        XTESTS_TEST_INTEGER_EQUAL(1, sum_after);
 
         XTESTS_TEST_INTEGER_EQUAL(1, b.at(0));
         XTESTS_TEST_INTEGER_EQUAL(1, b[0]);
@@ -144,6 +162,10 @@ static void test_fill(void)
 
         XTESTS_TEST(b.end() == b.begin());
 
+        int const sum = std::accumulate(b.begin(), b.end(), 0);
+
+        XTESTS_TEST_INTEGER_EQUAL(0, sum);
+
 
         for (int i = 1; i <= 16; ++i)
         {
@@ -159,6 +181,11 @@ static void test_fill(void)
             XTESTS_TEST_INTEGER_EQUAL(16, b.capacity());
 
             XTESTS_TEST(b.end() != b.begin());
+
+            int const sum_expected = (i * (b.back() + b.front())) / 2;      // n * (l - f) / 2
+            int const sum_after = std::accumulate(b.begin(), b.end(), 0);
+
+            XTESTS_TEST_INTEGER_EQUAL(sum_expected, sum_after);
 
             XTESTS_TEST_INTEGER_EQUAL(i, b.at(i - 1));
             XTESTS_TEST_INTEGER_EQUAL(i, b[i - 1]);
@@ -182,7 +209,6 @@ static void test_initialiser_list(void)
         XTESTS_TEST_INTEGER_EQUAL(16, b.capacity());
 
         XTESTS_TEST(b.end() != b.begin());
-
     }
 
     {
