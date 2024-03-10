@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -53,8 +53,9 @@
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 6
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     75
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -108,6 +109,7 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -126,6 +128,7 @@ namespace rangelib_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -470,6 +473,7 @@ private:
     iterator    m_last;
 };
 
+
 ////////////////////////////////////////////////////////////////////////////
 // Functions
 
@@ -494,6 +498,7 @@ inline sequence_range<S> make_sequence_range(S const& s)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

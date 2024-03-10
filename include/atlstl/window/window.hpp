@@ -5,11 +5,11 @@
  *              operations.
  *
  * Created:     25th November 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MAJOR      1
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MINOR      0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   8
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       21
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 # include <atlwin.h>
 #endif /* !STLSOFT_INCL_SYS_H_ATLWIN */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@ namespace atlstl_project
 #endif /* !ATLSTL_NO_NAMESPACE */
 
 using ::ATL::CWindow;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -253,6 +256,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

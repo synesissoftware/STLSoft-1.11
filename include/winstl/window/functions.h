@@ -4,7 +4,7 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  16
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      82
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -96,6 +98,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -135,6 +138,7 @@ winstl_C_set_window_sptrint_(
 #endif /* width */
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -453,6 +457,7 @@ STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF(winstl_C_GetWindowInstance, winst
 
 #endif /* obsolete || 1.9 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -461,6 +466,7 @@ STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF(winstl_C_GetWindowInstance, winst
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -916,6 +922,7 @@ FindFirstChildById(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

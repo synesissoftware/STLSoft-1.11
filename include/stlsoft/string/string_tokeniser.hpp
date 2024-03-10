@@ -4,7 +4,7 @@
  * Purpose: String token parsing class.
  *
  * Created: 6th January 2001
- * Updated: 22nd February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  15
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      241
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      242
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1120,10 +1120,13 @@ inline ss_bool_t operator !=(   ss_typename_type_k string_tokeniser<S, D, B, V, 
 #endif /* 0 */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * standard overloads
+ */
 
 #if defined(STLSOFT_COMPILER_IS_DMC) && \
     !defined(_STLPORT_VERSION)
+
 template<   ss_typename_param_k S
         ,   ss_typename_param_k D
         ,   ss_typename_param_k B
@@ -1150,7 +1153,9 @@ inline ss_ptrdiff_t* distance_type(string_tokeniser<S, D, B, V, T, P>::const_ite
 #endif /* compiler */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

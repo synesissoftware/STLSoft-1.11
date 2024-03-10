@@ -5,7 +5,7 @@
  *              type methods.
  *
  * Created:     1st October 2014
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_MINOR       0
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_REVISION    1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_EDIT        8
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +71,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -78,6 +80,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -175,6 +178,7 @@ private: // fields
     lambda_release_base*    m_lb;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -192,6 +196,7 @@ is_null(
     return m.empty();
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -199,6 +204,7 @@ is_null(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

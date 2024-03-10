@@ -4,7 +4,7 @@
  * Purpose:     WinSTL time functions.
  *
  * Created:     11th June 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       29
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 # include <winstl/api/external/ProcessAndThread.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ProcessAndThread */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -93,6 +95,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -144,6 +147,7 @@ winstl_C_micro_sleep(
 
 #endif /* obsolete || 1.10- */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -152,6 +156,7 @@ winstl_C_micro_sleep(
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -179,6 +184,7 @@ inline ws_int_t micro_sleep(ws_uint_t microseconds)
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -192,6 +198,7 @@ inline ws_int_t micro_sleep(ws_uint_t microseconds)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

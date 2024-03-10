@@ -4,7 +4,7 @@
  * Purpose:     Z-order iteration.
  *
  * Created:     11th July 2005
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MAJOR     2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MINOR     0
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  10
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      57
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -97,6 +99,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -259,6 +262,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -269,6 +273,7 @@ private:
  * \ingroup group__library__Windows_Window
  */
 typedef zorder_iterator_tmpl<zorder_iterator_forward_traits>    zorder_iterator;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Proscribe the use of std::reverse_iterator
@@ -281,6 +286,7 @@ class std::ostream_iterator<zorder_iterator_tmpl<zorder_iterator_forward_traits>
 STLSOFT_TEMPLATE_SPECIALISATION
 class std::ostream_iterator<zorder_iterator_tmpl<zorder_iterator_reverse_traits> >;
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -298,6 +304,7 @@ inline bool operator !=(zorder_iterator_tmpl<T> const& lhs
 {
     return !lhs.equal(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -453,6 +460,7 @@ inline bool zorder_iterator_tmpl<T>::equal(ss_typename_type_k zorder_iterator_tm
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -466,6 +474,7 @@ inline bool zorder_iterator_tmpl<T>::equal(ss_typename_type_k zorder_iterator_tm
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

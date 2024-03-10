@@ -5,11 +5,11 @@
  *              is_null.
  *
  * Created:     31st March 2007
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULLSTD_H_POINTER_MAJOR       2
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULLSTD_H_POINTER_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULLSTD_H_POINTER_REVISION    2
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULLSTD_H_POINTER_EDIT        20
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULLSTD_H_POINTER_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +75,7 @@
 # include <stlsoft/shims/logical/is_null/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_NULL_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -82,6 +84,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -96,6 +99,7 @@ is_null(
     return NULL == pv;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -103,6 +107,7 @@ is_null(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

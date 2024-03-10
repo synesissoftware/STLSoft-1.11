@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for CodePlay Vector C.
  *
  * Created:     3rd October 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,8 +62,9 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MINOR      20
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       70
+# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -73,6 +74,7 @@
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler features
@@ -308,6 +310,7 @@
 /* #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
 /* #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * quality assurance features
  */
@@ -355,6 +358,7 @@
 # define STLSOFT_ASSERT(expr)                   assert(expr)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * calling convention
  */
@@ -374,12 +378,14 @@
 # define STLSOFT_STDCALL                                    __stdcall
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline assembler
  */
 
 #define STSLSOFT_INLINE_ASM_SUPPORTED
 #define STSLSOFT_ASM_IN_INLINE_SUPPORTED
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warning suppression

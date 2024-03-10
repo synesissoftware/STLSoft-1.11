@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 19th January 2002
- * Updated: 20th February 2024
+ * Updated: 11th March 2024
  *
  * Thanks:  To Diego Chanoux for spotting a defect in the value_sz() method.
  *
@@ -70,7 +70,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  11
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      130
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -149,7 +149,9 @@ namespace winstl_project
 #endif /* !WINSTL_NO_NAMESPACE */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * classes
+ */
 
 /** Represents a binary registry value
  *
@@ -975,7 +977,9 @@ reg_blob<A>::rend() const
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

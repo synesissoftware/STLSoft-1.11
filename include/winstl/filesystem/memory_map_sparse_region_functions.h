@@ -4,7 +4,7 @@
  * Purpose:     Windows memory mapping functions.
  *
  * Created:     15th December 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,9 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_REVISION 5
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_EDIT     120
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_SPARSE_REGION_FUNCTIONS_EDIT     121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # include <winstl/api/external/MemoryManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_MemoryManagement */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -102,6 +104,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -124,6 +127,7 @@ typedef winstl_C_SparseRegion_t                             SparseRegion_t;
 
 typedef struct winstl_C_SparseRegion_t                      winstl_C_SparseRegion_t;
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -163,6 +167,7 @@ winstl_C_sparse_region_map_view_or_close_mapping_(
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions (C)
@@ -271,6 +276,7 @@ create_named_sparse_shared_region_on_pagefile(
 
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -284,6 +290,7 @@ create_named_sparse_shared_region_on_pagefile(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

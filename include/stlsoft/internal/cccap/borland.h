@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Borland C/C++.
  *
  * Created:     7th February 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   markitus82 for pointing out overlooking of support for
  *              __FUNCTION__.
@@ -65,8 +65,9 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      23
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       97
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -76,6 +77,7 @@
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler features
@@ -363,6 +365,7 @@
 /* #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
 /* #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * quality assurance features
  */
@@ -406,6 +409,7 @@
 # define STLSOFT_ASSERT(expr)                   assert(expr)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * calling convention
  */
@@ -425,6 +429,7 @@
 # define STLSOFT_STDCALL                                    __stdcall
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline assembler
  */
@@ -434,11 +439,13 @@
 #endif /* compiler */
 /* #define STSLSOFT_ASM_IN_INLINE_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline support
  */
 
 #define STLSOFT_CUSTOM_C_INLINE                             __inline
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * linkage specification
@@ -446,6 +453,7 @@
 
 /* supports Borland's 'declspec' ? */
 #define STLSOFT_CF_SUPPORT___declspec
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warning suppression

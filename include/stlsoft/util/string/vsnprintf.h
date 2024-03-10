@@ -4,11 +4,11 @@
  * Purpose:     vsn(w)printf() variants.
  *
  * Created:     15th July 2012
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_REVISION   3
-# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_EDIT       9
+# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_VSNPRINTF_EDIT       10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # include <stdio.h>
 #endif /* !STLSOFT_INCL_H_STDIO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -92,6 +94,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * feature support detection
@@ -106,6 +109,7 @@ namespace stlsoft
 #  endif /* _MSC_VER */
 # endif /* compiler */
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -181,6 +185,7 @@ stlsoft_C_vsnwprintf(
 # endif /* C++ && STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #endif /* STLSOFT_vsnwprintf_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
@@ -246,6 +251,7 @@ vsnwprintf(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

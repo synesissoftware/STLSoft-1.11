@@ -4,7 +4,7 @@
  * Purpose:     String function classes
  *
  * Created:     22nd April 2005
- * Updated:     8th March 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    11
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        49
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,6 +141,7 @@ public:
         }
     }
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * predicate classes

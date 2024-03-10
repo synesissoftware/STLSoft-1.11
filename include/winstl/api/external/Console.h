@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Console
 #define WINSTL_INCL_WINSTL_API_external_h_Console
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -63,6 +64,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' Console functions
@@ -452,6 +454,7 @@
 #ifndef WINSTL_API_EXTERNAL_Console_WriteConsoleOutputCharacterW
 # define WINSTL_API_EXTERNAL_Console_WriteConsoleOutputCharacterW           STLSOFT_NS_GLOBAL_(WriteConsoleOutputCharacterW)
 #endif /* !WINSTL_API_EXTERNAL_Console_WriteConsoleOutputCharacter W */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

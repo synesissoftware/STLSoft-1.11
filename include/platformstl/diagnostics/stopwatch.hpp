@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the stopwatch components.
  *
  * Created:     20th March 2005
- * Updated:     24th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR    3
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     26
+# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/diagnostics/stopwatch.hpp
@@ -63,6 +63,7 @@
  * platforms it resolves to the winstl::stopwatch class. It is not
  * defined for other platforms.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -153,6 +155,7 @@ namespace platformstl_project
 } /* namespace platformstl_project */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

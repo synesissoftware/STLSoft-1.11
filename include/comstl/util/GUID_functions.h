@@ -4,7 +4,7 @@
  * Purpose:     GUID helper functions.
  *
  * Created:     12th May 2010
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MAJOR      1
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MINOR      4
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_REVISION   6
-# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_EDIT       26
+# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -96,6 +97,7 @@
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +117,7 @@ namespace comstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
@@ -129,6 +132,7 @@ namespace programmer_error
 } /* namespace programmer_error */
 # endif /* __cplusplus */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -438,6 +442,7 @@ comstl_C_GUID_to_string(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -446,6 +451,7 @@ comstl_C_GUID_to_string(
 namespace comstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -645,6 +651,7 @@ GUID_to_string(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

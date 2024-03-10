@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Adi Shavit, for demanding better documentation of COMSTL.
  *
@@ -57,8 +57,9 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   10
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       96
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <ole2.h>
 #endif /* !STLSOFT_INCL_H_OLE2 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -100,6 +102,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * exception classes
@@ -140,6 +143,7 @@ private:
 /// @}
 };
 
+
 ////////////////////////////////////////////////////////////////////////////
 // Exception policies
 
@@ -175,6 +179,7 @@ public:
  * \ingroup group__library__Exception
  */
 typedef STLSOFT_NS_QUAL(null_exception_policy)  ignore_initialisation_exception_policy;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -289,6 +294,7 @@ private:
 /// @}
 };
 
+
 ////////////////////////////////////////////////////////////////////////////
 // value policies
 
@@ -340,6 +346,7 @@ public:
         ::OleUninitialize();
     }
 };
+
 
 ////////////////////////////////////////////////////////////////////////////
 // typedefs for common instantiations
@@ -393,6 +400,7 @@ typedef com_init_nothrow                                                        
  */
 typedef ole_init_nothrow                                                            ole_initialiser;
 
+
 ////////////////////////////////////////////////////////////////////////////
 // u for US-English spellers
 
@@ -406,6 +414,7 @@ typedef com_initialiser com_initializer;
  * \ingroup group__library__COM_Utility
  */
 typedef ole_initialiser ole_initializer;
+
 
 ////////////////////////////////////////////////////////////////////////////
 // implementation
@@ -488,6 +497,7 @@ inline HRESULT initialiser<IP, XP>::get_HRESULT() const
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

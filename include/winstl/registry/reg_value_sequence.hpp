@@ -14,7 +14,7 @@
  *              basic_reg_value_sequence).
  *
  * Created:     19th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -65,8 +65,9 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    7
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 12
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     146
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     147
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -119,6 +120,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Registry
 # include <winstl/api/external/Registry.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Registry */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -498,6 +500,7 @@ private:
     REGSAM                          m_accessMask;   // Security access mask
 /// @}
 };
+
 
 ////////////////////////////////////////////////////////////////////////////
 // Implementation
@@ -1223,6 +1226,7 @@ inline ws_bool_t basic_reg_value_sequence_iterator<C, T, V, A>::operator !=(clas
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

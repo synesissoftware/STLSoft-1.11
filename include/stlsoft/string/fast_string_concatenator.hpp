@@ -4,7 +4,7 @@
  * Purpose: Fast string concatenator.
  *
  * Created: 4th November 2003 (the time added to STLSoft libraries)
- * Updated: 20th February 2024
+ * Updated: 11th March 2024
  *
  * Thanks:  Sean Kelly for picking up on my gratuitous use of pointers in
  *          the first implementation.
@@ -58,8 +58,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_REVISION    8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        151
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        152
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -98,6 +99,7 @@ class fast_string_concatenator;
 # include <algorithm>
 #endif /* !STLSOFT_INCL_ALGORITHM */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@ class fast_string_concatenator;
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -365,6 +368,7 @@ private:
     fast_string_concatenator& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
@@ -524,6 +528,7 @@ inline fast_string_concatenator<S, C, T>::operator ss_typename_type_k fast_strin
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operator +
@@ -688,6 +693,7 @@ inline fast_string_concatenator<S, C, T> operator +(C const lhs, fast_string_con
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

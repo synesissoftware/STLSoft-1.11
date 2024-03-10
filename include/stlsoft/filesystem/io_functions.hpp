@@ -4,7 +4,7 @@
  * Purpose: File-system functions.
  *
  * Created: 2nd January 2007
- * Updated: 22nd February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MINOR      1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   1
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       20
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,7 +93,9 @@ namespace stlsoft
  */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

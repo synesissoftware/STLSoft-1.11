@@ -4,11 +4,11 @@
  * Purpose:     Window creation functions.
  *
  * Created:     7th May 2000
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_REVISION 6
-# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_EDIT     28
+# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 #  include <stlsoft/shims/access/string/fwd.h>
 # endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,6 +94,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -190,6 +193,7 @@ STLSOFT_INLINE HWND winstl__CreateWindowEx( DWORD       dwExStyle
     return STLSOFT_NS_GLOBAL(CreateWindowEx)(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -198,6 +202,7 @@ STLSOFT_INLINE HWND winstl__CreateWindowEx( DWORD       dwExStyle
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -315,6 +320,7 @@ inline HWND CreateWindowEx( DWORD       dwExStyle
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

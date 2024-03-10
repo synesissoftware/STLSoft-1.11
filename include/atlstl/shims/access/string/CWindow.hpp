@@ -4,11 +4,11 @@
  * Purpose:     String access shims for CWindow
  *
  * Created:     27th May 2002
- * Updated:     28th November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_MAJOR    4
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_MINOR    0
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_REVISION 12
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_EDIT     117
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW_EDIT     118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # include <atlwin.h>
 #endif /* !STLSOFT_INCL_SYS_H_ATLWIN */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -102,6 +104,7 @@ namespace atlstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -257,6 +260,7 @@ private: // fields
     block_type_* const  m_block;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * equivalence testing
  */
@@ -280,6 +284,7 @@ inline as_bool_t operator !=(c_str_ptr_null_CWindow_proxy const& lhs, LPCTSTR rh
 {
     return static_cast<LPCTSTR>(lhs) != rhs;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * iostream compatibility
@@ -489,6 +494,7 @@ using ::atlstl::c_str_ptr_null_a;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

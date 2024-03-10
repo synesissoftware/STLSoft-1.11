@@ -4,7 +4,7 @@
  * Purpose:     ZERO_v template class.
  *
  * Created:     29th July 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION    5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        57
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -76,6 +78,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -324,6 +327,7 @@ inline ss_bool_t operator !=(long double const& i, ZERO_v const& /* lhs */) { re
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

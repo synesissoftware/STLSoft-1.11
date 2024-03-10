@@ -4,11 +4,11 @@
  * Purpose:     Contains the STLSOFT_REMOVE_FROM_SCOPE() macro.
  *
  * Created:     10th June 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_REMOVE_FROM_SCOPE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_REMOVE_FROM_SCOPE_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_REMOVE_FROM_SCOPE_REVISION    5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_REMOVE_FROM_SCOPE_EDIT        49
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_REMOVE_FROM_SCOPE_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 # include <stlsoft/util/inert.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -83,6 +85,7 @@
  * \param name The name to be removed.
  */
 #define STLSOFT_REMOVE_FROM_SCOPE(name)     STLSOFT_NS_QUAL(inert) name
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,8 +61,9 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      136
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      137
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -95,6 +96,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #endif /* STLSOFT_MINIMUM_SAS_INCLUDES */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -114,6 +116,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * enumerations
  */
@@ -125,6 +128,7 @@ enum
 {
     MAX_VOL_NAME = WINSTL_CONST_MAX_PATH   //!< The maximum number of characters in a volume name
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -139,6 +143,7 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
 class basic_findvolume_sequence_const_iterator;
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -196,6 +201,7 @@ public:
     /// Evalulates whether the sequence is empty
     ws_bool_t       empty() const;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
@@ -398,6 +404,7 @@ private:
     char_type           m_name[MAX_VOL_NAME + 1];
 };
 
+
 ////////////////////////////////////////////////////////////////////////////
 // Shims
 
@@ -526,6 +533,7 @@ inline ws_bool_t is_empty(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 ////////////////////////////////////////////////////////////////////////////
 // Implementation
@@ -777,6 +785,7 @@ using ::winstl::is_empty;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     CY helper functions.
  *
  * Created:     23rd August 2008
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_MINOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_REVISION    2
-# define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_EDIT        16
+# define COMSTL_VER_COMSTL_UTIL_H_CY_FUNCTIONS_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -86,6 +88,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -134,6 +137,7 @@ comstl_C_CY_compare(
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * backwards compatibility
  */
@@ -153,6 +157,7 @@ comstl__CY_compare(
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -161,6 +166,7 @@ comstl__CY_compare(
 namespace comstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -218,6 +224,7 @@ CY_compare(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

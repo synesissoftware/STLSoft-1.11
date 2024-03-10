@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the Windows time types.
  *
  * Created:     2nd December 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
@@ -58,8 +58,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    17
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        75
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -97,6 +98,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +117,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper classes
@@ -209,6 +212,7 @@ struct ximpl_winstl_shims_access_string_time
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -294,9 +298,11 @@ stream_insert(S &stm, UDATE const& ud)
 
 #endif /* WINSTL_UDATE_DEFINED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
@@ -547,6 +553,7 @@ c_str_ptr(
 
 #endif /* WINSTL_UDATE_DEFINED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  */
@@ -728,6 +735,7 @@ c_str_data(
 }
 
 #endif /* WINSTL_UDATE_DEFINED */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
@@ -1263,6 +1271,7 @@ namespace stlsoft
 
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1285,6 +1294,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1298,6 +1308,7 @@ namespace winstl_project
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

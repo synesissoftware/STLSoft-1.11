@@ -4,7 +4,7 @@
  * Purpose:     Window function classes and predicates.
  *
  * Created:     19th January 2001
- * Updated:     8th March 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MAJOR      4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MINOR      1
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   7
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       56
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_WINDOW_FUNCTIONALS_NO_STD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -95,6 +97,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * predicate classes
@@ -167,6 +170,7 @@ public:
     }
 #endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functor classes
@@ -279,6 +283,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

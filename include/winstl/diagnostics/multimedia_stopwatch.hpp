@@ -4,11 +4,11 @@
  * Purpose:     WinSTL multimedia stopwatch class.
  *
  * Created:     31st July 2002
- * Updated:     24th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_MAJOR       5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_MINOR       0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_REVISION    2
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_EDIT        54
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_MULTIMEDIA_STOPWATCH_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # define STLSOFT_INCL_H_MMSYSTEM
 # include <mmsystem.h>   // Windows MultiMedia API
 #endif /* !STLSOFT_INCL_H_MMSYSTEM */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,6 +94,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -162,6 +165,7 @@ private:
     ws_dword_t  m_start;    // start of measurement period
     ws_dword_t  m_end;      // End of measurement period
 };
+
 
 ////////////////////////////////////////////////////////////////////////////
 // Implementation
@@ -240,6 +244,7 @@ multimedia_stopwatch::get_nanoseconds() const
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

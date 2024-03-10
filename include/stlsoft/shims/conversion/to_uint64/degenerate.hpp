@@ -4,11 +4,11 @@
  * Purpose:     Contains the to_uint64 access shim.
  *
  * Created:     4th July 2007
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_MINOR    0
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_REVISION 5
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_EDIT     11
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -76,6 +78,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * to_uint64 functions
@@ -107,6 +110,7 @@ inline to_uint64_shim_does_not_provide_a_degenerate_case to_uint64(T const&)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

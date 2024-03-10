@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE classes.
  *
  * Created:     2nd December 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_MAJOR      2
 # define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_MINOR      0
 # define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_REVISION   3
-# define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_EDIT       20
+# define ACESTL_VER_SHIMS_ACCESS_HPP_STRING_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 #ifndef ACESTL_INCL_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE
 # include <acestl/shims/access/string/time_value.hpp>
 #endif /* !ACESTL_INCL_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

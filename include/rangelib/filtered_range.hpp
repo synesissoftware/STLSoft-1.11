@@ -4,7 +4,7 @@
  * Purpose:     Range filter adaptor.
  *
  * Created:     9th July 2004
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,9 @@
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    5
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 6
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     44
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -65,6 +66,7 @@ STLSOFT_COMPILER_IS_MSVC:       _MSC_VER < 1310
 STLSOFT_COMPILER_IS_MWERKS:     (__MWERKS__ & 0xFF00) < 0x3000
 [Incompatibilies-end]
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -106,6 +108,7 @@ STLSOFT_COMPILER_IS_MWERKS:     (__MWERKS__ & 0xFF00) < 0x3000
 # include <stlsoft/iterators/filter_iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_FILTER_ITERATOR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -124,6 +127,7 @@ namespace rangelib_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -294,6 +298,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * creator functions
  */
@@ -325,6 +330,7 @@ inline filtered_range<R, P> filter_range(R r, P pr)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

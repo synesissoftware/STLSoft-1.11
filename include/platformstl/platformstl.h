@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 6
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     58
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -139,6 +139,7 @@
 #define _PLATFORMSTL_VER_REVISION   2
 #define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_9_2
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -150,6 +151,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility check(s)
  */
@@ -157,6 +159,7 @@
 #if _STLSOFT_VER < 0x010a019a
 # error This version of the PlatformSTL libraries requires STLSoft version 1.10.1 beta 26, or later
 #endif /* _STLSOFT_VER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operating system identification
@@ -192,6 +195,7 @@
 # define PLATFORMSTL_OS_IS_WINDOWS
 #endif /* PLATFORMSTL_OS_IS_WIN32 || PLATFORMSTL_OS_IS_WIN64 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Platform-specific includes
  */
@@ -203,6 +207,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated. Only UNIX and Windows are currently recognised by PlatformSTL
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * architecture
@@ -503,6 +508,7 @@ typedef WINSTL_NS_QUAL(ws_streamoff_t)      streamoff_t; /*!< streamoff */
 } /* namespace stlsoft */
 namespace platformstl = ::stlsoft::platformstl_project;
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

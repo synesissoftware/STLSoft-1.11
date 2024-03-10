@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ProcessAndThread
 #define WINSTL_INCL_WINSTL_API_external_h_ProcessAndThread
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -64,6 +65,7 @@
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' Process and Thread Functions
  */
@@ -71,6 +73,7 @@
 #ifndef WINSTL_API_EXTERNAL_ProcessAndThread_Sleep
 # define WINSTL_API_EXTERNAL_ProcessAndThread_Sleep         STLSOFT_NS_GLOBAL_(Sleep)
 #endif /* !WINSTL_API_EXTERNAL_ProcessAndThread_Sleep */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

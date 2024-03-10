@@ -4,11 +4,11 @@
  * Purpose:     auto_buffer functionality for C.
  *
  * Created:     5th August 2011
- * Updated:     29th March 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_H_AUTO_BUFFER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_MEMORY_H_AUTO_BUFFER_MINOR     0
 # define STLSOFT_VER_STLSOFT_MEMORY_H_AUTO_BUFFER_REVISION  3
-# define STLSOFT_VER_STLSOFT_MEMORY_H_AUTO_BUFFER_EDIT      19
+# define STLSOFT_VER_STLSOFT_MEMORY_H_AUTO_BUFFER_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 # include <stdlib.h>                     /* for malloc(), free() */
 #endif /* !STLSOFT_INCL_H_STDLIB */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -88,6 +90,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -306,6 +309,7 @@ stlsoft_C_auto_buffer_std_free_(
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * functions
  */
@@ -443,6 +447,7 @@ stlsoft_C_auto_buffer_free_ex(
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -584,6 +589,7 @@ stlsoft_C_auto_buffer_free(
     );
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -591,6 +597,7 @@ stlsoft_C_auto_buffer_free(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

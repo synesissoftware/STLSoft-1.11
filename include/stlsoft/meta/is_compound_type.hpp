@@ -4,11 +4,11 @@
  * Purpose:     is_compound_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_MINOR    0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_REVISION 7
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_EDIT     20
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # include <stlsoft/meta/util/meta_.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -95,6 +97,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -120,6 +123,7 @@ struct is_compound_type
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

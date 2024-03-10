@@ -4,7 +4,7 @@
  * Purpose:     Options verification.
  *
  * Created:     9th November 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_REVISION  9
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      58
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -67,6 +68,7 @@
         _MSC_VER == 1200)
 # define STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -96,6 +98,7 @@
 # include <stdexcept>                    // for std::runtime_error
 #endif /* !STLSOFT_INCL_STDEXCEPT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -104,6 +107,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -376,6 +380,7 @@ inline options_verifier_comparison_ref<T, U1>& operator ||(options_verifier_comp
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

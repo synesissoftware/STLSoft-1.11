@@ -4,7 +4,7 @@
  * Purpose:     Definition of SAPI types and constants.
  *
  * Created:     31st August 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MAJOR       1
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MINOR       0
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    9
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        21
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -92,6 +93,7 @@
 # include <sapi.h>
 #endif /* COMSTL_SPEECH_SAPI_UTIL_USE_MS_SAPI_HEADERS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -110,6 +112,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * sapi
@@ -217,6 +220,7 @@ COMSTL_IID_TRAITS_DEFINE__(ISpVoice_, ISpVoice_)
 # endif /* !COMSTL_SPEECH_SAPI_UTIL_USE_MS_SAPI_HEADERS */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * functions
  */
@@ -301,6 +305,7 @@ using ::comstl::SPF_UNUSED_FLAGS;
 # endif /* !COMSTL_SPEECH_SAPI_UTIL_USE_MS_SAPI_HEADERS */
 
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

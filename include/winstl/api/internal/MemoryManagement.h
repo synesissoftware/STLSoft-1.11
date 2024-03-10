@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_internal_h_MemoryManagement
 #define WINSTL_INCL_WINSTL_API_internal_h_MemoryManagement
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -67,6 +68,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' Memory Management Functions

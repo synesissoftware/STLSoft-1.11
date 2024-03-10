@@ -4,14 +4,14 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Thanks:      To Rupert Kittinger, for pointing out that the prior
  *              implementation that always yielded was not really "spinning".
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,8 +57,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR       5
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MINOR       1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_REVISION    2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        76
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +82,7 @@
 # include <stlsoft/synch/spin_mutex_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility & feature control
  */
@@ -88,6 +90,7 @@
 #ifndef WINSTL_SYNCH_SPIN_MUTEX_DEFAULT_YIELD_COUNT
 # define WINSTL_SYNCH_SPIN_MUTEX_DEFAULT_YIELD_COUNT        (1000)
 #endif /* !WINSTL_SYNCH_SPIN_MUTEX_DEFAULT_YIELD_COUNT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -108,6 +111,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * types
  */
@@ -127,6 +131,7 @@ typedef STLSOFT_NS_QUAL(spin_mutex_base)<
     yield_on_N_spin_mutex_policy<WINSTL_SYNCH_SPIN_MUTEX_DEFAULT_YIELD_COUNT, atomic_int32_t>
 >                                                           spin_mutex32;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -140,6 +145,7 @@ typedef STLSOFT_NS_QUAL(spin_mutex_base)<
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

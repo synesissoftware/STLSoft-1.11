@@ -5,11 +5,11 @@
  *              the user name.
  *
  * Created:     13th September 2014
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_MAJOR       1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_MINOR       1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_EDIT        14
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_USER_NAME_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
   // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type
 # include <winstl/synch/spin_mutex.hpp>
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -161,6 +163,7 @@ public:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -195,6 +198,7 @@ typedef STLSOFT_NS_QUAL(special_string_instance_0)<username_policy<TCHAR> >     
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

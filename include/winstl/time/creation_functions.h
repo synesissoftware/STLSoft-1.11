@@ -4,11 +4,11 @@
  * Purpose:     Creation functions for Windows time structures.
  *
  * Created:     25th February 2017
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_EDIT       4
+# define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -86,6 +88,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -189,6 +192,7 @@ winstl_C_create_FILETIME_ms(
     return STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(&st, ft);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
@@ -232,6 +236,7 @@ create_FILETIME_ms(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * backwards compatibility
  */
@@ -239,6 +244,7 @@ create_FILETIME_ms(
 #ifdef STLSOFT_OBSOLETE
 
 #endif /* !STLSOFT_OBSOLETE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -253,6 +259,7 @@ create_FILETIME_ms(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

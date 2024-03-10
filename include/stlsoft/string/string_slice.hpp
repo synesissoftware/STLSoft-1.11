@@ -4,7 +4,7 @@
  * Purpose:     Defines the string_slice class template.
  *
  * Created:     22nd February 2010
- * Updated:     30th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_MINOR      6
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_REVISION   1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_EDIT       32
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -85,6 +86,7 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -93,6 +95,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -238,6 +241,7 @@ public: // Iteration
         return this->ptr + this->len;
     }
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * comparison operators
@@ -519,6 +523,7 @@ operator >=(
     return rhs.compare(lhs) < 0;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -543,6 +548,7 @@ swap(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

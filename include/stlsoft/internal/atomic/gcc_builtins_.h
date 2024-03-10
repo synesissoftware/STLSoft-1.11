@@ -4,7 +4,7 @@
  * Purpose:     Atomic operations built around GCC's builtins
  *
  * Created:     6th January 2017
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Author:      Matthew Wilson
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__MAJOR     1
 # define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__MINOR     0
 # define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__REVISION  3
-# define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__EDIT      8
+# define STLSOFT_VER_H_STLSOFT_INTERNAL_ATOMIC_H_GCC_BUILTINS__EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -66,6 +67,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -73,6 +75,7 @@
 #if !defined(STLSOFT_CF_SUPPORT_ATOMIC_GCC_BUILTINS)
 # error This file cannot be used with compilers that do not support GCC atomic built-in operations
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -108,6 +111,7 @@
 #define STLSOFT_INTERNAL_ATOMIC_GCC_atomic_read(pa)                 __atomic_load_n((pa), STLSOFT_INTERNAL_ATOMIC_GCC_memorder_READ_)
 
 #define STLSOFT_INTERNAL_ATOMIC_GCC_atomic_write(pa, value)         __atomic_store_n((pa), (value), STLSOFT_INTERNAL_ATOMIC_GCC_memorder_WRITE_)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

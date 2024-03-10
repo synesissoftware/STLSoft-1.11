@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MAJOR       5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MINOR       1
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_REVISION    10
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        130
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -85,6 +86,7 @@
 # include <wchar.h>
 #endif /* !STLSOFT_INCL_H_WCHAR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -103,6 +105,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -186,6 +189,7 @@ c_str_ptr_GUID_proxy<cs_char_w_t>::c_str_ptr_GUID_proxy(
     comstl_C_GUID_to_string_w(guid, &data);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * equivalence testing
  */
@@ -234,6 +238,7 @@ operator !=(
 {
     return !operator ==(lhs, rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * iostream compatibility
@@ -480,6 +485,7 @@ c_str_ptr_null(
 #endif /* UNICODE */
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -538,6 +544,7 @@ using ::comstl::c_str_ptr_null;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Contains common type and feature discriminations for the Registry Library.
  *
  * Created:     19th January 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_MAJOR     4
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_MINOR     0
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_REVISION  6
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_EDIT      71
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -102,6 +103,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #endif /* string type */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -120,6 +122,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -275,6 +278,7 @@ namespace registry_util
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

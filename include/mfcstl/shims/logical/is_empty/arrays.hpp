@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for MFC array classes.
  *
  * Created:     18th December 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS_MAJOR      2
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS_MINOR      0
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS_REVISION   5
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS_EDIT       18
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_ARRAYS_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # define STLSOFT_INCL_H_AFXCOLL
 # include <afxcoll.h>
 #endif /* !STLSOFT_INCL_H_AFXCOLL */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,6 +94,7 @@ namespace mfcstl_project
 {
 # endif /* _STLSOFT_NO_NAMESPMFC */
 #endif /* !_MFCSTL_NO_NAMESPMFC */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -186,6 +189,7 @@ namespace stlsoft
 } /* namespace stlsoft */
 
 #endif /* !_MFCSTL_NO_NAMESPMFC */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Definition of the atomic functions.
  *
  * Created:     22nd March 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     3
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  7
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      41
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # error Operating system not discriminated
 #endif /* operating system */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -102,6 +104,7 @@ namespace platformstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !PLATFORMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * features
@@ -384,6 +387,7 @@ namespace platformstl_project
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !PLATFORMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

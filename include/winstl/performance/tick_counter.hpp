@@ -4,11 +4,11 @@
  * Purpose:     WinSTL tick-count performance counter class.
  *
  * Created:     19th October 1998
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_MAJOR       5
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_MINOR       0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_REVISION    1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_EDIT        55
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_TICK_COUNTER_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 #ifndef WINSTL_INCL_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH
 # include <winstl/diagnostics/tick_stopwatch.hpp>
 #endif /* !WINSTL_INCL_WINSTL_DIAGNOSTICS_HPP_TICK_STOPWATCH */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,6 +94,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -109,6 +112,7 @@ typedef tick_stopwatch                          tick_counter;
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     System information functions.
  *
  * Created:     5th November 2014
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_EDIT       12
+# define WINSTL_VER_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +75,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_SystemInformation
 # include <winstl/api/external/SystemInformation.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_SystemInformation */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -94,6 +96,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -108,6 +111,7 @@ namespace winstl_project
 #  define WINSTL_SYSTEM_SIF_UNLEN_                          (256)
 # endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -132,6 +136,7 @@ winstl_C_system_information_functions_MORE_DATA_(
     }
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -349,6 +354,7 @@ winstl_C_get_user_name_w(
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
@@ -461,6 +467,7 @@ get_user_name(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

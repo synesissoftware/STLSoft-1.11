@@ -4,11 +4,11 @@
  * Purpose:     inetstl::inetstl_exception class
  *
  * Created:     25th April 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_INETSTL_EXCEPTION_MAJOR     4
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_INETSTL_EXCEPTION_MINOR     5
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_INETSTL_EXCEPTION_REVISION  2
-# define INETSTL_VER_INETSTL_EXCEPTION_HPP_INETSTL_EXCEPTION_EDIT      56
+# define INETSTL_VER_INETSTL_EXCEPTION_HPP_INETSTL_EXCEPTION_EDIT      57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -91,6 +92,7 @@
 # error Platform not discriminated
 #endif /* platform */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -109,6 +111,7 @@ namespace inetstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -147,6 +150,7 @@ typedef STLSOFT_NS_QUAL(status_code_translating_exception_base)<
 typedef inetstl_exception                                   internet_exception;
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -160,6 +164,7 @@ typedef inetstl_exception                                   internet_exception;
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

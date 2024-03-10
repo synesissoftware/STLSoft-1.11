@@ -4,7 +4,7 @@
  * Purpose:     Discriminates between standard library implementations
  *
  * Created:     2nd January 2000
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Cláudio Albuquerque for assisting with VC++ 12 & 14
  *              support. To Gabor Fischer for reporting problems with VC++
@@ -60,8 +60,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       11
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        124
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <functional>
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warnings
  */
@@ -90,6 +92,7 @@
 #ifdef STLSOFT_COMPILER_IS_MSVC
 # pragma warning(disable : 4097)    // suppresses: typedef-name 'identifier1' used as synonym for class-name 'identifier2'
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -449,6 +452,7 @@ namespace stlsoft
 # endif /* _CPPLIB_VER */
 #endif /* STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * tested compatibilities
  */
@@ -459,6 +463,7 @@ namespace stlsoft
 #  error STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE should be defined if one of the STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_xxxx symbols is defined
 # endif /* !STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE */
 #endif /* STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_xxxx */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * random access iterator support
@@ -493,6 +498,7 @@ namespace stlsoft
 # define _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES_1300
 #endif /*  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -500,6 +506,7 @@ namespace stlsoft
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

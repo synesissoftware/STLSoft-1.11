@@ -4,7 +4,7 @@
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     91
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,6 +130,7 @@
 #endif /* compiler */
 #endif /* !STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS || STLSOFT_DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -138,6 +139,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constraints
@@ -681,6 +683,7 @@ public:
     typedef ss_typename_type_k parent_class_type::off_type  off_type;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * specialisations
  */
@@ -754,6 +757,7 @@ inline ss_size_t stlsoft_char_traits<wchar_t>::length(wchar_t const* s)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Message functions.
  *
  * Created:     9th March 2010
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_REVISION 5
-# define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_EDIT     22
+# define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -66,6 +67,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -85,6 +87,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -126,6 +129,7 @@ winstl_C_Resource_loadLockAndSizeResource_(
 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -186,6 +190,7 @@ winstl_C_Resource_loadCustomResource_W(
 #  define winstl_C_Resource_loadCustomResource              winstl_C_Resource_loadCustomResource_A
 # endif /* UNICODE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
@@ -218,6 +223,7 @@ load_custom_resource(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -231,6 +237,7 @@ load_custom_resource(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     8th March 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    2
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 10
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     95
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     96
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -113,6 +114,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_CONTROL_FUNCTIONALS_NO_STD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -132,6 +134,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * workarounds
  */
@@ -139,6 +142,7 @@ namespace winstl_project
 #if defined(STLSOFT_COMPILER_IS_DMC)
 
 #endif /* STLSOFT_COMPILER_IS_DMC */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
