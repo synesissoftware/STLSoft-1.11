@@ -2286,7 +2286,12 @@ inline
 ss_bool_t
 basic_static_string<C, V_internalSize, T>::contains(ss_typename_type_k basic_static_string<C, V_internalSize, T>::char_type ch) const STLSOFT_NOEXCEPT
 {
-    return false;
+    if (empty())
+    {
+        return false;
+    }
+
+    return NULL != traits_type::find(m_buffer, m_length, ch);
 }
 
 template <
