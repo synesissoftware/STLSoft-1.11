@@ -132,6 +132,7 @@ namespace
 
     static void test_contains_1(void);
     static void test_contains_2(void);
+    static void test_contains_3(void);
     static void test_starts_with_1(void);
     static void test_starts_with_2(void);
     static void test_ends_with_1(void);
@@ -264,6 +265,7 @@ int main(int argc, char* argv[])
 
         XTESTS_RUN_CASE(test_contains_1);
         XTESTS_RUN_CASE(test_contains_2);
+        XTESTS_RUN_CASE(test_contains_3);
         XTESTS_RUN_CASE(test_starts_with_1);
         XTESTS_RUN_CASE(test_starts_with_2);
         XTESTS_RUN_CASE(test_ends_with_1);
@@ -1649,6 +1651,17 @@ static void test_contains_2()
 
         XTESTS_TEST_BOOLEAN_FALSE(s.contains(' '));
         XTESTS_TEST_BOOLEAN_FALSE(s.contains('*'));
+    }
+}
+
+static void test_contains_3()
+{
+    typedef string_30_t string_t;
+
+    string_t const s("abdabeabcab");
+
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(s.contains("abc"));
     }
 }
 
