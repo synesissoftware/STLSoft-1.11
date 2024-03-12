@@ -1,7 +1,66 @@
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    stlsoft/containers/fixed_circular_buffer.hpp
+ *
+ * Purpose: fixed_circular_buffer class.
+ *
+ * Created: 10th March 2024
+ * Updated: 12th March 2024
+ *
+ * Home:    http://stlsoft.org/
+ *
+ * Copyright (c) 2024, Matthew Wilson and Synesis Information Systems
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ * - Redistributions of source code must retain the above copyright notice,
+ *   this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * ////////////////////////////////////////////////////////////////////// */
+
+
+/** \file stlsoft/containers/fixed_circular_buffer.hpp
+ *
+ * \brief [C++] Definition of the stlsoft::fixed_circular_buffer class
+ *  template
+ *   (\ref group__library__Container "Container" Library).
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FIXED_CIRCULAR_BUFFER
 #define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FIXED_CIRCULAR_BUFFER
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FIXED_CIRCULAR_BUFFER_MAJOR     1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FIXED_CIRCULAR_BUFFER_MINOR     0
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FIXED_CIRCULAR_BUFFER_REVISION  1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FIXED_CIRCULAR_BUFFER_EDIT      1
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
@@ -26,7 +85,9 @@
  * namespace
  */
 
+#ifndef STLSOFT_NO_NAMESPACE
 namespace stlsoft {
+#endif /* STLSOFT_NO_NAMESPACE */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,37 +130,59 @@ public:
     /// The non-mutating (const) reference type
     typedef value_type const&                               const_reference;
 
-    class iterator
+    /// Class template defining container-specific iterator functionality
+    ///
+    /// \tparam T_pointer
+    /// \tparam T_reference
+    template <
+        ss_typename_param_k T_pointer
+    ,   ss_typename_param_k T_reference
+    ,   ss_typename_param_k T_container_pointer
+    >
+    class iterator_base
         : public STLSOFT_NS_QUAL(iterator_base)<
                         STLSOFT_NS_QUAL_STD(input_iterator_tag)
                     ,   value_type
                     ,   difference_type
-                    ,   pointer
-                    ,   reference
+                    ,   T_pointer
+                    ,   T_reference
                     >
     {
     private: // types
         friend class fixed_circular_buffer<T_value, V_capacity>;
         typedef fixed_circular_buffer<T_value, V_capacity>      cb_type_;
     public:
-        typedef iterator                                        class_type;
+        /// The current specialisation of the type
+        typedef iterator_base<
+            T_pointer
+        ,   T_reference
+        ,   T_container_pointer
+        >                                                       class_type;
+        /// The pointer type
+        typedef T_pointer                                       pointer_type;
+        /// The reference type
+        typedef T_reference                                     reference_type;
+        /// The container pointer type
+        typedef T_container_pointer                             container_pointer_type;
 
     private: // construction
-        iterator(
-            cb_type_*   cb
-        ,   size_type   ix
+        iterator_base(
+            container_pointer_type  cb
+        ,   size_type               ix
         )
             : cb(cb)
             , ix(ix)
         {}
     public:
-        iterator()
+        /// Constructs an unpositioned iterator instance
+        iterator_base()
             : cb(ss_nullptr_k)
             , ix(std::numeric_limits<size_type>::max())
         {}
 
     public:
-        value_type&
+        /// Dereference operator
+        reference_type
         operator *()
         {
             STLSOFT_MESSAGE_ASSERT("calling increment on an end-iterator", ss_nullptr_k != cb);
@@ -107,6 +190,7 @@ public:
             return cb->at(ix);
         }
 
+        /// Preincrement operator
         class_type&
         operator ++()
         {
@@ -120,35 +204,54 @@ public:
 
             return *this;
         }
+
+        /// Postincrement operator
         class_type
         operator ++(int)
         {
-            STLSOFT_MESSAGE_ASSERT("calling increment on an end-iterator", ss_nullptr_k != cb);
+            class_type r(*this);
 
-            if (ix + 1 == cb->size())
-            {
-                return class_type();
-            }
-            else
-            {
-                return class_type(cb, ix + 1);
-            }
+            operator ++();
+
+            return r;
         }
 
     public:
+        /// Predecrement operator
+        class_type&
+        operator --()
+        {
+            STLSOFT_MESSAGE_ASSERT("calling decrement on an end-iterator", ss_nullptr_k != cb);
+
+            --ix;
+
+            return *this;
+        }
+
+        /// Postdecrement operator
+        class_type
+        operator --(int)
+        {
+            class_type r(*this);
+
+            operator --();
+
+            return r;
+        }
+
+    public:
+        /// Equality operator
         bool
         operator == (
             class_type const& rhs
         ) const STLSOFT_NOEXCEPT
         {
-            if (ss_nullptr_k == cb)
+            class_type const& lhs = *this;
+
+            if (lhs.is_end())
             {
-                STLSOFT_ASSERT(std::numeric_limits<size_type>::max() == ix);
-
-                if (ss_nullptr_k == rhs.cb)
+                if (rhs.is_end())
                 {
-                    STLSOFT_ASSERT(std::numeric_limits<size_type>::max() == rhs.ix);
-
                     return true;
                 }
                 else
@@ -158,65 +261,34 @@ public:
             }
             else
             {
-                if (ss_nullptr_k == rhs.cb)
+                if (rhs.is_end())
                 {
-                    STLSOFT_ASSERT(std::numeric_limits<size_type>::max() == rhs.ix);
-
                     return false;
                 }
                 else
                 {
-                    return true;
+                    return lhs.ix == rhs.ix;
                 }
             }
         }
 
+        /// Inequality operator
         bool
         operator != (
             class_type const& rhs
         ) const STLSOFT_NOEXCEPT
         {
-            // TODO: `return !operator ==(rhs);`
-
-            if (ss_nullptr_k == cb)
-            {
-                STLSOFT_ASSERT(std::numeric_limits<size_type>::max() == ix);
-
-                if (ss_nullptr_k == rhs.cb)
-                {
-                    STLSOFT_ASSERT(std::numeric_limits<size_type>::max() == rhs.ix);
-
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                if (ss_nullptr_k == rhs.cb)
-                {
-                    STLSOFT_ASSERT(std::numeric_limits<size_type>::max() == rhs.ix);
-
-                    return true;
-                }
-                else
-                {
-                    return true;
-                }
-            }
+            return !operator ==(rhs);
         }
 
 
     public:
+        /// Addition operator
         class_type
         operator +(
             difference_type n
-        )
+        ) const
         {
-            STLSOFT_ASSERT(n >= 0);
-
             STLSOFT_MESSAGE_ASSERT("iterator arithmetic on an end-iterator", ss_nullptr_k != cb);
 
             if (ix + n == cb->size())
@@ -229,14 +301,64 @@ public:
             }
         }
 
+        /// Subtraction operator
+        class_type
+        operator -(
+            difference_type n
+        ) const
+        {
+            STLSOFT_MESSAGE_ASSERT("iterator arithmetic on an end-iterator", ss_nullptr_k != cb);
 
-    private:
-        cb_type_*   cb;
-        size_type   ix;
+            if (ix - n == cb->size())
+            {
+                return class_type();
+            }
+            else
+            {
+                return class_type(cb, ix - n);
+            }
+        }
+
+
+    private: // implementation
+        bool
+        is_end() const STLSOFT_NOEXCEPT
+        {
+            if (ss_nullptr_k == cb)
+            {
+                return true;
+            }
+
+            STLSOFT_ASSERT(std::numeric_limits<size_type>::max() == rhs.ix);
+
+            STLSOFT_ASSERT(ix <= cb->size());
+
+            if (ix == cb->size())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
+    private: // fields
+        container_pointer_type  cb;
+        size_type               ix;
     };
 
-    class const_iterator;
-
+    /// The mutating (non-const) iterator type
+    typedef iterator_base<
+        pointer
+    ,   reference
+    ,   class_type*
+    >                                                       iterator;
+    /// The non-mutating (const) iterator type
+    typedef iterator_base<
+        const_pointer
+    ,   const_reference
+    ,   class_type const*
+    >                                                       const_iterator;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The mutating (non-const) reverse iterator type
     typedef ss_typename_type_k reverse_iterator_generator<
@@ -246,9 +368,15 @@ public:
     ,   pointer
     ,   difference_type
     >::type                                                 reverse_iterator;
+    /// The non-mutating (const) reverse iterator type
+    typedef ss_typename_type_k const_reverse_iterator_generator<
+        const_iterator
+    ,   value_type
+    ,   const_reference
+    ,   const_pointer
+    ,   difference_type
+    >::type                                                 const_reverse_iterator;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-
-    class const_reverse_iterator;
 private:
     typedef std::array<
         value_type
@@ -256,10 +384,12 @@ private:
     >                                                       entries_type_;
 
 public: // construction
+    /// Default constructor
     fixed_circular_buffer() STLSOFT_NOEXCEPT
         : m_base_offset(0)
         , m_size(0)
     {}
+    /// Constructs from an initialiser list
     fixed_circular_buffer(std::initializer_list<value_type> init)
         : m_base_offset(0)
         , m_size(0)
@@ -312,6 +442,7 @@ public: // attributes
 
 
 public: // modifiers
+    /// Erase element referenced by the given iterator
     iterator
     erase(
         iterator i
@@ -325,7 +456,7 @@ public: // modifiers
         {
             index_type const eix = i.ix;
 
-            index_type iix = translate_subscript_e2i_(eix);
+            index_type const iix = translate_subscript_e2i_(eix);
 
             erase_at_(iix);
 
@@ -338,19 +469,17 @@ public: // modifiers
         value_type const& value
     )
     {
-        if (capacity() == size())
+        if (full())
         {
             return false;
         }
         else
         {
-
             size_type const iix = translate_subscript_e2i_(m_size);
 
             m_elements[iix] = value;
 
             ++m_size;
-
 
             return true;
         }
@@ -378,6 +507,13 @@ public: // modifiers
 
 
 public: // accessors
+    /// Returns a mutable (non-const) reference to the element at the given
+    /// index
+    ///
+    /// \param index The requested index. If not in range [0, size()) then
+    ///  an instance of std::out_of_range will be thrown
+    ///
+    /// \exception std::out_of_range Thrown if index not in range
     reference
     at(index_type index)
     {
@@ -385,7 +521,13 @@ public: // accessors
 
         return (*this)[index];
     }
-
+    /// Returns an immutable (const) reference to the element at the given
+    /// index
+    ///
+    /// \param index The requested index. If not in range [0, size()) then
+    ///  an instance of std::out_of_range will be thrown
+    ///
+    /// \exception std::out_of_range Thrown if index not in range
     const_reference
     at(index_type index) const
     {
@@ -394,6 +536,12 @@ public: // accessors
         return (*this)[index];
     }
 
+    /// Returns a mutable (non-const) reference to the element at the given
+    /// index
+    ///
+    /// \param index The requested index. Must be less in range [0, size())
+    ///
+    /// \pre (index < size())
     reference
     operator [](index_type index) STLSOFT_NOEXCEPT
     {
@@ -403,7 +551,12 @@ public: // accessors
 
         return m_elements[iix];
     }
-
+    /// Returns an immutable (const) reference to the element at the given
+    /// index
+    ///
+    /// \param index The requested index. Must be less in range [0, size())
+    ///
+    /// \pre (index < size())
     const_reference
     operator [](index_type index) const STLSOFT_NOEXCEPT
     {
@@ -414,24 +567,30 @@ public: // accessors
         return m_elements[iix];
     }
 
+    /// Returns a mutating (non-const) reference to the first element in the
+    /// container
     reference
     front()
     {
         return at(0);
     }
-
+    /// Returns a mutating (non-const) reference to the last element in the
+    /// container
     reference
     back()
     {
         return at(size() - 1);
     }
 
+    /// Returns a non-mutating (const) reference to the first element in the
+    /// container
     const_reference
     front() const
     {
         return at(0);
     }
-
+    /// Returns a non-mutating (const) reference to the last element in the
+    /// container
     const_reference
     back() const
     {
@@ -440,39 +599,72 @@ public: // accessors
 
 
 public: // iteration
+    /// A non-mutating (const) iterator representing the start of the
+    /// sequence
     iterator
     begin()
     {
-        if (empty())
-        {
-            return end();
-        }
-        else
-        {
-            return iterator(this, 0);
-        }
+        return iterator(this, 0);
     }
-
+    /// A non-mutating (const) iterator representing the end-point of the
+    /// sequence
     iterator
     end()
     {
-        return iterator();
+        return iterator(this, size());
     }
 
+    /// A non-mutating (const) iterator representing the start of the
+    /// sequence
     const_iterator
-    cbegin();
+    cbegin() const
+    {
+        return const_iterator(this, 0);
+    }
+    /// A non-mutating (const) iterator representing the end-point of the
+    /// sequence
     const_iterator
-    cend();
+    cend() const
+    {
+        return const_iterator(this, size());
+    }
 
+    /// A non-mutating (const) iterator representing the start of the
+    /// reverse sequence
+    reverse_iterator
+    rbegin()
+    {
+        return reverse_iterator(end());
+    }
+    /// A non-mutating (const) iterator representing the end of the reverse
+    /// sequence
+    reverse_iterator
+    rend()
+    {
+        return reverse_iterator(begin());
+    }
+
+    /// A non-mutating (const) iterator representing the start of the
+    /// reverse sequence
     const_reverse_iterator
-    crbegin();
+    crbegin() const
+    {
+        return const_reverse_iterator(cend());
+    }
+    /// A non-mutating (const) iterator representing the end of the reverse
+    /// sequence
     const_reverse_iterator
-    crend();
+    crend() const
+    {
+        return const_reverse_iterator(cbegin());
+    }
 
 
 private: // implementation
     void
-    check_range_(index_type index)
+    check_range_(
+        index_type index
+    ) const
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
@@ -482,6 +674,8 @@ private: // implementation
         }
 #else
 
+        // TODO: STLSoft 1.12 non-exception abort functionality
+
         STLSOFT_SUPPRESS_UNUSED(index);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -489,7 +683,7 @@ private: // implementation
     size_type
     translate_subscript_e2i_(
         index_type eix
-    )
+    ) const
     {
         STLSOFT_ASSERT(eix < m_size);
 
@@ -584,7 +778,9 @@ private: // fields
  * namespace
  */
 
+#ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
+#endif /* STLSOFT_NO_NAMESPACE */
 
 
 /* /////////////////////////////////////////////////////////////////////////

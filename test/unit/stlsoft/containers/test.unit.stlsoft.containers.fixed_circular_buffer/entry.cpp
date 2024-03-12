@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::fixed_circular_buffer`.
  *
  * Created: 10th March 2024
- * Updated: 11th March 2024
+ * Updated: 12th March 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -83,6 +83,31 @@ int main(int argc, char* argv[])
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+template <
+    ss_typename_param_k T_value
+,   ss_typename_param_k T_iterator
+>
+inline
+T_value
+accumulate_postfix(
+    T_iterator  from
+,   T_iterator  to
+,   T_value     init
+)
+{
+    for (; from != to; from++)
+    {
+        init = init + *from;
+    }
+
+    return init;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
@@ -106,9 +131,7 @@ static void test_empty(void)
 
         XTESTS_TEST(b.end() == b.begin());
 
-        int const sum = std::accumulate(b.begin(), b.end(), 0);
-
-        XTESTS_TEST_INTEGER_EQUAL(0, sum);
+        XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(b.begin(), b.end(), 0));
     }
 }
 
@@ -125,9 +148,7 @@ static void test_try_push_back(void)
 
         XTESTS_TEST(b.end() == b.begin());
 
-        int const sum = std::accumulate(b.begin(), b.end(), 0);
-
-        XTESTS_TEST_INTEGER_EQUAL(0, sum);
+        XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(b.begin(), b.end(), 0));
 
 
         bool r = b.try_push_back(1);
@@ -142,9 +163,8 @@ static void test_try_push_back(void)
 
         XTESTS_TEST(b.end() != b.begin());
 
-        int const sum_after = std::accumulate(b.begin(), b.end(), 0);
-
-        XTESTS_TEST_INTEGER_EQUAL(1, sum_after);
+        XTESTS_TEST_INTEGER_EQUAL(1, std::accumulate(b.begin(), b.end(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(1, accumulate_postfix(b.begin(), b.end(), 0));
 
         XTESTS_TEST_INTEGER_EQUAL(1, b.at(0));
         XTESTS_TEST_INTEGER_EQUAL(1, b[0]);
@@ -166,9 +186,7 @@ static void test_fill(void)
 
         XTESTS_TEST(b.end() == b.begin());
 
-        int const sum = std::accumulate(b.begin(), b.end(), 0);
-
-        XTESTS_TEST_INTEGER_EQUAL(0, sum);
+        XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(b.begin(), b.end(), 0));
 
 
         for (int i = 1; i <= 16; ++i)
@@ -324,6 +342,14 @@ static void test_initialiser_list_and_erase(void)
         int const sum_after = std::accumulate(b.begin(), b.end(), 0);
 
         XTESTS_TEST_INTEGER_EQUAL(sum_expected_after, sum_after);
+
+        XTESTS_TEST_INTEGER_EQUAL(1, b[0]);
+        XTESTS_TEST_INTEGER_EQUAL(2, b[1]);
+        XTESTS_TEST_INTEGER_EQUAL(3, b[2]);
+        XTESTS_TEST_INTEGER_EQUAL(4, b[3]);
+        XTESTS_TEST_INTEGER_EQUAL(6, b[4]);
+        XTESTS_TEST_INTEGER_EQUAL(7, b[5]);
+        XTESTS_TEST_INTEGER_EQUAL(8, b[6]);
     }
 }
 
@@ -339,34 +365,114 @@ static void test_wrapping(void)
         XTESTS_TEST_INTEGER_EQUAL(16, b.capacity());
 
         XTESTS_TEST_INTEGER_EQUAL(36, std::accumulate(b.begin(), b.end(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(36, std::accumulate(b.cbegin(), b.cend(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(36, std::accumulate(b.rbegin(), b.rend(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(36, std::accumulate(b.crbegin(), b.crend(), 0));
+
+        XTESTS_TEST_INTEGER_EQUAL(1, b[0]);
+        XTESTS_TEST_INTEGER_EQUAL(2, b[1]);
+        XTESTS_TEST_INTEGER_EQUAL(3, b[2]);
+        XTESTS_TEST_INTEGER_EQUAL(4, b[3]);
+        XTESTS_TEST_INTEGER_EQUAL(5, b[4]);
+        XTESTS_TEST_INTEGER_EQUAL(6, b[5]);
+        XTESTS_TEST_INTEGER_EQUAL(7, b[6]);
+        XTESTS_TEST_INTEGER_EQUAL(8, b[7]);
 
 
         auto r = b.try_push_range( { 9, 10, 11, 12, 13, 14, 15, 16 } );
 
         XTESTS_TEST_INTEGER_EQUAL(8, r);
 
+        XTESTS_TEST_BOOLEAN_FALSE(b.empty());
+        XTESTS_TEST_BOOLEAN_TRUE(b.full());
+
         XTESTS_TEST_INTEGER_EQUAL(16, b.size());
         XTESTS_TEST_INTEGER_EQUAL(16, b.capacity());
 
         XTESTS_TEST_INTEGER_EQUAL(136, std::accumulate(b.begin(), b.end(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(136, std::accumulate(b.cbegin(), b.cend(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(136, std::accumulate(b.rbegin(), b.rend(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(136, std::accumulate(b.crbegin(), b.crend(), 0));
+
+        XTESTS_TEST_INTEGER_EQUAL(1, b[0]);
+        XTESTS_TEST_INTEGER_EQUAL(2, b[1]);
+        XTESTS_TEST_INTEGER_EQUAL(3, b[2]);
+        XTESTS_TEST_INTEGER_EQUAL(4, b[3]);
+        XTESTS_TEST_INTEGER_EQUAL(5, b[4]);
+        XTESTS_TEST_INTEGER_EQUAL(6, b[5]);
+        XTESTS_TEST_INTEGER_EQUAL(7, b[6]);
+        XTESTS_TEST_INTEGER_EQUAL(8, b[7]);
+        XTESTS_TEST_INTEGER_EQUAL(9, b[8]);
+        XTESTS_TEST_INTEGER_EQUAL(10, b[9]);
+        XTESTS_TEST_INTEGER_EQUAL(11, b[10]);
+        XTESTS_TEST_INTEGER_EQUAL(12, b[11]);
+        XTESTS_TEST_INTEGER_EQUAL(13, b[12]);
+        XTESTS_TEST_INTEGER_EQUAL(14, b[13]);
+        XTESTS_TEST_INTEGER_EQUAL(15, b[14]);
+        XTESTS_TEST_INTEGER_EQUAL(16, b[15]);
 
 
         b.erase(b.begin());
+
+        XTESTS_TEST_BOOLEAN_FALSE(b.empty());
+        XTESTS_TEST_BOOLEAN_FALSE(b.full());
 
         XTESTS_TEST_INTEGER_EQUAL(15, b.size());
         XTESTS_TEST_INTEGER_EQUAL(16, b.capacity());
 
         XTESTS_TEST_INTEGER_EQUAL(135, std::accumulate(b.begin(), b.end(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(135, std::accumulate(b.cbegin(), b.cend(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(135, std::accumulate(b.rbegin(), b.rend(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(135, std::accumulate(b.crbegin(), b.crend(), 0));
+
+        XTESTS_TEST_INTEGER_EQUAL(2, b[0]);
+        XTESTS_TEST_INTEGER_EQUAL(3, b[1]);
+        XTESTS_TEST_INTEGER_EQUAL(4, b[2]);
+        XTESTS_TEST_INTEGER_EQUAL(5, b[3]);
+        XTESTS_TEST_INTEGER_EQUAL(6, b[4]);
+        XTESTS_TEST_INTEGER_EQUAL(7, b[5]);
+        XTESTS_TEST_INTEGER_EQUAL(8, b[6]);
+        XTESTS_TEST_INTEGER_EQUAL(9, b[7]);
+        XTESTS_TEST_INTEGER_EQUAL(10, b[8]);
+        XTESTS_TEST_INTEGER_EQUAL(11, b[9]);
+        XTESTS_TEST_INTEGER_EQUAL(12, b[10]);
+        XTESTS_TEST_INTEGER_EQUAL(13, b[11]);
+        XTESTS_TEST_INTEGER_EQUAL(14, b[12]);
+        XTESTS_TEST_INTEGER_EQUAL(15, b[13]);
+        XTESTS_TEST_INTEGER_EQUAL(16, b[14]);
 
 
         auto r2 = b.try_push_back(17);
 
         XTESTS_TEST_BOOLEAN_TRUE(r2);
 
+        XTESTS_TEST_BOOLEAN_FALSE(b.empty());
+        XTESTS_TEST_BOOLEAN_TRUE(b.full());
+
         XTESTS_TEST_INTEGER_EQUAL(16, b.size());
         XTESTS_TEST_INTEGER_EQUAL(16, b.capacity());
 
         XTESTS_TEST_INTEGER_EQUAL(152, std::accumulate(b.begin(), b.end(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(152, std::accumulate(b.cbegin(), b.cend(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(152, std::accumulate(b.rbegin(), b.rend(), 0));
+        XTESTS_TEST_INTEGER_EQUAL(152, std::accumulate(b.crbegin(), b.crend(), 0));
+
+        XTESTS_TEST_INTEGER_EQUAL(2, b[0]);
+        XTESTS_TEST_INTEGER_EQUAL(3, b[1]);
+        XTESTS_TEST_INTEGER_EQUAL(4, b[2]);
+        XTESTS_TEST_INTEGER_EQUAL(5, b[3]);
+        XTESTS_TEST_INTEGER_EQUAL(6, b[4]);
+        XTESTS_TEST_INTEGER_EQUAL(7, b[5]);
+        XTESTS_TEST_INTEGER_EQUAL(8, b[6]);
+        XTESTS_TEST_INTEGER_EQUAL(9, b[7]);
+        XTESTS_TEST_INTEGER_EQUAL(10, b[8]);
+        XTESTS_TEST_INTEGER_EQUAL(11, b[9]);
+        XTESTS_TEST_INTEGER_EQUAL(12, b[10]);
+        XTESTS_TEST_INTEGER_EQUAL(13, b[11]);
+        XTESTS_TEST_INTEGER_EQUAL(14, b[12]);
+        XTESTS_TEST_INTEGER_EQUAL(15, b[13]);
+        XTESTS_TEST_INTEGER_EQUAL(16, b[14]);
+        XTESTS_TEST_INTEGER_EQUAL(17, b[15]);
     }
 }
 
