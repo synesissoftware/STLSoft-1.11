@@ -4,7 +4,7 @@
  * Purpose: fixed_circular_buffer class.
  *
  * Created: 10th March 2024
- * Updated: 12th March 2024
+ * Updated: 15th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -168,16 +168,16 @@ public:
     private: // construction
         iterator_base(
             container_pointer_type  cb
-        ,   size_type               ix
+        ,   size_type               iix
         )
             : cb(cb)
-            , ix(ix)
+            , iix(iix)
         {}
     public:
         /// Constructs an unpositioned iterator instance
         iterator_base()
             : cb(ss_nullptr_k)
-            , ix(std::numeric_limits<size_type>::max())
+            , iix(std::numeric_limits<size_type>::max())
         {}
 
     public:
@@ -187,7 +187,7 @@ public:
         {
             STLSOFT_MESSAGE_ASSERT("calling increment on an end-iterator", ss_nullptr_k != cb);
 
-            return cb->at(ix);
+            return cb->at(iix);
         }
 
         /// Preincrement operator
@@ -196,10 +196,10 @@ public:
         {
             STLSOFT_MESSAGE_ASSERT("calling increment on an end-iterator", ss_nullptr_k != cb);
 
-            if (++ix == cb->size())
+            if (++iix == cb->size())
             {
                 cb = ss_nullptr_k;
-                ix = std::numeric_limits<size_type>::max();
+                iix = std::numeric_limits<size_type>::max();
             }
 
             return *this;
@@ -223,7 +223,7 @@ public:
         {
             STLSOFT_MESSAGE_ASSERT("calling decrement on an end-iterator", ss_nullptr_k != cb);
 
-            --ix;
+            --iix;
 
             return *this;
         }
@@ -242,7 +242,7 @@ public:
     public:
         /// Equality operator
         bool
-        operator == (
+        operator ==(
             class_type const& rhs
         ) const STLSOFT_NOEXCEPT
         {
@@ -267,14 +267,14 @@ public:
                 }
                 else
                 {
-                    return lhs.ix == rhs.ix;
+                    return lhs.iix == rhs.iix;
                 }
             }
         }
 
         /// Inequality operator
         bool
-        operator != (
+        operator !=(
             class_type const& rhs
         ) const STLSOFT_NOEXCEPT
         {
@@ -291,13 +291,13 @@ public:
         {
             STLSOFT_MESSAGE_ASSERT("iterator arithmetic on an end-iterator", ss_nullptr_k != cb);
 
-            if (ix + n == cb->size())
+            if (iix + n == cb->size())
             {
                 return class_type();
             }
             else
             {
-                return class_type(cb, ix + n);
+                return class_type(cb, iix + n);
             }
         }
 
@@ -309,13 +309,13 @@ public:
         {
             STLSOFT_MESSAGE_ASSERT("iterator arithmetic on an end-iterator", ss_nullptr_k != cb);
 
-            if (ix - n == cb->size())
+            if (iix - n == cb->size())
             {
                 return class_type();
             }
             else
             {
-                return class_type(cb, ix - n);
+                return class_type(cb, iix - n);
             }
         }
 
@@ -329,11 +329,11 @@ public:
                 return true;
             }
 
-            STLSOFT_ASSERT(std::numeric_limits<size_type>::max() == rhs.ix);
+            STLSOFT_ASSERT(std::numeric_limits<size_type>::max() != iix);
 
-            STLSOFT_ASSERT(ix <= cb->size());
+            STLSOFT_ASSERT(iix <= cb->size());
 
-            if (ix == cb->size())
+            if (iix == cb->size())
             {
                 return true;
             }
@@ -344,7 +344,7 @@ public:
 
     private: // fields
         container_pointer_type  cb;
-        size_type               ix;
+        size_type               iix;
     };
 
     /// The mutating (non-const) iterator type
@@ -406,6 +406,7 @@ public: // construction
 
 public: // attributes
     /// The maximum number of elements that can be stored in the container
+    constexpr
     size_type
     capacity() const STLSOFT_NOEXCEPT
     {
@@ -442,7 +443,16 @@ public: // attributes
 
 
 public: // modifiers
-    /// Erase element referenced by the given iterator
+    /// Removes all entries
+    void
+    clear()
+    {
+        clear_();
+    }
+
+    /// Erase element specified by the given iterator
+    ///
+    /// \param i The iterator specifying the element to be erased
     iterator
     erase(
         iterator i
@@ -454,14 +464,67 @@ public: // modifiers
         }
         else
         {
-            index_type const eix = i.ix;
+            index_type const eix = i.iix;
 
             index_type const iix = translate_subscript_e2i_(eix);
 
-            erase_at_(iix);
+            erase_at_(eix, iix);
 
             return iterator(this, eix);
         }
+    }
+
+    /// Erase elements specified by the given iterator range
+    ///
+    /// \param from The iterator specifying the start of the range
+    /// \param to The iterator specifying the end of the range
+    iterator
+    erase(
+        iterator from
+    ,   iterator to
+    )
+    {
+        if (from == to)
+        {
+            return from;
+        }
+
+        if (end() == from)
+        {
+            return from;
+        }
+
+        size_type const from_eix    =   from.iix;
+        size_type const to_eix      =   (end() == to) ? size() : to.iix;
+
+        index_type const from_iix   =   translate_subscript_e2i_(from_eix);
+        index_type const to_iix     =   translate_subscript_e2i_(to_eix);
+
+        erase_range_(from_eix, from_iix, to_eix, to_iix);
+
+        return iterator(this, from_eix);
+    }
+
+    /// Removes the front-most element
+    ///
+    /// \pre !empty()
+    void
+    pop_front()
+    {
+        STLSOFT_ASSERT(!empty());
+
+        erase(begin());
+    }
+
+    /// Removes the back-most element
+    ///
+    /// \pre !empty()
+    void
+    pop_back()
+    {
+        STLSOFT_ASSERT(!empty());
+
+        erase(end() - 1);
     }
 
     bool
@@ -475,18 +538,14 @@ public: // modifiers
         }
         else
         {
-            size_type const iix = translate_subscript_e2i_(m_size);
-
-            m_elements[iix] = value;
-
-            ++m_size;
+            push_back_(value);
 
             return true;
         }
     }
 
     size_type
-    try_push_range(
+    try_push_back_range(
         std::initializer_list<value_type> init
     )
     {
@@ -503,6 +562,23 @@ public: // modifiers
         }
 
         return r;
+    }
+
+    bool
+    try_push_front(
+        value_type const& value
+    )
+    {
+        if (full())
+        {
+            return false;
+        }
+        else
+        {
+            push_front_(value);
+
+            return true;
+        }
     }
 
 
@@ -685,84 +761,260 @@ private: // implementation
         index_type eix
     ) const
     {
-        STLSOFT_ASSERT(eix < m_size);
+        STLSOFT_ASSERT(eix <= m_size);
 
-        size_type const iix = (eix + m_base_offset) % capacity();
+        size_type const iix = (m_base_offset + eix) % capacity();
 
         return iix;
     }
 
+
     void
-    erase_at_(index_type iix)
+    clear_()
     {
-        STLSOFT_ASSERT(iix < size());
-
-
-        // TODO: use traits to memmove() where can, use `std::move()` where can, ...
-
-
-        if (0 == iix)
+        for (size_type i = 0; i != size(); ++i)
         {
-            // we can just bump the base
+            size_type const j = translate_subscript_e2i_(i);
+
+            m_elements[j] = value_type();
+        }
+
+        m_size = 0;
+        m_base_offset = 0;
+    }
+
+    void
+    erase_at_(
+        index_type eix
+    ,   index_type iix
+    )
+    {
+        STLSOFT_ASSERT(!empty());
+
+        if (1 == size())
+        {
+            STLSOFT_ASSERT(eix == 0);
 
             m_elements[iix] = value_type();
 
-            m_base_offset += 1;
-
-            --m_size;
-
-            return;
+            m_base_offset = 0;
+            m_size = 0;
         }
-
-
-        if (iix == size() - 1)
+        else
         {
-            // we can just drop the top
+            // determine whether to move up or down, favouring down if mid of odd-size()
 
-            m_elements[iix] = value_type();
+            bool const move_up = ((eix + 1) * 2) < size();
 
-            --m_size;
-
-            return;
-        }
-
-
-        if (m_base_offset == 0)
-        {
-            // not wrapped
-
-            for (size_type i = iix; i != size() - 1; ++i)
+            if (move_up)
             {
-                m_elements[i] = m_elements[i + 1];
+                // UP:
+
+                size_type const n_u = eix;
+                size_type const p = eix;
+
+                for (size_type i = 0; i != n_u; ++i)
+                {
+                    size_type const src_iix     =   translate_subscript_e2i_(p - (1 + i));
+                    size_type const dest_iix    =   translate_subscript_e2i_(p - (0 + i));
+
+                    m_elements[dest_iix] = m_elements[src_iix];
+                }
+
+                size_type const def_iix =   translate_subscript_e2i_(p - n_u);
+
+                m_elements[def_iix] = value_type();
+
+                m_base_offset = (m_base_offset + 1) % capacity();
+                --m_size;
             }
+            else
+            {
+                // DOWN:
 
-            m_elements[size() - 1] = value_type();
+                size_type const n_v = size() - (eix + 1);
+                size_type const p = eix;
 
-            --m_size;
+                for (size_type i = 0; i != n_v; ++i)
+                {
+                    size_type const src_iix     =   translate_subscript_e2i_(p + (1 + i));
+                    size_type const dest_iix    =   translate_subscript_e2i_(p + (0 + i));
+
+                    m_elements[dest_iix] = m_elements[src_iix];
+                }
+
+                size_type const def_iix =   translate_subscript_e2i_(p + n_v);
+
+                m_elements[def_iix] = value_type();
+
+                --m_size;
+            }
+        }
+    }
+
+    void
+    erase_range_(
+        index_type  from_eix
+    ,   index_type  from_iix
+    ,   index_type  to_eix
+    ,   index_type  to_iix
+    )
+    {
+        if (from_eix == to_eix)
+        {
+            STLSOFT_ASSERT(from_iix == to_iix);
 
             return;
         }
         else
         {
-            // wrapped - determine from which side to be removed
+            STLSOFT_ASSERT(!empty());
 
-            // for example:
-            //
-            // consider the example of <int, 10> 1, 2, 3, 4, 5, 6, 7, 8
-            //
-            // then could be:
-            //
-            //     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 |
-            //     | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-            //
-            // a:  |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |    |    |
-            //
-            // b:  |    |    |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |
-            //
-            // c:  |  5 |  6 |  7 |  8 |    |    |  1 |  2 |  3 |  4 |
-            //
+            if (0 == from_eix)
+            {
+                if (size() == to_eix)
+                {
+                    // removing all
 
-            ;
+                    clear_();
+
+                    return;
+                }
+                else
+                {
+                    // removing from beginning
+
+                    for (size_type i = 0; i != to_eix; ++i)
+                    {
+                        size_type const j = translate_subscript_e2i_(i);
+
+                        m_elements[j] = value_type();
+                    }
+
+                    m_base_offset = (m_base_offset + to_eix) % capacity();
+                    m_size -= to_eix;
+
+                    return;
+                }
+            }
+
+            if (to_eix == size())
+            {
+                STLSOFT_ASSERT(0 != from_eix);
+
+                // removing to end
+
+                for (size_type i = from_eix; i != to_eix; ++i)
+                {
+                    size_type const j = translate_subscript_e2i_(i);
+
+                    m_elements[j] = value_type();
+                }
+
+                m_size -= (to_eix - from_eix);
+
+                return;
+            }
+
+
+            size_type const n_r         =   (to_eix - from_eix);
+            bool const      move_up     =   (from_eix * 2) < (size() - n_r);
+
+            if (move_up)
+            {
+                // moving UP
+
+                size_type const n_u = from_eix;
+                size_type const n_v = to_eix - n_u;
+
+                for (size_type i = 0; i != n_u; ++i)
+                {
+                    size_type const src_eix     =   from_eix - (1 + i);
+                    size_type const dest_eix    =   to_eix - (1 + i);
+
+                    size_type const src_iix     =   translate_subscript_e2i_(src_eix);
+                    size_type const dest_iix    =   translate_subscript_e2i_(dest_eix);
+
+                    m_elements[dest_iix] = m_elements[src_iix];
+                }
+
+                for (size_type i = 0; i != n_v; ++i)
+                {
+                    size_type const iix = translate_subscript_e2i_(i);
+
+                    m_elements[iix] = value_type();;
+                }
+
+                m_base_offset = (m_base_offset + n_r) % capacity();
+                m_size -= n_r;
+            }
+            else
+            {
+                // moving DOWN
+
+                size_type const n_d = size() - to_eix;
+                size_type const n_v = n_r;
+
+                for (size_type i = 0; i != n_d; ++i)
+                {
+                    size_type const src_eix     =   to_eix + i;
+                    size_type const dest_eix    =   from_eix + i;
+
+                    size_type const src_iix     =   translate_subscript_e2i_(src_eix);
+                    size_type const dest_iix    =   translate_subscript_e2i_(dest_eix);
+
+                    m_elements[dest_iix] = m_elements[src_iix];
+                }
+
+                for (size_type i = 0; i != n_v; ++i)
+                {
+                    size_type const eix = size() - (1 + i);
+
+                    size_type const iix = translate_subscript_e2i_(eix);
+
+                    m_elements[iix] = value_type();;
+                }
+
+                m_size -= n_r;
+            }
+        }
+    }
+
+    void
+    push_back_(
+        value_type const& value
+    )
+    {
+        STLSOFT_ASSERT(!full());
+
+        size_type const eix = m_size;
+        size_type const iix = translate_subscript_e2i_(eix);
+
+        m_elements[iix] = value;
+
+        ++m_size;
+    }
+
+    void
+    push_front_(
+        value_type const& value
+    )
+    {
+        if (empty())
+        {
+            push_back_(value);
+        }
+        else
+        {
+            STLSOFT_ASSERT(!full());
+
+            m_base_offset = (m_base_offset + (capacity() - 1)) % capacity();
+
+            STLSOFT_ASSERT(m_base_offset < m_elements.size());
+
+            m_elements[m_base_offset] = value;
+
+            ++m_size;
         }
     }
 
