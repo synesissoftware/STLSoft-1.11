@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exception/out_of_memory_exception.hpp
+ * File:    stlsoft/exception/out_of_memory_exception.hpp
  *
- * Purpose:     Definition of the stlsoft::out_of_memory_exception class.
+ * Purpose: Definition of the stlsoft::out_of_memory_exception class.
  *
- * Created:     13th May 2010
- * Updated:     26th December 2020
+ * Created: 13th May 2010
+ * Updated: 22nd February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,9 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_MAJOR    2
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_MINOR    0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_REVISION 4
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_EDIT     22
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_REVISION 5
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -89,6 +90,7 @@
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -97,6 +99,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -109,6 +112,7 @@ typedef std::bad_alloc                                      stlsoft_out_of_memor
 #else /* ? compiler */
 typedef STLSOFT_NS_QUAL_STD(bad_alloc)                      stlsoft_out_of_memory_exception_parent_t;
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -175,6 +179,9 @@ public: // Construction
         , m_libraryId(libraryId)
         , m_statusCode(statusCode)
     {}
+#if __cplusplus >= 201103L
+    out_of_memory_exception(class_type const&) = default;
+#endif
 private:
     class_type& operator =(class_type const&);  // copy-assignment proscribed
 
@@ -209,6 +216,7 @@ private:
     int const                   m_statusCode;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -217,6 +225,7 @@ private:
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
  */
@@ -224,8 +233,6 @@ private:
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION */
 

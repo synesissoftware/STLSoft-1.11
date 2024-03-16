@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/handles/memory_mapped_file_view_handle.hpp
+ * File:    unixstl/filesystem/handles/memory_mapped_file_view_handle.hpp
  *
- * Purpose:     Handle::Ref+Wrapper handle-adapter class template for
- *              UNIX memory mapped file view handles.
+ * Purpose: Handle::Ref+Wrapper handle-adapter class template for UNIX
+ *          memory mapped file view handles.
  *
- * Created:     1st January 2017
- * Updated:     22nd January 2024
+ * Created: 1st January 2017
+ * Updated: 22nd February 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
@@ -52,11 +52,12 @@
 #define UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MAJOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_REVISION   6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT       13
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MAJOR    1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MINOR    0
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_REVISION 7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +89,7 @@
 # include <sys/mman.h>
 #endif /* !STLSOFT_INCL_SYS_H_MMAN */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -109,6 +111,7 @@ namespace unixstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -128,6 +131,9 @@ public:
         : memory(p)
         , size(n)
     {}
+#if __cplusplus >= 201103L
+    memory_mapped_file_view_state_t(memory_mapped_file_view_state_t const&) = default;
+#endif
 private:
     void operator =(memory_mapped_file_view_state_t const&);    // copy-assignment proscribed
 };
@@ -221,6 +227,7 @@ private:
     const bool      isOwner;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -251,6 +258,7 @@ get_memory_mapped_file_view_handle(
     return (NULL != h) ? h->handle : ss_typename_type_k memory_mapped_file_view_handle<R>::handle_type(NULL, 0u);
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef UNIXSTL_NO_NAMESPACE
@@ -262,6 +270,7 @@ get_memory_mapped_file_view_handle(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

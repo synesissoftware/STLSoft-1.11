@@ -10,6 +10,9 @@
 - [Understanding the top-level project build scripts](#understanding-the-top-level-project-build-scripts)
 
 
+> **IMPORTANT**: If you are installing **STLSoft** for the **first time** and are opting for [Cloning project, installing via CMake](#cloning-project-installing-via-cmake), you **must** specify `-E` and `-T`, as describe in detail below.
+
+
 ## Installing
 
 There are three options for installing **STLSoft**, depending on how you obtain it.
@@ -19,17 +22,17 @@ There are three options for installing **STLSoft**, depending on how you obtain 
 
 If you obtain the latest release as an archive, e.g. from the [STLSoft SourceForge project](https://sourceforge.net/projects/stlsoft/):
 
-1. Download the latest distribution, e.g. [**STLSoft-1.11-1.11.1-alpha1.zip**](https://github.com/synesissoftware/STLSoft-1.11/archive/refs/tags/1.11.1-alpha1.zip);
+1. Download the latest distribution, e.g. [**STLSoft-1.11-1.11.1-alpha2.zip**](https://github.com/synesissoftware/STLSoft-1.11/releases/tag/1.11.1-alpha2);
 
 2. Unzip it to a directory of your choice, as in:
 
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip STLSoft-1.11-1.11.1-alpha1.zip
+$ unzip STLSoft-1.11-1.11.1-alpha2.zip
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11-1.11.1-alpha1`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11-1.11.1-alpha2`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
 
 
 ### Cloning project, using environment variables
@@ -57,12 +60,26 @@ $ cd ~/open-source
 $ git clone -b master https://github.com/synesissoftware/STLSoft-1.11
 ```
 
-1. "Prepare" the **CMake** build context:
+2. "Prepare" the **CMake** build context:
 
 ```bash
 $ cd ~/open-source/STLSoft-1.11
 $ ./prepare_cmake.sh -m -v
 ```
+
+> **IMPORTANT**: If you are installing **STLSoft** _for the first time_, you **must** also specify that you do _not_ want to run tests by specifying the flags `-E` and `-T` to **prepare_cmake.sh**, otherwise you will end up with a circular dependency on **xTests** (which depends on **STLSoft**), as in:
+>
+> ```bash
+> $ ./prepare_cmake.sh -E -T
+> ```
+>
+> Use the `'--help'` flag for the full usage of this script.
+>
+> To build and exercise the **STLSoft** unit-tests and you are installing **STLSoft** _for the first time_, then you must do the following steps:
+> 1. Configure and install **STLSoft** _without_ tests, by specifying flags `-E` and `-T`;
+> 2. Configure, build, and install **xTests**;
+> 3. Configure, build, and install **STLSoft** _with_ tests, by specifying `-m` (and `-v`, if you wish) and by _not_ specifying flags `-E` and `-T`;
+
 
 3. Install the **CMake** build artefacts such that they are available for use _and_ that **STLSoft** may be found by other **CMake**-based installations:
 

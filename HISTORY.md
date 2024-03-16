@@ -4,6 +4,14 @@
 ----
 
 
+1st March 2024 - 1.11.1-alpha2 released
+---------------------------------------
+
+ * True-Typedef supports stream-insertion (`operator <<()`):
+ * added `stlsoft::write_string<>()`;
+ * miscellaneous fixes (including C++14/17/20 compatibility);
+
+
 20th February 2024 - 1.11.1-alpha1 released
 -------------------------------------------
 

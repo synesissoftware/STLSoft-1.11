@@ -4,7 +4,7 @@
  * Purpose: String token parsing class.
  *
  * Created: 6th January 2001
- * Updated: 20th February 2024
+ * Updated: 22nd February 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  14
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      240
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  15
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      241
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,7 +144,7 @@ struct skip_discriminator_type_<0>
  * This policy determines whether a tokenisation will ignore blanks, or will present them as
  * (empty) entries in the sequence to the caller.
  *
- * \param B A boolean as to whether blanks should be ignored (\c true) or preserved (\c false)
+ * \tparam B A boolean as to whether blanks should be ignored (\c true) or preserved (\c false)
  *
  * \deprecated Use skip_blank_tokens instead
  */
@@ -161,7 +161,7 @@ struct string_tokeniser_ignore_blanks
  * This policy determines whether a tokenisation will ignore blanks, or will present them as
  * (empty) entries in the sequence to the caller.
  *
- * \param B A boolean as to whether blanks should be ignored (\c true) or preserved (\c false)
+ * \tparam B A boolean as to whether blanks should be ignored (\c true) or preserved (\c false)
  *
  * \note This supercedes string_tokeniser_ignore_blanks
  */
@@ -189,8 +189,8 @@ struct skip_blank_tokens
  * specialisation's value type can be constructed from a pair of iterator of
  * the string type, by defining the (static) create() method.
  *
- * \param S The string tokeniser string type
- * \param V The string tokeniser value type
+ * \tparam S The string tokeniser string type
+ * \tparam V The string tokeniser value type
  */
 template <
     ss_typename_param_k S
@@ -260,9 +260,9 @@ public:
  * This the default tokeniser comparator, providing functionality for both
  * single-character and fixed string delimiters.
  *
- * \param D The delimiter type
- * \param S The string type
- * \param T The traits type
+ * \tparam D The delimiter type
+ * \tparam S The string type
+ * \tparam T The traits type
  */
 template <
     ss_typename_param_k D
@@ -409,26 +409,37 @@ public:
 
     static ss_bool_t test_start_token_advance(const_iterator &it, const_iterator end, delimiter_type const& delim)
     {
+        STLSOFT_SUPPRESS_UNUSED(end);
+
         return is_equal_(delim, it) ? (it = advance_(it, delim), true) : false;
     }
 
     static ss_bool_t test_end_token_advance(const_iterator &it, const_iterator end, delimiter_type const& delim)
     {
+        STLSOFT_SUPPRESS_UNUSED(end);
+
         return is_equal_(delim, it) ? (it = advance_(it, delim), true) : false;
     }
 
     static const_iterator nonskip_move_to_start(const_iterator it, const_iterator end, delimiter_type const& delim)
     {
+        STLSOFT_SUPPRESS_UNUSED(end);
+        STLSOFT_SUPPRESS_UNUSED(delim);
+
         return it;
     }
 
     static ss_bool_t test_end_token(const_iterator it, const_iterator end, delimiter_type const& delim)
     {
+        STLSOFT_SUPPRESS_UNUSED(end);
+
         return is_equal_(delim, it);
     }
 
     static const_iterator find_next_start(const_iterator it, const_iterator end, delimiter_type const& delim)
     {
+        STLSOFT_SUPPRESS_UNUSED(end);
+
         return advance_(it, delim);
     }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -443,12 +454,12 @@ public:
  * the given string, with each element determined with respect to the
  * delimiter
  *
- * \param S The string type
- * \param D The delimiter type (can be a string type or a character type)
- * \param B The ignore-blanks type. Defaults to skip_blank_tokens&lt;true&gt;
- * \param V The value type (the string type that will be used for the values). Defaults to \c S
- * \param T The string type traits type. Defaults to string_tokeniser_type_traits&lt;S, V&gt;
- * \param P The tokeniser comparator type. Defaults to string_tokeniser_comparator&lt;D, S, T&gt;
+ * \tparam S The string type
+ * \tparam D The delimiter type (can be a string type or a character type)
+ * \tparam B The ignore-blanks type. Defaults to skip_blank_tokens&lt;true&gt;
+ * \tparam V The value type (the string type that will be used for the values). Defaults to \c S
+ * \tparam T The string type traits type. Defaults to string_tokeniser_type_traits&lt;S, V&gt;
+ * \tparam P The tokeniser comparator type. Defaults to string_tokeniser_comparator&lt;D, S, T&gt;
  *
  * This class template provides tokenising services of a string (of type \c S)
  * with a delimiter (of type \c D). The four other template parameters, which are
@@ -496,10 +507,11 @@ std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<string_t, wchar_t>
  *
 \code
 
-stlsoft::string_tokeniser<  std::string
-                        ,   char
-                        ,   stlsoft::skip_blank_tokens<false>
-                        >                tokens(":abc::def:ghi:jkl::::::::::", ':');
+stlsoft::string_tokeniser<
+    std::string
+,   char
+,   stlsoft::skip_blank_tokens<false>
+>                tokens(":abc::def:ghi:jkl::::::::::", ':');
 
 std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(std::cout, ","));
 \endcode
@@ -520,11 +532,14 @@ int main()
 {
   HWND  hwndButton = ::CreateWindowEx(0, "BUTTON", "+abc++def+ghi+jkl++++++++++", 0, 0, 0, 0, 0, NULL, (HMENU)0, NULL, NULL);
 
-  stlsoft::string_tokeniser<  std::string
-                          ,   char
-                          ,   stlsoft::skip_blank_tokens<true>
-                          >                tokens(hwndButton, '+');
+  stlsoft::string_tokeniser<
+    std::string
+  , char
+  , stlsoft::skip_blank_tokens<true>
+  >                tokens(hwndButton, '+');
+
   std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(std::cout, ";"));
+
   return 0;
 }
 \endcode
@@ -543,21 +558,27 @@ stlsoft::string_tokeniser<std::string, std::string>  tokens("\r\nabc\r\n\r\ndef\
 
 std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(std::cout, ","));
 \endcode
+ *
+ * \note The tokeniser instance takes a copy of the incident string to be
+ *   tokenised and then issues tokens (via its iterator(s)) from that copy,
+ *   so if you wish to use string views (e.g. `stlsoft::basic_string_view` or
+ *   `std::basic_string_view`) for the token type
  */
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k D
+template<
+    ss_typename_param_k S
+,   ss_typename_param_k D
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-        ,   ss_typename_param_k B = skip_blank_tokens<true>
-        ,   ss_typename_param_k V = S
-        ,   ss_typename_param_k T = string_tokeniser_type_traits<S, V>
-        ,   ss_typename_param_k P = string_tokeniser_comparator<D, S, T>
+,   ss_typename_param_k B = skip_blank_tokens<true>
+,   ss_typename_param_k V = S
+,   ss_typename_param_k T = string_tokeniser_type_traits<S, V>
+,   ss_typename_param_k P = string_tokeniser_comparator<D, S, T>
 #else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        ,   ss_typename_param_k B
-        ,   ss_typename_param_k V
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k P
+,   ss_typename_param_k B
+,   ss_typename_param_k V
+,   ss_typename_param_k T
+,   ss_typename_param_k P
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        >
+>
 class string_tokeniser
     : public stl_collection_tag
 {
@@ -704,7 +725,11 @@ public:
     /// \param from The start of the asymmetric range to tokenise
     /// \param to The start of the asymmetric range to tokenise
     /// \param delim The delimiter to use
-    string_tokeniser(char_type const* from, char_type const* to, delimiter_type const& delim)
+    string_tokeniser(
+        char_type const*        from
+    ,   char_type const*        to
+    ,   delimiter_type const&   delim
+    )
         : m_str(from, to)
         , m_delimiter(delim)
     {
@@ -735,6 +760,9 @@ public:
         STLSOFT_ASSERT(is_valid());
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+
+private:
+    class_type const& operator =(class_type const&);
 /// @}
 
 /// \name Iteration
@@ -742,13 +770,14 @@ public:
 public:
     /// Iterator for string_tokeniser, supporting the Forward Iterator concept
     class const_iterator
-        : public iterator_base< STLSOFT_NS_QUAL_STD(forward_iterator_tag)
-                            ,   value_type
-                            ,   ss_ptrdiff_t
-                            ,   void
-                            ,   value_type
-                            >
-    {
+        : public iterator_base<
+                STLSOFT_NS_QUAL_STD(forward_iterator_tag)
+            ,   value_type
+            ,   ss_ptrdiff_t
+            ,   void
+            ,   value_type
+            >
+{
     /// \name Member Types
     /// @{
     public:
@@ -855,6 +884,18 @@ public:
         // This has to be V, rather than value_type, because Visual C++ thinks that S is the value_type!!
         const V operator *() const
         {
+#if 0
+            auto v = traits_type::create(m_find0, m_find1);
+
+            fprintf(stderr, "%s:%d:%s: v.data()=%p, v.size()=%lu [v='%.*s'] [%c ... %c]\n", __FILE__, __LINE__, __FUNCTION__
+            ,   static_cast<void const*>(v.data())
+            ,   v.size()
+            ,   int(v.size()), v.data()
+            ,   v.data()[0]
+            ,   v.data()[v.size() - 1]
+            );
+#endif
+
             return traits_type::create(m_find0, m_find1);
         }
 
@@ -1033,12 +1074,6 @@ private:
 private:
     string_type const       m_str;
     delimiter_type const    m_delimiter;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type const& operator =(class_type const&);
 /// @}
 };
 

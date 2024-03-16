@@ -48,6 +48,8 @@ Creates/reinitialises the CMake build script(s)
 
 $ScriptPath [ ... flags/options ... ]
 
+IMPORTANT: If you have not previously performed a CMake installation of xTests, the library that STLSoft uses for its own tests, you MUST specify the -E and -T flags. Once you have installed STLSoft, you can then configure/build/install STLSoft, and then come back and prepare STLSoft without -E/-T and exercise its examples and tests.
+
 Flags/options:
 
     behaviour:
@@ -81,6 +83,8 @@ Flags/options:
 
     --help
         displays this help and terminates
+
+IMPORTANT: If you have not previously performed a CMake installation of xTests, the library that STLSoft uses for its own tests, you MUST specify the -E and -T flags. Once you have installed STLSoft, you can then configure/build/install STLSoft, and then come back and prepare STLSoft without -E/-T and exercise its examples and tests.
 
 EOF
 
