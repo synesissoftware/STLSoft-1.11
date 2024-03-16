@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 19th February 2024
+ * Updated: 16th March 2024
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     225
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     226
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -446,6 +446,13 @@ public:
     /// Compares \c this with the given string
     ss_sint_t compare(class_type const& rhs) const STLSOFT_NOEXCEPT;
 
+    /// Indicates whether the string contains the string \c s
+    bool contains(class_type const& s) const STLSOFT_NOEXCEPT;
+    /// Indicates whether the string contains the C-style string \c s
+    bool contains(char_type const* s) const STLSOFT_NOEXCEPT;
+    /// Indicates whether the string contains the character \c ch
+    bool contains(char_type ch) const STLSOFT_NOEXCEPT;
+
     /// Indicates whether the string starts with the string \c s
     bool starts_with(class_type const& s) const STLSOFT_NOEXCEPT;
     /// Indicates whether the string starts with the C-style string \c s
@@ -612,6 +619,10 @@ private:
     ,   size_type           rhs_len
     ) STLSOFT_NOEXCEPT;
 
+    bool contains_(
+        char_type const*    s
+    ,   size_type           n
+    ) const STLSOFT_NOEXCEPT;
     bool starts_with_(
         char_type const*    s
     ,   size_type           n
@@ -1355,7 +1366,7 @@ template <
 >
 inline
 basic_static_string<C, V_internalSize, T>::basic_static_string() STLSOFT_NOEXCEPT
-    : m_length(static_cast<ss_size_t>(-1))
+    : m_length(0)
 {
     m_buffer[0]             =   '\0';
     m_buffer[max_size()]    =   '\0';
@@ -2172,6 +2183,67 @@ basic_static_string<C, V_internalSize, T>::starts_with_(
     );
 }
 
+#include <cwchar>
+
+template <
+    ss_typename_param_k C
+,   ss_size_t           V_internalSize
+,   ss_typename_param_k T
+>
+inline
+ss_bool_t
+basic_static_string<C, V_internalSize, T>::contains_(
+    ss_typename_type_k basic_static_string<C, V_internalSize, T>::char_type const*  s
+,   ss_typename_type_k basic_static_string<C, V_internalSize, T>::size_type         n
+) const STLSOFT_NOEXCEPT
+{
+    if (n > m_length)
+    {
+        return false;
+    }
+
+    if (n == 0)
+    {
+        return true;
+    }
+
+    char_type first_char = s[0];
+
+    // search for each occurrence of `s[0]` in `this` using `traits_type::find()`, then
+    // testing each remaining part of `this` (if long enought) for all of `s`, using
+    // `traits::compare()`
+
+    char_type const*    in = m_buffer;
+    size_type           num_remaining = m_length;
+
+    for (;;)
+    {
+        if (NULL == traits_type::find(in, num_remaining, first_char))
+        {
+            return false;
+        }
+        else
+        {
+            size_type remaining_length = m_length - (in - m_buffer);
+
+            if (n > remaining_length)
+            {
+                return false;
+            }
+
+            if (0 == traits_type::compare(s, in, n))
+            {
+                return true;
+            }
+            else
+            {
+                ++in;
+                --num_remaining;
+            }
+        }
+    }
+}
+
 template <
     ss_typename_param_k C
 ,   ss_size_t           V_internalSize
@@ -2238,6 +2310,49 @@ ss_bool_t
 basic_static_string<C, V_internalSize, T>::starts_with(ss_typename_type_k basic_static_string<C, V_internalSize, T>::char_type ch) const STLSOFT_NOEXCEPT
 {
     return empty() ? false : (front() == ch);
+}
+
+template <
+    ss_typename_param_k C
+,   ss_size_t           V_internalSize
+,   ss_typename_param_k T
+>
+inline
+ss_bool_t
+basic_static_string<C, V_internalSize, T>::contains(ss_typename_type_k basic_static_string<C, V_internalSize, T>::class_type const& s) const STLSOFT_NOEXCEPT
+{
+    return contains_(s.data(), s.size());
+}
+
+template <
+    ss_typename_param_k C
+,   ss_size_t           V_internalSize
+,   ss_typename_param_k T
+>
+inline
+ss_bool_t
+basic_static_string<C, V_internalSize, T>::contains(ss_typename_type_k basic_static_string<C, V_internalSize, T>::char_type const* s) const STLSOFT_NOEXCEPT
+{
+    size_type const n = (NULL == s) ? 0 : traits_type::length(s);
+
+    return contains_(s, n);
+}
+
+template <
+    ss_typename_param_k C
+,   ss_size_t           V_internalSize
+,   ss_typename_param_k T
+>
+inline
+ss_bool_t
+basic_static_string<C, V_internalSize, T>::contains(ss_typename_type_k basic_static_string<C, V_internalSize, T>::char_type ch) const STLSOFT_NOEXCEPT
+{
+    if (empty())
+    {
+        return false;
+    }
+
+    return NULL != traits_type::find(m_buffer, m_length, ch);
 }
 
 template <
