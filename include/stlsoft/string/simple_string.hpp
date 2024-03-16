@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 19th February 2024
+ * Updated: 16th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    6
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    7
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     276
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     277
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -457,11 +457,11 @@ public:
     /// Indicates whether the string starts with the character \c ch
     bool starts_with(char_type ch) const STLSOFT_NOEXCEPT;
 
-     /// Indicates whether the string contains with the string \c s
+     /// Indicates whether the string contains the string \c s
     bool contains(class_type const& s) const STLSOFT_NOEXCEPT;
-    /// Indicates whether the string contains with the C-style string \c s
+    /// Indicates whether the string contains the C-style string \c s
     bool contains(char_type const* s) const STLSOFT_NOEXCEPT;
-    /// Indicates whether the string contains with the character \c ch
+    /// Indicates whether the string contains the character \c ch
     bool contains(char_type ch) const STLSOFT_NOEXCEPT;
 
     /// Indicates whether the string ends with the string \c s

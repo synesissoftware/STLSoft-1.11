@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 19th February 2024
+ * Updated: 16th March 2024
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     225
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     226
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -446,11 +446,11 @@ public:
     /// Compares \c this with the given string
     ss_sint_t compare(class_type const& rhs) const STLSOFT_NOEXCEPT;
 
-    /// Indicates whether the string contains with the string \c s
+    /// Indicates whether the string contains the string \c s
     bool contains(class_type const& s) const STLSOFT_NOEXCEPT;
-    /// Indicates whether the string contains with the C-style string \c s
+    /// Indicates whether the string contains the C-style string \c s
     bool contains(char_type const* s) const STLSOFT_NOEXCEPT;
-    /// Indicates whether the string contains with the character \c ch
+    /// Indicates whether the string contains the character \c ch
     bool contains(char_type ch) const STLSOFT_NOEXCEPT;
 
     /// Indicates whether the string starts with the string \c s

@@ -1703,10 +1703,21 @@ static void test_contains_2()
 
 static void test_contains_3()
 {
-    string_t const s("abdabeabcab");
+    {
+        string_t const s("abdabeabcab");
+
+        {
+            XTESTS_TEST_BOOLEAN_TRUE(s.contains("abc"));
+        }
+    }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("abc"));
+        string_t const s("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab");
+
+        {
+            XTESTS_TEST_BOOLEAN_TRUE(s.contains("ab"));
+            XTESTS_TEST_BOOLEAN_FALSE(s.contains("ac"));
+        }
     }
 }
 
