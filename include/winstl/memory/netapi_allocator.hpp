@@ -4,7 +4,7 @@
  * Purpose:     netapi_allocator class.
  *
  * Created:     23rd March 2006
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MAJOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MINOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_REVISION 9
-# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     29
+# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # include <lm.h>
 #endif /* !STLSOFT_INCL_H_LM */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -95,6 +97,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -236,6 +239,7 @@ inline ws_bool_t operator !=(const netapi_allocator<T> &/* lhs */, const netapi_
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

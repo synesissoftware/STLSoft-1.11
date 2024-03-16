@@ -4,7 +4,7 @@
  * Purpose:     Functions to write lines to the Windows debugger.
  *
  * Created:     5th January 2011
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_MAJOR    2
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_MINOR    0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_REVISION 2
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_EDIT     22
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -95,6 +96,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -223,6 +225,7 @@ winstl_C_call_OutputDebugStringA_(
 #endif /* WINSTL_DIAGNOSTICS_OUTPUT_DEBUG_LINE_SUPPRESS_ODS_ */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -1355,6 +1358,7 @@ winstl_C_diagnostics_output_debug_line_16_m(
         }
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

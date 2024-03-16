@@ -4,11 +4,11 @@
  * Purpose:     Contains the get_top attribute shim.
  *
  * Created:     8th September 2019
- * Updated:     16th December 2023
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_PRIORITY_QUEUE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_PRIORITY_QUEUE_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_PRIORITY_QUEUE_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_PRIORITY_QUEUE_EDIT        3
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_PRIORITY_QUEUE_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # include <queue>
 #endif /* !STLSOFT_INCL_QUEUE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * get_ptr functions
@@ -115,6 +118,7 @@ get_top(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

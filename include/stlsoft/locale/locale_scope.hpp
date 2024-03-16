@@ -4,7 +4,7 @@
  * Purpose:     Defines the locale_scope class.
  *
  * Created:     23rd December 2018
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_MINOR      0
 # define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_REVISION   1
-# define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_EDIT       5
+# define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 # include <locale.h>
 #endif /* !STLSOFT_INCL_H_LOCALE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -94,6 +96,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -178,6 +181,7 @@ private: // fields
     string_type const   m_previousLocale;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -185,6 +189,7 @@ private: // fields
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

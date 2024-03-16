@@ -4,11 +4,11 @@
  * Purpose:     Error functions.
  *
  * Created:     20th October 1994
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_REVISION 6
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT     147
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT     148
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_DeviceContext
 # include <winstl/api/external/DeviceContext.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_DeviceContext */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +92,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -125,6 +128,7 @@ STLSOFT_INLINE ws_size_t winstl__get_LOGFONT(HFONT hpal, LOGFONT *pfnt)
     return stlsoft_static_cast(ws_size_t, WINSTL_API_EXTERNAL_DeviceContext_GetObject(hpal, sizeof(LOGFONT), pfnt));
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -133,6 +137,7 @@ STLSOFT_INLINE ws_size_t winstl__get_LOGFONT(HFONT hpal, LOGFONT *pfnt)
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -223,6 +228,7 @@ inline LOGFONT get_LOGFONT(HFONT h)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

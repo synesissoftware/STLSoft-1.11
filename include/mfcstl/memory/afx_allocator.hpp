@@ -4,7 +4,7 @@
  * Purpose:     afx_allocator class.
  *
  * Created:     5th August 2005
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MAJOR       2
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MINOR       0
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_REVISION    10
-# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        37
+# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <afx.h>
 #endif /* !STLSOFT_INCL_H_AFX */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -100,6 +102,7 @@ namespace mfcstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -241,6 +244,7 @@ inline ms_bool_t operator !=(const afx_allocator<T> &/* lhs */, const afx_alloca
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

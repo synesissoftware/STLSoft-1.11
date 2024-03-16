@@ -4,7 +4,7 @@
  * Purpose:     Mixin class providing enhanced functions for ATL windows.
  *
  * Created:     30th November 2000
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MAJOR    4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MINOR    0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_REVISION 5
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     41
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 #ifndef ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_HPP_STRING
 # include <atlstl/shims/access/string.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_HPP_STRING */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -91,6 +93,7 @@ namespace atlstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -218,6 +221,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

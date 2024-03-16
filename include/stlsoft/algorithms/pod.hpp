@@ -4,11 +4,11 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     2nd January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       5
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    8
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        103
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -91,6 +92,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -99,6 +101,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -190,6 +193,7 @@ struct ximpl_stlsoft_algorithm_pod_helper_
 
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * algorithms
@@ -452,6 +456,7 @@ inline void pod_fill_n(unsigned char *dest, ss_size_t n, int value)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

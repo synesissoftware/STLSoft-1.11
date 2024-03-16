@@ -359,6 +359,7 @@
 #define _STLSOFT_VER_REVISION       1
 #define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A03
 
+
 /* /////////////////////////////////////
  * underlying version detection
  */

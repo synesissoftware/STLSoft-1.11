@@ -4,7 +4,7 @@
  * Purpose:     File-system functionals.
  *
  * Created:     19th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR       4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR       0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION    11
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT        51
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION    12
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _INETSTL_FUNCTIONALS_NO_STD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@ namespace inetstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -124,24 +127,27 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A2 = C const*
         >
 struct path_compare
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A1, A2, is_bool_t>
+#endif
 {
 public:
     /// The character type
-    typedef C                                                           char_type;
-private:
-    typedef STLSOFT_NS_QUAL_STD(binary_function)<A1, A2, is_bool_t>     parent_class_type;
-public:
+    typedef C                                               char_type;
     /// The first argument type
-    typedef ss_typename_type_k parent_class_type::first_argument_type   first_argument_type;
+    typedef A1                                              first_argument_type;
     /// The second argument type
-    typedef ss_typename_type_k parent_class_type::second_argument_type  second_argument_type;
+    typedef A2                                              second_argument_type;
     /// The result type
-    typedef ss_typename_type_k parent_class_type::result_type           result_type;
+    typedef is_bool_t                                       result_type;
     /// The traits type
-    typedef filesystem_traits<C>                                        traits_type;
+    typedef filesystem_traits<C>                            traits_type;
     /// The current specialisation of the type
-    typedef path_compare<C, A1, A2>                                     class_type;
+    typedef path_compare<
+        C
+    ,   A1
+    ,   A2
+    >                                                       class_type;
 
 public:
     /// Function call, compares \c s1 with \c s2
@@ -193,18 +199,28 @@ template<   ss_typename_param_k C
         >
 // [[synesis:class:function-class:unary-predicate: path_exists<T<C>, T<A>>]]
 struct path_exists
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, is_bool_t>
+#endif
 {
 public:
     /// The character type
-    typedef C                       char_type;
+    typedef C                                               char_type;
+    /// The second argument type
+    typedef A                                               argument_type;
+    /// The result type
+    typedef is_bool_t                                       result_type;
     /// The traits type
-    typedef filesystem_traits<C>    traits_type;
+    typedef filesystem_traits<C>                            traits_type;
     /// The current specialisation of the type
-    typedef path_exists<C>          class_type;
+    typedef path_exists<
+        C
+    ,   A
+    >                                                       class_type;
 
 public:
-    ss_explicit_k path_exists(HINTERNET hConnection)
+    ss_explicit_k
+    path_exists(HINTERNET hConnection)
         : m_hConnection(hConnection)
     {}
 
@@ -241,7 +257,10 @@ private:
     HINTERNET   m_hConnection;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef INETSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -252,6 +271,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

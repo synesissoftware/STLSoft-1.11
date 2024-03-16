@@ -4,7 +4,7 @@
  * Purpose:     winstl_C_identify_operating_system() function.
  *
  * Created:     18th May 1995
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_MAJOR    1
 # define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_REVISION 8
-# define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_EDIT     15
+# define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -97,6 +99,7 @@ namespace winstl_project
 
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -448,6 +451,7 @@ c_str_len_a(
 
 #endif /* __cplusplus && !STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -467,6 +471,7 @@ c_str_len_a(
 #ifdef __cplusplus
 #else /* ? __cplusplus */
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

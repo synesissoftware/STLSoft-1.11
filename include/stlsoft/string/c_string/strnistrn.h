@@ -4,11 +4,11 @@
  * Purpose:     Definition of stlsoft_C_strnistrn() and stlsoft_C_wcsnistrn()
  *
  * Created:     1st October 2020
- * Updated:     27th January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2020-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_REVISION   2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       2
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNISTRN_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 # define STLSOFT_INCL_H_WCTYPE
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -179,6 +181,7 @@ stlsoft_C_wcsnistrn(
     return ss_nullptr_k;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -188,6 +191,7 @@ namespace stlsoft
 {
 namespace c_string
 {
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions (C++)
@@ -229,6 +233,7 @@ wcsnistrn(
     return stlsoft_C_wcsnistrn(s1, n1, s2, n2);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -236,6 +241,7 @@ wcsnistrn(
 } /* namespace c_string */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

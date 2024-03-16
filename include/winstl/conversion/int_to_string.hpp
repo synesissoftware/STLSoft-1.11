@@ -4,7 +4,7 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MAJOR      2
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MINOR      1
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   15
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       61
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -92,6 +93,7 @@
 # include <winstl/api/external/Synchronization.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Synchronization */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -111,6 +113,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Pre-processor options
  */
@@ -124,6 +127,7 @@ namespace winstl_project
 #  pragma message("Using _WINSTL_INT_TO_STRING_USE_DECLSPECTHREAD_FOR_EXES when building DLLs will result in their not being loadable dynamically (via LoadLibrary())")
 # endif /* dll */
 #endif /* _WINSTL_INT_TO_STRING_USE_DECLSPECTHREAD_FOR_EXES */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -628,6 +632,7 @@ inline C const* int_to_string(unsigned long const& value)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

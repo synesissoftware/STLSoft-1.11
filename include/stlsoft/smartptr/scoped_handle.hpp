@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Adi Shavit, for requesting the indirect functionality
  *
@@ -58,8 +58,9 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    6
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     686
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     687
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 # include <stlsoft/smartptr/scoped_handle_borland_.hpp>
 #else /* ? compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warnings
  */
@@ -87,6 +89,7 @@
 # pragma warning(disable : 4191)
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -95,6 +98,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -875,6 +879,7 @@ private:
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -885,6 +890,7 @@ inline void swap(scoped_handle<H>& lhs, scoped_handle<H>& rhs) STLSOFT_NOEXCEPT
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -918,6 +924,7 @@ is_null(
     return h.empty();
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -949,6 +956,7 @@ namespace std
 
 #endif /* ? compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warnings
  */
@@ -958,6 +966,7 @@ namespace std
 
 # pragma warning(pop)
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

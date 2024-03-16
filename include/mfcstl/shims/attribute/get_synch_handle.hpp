@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     24th December 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MAJOR       1
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       2
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    4
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        20
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -85,6 +86,7 @@
 # include <afxmt.h>
 #endif /* !STLSOFT_INCL_H_AFXMT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -103,6 +105,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -212,6 +215,7 @@ get_synch_handle(
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION || __AFXWIN_H__ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -225,6 +229,7 @@ get_synch_handle(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

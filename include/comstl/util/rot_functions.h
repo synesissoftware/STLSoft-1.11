@@ -4,7 +4,7 @@
  * Purpose:     COM ROT (Running Object Table) functions.
  *
  * Created:     21st October 1998
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MINOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    8
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        79
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -86,6 +88,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -343,6 +346,7 @@ STLSOFT_INLINE HRESULT comstl_C_Rot_EnumRunning(IEnumMoniker** ppenumMoniker)
 
 #endif /* obsolete || 1.9 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -351,6 +355,7 @@ STLSOFT_INLINE HRESULT comstl_C_Rot_EnumRunning(IEnumMoniker** ppenumMoniker)
 namespace comstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -500,6 +505,7 @@ inline HRESULT Rot_EnumRunning(IEnumMoniker** ppenumMoniker)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

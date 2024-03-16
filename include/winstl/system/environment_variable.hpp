@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     20th December 2002
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Pablo Aguilar for requesting size() and empty().
  *
@@ -57,8 +57,9 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     86
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -315,6 +317,7 @@ private:
     bool_type       m_exists;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -334,6 +337,7 @@ typedef basic_environment_variable<ws_char_w_t, system_traits<ws_char_w_t> >    
  * \ingroup group__library__System
  */
 typedef basic_environment_variable<TCHAR, system_traits<TCHAR> >                environment_variable;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -427,6 +431,7 @@ operator !=(
     return !rhs.equal(lhs);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -462,6 +467,7 @@ make_environment_variable(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

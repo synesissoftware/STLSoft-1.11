@@ -4,11 +4,11 @@
  * Purpose:     Type-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     30th November 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,19 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MAJOR    4
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MINOR    0
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_REVISION 8
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     77
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_REVISION 9
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
-
-/*
-[Incompatibilies-start]
-[Incompatibilies-end]
-STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4)
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +74,7 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 # define STLSOFT_INCL_FUNCTIONAL
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -103,6 +95,7 @@ namespace comstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * functionals
  */
@@ -116,8 +109,15 @@ namespace comstl_project
  */
 // [[synesis:class:unary-functor: BSTR_close]]
 struct BSTR_close
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<BSTR, void>
+#endif
 {
+public:
+    typedef BSTR                                            argument_type;
+    typedef void                                            result_type;
+
+public:
     /// Function call operator
     ///
     /// \param s The string to free
@@ -136,8 +136,15 @@ struct BSTR_close
  */
 // [[synesis:class:unary-functor: olestring_close]]
 struct olestring_close
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<LPOLESTR, void>
+#endif
 {
+public:
+    typedef LPOLESTR                                        argument_type;
+    typedef void                                            result_type;
+
+public:
     /// Function call operator
     ///
     /// \param s The string to free
@@ -156,8 +163,15 @@ struct olestring_close
  */
 // [[synesis:class:unary-functor: task_memory_close]]
 struct task_memory_close
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<void*, void>
+#endif
 {
+public:
+    typedef void*                                           argument_type;
+    typedef void                                            result_type;
+
+public:
     /// Function call operator
     ///
     /// \param p The memory to free
@@ -176,8 +190,15 @@ struct task_memory_close
  */
 // [[synesis:class:unary-functor: VARIANT_close]]
 struct VARIANT_close
+#if __cplusplus < 201103L
+#endif
     : public STLSOFT_NS_QUAL_STD(unary_function)<VARIANT&, void>
 {
+public:
+    typedef VARIANT&                                        argument_type;
+    typedef void                                            result_type;
+
+public:
     /// Function call operator
     ///
     /// \param v The variant to free
@@ -187,7 +208,10 @@ struct VARIANT_close
     }
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -198,6 +222,7 @@ struct VARIANT_close
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_FileManagement
 #define WINSTL_INCL_WINSTL_API_external_h_FileManagement
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -118,6 +119,7 @@ BOOL WINAPI FindVolumeClose(
 #  endif
 # endif /* !_WINSTL_NO_FINDVOLUME_API */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' File Management Functions
@@ -268,6 +270,7 @@ BOOL WINAPI FindVolumeClose(
 #ifndef WINSTL_API_EXTERNAL_FileManagement_SetFileAttributesW
 # define WINSTL_API_EXTERNAL_FileManagement_SetFileAttributesW                  STLSOFT_NS_GLOBAL_(SetFileAttributesW)
 #endif /* !WINSTL_API_EXTERNAL_FileManagement_SetFileAttributesW */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

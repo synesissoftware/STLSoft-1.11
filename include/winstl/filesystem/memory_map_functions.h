@@ -4,7 +4,7 @@
  * Purpose:     Windows memory mapping functions.
  *
  * Created:     15th December 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,9 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MINOR      3
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_REVISION   8
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT       124
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT       125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # include <winstl/api/external/MemoryManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_MemoryManagement */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -108,6 +110,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -167,6 +170,7 @@ winstl_C_map_named_view_of_file_by_handle_v_(
 ) STLSOFT_NOEXCEPT;
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Functions (C)
@@ -709,6 +713,7 @@ winstl_C_map_readonly_view_of_file_by_name(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Functions (C++)
  */
@@ -856,6 +861,7 @@ map_readonly_view_of_file_by_name(
 
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -869,6 +875,7 @@ map_readonly_view_of_file_by_name(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

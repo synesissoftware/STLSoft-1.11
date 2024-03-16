@@ -4,11 +4,11 @@
  * Purpose:     Exceptions used by the Registry library.
  *
  * Created:     8th February 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_REVISION   6
-# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_EDIT       31
+# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +75,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_SIGN_TRAITS
 # include <stlsoft/util/sign_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_SIGN_TRAITS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -94,7 +96,10 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * classes
+ */
 
 /** Root exception thrown by
  *   the \ref group__library__Windows_Registry "Windows Registry" Library.
@@ -141,6 +146,7 @@ public:
 /// @}
 };
 
+
 /** Indicates that a registry key could not be duplicated.
  *
  * \ingroup group__library__Windows_Registry
@@ -151,8 +157,8 @@ class key_not_duplicated_exception
 /// \name Member Types
 /// @{
 public:
-    typedef registry_exception              parent_class_type;
-    typedef key_not_duplicated_exception    class_type;
+    typedef registry_exception                              parent_class_type;
+    typedef key_not_duplicated_exception                    class_type;
 /// @}
 
 /// \name Construction
@@ -172,6 +178,7 @@ private:
     class_type& operator =(class_type const&);
 /// @}
 };
+
 
 /** Indicates a registry value type mismatch.
  *
@@ -221,6 +228,7 @@ private:
 /// @}
 };
 
+
 /** Indicates insufficient rights to access a registry key.
  *
  * \ingroup group__library__Windows_Registry
@@ -231,8 +239,8 @@ class access_denied_exception
 /// \name Member Types
 /// @{
 public:
-    typedef registry_exception          parent_class_type;
-    typedef access_denied_exception     class_type;
+    typedef registry_exception                              parent_class_type;
+    typedef access_denied_exception                         class_type;
 /// @}
 
 /// \name Construction
@@ -249,7 +257,10 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -260,6 +271,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

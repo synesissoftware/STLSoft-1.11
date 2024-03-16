@@ -4,11 +4,11 @@
  * Purpose:     File creation functions.
  *
  * Created:     12th September 2005
- * Updated:     3rd December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MAJOR      3
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       27
+# define WINSTL_VER_WINSTL_H_FILE_CREATION_FUNCTIONS_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 # include <winstl/api/internal/FileManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_internal_h_FileManagement */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -93,6 +95,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -830,6 +833,7 @@ winstl_C_file_truncate_existing(
 # endif /* UNICODE */
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -838,6 +842,7 @@ winstl_C_file_truncate_existing(
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ API functions
@@ -1186,6 +1191,7 @@ file_truncate_existing(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
  *
  * Created:     23rd September 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MAJOR      2
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MINOR      0
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   8
-# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       43
+# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -100,6 +102,7 @@ namespace acestl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ACESTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -184,6 +187,7 @@ inline ACE_Message_Block *make_copied_Message_Block(const char (&ar)[N])
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ACESTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

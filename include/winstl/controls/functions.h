@@ -4,11 +4,11 @@
  * Purpose:     Various Windows control functions.
  *
  * Created:     13th November 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       2
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    8
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        64
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -95,6 +97,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -352,6 +355,7 @@ STLSOFT_INLINE ws_int_t winstl__edit_getline_w(HWND hwnd, ws_int_t lineIndex, ws
     return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, EM_GETLINE, stlsoft_static_cast(WPARAM, lineIndex), stlsoft_reinterpret_cast(LPARAM, buffer)));
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -360,6 +364,7 @@ STLSOFT_INLINE ws_int_t winstl__edit_getline_w(HWND hwnd, ws_int_t lineIndex, ws
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -720,6 +725,7 @@ inline ws_int_t edit_getline(HWND hwnd, ws_int_t lineIndex, ws_char_w_t *buffer,
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

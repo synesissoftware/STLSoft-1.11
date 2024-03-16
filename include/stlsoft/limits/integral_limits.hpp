@@ -8,13 +8,13 @@
  *              macros.
  *
  * Created:     16th January 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Thanks:      To Jonathan Wakely for help with Solaris compatibility.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -61,8 +61,9 @@
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_MAJOR       5
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_MINOR       0
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_REVISION    6
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_EDIT        72
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_EDIT        73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <stlsoft/limits/integral_limits.h>
 #endif /* !STLSOFT_INCL_STLSOFT_LIMITS_H_INTEGRAL_LIMITS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -87,6 +89,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -467,6 +470,7 @@ struct integral_limits<unsigned long>
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

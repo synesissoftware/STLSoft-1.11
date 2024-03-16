@@ -4,7 +4,7 @@
  * Purpose: Allocator commmon features.
  *
  * Created: 20th August 2003
- * Updated: 28th February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_MAJOR       6
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_MINOR       1
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_REVISION    2
-# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_EDIT        57
+# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_FEATURES_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -301,6 +302,7 @@
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -313,7 +315,6 @@ namespace stlsoft
 /* ////////////////////////////////////////////////////////////////////// */
 
 
-
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -321,6 +322,7 @@ namespace stlsoft
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

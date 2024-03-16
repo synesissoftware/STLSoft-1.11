@@ -4,7 +4,7 @@
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
  * Created:     18th July 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     3
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      45
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -104,6 +105,7 @@
 # include <string.h>
 #endif /* !STLSOFT_INCL_H_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -136,6 +138,7 @@
 # include <string>
 #endif /* !STLSOFT_ERROR_DESC_wcserror_s && !STLSOFT_ERROR_DESC_wcserror */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -144,6 +147,7 @@
 namespace stlsoft
 {
 #endif /* !STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -237,6 +241,7 @@ struct error_desc_traits<ss_char_w_t>
 
 STLSOFT_CLOSE_WORKER_NS_(ximpl_stlsoft_error_desc_)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -376,6 +381,7 @@ typedef basic_error_desc<ss_char_w_t>                       error_desc_w;
  */
 typedef basic_error_desc<char>                              error_desc;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
@@ -501,6 +507,7 @@ basic_error_desc<C>::size() const STLSOFT_NOEXCEPT
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -651,6 +658,7 @@ C const* get_ptr(
     return e;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
@@ -728,6 +736,7 @@ operator <<(
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * global namespace shims
  */
@@ -757,6 +766,7 @@ operator <<(
 #endif /* 0 */
 
 #endif /* library */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

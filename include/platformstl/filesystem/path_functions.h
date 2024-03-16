@@ -4,11 +4,11 @@
  * Purpose:     Path manipulation functions.
  *
  * Created:     3rd February 2011
- * Updated:     16th January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_MINOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_REVISION 7
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_EDIT     27
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_EDIT     28
 #endif /* !PLATFORMSTL_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -101,6 +103,7 @@ namespace platformstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !PLATFORMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -388,6 +391,7 @@ platformstl_C_get_directory_path_from_path_w(
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ Functions
  */
@@ -452,6 +456,7 @@ get_directory_path_from_path(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !PLATFORMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

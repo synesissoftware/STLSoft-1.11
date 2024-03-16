@@ -4,11 +4,11 @@
  * Purpose:     Includes all winstl::to_FILETIME conversion shims.
  *
  * Created:     15th December 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_MAJOR       1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_MINOR       1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_REVISION    5
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_EDIT        14
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 #  include <winstl/shims/conversion/to_FILETIME/UDATE.hpp>
 # endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_UDATE */
 #endif /* WINSTL_UDATE_DEFINED */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Contains the internet_exception class.
  *
  * Created:     25th April 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_MAJOR     4
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_MINOR     2
 # define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_REVISION  7
-# define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      55
+# define INETSTL_VER_INETSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -91,6 +92,7 @@
 # endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #endif /* _WIN32 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -109,6 +111,7 @@ namespace inetstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -159,6 +162,7 @@ public:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -172,6 +176,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

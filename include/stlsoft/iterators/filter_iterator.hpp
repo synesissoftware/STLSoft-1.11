@@ -5,7 +5,7 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MINOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_REVISION 8
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     53
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # include <stlsoft/util/std/iterator_category_limiters.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * feature discrimination
  */
@@ -104,6 +106,7 @@
 # endif /* compiler */
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -112,6 +115,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -331,6 +335,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * creator function
  */
@@ -373,6 +378,7 @@ inline filter_iterator<I, P> filter(I from, I to, P pr)
     return make_filter_iterator(from, to, pr);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
@@ -404,6 +410,7 @@ inline ss_bool_t operator !=(filter_iterator<I, P, T> const& lhs, filter_iterato
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

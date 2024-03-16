@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_DeviceContext
 #define WINSTL_INCL_WINSTL_API_external_h_DeviceContext
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -64,6 +65,7 @@
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' Device Context Functions
  */
@@ -71,6 +73,7 @@
 #ifndef WINSTL_API_EXTERNAL_DeviceContext_GetObject
 # define WINSTL_API_EXTERNAL_DeviceContext_GetObject        STLSOFT_NS_GLOBAL_(GetObject)
 #endif /* !WINSTL_API_EXTERNAL_DeviceContext_GetObject */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

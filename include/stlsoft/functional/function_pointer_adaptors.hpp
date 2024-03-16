@@ -4,11 +4,11 @@
  * Purpose:     Contains the stlsoft::ptr_fun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     26th December 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,13 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_MINOR    2
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_REVISION 5
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_EDIT     72
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_REVISION 6
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS_EDIT     73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +75,7 @@
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +84,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -102,17 +101,20 @@ template< ss_typename_param_k R
         , ss_typename_param_k A
         >
 struct unary_cdecl_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, R>
+#endif
 {
 public:
-    typedef R                           return_type;
-    typedef A                           argument_type;
-    typedef return_type (STLSOFT_CDECL  *function_type)(argument_type);
+    typedef A                                               argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                     (STLSOFT_CDECL* function_type)(argument_type);
 public:
     ss_explicit_k unary_cdecl_function_pointer(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(argument_type arg) const
+    result_type operator ()(argument_type arg) const
     {
         return (*m_func)(arg);
     }
@@ -131,18 +133,21 @@ template< ss_typename_param_k R
         , ss_typename_param_k A1
         >
 struct binary_cdecl_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, R>
+#endif
 {
 public:
-    typedef R                           return_type;
-    typedef A0                          first_argument_type;
-    typedef A1                          second_argument_type;
-    typedef return_type (STLSOFT_CDECL  *function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                     (STLSOFT_CDECL* function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k binary_cdecl_function_pointer(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(first_argument_type a0, second_argument_type a1) const
+    result_type operator ()(first_argument_type a0, second_argument_type a1) const
     {
         return (*m_func)(a0, a1);
     }
@@ -162,17 +167,21 @@ template< ss_typename_param_k R
         , ss_typename_param_k A
         >
 struct unary_fastcall_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef A                               argument_type;
-    typedef return_type (STLSOFT_FASTCALL   *function_type)(argument_type);
+    typedef A                                               argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                  (STLSOFT_FASTCALL* function_type)(argument_type);
+
 public:
     ss_explicit_k unary_fastcall_function_pointer(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(argument_type arg) const
+    result_type operator ()(argument_type arg) const
     {
         return (*m_func)(arg);
     }
@@ -191,18 +200,21 @@ template< ss_typename_param_k R
         , ss_typename_param_k A1
         >
 struct binary_fastcall_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef A0                              first_argument_type;
-    typedef A1                              second_argument_type;
-    typedef return_type (STLSOFT_FASTCALL   *function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef result_type (STLSOFT_FASTCALL   *function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k binary_fastcall_function_pointer(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(first_argument_type a0, second_argument_type a1) const
+    result_type operator ()(first_argument_type a0, second_argument_type a1) const
     {
         return (*m_func)(a0, a1);
     }
@@ -222,17 +234,20 @@ template< ss_typename_param_k R
         , ss_typename_param_k A
         >
 struct unary_stdcall_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef A                               argument_type;
-    typedef return_type (STLSOFT_STDCALL    *function_type)(argument_type);
+    typedef A                                               argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                   (STLSOFT_STDCALL* function_type)(argument_type);
 public:
     ss_explicit_k unary_stdcall_function_pointer(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(argument_type arg) const
+    result_type operator ()(argument_type arg) const
     {
         return (*m_func)(arg);
     }
@@ -251,18 +266,21 @@ template< ss_typename_param_k R
         , ss_typename_param_k A1
         >
 struct binary_stdcall_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef A0                              first_argument_type;
-    typedef A1                              second_argument_type;
-    typedef return_type (STLSOFT_STDCALL    *function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                   (STLSOFT_STDCALL* function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k binary_stdcall_function_pointer(function_type func)
         : m_func(func)
     {}
-    return_type operator ()(first_argument_type a0, second_argument_type a1) const
+    result_type operator ()(first_argument_type a0, second_argument_type a1) const
     {
         return (*m_func)(a0, a1);
     }
@@ -283,12 +301,15 @@ private:
 // [[synesis:class:function-class:unary-function: unary_cdecl_void_function_pointer<T<R>, T<A>>]]
 template <ss_typename_param_k A>
 struct unary_cdecl_void_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, void>
+#endif
 {
 public:
-    typedef void                        return_type;
-    typedef A                           argument_type;
-    typedef return_type (STLSOFT_CDECL  *function_type)(argument_type);
+    typedef A                                               argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                     (STLSOFT_CDECL* function_type)(argument_type);
 public:
     ss_explicit_k unary_cdecl_void_function_pointer(function_type func)
         : m_func(func)
@@ -312,13 +333,16 @@ template<   ss_typename_param_k A0
         ,   ss_typename_param_k A1
         >
 struct binary_cdecl_void_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, void>
+#endif
 {
 public:
-    typedef void                        return_type;
-    typedef A0                          first_argument_type;
-    typedef A1                          second_argument_type;
-    typedef return_type (STLSOFT_CDECL  *function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef result_type (STLSOFT_CDECL  *function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k binary_cdecl_void_function_pointer(function_type func)
         : m_func(func)
@@ -342,12 +366,15 @@ private:
 // [[synesis:class:function-class:unary-function: unary_fastcall_void_function_pointer<T<R>, T<A>>]]
 template <ss_typename_param_k A>
 struct unary_fastcall_void_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef A                               argument_type;
-    typedef return_type (STLSOFT_FASTCALL   *function_type)(argument_type);
+    typedef A                                               argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                  (STLSOFT_FASTCALL* function_type)(argument_type);
 public:
     ss_explicit_k unary_fastcall_void_function_pointer(function_type func)
         : m_func(func)
@@ -371,13 +398,16 @@ template<   ss_typename_param_k A0
         ,   ss_typename_param_k A1
         >
 struct binary_fastcall_void_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef A0                              first_argument_type;
-    typedef A1                              second_argument_type;
-    typedef return_type (STLSOFT_FASTCALL   *function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                  (STLSOFT_FASTCALL* function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k binary_fastcall_void_function_pointer(function_type func)
         : m_func(func)
@@ -401,12 +431,15 @@ private:
 // [[synesis:class:function-class:unary-function: unary_stdcall_void_function_pointer<T<R>, T<A>>]]
 template <ss_typename_param_k A>
 struct unary_stdcall_void_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef A                               argument_type;
-    typedef return_type (STLSOFT_STDCALL    *function_type)(argument_type);
+    typedef A                                               argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                   (STLSOFT_STDCALL* function_type)(argument_type);
 public:
     ss_explicit_k unary_stdcall_void_function_pointer(function_type func)
         : m_func(func)
@@ -430,13 +463,16 @@ template<   ss_typename_param_k A0
         ,   ss_typename_param_k A1
         >
 struct binary_stdcall_void_function_pointer
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A0, A1, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef A0                              first_argument_type;
-    typedef A1                              second_argument_type;
-    typedef return_type (STLSOFT_STDCALL    *function_type)(first_argument_type, second_argument_type);
+    typedef A0                                              first_argument_type;
+    typedef A1                                              second_argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef result_type                   (STLSOFT_STDCALL* function_type)(first_argument_type, second_argument_type);
 public:
     ss_explicit_k binary_stdcall_void_function_pointer(function_type func)
         : m_func(func)
@@ -450,6 +486,7 @@ private:
 };
 # endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 #endif /* !STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * creator functions
@@ -790,11 +827,15 @@ binary_stdcall_void_function_pointer<A0, A1> ptr_fun(void (STLSOFT_STDCALL *func
 
 #endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

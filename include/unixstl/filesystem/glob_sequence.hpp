@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     2nd January 2021
+ * Updated:     11th March 2024
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *              To Nevin Liber for pressing upon me the need to lead by
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,8 +58,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      179
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      180
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -132,6 +133,7 @@
 # include <stdexcept>                        // for std::runtime_error
 #endif /* !STLSOFT_INCL_STDEXCEPT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * library compatibility
  */
@@ -182,6 +184,7 @@
 # endif /* !UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK */
 #endif /* !_WIN32 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -222,6 +225,7 @@
 # error Unrecognised compiler
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -240,6 +244,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -657,6 +662,7 @@ private:
     class_type const& operator =(class_type const&);
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -1472,6 +1478,7 @@ glob_sequence::init_glob_3_(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

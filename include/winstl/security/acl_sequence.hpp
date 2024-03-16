@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing token information.
  *
  * Created:     26th June 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_MINOR      0
 # define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_REVISION   6
-# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_EDIT       46
+# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +92,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -246,6 +249,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

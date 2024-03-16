@@ -4,11 +4,11 @@
  * Purpose:     Contains the is_empty attribute shim.
  *
  * Created:     18th December 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_MAJOR       2
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_REVISION    3
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT        14
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER
 # include <stlsoft/shims/logical/is_empty/std/container.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

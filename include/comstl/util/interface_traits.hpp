@@ -4,7 +4,7 @@
  * Purpose:     Interface traits.
  *
  * Created:     25th May 2002
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_MAJOR      5
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_MINOR      0
 # define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_REVISION   5
-# define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_EDIT       69
+# define COMSTL_VER_COMSTL_UTIL_HPP_INTERFACE_TRAITS_EDIT       70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler discrimination
@@ -84,6 +86,7 @@
             _MSC_VER >= 1200))
 # define COMSTL_UUIDOF_SUPPORTED
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -103,6 +106,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -129,6 +133,7 @@ namespace comstl_project
 # define _COMSTL_IID_TRAITS_DEFINE(I)       COMSTL_IID_TRAITS_DEFINE__(I, I)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -239,6 +244,7 @@ namespace comstl_project
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

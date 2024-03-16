@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to common controls.
  *
  * Created:     8th October 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_MINOR      1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_REVISION   9
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_EDIT       90
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_EDIT       91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +89,7 @@
 # include <commctrl.h>
 #endif /* !STLSOFT_INCL_H_COMMCTRL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -359,6 +362,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

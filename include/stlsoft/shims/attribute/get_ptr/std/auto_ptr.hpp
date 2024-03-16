@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_ptr attribute shim.
  *
  * Created:     10th January 2002
- * Updated:     16th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Nevin Liber for spotting a mistake in the get_ptr
  *              definition.
@@ -59,8 +59,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MINOR     1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_REVISION  8
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      61
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # include <memory>
 #endif /* !STLSOFT_INCL_MEMORY */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -92,6 +94,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * get_ptr functions
@@ -116,6 +119,7 @@ inline T *get_ptr(STLSOFT_NS_QUAL_STD(auto_ptr)<T> const& p)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

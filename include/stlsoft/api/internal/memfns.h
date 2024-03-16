@@ -47,6 +47,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 #define STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -75,6 +76,7 @@
 #  include <string.h>
 # endif /* !STLSOFT_INCL_H_STRING */
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * time functions
@@ -164,6 +166,7 @@ STLSOFT_API_INTERNAL_memfns_memset(
 
     return r;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

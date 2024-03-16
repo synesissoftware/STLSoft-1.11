@@ -4,7 +4,7 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     15th January 2007
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_MINOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_REVISION 4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_EDIT     14
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_UTIL_H_FEATURES_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * features
@@ -98,6 +100,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created:     7th February 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,8 +62,9 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       20
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        84
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -73,6 +74,7 @@
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler features
@@ -336,6 +338,7 @@
 #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
 #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * quality assurance features
  */
@@ -377,6 +380,7 @@
 # define __STLSOFT_CF_USE_cassert
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * calling convention
  */
@@ -407,6 +411,7 @@
 
 #endif /* !unix && !__unix__ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline assembler
  */
@@ -418,11 +423,13 @@
  /* Not defined */
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline support
  */
 
 #define STLSOFT_CF_C99_INLINE
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warning suppression

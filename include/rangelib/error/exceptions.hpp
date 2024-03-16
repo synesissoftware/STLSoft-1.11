@@ -4,11 +4,11 @@
  * Purpose:     Range exceptions.
  *
  * Created:     30th December 2005
- * Updated:     26th January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MAJOR     2
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MINOR     0
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION  10
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      33
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -68,6 +69,7 @@
 [Incompatibilies-end]
 [DocumentationStatus:Ready]
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -93,6 +95,7 @@
 # include <stdexcept>
 #endif /* !STLSOFT_INCL_STDEXCEPT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -111,6 +114,7 @@ namespace rangelib_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -144,7 +148,8 @@ public:
 /// \name Construction
 /// @{
 public:
-    ss_explicit_k range_exception(char const* reason = NULL)
+    ss_explicit_k
+    range_exception(char const* reason = NULL)
         : m_reason((NULL == reason) ? "" : reason)
     {}
     /// Destructor
@@ -236,6 +241,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Policies for spin mutexes.
  *
  * Created:     25th November 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MAJOR      2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MINOR      1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_REVISION   3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_EDIT       17
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_EDIT       18
 #endif /* !WINSTL_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ProcessAndThread
 # include <winstl/api/external/ProcessAndThread.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ProcessAndThread */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -87,6 +89,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility & feature control
  */
@@ -94,6 +97,7 @@ namespace winstl_project
 #if defined(STLSOFT_DEBUG)
 # define WINSTL_SPINMUTEX_COUNT_LOCKS
 #endif /* STLSOFT_DEBUG */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -256,6 +260,7 @@ public: // Operations
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -269,6 +274,7 @@ public: // Operations
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

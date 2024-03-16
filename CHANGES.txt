@@ -18,6 +18,23 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha3 (16th March 2024)
+
+General:
+========
+
+ * `stlsoft::basic_simple_string<>` now has `#contains()`;
+ * `stlsoft::basic_static_string<>` now has `#contains()`;
+ * wholesale automated layout canonicalisation;
+
+Changes:
+========
+
+* numerous
+
+
+============================================================================
+
 Changes for 1.11.1-alpha2 (1st March 2024)
 
 General:

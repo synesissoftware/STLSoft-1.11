@@ -5,7 +5,7 @@
  *              file name.
  *
  * Created:     5th June 2011
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Pablo Aguilar for requesting this component.
  *
@@ -58,8 +58,9 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_MAJOR     1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_MINOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_EDIT      22
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -94,6 +95,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -116,11 +118,13 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Sub-project namespace
  */
 
 STLSOFT_OPEN_WORKER_NS_(system_policies)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -311,11 +315,13 @@ private:
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Sub-project namespace
  */
 
 STLSOFT_CLOSE_WORKER_NS_(system_policies)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
@@ -368,6 +374,7 @@ typedef STLSOFT_NS_QUAL(special_string_instance_0)<
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

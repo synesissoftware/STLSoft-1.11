@@ -4,11 +4,11 @@
  * Purpose:     Path manipulation functions.
  *
  * Created:     12th June 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     21
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

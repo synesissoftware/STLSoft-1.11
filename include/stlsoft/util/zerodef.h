@@ -4,7 +4,7 @@
  * Purpose:     Include for defining ZERO to be the ZERO_v template class.
  *
  * Created:     29th July 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_REVISION 8
-# define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_EDIT     38
+# define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_EDIT     39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -65,6 +66,7 @@
 /*
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -89,6 +91,7 @@
                         // its potential inclusion within stlsoft/stlsoft.h
 #endif /* !STLSOFT_INCL_H_STDDEF */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * definitions
  */
@@ -109,6 +112,7 @@
  /// which means that any use of \c ZERO must be with integral types.
 # define ZERO                                               STLSOFT_NS_QUAL(ZERO_v)::create()
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

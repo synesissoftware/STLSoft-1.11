@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     17th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,9 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MINOR      0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_REVISION   8
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT       69
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT       70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +88,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -355,6 +358,7 @@ private:
     pointer const m_end;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * creator functions
  */
@@ -434,6 +438,7 @@ make_array_proxy(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

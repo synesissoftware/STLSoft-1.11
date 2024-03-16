@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Gabor Fischer for requesting attach().
  *
@@ -56,8 +56,9 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    15
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        82
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -109,6 +110,7 @@
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -127,6 +129,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -297,6 +300,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
  */
@@ -408,6 +412,7 @@ inline S& operator <<(S& stm, COMSTL_NS_QUAL(bstr) const& str)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
@@ -441,6 +446,7 @@ inline cs_bool_t operator !=(BSTR const& lhs, bstr const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -863,7 +869,9 @@ inline void bstr::swap(BSTR& rhs) STLSOFT_NOEXCEPT
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -874,6 +882,7 @@ inline void bstr::swap(BSTR& rhs) STLSOFT_NOEXCEPT
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -907,6 +916,7 @@ using ::comstl::c_str_ptr_o;
 using ::comstl::c_str_ptr_null;
 using ::comstl::c_str_ptr_null_w;
 using ::comstl::c_str_ptr_null_o;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * traits
@@ -967,6 +977,7 @@ struct string_traits< ::comstl::bstr>
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

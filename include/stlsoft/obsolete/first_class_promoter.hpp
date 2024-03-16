@@ -5,7 +5,7 @@
  *              treated as 1st-class types.
  *
  * Created:     8th September 2002
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,9 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MINOR     0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_REVISION  9
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      64
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +82,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -89,6 +91,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * TMP worker classes / functions
@@ -160,6 +163,7 @@ struct first_class_promoter_traits
 #endif /* STLSOFT_NO_NAMESPACE */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -314,6 +318,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

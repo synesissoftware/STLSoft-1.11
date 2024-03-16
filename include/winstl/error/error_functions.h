@@ -4,7 +4,7 @@
  * Purpose:     Error functions.
  *
  * Created:     7th May 2000
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     5
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      85
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_MemoryManagement
 # include <winstl/api/external/MemoryManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_MemoryManagement */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -95,6 +97,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -105,6 +108,7 @@ namespace winstl_project
 #define WINSTL_ERROR_FUNCTIONS_ELIDE_DOT_IF_LAST_ONLY       (0x0002)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -447,6 +451,7 @@ winstl_C_FormatMessageW_INVOKE_in_buffer_(
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C functions (deprecated)
  */
@@ -624,6 +629,7 @@ winstl_C_fmtmsg_LocalFree__(void* pv)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
  */
@@ -735,6 +741,7 @@ winstl_C_format_message_from_module_to_allocated_buffer_w(
 
     return r;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions (deprecated)
@@ -1026,6 +1033,7 @@ winstl_C_format_message_free_buff_w(ws_char_w_t* buffer)
     winstl_C_fmtmsg_LocalFree__(buffer);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Character-encoding independent symbols
  */
@@ -1267,6 +1275,7 @@ STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF(winstl__format_message_free_buff_
 
 #endif /* obsolete || 1.9 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1275,6 +1284,7 @@ STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF(winstl__format_message_free_buff_
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -1470,6 +1480,7 @@ format_message_free_buff(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

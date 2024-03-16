@@ -4,11 +4,11 @@
  * Purpose:     Forward declarations.
  *
  * Created:     18th December 2016
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_MINOR    0
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_REVISION 3
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_EDIT     7
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_CONTROL_PANEL_FWD_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -87,6 +89,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -94,6 +97,7 @@ namespace winstl_project
 class applet;
 
 class applet_module;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -108,6 +112,7 @@ class applet_module;
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

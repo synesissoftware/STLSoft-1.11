@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -61,8 +61,9 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      136
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      137
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -95,6 +96,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #endif /* STLSOFT_MINIMUM_SAS_INCLUDES */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -114,6 +116,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * enumerations
  */
@@ -125,6 +128,7 @@ enum
 {
     MAX_VOL_NAME = WINSTL_CONST_MAX_PATH   //!< The maximum number of characters in a volume name
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -139,6 +143,7 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
 class basic_findvolume_sequence_const_iterator;
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -197,6 +202,7 @@ public:
     ws_bool_t       empty() const;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -216,6 +222,7 @@ typedef basic_findvolume_sequence<ws_char_w_t, filesystem_traits<ws_char_w_t> > 
  * \ingroup group__library__FileSystem
  */
 typedef basic_findvolume_sequence<TCHAR, filesystem_traits<TCHAR> >                 findvolume_sequence;
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -398,8 +405,10 @@ private:
     char_type           m_name[MAX_VOL_NAME + 1];
 };
 
-////////////////////////////////////////////////////////////////////////////
-// Shims
+
+/* /////////////////////////////////////////////////////////////////////////
+ * shims
+ */
 
 // c_str_data
 
@@ -524,11 +533,12 @@ inline ws_bool_t is_empty(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C
 {
     return '\0' == v[0];
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -653,7 +663,6 @@ inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>:
 
     return *this;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
@@ -716,10 +725,12 @@ inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator !=(
 {
     return ! operator ==(rhs);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -730,6 +741,7 @@ inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator !=(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -777,6 +789,7 @@ using ::winstl::is_empty;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

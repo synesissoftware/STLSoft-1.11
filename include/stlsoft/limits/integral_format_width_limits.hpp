@@ -4,7 +4,7 @@
  * Purpose: integral_format_width_limits traits class template.
  *
  * Created: 10th July 2012
- * Updated: 18th February 2024
+ * Updated: 11th March 2024
  *
  * Thanks:  To Jonathan Wakely for help with Solaris compatibility.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_MINOR      1
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_EDIT       13
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -417,7 +417,9 @@ struct integral_format_width_limits<unsigned long>
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

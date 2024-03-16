@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    2
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 11
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     115
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -102,6 +103,7 @@
 # include <winstl/api/external/Registry.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Registry */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -120,6 +122,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -249,18 +252,18 @@ private:
     // 5. Windows directory
     // 6 - n. Path directories
 
-    typedef processheap_allocator<char_type>    main_allocator_type_;
-    typedef processheap_allocator<value_type>   value_allocator_type_;
+    typedef processheap_allocator<char_type>                main_allocator_type_;
+    typedef processheap_allocator<value_type>               value_allocator_type_;
     typedef STLSOFT_NS_QUAL(auto_buffer_old)<
         char_type
     ,   main_allocator_type_
     ,   1024
-    >                                           main_buffer_type_;
+    >                                                       main_buffer_type_;
     typedef STLSOFT_NS_QUAL(auto_buffer_old)<
         value_type
     ,   value_allocator_type_
     ,   24
-    >                                           value_buffer_type_;
+    >                                                       value_buffer_type_;
 
     main_buffer_type_   m_buffer;
     value_buffer_type_  m_values;
@@ -276,9 +279,9 @@ private:
 
     /* WSCB: Borland has an internal compiler error if use ws_bool_t */
 #ifdef STLSOFT_COMPILER_IS_BORLAND
-    typedef ws_int_t        init_type;
+    typedef ws_int_t                                        init_type;
 #else /* ? compiler */
-    typedef ws_bool_t       init_type;
+    typedef ws_bool_t                                       init_type;
 #endif /* compiler */
 
     static char_type const* get_application_directory()
@@ -470,6 +473,7 @@ private:
     basic_searchpath_sequence const& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -490,8 +494,10 @@ typedef basic_searchpath_sequence<ws_char_w_t, filesystem_traits<ws_char_w_t> > 
  */
 typedef basic_searchpath_sequence<TCHAR, filesystem_traits<TCHAR> >             searchpath_sequence;
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -500,7 +506,8 @@ typedef basic_searchpath_sequence<TCHAR, filesystem_traits<TCHAR> >             
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline basic_searchpath_sequence<C, T>::basic_searchpath_sequence()
+inline
+basic_searchpath_sequence<C, T>::basic_searchpath_sequence()
     : m_buffer(directories_total())
     , m_values(num_paths() + (system_version::winnt() ? 5 : 4))
 {
@@ -510,7 +517,8 @@ inline basic_searchpath_sequence<C, T>::basic_searchpath_sequence()
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline basic_searchpath_sequence<C, T>::basic_searchpath_sequence(
+inline
+basic_searchpath_sequence<C, T>::basic_searchpath_sequence(
     ws_bool_t bIncludeApplicationDirectory
 ,   ws_bool_t bIncludeCurrentDirectory
 ,   ws_bool_t bApplicationDirectoryFirst /* = true */
@@ -525,7 +533,9 @@ inline basic_searchpath_sequence<C, T>::basic_searchpath_sequence(
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline void basic_searchpath_sequence<C, T>::construct_(
+inline
+void
+basic_searchpath_sequence<C, T>::construct_(
     ws_bool_t   bIncludeApplicationDirectory
 ,   ws_bool_t   bIncludeCurrentDirectory
 ,   ws_bool_t   bApplicationDirectoryFirst
@@ -648,13 +658,16 @@ inline void basic_searchpath_sequence<C, T>::construct_(
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline basic_searchpath_sequence<C, T>::~basic_searchpath_sequence() STLSOFT_NOEXCEPT
+inline
+basic_searchpath_sequence<C, T>::~basic_searchpath_sequence() STLSOFT_NOEXCEPT
 {}
 
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_iterator basic_searchpath_sequence<C, T>::begin() const
+inline
+ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_iterator
+basic_searchpath_sequence<C, T>::begin() const
 {
     return &m_values[0];
 }
@@ -662,7 +675,9 @@ inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_iterator ba
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_iterator basic_searchpath_sequence<C, T>::end() const
+inline
+ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_iterator
+basic_searchpath_sequence<C, T>::end() const
 {
     return m_end;
 }
@@ -671,7 +686,9 @@ inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_iterator ba
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_reverse_iterator basic_searchpath_sequence<C, T>::rbegin() const
+inline
+ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_reverse_iterator
+basic_searchpath_sequence<C, T>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
@@ -679,7 +696,9 @@ inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_reverse_ite
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_reverse_iterator basic_searchpath_sequence<C, T>::rend() const
+inline
+ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_reverse_iterator
+basic_searchpath_sequence<C, T>::rend() const
 {
     return const_reverse_iterator(begin());
 }
@@ -688,7 +707,9 @@ inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::const_reverse_ite
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::size_type basic_searchpath_sequence<C, T>::size() const
+inline
+ss_typename_type_ret_k basic_searchpath_sequence<C, T>::size_type
+basic_searchpath_sequence<C, T>::size() const
 {
     return static_cast<size_type>(end() - begin());
 }
@@ -696,7 +717,9 @@ inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::size_type basic_s
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ws_bool_t basic_searchpath_sequence<C, T>::empty() const
+inline
+ws_bool_t
+basic_searchpath_sequence<C, T>::empty() const
 {
     return end() == begin();
 }
@@ -704,7 +727,10 @@ inline ws_bool_t basic_searchpath_sequence<C, T>::empty() const
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline /* static */ ss_typename_type_ret_k basic_searchpath_sequence<C, T>::size_type basic_searchpath_sequence<C, T>::max_size()
+inline
+/* static */
+ss_typename_type_ret_k basic_searchpath_sequence<C, T>::size_type
+basic_searchpath_sequence<C, T>::max_size()
 {
     // Kind of kludgy, sigh.
     return static_cast<size_type>(-1) / WINSTL_CONST_MAX_PATH;
@@ -713,16 +739,20 @@ inline /* static */ ss_typename_type_ret_k basic_searchpath_sequence<C, T>::size
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::value_type basic_searchpath_sequence<C, T>::operator [](ss_typename_type_k basic_searchpath_sequence<C, T>::size_type index) const
+inline
+ss_typename_type_ret_k basic_searchpath_sequence<C, T>::value_type
+basic_searchpath_sequence<C, T>::operator [](ss_typename_type_k basic_searchpath_sequence<C, T>::size_type index) const
 {
     WINSTL_MESSAGE_ASSERT("Invalid index in search path sequence", !(size() < index));
 
     return begin()[index];
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -733,6 +763,7 @@ inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::value_type basic_
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

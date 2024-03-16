@@ -4,11 +4,11 @@
  * Purpose:     Performance counter scope class.
  *
  * Created:     20th July 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_MAJOR    5
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_MINOR    0
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_EDIT     51
+# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # include <stlsoft/diagnostics/stopwatch_scope.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STOPWATCH_SCOPE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -145,6 +148,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

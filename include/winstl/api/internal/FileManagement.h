@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_internal_h_FileManagement
 #define WINSTL_INCL_WINSTL_API_internal_h_FileManagement
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -67,6 +68,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' File Management Functions
@@ -154,6 +156,7 @@ WINSTL_API_INTERNAL_FileManagement_GetFullPathNameW(
 
     return WINSTL_API_EXTERNAL_FileManagement_GetFullPathNameW(lpFileName, nBufferLength, lpBuffer, lpFilePart);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

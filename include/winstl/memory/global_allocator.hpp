@@ -4,7 +4,7 @@
  * Purpose:     global_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_MINOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_REVISION 7
-# define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_EDIT     92
+# define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_EDIT     93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 # include <winstl/api/external/MemoryManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_MemoryManagement */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -94,6 +96,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -232,6 +235,7 @@ inline ws_bool_t operator !=(const global_allocator<T> &/* lhs */, const global_
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

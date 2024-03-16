@@ -4,7 +4,7 @@
  * Purpose:     TOOLHELP module sequence class.
  *
  * Created:     21st May 2005
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -58,8 +58,9 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_MAJOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_MINOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_REVISION    5
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_EDIT        22
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <winstl/toolhelp/sequence_base.hpp>
 #endif /* !WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -97,6 +99,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes

@@ -4,11 +4,11 @@
  * Purpose:     Defines the stlsoft::trip_bool class template.
  *
  * Created:     22nd October 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,12 +54,14 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    6
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        19
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +73,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -150,6 +153,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

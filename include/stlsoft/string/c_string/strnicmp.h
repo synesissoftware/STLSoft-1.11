@@ -4,11 +4,11 @@
  * Purpose:     Definition of stlsoft_C_strnicmp() and stlsoft_C_wcsnicmp()
  *
  * Created:     25th November 2020
- * Updated:     7th February 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2020-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNICMP_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 # define STLSOFT_INCL_H_WCTYPE
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -167,6 +169,7 @@ stlsoft_C_wcsnicmp(
     return 0;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -176,6 +179,7 @@ namespace stlsoft
 {
 namespace c_string
 {
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions (C++)
@@ -214,6 +218,7 @@ wcsnicmp(
     return stlsoft_C_wcsnicmp(s1, s2, n);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -221,6 +226,7 @@ wcsnicmp(
 } /* namespace c_string */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

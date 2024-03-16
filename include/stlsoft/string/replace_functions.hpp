@@ -4,7 +4,7 @@
  * Purpose:     String replace functions.
  *
  * Created:     11th May 2010
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_MINOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_EDIT      14
+# define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_EDIT      15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -88,6 +90,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -124,6 +127,7 @@ replace_impl(
     return str;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
@@ -150,6 +154,7 @@ replace(
             );
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -157,6 +162,7 @@ replace(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

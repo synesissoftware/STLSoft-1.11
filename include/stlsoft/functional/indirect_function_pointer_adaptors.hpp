@@ -4,11 +4,11 @@
  * Purpose:     Contains the stlsoft::ptr_ifun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     26th December 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,13 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_MINOR    1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_REVISION 5
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_EDIT     20
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_REVISION 6
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +75,7 @@
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +84,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -101,8 +100,14 @@ namespace stlsoft
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 template <typename T>
 struct ref2ptr_1_CDECL_void_t
-    : STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
+public:
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+
 public:
     ref2ptr_1_CDECL_void_t(void (STLSOFT_CDECL *p)(T*))
         : m_p(p)
@@ -121,8 +126,14 @@ private:
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template <typename T>
 struct ref2ptr_1_FASTCALL_void_t
-    : STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
+public:
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+
 public:
     ref2ptr_1_FASTCALL_void_t(void (STLSOFT_FASTCALL *p)(T*))
         : m_p(p)
@@ -141,8 +152,14 @@ private:
 # ifdef STLSOFT_CF_STDCALL_SUPPORTED
 template <typename T>
 struct ref2ptr_1_STDCALL_void_t
-    : STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
+public:
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+
 public:
     ref2ptr_1_STDCALL_void_t(void (STLSOFT_STDCALL *p)(T*))
         : m_p(p)
@@ -164,8 +181,14 @@ private:
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 template <typename T, typename R>
 struct ref2ptr_1_CDECL_t
-    : STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
+public:
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+
 public:
     ref2ptr_1_CDECL_t(R (STLSOFT_CDECL *p)(T*))
         : m_p(p)
@@ -184,8 +207,14 @@ private:
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template <typename T, typename R>
 struct ref2ptr_1_FASTCALL_t
-    : STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
+public:
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+
 public:
     ref2ptr_1_FASTCALL_t(R (STLSOFT_FASTCALL *p)(T*))
         : m_p(p)
@@ -204,8 +233,14 @@ private:
 # ifdef STLSOFT_CF_STDCALL_SUPPORTED
 template <typename T, typename R>
 struct ref2ptr_1_STDCALL_t
-    : STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
+public:
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+
 public:
     ref2ptr_1_STDCALL_t(R (STLSOFT_STDCALL *p)(T*))
         : m_p(p)
@@ -222,27 +257,31 @@ private:
 };
 # endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * creator functions
  */
 
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 template <typename T, typename R>
-inline ref2ptr_1_CDECL_t<T, R> ptr_ifun(R (STLSOFT_CDECL *p)(T*))
+inline
+ref2ptr_1_CDECL_t<T, R> ptr_ifun(R (STLSOFT_CDECL *p)(T*))
 {
     return ref2ptr_1_CDECL_t<T, R>(p);
 }
 # endif /* STLSOFT_CF_CDECL_SUPPORTED */
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template <typename T, typename R>
-inline ref2ptr_1_FASTCALL_t<T, R> ptr_ifun(R (STLSOFT_FASTCALL *p)(T*))
+inline
+ref2ptr_1_FASTCALL_t<T, R> ptr_ifun(R (STLSOFT_FASTCALL *p)(T*))
 {
     return ref2ptr_1_FASTCALL_t<T, R>(p);
 }
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 # ifdef STLSOFT_CF_STDCALL_SUPPORTED
 template <typename T, typename R>
-inline ref2ptr_1_STDCALL_t<T, R> ptr_ifun(R (STLSOFT_STDCALL *p)(T*))
+inline
+ref2ptr_1_STDCALL_t<T, R> ptr_ifun(R (STLSOFT_STDCALL *p)(T*))
 {
     return ref2ptr_1_STDCALL_t<T, R>(p);
 }
@@ -251,21 +290,24 @@ inline ref2ptr_1_STDCALL_t<T, R> ptr_ifun(R (STLSOFT_STDCALL *p)(T*))
 #ifdef STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_CDECL_t<T, void> ptr_ifun_void(void (STLSOFT_CDECL *p)(T*))
+inline
+ref2ptr_1_CDECL_t<T, void> ptr_ifun_void(void (STLSOFT_CDECL *p)(T*))
 {
     return ref2ptr_1_CDECL_t<T, void>(p);
 }
 # endif /* STLSOFT_CF_CDECL_SUPPORTED */
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_FASTCALL_t<T, void> ptr_ifun_void(void (STLSOFT_FASTCALL *p)(T*))
+inline
+ref2ptr_1_FASTCALL_t<T, void> ptr_ifun_void(void (STLSOFT_FASTCALL *p)(T*))
 {
     return ref2ptr_1_FASTCALL_t<T, void>(p);
 }
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 # ifdef STLSOFT_CF_STDCALL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_STDCALL_t<T, void> ptr_ifun_void(void (STLSOFT_STDCALL *p)(T*))
+inline
+ref2ptr_1_STDCALL_t<T, void> ptr_ifun_void(void (STLSOFT_STDCALL *p)(T*))
 {
     return ref2ptr_1_STDCALL_t<T, void>(p);
 }
@@ -273,21 +315,24 @@ inline ref2ptr_1_STDCALL_t<T, void> ptr_ifun_void(void (STLSOFT_STDCALL *p)(T*))
 #else /* ? STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_CDECL_void_t<T> ptr_ifun_void(void (STLSOFT_CDECL *p)(T*))
+inline
+ref2ptr_1_CDECL_void_t<T> ptr_ifun_void(void (STLSOFT_CDECL *p)(T*))
 {
     return ref2ptr_1_CDECL_void_t<T>(p);
 }
 # endif /* STLSOFT_CF_CDECL_SUPPORTED */
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_FASTCALL_void_t<T> ptr_ifun_void(void (STLSOFT_FASTCALL *p)(T*))
+inline
+ref2ptr_1_FASTCALL_void_t<T> ptr_ifun_void(void (STLSOFT_FASTCALL *p)(T*))
 {
     return ref2ptr_1_FASTCALL_void_t<T>(p);
 }
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 # ifdef STLSOFT_CF_STDCALL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_STDCALL_void_t<T> ptr_ifun_void(void (STLSOFT_STDCALL *p)(T*))
+inline
+ref2ptr_1_STDCALL_void_t<T> ptr_ifun_void(void (STLSOFT_STDCALL *p)(T*))
 {
     return ref2ptr_1_STDCALL_void_t<T>(p);
 }
@@ -296,21 +341,24 @@ inline ref2ptr_1_STDCALL_void_t<T> ptr_ifun_void(void (STLSOFT_STDCALL *p)(T*))
 
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 template <typename T, typename R>
-inline ref2ptr_1_CDECL_t<T, R> ref2ptr(R (STLSOFT_CDECL *p)(T*))
+inline
+ref2ptr_1_CDECL_t<T, R> ref2ptr(R (STLSOFT_CDECL *p)(T*))
 {
     return ref2ptr_1_CDECL_t<T, R>(p);
 }
 # endif /* STLSOFT_CF_CDECL_SUPPORTED */
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template <typename T, typename R>
-inline ref2ptr_1_FASTCALL_t<T, R> ref2ptr(R (STLSOFT_FASTCALL *p)(T*))
+inline
+ref2ptr_1_FASTCALL_t<T, R> ref2ptr(R (STLSOFT_FASTCALL *p)(T*))
 {
     return ref2ptr_1_FASTCALL_t<T, R>(p);
 }
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 # ifdef STLSOFT_CF_STDCALL_SUPPORTED
 template <typename T, typename R>
-inline ref2ptr_1_STDCALL_t<T, R> ref2ptr(R (STLSOFT_STDCALL *p)(T*))
+inline
+ref2ptr_1_STDCALL_t<T, R> ref2ptr(R (STLSOFT_STDCALL *p)(T*))
 {
     return ref2ptr_1_STDCALL_t<T, R>(p);
 }
@@ -319,21 +367,24 @@ inline ref2ptr_1_STDCALL_t<T, R> ref2ptr(R (STLSOFT_STDCALL *p)(T*))
 #ifdef STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_CDECL_t<T, void> ref2ptr_void(void (STLSOFT_CDECL *p)(T*))
+inline
+ref2ptr_1_CDECL_t<T, void> ref2ptr_void(void (STLSOFT_CDECL *p)(T*))
 {
     return ref2ptr_1_CDECL_t<T, void>(p);
 }
 # endif /* STLSOFT_CF_CDECL_SUPPORTED */
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_FASTCALL_t<T, void> ref2ptr_void(void (STLSOFT_FASTCALL *p)(T*))
+inline
+ref2ptr_1_FASTCALL_t<T, void> ref2ptr_void(void (STLSOFT_FASTCALL *p)(T*))
 {
     return ref2ptr_1_FASTCALL_t<T, void>(p);
 }
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 # ifdef STLSOFT_CF_STDCALL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_STDCALL_t<T, void> ref2ptr_void(void (STLSOFT_STDCALL *p)(T*))
+inline
+ref2ptr_1_STDCALL_t<T, void> ref2ptr_void(void (STLSOFT_STDCALL *p)(T*))
 {
     return ref2ptr_1_STDCALL_t<T, void>(p);
 }
@@ -341,32 +392,39 @@ inline ref2ptr_1_STDCALL_t<T, void> ref2ptr_void(void (STLSOFT_STDCALL *p)(T*))
 #else /* ? STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_CDECL_void_t<T> ref2ptr_void(void (STLSOFT_CDECL *p)(T*))
+inline
+ref2ptr_1_CDECL_void_t<T> ref2ptr_void(void (STLSOFT_CDECL *p)(T*))
 {
     return ref2ptr_1_CDECL_void_t<T>(p);
 }
 # endif /* STLSOFT_CF_CDECL_SUPPORTED */
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_FASTCALL_void_t<T> ref2ptr_void(void (STLSOFT_FASTCALL *p)(T*))
+inline
+ref2ptr_1_FASTCALL_void_t<T> ref2ptr_void(void (STLSOFT_FASTCALL *p)(T*))
 {
     return ref2ptr_1_FASTCALL_void_t<T>(p);
 }
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 # ifdef STLSOFT_CF_STDCALL_SUPPORTED
 template <typename T>
-inline ref2ptr_1_STDCALL_void_t<T> ref2ptr_void(void (STLSOFT_STDCALL *p)(T*))
+inline
+ref2ptr_1_STDCALL_void_t<T> ref2ptr_void(void (STLSOFT_STDCALL *p)(T*))
 {
     return ref2ptr_1_STDCALL_void_t<T>(p);
 }
 # endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 #endif /* !STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

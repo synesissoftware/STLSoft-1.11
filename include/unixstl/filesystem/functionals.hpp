@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     2nd November 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_MINOR    2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_EDIT     65
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_FUNCTIONALS_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _UNIXSTL_FUNCTIONALS_NO_STD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -103,6 +105,7 @@ namespace unixstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -114,24 +117,28 @@ namespace unixstl_project
 template <ss_typename_param_k C>
 // [[synesis:class:function-class:binary-predicate: path_compare<T<C>>]]
 struct path_compare
-    : public STLSOFT_NS_QUAL_STD(binary_function)<C const*, C const*, us_bool_t>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(binary_function)<
+                    C const*
+                ,   C const*
+                ,   us_bool_t
+                >
+#endif
 {
 public:
     /// The character type
-    typedef C                                                                       char_type;
-private:
-    typedef STLSOFT_NS_QUAL_STD(binary_function)<C const*, C const*, us_bool_t>   parent_class_type;
+    typedef C                                               char_type;
 public:
     /// The first argument type
-    typedef ss_typename_type_k parent_class_type::first_argument_type               first_argument_type;
+    typedef char_type const*                                first_argument_type;
     /// The second argument type
-    typedef ss_typename_type_k parent_class_type::second_argument_type              second_argument_type;
+    typedef char_type const*                                second_argument_type;
     /// The result type
-    typedef ss_typename_type_k parent_class_type::result_type                       result_type;
+    typedef us_bool_t                                       result_type;
     /// The traits type
-    typedef filesystem_traits<C>                                                    traits_type;
+    typedef filesystem_traits<C>                            traits_type;
     /// The current specialisation of the type
-    typedef path_compare<C>                                                         class_type;
+    typedef path_compare<C>                                 class_type;
 
 public:
     /// Function call, compares \c s1 with \c s2
@@ -186,21 +193,25 @@ private:
  * \param C The character type
  * \param A The argument type; defaults to C const*
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k A = C const*
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k A = C const*
+>
 // [[synesis:class:function-class:unary-predicate: path_exists<T<C>, T<A>>]]
 struct path_exists
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, us_bool_t>
+#endif
 {
-private:
-    typedef STLSOFT_NS_QUAL_STD(unary_function)<A, us_bool_t>   parent_class_type;
-    typedef filesystem_traits<C>                                traits_type;
 public:
     /// The character type
     typedef C                                                   char_type;
     /// The argument type
     typedef A                                                   argument_type;
+    /// The result type
+    typedef us_bool_t                                           result_type;
+    /// The traits type
+    typedef filesystem_traits<C>                                traits_type;
     /// The current specialisation of the type
     typedef path_exists<C, A>                                   class_type;
 
@@ -216,7 +227,11 @@ public:
     }
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
+
 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -227,6 +242,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

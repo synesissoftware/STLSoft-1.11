@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,8 +62,9 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      21
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       105
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -74,9 +75,11 @@
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler features
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -95,6 +98,7 @@
 #  error STLSoft is compatible with only STLport and the SGI STL, when used with the Digital Mars compiler
 # endif /* STL */
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * features
@@ -443,6 +447,7 @@
 # define STLSOFT_ASSERT(expr)                   assert(expr)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * calling convention
  */
@@ -458,6 +463,7 @@
 # define STLSOFT_STDCALL                                    __stdcall
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline assembler
  */
@@ -465,11 +471,13 @@
 #define STSLSOFT_INLINE_ASM_SUPPORTED
 #define STSLSOFT_ASM_IN_INLINE_SUPPORTED
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline support
  */
 
 #define STLSOFT_CF_C99_INLINE
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warning suppression

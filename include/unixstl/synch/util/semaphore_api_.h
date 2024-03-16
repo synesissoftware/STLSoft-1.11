@@ -4,7 +4,7 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     16th January 2024
- * Updated:     18th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,9 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__MINOR    0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__REVISION 1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__EDIT     2
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_SEMAPHORE_API__EDIT     3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

@@ -4,11 +4,11 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     15th January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR     2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  17
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      143
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      144
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -95,6 +96,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -207,6 +209,7 @@ private: // fields
     buffer_type_    m_previous;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -226,6 +229,7 @@ typedef basic_current_directory_scope<ws_char_w_t, filesystem_traits<ws_char_w_t
  * \ingroup group__library__FileSystem
  */
 typedef basic_current_directory_scope<TCHAR, filesystem_traits<TCHAR> >                 current_directory_scope;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -283,6 +287,7 @@ c_str_len(
     return STLSOFT_NS_QUAL(c_str_len)(b.get_previous());
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
@@ -303,6 +308,7 @@ operator <<(
 
     return s;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -440,6 +446,7 @@ using ::winstl::c_str_len;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

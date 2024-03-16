@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_SystemInformation
 #define WINSTL_INCL_WINSTL_API_external_h_SystemInformation
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -63,6 +64,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' System Information Functions

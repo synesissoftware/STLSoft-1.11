@@ -4,11 +4,11 @@
  * Purpose:     Intra-process mutex, based on Windows CRITICAL_SECTION.
  *
  * Created:     17th December 1996
- * Updated:     23rd November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MINOR     0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  12
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      69
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_COMMON
 # include <winstl/synch/common.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_COMMON */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +92,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * spin-count support
@@ -112,6 +115,7 @@ namespace winstl_project
     _WIN32_WINNT >= 0x0400
 # define __WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT
 #endif /* _WIN32_WINNT >= 0x0400 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -201,6 +205,7 @@ private:
     CRITICAL_SECTION    m_cs;   // critical section
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -213,6 +218,7 @@ private:
 } /* namespace winstl_project */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * control shims
@@ -248,6 +254,7 @@ unlock_instance(
     mx.unlock();
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -264,6 +271,7 @@ using ::stlsoft::unlock_instance;
 #  endif /* compiler */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * lock_traits
@@ -297,6 +305,7 @@ public:
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -310,6 +319,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

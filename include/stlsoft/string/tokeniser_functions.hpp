@@ -4,7 +4,7 @@
  * Purpose:     Restartable tokenising functions.
  *
  * Created:     6th January 2001
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_REVISION   6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       34
+# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -76,6 +78,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -224,6 +227,7 @@ find_next_token(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

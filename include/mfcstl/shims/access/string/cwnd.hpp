@@ -4,11 +4,11 @@
  * Purpose:     String access shims for CWnd
  *
  * Created:     24th May 2002
- * Updated:     28th November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    14
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        107
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -110,6 +111,7 @@
 # pragma warn .8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -128,6 +130,7 @@ namespace mfcstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -232,6 +235,7 @@ inline ms_size_t GetWindowText_T_(CListView const& w, LPTSTR buffer, ms_size_t c
 
 STLSOFT_CLOSE_WORKER_NS_(ximpl_mfcstl_CWnd_)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -402,6 +406,7 @@ private: // fields
     block_type_* const  m_block;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * equivalence testing
  */
@@ -425,6 +430,7 @@ inline ms_bool_t operator !=(c_str_ptr_null_CWnd_proxy const& lhs, LPCTSTR rhs)
 {
     return static_cast<LPCTSTR>(lhs) != rhs;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * iostream compatibility
@@ -858,6 +864,7 @@ using ::mfcstl::c_str_ptr_null_a;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

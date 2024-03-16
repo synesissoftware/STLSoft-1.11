@@ -4,11 +4,11 @@
  * Purpose:     Initialiser classes for the STLSoft libraries.
  *
  * Created:     17th February 1997
- * Updated:     30th November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_REVISION  6
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_EDIT      228
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_EDIT      229
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +71,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -78,6 +80,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -263,6 +266,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

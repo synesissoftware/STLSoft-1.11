@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for copying.
  *
  * Created:     13th June 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_MINOR       0
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_REVISION    7
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_EDIT        22
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_COPY_FUNCTIONS_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
 # include <stlsoft/string/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -136,6 +138,7 @@ copy_contents(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

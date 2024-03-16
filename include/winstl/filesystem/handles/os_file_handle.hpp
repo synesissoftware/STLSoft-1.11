@@ -5,7 +5,7 @@
  *              Windows file handles.
  *
  * Created:     7th July 2010
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_MINOR      0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_REVISION   6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_EDIT       15
+# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # include <winstl/api/external/HandleAndObject.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -108,6 +110,7 @@ namespace winstl_project
 
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -183,6 +186,7 @@ private:
     const bool      isOwner;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -224,6 +228,7 @@ get_os_file_handle(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

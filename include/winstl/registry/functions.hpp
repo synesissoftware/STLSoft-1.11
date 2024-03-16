@@ -4,7 +4,7 @@
  * Purpose:     Registry functions.
  *
  * Created:     20th November 1995
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MINOR     1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      62
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 # include <winstl/registry/reg_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -93,6 +95,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -166,6 +169,7 @@ inline LONG reg_get_dword_value(HKEY hkey, C const* name, DWORD& value)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

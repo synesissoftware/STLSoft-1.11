@@ -4,11 +4,11 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR      4
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR      1
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   6
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       56
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # pragma warn .8013 /* Suppresses "Possible use of 'f' before definition in '. . .'" */
 # pragma warn .8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -143,6 +145,7 @@ inline HWND get_HWND(CWindow const& w)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     variant class.
  *
  * Created:     12th December 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      3
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   14
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       176
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       177
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -97,6 +98,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +117,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -459,6 +462,7 @@ private:
     void handle_error_(char const* message, HRESULT hr);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
  */
@@ -466,6 +470,7 @@ private:
 // No string access shims are defined, because there're already a set
 // defined for VARIANT, in comstl/shims/access/string.hpp, which is included
 // by this file.
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -500,6 +505,7 @@ inline cs_bool_t operator !=(VARIANT const& lhs, variant const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -926,6 +932,7 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

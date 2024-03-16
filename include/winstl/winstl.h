@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       17
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    6
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        221
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        222
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -171,6 +171,7 @@
 #define _WINSTL_VER_REVISION    1
 #define _WINSTL_VER             _WINSTL_VER_1_12_1
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -241,11 +242,13 @@
 # include <stdlib.h> /* for MAX_PATH (CygWin) */
 #endif /* !STLSOFT_INCL_H_STDLIB */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * windows version compatibility check(s)
  */
 
 #include <winstl/api/winstl_win32_winnt_.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility check(s)
@@ -254,6 +257,7 @@
 #if _STLSOFT_VER < 0x010a019a
 # error This version of the WinSTL libraries requires STLSoft version 1.10.1 beta 26, or later
 #endif /* _STLSOFT_VER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operating system
@@ -284,6 +288,7 @@
 # error WinSTL is only compatible with Win32 and Win64
 #endif /* WIN?? */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * architecture
  */
@@ -310,6 +315,7 @@
 #else /* ? _M_?? */
 # error WinSTL is only compatible with x86, IA64 and x64 architectures
 #endif /* _M_?? */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * proper C++ casting
@@ -498,6 +504,7 @@
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * features
  */
@@ -603,6 +610,7 @@
  * or in the global namespace.
  */
 
+
 /* /////////////////////////////////////
  * obsolete preprocessor symbol detection
  */
@@ -624,6 +632,7 @@
 #  define WINSTL_NO_NAMESPACE
 # endif /* !WINSTL_NO_NAMESPACE */
 #endif /* _WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * namespace support discrimination
@@ -654,6 +663,7 @@
 #  endif /* !_WINSTL_NO_NAMESPACE */
 # endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
 #endif /* WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * declaration '*stl*' namespace
@@ -763,6 +773,7 @@ int main()
 # define winstl_ns_qual_std(x)                              STLSOFT_NS_QUAL_STD(x)
 # define winstl_ns_using_std(x)                             STLSOFT_NS_USING_STD(x)
 #endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Language agnostic macros.
@@ -934,6 +945,7 @@ typedef ws_sptrint_t        sptrint_t;
 typedef ws_uptrint_t        uptrint_t;
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -1032,6 +1044,7 @@ const ws_size_t CONST_MAX_PATH          =   WINSTL_CONST_MAX_PATH;
  */
 #define winstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -1113,6 +1126,7 @@ winstl_C_is_memory_status_code(
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1127,6 +1141,7 @@ winstl_C_is_memory_status_code(
 namespace winstl = ::stlsoft::winstl_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

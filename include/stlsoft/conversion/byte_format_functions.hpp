@@ -4,7 +4,7 @@
  * Purpose:     Byte formatting functions.
  *
  * Created:     23rd July 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,12 +54,14 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MINOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  11
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      35
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +90,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -96,6 +99,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -474,6 +478,7 @@ format_bytes(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

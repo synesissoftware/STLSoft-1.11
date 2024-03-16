@@ -4,11 +4,11 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     26th December 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,9 +52,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_MAJOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_MINOR      0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_REVISION   5
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_EDIT       28
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_REVISION   6
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONAL_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +87,7 @@ namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * functors
  */
@@ -93,15 +96,21 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
 class mem_fun_t
-    : public STLSOFT_NS_QUAL_STD(unary_function)<C *, R>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<C*, R>
+#endif
 {
+public:
+    typedef C*                                              argument_type;
+    typedef R                                               result_type;
+
 public:
     ss_explicit_k mem_fun_t(R (C::*PFn)())
         : m_pfn(PFn)
     {}
 
 public:
-    R operator()(C *c) const
+    R operator()(C* c) const
     {
         return invoke_(c);
     }
@@ -114,7 +123,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    R invoke_(C *c) const
+    R invoke_(C* c) const
     {
         return (c->*m_pfn)();
     }
@@ -128,15 +137,22 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
 class mem_fun_const_t
-    : public STLSOFT_NS_QUAL_STD(unary_function)<C *, R>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<C*, R>
+#endif
 {
+public:
+    typedef C*                                              argument_type;
+    typedef R                                               result_type;
+
+public:
 public:
     ss_explicit_k mem_fun_const_t(R (C::*PFn)() const)
         : m_pfn(PFn)
     {}
 
 public:
-    R operator()(C *c) const
+    R operator()(C* c) const
     {
         return invoke_(c);
     }
@@ -149,7 +165,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    R invoke_(C *c) const
+    R invoke_(C* c) const
     {
         return (c->*m_pfn)();
     }
@@ -162,15 +178,21 @@ private:
 template<   ss_typename_param_k C
         >
 class mem_fun_void_t
-    : public STLSOFT_NS_QUAL_STD(unary_function)<C *, void>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<C*, void>
+#endif
 {
+public:
+    typedef C*                                              argument_type;
+    typedef void                                            result_type;
+
 public:
     ss_explicit_k mem_fun_void_t(void (C::*PFn)())
         : m_pfn(PFn)
     {}
 
 public:
-    void operator()(C *c) const
+    void operator()(C* c) const
     {
         invoke_(c);
     }
@@ -183,7 +205,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    void invoke_(C *c) const
+    void invoke_(C* c) const
     {
         (c->*m_pfn)();
     }
@@ -196,15 +218,21 @@ private:
 template<   ss_typename_param_k C
         >
 class mem_fun_void_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<C const*, void>
+#endif
 {
+public:
+    typedef C const*                                        argument_type;
+    typedef void                                            result_type;
+
 public:
     ss_explicit_k mem_fun_void_const_t(void (C::*PFn)() const)
         : m_pfn(PFn)
     {}
 
 public:
-    void operator()(C *c) const
+    void operator()(C* c) const
     {
         invoke_(c);
     }
@@ -217,7 +245,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    void invoke_(C *c) const
+    void invoke_(C* c) const
     {
         (c->*m_pfn)();
     }
@@ -230,21 +258,24 @@ private:
 template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
-inline mem_fun_t<R, C> mem_fun(R (C::*PFn)())
+inline
+mem_fun_t<R, C> mem_fun(R (C::*PFn)())
 {
     return (mem_fun_t<R, C>(PFn));
 }
 
 template<   ss_typename_param_k C
         >
-inline mem_fun_void_t<C> mem_fun(void (C::*PFn)())
+inline
+mem_fun_void_t<C> mem_fun(void (C::*PFn)())
 {
     return (mem_fun_void_t<C>(PFn));
 }
 
 template<   ss_typename_param_k C
         >
-inline mem_fun_void_t<C> mem_fun_void(void (C::*PFn)())
+inline
+mem_fun_void_t<C> mem_fun_void(void (C::*PFn)())
 {
     return (mem_fun_void_t<C>(PFn));
 }
@@ -253,7 +284,8 @@ inline mem_fun_void_t<C> mem_fun_void(void (C::*PFn)())
 template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
-inline mem_fun_const_t<R, C> mem_fun(R (C::*PFn)() const)
+inline
+mem_fun_const_t<R, C> mem_fun(R (C::*PFn)() const)
 {
     return (mem_fun_const_t<R, C>(PFn));
 }
@@ -261,21 +293,24 @@ inline mem_fun_const_t<R, C> mem_fun(R (C::*PFn)() const)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
-inline mem_fun_const_t<R, C> mem_fun_const(R (C::*PFn)() const)
+inline
+mem_fun_const_t<R, C> mem_fun_const(R (C::*PFn)() const)
 {
     return (mem_fun_const_t<R, C>(PFn));
 }
 
 template<   ss_typename_param_k C
         >
-inline mem_fun_void_const_t<C> mem_fun(void (C::*PFn)() const)
+inline
+mem_fun_void_const_t<C> mem_fun(void (C::*PFn)() const)
 {
     return (mem_fun_void_const_t<C>(PFn));
 }
 
 template<   ss_typename_param_k C
         >
-inline mem_fun_void_const_t<C> mem_fun_void_const(void (C::*PFn)() const)
+inline
+mem_fun_void_const_t<C> mem_fun_void_const(void (C::*PFn)() const)
 {
     return (mem_fun_void_const_t<C>(PFn));
 }
@@ -287,15 +322,22 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k A
         >
 class mem_fun1_t
-    : public STLSOFT_NS_QUAL_STD(binary_function)<C *, A, R>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(binary_function)<C*, A, R>
+#endif
 {
+public:
+    typedef C*                                              first_argument_type;
+    typedef A                                               second_argument_type;
+    typedef R                                               result_type;
+
 public:
     ss_explicit_k mem_fun1_t(R (C::*PFn)(A))
         : m_pfn(PFn)
     {}
 
 public:
-    R operator()(C *c, A a0) const
+    R operator()(C* c, A a0) const
     {
         return (c->*m_pfn)(a0);
     }
@@ -307,7 +349,8 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
-inline mem_fun1_t<R, C, A> mem_fun1(R (C::*PFn)(A))
+inline
+mem_fun1_t<R, C, A> mem_fun1(R (C::*PFn)(A))
 {
     return (mem_fun1_t<R, C, A>(PFn));
 }
@@ -319,8 +362,14 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
 class mem_fun_ref_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<C, R>
+#endif
 {
+public:
+    typedef C                                               argument_type;
+    typedef R                                               result_type;
+
 public:
     ss_explicit_k mem_fun_ref_t(R (C::*PFn)())
         : m_pfn(PFn)
@@ -339,8 +388,14 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
 class mem_fun_ref_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<C, R>
+#endif
 {
+public:
+    typedef C                                               argument_type;
+    typedef R                                               result_type;
+
 public:
     ss_explicit_k mem_fun_ref_const_t(R (C::*PFn)() const)
         : m_pfn(PFn)
@@ -359,8 +414,14 @@ private:
 template<   ss_typename_param_k C
         >
 class mem_fun_ref_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<C, void>
+#endif
 {
+public:
+    typedef C                                               argument_type;
+    typedef void                                            result_type;
+
 public:
     ss_explicit_k mem_fun_ref_void_t(void (C::*PFn)())
         : m_pfn(PFn)
@@ -378,8 +439,14 @@ private:
 template<   ss_typename_param_k C
         >
 class mem_fun_ref_void_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<C, void>
+#endif
 {
+public:
+    typedef C                                               argument_type;
+    typedef void                                            result_type;
+
 public:
     ss_explicit_k mem_fun_ref_void_const_t(void (C::*PFn)() const)
         : m_pfn(PFn)
@@ -397,21 +464,24 @@ private:
 template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
-inline mem_fun_ref_t<R, C> mem_fun_ref(R (C::*PFn)())
+inline
+mem_fun_ref_t<R, C> mem_fun_ref(R (C::*PFn)())
 {
     return (mem_fun_ref_t<R, C>(PFn));
 }
 
 template<   ss_typename_param_k C
         >
-inline mem_fun_ref_void_t<C> mem_fun_ref(void (C::*PFn)())
+inline
+mem_fun_ref_void_t<C> mem_fun_ref(void (C::*PFn)())
 {
     return (mem_fun_ref_void_t<C>(PFn));
 }
 
 template<   ss_typename_param_k C
         >
-inline mem_fun_ref_void_t<C> mem_fun_ref_void(void (C::*PFn)())
+inline
+mem_fun_ref_void_t<C> mem_fun_ref_void(void (C::*PFn)())
 {
     return (mem_fun_ref_void_t<C>(PFn));
 }
@@ -420,7 +490,8 @@ inline mem_fun_ref_void_t<C> mem_fun_ref_void(void (C::*PFn)())
 template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
-inline mem_fun_ref_const_t<R, C> mem_fun_ref(R (C::*PFn)() const)
+inline
+mem_fun_ref_const_t<R, C> mem_fun_ref(R (C::*PFn)() const)
 {
     return (mem_fun_ref_const_t<R, C>(PFn));
 }
@@ -428,21 +499,24 @@ inline mem_fun_ref_const_t<R, C> mem_fun_ref(R (C::*PFn)() const)
 template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         >
-inline mem_fun_ref_const_t<R, C> mem_fun_ref_const(R (C::*PFn)() const)
+inline
+mem_fun_ref_const_t<R, C> mem_fun_ref_const(R (C::*PFn)() const)
 {
     return (mem_fun_ref_const_t<R, C>(PFn));
 }
 
 template<   ss_typename_param_k C
         >
-inline mem_fun_ref_void_const_t<C> mem_fun_ref(void (C::*PFn)() const)
+inline
+mem_fun_ref_void_const_t<C> mem_fun_ref(void (C::*PFn)() const)
 {
     return (mem_fun_ref_void_const_t<C>(PFn));
 }
 
 template<   ss_typename_param_k C
         >
-inline mem_fun_ref_void_const_t<C> mem_fun_ref_void_const(void (C::*PFn)() const)
+inline
+mem_fun_ref_void_const_t<C> mem_fun_ref_void_const(void (C::*PFn)() const)
 {
     return (mem_fun_ref_void_const_t<C>(PFn));
 }
@@ -455,8 +529,15 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k A
         >
 class mem_fun1_ref_t
-    : public STLSOFT_NS_QUAL_STD(binary_function)<C *, A, R>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(binary_function)<C*, A, R>
+#endif
 {
+public:
+    typedef C*                                              first_argument_type;
+    typedef A                                               second_argument_type;
+    typedef R                                               result_type;
+
 public:
     ss_explicit_k mem_fun1_ref_t(R (C::*PFn)(A))
     : m_pfn(PFn)
@@ -476,7 +557,8 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
-inline mem_fun1_ref_t<R, C, A> mem_fun1_ref(R (C::*PFn)(A))
+inline
+mem_fun1_ref_t<R, C, A> mem_fun1_ref(R (C::*PFn)(A))
 {
     return (mem_fun1_ref_t<R, C, A>(PFn));
 }
@@ -518,18 +600,22 @@ template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         ,   ss_typename_param_k V
         >
-inline mem_fun_ref_1_t<R, C, V> mem_fun_ref_1(R (C::*pfn)(V), V value)
+inline
+mem_fun_ref_1_t<R, C, V> mem_fun_ref_1(R (C::*pfn)(V), V value)
 {
     return mem_fun_ref_1_t<R, C, V>(pfn, value);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

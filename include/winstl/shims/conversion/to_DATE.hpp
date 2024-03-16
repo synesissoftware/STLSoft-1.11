@@ -4,11 +4,11 @@
  * Purpose:     Includes all winstl::to_DATE conversion shims.
  *
  * Created:     21st October 2007
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_MAJOR       1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_MINOR       0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_REVISION    4
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_EDIT        10
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -66,6 +67,7 @@
 STLSOFT_COMPILER_IS_GCC:
 [Incompatibilies-end]
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -91,6 +93,7 @@ STLSOFT_COMPILER_IS_GCC:
 #  include <winstl/shims/conversion/to_DATE/UDATE.hpp>
 # endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_UDATE */
 #endif /* WINSTL_UDATE_DEFINED */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

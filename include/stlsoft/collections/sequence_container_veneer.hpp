@@ -4,7 +4,7 @@
  * Purpose:     RRID veneer for sequence containers
  *
  * Created:     2nd October 2002
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_MAJOR      4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_MINOR      0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_REVISION   9
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_EDIT       68
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_EDIT       69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +88,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -248,6 +251,7 @@ protected:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

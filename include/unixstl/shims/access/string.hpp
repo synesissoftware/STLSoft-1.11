@@ -4,11 +4,11 @@
  * Purpose:     Support for the STLSoft string access shims for UNIX types.
  *
  * Created:     11th January 2003
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_EDIT       60
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT
 # include <unixstl/shims/access/string/dirent.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

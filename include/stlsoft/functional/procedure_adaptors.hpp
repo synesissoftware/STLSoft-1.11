@@ -4,11 +4,11 @@
  * Purpose:     Contains the adaptors to allow functions to be used as procedures in algorithms.
  *
  * Created:     13th June 1999
- * Updated:     26th December 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,13 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_MINOR       0
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_REVISION    5
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_EDIT        24
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_REVISION    6
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +75,7 @@
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +84,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -99,14 +98,18 @@ namespace stlsoft
 // [[synesis:class:function-class:unary-function: unary_procedure_adaptor<T<F>>]]
 template <ss_typename_param_k F>
 struct unary_procedure_adaptor
-    : public STLSOFT_NS_QUAL_STD(unary_function)<   ss_typename_type_k F::argument_type
-                                                ,   void>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<
+                    ss_typename_type_k F::argument_type
+                ,   void
+                >
+#endif
 {
 private:
-    typedef F                                   adapted_function_type;
+    typedef F                                               adapted_function_type;
 public:
-    typedef ss_typename_type_k F::argument_type argument_type;
-    typedef void                                result_type;
+    typedef ss_typename_type_k F::argument_type             argument_type;
+    typedef void                                            result_type;
 
 public:
     unary_procedure_adaptor(adapted_function_type func)
@@ -131,16 +134,20 @@ private:
 // [[synesis:class:function-class:unary-function: binary_procedure_adaptor<T<F>>]]
 template <ss_typename_param_k F>
 struct binary_procedure_adaptor
-    : public std::binary_function<  ss_typename_type_k F::first_argument_type
-                                ,   ss_typename_type_k F::second_argument_type
-                                ,   void>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(binary_function)<
+                    ss_typename_type_k F::first_argument_type
+                ,   ss_typename_type_k F::second_argument_type
+                ,   void
+                >
+#endif
 {
 private:
-    typedef F                                           adapted_function_type;
+    typedef F                                               adapted_function_type;
 public:
-    typedef ss_typename_type_k F::first_argument_type   first_argument_type;
-    typedef ss_typename_type_k F::second_argument_type  second_argument_type;
-    typedef void                                        result_type;
+    typedef ss_typename_type_k F::first_argument_type       first_argument_type;
+    typedef ss_typename_type_k F::second_argument_type      second_argument_type;
+    typedef void                                            result_type;
 
 public:
     binary_procedure_adaptor(adapted_function_type func)
@@ -156,6 +163,7 @@ public:
 private:
     adapted_function_type   m_func;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * creator functions
@@ -181,11 +189,15 @@ inline binary_procedure_adaptor<F> adapt_binary_procedure(F func)
     return binary_procedure_adaptor<F>(func);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

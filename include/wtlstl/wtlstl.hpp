@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    4
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 3
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     60
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp
@@ -123,6 +123,7 @@
 #define _WTLSTL_VER_REVISION    3
 #define _WTLSTL_VER             _WTLSTL_VER_1_2_4
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -188,6 +189,7 @@
     _WTL_VER < 0x0310
 # error WTLSTL supports WTL version 3.1 and above only
 #endif /* _WTL_VER < 0x0310 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility check(s)
@@ -328,6 +330,7 @@
  * or in the global namespace.
  */
 
+
 /* /////////////////////////////////////
  * obsolete preprocessor symbol detection
  */
@@ -349,6 +352,7 @@
 #  define WTLSTL_NO_NAMESPACE
 # endif /* !WTLSTL_NO_NAMESPACE */
 #endif /* _WTLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * namespace support discrimination
@@ -379,6 +383,7 @@
 #  endif /* !_WTLSTL_NO_NAMESPACE */
 # endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
 #endif /* WTLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * declaration '*stl*' namespace
@@ -582,6 +587,7 @@ typedef STLSOFT_NS_QUAL(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
 namespace wtlstl = ::stlsoft::wtlstl_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WTLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

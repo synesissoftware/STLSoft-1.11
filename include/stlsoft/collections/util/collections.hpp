@@ -4,11 +4,11 @@
  * Purpose:     Collection types.
  *
  * Created:     10th January 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_MAJOR     2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_REVISION  6
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_EDIT      22
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS_EDIT      23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +92,7 @@ namespace stlsoft
  * \ingroup collections
  * @{
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * collections
@@ -140,6 +143,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

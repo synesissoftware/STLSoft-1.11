@@ -4,7 +4,7 @@
  * Purpose:     Definition of the string access shims for the VARIANT type.
  *
  * Created:     24th May 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MINOR    4
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 8
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     149
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     150
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -101,6 +102,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -119,6 +121,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper classes & functions
@@ -346,6 +349,7 @@ public:
     }
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -833,6 +837,7 @@ private:
     VARTYPE const   m_vt;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * equivalence testing
  */
@@ -1000,6 +1005,7 @@ operator !=(
 {
     return !lhs.equal(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * iostream compatibility
@@ -1320,6 +1326,7 @@ c_str_ptr_null(
 #endif /* UNICODE */
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1375,6 +1382,7 @@ using ::comstl::c_str_ptr_null;
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * global namespace shims
  */
@@ -1410,6 +1418,7 @@ operator <<(
 }
 
 #endif /* library */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

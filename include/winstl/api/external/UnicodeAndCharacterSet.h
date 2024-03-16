@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 #define WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -63,6 +64,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' Unicode and Character Set Functions
@@ -99,6 +101,7 @@ TranslateCharsetInfo
 #ifndef WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_WideCharToMultiByte
 # define WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_WideCharToMultiByte         STLSOFT_NS_GLOBAL_(WideCharToMultiByte)
 #endif /* !WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_WideCharToMultiByte */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
