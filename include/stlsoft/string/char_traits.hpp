@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     93
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -155,15 +155,18 @@ namespace stlsoft
  *
  * \ingroup group__library__String
  */
-template<   ss_typename_param_k C
-        >
+template<
+    ss_typename_param_k C
+>
 struct stlsoft_char_traits
 {
 public:
     /// The char type
     typedef C                                               char_type;
     /// The current specialisation of the type
-    typedef stlsoft_char_traits<C>                          class_type;
+    typedef stlsoft_char_traits<
+        C
+    >                                                       class_type;
     /// The integer type
     typedef ss_int_t                                        int_type;
     /// The size type
@@ -259,6 +262,17 @@ public:
         return 0;
     }
 
+    /// Compares up to \c cch characters of \c s1 with \c, stopping at the
+    /// first difference or until the NUL-terminator is reached
+    ///
+    /// \param s1 The first string to compare
+    /// \param s2 The second string to compare
+    /// \param cch The number of characters to compare \c s1 with \c s2
+    ///
+    /// \retval <0 s1 is lexicographically less than s2
+    /// \retval 0 s1 is lexicographically equal to s2
+    /// \retval >0 s1 is lexicographically more than s2
+    // TODO: rename this to something much discoverable, e.g. `compare_maybe_nul()`
     static
     int_type
     compare_max(
@@ -545,18 +559,23 @@ public:
  *
  * \ingroup group__library__String
  */
-template<   ss_typename_param_k C
-        >
+template<
+    ss_typename_param_k C
+>
 struct stlsoft_char_traits_safe
     : private stlsoft_char_traits<C>
 {
 private:
-    typedef stlsoft_char_traits<C>                          parent_class_type;
+    typedef stlsoft_char_traits<
+        C
+    >                                                       parent_class_type;
 public:
     /// The character type
     typedef C                                               char_type;
     /// The current specialisation of the type
-    typedef stlsoft_char_traits_safe<C>                     class_type;
+    typedef stlsoft_char_traits_safe<
+        C
+    >                                                       class_type;
     /// The integer type
     typedef ss_int_t                                        int_type;
     /// The size type
@@ -841,15 +860,20 @@ using ::char_traits;
 # if !defined(STLSOFT_CF_std_char_traits_AVAILABLE) || /* std does not define char_traits */ \
      !defined(STLSOFT_NO_NAMESPACE) ||                 /* stlsoft namespace is defined */ \
      defined(STLSOFT_CF_std_NAMESPACE)
-template<   ss_typename_param_k C
-        >
+template<
+    ss_typename_param_k C
+>
 struct char_traits
     : public stlsoft_char_traits<C>
 {
-    typedef stlsoft_char_traits<C>                          parent_class_type;
+    typedef stlsoft_char_traits<
+        C
+    >                                                       parent_class_type;
 public:
     /// The current specialisation of the type
-    typedef char_traits<C>                                  class_type;
+    typedef char_traits<
+        C
+    >                                                       class_type;
     /// The character type
     typedef ss_typename_type_k parent_class_type::char_type char_type;
     typedef ss_typename_type_k parent_class_type::int_type  int_type;
@@ -869,15 +893,20 @@ public:
  *
  * \ingroup group__library__String
  */
-template<   ss_typename_param_k C
-        >
+template<
+    ss_typename_param_k C
+>
 struct char_traits_safe
     : public stlsoft_char_traits_safe<C>
 {
-    typedef stlsoft_char_traits_safe<C>                     parent_class_type;
+    typedef stlsoft_char_traits_safe<
+        C
+    >                                                       parent_class_type;
 public:
     /// The current specialisation of the type
-    typedef char_traits_safe<C>                             class_type;
+    typedef char_traits_safe<
+        C
+    >                                                       class_type;
     /// The character type
     typedef ss_typename_type_k parent_class_type::char_type char_type;
     typedef ss_typename_type_k parent_class_type::int_type  int_type;
