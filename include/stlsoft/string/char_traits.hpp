@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     94
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -251,7 +251,7 @@ public:
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s1));
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s2));
 
-        for (size_type n = 0; n < cch; ++n, ++s1, ++s2)
+        for (size_type n = 0; n != cch; ++n, ++s1, ++s2)
         {
             if (!eq(*s1, *s2))
             {
@@ -284,7 +284,7 @@ public:
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s1));
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s2));
 
-        for (size_type n = 0; n < cch; ++n, ++s1, ++s2)
+        for (size_type n = 0; n != cch; ++n, ++s1, ++s2)
         {
             if (!eq(*s1, *s2))
             {
@@ -428,7 +428,7 @@ public:
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL source", (0 == cch || NULL != src));
 
 #ifdef STLSOFT_DEBUG
-        STLSOFT_API_INTERNAL_memfns_memset(dest, 0, cch * sizeof(char_type));
+        STLSOFT_API_INTERNAL_memfns_memset(dest, '~', cch * sizeof(char_type));
 #endif /* STLSOFT_DEBUG */
 
         for (ret = dest; 0 < cch; --cch, ++dest, ++src)
@@ -987,7 +987,7 @@ stlsoft_char_traits<char>::copy(
 {
 #ifdef STLSOFT_DEBUG
 
-    STLSOFT_API_INTERNAL_memfns_memset(dest, 0, cch * sizeof(char));
+    STLSOFT_API_INTERNAL_memfns_memset(dest, '~', cch * sizeof(char));
 #endif /* STLSOFT_DEBUG */
 
     return static_cast<char*>(STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, cch * sizeof(char)));
