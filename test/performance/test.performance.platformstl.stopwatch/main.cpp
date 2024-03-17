@@ -30,6 +30,7 @@
 
 #include <platformstl/diagnostics/stopwatch.hpp>
 #include <platformstl/diagnostics/processtimes_stopwatch.hpp>
+#include <stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp>
 
 #include <iomanip>
 #include <iostream>
@@ -69,11 +70,14 @@ test_(
         {
             T_sw t;
 
+            t.start();
+
             for (ss_size_t i = 0; i != num_iterations; ++i)
             {
-                t.start();
                 t.stop();
             }
+
+            anchoring_value += t.get_microseconds();
         }
 
         sw.stop();
@@ -104,6 +108,8 @@ display_results(
         << std::setw(12) << std::right << r.first
         << '\t'
         << std::setw(12) << std::setfill(' ') << std::right << std::fixed << std::setprecision(3) << (static_cast<double>(r.first) / num_iterations)
+        << '\t'
+        << r.second
         << std::endl;
 }
 
@@ -121,8 +127,6 @@ int main(int argc, char* argv[])
     {
         DEFINE_TYPE_AND_NAME(platformstl::stopwatch);
 
-        // std::cout << type_name << std::endl;
-
         std::pair<
             interval_t  // total_time_ns
         ,   ss_size_t   // anchoring_value
@@ -135,7 +139,17 @@ int main(int argc, char* argv[])
     {
         DEFINE_TYPE_AND_NAME(platformstl::processtimes_stopwatch);
 
-        // std::cout << type_name << std::endl;
+        std::pair<
+            interval_t  // total_time_ns
+        ,   ss_size_t   // anchoring_value
+        > const r = test_<sw_t>(NUM_ITERATIONS);
+
+        display_results(std::cout, NUM_ITERATIONS, type_name, r);
+    }
+
+
+    {
+        DEFINE_TYPE_AND_NAME(stlsoft::std_chrono_hrc_stopwatch);
 
         std::pair<
             interval_t  // total_time_ns
