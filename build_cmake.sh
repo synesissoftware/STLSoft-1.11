@@ -5,12 +5,45 @@ Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakePath=$Dir/_build
 
+IgnoreRemainingFlagsAndOptions=0
+Targets=()
+
+
+# ##########################################################
+# functions
+
+function join_by { local IFS="$1"; shift; echo "$*"; }
+
 
 # ##########################################################
 # command-line handling
 
 while [[ $# -gt 0 ]]; do
+
+    if [ $IgnoreRemainingFlagsAndOptions -ne 0 ]; then
+
+        Targets+=($1)
+
+        shift
+
+        continue
+    else
+
+        if [ ! ${1:0:1} = '-' ]; then
+
+            Targets+=($1)
+
+            shift
+
+            continue
+        fi
+    fi
+
     case $1 in
+        --)
+
+            IgnoreRemainingFlagsAndOptions=1
+            ;;
         --help)
             cat << EOF
 STLSoft is a suite of libraries that provide STL extensions and facades over operating-system and technology-specific APIs
@@ -64,9 +97,15 @@ else
         exit 1
     else
 
-        echo "Executing build (via command \`make\`)"
+        if [ -z "$Targets" ]; then
 
-        make
+            echo "Executing build (via command \`make\`)"
+        else
+
+            echo "Executing build (via command \`make\`) with specific target(s) $(join_by , "${Targets[@]}")"
+        fi
+
+        make ${Targets[*]}
         status=$?
 
         cd ->/dev/null
