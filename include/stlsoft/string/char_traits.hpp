@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     92
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -180,7 +180,7 @@ public:
     assign(
         char_type&          lhs
     ,   char_type const&    rhs
-    )
+    ) STLSOFT_NOEXCEPT
     {
         lhs = rhs;
     }
@@ -192,7 +192,7 @@ public:
         char_type*          dest
     ,   size_type           cch
     ,   char_type const&    c
-    )
+    ) STLSOFT_NOEXCEPT
     {
         char_type* ret;
 
@@ -212,7 +212,7 @@ public:
     eq(
         char_type const&    lhs
     ,   char_type const&    rhs
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return lhs == rhs;
     }
@@ -223,7 +223,7 @@ public:
     lt(
         char_type const&    lhs
     ,   char_type const&    rhs
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return lhs < rhs;
     }
@@ -243,7 +243,7 @@ public:
         char_type const*    s1
     ,   char_type const*    s2
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s1));
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s2));
@@ -265,7 +265,7 @@ public:
         char_type const*    s1
     ,   char_type const*    s2
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s1));
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s2));
@@ -292,7 +292,7 @@ public:
         char_type const*    s1
     ,   char_type const*    s2
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         int_type    result;
 
@@ -315,7 +315,7 @@ public:
         char_type const*    s1
     ,   char_type const*    s2
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         int_type    result;
 
@@ -336,7 +336,7 @@ public:
     size_type
     length(
         char_type const* s
-    )
+    ) STLSOFT_NOEXCEPT
     {
         size_type cch;
 
@@ -355,7 +355,7 @@ public:
     size_type
     length_null(
         char_type const* s
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return (NULL != s) ? length(s) : 0;
     }
@@ -370,7 +370,7 @@ public:
     length_max(
         char_type const*    s
     ,   size_type           limit
-    )
+    ) STLSOFT_NOEXCEPT
     {
         size_type cch;
 
@@ -394,7 +394,7 @@ public:
     length_max_null(
         char_type const*    s
     ,   size_type           limit
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return (NULL != s) ? length_max(s, limit) : 0;
     }
@@ -406,7 +406,7 @@ public:
         char_type*          dest
     ,   char_type const*    src
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         char_type* ret;
 
@@ -432,7 +432,7 @@ public:
         char_type*          dest
     ,   char_type const*    src
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         char_type* const ret = dest;
 
@@ -465,7 +465,7 @@ public:
         char_type const*    s
     ,   size_type           cch
     ,   char_type const&    c
-    )
+    ) STLSOFT_NOEXCEPT
     {
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::find called with NULL string", (0 == cch || NULL != s));
 
@@ -485,7 +485,7 @@ public:
     char_type
     to_char_type(
         int_type const& c
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return static_cast<char_type>(c);
     }
@@ -495,7 +495,7 @@ public:
     int_type
     to_int_type(
         char_type const& c
-    )
+    ) STLSOFT_NOEXCEPT
     {
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
 
@@ -512,7 +512,7 @@ public:
     eq_int_type(
         int_type const& lhs
     ,   int_type const& rhs
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return lhs == rhs;
     }
@@ -520,7 +520,7 @@ public:
     /// Returns the value representing the end-of-file.
     static
     int_type
-    eof()
+    eof() STLSOFT_NOEXCEPT
     {
         return static_cast<int_type>(-1);
     }
@@ -530,7 +530,7 @@ public:
     int_type
     not_eof(
         int_type const& c
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return (c != eof() ? c : !eof());
     }
@@ -573,7 +573,7 @@ public:
     assign(
         char_type&          lhs
     ,   char_type const&    rhs
-    )
+    ) STLSOFT_NOEXCEPT
     {
         parent_class_type::assign(lhs, rhs);
     }
@@ -585,7 +585,7 @@ public:
         char_type*          dest
     ,   size_type           cch
     ,   char_type const&    c
-    )
+    ) STLSOFT_NOEXCEPT
     {
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::assign called with NULL destination", NULL != dest);
 
@@ -598,7 +598,7 @@ public:
     eq(
         char_type const&    lhs
     ,   char_type const&    rhs
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return parent_class_type::eq(lhs, rhs);
     }
@@ -609,7 +609,7 @@ public:
     lt(
         char_type const&    lhs
     ,   char_type const&    rhs
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return parent_class_type::lt(lhs, rhs);
     }
@@ -629,7 +629,7 @@ public:
         char_type const*    s1
     ,   char_type const*    s2
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return compare_null(s1, s2, cch);
     }
@@ -640,7 +640,7 @@ public:
         char_type const*    s1
     ,   char_type const*    s2
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return compare_maxnull(s1, s2, cch);
     }
@@ -652,7 +652,7 @@ public:
         char_type const*    s1
     ,   char_type const*    s2
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return parent_class_type::compare(s1, s2, cch);
     }
@@ -664,7 +664,7 @@ public:
         char_type const*    s1
     ,   char_type const*    s2
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return parent_class_type::compare_maxnull(s1, s2, cch);
     }
@@ -679,7 +679,7 @@ public:
     length_max_null(
         char_type const*    s
     ,   size_type           limit
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return (NULL == s) ? 0 : parent_class_type::length_max(s, limit);
     }
@@ -694,7 +694,7 @@ public:
     length_max(
         char_type const*    s
     ,   size_type           limit
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return length_max_null(s, limit);
     }
@@ -704,7 +704,7 @@ public:
     size_type
     length_null(
         char_type const* s
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return (NULL == s) ? 0 : parent_class_type::length(s);
     }
@@ -714,7 +714,7 @@ public:
     size_type
     length(
         char_type const* s
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return length_null(s);
     }
@@ -726,7 +726,7 @@ public:
         char_type*          dest
     ,   char_type const*    src
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::copy called with NULL destination", NULL != dest);
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::copy called with NULL source", NULL != src);
@@ -741,7 +741,7 @@ public:
         char_type*          dest
     ,   char_type const*    src
     ,   size_type           cch
-    )
+    ) STLSOFT_NOEXCEPT
     {
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::move called with NULL destination", NULL != dest);
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::move called with NULL source", NULL != src);
@@ -756,7 +756,7 @@ public:
         char_type const*    s
     ,   size_type           cch
     ,   char_type const&    c
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return (NULL == s) ? NULL : parent_class_type::find(s, cch, c);
     }
@@ -766,7 +766,7 @@ public:
     char_type
     to_char_type(
         int_type const& c
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return parent_class_type::to_char_type(c);
     }
@@ -776,7 +776,7 @@ public:
     int_type
     to_int_type(
         char_type const& c
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return parent_class_type::to_int_type(c);
     }
@@ -787,7 +787,7 @@ public:
     eq_int_type(
         int_type const& lhs
     ,   int_type const& rhs
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return parent_class_type::eq_int_type(lhs, rhs);
     }
@@ -795,7 +795,7 @@ public:
     /// Returns the value representing the end-of-file.
     static
     int_type
-    eof()
+    eof() STLSOFT_NOEXCEPT
     {
         return parent_class_type::eof();
     }
@@ -805,7 +805,7 @@ public:
     int_type
     not_eof(
         int_type const& c
-    )
+    ) STLSOFT_NOEXCEPT
     {
         return parent_class_type::not_eof(c);
     }
@@ -909,7 +909,7 @@ stlsoft_char_traits<char>::assign(
     char*       dest
 ,   ss_size_t   cch
 ,   char const& c
-)
+) STLSOFT_NOEXCEPT
 {
     return static_cast<char*>(STLSOFT_API_INTERNAL_memfns_memset(dest, c, cch * sizeof(char)));
 }
@@ -921,7 +921,7 @@ stlsoft_char_traits<char>::compare(
     char_type const*    s1
 ,   char_type const*    s2
 ,   ss_size_t           cch
-)
+) STLSOFT_NOEXCEPT
 {
     return STLSOFT_NS_GLOBAL(memcmp)(s1, s2, cch);
 }
@@ -933,7 +933,7 @@ stlsoft_char_traits<char>::find(
     char_type const*    s
 ,   size_type           cch
 ,   char_type const&    c
-)
+) STLSOFT_NOEXCEPT
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) && \
     __BORLANDC__ < 0x0560
@@ -954,7 +954,7 @@ stlsoft_char_traits<char>::copy(
     char*       dest
 ,   char const* src
 ,   ss_size_t   cch
-)
+) STLSOFT_NOEXCEPT
 {
 #ifdef STLSOFT_DEBUG
 
@@ -969,7 +969,7 @@ inline
 ss_size_t
 stlsoft_char_traits<char>::length(
     char const* s
-)
+) STLSOFT_NOEXCEPT
 {
     return STLSOFT_NS_GLOBAL(strlen)(s);
 }
@@ -981,7 +981,7 @@ inline
 ss_size_t
 stlsoft_char_traits<wchar_t>::length(
     wchar_t const* s
-)
+) STLSOFT_NOEXCEPT
 {
     return STLSOFT_NS_GLOBAL(wcslen)(s);
 }
