@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/char_traits.hpp
+ * File:    stlsoft/string/char_traits.hpp
  *
- * Purpose:     char_traits classes.
+ * Purpose: char_traits classes.
  *
- * Created:     19th November 1998
- * Updated:     22nd January 2024
+ * Created: 19th November 1998
+ * Updated: 18th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     91
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -130,6 +131,7 @@
 #endif /* compiler */
 #endif /* !STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS || STLSOFT_DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -138,6 +140,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constraints
@@ -158,27 +161,38 @@ struct stlsoft_char_traits
 {
 public:
     /// The char type
-    typedef C                                   char_type;
+    typedef C                                               char_type;
     /// The current specialisation of the type
-    typedef stlsoft_char_traits<C>              class_type;
+    typedef stlsoft_char_traits<C>                          class_type;
     /// The integer type
-    typedef ss_int_t                            int_type;
+    typedef ss_int_t                                        int_type;
     /// The size type
-    typedef ss_size_t                           size_type;
+    typedef ss_size_t                                       size_type;
     /// The position type
-    typedef ss_streampos_t                      pos_type;
+    typedef ss_streampos_t                                  pos_type;
     /// The offset type
-    typedef ss_streamoff_t                      off_type;
+    typedef ss_streamoff_t                                  off_type;
 
 public:
     /// Assigns \c rhs to \c lhs
-    static void assign(char_type &lhs, char_type const& rhs)
+    static
+    void
+    assign(
+        char_type&          lhs
+    ,   char_type const&    rhs
+    )
     {
         lhs = rhs;
     }
 
     /// Assigns \c cch characters of value \c c to \c dest
-    static char_type* assign(char_type* dest, size_type cch, char_type const& c)
+    static
+    char_type*
+    assign(
+        char_type*          dest
+    ,   size_type           cch
+    ,   char_type const&    c
+    )
     {
         char_type* ret;
 
@@ -193,13 +207,23 @@ public:
     }
 
     /// Evaluates whether \c lhs is equivalent to \c rhs
-    static ss_bool_t eq(char_type const& lhs, char_type const& rhs)
+    static
+    ss_bool_t
+    eq(
+        char_type const&    lhs
+    ,   char_type const&    rhs
+    )
     {
         return lhs == rhs;
     }
 
     /// Evaluates whether \c lhs is less than \c rhs
-    static ss_bool_t lt(char_type const& lhs, char_type const& rhs)
+    static
+    ss_bool_t
+    lt(
+        char_type const&    lhs
+    ,   char_type const&    rhs
+    )
     {
         return lhs < rhs;
     }
@@ -213,7 +237,13 @@ public:
     /// \retval <0 s1 is lexicographically less than s2
     /// \retval 0 s1 is lexicographically equal to s2
     /// \retval >0 s1 is lexicographically more than s2
-    static int_type compare(char_type const* s1, char_type const* s2, size_type cch)
+    static
+    int_type
+    compare(
+        char_type const*    s1
+    ,   char_type const*    s2
+    ,   size_type           cch
+    )
     {
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s1));
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s2));
@@ -229,7 +259,13 @@ public:
         return 0;
     }
 
-    static int_type compare_max(char_type const* s1, char_type const* s2, size_type cch)
+    static
+    int_type
+    compare_max(
+        char_type const*    s1
+    ,   char_type const*    s2
+    ,   size_type           cch
+    )
     {
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s1));
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s2));
@@ -250,7 +286,13 @@ public:
     }
 
     /// Compares, using compare(), \c s1 with \c s2, either or both of which may be \c nullptr
-    static int_type compare_null(char_type const* s1, char_type const* s2, size_type cch)
+    static
+    int_type
+    compare_null(
+        char_type const*    s1
+    ,   char_type const*    s2
+    ,   size_type           cch
+    )
     {
         int_type    result;
 
@@ -267,7 +309,13 @@ public:
     }
 
     /// Compares, using compare_max(), \c s1 with \c s2, either or both of which may be \c nullptr
-    static int_type compare_maxnull(char_type const* s1, char_type const* s2, size_type cch)
+    static
+    int_type
+    compare_maxnull(
+        char_type const*    s1
+    ,   char_type const*    s2
+    ,   size_type           cch
+    )
     {
         int_type    result;
 
@@ -284,7 +332,11 @@ public:
     }
 
     /// Evaluates the length of the string \c s
-    static size_type length(char_type const* s)
+    static
+    size_type
+    length(
+        char_type const* s
+    )
     {
         size_type cch;
 
@@ -299,7 +351,11 @@ public:
     }
 
     /// Evaluates the length of the string \c s, which may be \c nullptr
-    static size_type length_null(char_type const* s)
+    static
+    size_type
+    length_null(
+        char_type const* s
+    )
     {
         return (NULL != s) ? length(s) : 0;
     }
@@ -309,7 +365,12 @@ public:
     /// \param s The string to be evaluated. It may <b>not</b> be null
     /// \param limit The maximum number of characters to evaluate
     /// \return The length of the string (in characters) not including the null-terminator
-    static size_type length_max(char_type const* s, size_type limit)
+    static
+    size_type
+    length_max(
+        char_type const*    s
+    ,   size_type           limit
+    )
     {
         size_type cch;
 
@@ -328,13 +389,24 @@ public:
     /// \param s The string to be evaluated. It may be null
     /// \param limit The maximum number of characters to evaluate
     /// \return The length of the string (in characters) not including the null-terminator
-    static size_type length_max_null(char_type const* s, size_type limit)
+    static
+    size_type
+    length_max_null(
+        char_type const*    s
+    ,   size_type           limit
+    )
     {
         return (NULL != s) ? length_max(s, limit) : 0;
     }
 
     /// Copies \c cch characters from \c src to \c dest
-    static char_type* copy(char_type* dest, char_type const* src, size_type cch)
+    static
+    char_type*
+    copy(
+        char_type*          dest
+    ,   char_type const*    src
+    ,   size_type           cch
+    )
     {
         char_type* ret;
 
@@ -354,7 +426,13 @@ public:
     }
 
     /// Copies \c cch characters from \c src to \c dest, accounting for whether the ranges overlap
-    static char_type* move(char_type* dest, char_type const* src, size_type cch)
+    static
+    char_type*
+    move(
+        char_type*          dest
+    ,   char_type const*    src
+    ,   size_type           cch
+    )
     {
         char_type* const ret = dest;
 
@@ -381,7 +459,13 @@ public:
     }
 
     /// Finds the first \c c in \c cch elements in \c s, or \c NULL if not found
-    static char_type const* find(char_type const* s, size_type cch, char_type const& c)
+    static
+    char_type const*
+    find(
+        char_type const*    s
+    ,   size_type           cch
+    ,   char_type const&    c
+    )
     {
         STLSOFT_MESSAGE_ASSERT("char_traits<X>::find called with NULL string", (0 == cch || NULL != s));
 
@@ -397,35 +481,56 @@ public:
     }
 
     /// Represents the character \c in the character type \c char_type
-    static char_type to_char_type(int_type const& c)
+    static
+    char_type
+    to_char_type(
+        int_type const& c
+    )
     {
         return static_cast<char_type>(c);
     }
 
     /// Represents the character \c in the integer type \c int_type
-    static int_type to_int_type(char_type const& c)
+    static
+    int_type
+    to_int_type(
+        char_type const& c
+    )
     {
 #if defined(STLSOFT_COMPILER_IS_WATCOM)
+
         return (int_type)(c);
 #else /* ? compiler */
+
         return static_cast<int_type>(static_cast<ss_typename_type_k sign_traits<char_type>::unsigned_type>(c));
 #endif /* compiler */
     }
 
     /// Evaluates whether \c lhs and \c rhs are equivalent
-    static ss_bool_t eq_int_type(int_type const& lhs, int_type const& rhs)
+    static
+    ss_bool_t
+    eq_int_type(
+        int_type const& lhs
+    ,   int_type const& rhs
+    )
     {
         return lhs == rhs;
     }
 
     /// Returns the value representing the end-of-file.
-    static int_type eof()
+    static
+    int_type
+    eof()
     {
         return static_cast<int_type>(-1);
     }
 
     /// Evaluates whether the given character is the end-of-file.
-    static int_type not_eof(int_type const& c)
+    static
+    int_type
+    not_eof(
+        int_type const& c
+    )
     {
         return (c != eof() ? c : !eof());
     }
@@ -446,30 +551,41 @@ struct stlsoft_char_traits_safe
     : private stlsoft_char_traits<C>
 {
 private:
-    typedef stlsoft_char_traits<C>              parent_class_type;
+    typedef stlsoft_char_traits<C>                          parent_class_type;
 public:
     /// The character type
-    typedef C                                   char_type;
+    typedef C                                               char_type;
     /// The current specialisation of the type
-    typedef stlsoft_char_traits_safe<C>         class_type;
+    typedef stlsoft_char_traits_safe<C>                     class_type;
     /// The integer type
-    typedef ss_int_t                            int_type;
+    typedef ss_int_t                                        int_type;
     /// The size type
-    typedef ss_size_t                           size_type;
+    typedef ss_size_t                                       size_type;
     /// The position type
-    typedef ss_streampos_t                      pos_type;
+    typedef ss_streampos_t                                  pos_type;
     /// The offset type
-    typedef ss_streamoff_t                      off_type;
+    typedef ss_streamoff_t                                  off_type;
 
 public:
     /// Assigns \c rhs to \c lhs
-    static void assign(char_type &lhs, char_type const& rhs)
+    static
+    void
+    assign(
+        char_type&          lhs
+    ,   char_type const&    rhs
+    )
     {
         parent_class_type::assign(lhs, rhs);
     }
 
     /// Assigns \c cch characters of value \c c to \c dest
-    static char_type* assign(char_type* dest, size_type cch, char_type const& c)
+    static
+    char_type*
+    assign(
+        char_type*          dest
+    ,   size_type           cch
+    ,   char_type const&    c
+    )
     {
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::assign called with NULL destination", NULL != dest);
 
@@ -477,13 +593,23 @@ public:
     }
 
     /// Evaluates whether \c lhs is equivalent to \c rhs
-    static ss_bool_t eq(char_type const& lhs, char_type const& rhs)
+    static
+    ss_bool_t
+    eq(
+        char_type const&    lhs
+    ,   char_type const&    rhs
+    )
     {
         return parent_class_type::eq(lhs, rhs);
     }
 
     /// Evaluates whether \c lhs is less than \c rhs
-    static ss_bool_t lt(char_type const& lhs, char_type const& rhs)
+    static
+    ss_bool_t
+    lt(
+        char_type const&    lhs
+    ,   char_type const&    rhs
+    )
     {
         return parent_class_type::lt(lhs, rhs);
     }
@@ -497,24 +623,48 @@ public:
     /// \retval <0 s1 is lexicographically less than s2
     /// \retval 0 s1 is lexicographically equal to s2
     /// \retval >0 s1 is lexicographically more than s2
-    static int_type compare(char_type const* s1, char_type const* s2, size_type cch)
+    static
+    int_type
+    compare(
+        char_type const*    s1
+    ,   char_type const*    s2
+    ,   size_type           cch
+    )
     {
         return compare_null(s1, s2, cch);
     }
 
-    static int_type compare_max(char_type const* s1, char_type const* s2, size_type cch)
+    static
+    int_type
+    compare_max(
+        char_type const*    s1
+    ,   char_type const*    s2
+    ,   size_type           cch
+    )
     {
         return compare_maxnull(s1, s2, cch);
     }
 
     /// Compares, using compare(), \c s1 with \c s2, either or both of which may be \c nullptr
-    static int_type compare_null(char_type const* s1, char_type const* s2, size_type cch)
+    static
+    int_type
+    compare_null(
+        char_type const*    s1
+    ,   char_type const*    s2
+    ,   size_type           cch
+    )
     {
         return parent_class_type::compare(s1, s2, cch);
     }
 
     /// Compares, using compare_max(), \c s1 with \c s2, either or both of which may be \c nullptr
-    static int_type compare_maxnull(char_type const* s1, char_type const* s2, size_type cch)
+    static
+    int_type
+    compare_maxnull(
+        char_type const*    s1
+    ,   char_type const*    s2
+    ,   size_type           cch
+    )
     {
         return parent_class_type::compare_maxnull(s1, s2, cch);
     }
@@ -524,7 +674,12 @@ public:
     /// \param s The string to be evaluated. It may be null
     /// \param limit The maximum number of characters to evaluate
     /// \return The length of the string (in characters) not including the null-terminator
-    static size_type length_max_null(char_type const* s, size_type limit)
+    static
+    size_type
+    length_max_null(
+        char_type const*    s
+    ,   size_type           limit
+    )
     {
         return (NULL == s) ? 0 : parent_class_type::length_max(s, limit);
     }
@@ -534,25 +689,44 @@ public:
     /// \param s The string to be evaluated. It may be null
     /// \param limit The maximum number of characters to evaluate
     /// \return The length of the string (in characters) not including the null-terminator
-    static size_type length_max(char_type const* s, size_type limit)
+    static
+    size_type
+    length_max(
+        char_type const*    s
+    ,   size_type           limit
+    )
     {
         return length_max_null(s, limit);
     }
 
     /// Evaluates the length of the string \c s, which may be \c nullptr
-    static size_type length_null(char_type const* s)
+    static
+    size_type
+    length_null(
+        char_type const* s
+    )
     {
         return (NULL == s) ? 0 : parent_class_type::length(s);
     }
 
     /// Evaluates the length of the string \c s
-    static size_type length(char_type const* s)
+    static
+    size_type
+    length(
+        char_type const* s
+    )
     {
         return length_null(s);
     }
 
     /// Copies \c cch characters from \c src to \c dest
-    static char_type* copy(char_type* dest, char_type const* src, size_type cch)
+    static
+    char_type*
+    copy(
+        char_type*          dest
+    ,   char_type const*    src
+    ,   size_type           cch
+    )
     {
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::copy called with NULL destination", NULL != dest);
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::copy called with NULL source", NULL != src);
@@ -561,7 +735,13 @@ public:
     }
 
     /// Copies \c cch characters from \c src to \c dest, accounting for whether the ranges overlap
-    static char_type* move(char_type* dest, char_type const* src, size_type cch)
+    static
+    char_type*
+    move(
+        char_type*          dest
+    ,   char_type const*    src
+    ,   size_type           cch
+    )
     {
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::move called with NULL destination", NULL != dest);
         STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::move called with NULL source", NULL != src);
@@ -570,37 +750,62 @@ public:
     }
 
     /// Finds the first \c c in \c cch elements in \c s, or \c NULL if not found
-    static char_type const* find(char_type const* s, size_type cch, char_type const& c)
+    static
+    char_type const*
+    find(
+        char_type const*    s
+    ,   size_type           cch
+    ,   char_type const&    c
+    )
     {
         return (NULL == s) ? NULL : parent_class_type::find(s, cch, c);
     }
 
     /// Represents the character \c in the character type \c char_type
-    static char_type to_char_type(int_type const& c)
+    static
+    char_type
+    to_char_type(
+        int_type const& c
+    )
     {
         return parent_class_type::to_char_type(c);
     }
 
     /// Represents the character \c in the integer type \c int_type
-    static int_type to_int_type(char_type const& c)
+    static
+    int_type
+    to_int_type(
+        char_type const& c
+    )
     {
         return parent_class_type::to_int_type(c);
     }
 
     /// Evaluates whether \c lhs and \c rhs are equivalent
-    static ss_bool_t eq_int_type(int_type const& lhs, int_type const& rhs)
+    static
+    ss_bool_t
+    eq_int_type(
+        int_type const& lhs
+    ,   int_type const& rhs
+    )
     {
         return parent_class_type::eq_int_type(lhs, rhs);
     }
 
     /// Returns the value representing the end-of-file.
-    static int_type eof()
+    static
+    int_type
+    eof()
     {
         return parent_class_type::eof();
     }
 
     /// Evaluates whether the given character is the end-of-file.
-    static int_type not_eof(int_type const& c)
+    static
+    int_type
+    not_eof(
+        int_type const& c
+    )
     {
         return parent_class_type::not_eof(c);
     }
@@ -681,6 +886,7 @@ public:
     typedef ss_typename_type_k parent_class_type::off_type  off_type;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * specialisations
  */
@@ -697,34 +903,61 @@ public:
 /* char */
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline char* stlsoft_char_traits<char>::assign(char* dest, ss_size_t cch, char const& c)
+inline
+char*
+stlsoft_char_traits<char>::assign(
+    char*       dest
+,   ss_size_t   cch
+,   char const& c
+)
 {
     return static_cast<char*>(STLSOFT_API_INTERNAL_memfns_memset(dest, c, cch * sizeof(char)));
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline ss_int_t stlsoft_char_traits<char>::compare(char_type const* s1, char_type const* s2, ss_size_t cch)
+inline
+ss_int_t
+stlsoft_char_traits<char>::compare(
+    char_type const*    s1
+,   char_type const*    s2
+,   ss_size_t           cch
+)
 {
-    return ::memcmp(s1, s2, cch);
+    return STLSOFT_NS_GLOBAL(memcmp)(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline char const* stlsoft_char_traits<char>::find(char_type const* s, size_type cch, char_type const& c)
+inline
+char const*
+stlsoft_char_traits<char>::find(
+    char_type const*    s
+,   size_type           cch
+,   char_type const&    c
+)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) && \
     __BORLANDC__ < 0x0560
+
     return static_cast<char const*>(memchr(s, c, cch));
 #else /* ? compiler */
-    void const  *p = ::memchr(s, c, cch);
+
+    void const* const p = STLSOFT_NS_GLOBAL(memchr)(s, c, cch);
 
     return static_cast<char const*>(p);
 #endif /* compiler */
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline char* stlsoft_char_traits<char>::copy(char* dest, char const* src, ss_size_t cch)
+inline
+char*
+stlsoft_char_traits<char>::copy(
+    char*       dest
+,   char const* src
+,   ss_size_t   cch
+)
 {
 #ifdef STLSOFT_DEBUG
+
     STLSOFT_API_INTERNAL_memfns_memset(dest, 0, cch * sizeof(char));
 #endif /* STLSOFT_DEBUG */
 
@@ -732,28 +965,36 @@ inline char* stlsoft_char_traits<char>::copy(char* dest, char const* src, ss_siz
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline ss_size_t stlsoft_char_traits<char>::length(char const* s)
+inline
+ss_size_t
+stlsoft_char_traits<char>::length(
+    char const* s
+)
 {
-    return ::strlen(s);
+    return STLSOFT_NS_GLOBAL(strlen)(s);
 }
 
 /* wchar_t */
 
 STLSOFT_TEMPLATE_SPECIALISATION
-inline ss_size_t stlsoft_char_traits<wchar_t>::length(wchar_t const* s)
+inline
+ss_size_t
+stlsoft_char_traits<wchar_t>::length(
+    wchar_t const* s
+)
 {
-    return ::wcslen(s);
+    return STLSOFT_NS_GLOBAL(wcslen)(s);
 }
-
 #endif /* !STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS && !STLSOFT_COMPILER_IS_DMC */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
