@@ -132,11 +132,18 @@ namespace
     static void test_compare_4(void);
 #ifndef USE_std_string
     static void test_equality_operators_1(void);
+# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
+    static void test_equal_p_n_ccs_n(void);
+    static void test_equal_p_n_ccs(void);
+    static void test_equal_ccs(void);
+    static void test_equal_p_n_scr_p_n(void);
+    static void test_equal_p_n_scr(void);
+    static void test_equal_scr(void);
+# endif
 #endif /* !USE_std_string */
 
 #if !defined(USE_std_string) || \
     __cplusplus >= 202002L
-
     static void test_starts_with_1(void);
     static void test_starts_with_2(void);
     static void test_ends_with_1(void);
@@ -299,11 +306,18 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_compare_4);
 #ifndef USE_std_string
         XTESTS_RUN_CASE(test_equality_operators_1);
+# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
+        XTESTS_RUN_CASE(test_equal_p_n_ccs_n);
+        XTESTS_RUN_CASE(test_equal_p_n_ccs);
+        XTESTS_RUN_CASE(test_equal_ccs);
+        XTESTS_RUN_CASE(test_equal_p_n_scr_p_n);
+        XTESTS_RUN_CASE(test_equal_p_n_scr);
+        XTESTS_RUN_CASE(test_equal_scr);
+# endif
 #endif /* !USE_std_string */
 
 #if !defined(USE_std_string) || \
     __cplusplus >= 202002L
-
         XTESTS_RUN_CASE(test_starts_with_1);
         XTESTS_RUN_CASE(test_starts_with_2);
         XTESTS_RUN_CASE(test_ends_with_1);
@@ -616,7 +630,6 @@ static void test_ctor_n_ch()
         XTESTS_TEST_BOOLEAN_FALSE(s.empty());
         XTESTS_TEST_INTEGER_EQUAL(9u, s.size());
         XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(9u, s.capacity());
-#ifndef USE_std_string
         XTESTS_TEST_CHARACTER_EQUAL('~', s.front());
         XTESTS_TEST_CHARACTER_EQUAL('~', s.back());
 
@@ -624,7 +637,6 @@ static void test_ctor_n_ch()
 
         XTESTS_TEST_CHARACTER_EQUAL('~', cs.front());
         XTESTS_TEST_CHARACTER_EQUAL('~', cs.back());
-#endif // !USE_std_string
     }
 
     {
@@ -633,7 +645,6 @@ static void test_ctor_n_ch()
         XTESTS_TEST_BOOLEAN_FALSE(s.empty());
         XTESTS_TEST_INTEGER_EQUAL(10u, s.size());
         XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10u, s.capacity());
-#ifndef USE_std_string
         XTESTS_TEST_CHARACTER_EQUAL('~', s.front());
         XTESTS_TEST_CHARACTER_EQUAL('~', s.back());
 
@@ -641,7 +652,6 @@ static void test_ctor_n_ch()
 
         XTESTS_TEST_CHARACTER_EQUAL('~', cs.front());
         XTESTS_TEST_CHARACTER_EQUAL('~', cs.back());
-#endif // !USE_std_string
     }
 }
 
@@ -1337,6 +1347,10 @@ static void test_compare_1()
     XTESTS_TEST_BOOLEAN_TRUE(s1 == s1);
     XTESTS_TEST_BOOLEAN_TRUE(s1 == s1.c_str());
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() == s1);
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1 != s2);
+    XTESTS_TEST_BOOLEAN_TRUE(s1 != s2.c_str());
+    XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() != s2);
 }
 
 static void test_compare_2()
@@ -1438,6 +1452,136 @@ static void test_equality_operators_1()
     XTESTS_TEST_BOOLEAN_TRUE(s1 != s4);
     XTESTS_TEST_BOOLEAN_FALSE(s1 == s4);
 }
+
+#ifndef USE_std_string
+
+static void test_equal_p_n_ccs_n()
+{
+    string_t    s1("abc");
+    string_t    s2("def");
+    string_t    s3("abc");
+    string_t    s4("def");
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1.c_str(), 3));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2.c_str(), 3));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s3.c_str(), 3));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4.c_str(), 3));
+}
+
+static void test_equal_p_n_ccs()
+{
+    string_t    s1("abc");
+    string_t    s2("def");
+    string_t    s3("abc");
+    string_t    s4("def");
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1.c_str()));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2.c_str()));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s3.c_str()));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4.c_str()));
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, "abc"));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 2, "bc"));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(2, 1, "c"));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(3, 0, ""));
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 4, "abc"));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 444, "abc"));
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 3, "bc"));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 333, "bc"));
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(2, 2, "c"));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(2, 222, "c"));
+}
+
+static void test_equal_ccs()
+{
+    string_t    s1("abc");
+    string_t    s2("def");
+    string_t    s3("abc");
+    string_t    s4("def");
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s1.c_str()));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s2.c_str()));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s3.c_str()));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s4.c_str()));
+}
+
+static void test_equal_p_n_scr_p_n()
+{
+    string_t    s0;
+    string_t    s1("abc");
+    string_t    s2("def");
+    string_t    s3("abcd");
+    string_t    s4("defg");
+
+    XTESTS_TEST_BOOLEAN_TRUE(s0.equal(0, 0, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_TRUE(s0.equal(0, 1, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_FALSE(s0.equal(0, 0, s0, 0, 1));
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 0, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 1, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 2, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 0, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 1, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 2, s0, 0, 0));
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1, 0, s1.size()));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2, 0, s2.size()));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1, 0, s1.size()));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s3, 0, s3.size()));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4, 0, s4.size()));
+
+    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 1, s1));
+    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 2, s1));
+    XTESTS_TEST_BOOLEAN_TRUE(s3.equal(0, 3, s1));
+    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 4, s1));
+}
+
+static void test_equal_p_n_scr()
+{
+    string_t    s0;
+    string_t    s1("abc");
+    string_t    s2("def");
+    string_t    s3("abcd");
+    string_t    s4("defg");
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 0, s0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 1, s0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 2, s0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 0, s0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 1, s0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 2, s0));
+
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s3));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4));
+
+    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 1, s1));
+    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 2, s1));
+    XTESTS_TEST_BOOLEAN_TRUE(s3.equal(0, 3, s1));
+    XTESTS_TEST_BOOLEAN_FALSE(s3.equal(0, 4, s1));
+}
+
+static void test_equal_scr()
+{
+    string_t    s0;
+    string_t    s1("abc");
+    string_t    s2("def");
+    string_t    s3("abc");
+    string_t    s4("def");
+
+    XTESTS_TEST_BOOLEAN_TRUE(s0.equal(s0));
+    XTESTS_TEST_BOOLEAN_FALSE(s0.equal(s1));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s1));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s2));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s3));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s4));
+}
+#endif /* !USE_std_string */
 
 #if !defined(USE_std_string) || \
     __cplusplus >= 202002L
