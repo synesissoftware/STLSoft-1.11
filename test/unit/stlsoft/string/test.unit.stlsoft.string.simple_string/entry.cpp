@@ -1887,6 +1887,14 @@ static void test_contains_3()
     }
 
     {
+        string_t const s("abdabeabfab");
+
+        {
+            XTESTS_TEST_BOOLEAN_FALSE(s.contains("abc"));
+        }
+    }
+
+    {
         string_t const s("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab");
 
         {

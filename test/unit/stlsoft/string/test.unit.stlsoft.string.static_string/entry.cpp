@@ -1661,10 +1661,29 @@ static void test_contains_3()
 {
     typedef string_30_t string_t;
 
-    string_t const s("abdabeabcab");
+    {
+        string_t const s("abdabeabcab");
+
+        {
+            XTESTS_TEST_BOOLEAN_TRUE(s.contains("abc"));
+        }
+    }
 
     {
-        XTESTS_TEST_BOOLEAN_TRUE(s.contains("abc"));
+        string_t const s("abdabeabfab");
+
+        {
+            XTESTS_TEST_BOOLEAN_FALSE(s.contains("abc"));
+        }
+    }
+
+    {
+        string_t const s("aaaaaaaaaaaaaaaaaaaaaaaaaaab");
+
+        {
+            XTESTS_TEST_BOOLEAN_TRUE(s.contains("ab"));
+            XTESTS_TEST_BOOLEAN_FALSE(s.contains("ac"));
+        }
     }
 }
 
