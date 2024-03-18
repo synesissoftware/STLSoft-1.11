@@ -4,7 +4,7 @@
  * Purpose:     Functions for manipulating COM Type Libraries.
  *
  * Created:     5th April 2005
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,9 @@
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_MAJOR      1
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_MINOR      4
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_REVISION   3
-# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_EDIT       84
+# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_EDIT       85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # include <stlsoft/shims/access/string/std/c_string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -101,6 +103,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -322,6 +325,7 @@ typeinfo_get_name(
     return stlsoft::ref_ptr<ITypeInfo>(typeinfo)->GetNames(id, pbstrName, 1, &dummy);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -335,6 +339,7 @@ typeinfo_get_name(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

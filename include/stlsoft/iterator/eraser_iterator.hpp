@@ -4,7 +4,7 @@
  * Purpose:     Eraser iterator.
  *
  * Created:     16th June 2010
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_REVISION  5
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_EDIT      11
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASER_ITERATOR_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -141,6 +143,7 @@ struct ximpl_eraser_iterator_
     };
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -253,6 +256,7 @@ inline erase_iterator<C> eraser(C& container)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

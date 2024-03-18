@@ -4,7 +4,7 @@
  * Purpose:     Defines the string_slice class template.
  *
  * Created:     3rd May 2014
- * Updated:     5th February 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_MINOR    6
 # define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_EDIT     31
+# define STLSOFT_VER_STLSOFT_STRING_H_STRING_SLICE_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_COVER
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -153,6 +155,7 @@ public: /* Construction */
 typedef struct stlsoft_C_string_slice_w_t                   stlsoft_C_string_slice_w_t;
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -161,6 +164,7 @@ typedef struct stlsoft_C_string_slice_w_t                   stlsoft_C_string_sli
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -185,6 +189,7 @@ struct string_slice_selection_traits_t<wchar_t>
 };
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -343,6 +348,7 @@ c_str_len(
 
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -350,6 +356,7 @@ c_str_len(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * stream insertion
@@ -397,6 +404,7 @@ operator <<(
     return stm;
 }
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

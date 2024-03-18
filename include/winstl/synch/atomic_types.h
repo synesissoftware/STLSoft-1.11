@@ -4,11 +4,11 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_MAJOR     5
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_MINOR     1
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_EDIT      213
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_TYPES_EDIT      214
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -86,6 +88,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -117,6 +120,7 @@ typedef atomic_int32_t  atomic_int_t;
 # error Not valid for operating systems other than Win32 and Win64
 #endif /* Win32 || Win64 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -130,6 +134,7 @@ typedef atomic_int32_t  atomic_int_t;
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

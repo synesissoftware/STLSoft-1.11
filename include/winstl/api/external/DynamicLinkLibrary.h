@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_DynamicLinkLibrary
 #define WINSTL_INCL_WINSTL_API_external_h_DynamicLinkLibrary
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -63,6 +64,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' Dynamic Link Library Functions
@@ -96,6 +98,7 @@
 #ifndef WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExW
 # define WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExW                  STLSOFT_NS_GLOBAL_(LoadLibraryExW)
 #endif /* !WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExW */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

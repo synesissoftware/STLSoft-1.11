@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     2nd March 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_MINOR       1
 # define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_REVISION    10
-# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        173
+# define COMSTL_VER_COMSTL_STRING_H_OLESTRING_FUNCTIONS_EDIT        174
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -101,6 +103,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -203,6 +206,7 @@ STLSOFT_INLINE LPOLESTR comstl__olestring_dup(LPCOLESTR posz)
     return comstl__olestring_create_w(posz);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -211,6 +215,7 @@ STLSOFT_INLINE LPOLESTR comstl__olestring_dup(LPCOLESTR posz)
 namespace comstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -302,6 +307,7 @@ inline LPOLESTR olestring_dup(LPCOLESTR posz)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

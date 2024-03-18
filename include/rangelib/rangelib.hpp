@@ -4,7 +4,7 @@
  * Purpose:     Root header for the STLSoft implementation of RangeLib.
  *
  * Created:     12th October 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MAJOR    1
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_MINOR    4
 # define RANGELIB_VER_RANGELIB_HPP_RANGELIB_REVISION 4
-# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     39
+# define RANGELIB_VER_RANGELIB_HPP_RANGELIB_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file rangelib/rangelib.hpp
@@ -130,6 +130,7 @@
 #define _RANGELIB_VER_REVISION  3
 #define _RANGELIB_VER           _RANGELIB_VER_1_1_3
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
@@ -139,6 +140,7 @@
 STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
 [Incompatibilies-end]
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -150,6 +152,7 @@ STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility check(s)
@@ -236,6 +239,7 @@ STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -267,6 +271,7 @@ namespace rangelib_project
 namespace rangelib = ::stlsoft::rangelib_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

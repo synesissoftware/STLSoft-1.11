@@ -4,11 +4,11 @@
  * Purpose:     Synchronisation library exception(s).
  *
  * Created:     30th May 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MINOR     5
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT      29
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 # include <stdexcept>
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -104,6 +106,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -162,6 +165,7 @@ namespace winstl_project
                     <-  wait_operation_priority_preemption_exception
 
 #endif /* 0 */
+
 
 /* ///////////////////////////
  * abstract classes
@@ -380,6 +384,7 @@ private:
     class_type& operator =(class_type const&);
 };
 
+
 /* ///////////////////////////
  * concrete classes - logic
  */
@@ -566,6 +571,7 @@ private:
 
 public: // Fields
 };
+
 
 /* ///////////////////////////
  * concrete classes - runtime
@@ -834,6 +840,7 @@ public: // Fields
     int const   IndexOfSignalledSynchronisationObject;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -847,6 +854,7 @@ public: // Fields
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

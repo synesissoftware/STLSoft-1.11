@@ -4,11 +4,11 @@
  * Purpose:     Mutual exclusion model class.
  *
  * Created:     19th December 1997
- * Updated:     23rd November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_REVISION  7
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      55
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -80,6 +82,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -129,6 +132,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * control shims
  */
@@ -160,6 +164,7 @@ inline void unlock_instance(STLSOFT_NS_QUAL(null_mutex) &mx)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

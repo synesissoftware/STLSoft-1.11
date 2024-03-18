@@ -4,11 +4,11 @@
  * Purpose:     Basic exception classes.
  *
  * Created:     19th January 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_MAJOR      6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_MINOR      0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_REVISION   2
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_EDIT       60
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 # include <stlsoft/diagnostics/ProjectIdentifier.h>
 #endif /* !WINSTL_INCL_WINSTL_DIAGNOSTICS_H_PROJECTIDENTIFIER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -88,6 +90,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -156,6 +159,7 @@ public:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -163,6 +167,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

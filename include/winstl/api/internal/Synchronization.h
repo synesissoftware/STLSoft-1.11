@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_internal_h_Synchronization
 #define WINSTL_INCL_WINSTL_API_internal_h_Synchronization
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -67,6 +68,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * synchronization functions

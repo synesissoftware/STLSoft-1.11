@@ -6,7 +6,7 @@
  *              otherwise using the tick-count facilities.
  *
  * Created:     31st July 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,9 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR      5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR      0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION   3
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       47
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # include <winstl/api/external/Time.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Time */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -108,6 +110,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -315,6 +318,7 @@ private:
 static STLSOFT_NS_QUAL(class_constructor)<stopwatch>  s_stopwatch_class_constructor(&stopwatch::class_init, NULL);
 # endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -726,6 +730,7 @@ stopwatch::stop_get_nanoseconds_and_restart()
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

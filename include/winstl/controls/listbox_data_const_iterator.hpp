@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_data_const_iterator class.
  *
  * Created:     16th March 2008
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_MAJOR       1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_MINOR       1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_REVISION    7
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_EDIT        20
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -101,6 +103,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -355,6 +358,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -368,6 +372,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

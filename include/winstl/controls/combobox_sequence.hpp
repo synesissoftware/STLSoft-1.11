@@ -4,7 +4,7 @@
  * Purpose:     Contains the combobox_sequence class.
  *
  * Created:     13th November 2002
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -57,8 +57,9 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MINOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_REVISION   7
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       76
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -102,6 +104,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -267,6 +270,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

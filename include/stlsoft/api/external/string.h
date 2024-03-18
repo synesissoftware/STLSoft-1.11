@@ -48,6 +48,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 #define STLSOFT_INCL_STLSOFT_API_external_h_string
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes - 1
  */
@@ -87,6 +88,7 @@
 # include <wchar.h>
 #endif /* !STLSOFT_INCL_H_WCHAR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -122,6 +124,7 @@
 #else
 
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string functions
@@ -403,6 +406,7 @@
 # endif
 #endif /* !STLSOFT_API_EXTERNAL_string_wcsnicmp */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes - 2
  */
@@ -424,6 +428,7 @@
 #  include <stlsoft/string/c_string/strnicmp.h>
 # endif /* !STLSOFT_INCL_STLSOFT_STRING_C_STRING_H_STRNICMP */
 #endif /* !STLSOFT_API_EXTERNAL_string_strnicmp */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

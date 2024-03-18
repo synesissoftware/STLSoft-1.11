@@ -4,11 +4,11 @@
  * Purpose:     Contains the is_empty access shim.
  *
  * Created:     18th December 2006
- * Updated:     28th November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_MAJOR     2
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_MINOR     0
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_REVISION  4
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT      12
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_HPP_IS_EMPTY_EDIT      13
 #endif /* !MFCSTL_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 #ifndef MFCSTL_INCL_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_LISTS
 # include <mfcstl/shims/logical/is_empty/lists.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_LISTS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     COM memory functions.
  *
  * Created:     20th December 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MAJOR     2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MINOR     2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_REVISION  4
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      44
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -68,6 +69,7 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 [Incompatibilies-end]
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -78,6 +80,7 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -97,6 +100,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -216,6 +220,7 @@ inline R method_cast(C *c, HRESULT (STDAPICALLTYPE C::*pfn)(V*))
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

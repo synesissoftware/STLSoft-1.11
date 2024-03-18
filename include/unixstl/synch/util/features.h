@@ -4,11 +4,11 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     23rd October 1997
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MAJOR    2
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     20
+# define UNIXSTL_VER_UNIXSTL_SYNCH_UTIL_H_FEATURES_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 # define STLSOFT_INCL_H_UNISTD
 # include <unistd.h> /* Required for definition of _POSIX_THREADS on some impls. */
 #endif /* !STLSOFT_INCL_H_UNISTD */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * feature detection
@@ -263,6 +265,7 @@
 # endif /* _REENTRANT */
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

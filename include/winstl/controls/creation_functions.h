@@ -4,11 +4,11 @@
  * Purpose:     Control creation functions.
  *
  * Created:     7th May 2000
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    10
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        34
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # include <winstl/window/creation_functions.h>
 #endif /* !WINSTL_INCL_WINSTL_WINDOW_H_CREATION_FUNCTIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -95,6 +97,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -121,6 +124,7 @@ winstl_C_control_creation_functions_Id2HMENU_(
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -226,6 +230,7 @@ STLSOFT_INLINE HWND winstl__CreateCheckboxW(HWND hwndParent, ws_char_w_t const* 
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -372,6 +377,7 @@ inline HWND CreateCheckbox(HWND hwndParent, S const& name, DWORD buttonStyle, RE
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -385,6 +391,7 @@ inline HWND CreateCheckbox(HWND hwndParent, S const& name, DWORD buttonStyle, RE
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

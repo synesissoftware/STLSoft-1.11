@@ -4,7 +4,7 @@
  * Purpose:     string_concatenator_iterator class template.
  *
  * Created:     12th May 1998
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MINOR       4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    6
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        57
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _STLSOFT_STRING_FUNCTIONALS_NO_STD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -99,6 +101,7 @@ namespace stlsoft
 #ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
 # pragma message(_sscomp_fileline_message("TODO: Need a function that can do quoting (or anything else)"))
 #endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -326,6 +329,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * creator functions
  */
@@ -396,6 +400,7 @@ string_concatenator(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

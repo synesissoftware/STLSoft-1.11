@@ -5,7 +5,7 @@
  *          memory mapped file view handles.
  *
  * Created: 1st January 2017
- * Updated: 22nd February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_REVISION 7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT     14
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -259,7 +259,9 @@ get_memory_mapped_file_view_handle(
 }
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

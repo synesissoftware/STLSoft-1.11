@@ -4,7 +4,7 @@
  * Purpose:     VARIANT helper functions.
  *
  * Created:     23rd August 2008
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_MINOR       2
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_REVISION    2
-# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_EDIT        20
+# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +82,7 @@
 # include <comstl/util/object_functions.h>
 #endif /* !COMSTL_INCL_COMSTL_UTIL_H_OBJECT_FUNCTIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -99,6 +101,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -257,6 +260,7 @@ comstl_C_VARIANT_change_type(
     return hr;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -265,6 +269,7 @@ comstl_C_VARIANT_change_type(
 namespace comstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -340,6 +345,7 @@ VARIANT_change_type(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * backwards compatibility
  */
@@ -371,6 +377,7 @@ comstl__VARIANT_equal(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

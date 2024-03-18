@@ -5,7 +5,7 @@
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 8
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     179
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     180
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # endif /* !COMSTL_INCL_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -100,6 +102,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -534,6 +537,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

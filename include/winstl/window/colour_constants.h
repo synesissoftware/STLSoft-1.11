@@ -4,11 +4,11 @@
  * Purpose:     Colour constants.
  *
  * Created:     20th February 1999
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_MINOR      0
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_REVISION   5
-# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_EDIT       36
+# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_EDIT       37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -86,6 +88,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -125,6 +128,7 @@ const COLORREF  lightgrey       =   RGB(192, 192, 192); /*!< Colour constant */
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

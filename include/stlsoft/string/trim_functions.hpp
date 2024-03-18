@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for trimming and removing string contents.
  *
  * Created:     25th April 2005
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MINOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    3
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        59
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -94,6 +95,7 @@
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -102,6 +104,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -173,6 +176,7 @@ default_trim_chars(
 
 STLSOFT_CLOSE_WORKER_NS_(ximpl_split_functions)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -678,6 +682,7 @@ remove_all(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

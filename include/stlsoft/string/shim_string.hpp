@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     30th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Dimitri Kaparis, for spotting a typo in the string access
  *              shims.
@@ -58,8 +58,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       7
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        68
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -108,6 +109,7 @@
 # include <iosfwd>
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -116,6 +118,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * code coverage
@@ -135,6 +138,7 @@ namespace
     } instance;
 }
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -596,6 +600,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -823,6 +828,7 @@ inline std::basic_ostream<C>& operator <<(std::basic_ostream<C> &s, stlsoft::bas
 /* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* ? compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

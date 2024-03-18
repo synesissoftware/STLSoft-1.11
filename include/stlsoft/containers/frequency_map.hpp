@@ -4,7 +4,7 @@
  * Purpose:     A container that measures the frequency of the unique elements it contains.
  *
  * Created:     1st October 2005
- * Updated:     12th February 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR     2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     8
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      51
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -593,7 +593,9 @@ inline void swap(
 #endif /* compiler */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

@@ -4,7 +4,7 @@
  * Purpose:     Directory functions.
  *
  * Created:     29th January 2013
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        13
+# define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -94,6 +96,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -175,6 +178,7 @@ winstl_C_get_home_directory_w(
     return cchTotal;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
@@ -214,6 +218,7 @@ get_home_directory(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Definition of the fixer_referent_type and fixer_const_referent_type types.
  *
  * Created:     26th February 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,25 +55,10 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENT_TYPE_MAJOR     2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENT_TYPE_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENT_TYPE_REVISION  4
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENT_TYPE_EDIT      27
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENT_TYPE_EDIT      28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
 
-/*
-[<[STLSOFT-AUTO:NO-UNITTEST]>]
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
-[Incompatibilies-end]
-*/
-
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_MWERKS: (__MWERKS__ & 0xFF00) < 0x3000
-[Incompatibilies-end]
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +75,7 @@ STLSOFT_COMPILER_IS_MWERKS: (__MWERKS__ & 0xFF00) < 0x3000
 # error stlsoft/typefixer/referent_type.hpp is only compatible with compilers that support partial template specialisation
 #endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -101,6 +87,7 @@ namespace stlsoft
 namespace typefixer
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -132,13 +119,17 @@ struct fixer_referent_type<T, false>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace typefixer */
 
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

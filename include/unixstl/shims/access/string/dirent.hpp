@@ -4,14 +4,14 @@
  * Purpose:     Support for the STLSoft string access shims for UNIX types.
  *
  * Created:     11th January 2003
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Thanks:      To Carlos Santander Bernal, for providing feedback for Mac
  *              builds
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,8 +58,9 @@
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_REVISION    6
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_EDIT        64
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # define STLSOFT_INCL_H_DIRENT
 # include <dirent.h>
 #endif /* !STLSOFT_INCL_H_DIRENT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -337,6 +339,7 @@ inline us_char_a_t const* c_str_ptr_null(struct dirent const& d)
     return 0 == d.d_name[0] ? static_cast<us_char_a_t const*>(NULL) : d.d_name;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -391,6 +394,7 @@ using ::unixstl::c_str_ptr_null_a;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

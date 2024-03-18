@@ -4,11 +4,11 @@
  * Purpose:     .
  *
  * Created:     2nd February 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MAJOR     1
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MINOR     0
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_REVISION  9
-# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      24
+# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <new>  // for std::bad_alloc
 #endif /* !STLSOFT_INCL_NEW */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -97,6 +99,7 @@ namespace mfcstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -151,6 +154,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

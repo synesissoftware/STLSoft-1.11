@@ -5,7 +5,7 @@
  *              function template suite
  *
  * Created:     30th May 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_REVISION    10
-# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        27
+# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +82,7 @@
 # include <winstl/api/external/Synchronization.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Synchronization */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -99,6 +101,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -507,6 +510,7 @@ wait_for_multiple_objects(
         ,   timeout);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -520,6 +524,7 @@ wait_for_multiple_objects(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose: String-switch functions.
  *
  * Created: 10th May 2010
- * Updated: 22nd February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR    3
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION 4
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT     32
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1405,7 +1405,9 @@ string_switch_(
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

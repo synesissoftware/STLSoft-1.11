@@ -4,11 +4,11 @@
  * Purpose:     TEXTMETRICS functions.
  *
  * Created:     20th October 1994
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_REVISION 4
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_EDIT     48
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 #  include <winstl/window/hdc_scope.hpp>
 # endif /* !WINSTL_INCL_WINSTL_WINDOW_HPP_HDC_SCOPE */
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,6 +94,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -121,6 +124,7 @@ STLSOFT_INLINE TEXTMETRIC winstl__get_textmetrics(HDC hdc)
     return winstl__get_textmetrics_a(hdc);
 # endif /* UNICODE */
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -203,6 +207,7 @@ inline TEXTMETRIC get_client_textmetrics(HWND hwnd)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

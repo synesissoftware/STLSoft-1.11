@@ -9,11 +9,11 @@
  *              code coverage.
  *
  * Created:     18th June 2006
- * Updated:     16th December 2023
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,8 +59,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        29
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * algorithms
@@ -332,74 +335,76 @@ STLSOFT_UTIL_MUST_INIT_DEFINE_BUILTIN_(long double);
 
 //STLSOFT_PRAGMA_PACK_POP()
 
-////////////////////////////////////////////////////////////////////////////
-// Specialisations
+
+/* /////////////////////////////////////////////////////////////////////////
+ * specialisations
+ */
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>bool</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<bool>                 bool_init_t;
+typedef must_init<bool>                                     bool_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>char</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<char>                 char_init_t;
+typedef must_init<char>                                     char_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>wchar_t</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<wchar_t>              wchar_t_init_t;
+typedef must_init<wchar_t>                                  wchar_t_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>signed char</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<signed char>          signed_char_init_t;
+typedef must_init<signed char>                              signed_char_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>unsigned char</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<unsigned char>        unsigned_char_init_t;
+typedef must_init<unsigned char>                            unsigned_char_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>short</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<short>                short_init_t;
+typedef must_init<short>                                    short_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>unsigned short</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<unsigned short>       unsigned_short_init_t;
+typedef must_init<unsigned short>                           unsigned_short_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>int</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<int>                  int_init_t;
+typedef must_init<int>                                      int_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>unsigned int</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<unsigned int>         unsigned_int_init_t;
+typedef must_init<unsigned int>                             unsigned_int_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>long</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<long>                 long_init_t;
+typedef must_init<long>                                     long_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>unsigned long</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<unsigned long>        unsigned_long_init_t;
+typedef must_init<unsigned long>                            unsigned_long_init_t;
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 
@@ -407,13 +412,13 @@ typedef must_init<unsigned long>        unsigned_long_init_t;
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<ss_sint64_t>          sint64_init_t;
+typedef must_init<ss_sint64_t>                              sint64_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>ss_uint64_t</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<ss_uint64_t>          uint64_init_t;
+typedef must_init<ss_uint64_t>                              uint64_init_t;
 
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
@@ -421,19 +426,21 @@ typedef must_init<ss_uint64_t>          uint64_init_t;
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<float>                float_init_t;
+typedef must_init<float>                                    float_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>double</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<double>               double_init_t;
+typedef must_init<double>                                   double_init_t;
 
 /** Specialisation of \link stlsoft::must_init must_init\endlink for <code>long double</code>.
  *
  * \ingroup group__library__Utility
  */
-typedef must_init<long double>          long_double_init_t;
+typedef must_init<long double>                              long_double_init_t;
+
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -1100,11 +1107,15 @@ inline must_init<T> const& operator |=(must_init<T> &v, must_init<T> const& rhs)
     return v;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -5,7 +5,7 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_REVISION   8
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       59
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
 #endif /* !STLSOFT_NO_SAP_CAST && STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -185,6 +188,7 @@ inline TO sap_cast(FROM from)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Elicitation functions for Windows time structures.
  *
  * Created:     26th May 2014
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_EDIT        11
+# define WINSTL_VER_WINSTL_TIME_H_ELICITATION_FUNCTIONS_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -89,6 +91,7 @@ namespace winstl_project
 
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -166,6 +169,7 @@ winstl_C_get_local_time_as_FILETIME(
     return STLSOFT_NS_GLOBAL(SystemTimeToFileTime)(&st, ft);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -174,6 +178,7 @@ winstl_C_get_local_time_as_FILETIME(
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -345,6 +350,7 @@ get_time(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -358,6 +364,7 @@ get_time(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

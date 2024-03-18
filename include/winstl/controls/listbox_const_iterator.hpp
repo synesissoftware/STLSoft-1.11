@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_const_iterator class.
  *
  * Created:     10th November 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MINOR    3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_REVISION 6
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     90
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 # include <stlsoft/error/external_iterator_invalidation.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -104,6 +106,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -431,6 +434,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

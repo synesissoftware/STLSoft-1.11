@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      135
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      136
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -137,6 +138,7 @@
 # include <stlsoft/internal/safestr.h>
 #endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -155,6 +157,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -867,6 +870,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

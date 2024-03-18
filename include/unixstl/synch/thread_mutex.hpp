@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on PTHREADS pthread_mutex_t.
  *
  * Created:     17th December 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_REVISION    10
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        69
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +89,7 @@
 # include <pthread.h>
 #endif /* !STLSOFT_INCL_H_PTHREAD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -315,6 +318,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * control shims
  */
@@ -363,6 +367,7 @@ namespace unixstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * lock_traits
  */
@@ -394,6 +399,7 @@ public:
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -407,6 +413,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

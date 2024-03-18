@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -53,24 +53,14 @@
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 6
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     75
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
-
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_DMC:
-STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
-STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
-[Incompatibilies-end]
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
+
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGELIB
 # include <rangelib/rangelib.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGELIB */
@@ -108,6 +98,7 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -126,6 +117,7 @@ namespace rangelib_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -470,8 +462,10 @@ private:
     iterator    m_last;
 };
 
-////////////////////////////////////////////////////////////////////////////
-// Functions
+
+/* /////////////////////////////////////////////////////////////////////////
+ * functions
+ */
 
 template<ss_typename_param_k S>
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
@@ -483,7 +477,10 @@ inline sequence_range<S> make_sequence_range(S const& s)
     return sequence_range<S>(s);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef RANGELIB_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -494,6 +491,7 @@ inline sequence_range<S> make_sequence_range(S const& s)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

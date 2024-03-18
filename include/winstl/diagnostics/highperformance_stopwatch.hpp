@@ -4,7 +4,7 @@
  * Purpose:     WinSTL high stopwatch class.
  *
  * Created:     19th October 1998
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_HIGHPERFORMANCE_STOPWATCH_MAJOR      5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_HIGHPERFORMANCE_STOPWATCH_MINOR      0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_HIGHPERFORMANCE_STOPWATCH_REVISION   3
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_HIGHPERFORMANCE_STOPWATCH_EDIT       98
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_HIGHPERFORMANCE_STOPWATCH_EDIT       99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +89,7 @@
 # include <winstl/api/external/Time.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Time */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -199,6 +202,7 @@ private:
 static STLSOFT_NS_QUAL(class_constructor)<highperformance_stopwatch>  s_highperformance_stopwatch_class_constructor(&highperformance_stopwatch::class_init, NULL);
 # endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -354,6 +358,7 @@ highperformance_stopwatch::get_nanoseconds() const
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

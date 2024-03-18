@@ -4,11 +4,11 @@
  * Purpose:     Definition of stlsoft::equal_ptr predicate class.
  *
  * Created:     7th November 2004
- * Updated:     26th December 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,9 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_MAJOR     3
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_MINOR     0
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_REVISION  5
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_EDIT      35
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_REVISION  6
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_EQUAL_PTR_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # include <functional>
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +87,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -95,38 +98,48 @@ namespace stlsoft
  * \ingroup group__library__Functional
  *
  */
-template<   ss_typename_param_k P
-        ,   ss_typename_param_k A = P const&
-        >
+template<
+    ss_typename_param_k P
+,   ss_typename_param_k A = P const&
+>
 // [[synesis:class:function-class:unary-predicate: equal_ptr]]
 struct equal_ptr
-#ifdef STLSOFT_CF_std_NAMESPACE
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, ss_bool_t>
-#endif /* STLSOFT_CF_std_NAMESPACE */
+#endif
 {
 public:
-    equal_ptr(P t)
+    typedef ss_bool_t                                       bool_type;
+    typedef A                                               argument_type;
+    typedef P                                               pointer_type;
+    typedef bool_type                                       result_type;
+
+public:
+    equal_ptr(pointer_type t)
         : m_p(t)
     {}
 
 public:
     /// Returns true if the given instance's underlying pointer is
     /// equal to that of the contained pointer.
-    ss_bool_t operator ()(A p) const
+    result_type operator ()(argument_type p) const
     {
         return STLSOFT_NS_QUAL(get_ptr)(p) == STLSOFT_NS_QUAL(get_ptr)(m_p);
     }
 
 private:
-    P   m_p;
+    pointer_type m_p;
 };
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     String to integer conversions.
  *
  * Created:     6th September 2014
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_MINOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_REVISION 5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_EDIT     12
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -91,6 +93,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * code coverage
@@ -112,6 +115,7 @@ namespace
 }
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
@@ -123,6 +127,7 @@ namespace ximpl_string_to_bool
     };
 
 } /* namespace ximpl_string_to_bool */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -635,6 +640,7 @@ try_parse_to_bool(
     return true;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * code coverage
  */
@@ -654,6 +660,7 @@ namespace
 }
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -661,6 +668,7 @@ namespace
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

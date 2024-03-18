@@ -4,7 +4,7 @@
  * Purpose:     Shell browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    2
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 10
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     78
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes.
@@ -80,6 +81,7 @@
 # include <winstl/shims/access/string.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -188,6 +191,7 @@ struct shell_browse_callback_holder
 };
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -405,6 +409,7 @@ inline ws_bool_t browse_for_folder(S const& title, C* displayName)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

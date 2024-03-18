@@ -4,11 +4,11 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     3rd December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      7
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      2
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   9
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       512
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       513
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 # include <stlsoft/smartptr/ref_ptr.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -174,6 +177,7 @@ public:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -183,6 +187,7 @@ inline void swap(interface_ptr<T>& lhs, interface_ptr<T>& rhs)
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * deprecated shims
@@ -198,6 +203,7 @@ inline cs_bool_t is_empty(interface_ptr<T> const& p)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -210,6 +216,7 @@ inline T* get_ptr(interface_ptr<T> const& p)
 {
     return p.get_interface_ptr();
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -390,6 +397,7 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

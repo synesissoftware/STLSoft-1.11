@@ -5,14 +5,14 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     1st January 2021
+ * Updated:     11th March 2024
  *
  * Thanks to:   Austin Ziegler for spotting the defective pre-condition
  *              enforcement of expand_environment_strings().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,8 +59,9 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       6
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        165
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        166
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -137,6 +138,7 @@
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -155,6 +157,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -1585,6 +1588,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

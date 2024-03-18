@@ -4,7 +4,7 @@
  * Purpose:     stlsoft::spin_mutex_base class template.
  *
  * Created:     27th August 1997
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Rupert Kittinger, for pointing out that the prior
  *              implementation that always yielded was not really "spinning".
@@ -58,8 +58,9 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MAJOR     6
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_REVISION  3
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT      77
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT      78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility & feature control
  */
@@ -83,6 +85,7 @@
 #if defined(_ATL_MIN_CRT)
 # define WINSTL_SPINMUTEX_CHECK_INIT
 #endif /* _ATL_MIN_CRT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,6 +95,7 @@
 namespace stlsoft
 {
 #endif /* !STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -240,6 +244,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * control shims
  */
@@ -279,6 +284,7 @@ unlock_instance(
 {
     mx.unlock();
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * lock_traits
@@ -320,6 +326,7 @@ public:
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -327,6 +334,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* !STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     winstl::operating_environment_exception class
  *
  * Created:     13th May 2010
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_MAJOR     2
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_MINOR     0
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_REVISION  1
-# define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_EDIT      80
+# define WINSTL_VER_WINSTL_EXCEPTION_HPP_OPERATING_ENVIRONMENT_EXCEPTION_EDIT      81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +75,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE
 # include <stlsoft/exception/util/status_code_propagating_exception_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -94,6 +96,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -101,6 +104,7 @@ namespace winstl_project
 typedef STLSOFT_NS_QUAL(status_code_propagating_exception_base)<
     winstl_exception
 >                                                           operating_environment_exception;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -115,6 +119,7 @@ typedef STLSOFT_NS_QUAL(status_code_propagating_exception_base)<
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

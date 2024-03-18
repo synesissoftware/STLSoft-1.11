@@ -4,7 +4,7 @@
  * Purpose:     Null output iterator.
  *
  * Created:     18th February 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_REVISION    9
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        31
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -85,6 +86,7 @@
 # include <stlsoft/string/char_traits.hpp>
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -93,6 +95,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -200,6 +203,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

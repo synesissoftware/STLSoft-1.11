@@ -4,7 +4,7 @@
  * Purpose:     Contains equivalents to contents of std's <utility>.
  *
  * Created:     29th January 2024
- * Updated:     16th February 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,12 +53,14 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     2
+# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -395,13 +397,15 @@ string_insert_w(
 }
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace util */
 } /* namespace stlsoft */
-
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

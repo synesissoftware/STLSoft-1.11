@@ -4,7 +4,7 @@
  * Purpose:     Algorithms for manipulating unordered sequences.
  *
  * Created:     17th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MAJOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MINOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_REVISION  7
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      86
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * algorithms
@@ -475,6 +477,7 @@ inline ss_bool_t unordered_includes(I1 first1, I1 last1, I2 first2, I2 last2)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

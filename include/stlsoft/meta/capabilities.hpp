@@ -4,11 +4,11 @@
  * Purpose:     Pre-processor abilities for the meta library.
  *
  * Created:     5th March 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_MINOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_REVISION 3
-# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     20
+# define STLSOFT_VER_STLSOFT_META_HPP_CAPABILITIES_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * capabilities
@@ -150,6 +152,7 @@
 # define STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
 
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

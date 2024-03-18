@@ -4,7 +4,7 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     8
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      231
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      232
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Synchronization
 # include <winstl/api/external/Synchronization.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Synchronization */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -126,6 +128,7 @@
 #else /* ? arch */
 # error Only defined for the Intel x86 and IA64 architectures
 #endif /* arch */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -190,6 +193,7 @@ winstl_C_internal_synch_atomic_ptrconv64_(
 #  endif
 # endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -275,6 +279,7 @@ namespace winstl_project
 #  endif /* __cplusplus */
 # endif /* STSLSOFT_INLINE_ASM_SUPPORTED */
 #endif /* declaration / definition */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * atomic function declarations
@@ -432,6 +437,7 @@ atomic_int_t atomic_preadd(atomic_int_t volatile* pl, atomic_int_t n);
 
 
 #endif /* !WINSTL_ATOMIC_FNS_DEFINITION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * atomic function definitions
@@ -2263,6 +2269,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_smp(atomic_int_t volatile* 
 
 # endif /* !WINSTL_ATOMIC_FNS_DECLARATION_ONLY */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * other inline atomic function
  */
@@ -2375,6 +2382,7 @@ inline atomic_int32_t atomic_postadd(atomic_int32_t volatile* pv, atomic_int32_t
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -2388,6 +2396,7 @@ inline atomic_int32_t atomic_postadd(atomic_int32_t volatile* pv, atomic_int32_t
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

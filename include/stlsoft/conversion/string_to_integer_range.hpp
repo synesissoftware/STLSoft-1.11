@@ -4,11 +4,11 @@
  * Purpose:     String to integer conversions.
  *
  * Created:     28th October 2020
- * Updated:     7th February 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2020-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_MINOR       0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_REVISION    1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_EDIT        2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -96,6 +97,7 @@
 # include <utility>
 #endif /* !STLSOFT_INCL_UTILITY */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -104,6 +106,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -533,6 +536,7 @@ try_parse_range_of(
     );
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -540,6 +544,7 @@ try_parse_range_of(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

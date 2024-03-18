@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_Time_Value class.
  *
  * Created:     2nd December 2004
- * Updated:     16th February 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_MINOR     0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_REVISION  10
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      52
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_TIME_VALUE_EDIT      53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -98,6 +99,7 @@
 #endif /* !STLSOFT_INCL_ACE_H_OS_NS_TIME */
 #endif /* ACE_VER >= 5.4 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -116,6 +118,7 @@ namespace acestl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ACESTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -203,6 +206,7 @@ namespace acestl_time_access_string_util
 
 } /* namespace acestl_time_access_string_util */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -369,6 +373,7 @@ namespace stlsoft
 } /* namespace stlsoft */
 
 #endif /* !ACESTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

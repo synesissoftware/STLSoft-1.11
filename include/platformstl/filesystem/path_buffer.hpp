@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the path_buffer components.
  *
  * Created:     22nd December 2020
- * Updated:     30th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_BUFFER_MAJOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_BUFFER_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_BUFFER_REVISION    2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT        2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -168,6 +170,7 @@ namespace platformstl_project
 } /* namespace platformstl_project */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

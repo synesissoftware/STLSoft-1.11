@@ -4,7 +4,7 @@
  * Purpose:     Raw conversion veneer class.
  *
  * Created:     30th July 2002
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,9 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_MINOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_REVISION   5
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       58
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONVERSION_VENEER_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +71,7 @@
 # include <stlsoft/util/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -78,6 +80,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -679,6 +682,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

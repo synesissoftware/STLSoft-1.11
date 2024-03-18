@@ -6,7 +6,7 @@
  *              sequence.
  *
  * Created:     6th February 1999
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,8 +57,9 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  6
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      135
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      136
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 
 // #define STLSOFT_TRANSFORM_ITERATOR_IS_COMPATIBLE_WITH_HETEROGENOUS_ITERATOR_ALGOS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler & library compatibility
  */
@@ -99,6 +101,7 @@
 # define STLSOFT_ITER_TXFM_ITER_OLD_DW
 #endif /* library */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -107,6 +110,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -392,6 +396,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * creator functions
  */
@@ -450,6 +455,7 @@ inline transform_iterator<I, F> transform(I it, F fn)
     return transform_iterator<I, F>(it, fn);
 }
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -565,6 +571,7 @@ inline ss_bool_t operator >=(transform_iterator<I, F> const& lhs, transform_iter
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

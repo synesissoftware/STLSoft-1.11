@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class for VC++ 5.
  *
  * Created:     16th October 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,8 +58,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5__MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_MINOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        24
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # include <new>
 #endif /* !STLSOFT_INCL_NEW */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -265,6 +268,7 @@ private:
     class_type& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -335,6 +339,7 @@ inline S& operator <<(S& s, basic_shim_string<C> const& ss)
 
     return s;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -4,11 +4,11 @@
  * Purpose:     Contains the get_FILE_ptr attribute shim.
  *
  * Created:     10th January 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_REVISION    8
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_EDIT        17
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_FILE_PTR_STD_H_FUNDAMENTAL_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # include <stdio.h>
 #endif /* !STLSOFT_INCL_H_STDIO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * get_FILE_ptr functions
@@ -105,6 +108,7 @@ get_FILE_ptr(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

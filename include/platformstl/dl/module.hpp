@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the module components.
  *
  * Created:     20th March 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MINOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_REVISION 4
-# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_EDIT     27
+# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -149,6 +151,7 @@ namespace platformstl_project
 } /* namespace platformstl_project */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

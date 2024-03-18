@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR       6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        109
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT        110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -107,6 +108,7 @@
 # include <sys/stat.h>
 #endif /* !STLSOFT_INCL_SYS_H_STAT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -125,6 +127,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -436,6 +439,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * comparison operators
  */
@@ -460,6 +464,7 @@ operator !=(
     return !lhs.equal(rhs);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -476,6 +481,7 @@ swap(
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -507,6 +513,7 @@ namespace std
 
 } /* namespace std */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -48,6 +48,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_internal_h_DynamicLinkLibrary
 #define WINSTL_INCL_WINSTL_API_internal_h_DynamicLinkLibrary
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -68,6 +69,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_MemoryManagement
 # include <winstl/api/external/MemoryManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_MemoryManagement */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' File Management Functions
@@ -179,6 +181,7 @@ WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameW(
 
     return WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameW(hModule, filename, cchFilename);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

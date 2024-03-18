@@ -4,7 +4,7 @@
  * Purpose:     Miscellaneous undocumented features.
  *
  * Created:     20th October 1994
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_MAJOR       4
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_MINOR       0
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_REVISION    5
-#define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_EDIT        50
+#define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -86,6 +88,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -158,6 +161,7 @@ private:
 
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -209,6 +213,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

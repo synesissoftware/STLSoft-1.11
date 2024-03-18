@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_vector class.
  *
  * Created:     23rd December 2003
- * Updated:     28th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
  *              auto_buffer such that pod_vector was born.
@@ -61,8 +61,9 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        97
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -104,6 +105,7 @@
 # include <stdexcept>                            // for std::out_of_range
 #endif /* !STLSOFT_INCL_STDEXCEPT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -112,6 +114,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -275,6 +278,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
@@ -328,6 +332,7 @@ operator !=(
     return !operator ==(lhs, rhs);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -346,6 +351,7 @@ swap(
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -1319,6 +1325,7 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

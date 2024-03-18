@@ -4,7 +4,7 @@
  * Purpose:     String creation functions (from String Access Shims)
  *
  * Created:     25th December 2018
- * Updated:     12th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_MAJOR    1
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_MINOR    1
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_REVISION 3
-# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_EDIT     9
+# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,11 +78,13 @@
 # include <string>
 #endif /* !STLSOFT_INCL_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
 namespace stlsoft {
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -167,11 +170,13 @@ sas_to_string(
     return sas_to_string_m(arg0);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
 } /* namespace stlsoft */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

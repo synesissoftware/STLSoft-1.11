@@ -4,7 +4,7 @@
  * Purpose:     String split functions.
  *
  * Created:     28th January 2005
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_MINOR      5
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_REVISION   1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_EDIT       62
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_SPLIT_FUNCTIONS_EDIT       63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -104,6 +105,7 @@
 # include <vector>
 #endif /* !STLSOFT_INCL_VECTOR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -112,6 +114,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -491,6 +494,7 @@ split_impl_6(
 
 STLSOFT_CLOSE_WORKER_NS_(ximpl_split_functions)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -892,6 +896,7 @@ split(
 }
 #endif /* !STLSOFT_SPLIT_FUNCTION_OLD_FORM_N */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -899,6 +904,7 @@ split(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Scoped thread-safe access locking class.
  *
  * Created:     7th November 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MAJOR     2
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_REVISION  5
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      32
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # include <stlsoft/synch/lock_scope.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -187,11 +190,15 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

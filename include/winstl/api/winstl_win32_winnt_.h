@@ -7,6 +7,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 #define WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Windows version compatibility check(s)
  */
@@ -20,6 +21,7 @@
 #else
 # define WINSTL_WIN32_WINNT                                 (_WIN32_WINNT)
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

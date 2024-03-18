@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Nevin Liber and Scott Meyers for kicking my lazy behind, and
  *              requiring that I implement the full complement of standard
@@ -60,8 +60,9 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 11
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     102
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -114,6 +115,7 @@
 # include <algorithm>
 #endif /* !STLSOFT_INCL_ALGORITHM */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -132,6 +134,7 @@ namespace mfcstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -1485,6 +1488,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * comparison
  */
@@ -1685,6 +1689,7 @@ inline ms_bool_t operator >=(A const& lhs, CArray_adaptor_base<A, I, T> const& r
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

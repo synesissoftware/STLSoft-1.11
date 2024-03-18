@@ -4,11 +4,11 @@
  * Purpose:     comstl::comstl_exception class
  *
  * Created:     8th December 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_MAJOR     3
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_MINOR     2
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_REVISION  2
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_EDIT      59
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <comstl/exception/policy/HRESULT_to_string_translation_policy.hpp>
 #endif /* !COMSTL_INCL_COMSTL_EXCEPTION_POLICY_HPP_WINDOWS_STATUS_CODE_TO_STRING_TRANSLATION_POLICY */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -100,6 +102,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -120,6 +123,7 @@ typedef STLSOFT_NS_QUAL(status_code_translating_exception_base)<
 typedef comstl_exception                                    com_exception;
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -133,6 +137,7 @@ typedef comstl_exception                                    com_exception;
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

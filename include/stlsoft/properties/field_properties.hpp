@@ -4,7 +4,7 @@
  * Purpose:     Field-based properties.
  *
  * Created:     6th October 2003
- * Updated:     6th February 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -63,8 +63,9 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   8
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       45
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +87,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -371,6 +374,7 @@ public:
 };
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * iostream compatibility
  */
@@ -409,6 +413,7 @@ inline S& operator <<(  S& s
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

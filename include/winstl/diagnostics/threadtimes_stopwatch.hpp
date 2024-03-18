@@ -4,7 +4,7 @@
  * Purpose:     WinSTL thread-time stopwatch class.
  *
  * Created:     22nd March 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_MAJOR      5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_MINOR      0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_REVISION   2
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_EDIT       61
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_THREADTIMES_STOPWATCH_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -87,6 +89,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -218,8 +221,10 @@ private:
     HANDLE      m_thread;
 };
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -406,10 +411,12 @@ threadtimes_stopwatch::get_nanoseconds() const
 {
     return get_period_count() * interval_type(100);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -420,6 +427,7 @@ threadtimes_stopwatch::get_nanoseconds() const
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

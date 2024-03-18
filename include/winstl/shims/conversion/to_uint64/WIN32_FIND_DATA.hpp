@@ -4,11 +4,11 @@
  * Purpose:     Contains the to_uint64 access shim.
  *
  * Created:     4th July 2007
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_MAJOR     1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_MINOR     0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_REVISION  7
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_EDIT      15
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_UINT64_HPP_WIN32_FIND_DATA_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 # include <stlsoft/shims/conversion/to_uint64/degenerate.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_CONVERSION_TO_UINT64_HPP_DEGENERATE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -80,6 +82,7 @@
 namespace stlsoft
 {
 #endif /* WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * to_uint64 functions
@@ -136,6 +139,7 @@ to_uint64(
 #ifndef WINSTL_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

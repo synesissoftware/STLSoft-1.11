@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Mikael Pahmp, for spotting the failure to handle 24-hour
  *              time pictures.
@@ -57,8 +57,9 @@
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   10
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       77
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +89,7 @@
 # include <winstl/api/external/Registry.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Registry */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper classes
@@ -163,6 +166,7 @@ struct time_format_functions_traits<ws_char_w_t>
 };
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -502,6 +506,7 @@ STLSOFT_STDCALL GetTimeFormat_msExW(
     return GetTimeFormat_ms_<ws_char_w_t>(locale, dwFlags, lpTime, lpFormat, *timeMarkers, lpTimeStr, cchTime);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -515,6 +520,7 @@ STLSOFT_STDCALL GetTimeFormat_msExW(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

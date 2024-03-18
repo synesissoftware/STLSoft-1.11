@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation API library exception(s).
  *
  * Created:     30th May 2006
- * Updated:     16th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_MAJOR     3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_EDIT      24
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_EDIT      25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION
 # include <unixstl/exception/unixstl_exception.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +92,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -129,6 +132,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -142,6 +146,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -5,11 +5,11 @@
  *              for too long.
  *
  * Created:     11th October 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,8 +60,9 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    4
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        47
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -75,6 +76,7 @@ STLSOFT_COMPILER_IS_MSVC:       _MSC_VER < 1310
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -99,6 +101,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/meta/detectors.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_DETECTORS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -107,6 +110,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -181,6 +185,7 @@ protected:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

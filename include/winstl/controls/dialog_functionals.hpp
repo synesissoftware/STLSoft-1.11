@@ -4,11 +4,11 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     2nd August 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,9 +53,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_MAJOR     1
 # define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_MINOR     0
-# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_REVISION  6
-# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_EDIT      20
+# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_REVISION  7
+# define WINSTL_VER_WINSTL_CONTROL_HPP_DIALOG_FUNCTIONALS_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_CONTROL_FUNCTIONALS_NO_STD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -105,6 +107,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -115,13 +118,18 @@ namespace winstl_project
  */
 // [[synesis:class:unary-functor: dialog_button_id_check]]
 class dialog_button_id_check
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<HWND, void>
+#endif
 {
 public:
+    typedef HWND                                            argument_type;
+    typedef void                                            result_type;
     /// This type
-    typedef dialog_button_id_check    class_type;
+    typedef dialog_button_id_check                          class_type;
 public:
-    ss_explicit_k dialog_button_id_check(HWND hwndDlg, UINT nCheck = BST_CHECKED)
+    ss_explicit_k
+    dialog_button_id_check(HWND hwndDlg, UINT nCheck = BST_CHECKED)
         : m_hwndDlg(hwndDlg)
         , m_nCheck(nCheck)
     {}
@@ -129,6 +137,8 @@ public:
         : m_hwndDlg(rhs.m_hwndDlg)
         , m_nCheck(rhs.m_nCheck)
     {}
+private:
+    class_type& operator =(class_type const&);
 
 public:
     void operator ()(int id) const
@@ -143,14 +153,13 @@ private:
 
 private:
     HWND        m_hwndDlg;
-    const UINT  m_nCheck;
-
-private:
-    class_type& operator =(class_type const&);
+    UINT const  m_nCheck;
 };
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -161,6 +170,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

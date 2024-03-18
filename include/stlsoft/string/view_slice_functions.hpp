@@ -4,7 +4,7 @@
  * Purpose:     String view slice functions.
  *
  * Created:     25th April 2005
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions, and
  *              collaboration on their implementation.
@@ -57,8 +57,9 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_MAJOR     2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_MINOR     1
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_REVISION  12
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_EDIT      43
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_VIEW_SLICE_FUNCTIONS_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # include <stlsoft/string/string_view.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper classes
@@ -178,6 +181,7 @@ struct string_view_helper_traits<ss_char_w_t const [N]>
 # endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * slice functions
@@ -373,6 +377,7 @@ inline ss_typename_type_ret_k string_view_helper_traits<S>::view_type mid_view(S
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

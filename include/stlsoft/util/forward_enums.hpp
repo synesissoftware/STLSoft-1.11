@@ -4,11 +4,11 @@
  * Purpose:     Contains macros for forward declaring enums.
  *
  * Created:     3rd November 2000
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_MINOR      0
 # define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_REVISION   5
-# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_EDIT       56
+# define STLSOFT_VER_STLSOFT_HPP_FORWARD_ENUM_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -76,6 +78,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -134,6 +137,7 @@ namespace stlsoft
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

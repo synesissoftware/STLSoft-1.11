@@ -4,7 +4,7 @@
  * Purpose:     Definition of the CArray_traits traits class.
  *
  * Created:     1st December 2002
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_MAJOR      2
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_MINOR      0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_REVISION   6
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_EDIT       25
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
     !defined(MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT)
 # include <afxtempl.h>
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -91,6 +93,7 @@ namespace mfcstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -215,6 +218,7 @@ struct CArray_specific_traits
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

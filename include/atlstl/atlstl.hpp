@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     7
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  2
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      123
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -142,6 +142,7 @@
 #define _ATLSTL_VER_REVISION    1
 #define _ATLSTL_VER             _ATLSTL_VER_1_7_1_B04
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -180,6 +181,7 @@
 # pragma warn .8013 /* Suppresses "Possible use of 'f' before definition in '. . .'" */
 # pragma warn .8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility check(s)
@@ -328,6 +330,7 @@
  * namespace or in the global namespace.
  */
 
+
 /* /////////////////////////////////////
  * obsolete preprocessor symbol detection
  */
@@ -349,6 +352,7 @@
 #  define ATLSTL_NO_NAMESPACE
 # endif /* !ATLSTL_NO_NAMESPACE */
 #endif /* _ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * namespace support discrimination
@@ -379,6 +383,7 @@
 #  endif /* !_ATLSTL_NO_NAMESPACE */
 # endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
 #endif /* ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * declaration '*stl*' namespace
@@ -555,6 +560,7 @@ typedef STLSOFT_NS_QUAL(ss_streamoff_t)     as_streamoff_t; //!< streamoff
  */
 #define atlstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * functions
  */
@@ -584,6 +590,7 @@ inline as_bool_t InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
 namespace atlstl = ::stlsoft::atlstl_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

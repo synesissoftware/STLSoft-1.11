@@ -4,11 +4,11 @@
  * Purpose:     Definition of the stlsoft::root_exception class.
  *
  * Created:     19th January 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_MAJOR     6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_MINOR     0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_REVISION  1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_EDIT      59
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_ROOT_EXCEPTION_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +75,7 @@
 # include <exception>
 #endif /* !STLSOFT_INCL_EXCEPTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -82,6 +84,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -94,6 +97,7 @@ typedef std::exception                                      stlsoft_root_excepti
 #else /* ? compiler */
 typedef STLSOFT_NS_QUAL_STD(exception)                      stlsoft_root_exception_parent_t;
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -144,6 +148,7 @@ public:
 typedef stlsoft_root_exception                              root_exception;
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -151,6 +156,7 @@ typedef stlsoft_root_exception                              root_exception;
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

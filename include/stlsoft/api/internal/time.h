@@ -48,6 +48,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_time
 #define STLSOFT_INCL_STLSOFT_API_internal_h_time
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -78,6 +79,7 @@
 # define STLSOFT_INCL_H_TIME
 # include <time.h>
 #endif /* !STLSOFT_INCL_H_TIME */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * time functions
@@ -162,6 +164,7 @@ STLSOFT_API_INTERNAL_Time_localtime(
   }
 #endif
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

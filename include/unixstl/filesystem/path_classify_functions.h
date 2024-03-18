@@ -4,7 +4,7 @@
  * Purpose:     Path classification functions
  *
  * Created:     21st December 2020
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE
 # include <stlsoft/string/string_slice.h>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -127,6 +129,7 @@ struct unixstl_C_path_classification_results_m_t
 typedef struct unixstl_C_path_classification_results_m_t    unixstl_C_path_classification_results_m_t;
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -138,6 +141,7 @@ typedef struct unixstl_C_path_classification_results_m_t    unixstl_C_path_class
 #define UNIXSTL_PATH_CLASSIFY_F_RECOGNISETILDEHOME          (0x00000004)
 
 #define UNIXSTL_PATH_CLASSIFY_F_MASK_                       (0x00000007)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -168,6 +172,7 @@ typedef struct unixstl_C_path_classification_results_m_t    unixstl_C_path_class
 # undef unixstl_C_path_classify_impl_X_
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -229,6 +234,7 @@ unixstl_C_path_classify(
 }
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -251,12 +257,14 @@ namespace unixstl_project
 # error
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ types
  */
 
 typedef unixstl_C_path_classification_t                     path_classification_t;
 typedef unixstl_C_path_classification_results_m_t           path_classification_results_m_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ API functions
@@ -297,6 +305,7 @@ path_is_rooted(
     return 0 != unixstl_C_path_is_rooted(pc);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -309,6 +318,7 @@ path_is_rooted(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

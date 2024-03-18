@@ -4,7 +4,7 @@
  * Purpose:     Contains the ref_ptr template class.
  *
  * Created:     2nd November 1994
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR      5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       513
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       514
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -69,6 +70,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -77,6 +79,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper shims
@@ -148,6 +151,7 @@ inline void own_reference(I* pi)
 
     STLSOFT_SUPPRESS_UNUSED(pi);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -545,6 +549,7 @@ private: // fields
     interface_type* m_pi;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
@@ -579,6 +584,7 @@ operator !=(
     return !lhs.equal(rhs);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -597,6 +603,7 @@ swap(
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -680,6 +687,7 @@ operator <<(
     return s << *p;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -715,6 +723,7 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

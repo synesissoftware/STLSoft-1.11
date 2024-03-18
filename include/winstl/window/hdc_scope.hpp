@@ -4,7 +4,7 @@
  * Purpose:     GDI scope class.
  *
  * Created:     20th October 1994
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MINOR      0
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_REVISION   5
-# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       56
+# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -86,6 +88,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -176,6 +179,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

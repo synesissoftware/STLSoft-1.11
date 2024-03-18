@@ -4,11 +4,11 @@
  * Purpose:     Basic functionals.
  *
  * Created:     19th January 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,9 +53,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_MAJOR      3
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_MINOR      0
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_REVISION   6
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_EDIT       58
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_REVISION   7
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_NOOP_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # include <functional>           // for std::unary_function
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -95,8 +98,14 @@ namespace stlsoft
 template <ss_typename_param_k T>
 // [[synesis:class:unary-functor: noop_function]]
 struct noop_function
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T const&, void>
+#endif
 {
+public:
+    typedef T const&                                        argument_type;
+    typedef void                                            result_type;
+
 public:
     /// The function call operator, which does nothing
     void operator ()(T const& /* t */) STLSOFT_NOEXCEPT
@@ -108,6 +117,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

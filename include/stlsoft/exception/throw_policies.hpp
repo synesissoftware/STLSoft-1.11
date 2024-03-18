@@ -4,7 +4,7 @@
  * Purpose:     Exception throwing policy classes.
  *
  * Created:     19th January 2002
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_MAJOR     6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_MINOR     0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_REVISION  1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_EDIT      61
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +75,7 @@
 # include <exception>
 #endif /* !STLSOFT_INCL_EXCEPTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -82,6 +84,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -219,6 +222,7 @@ typedef null_exception_policy   nothrow_exception;
 # endif /* _STLSOFT_INCLUDE_OBSOLETE */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -226,6 +230,7 @@ typedef null_exception_policy   nothrow_exception;
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Contains the get_ptr attribute shim.
  *
  * Created:     10th January 2002
- * Updated:     5th January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_MAJOR      4
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_MINOR      1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_EDIT       54
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -94,6 +95,7 @@
 #  include <stlsoft/shims/attribute/get_ptr/std/unique_ptr.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_UNIQUE_PTR */
 #endif /* STLSOFT_STANDARD_LIBRARY_HAS_unique_ptr_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

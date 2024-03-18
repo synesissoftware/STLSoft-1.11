@@ -4,7 +4,7 @@
  * Purpose:     winstl::time_cast<>.
  *
  * Created:     26th May 2014
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_MAJOR     2
 # define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_MINOR     0
 # define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_REVISION  2
-# define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_EDIT      13
+# define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_EDIT      14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -97,6 +99,7 @@
 #ifndef __cplusplus
 # error This file requires C++ compilation
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -116,6 +119,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -210,6 +214,7 @@ namespace ximpl_winstl_time_cast
 } /* namespace ximpl_winstl_time_cast */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * casts
  */
@@ -224,6 +229,7 @@ time_cast(T_from const& from)
     return ximpl_winstl_time_cast::time_cast_traits<T_to, T_from>::convert(from);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -237,6 +243,7 @@ time_cast(T_from const& from)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

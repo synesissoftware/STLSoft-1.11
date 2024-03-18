@@ -4,7 +4,7 @@
  * Purpose:     String to integer conversions.
  *
  * Created:     18th November 2008
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Chris Oldwood for righteous criticism of one of my hastily-
  *              written articles, which led to the creation of the
@@ -59,8 +59,9 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      72
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -98,6 +99,7 @@
 # include <ctype.h>
 #endif /* !STLSOFT_INCL_H_CTYPE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * code coverage
@@ -126,6 +129,7 @@ namespace
     } instance;
 }
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -1241,6 +1245,7 @@ try_parse_to(
     return ximpl_string_to_integer_util_::try_string_to_integer_len_6_(s, len, pi, STLSOFT_NS_QUAL(c_str_data)(validEndChars), STLSOFT_NS_QUAL(c_str_len)(validEndChars), endptr);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * code coverage
  */
@@ -1260,6 +1265,7 @@ namespace
 }
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1267,6 +1273,7 @@ namespace
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

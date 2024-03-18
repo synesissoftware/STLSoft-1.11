@@ -4,7 +4,7 @@
  * Purpose:     Forward declaration for logical shim is_null.
  *
  * Created:     31st March 2007
- * Updated:     18th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_H_FWD_MAJOR      2
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_H_FWD_MINOR      0
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_H_FWD_REVISION   4
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_H_FWD_EDIT       22
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_H_FWD_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -69,6 +70,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -77,6 +79,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -90,6 +93,7 @@ is_null(
     void const volatile* pv
 );
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -97,6 +101,7 @@ is_null(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

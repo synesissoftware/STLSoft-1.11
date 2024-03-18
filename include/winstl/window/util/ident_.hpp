@@ -4,7 +4,7 @@
  * Purpose:     Windows identification.
  *
  * Created:     11th March 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MINOR      1
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__REVISION   3
-# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT       59
+# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -91,6 +93,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +101,7 @@ namespace winstl_project
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 namespace ximpl_winstl_window_ident
 {
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * enumerations
@@ -111,6 +115,7 @@ enum WindowIdent
     ,   WindowIdent_ComboBox    =   12
     ,   WindowIdent_ListView    =   13
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * enumerations
@@ -158,12 +163,14 @@ GetWindowIdent(
     return ident;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
 } /* namespace ximpl_winstl_window_ident */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -178,6 +185,7 @@ GetWindowIdent(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

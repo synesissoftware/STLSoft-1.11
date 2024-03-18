@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for Win32 TSS key.
  *
  * Created:     20th January 1999
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 14
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     55
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -97,6 +99,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -162,15 +165,15 @@ class tss_index
 /// @{
 public:
     /// This class
-    typedef tss_index   class_type;
+    typedef tss_index                                       class_type;
     /// The type of the TSS key
-    typedef ws_dword_t  key_type;
+    typedef ws_dword_t                                      key_type;
     /// The type of the TSS key
     ///
     /// \deprecated Deprecated in favour of key_type
-    typedef key_type    index_type;
+    typedef key_type                                        index_type;
     /// The type of the slot values
-    typedef void*       value_type;
+    typedef void*                                           value_type;
 /// @}
 
 /// \name Construction
@@ -264,7 +267,10 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -275,6 +281,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

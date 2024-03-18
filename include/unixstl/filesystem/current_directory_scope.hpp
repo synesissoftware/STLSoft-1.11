@@ -4,11 +4,11 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     24th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    14
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        135
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        136
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
 # include <stlsoft/util/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -197,6 +199,7 @@ private: // fields
     buffer_type_    m_previous;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -216,6 +219,7 @@ typedef basic_current_directory_scope<us_char_w_t, filesystem_traits<us_char_w_t
  * \ingroup group__library__FileSystem
  */
 typedef basic_current_directory_scope<char, filesystem_traits<char> >                   current_directory_scope;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -399,6 +403,7 @@ c_str_len(
     return STLSOFT_NS_QUAL(c_str_len)(b.get_previous());
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
@@ -419,6 +424,7 @@ operator <<(
 
     return s;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -559,6 +565,7 @@ using ::unixstl::c_str_ptr_null_w;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

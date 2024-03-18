@@ -5,11 +5,11 @@
  *              convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,8 +57,9 @@
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_MINOR    0
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_REVISION 4
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_EDIT     67
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_FUNCTION_ADAPTORS_EDIT     68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS
 # include <stlsoft/functional/procedure_adaptors.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_FUNCTION_POINTER_ADAPTORS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

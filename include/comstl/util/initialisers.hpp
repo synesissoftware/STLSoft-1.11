@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Adi Shavit, for demanding better documentation of COMSTL.
  *
@@ -57,8 +57,9 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   10
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       96
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <ole2.h>
 #endif /* !STLSOFT_INCL_H_OLE2 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -100,6 +102,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * exception classes
@@ -140,8 +143,10 @@ private:
 /// @}
 };
 
-////////////////////////////////////////////////////////////////////////////
-// Exception policies
+
+/* /////////////////////////////////////////////////////////////////////////
+ * exception policies
+ */
 
 /** Exception policy whose action is to do nothing
  *
@@ -174,7 +179,9 @@ public:
  *
  * \ingroup group__library__Exception
  */
-typedef STLSOFT_NS_QUAL(null_exception_policy)  ignore_initialisation_exception_policy;
+typedef STLSOFT_NS_QUAL(null_exception_policy)              ignore_initialisation_exception_policy;
+
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -289,8 +296,10 @@ private:
 /// @}
 };
 
-////////////////////////////////////////////////////////////////////////////
-// value policies
+
+/* /////////////////////////////////////////////////////////////////////////
+ * value policies
+ */
 
 /** A policy type, for use with comstl::initialiser, that causes
  *    initialisation/uninitialisation of the COM libraries with
@@ -341,8 +350,10 @@ public:
     }
 };
 
-////////////////////////////////////////////////////////////////////////////
-// typedefs for common instantiations
+
+/* /////////////////////////////////////////////////////////////////////////
+ * typedefs for common instantiations
+ */
 
 /** Specialisation of comstl::initialiser that initialises via CoInitialize() but does not throw on failure.
  *
@@ -350,14 +361,20 @@ public:
  *
  * \see comstl::initialiser
  */
-typedef initialiser<CoInitialize_policy, ignore_initialisation_exception_policy>    com_init_nothrow;
+typedef initialiser<
+    CoInitialize_policy
+,   ignore_initialisation_exception_policy
+>                                                           com_init_nothrow;
 /** Specialisation of comstl::initialiser that initialises via OleInitialize() but does not throw on failure.
  *
  * \ingroup group__library__COM_Utility
  *
  * \see comstl::initialiser
  */
-typedef initialiser<OleInitialize_policy, ignore_initialisation_exception_policy>   ole_init_nothrow;
+typedef initialiser<
+    OleInitialize_policy
+,   ignore_initialisation_exception_policy
+>                                                           ole_init_nothrow;
 
 /** Specialisation of comstl::initialiser that initialises via CoInitialize() and throws on failure.
  *
@@ -365,14 +382,20 @@ typedef initialiser<OleInitialize_policy, ignore_initialisation_exception_policy
  *
  * \see comstl::initialiser
  */
-typedef initialiser<CoInitialize_policy, com_initialisation_exception_policy>       com_init;
+typedef initialiser<
+    CoInitialize_policy
+,   com_initialisation_exception_policy
+>                                                           com_init;
 /** Specialisation of comstl::initialiser that initialises via OleInitialize() and throws on failure.
  *
  * \ingroup group__library__COM_Utility
  *
  * \see comstl::initialiser
  */
-typedef initialiser<OleInitialize_policy, com_initialisation_exception_policy>      ole_init;
+typedef initialiser<
+    OleInitialize_policy
+,   com_initialisation_exception_policy
+>                                                           ole_init;
 
 /** [DEPRECATED] Specialisation of comstl::initialiser that initialises via CoInitialize() but does not throw on failure.
  *
@@ -382,7 +405,7 @@ typedef initialiser<OleInitialize_policy, com_initialisation_exception_policy>  
  *
  * \see comstl::initialiser
  */
-typedef com_init_nothrow                                                            com_initialiser;
+typedef com_init_nothrow                                    com_initialiser;
 /** [DEPRECATED] Specialisation of comstl::initialiser that initialises via OleInitialize() but does not throw on failure.
  *
  * \ingroup group__library__COM_Utility
@@ -391,24 +414,24 @@ typedef com_init_nothrow                                                        
  *
  * \see comstl::initialiser
  */
-typedef ole_init_nothrow                                                            ole_initialiser;
+typedef ole_init_nothrow                                    ole_initialiser;
 
-////////////////////////////////////////////////////////////////////////////
-// u for US-English spellers
 
 /** Equivalent to com_initialiser
  *
  * \ingroup group__library__COM_Utility
  */
-typedef com_initialiser com_initializer;
+typedef com_initialiser                                     com_initializer;
 /** Equivalent to ole_initialiser
  *
  * \ingroup group__library__COM_Utility
  */
-typedef ole_initialiser ole_initializer;
+typedef ole_initialiser                                     ole_initializer;
 
-////////////////////////////////////////////////////////////////////////////
-// implementation
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 // initialiser
 
@@ -477,7 +500,10 @@ inline HRESULT initialiser<IP, XP>::get_HRESULT() const
     return m_hr;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -488,6 +514,7 @@ inline HRESULT initialiser<IP, XP>::get_HRESULT() const
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
