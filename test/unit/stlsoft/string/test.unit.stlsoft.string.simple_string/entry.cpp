@@ -130,8 +130,8 @@ namespace
     static void test_compare_2(void);
     static void test_compare_3(void);
     static void test_compare_4(void);
-#ifndef USE_std_string
     static void test_equality_operators_1(void);
+#ifndef USE_std_string
     static void test_equal_p_n_ccs_n(void);
     static void test_equal_p_n_ccs(void);
     static void test_equal_ccs(void);
@@ -304,8 +304,8 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_compare_2);
         XTESTS_RUN_CASE(test_compare_3);
         XTESTS_RUN_CASE(test_compare_4);
-#ifndef USE_std_string
         XTESTS_RUN_CASE(test_equality_operators_1);
+#ifndef USE_std_string
         XTESTS_RUN_CASE(test_equal_p_n_ccs_n);
         XTESTS_RUN_CASE(test_equal_p_n_ccs);
         XTESTS_RUN_CASE(test_equal_ccs);
