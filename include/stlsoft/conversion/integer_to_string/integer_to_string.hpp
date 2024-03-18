@@ -4,7 +4,7 @@
  * Purpose:     Very efficient integer to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_STRING_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_STRING_MINOR       1
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_STRING_REVISION    8
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_STRING_EDIT        97
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_STRING_EDIT        98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 # include <stlsoft/conversion/integer_to_string/integer_to_decimal_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_DECIMAL_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@ namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -88,6 +91,7 @@ namespace stlsoft
 #ifdef __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
 # error __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT is no longer supported. Instead, define STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT
 #endif /* __STLSOFT_INTEGER_TO_STRING_OPTIMISE_64BIT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -994,6 +998,7 @@ integer_to_string(C* buf, ss_size_t cchBuf, unsigned long i, ss_size_t& cchRes)
 }
 #endif /* !STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1001,6 +1006,7 @@ integer_to_string(C* buf, ss_size_t cchBuf, unsigned long i, ss_size_t& cchRes)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

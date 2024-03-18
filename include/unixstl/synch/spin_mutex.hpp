@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Rupert Kittinger, for pointing out that the prior
  *              implementation that always yielded was not really "spinning".
@@ -60,8 +60,9 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      76
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +82,7 @@
 # include <stlsoft/synch/spin_mutex_base.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility & feature control
  */
@@ -92,6 +94,7 @@
 #if defined(STLSOFT_DEBUG)
 # define UNIXSTL_SPINMUTEX_COUNT_LOCKS
 #endif /* STLSOFT_DEBUG */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -112,6 +115,7 @@ namespace unixstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * types
  */
@@ -127,6 +131,7 @@ typedef STLSOFT_NS_QUAL(spin_mutex_base)<
     yield_on_N_spin_mutex_policy<UNIXSTL_SYNCH_SPIN_MUTEX_DEFAULT_YIELD_COUNT>
 >                                                           spin_mutex;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -140,6 +145,7 @@ typedef STLSOFT_NS_QUAL(spin_mutex_base)<
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

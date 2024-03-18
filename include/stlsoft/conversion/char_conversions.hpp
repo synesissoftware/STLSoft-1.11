@@ -4,7 +4,7 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR      3
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION   4
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT       120
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT       121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -99,6 +100,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -107,6 +109,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -199,6 +202,7 @@ protected: // helpers
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -240,7 +244,8 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
     template <ss_typename_param_k S>
-    ss_explicit_k multibyte2wide(S const& s)
+    ss_explicit_k
+    multibyte2wide(S const& s)
         : parent_class_type(calc_length_(s) + 1)
     {
         prepare_(STLSOFT_NS_QUAL(c_str_data_a)(s), parent_class_type::estimated_length_());
@@ -565,6 +570,7 @@ typedef a2w                                                 t2w;
 typedef w2a                                                 w2t;
 #endif /* UNICODE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -811,6 +817,7 @@ operator <<(
     return stm;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -818,6 +825,7 @@ operator <<(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * global namespace shims
@@ -858,6 +866,7 @@ operator <<(
     return stm << c.c_str();
 }
 #endif /* library */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

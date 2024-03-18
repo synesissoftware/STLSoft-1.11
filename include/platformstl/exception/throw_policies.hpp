@@ -4,11 +4,11 @@
  * Purpose:     Exception throwing policy classes.
  *
  * Created:     20th March 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_MAJOR     3
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_MINOR     0
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_REVISION  3
-# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      29
+# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_THROW_POLICIES_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/exception/throw_policies.hpp
@@ -58,6 +58,7 @@
  *   platformstl::platform_exception_policy class
  *   (\ref group__library__Exception "Exception" Library).
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +82,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -113,6 +115,7 @@ typedef WINSTL_NS_QUAL(windows_exception_policy)            platform_exception_p
 # error Operating system not discriminated
 #endif /* operating system */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -124,6 +127,7 @@ typedef WINSTL_NS_QUAL(windows_exception_policy)            platform_exception_p
 } /* namespace platformstl_project */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Directory functions.
  *
  * Created:     1st October 2016
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    9
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        19
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -102,6 +104,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers functions
@@ -199,6 +202,7 @@ unixstl_C_get_home_directory_invoke_getenv_a_(
 # define unixstl_C_get_home_directory_invoke_getenv_a_      STLSOFT_NS_GLOBAL(getenv)
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
@@ -237,6 +241,7 @@ unixstl_C_get_home_directory_w(
     us_char_w_t*    buffer
 ,   us_size_t       cchBuffer
 );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -277,6 +282,7 @@ get_home_directory(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

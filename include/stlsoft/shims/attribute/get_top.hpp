@@ -4,11 +4,11 @@
  * Purpose:     Contains the get_top attribute shim.
  *
  * Created:     8th September 2019
- * Updated:     24th November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_MINOR      0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_REVISION   2
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_EDIT       2
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_TOP_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -111,6 +112,7 @@
 #  include <stlsoft/shims/attribute/get_top/std/vector.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_VECTOR */
 #endif /* !STLSOFT_STANDARD_LIBRARY_HAS_vector_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

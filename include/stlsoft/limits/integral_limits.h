@@ -4,7 +4,7 @@
  * Purpose:     Integral constants.
  *
  * Created:     16th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Jonathan Wakely for help with Solaris compatibility.
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_MAJOR     5
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_MINOR     0
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_REVISION  6
-# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_EDIT      71
+# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +71,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -78,6 +80,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Constants & definitions
@@ -264,6 +267,7 @@ namespace stlsoft
 #define   STLSOFT_INTEGRAL_LIMIT_UINT64_MIN                 (  STLSOFT_GEN_UINT64_SUFFIX(0) )
 #define   STLSOFT_INTEGRAL_LIMIT_UINT64_MAX                 (  STLSOFT_GEN_UINT64_SUFFIX(18446744073709551615) )
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * obsolete
  */
@@ -334,6 +338,7 @@ namespace stlsoft
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

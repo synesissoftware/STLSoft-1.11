@@ -4,7 +4,7 @@
  * Purpose:     Definition of the has_sentry member type detector.
  *
  * Created:     16th February 2024
- * Updated:     16th February 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_MAJOR     1
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_REVISION  1
-# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_EDIT      1
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_SENTRY_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -125,7 +125,9 @@ struct has_sentry<void>
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

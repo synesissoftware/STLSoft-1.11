@@ -4,11 +4,11 @@
  * Purpose:     Contains the random_access_transforming_view_base class template.
  *
  * Created:     4th January 2010
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_MINOR       1
 # define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_REVISION    2
-# define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_EDIT        16
+# define STLSOFT_VER_STLSOFT_VIEW_TRANSFORMING_HPP_RANDOM_ACCESS_TRANSFORMING_VIEW_BASE_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # include <stdexcept>                            // for std::out_of_range
 #endif /* !STLSOFT_INCL_STDEXCEPT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -321,6 +324,7 @@ private:
     source_iterator_type const  m_to;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -328,6 +332,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

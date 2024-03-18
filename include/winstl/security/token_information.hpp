@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing token information.
  *
  * Created:     20th June 2003
- * Updated:     16th February 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_MAJOR     4
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_MINOR     4
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_REVISION  6
-# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_EDIT      78
+# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_EDIT      79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -97,6 +98,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +117,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -160,6 +163,7 @@ enum
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * traits
  */
@@ -171,6 +175,7 @@ enum
  */
 template <TOKEN_INFORMATION_CLASS C>
 struct token_information_traits;
+
 
 /* ///////////////////////////////////////////////
  * specialisations
@@ -213,6 +218,7 @@ WINSTL_SEC_T_I_SPECIALISE_TIT_(TokenImpersonationLevel, SECURITY_IMPERSONATION_L
 
 WINSTL_SEC_T_I_SPECIALISE_TIT_(TokenStatistics, TOKEN_STATISTICS);
 
+
 /* ///////////////////////////////////////////////
  * specialisations - XP+
  */
@@ -236,6 +242,7 @@ WINSTL_SEC_T_I_SPECIALISE_TIT_(TokenSandBoxInert, DWORD);
 
 # endif /* XP+ */
 
+
 /* ///////////////////////////////////////////////
  * specialisations - Svr03+
  */
@@ -252,6 +259,7 @@ WINSTL_SEC_T_I_SPECIALISE_TIT_(TokenOrigin, TOKEN_ORIGIN);
 #  endif
 
 # endif /* Svr03+ */
+
 
 /* ///////////////////////////////////////////////
  * specialisations - Vista+
@@ -282,6 +290,7 @@ WINSTL_SEC_T_I_SPECIALISE_TIT_(TokenMandatoryPolicy, TOKEN_MANDATORY_POLICY);
 WINSTL_SEC_T_I_SPECIALISE_TIT_(TokenLogonSid, TOKEN_GROUPS);
 
 # endif /* Vista+ */
+
 
 /* ///////////////////////////////////////////////
  * specialisations - W8+
@@ -324,6 +333,7 @@ WINSTL_SEC_T_I_SPECIALISE_TIT_(TokenIsRestricted, void);
 # endif /* W8+ */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -518,6 +528,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -531,6 +542,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

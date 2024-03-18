@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 13
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     46
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -62,6 +62,7 @@
  * platforms it resolves to the winstl::file_lines class. It is
  * not defined for other platforms.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -115,6 +116,7 @@
 # include <vector>
 #endif /* !STLSOFT_INCL_VECTOR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -132,6 +134,7 @@ namespace platformstl_project
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -139,6 +142,7 @@ namespace platformstl_project
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -493,6 +497,7 @@ private: // Fields
     strings_type_       m_strings;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -524,6 +529,7 @@ typedef file_lines_a                        file_lines;
  * \ingroup group__library__FileSystem
  */
 typedef file_lines_w                        wfile_lines;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -597,6 +603,7 @@ operator !=(
     return !lhs.equal(rhs);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -608,6 +615,7 @@ operator !=(
 } /* namespace platformstl_project */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

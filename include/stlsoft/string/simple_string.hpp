@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 17th March 2024
+ * Updated: 18th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -455,6 +455,13 @@ public:
     /// Indicates whether the string starts with the character \c ch
     bool starts_with(char_type ch) const STLSOFT_NOEXCEPT;
 
+     /// Indicates whether the string contains the string \c s
+    bool contains(class_type const& s) const STLSOFT_NOEXCEPT;
+    /// Indicates whether the string contains the C-style string \c s
+    bool contains(char_type const* s) const STLSOFT_NOEXCEPT;
+    /// Indicates whether the string contains the character \c ch
+    bool contains(char_type ch) const STLSOFT_NOEXCEPT;
+
     /// Indicates whether the string ends with the string \c s
     bool ends_with(class_type const& s) const STLSOFT_NOEXCEPT;
     /// Indicates whether the string ends with the C-style string \c s
@@ -650,6 +657,10 @@ private:
     ) STLSOFT_NOEXCEPT;
 
     bool starts_with_(
+        char_type const*    s
+    ,   size_type           n
+    ) const STLSOFT_NOEXCEPT;
+    bool contains_(
         char_type const*    s
     ,   size_type           n
     ) const STLSOFT_NOEXCEPT;
@@ -2753,6 +2764,65 @@ template <
 >
 inline
 ss_bool_t
+basic_simple_string<C, T, A>::contains_(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
+,   size_type                                                           n
+) const STLSOFT_NOEXCEPT
+{
+    if (n > length())
+    {
+        return false;
+    }
+
+    if (n == 0)
+    {
+        return true;
+    }
+
+    char_type first_char = s[0];
+
+    // search for each occurrence of `s[0]` in `this` using `traits_type::find()`, then
+    // testing each remaining part of `this` (if long enought) for all of `s`, using
+    // `traits::compare()`
+
+    char_type const*    in = data();
+    size_type           num_remaining = length();
+
+    for (;;)
+    {
+        if (NULL == traits_type::find(in, num_remaining, first_char))
+        {
+            return false;
+        }
+        else
+        {
+            size_type remaining_length = length() - (in - data());
+
+            if (n > remaining_length)
+            {
+                return false;
+            }
+
+            if (0 == traits_type::compare(s, in, n))
+            {
+                return true;
+            }
+            else
+            {
+                ++in;
+                --num_remaining;
+            }
+        }
+    }
+}
+
+template <
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline
+ss_bool_t
 basic_simple_string<C, T, A>::ends_with_(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   size_type                                                           n
@@ -2822,6 +2892,49 @@ ss_bool_t
 basic_simple_string<C, T, A>::starts_with(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch) const STLSOFT_NOEXCEPT
 {
     return empty() ? false : (front() == ch);
+}
+
+template <
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline
+ss_bool_t
+basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s) const STLSOFT_NOEXCEPT
+{
+    return contains_(s.data(), s.length());
+}
+
+template <
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline
+ss_bool_t
+basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s) const STLSOFT_NOEXCEPT
+{
+    size_type const n = (NULL == s) ? 0 : traits_type::length(s);
+
+    return contains_(s, n);
+}
+
+template <
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline
+ss_bool_t
+basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch) const STLSOFT_NOEXCEPT
+{
+    if (empty())
+    {
+        return false;
+    }
+
+    return NULL != traits_type::find(data(), length(), ch);
 }
 
 template <
@@ -3853,7 +3966,9 @@ basic_simple_string<C, T, A>::empty() const STLSOFT_NOEXCEPT
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

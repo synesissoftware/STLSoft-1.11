@@ -4,7 +4,7 @@
  * Purpose:     File  functions.
  *
  * Created:     7th November 2014
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_REVISION    4
-# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        9
+# define WINSTL_VER_WINSTL_H_FILE_INFORMATION_FUNCTIONS_EDIT        10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -93,6 +95,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -119,6 +122,7 @@ WinSTL_C_FileInformation_free_(
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -247,6 +251,7 @@ WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_w(
     return FALSE;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -255,6 +260,7 @@ WinSTL_C_FileInformation_get_SECURITY_DESCRIPTOR_w(
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -311,6 +317,7 @@ get_SECURITY_DESCRIPTOR(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

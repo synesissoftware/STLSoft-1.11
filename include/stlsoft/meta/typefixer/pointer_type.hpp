@@ -4,11 +4,11 @@
  * Purpose:     Definition of the fixer_pointer_type and fixer_const_pointer_type types.
  *
  * Created:     17th October 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_REVISION   4
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_EDIT       28
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -68,6 +69,7 @@
 STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 [Incompatibilies-end]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +86,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 # error stlsoft/typefixer/pointer_type.hpp is only compatible with compilers that support partial template specialisation
 #endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -95,6 +98,7 @@ namespace stlsoft
 namespace typefixer
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -160,6 +164,7 @@ struct fixer_const_pointer_type<T, false>
 
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

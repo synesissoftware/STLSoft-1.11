@@ -4,7 +4,7 @@
  * Purpose:     Control Panel functions.
  *
  * Created:     1st April 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_REVISION   13
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       28
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_H_FUNCTIONS_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -96,6 +98,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -104,6 +107,7 @@ namespace winstl_project
  *   control panel applet modules.
  */
 typedef LONG (APIENTRY *control_panel_entry_t)(HWND , UINT , LPARAM , LPARAM );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -347,6 +351,7 @@ winstl_C_control_panel_stop(
     STLSOFT_STATIC_CAST(void, (*entry)(hwnd, CPL_STOP, index, data));
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -355,6 +360,7 @@ winstl_C_control_panel_stop(
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -567,6 +573,7 @@ control_panel_stop(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -580,6 +587,7 @@ control_panel_stop(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

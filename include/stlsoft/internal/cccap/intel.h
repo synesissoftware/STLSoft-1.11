@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Derek Baikie for working on the
  *              Win64-compatibility.
@@ -69,7 +69,7 @@
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       20
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    4
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        92
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,6 +93,7 @@
  * - obsolete features
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
@@ -101,6 +102,7 @@
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler features / compatibility
@@ -402,6 +404,7 @@
 
 #define STLSOFT_CF_TEMPLATE_VOID_TYPE_PARAMETER
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline assembler
  */
@@ -458,6 +461,7 @@
 #else /* ? arch */
 # error Only defined for the Intel x86, IA64 and x64 architectures
 #endif /* arch */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * integer sizes
@@ -533,6 +537,7 @@
 #define STLSOFT_SI64_T_BASE_TYPE                            signed      __int64
 #define STLSOFT_UI64_T_BASE_TYPE                            unsigned    __int64
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Still to-be-determined features
  */
@@ -589,6 +594,7 @@
 # define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * quality assurance features
  */
@@ -643,6 +649,7 @@
 # endif /* _MSC_VER */
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warning suppression
  */
@@ -662,6 +669,7 @@
 
 /* Suppresses: "operands are evaluated in unspecified order" */
 #pragma warning(disable : 981)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * obsolete features

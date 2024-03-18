@@ -4,11 +4,11 @@
  * Purpose:     is_empty attribute shims for MFC CString
  *
  * Created:     18th December 2006
- * Updated:     28th November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_MAJOR     2
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_MINOR     0
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_REVISION  6
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_EDIT      18
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # define STLSOFT_INCL_H_AFX
 # include <afx.h>
 #endif /* !STLSOFT_INCL_H_AFX */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,6 +94,7 @@ namespace mfcstl_project
 {
 # endif /* _STLSOFT_NO_NAMESPMFC */
 #endif /* !_MFCSTL_NO_NAMESPMFC */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -126,6 +129,7 @@ namespace stlsoft
 } /* namespace stlsoft */
 
 #endif /* !_MFCSTL_NO_NAMESPMFC */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

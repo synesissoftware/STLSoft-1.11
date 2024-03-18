@@ -4,11 +4,11 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MAJOR    4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MINOR    0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_REVISION 6
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     143
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     144
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -190,6 +191,7 @@
 # include <stlsoft/meta/size_of.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SIZEOF */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -198,6 +200,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * tests
@@ -348,6 +351,7 @@ struct is_void
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

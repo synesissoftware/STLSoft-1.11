@@ -4,13 +4,13 @@
  * Purpose:     Handles detection of safe string library.
  *
  * Created:     24th March 2008
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Author:      Matthew Wilson
  *
  * Home:        http://www.stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_H_STLSOFT_INTERNAL_H_SAFESTR_MAJOR     1
 # define STLSOFT_VER_H_STLSOFT_INTERNAL_H_SAFESTR_MINOR     1
 # define STLSOFT_VER_H_STLSOFT_INTERNAL_H_SAFESTR_REVISION  2
-# define STLSOFT_VER_H_STLSOFT_INTERNAL_H_SAFESTR_EDIT      9
+# define STLSOFT_VER_H_STLSOFT_INTERNAL_H_SAFESTR_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # include <crtdefs.h>
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * symbols
  */
@@ -83,6 +85,7 @@
 #  define STLSOFT_USING_SAFE_STR_FUNCTIONS
 # endif /* __STDC_WANT_SECURE_LIB__ */
 #endif /* __STDC_SECURE_LIB__ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -5,7 +5,7 @@
  *              abstracting away standard library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     6th February 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Cláudio Albuquerque for assisting with VC++ 12 & 14
  *              support.
@@ -59,8 +59,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     8
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  8
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      125
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -100,6 +101,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_TYPE */
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warnings
  */
@@ -109,6 +111,7 @@
 # pragma warning(disable : 4097)    // suppresses: typedef-name 'identifier1' used as synonym for class-name 'identifier2'
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -117,6 +120,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * tested compatibilities
@@ -140,6 +144,7 @@ namespace stlsoft
 # endif /* 0 */
 
 #endif /* !STLSOFT_OVERRIDE_COMPILER_STD_LIBRARY_CHECK */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * iterator macros
@@ -547,6 +552,7 @@ namespace stlsoft
 # endif /*  */
 
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * iterators
@@ -992,6 +998,7 @@ public:
 };
 
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * random access iterator support

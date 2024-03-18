@@ -4,7 +4,7 @@
  * Purpose:     Link functions.
  *
  * Created:     14th February 2011
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_MINOR       2
 # define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_EDIT        25
+# define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +82,7 @@
 # include <winstl/api/external/HandleAndObject.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -99,6 +101,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -196,6 +199,7 @@ winstl_C_call_CreateHardLinkW_(
 #endif /* _WIN32_WINNT < 0x0500 */
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -423,6 +427,7 @@ winstl_C_hard_link_count_links_w(
     return winstl_C_hard_link_get_link_information_w(path, &dummy1, &dummy2, &dummy3, numLinks);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ Functions
  */
@@ -508,6 +513,7 @@ hard_link_count_links(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

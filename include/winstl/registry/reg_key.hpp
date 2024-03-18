@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Sam Fisher for spotting the defect in the set_value_()
  *              overload for REG_MULTI_SZ values (widestring only).
@@ -58,8 +58,9 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       10
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    13
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        163
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        164
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -131,6 +132,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -149,6 +151,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -854,6 +857,7 @@ typedef basic_reg_key<ws_char_w_t, reg_traits<ws_char_w_t>, processheap_allocato
  */
 typedef basic_reg_key<TCHAR, reg_traits<TCHAR>, processheap_allocator<TCHAR> >                      reg_key;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * handle access shims
  */
@@ -896,6 +900,7 @@ inline HKEY get_HKEY(basic_reg_key<C, T, A> const& key)
 {
     return key.get_key_handle();
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -1562,6 +1567,7 @@ namespace std
 } // anonymous namespace
 
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

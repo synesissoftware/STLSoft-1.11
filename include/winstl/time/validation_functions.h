@@ -4,7 +4,7 @@
  * Purpose:     Validation functions for Windows time structures.
  *
  * Created:     1st June 2014
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_EDIT     13
+# define WINSTL_VER_WINSTL_TIME_H_VALIDATION_FUNCTIONS_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -86,6 +88,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -159,6 +162,7 @@ namespace winstl_project
 #define WINSTL_E_TIME_INVALIDTIME                           HRESULT_FROM_WIN32(ERROR_INVALID_TIME)
 
 /** @} */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -299,6 +303,7 @@ winstl_C_time_validate_SYSTEMTIME(
     return S_OK;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -307,6 +312,7 @@ winstl_C_time_validate_SYSTEMTIME(
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -336,6 +342,7 @@ time_validate(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -349,6 +356,7 @@ time_validate(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

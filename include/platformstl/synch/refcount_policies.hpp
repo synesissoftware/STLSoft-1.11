@@ -4,11 +4,11 @@
  * Purpose:     Reference-counting policies.
  *
  * Created:     31st May 2009
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_REVISION   3
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_EDIT       17
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_REFCOUNT_POLICIES_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +82,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_COVER
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     18th January 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_MAJOR      2
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_MINOR      1
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_REVISION   9
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_EDIT       43
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FTPDIR_SEQUENCE_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -105,6 +106,7 @@
 # include <vector>
 #endif /* !STLSOFT_INCL_VECTOR */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -123,6 +125,7 @@ namespace inetstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -275,6 +278,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -283,49 +287,48 @@ private:
  *
  *
  */
-typedef basic_ftpdir_sequence<is_char_a_t
+typedef basic_ftpdir_sequence<
+    is_char_a_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                            ,   throw_internet_exception_policy
+,   throw_internet_exception_policy
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-                            ,   STLSOFT_NS_QUAL(null_exception_policy)
+,   STLSOFT_NS_QUAL(null_exception_policy)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-                            ,   filesystem_traits<is_char_a_t>
-                            >                                                   ftpdir_sequence_a;
+,   filesystem_traits<is_char_a_t>
+>                                                           ftpdir_sequence_a;
+
 /** Specialisation of the basic_ftpdir_sequence template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_ftpdir_sequence<is_char_w_t
+typedef basic_ftpdir_sequence<
+    is_char_w_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                            ,   throw_internet_exception_policy
+,   throw_internet_exception_policy
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-                            ,   STLSOFT_NS_QUAL(null_exception_policy)
+,   STLSOFT_NS_QUAL(null_exception_policy)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-                            ,   filesystem_traits<is_char_w_t>
-                            >                                                   ftpdir_sequence_w;
+,   filesystem_traits<is_char_w_t>
+>                                                           ftpdir_sequence_w;
+
 /** Specialisation of the basic_ftpdir_sequence template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_ftpdir_sequence<TCHAR
+typedef basic_ftpdir_sequence<
+    TCHAR
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                            ,   throw_internet_exception_policy
+,   throw_internet_exception_policy
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-                            ,   STLSOFT_NS_QUAL(null_exception_policy)
+,   STLSOFT_NS_QUAL(null_exception_policy)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-                            ,   filesystem_traits<TCHAR>
-                            >                 ftpdir_sequence;
-
-////////////////////////////////////////////////////////////////////////////
-// Implementation
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+,   filesystem_traits<TCHAR>
+>                                                           ftpdir_sequence;
 
 
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef INETSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -336,6 +339,7 @@ typedef basic_ftpdir_sequence<TCHAR
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

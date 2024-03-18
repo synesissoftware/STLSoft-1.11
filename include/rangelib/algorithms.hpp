@@ -4,7 +4,7 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range; to
@@ -80,19 +80,10 @@
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    3
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 10
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     58
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
 
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
-STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
-[Incompatibilies-end]
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -124,6 +115,7 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <numeric>
 #endif /* !STLSOFT_INCL_NUMERIC */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -142,6 +134,7 @@ namespace rangelib_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -1631,6 +1624,7 @@ inline void r_replace_copy_if(RI ri, RO ro, P pred, T newVal)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

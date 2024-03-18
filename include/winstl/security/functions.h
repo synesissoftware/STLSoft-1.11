@@ -4,7 +4,7 @@
  * Purpose:     Security functions.
  *
  * Created:     7th November 2014
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_H_FUNCTIONS_REVISION    4
-# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT        6
+# define WINSTL_VER_WINSTL_H_FUNCTIONS_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Authorization
 # include <winstl/api/external/Authorization.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Authorization */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -91,6 +93,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -117,6 +120,7 @@ winstl_C_Security_free_(
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -243,6 +247,7 @@ winstl_C_Security_lookup_account_SID_info_w(
 )
 ;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -251,6 +256,7 @@ winstl_C_Security_lookup_account_SID_info_w(
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -306,6 +312,7 @@ lookup_account_SID_info(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

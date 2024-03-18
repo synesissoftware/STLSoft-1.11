@@ -4,14 +4,14 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Thanks:      To Brad Cox, for helping out in testing and fixing the
  *              implementation for MAC OSX (Intel).
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,8 +57,9 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_MAJOR     8
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_EDIT      217
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_TYPES_EDIT      218
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -93,6 +94,7 @@
 # error Atomic integer operations not supported: see unixstl/synch/util/features.h for details
 #endif /* ? */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -111,6 +113,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -139,6 +142,7 @@ typedef us_sintptr_t                    atomic_int_t;
 # error Atomic integer operations not supported: see unixstl/synch/util/features.h for details
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -152,6 +156,7 @@ typedef us_sintptr_t                    atomic_int_t;
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

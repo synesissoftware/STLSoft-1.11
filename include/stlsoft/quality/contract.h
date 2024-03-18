@@ -5,7 +5,7 @@
  *              STLSoft libraries.
  *
  * Created:     13th October 2008
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://www.stlsoft.org/
  *
@@ -51,6 +51,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT
 #define STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,8 +60,9 @@
 # define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_MINOR       1
 # define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_REVISION    3
-# define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_EDIT        15
+# define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +78,7 @@
 #ifdef STLSOFT_USE_XCONTRACT
 # include <xcontract/xcontract.h>
 #endif /* STLSOFT_USE_XCONTRACT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -166,6 +169,7 @@
 # define STLSOFT_CONTRACT_ENFORCE_ASSUMPTION(expr)                              STLSOFT_ASSERT(expr)
 
 #endif /* STLSOFT_USE_XCONTRACT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

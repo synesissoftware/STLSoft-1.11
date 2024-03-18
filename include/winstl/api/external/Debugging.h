@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
 #define WINSTL_INCL_WINSTL_API_external_h_Debugging
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -63,6 +64,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' Debugging Functions
@@ -81,6 +83,7 @@
 #ifndef WINSTL_API_EXTERNAL_Debugging_OutputDebugStringW
 # define WINSTL_API_EXTERNAL_Debugging_OutputDebugStringW   STLSOFT_NS_GLOBAL_(OutputDebugStringW)
 #endif /* !WINSTL_API_EXTERNAL_Debugging_OutputDebugStringW */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

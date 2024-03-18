@@ -4,7 +4,7 @@
  * Purpose:     Efficient drop-in replacement for strftime().
  *
  * Created:     23rd December 2018
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_MAJOR       1
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_MINOR       3
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_REVISION    1
-# define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_EDIT        14
+# define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <time.h>
 #endif /* !STLSOFT_INCL_H_TIME */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -90,6 +92,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -114,6 +117,7 @@ struct fast_strftime_info_w_t
     stlsoft_C_string_slice_w_t  months_long[12];
     stlsoft_C_string_slice_w_t  months_short[12];
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * worker functions
@@ -1078,6 +1082,7 @@ finish_sliced_item:
 } /* namespace ximpl_fast_strftime_ */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * functions
  */
@@ -1352,6 +1357,7 @@ fast_strftime(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

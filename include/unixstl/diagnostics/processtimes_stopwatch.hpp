@@ -4,7 +4,7 @@
  * Purpose: UNIXSTL process-time stopwatch class.
  *
  * Created: 9th June 2006
- * Updated: 17th March 2024
+ * Updated: 18th March 2024
  *
  * Home:    http://stlsoft.org/
  *

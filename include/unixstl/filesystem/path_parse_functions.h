@@ -4,11 +4,11 @@
  * Purpose:     Utility functions for path parsing.
  *
  * Created:     7th February 2002
- * Updated:     24th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_EDIT     62
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_PARSE_FUNCTIONS_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -230,6 +232,7 @@ unixstl_C_find_last_path_name_separator_len(
 }
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -249,6 +252,7 @@ namespace unixstl_project
 {
 
 # endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ API functions
@@ -293,6 +297,7 @@ find_last_path_name_separator(
     return unixstl_C_find_last_path_name_separator_len(path, cchPath);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -305,6 +310,7 @@ find_last_path_name_separator(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Define the project_identifier_provider inteface.
  *
  * Created:     29th December 2016
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,8 +49,9 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_MAJOR    1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_MINOR    0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_REVISION 1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_EDIT     4
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +75,7 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -82,6 +84,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -113,6 +116,7 @@ public: // Interface
 private:
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -120,6 +124,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

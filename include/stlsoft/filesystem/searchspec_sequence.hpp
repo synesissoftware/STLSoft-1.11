@@ -8,7 +8,7 @@
  *              one of the typedefs
  *
  * Created:     1st May 2004
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,8 +59,9 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR       1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION    11
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        76
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -94,11 +95,7 @@
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Pre-processor
- *
- * Definition of the
- */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -108,6 +105,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -122,6 +120,7 @@ inline void call_set_null(T *&pt, void (T::*F)())
 
     pt = NULL;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -520,19 +519,15 @@ private:
 /// @}
 };
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

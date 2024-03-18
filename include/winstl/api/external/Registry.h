@@ -60,6 +60,7 @@
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * registry functions
  */
@@ -466,6 +467,7 @@
 #ifndef WINSTL_API_EXTERNAL_Registry_RegUnloadKey
 # define WINSTL_API_EXTERNAL_Registry_RegUnloadKey          STLSOFT_NS_GLOBAL_(RegUnloadKey)
 #endif /* !WINSTL_API_EXTERNAL_Registry_RegUnloadKey */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Compile-time template constraints templates.
  *
  * Created:     19th November 1998
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Peter Bannister for having the clear thinking to see the
  *              obvious (but only in hindsight) tactic of overloading the
@@ -59,8 +59,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION   9
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       112
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # include <stlsoft/meta/size_of.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SIZE_OF */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +87,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -107,6 +110,7 @@ namespace stlsoft
 # define stlsoft_constraint_must_be_subscriptable(T)    static_cast<void>(STLSOFT_NS_QUAL(must_be_subscriptable)<T>())
 # define stlsoft_constraint_must_have_base(D, B)        static_cast<void>(STLSOFT_NS_QUAL(must_have_base)<D, B>())
 # define stlsoft_constraint_must_be_derived(D, B)       static_cast<void>(STLSOFT_NS_QUAL(must_be_derived)<D, B>())
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constraints
@@ -701,6 +705,7 @@ inline ss_bool_t operator ==(T2 const& lhs, not_implicitly_comparable const& rhs
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

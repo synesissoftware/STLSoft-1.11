@@ -4,11 +4,11 @@
  * Purpose:     Class that adapts a unary function to an output iterator.
  *
  * Created:     20th July 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,9 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_REVISION  4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT      25
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_REVISION  5
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -99,15 +102,15 @@ struct unary_function_output_iterator_adaptor
 /// \name Types
 /// @{
 public:
-    typedef F                                           function_class_type;
-    typedef unary_function_output_iterator_adaptor<F>   class_type;
+    typedef F                                               function_class_type;
+    typedef unary_function_output_iterator_adaptor<F>       class_type;
 
 public:
-    typedef STLSOFT_NS_QUAL_STD(output_iterator_tag)    iterator_category;
-    typedef void                                        value_type;
-    typedef void                                        pointer;
-    typedef void                                        reference;
-    typedef ss_ptrdiff_t                                difference_type;
+    typedef STLSOFT_NS_QUAL_STD(output_iterator_tag)        iterator_category;
+    typedef void                                            value_type;
+    typedef void                                            pointer;
+    typedef void                                            reference;
+    typedef ss_ptrdiff_t                                    difference_type;
 private:
     class deref_proxy;
     friend class deref_proxy;
@@ -131,7 +134,7 @@ private:
         }
 
     private:
-        unary_function_output_iterator_adaptor<F>  *const m_it;
+        unary_function_output_iterator_adaptor<F>* const m_it;
 
     // Not to be implemented
     private:
@@ -175,11 +178,15 @@ private:
     void operator =(class_type const&);
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

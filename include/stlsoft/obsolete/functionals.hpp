@@ -4,7 +4,7 @@
  * Purpose:     Basic functionals.
  *
  * Created:     19th January 2002
- * Updated:     29th January 2024
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONALS_MAJOR     3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONALS_MINOR     0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONALS_REVISION  7
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONALS_EDIT      57
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONALS_REVISION  8
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FUNCTIONALS_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 # include <functional>           // for std::unary_function
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -83,6 +85,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -100,8 +103,16 @@ namespace stlsoft
 template <ss_typename_param_k T>
 // [[synesis:class:unary-functor: delete_instance]]
 struct delete_instance
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T *, void>
+#endif
 {
+public:
+    /// The argument type
+    typedef T*                                              argument_type;
+    /// The result type
+    typedef void                                            result_type;
+
 public:
     /// The function call operator, which deletes the given instance
     ///
@@ -125,8 +136,16 @@ public:
 template <ss_typename_param_k T>
 // [[synesis:class:unary-functor: delete_array]]
 struct delete_array
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T [], void>
+#endif
 {
+public:
+    /// The argument type
+    typedef T                                               argument_type[];
+    /// The result type
+    typedef void                                            result_type;
+
 public:
     /// The function call operator, which deletes the given array
     ///
@@ -164,13 +183,16 @@ template<   ss_typename_param_k F
         >
 // [[synesis:class:unary-functor: selector1st]]
 struct selector1st
-    : public STLSOFT_NS_QUAL_STD(unary_function)<   ss_typename_type_k F::argument_type
-                                                ,   ss_typename_type_k F::result_type
-                                                >
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<
+                    ss_typename_type_k F::argument_type
+                ,   ss_typename_type_k F::result_type
+                >
+#endif
 {
 public:
-    typedef ss_typename_type_k F::argument_type argument_type;
-    typedef ss_typename_type_k F::result_type   result_type;
+    typedef ss_typename_type_k F::argument_type             argument_type;
+    typedef ss_typename_type_k F::result_type               result_type;
 
 public:
     /// Default constructor
@@ -180,7 +202,8 @@ public:
 
     /// Constructs from the given function class, which it will then apply
     /// via operator ()()
-    ss_explicit_k selector1st(F f)
+    ss_explicit_k
+    selector1st(F f)
         : m_f(f)
     {}
 
@@ -242,13 +265,16 @@ template<   ss_typename_param_k F
         >
 // [[synesis:class:unary-functor: selector2nd]]
 struct selector2nd
-    : public STLSOFT_NS_QUAL_STD(unary_function)<   ss_typename_type_k F::argument_type
-                                                ,   ss_typename_type_k F::result_type
-                                                >
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<
+                    ss_typename_type_k F::argument_type
+                ,   ss_typename_type_k F::result_type
+                >
+#endif
 {
 public:
-    typedef ss_typename_type_k F::argument_type argument_type;
-    typedef ss_typename_type_k F::result_type   result_type;
+    typedef ss_typename_type_k F::argument_type             argument_type;
+    typedef ss_typename_type_k F::result_type               result_type;
 
 public:
     /// Default constructor
@@ -258,7 +284,8 @@ public:
 
     /// Constructs from the given function class, which it will then apply
     /// via operator ()()
-    ss_explicit_k selector2nd(F f)
+    ss_explicit_k
+    selector2nd(F f)
         : m_f(f)
     {}
 
@@ -308,9 +335,19 @@ template<   ss_typename_param_k F
         >
 // [[synesis:class:unary-functor: select_1st]]
 struct select_1st
-    : public STLSOFT_NS_QUAL_STD(unary_function)<   ss_typename_type_k F::argument_type
-                                                ,   ss_typename_type_k F::result_type>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<
+                    ss_typename_type_k F::argument_type
+                ,   ss_typename_type_k F::result_type
+                >
+#endif
 {
+public:
+    /// The argument type
+    typedef ss_typename_type_k F::argument_type             argument_type;
+    /// The result type
+    typedef ss_typename_type_k F::result_type               result_type;
+
 public:
     /// Default constructor
     select_1st()
@@ -319,7 +356,8 @@ public:
 
     /// Constructs from the given function class, which it will then apply
     /// via operator ()()
-    ss_explicit_k select_1st(F f)
+    ss_explicit_k
+    select_1st(F f)
         : m_f(f)
     {}
 
@@ -382,8 +420,17 @@ template<   ss_typename_param_k F
         >
 // [[synesis:class:unary-functor: select_2nd]]
 struct select_2nd
-    : public STLSOFT_NS_QUAL_STD(unary_function)<ss_typename_type_k F::argument_type, ss_typename_type_k F::result_type>
+#if __cplusplus < 201103L
+    : public STLSOFT_NS_QUAL_STD(unary_function)<
+                    ss_typename_type_k F::argument_type
+                ,   ss_typename_type_k F::result_type
+                >
+#endif
 {
+public:
+    typedef ss_typename_type_k F::argument_type             argument_type;
+    typedef ss_typename_type_k F::result_type               result_type;
+
 public:
     /// Default constructor
     select_2nd()
@@ -392,7 +439,8 @@ public:
 
     /// Constructs from the given function class, which it will then apply
     /// via operator ()()
-    ss_explicit_k select_2nd(F f)
+    ss_explicit_k
+    select_2nd(F f)
         : m_f(f)
     {}
 
@@ -444,12 +492,18 @@ template<   ss_typename_param_k F1
         >
 // [[synesis:class:unary-functor: select_both]]
 struct select_both
-#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#if __cplusplus < 201103L
+# ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     : public STLSOFT_NS_QUAL_STD(unary_function)<void, void>
-#else
+# else
     : public STLSOFT_NS_QUAL_STD(unary_function)<T &, void>
-#endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+# endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#endif
 {
+public:
+    typedef void                                            argument_type;
+    typedef void                                            result_type;
+
 public:
     /// Default constructor
     select_both()
@@ -459,7 +513,8 @@ public:
 
     /// Constructs from the given function classes, which it will then apply
     /// via operator ()()
-    ss_explicit_k select_both(F1 f1, F2 f2)
+    ss_explicit_k
+    select_both(F1 f1, F2 f2)
         : m_f1(f1)
         , m_f2(f2)
     {}
@@ -486,11 +541,14 @@ private:
 };
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

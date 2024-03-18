@@ -4,7 +4,7 @@
  * Purpose:     Definition of stlsoft_C_strnrchr() and stlsoft_C_wcsnrchr()
  *
  * Created:     19th December 2020
- * Updated:     21st December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_EDIT        2
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNRCHR_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -122,6 +124,7 @@ stlsoft_C_wcsnrchr(
     return ss_nullptr_k;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -131,6 +134,7 @@ namespace stlsoft
 {
 namespace c_string
 {
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions (C++)
@@ -169,6 +173,7 @@ wcsnrchr(
     return stlsoft_C_wcsnrchr(s, n, ch);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -176,6 +181,7 @@ wcsnrchr(
 } /* namespace c_string */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

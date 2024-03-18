@@ -4,11 +4,11 @@
  * Purpose:     Contains equivalents to contents of std's <utility>.
  *
  * Created:     17th January 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_MAJOR     3
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_MINOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_REVISION  4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_EDIT      80
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_UTILITY_EDIT      81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -64,6 +65,7 @@
 /*
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +82,7 @@
 # include <utility>
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -88,6 +91,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -98,6 +102,7 @@ namespace stlsoft
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

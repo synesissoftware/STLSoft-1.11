@@ -4,11 +4,11 @@
  * Purpose:     An exception thrown when an active end iterator is exhausted.
  *
  * Created:     13th January 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,12 +55,14 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_REVISION  5
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_EDIT      20
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION_EDIT      21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +79,7 @@
 # include <stlsoft/error/iteration_interruption.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +88,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -135,6 +139,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -1019,8 +1019,8 @@ STLSOFT_TEMPLATE_SPECIALISATION
 inline
 ss_size_t
 stlsoft_char_traits<char>::length_max(
-    char const*  s
-,   ss_size_t       limit
+    char const* s
+,   ss_size_t   limit
 ) STLSOFT_NOEXCEPT
 {
     return STLSOFT_NS_GLOBAL(strnlen)(s, limit);

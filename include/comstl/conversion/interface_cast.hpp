@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -64,8 +64,9 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   14
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       136
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       137
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -101,6 +102,7 @@
 # include <stlsoft/util/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -120,6 +122,7 @@ namespace comstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * functions
  */
@@ -137,6 +140,7 @@ simple_interface_cast(
 {
     return pi;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functionals
@@ -287,6 +291,7 @@ private:
 };
 
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -932,6 +937,7 @@ try_interface_cast(
     return try_interface_cast<IDest>(src.get());
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -1020,6 +1026,7 @@ COMSTL_NS_QUAL(interface_cast_addref)<I, X> const& p
     return p;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * deprecated shims
  */
@@ -1102,6 +1109,7 @@ using ::comstl::is_empty;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

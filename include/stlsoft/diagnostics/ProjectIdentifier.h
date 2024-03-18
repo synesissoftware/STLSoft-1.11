@@ -4,11 +4,11 @@
  * Purpose:     Definition of the ProjectIdentifier enumeration.
  *
  * Created:     12th May 2012
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_PROJECTIDENTIFIER_MAJOR      1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_PROJECTIDENTIFIER_MINOR      0
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_PROJECTIDENTIFIER_REVISION   3
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_PROJECTIDENTIFIER_EDIT       7
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_H_PROJECTIDENTIFIER_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -76,6 +78,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -123,6 +126,7 @@ typedef STLSoftProjectIdentifier_t                          ProjectIdentifier_t;
 typedef enum STLSoftProjectIdentifier_t                     STLSoftProjectIdentifier_t;
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -130,6 +134,7 @@ typedef enum STLSoftProjectIdentifier_t                     STLSoftProjectIdenti
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
