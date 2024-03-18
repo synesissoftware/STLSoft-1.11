@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.simple_string.op_eq.cpp
+ * File:    test.performance.platformstl.stopwatch/main.cpp
  *
- * Purpose: Perf-test for `stlsoft::basic_simple_string#operator ==()`.
+ * Purpose: Perf-test for stopwatch types.
  *
  * Created: 15th March 2024
- * Updated: 17th March 2024
+ * Updated: 18th March 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
