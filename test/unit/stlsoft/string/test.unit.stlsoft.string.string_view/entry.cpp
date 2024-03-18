@@ -226,6 +226,8 @@ namespace
         }
     };
 
+#if 0
+
     SimpleStream&
     operator <<(
         SimpleStream&       stm
@@ -238,6 +240,7 @@ namespace
 
         return stm;
     }
+#endif
 
 
 static void test_types_exist(void)

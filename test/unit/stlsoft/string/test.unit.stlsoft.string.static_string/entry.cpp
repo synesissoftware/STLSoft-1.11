@@ -342,6 +342,8 @@ namespace
         }
     };
 
+#if 0
+
     SimpleStream&
     operator <<(
         SimpleStream&       stm
@@ -354,6 +356,7 @@ namespace
 
         return stm;
     }
+#endif
 
 
     static char const alphabet[] = "abcdefghijklmnopqrstuvwxyz";

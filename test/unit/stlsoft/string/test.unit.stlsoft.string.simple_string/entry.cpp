@@ -132,20 +132,20 @@ namespace
     static void test_compare_4(void);
 #ifndef USE_std_string
     static void test_equality_operators_1(void);
-# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
     static void test_equal_p_n_ccs_n(void);
     static void test_equal_p_n_ccs(void);
     static void test_equal_ccs(void);
     static void test_equal_p_n_scr_p_n(void);
     static void test_equal_p_n_scr(void);
     static void test_equal_scr(void);
-# endif
 #endif /* !USE_std_string */
-
 #if !defined(USE_std_string) || \
     __cplusplus >= 202002L
     static void test_starts_with_1(void);
     static void test_starts_with_2(void);
+    static void test_contains_1(void);
+    static void test_contains_2(void);
+    static void test_contains_3(void);
     static void test_ends_with_1(void);
     static void test_ends_with_2(void);
 #endif
@@ -306,20 +306,21 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_compare_4);
 #ifndef USE_std_string
         XTESTS_RUN_CASE(test_equality_operators_1);
-# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
         XTESTS_RUN_CASE(test_equal_p_n_ccs_n);
         XTESTS_RUN_CASE(test_equal_p_n_ccs);
         XTESTS_RUN_CASE(test_equal_ccs);
         XTESTS_RUN_CASE(test_equal_p_n_scr_p_n);
         XTESTS_RUN_CASE(test_equal_p_n_scr);
         XTESTS_RUN_CASE(test_equal_scr);
-# endif
 #endif /* !USE_std_string */
 
 #if !defined(USE_std_string) || \
     __cplusplus >= 202002L
         XTESTS_RUN_CASE(test_starts_with_1);
         XTESTS_RUN_CASE(test_starts_with_2);
+        XTESTS_RUN_CASE(test_contains_1);
+        XTESTS_RUN_CASE(test_contains_2);
+        XTESTS_RUN_CASE(test_contains_3);
         XTESTS_RUN_CASE(test_ends_with_1);
         XTESTS_RUN_CASE(test_ends_with_2);
 #endif
@@ -440,6 +441,8 @@ namespace
         }
     };
 
+#if 0
+
     SimpleStream&
     operator <<(
         SimpleStream&       stm
@@ -452,7 +455,7 @@ namespace
 
         return stm;
     }
-
+#endif
 #ifdef USE_std_string
 
     SimpleStream&
