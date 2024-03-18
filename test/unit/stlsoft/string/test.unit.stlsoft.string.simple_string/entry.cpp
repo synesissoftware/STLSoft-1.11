@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.string.string.simple_string.cpp
+ * File:    test.unit.stlsoft.string.simple_string.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 4th November 2008
- * Updated: 17th March 2024
+ * Updated: 18th March 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,9 +31,9 @@
 
 #ifndef USE_std_string
 # include <stlsoft/string/simple_string.hpp>
-#else /* ? !USE_std_string */
-# include <stlsoft/string/string_traits.hpp>
 #endif /* !USE_std_string */
+#include <stlsoft/string/char_traits.hpp>
+#include <stlsoft/string/string_traits.hpp>
 
 /* /////////////////////////////////////
  * general includes
@@ -182,6 +182,8 @@ namespace
 
 
     // traits
+
+    static void test_stlsoft_char_traits(void);
 
     static void test_string_traits(void);
 
@@ -347,6 +349,8 @@ int main(int argc, char* argv[])
 
         // traits
 
+        XTESTS_RUN_CASE(test_stlsoft_char_traits);
+
         XTESTS_RUN_CASE(test_string_traits);
 
 
@@ -397,6 +401,7 @@ namespace
     typedef std::string                                     string_t;
     typedef std::wstring                                    wstring_t;
 #endif /* !USE_std_string */
+    using stlsoft::ss_size_t;
 
 
     struct SimpleStream
@@ -449,7 +454,8 @@ namespace
 #endif
 
 
-    static char const alphabet[] = "abcdefghijklmnopqrstuvwxyz";
+    static char const       alphabet[] = "abcdefghijklmnopqrstuvwxyz";
+    static wchar_t const    alphabet_w[] = L"abcdefghijklmnopqrstuvwxyz";
 
 
 // construction
@@ -2986,6 +2992,309 @@ static void test_find_last_not_of_string()
 
 
 // traits
+
+static void test_stlsoft_char_traits()
+{
+    {
+        typedef stlsoft::char_traits<char> traits_t;
+
+        // assign
+        {
+            char        buff4[4] = { '1', '2', '3', '4' };
+
+            traits_t::assign(buff4, 3, 'a');
+
+            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("aaa4", buff4, 4);
+        }
+
+        // compare
+        {
+            {
+                int const r = traits_t::compare("abc", "abc", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare("abcd", "abce", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare("a\0cd", "a\0ce", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare("a\0d", "a\0e", 3);
+
+                XTESTS_TEST_INTEGER_NOT_EQUAL(0, r);
+            }
+        }
+
+        // compare_max
+        {
+            {
+                int const r = traits_t::compare_max("abc", "abc", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare_max("abcd", "abce", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare_max("a\0cd", "a\0ce", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare_max("a\0d", "a\0e", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+        }
+
+        // find
+        {
+            {
+                char buff4[4] = { '1', '2', '3', '4' };
+
+                char const* i = traits_t::find(buff4, 4, '3');
+
+                XTESTS_TEST_INTEGER_EQUAL(2, i - buff4);
+            }
+
+            {
+                char const* i = traits_t::find(alphabet, 26, 'm');
+
+                XTESTS_TEST_INTEGER_EQUAL(12, i - alphabet);
+            }
+
+            {
+                char const* i = traits_t::find(alphabet, 11, 'm');
+
+                XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, i);
+            }
+        }
+
+        // length
+        {
+            {
+                ss_size_t const r = traits_t::length("");
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length("abc");
+
+                XTESTS_TEST_INTEGER_EQUAL(3, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length(alphabet);
+
+                XTESTS_TEST_INTEGER_EQUAL(26, r);
+            }
+        }
+
+        // length_max
+        {
+            {
+                ss_size_t const r = traits_t::length_max("", 0);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max("", 10);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max("abc", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(3, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max("abc", 2);
+
+                XTESTS_TEST_INTEGER_EQUAL(2, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max("abc", 22);
+
+                XTESTS_TEST_INTEGER_EQUAL(3, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max(alphabet, 1000);
+
+                XTESTS_TEST_INTEGER_EQUAL(26, r);
+            }
+        }
+    }
+
+    {
+        typedef stlsoft::char_traits<wchar_t> traits_t;
+
+        // assign
+        {
+            wchar_t buff4[4] = { '1', '2', '3', '4' };
+
+            traits_t::assign(buff4, 3, L'a');
+
+            XTESTS_TEST_WIDE_STRING_EQUAL_N(L"aaa4", buff4, 4);
+        }
+
+        // compare
+        {
+            {
+                int const r = traits_t::compare(L"abc", L"abc", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare(L"abcd", L"abce", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare(L"a\0cd", L"a\0ce", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare(L"a\0d", L"a\0e", 3);
+
+                XTESTS_TEST_INTEGER_NOT_EQUAL(0, r);
+            }
+        }
+
+        // compare_max
+        {
+            {
+                int const r = traits_t::compare_max(L"abc", L"abc", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare_max(L"abcd", L"abce", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare_max(L"a\0cd", L"a\0ce", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                int const r = traits_t::compare_max(L"a\0d", L"a\0e", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+        }
+
+        // find
+        {
+            {
+                wchar_t buff4[4] = { '1', '2', '3', '4' };
+
+                wchar_t const* i = traits_t::find(buff4, 4, '3');
+
+                XTESTS_TEST_INTEGER_EQUAL(2, i - buff4);
+            }
+
+            {
+                wchar_t const* i = traits_t::find(alphabet_w, 26, 'm');
+
+                XTESTS_TEST_INTEGER_EQUAL(12, i - alphabet_w);
+            }
+
+            {
+                wchar_t const* i = traits_t::find(alphabet_w, 11, 'm');
+
+                XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, i);
+            }
+        }
+
+        // length
+        {
+            {
+                ss_size_t const r = traits_t::length(L"");
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length(L"abc");
+
+                XTESTS_TEST_INTEGER_EQUAL(3, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length(alphabet_w);
+
+                XTESTS_TEST_INTEGER_EQUAL(26, r);
+            }
+        }
+
+        // length_max
+        {
+            {
+                ss_size_t const r = traits_t::length_max(L"", 0);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max(L"", 10);
+
+                XTESTS_TEST_INTEGER_EQUAL(0, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max(L"abc", 3);
+
+                XTESTS_TEST_INTEGER_EQUAL(3, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max(L"abc", 2);
+
+                XTESTS_TEST_INTEGER_EQUAL(2, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max(L"abc", 22);
+
+                XTESTS_TEST_INTEGER_EQUAL(3, r);
+            }
+
+            {
+                ss_size_t const r = traits_t::length_max(alphabet_w, 1000);
+
+                XTESTS_TEST_INTEGER_EQUAL(26, r);
+            }
+        }
+    }
+}
 
 static void test_string_traits()
 {

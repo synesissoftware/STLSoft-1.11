@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     95
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -940,16 +940,16 @@ stlsoft_char_traits<char>::assign(
 ,   char const& c
 ) STLSOFT_NOEXCEPT
 {
-    return static_cast<char*>(STLSOFT_API_INTERNAL_memfns_memset(dest, c, cch * sizeof(char)));
+    return static_cast<char*>(STLSOFT_API_INTERNAL_memfns_memset(dest, c, cch));
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
 inline
 ss_int_t
 stlsoft_char_traits<char>::compare(
-    char_type const*    s1
-,   char_type const*    s2
-,   ss_size_t           cch
+    char const* s1
+,   char const* s2
+,   ss_size_t   cch
 ) STLSOFT_NOEXCEPT
 {
     return STLSOFT_NS_GLOBAL(memcmp)(s1, s2, cch);
@@ -957,11 +957,23 @@ stlsoft_char_traits<char>::compare(
 
 STLSOFT_TEMPLATE_SPECIALISATION
 inline
+ss_int_t
+stlsoft_char_traits<char>::compare_max(
+    char const* s1
+,   char const* s2
+,   ss_size_t   cch
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_NS_GLOBAL(strncmp)(s1, s2, cch);
+}
+
+STLSOFT_TEMPLATE_SPECIALISATION
+inline
 char const*
 stlsoft_char_traits<char>::find(
-    char_type const*    s
-,   size_type           cch
-,   char_type const&    c
+    char const* s
+,   size_type   cch
+,   char const& c
 ) STLSOFT_NOEXCEPT
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) && \
@@ -987,10 +999,10 @@ stlsoft_char_traits<char>::copy(
 {
 #ifdef STLSOFT_DEBUG
 
-    STLSOFT_API_INTERNAL_memfns_memset(dest, '~', cch * sizeof(char));
+    STLSOFT_API_INTERNAL_memfns_memset(dest, '~', cch);
 #endif /* STLSOFT_DEBUG */
 
-    return static_cast<char*>(STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, cch * sizeof(char)));
+    return static_cast<char*>(STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, cch));
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -1003,7 +1015,92 @@ stlsoft_char_traits<char>::length(
     return STLSOFT_NS_GLOBAL(strlen)(s);
 }
 
+STLSOFT_TEMPLATE_SPECIALISATION
+inline
+ss_size_t
+stlsoft_char_traits<char>::length_max(
+    char const*  s
+,   ss_size_t       limit
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_NS_GLOBAL(strnlen)(s, limit);
+}
+
 /* wchar_t */
+
+STLSOFT_TEMPLATE_SPECIALISATION
+inline
+wchar_t*
+stlsoft_char_traits<wchar_t>::assign(
+    wchar_t*        dest
+,   ss_size_t       cch
+,   wchar_t const&  c
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_API_INTERNAL_memfns_wmemset(dest, c, cch);
+}
+
+STLSOFT_TEMPLATE_SPECIALISATION
+inline
+ss_int_t
+stlsoft_char_traits<wchar_t>::compare(
+    wchar_t const*  s1
+,   wchar_t const*  s2
+,   ss_size_t       cch
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_NS_GLOBAL(wmemcmp)(s1, s2, cch);
+}
+
+STLSOFT_TEMPLATE_SPECIALISATION
+inline
+ss_int_t
+stlsoft_char_traits<wchar_t>::compare_max(
+    wchar_t const*  s1
+,   wchar_t const*  s2
+,   ss_size_t       cch
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_NS_GLOBAL(wcsncmp)(s1, s2, cch);
+}
+
+STLSOFT_TEMPLATE_SPECIALISATION
+inline
+wchar_t const*
+stlsoft_char_traits<wchar_t>::find(
+    wchar_t const*  s
+,   size_type       cch
+,   wchar_t const&  c
+) STLSOFT_NOEXCEPT
+{
+#if defined(STLSOFT_COMPILER_IS_BORLAND) && \
+    __BORLANDC__ < 0x0560
+
+    return static_cast<wchar_t const*>(wmemchr(s, c, cch));
+#else /* ? compiler */
+
+    void const* const p = STLSOFT_NS_GLOBAL(wmemchr)(s, c, cch);
+
+    return static_cast<wchar_t const*>(p);
+#endif /* compiler */
+}
+
+STLSOFT_TEMPLATE_SPECIALISATION
+inline
+wchar_t*
+stlsoft_char_traits<wchar_t>::copy(
+    wchar_t*        dest
+,   wchar_t const*  src
+,   ss_size_t       cch
+) STLSOFT_NOEXCEPT
+{
+#ifdef STLSOFT_DEBUG
+
+    STLSOFT_API_INTERNAL_memfns_memset(dest, '~', cch * sizeof(wchar_t));
+#endif /* STLSOFT_DEBUG */
+
+    return STLSOFT_API_INTERNAL_memfns_wmemcpy(dest, src, cch);
+}
 
 STLSOFT_TEMPLATE_SPECIALISATION
 inline
@@ -1013,6 +1110,17 @@ stlsoft_char_traits<wchar_t>::length(
 ) STLSOFT_NOEXCEPT
 {
     return STLSOFT_NS_GLOBAL(wcslen)(s);
+}
+
+STLSOFT_TEMPLATE_SPECIALISATION
+inline
+ss_size_t
+stlsoft_char_traits<wchar_t>::length_max(
+    wchar_t const*  s
+,   ss_size_t       limit
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_NS_GLOBAL(wcsnlen)(s, limit);
 }
 #endif /* !STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS && !STLSOFT_COMPILER_IS_DMC */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
