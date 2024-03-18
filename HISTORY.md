@@ -4,6 +4,14 @@
 ----
 
 
+18th March 2024 - 1.11.1-alpha4 released
+----------------------------------------
+
+ * `stlsoft::basic_simple_string<>` now has `#equal()`;
+ * added 'stlsoft::std_chrono_hrc_stopwatch' stopwatch type;
+ * various performance improvements;
+
+
 16th March 2024 - 1.11.1-alpha3 released
 ----------------------------------------
 

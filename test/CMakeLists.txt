@@ -28,6 +28,7 @@ if("${CMAKE_CXX_STANDARD}" STREQUAL "98")
 endif()
 
 
+add_subdirectory(performance)
 add_subdirectory(scratch)
 add_subdirectory(unit)
 

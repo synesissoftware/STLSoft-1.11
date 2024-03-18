@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/diagnostics/processtimes_stopwatch.hpp (formerly unixstl::processtimes_counter, unixstl/performance/processtimes_counter.hpp)
+ * File:    unixstl/diagnostics/processtimes_stopwatch.hpp (formerly unixstl::processtimes_counter, unixstl/performance/processtimes_counter.hpp)
  *
- * Purpose:     UNIXSTL process-time stopwatch class.
+ * Purpose: UNIXSTL process-time stopwatch class.
  *
- * Created:     9th June 2006
- * Updated:     11th March 2024
+ * Created: 9th June 2006
+ * Updated: 18th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        25
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,33 +116,32 @@ namespace unixstl_project
  */
 class processtimes_stopwatch
 {
-public:
-    typedef processtimes_stopwatch    class_type;
-    typedef us_sint64_t             epoch_type;
-
-public:
+public: // types
+    /// The class type
+    typedef processtimes_stopwatch                          class_type;
+    /// The epoch type
+    ///
+    /// The type of the epoch measurement
+    typedef us_sint64_t                                     epoch_type;
     /// The interval type
     ///
     /// The type of the interval measurement, a 64-bit signed integer
-    typedef us_sint64_t             interval_type;
+    typedef us_sint64_t                                     interval_type;
 
-// Construction
-public:
+public: // construction
     processtimes_stopwatch();
 
-// Operations
-public:
+public: // operations
     /// Starts measurement
     ///
     /// Begins the measurement period
-    void        start();
+    void    start();
     /// Ends measurement
     ///
     /// Ends the measurement period
-    void        stop();
+    void    stop();
 
-// Attributes
-public:
+public: // attributes
     // Kernel
 
     /// The elapsed count in the measurement period for kernel mode activity
@@ -200,8 +199,7 @@ public:
     /// This represents the extent, in whole microseconds, of the measurement period
     interval_type   get_microseconds() const;
 
-// Members
-private:
+private: // fields
     typedef struct timeval timeval_t;
 
     timeval_t   m_kernelStart;
@@ -210,7 +208,10 @@ private:
     timeval_t   m_userEnd;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -375,10 +376,12 @@ processtimes_stopwatch::get_microseconds() const
 {
     return get_period_count() / interval_type(10);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

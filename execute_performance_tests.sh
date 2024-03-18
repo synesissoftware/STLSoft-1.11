@@ -17,7 +17,7 @@ while [[ $# -gt 0 ]]; do
 STLSoft is a suite of libraries that provide STL extensions and facades over operating-system and technology-specific APIs
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
-Runs all (matching) unit-test & component-test programs
+Runs all (matching) performance-test programs
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -60,7 +60,7 @@ status=0
 
 if make; then
 
-    for f in $(find $Dir -type f -perm +111 '(' -name 'test_unit*' -o -name 'test.unit.*' ')') $(find $Dir -type f -perm +111 '(' -name 'test_component*' -o -name 'test.component.*' ')')
+    for f in $(find $Dir -type f -perm +111 '(' -name 'test_perf*' -o -name 'test.perf*' ')')
     do
 
         echo
