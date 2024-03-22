@@ -120,9 +120,10 @@
 # include <stdio.h>
 #endif /* compiler */
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifndef STLSOFT_INCL_STDEXCEPT
+# define STLSOFT_INCL_STDEXCEPT
 # include <stdexcept>                       // for std::out_of_range
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* !STLSOFT_INCL_STDEXCEPT */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,6 +134,10 @@
     _MSC_VER < 1200
 # define STLSOFT_SIMPLE_STRING_ITERATOR_METHODS_INLINE
 #endif /* compiler */
+
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+# error simple_string not currently compatible with compilation absent exception support
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -309,13 +314,16 @@ public:
         __GNUC__ < 3) || \
      (  defined(STLSOFT_COMPILER_IS_BORLAND) && \
         defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_BORLAND))
+
         typedef ss_typename_type_k std::iterator_traits<II> traits_t;
 
         return assign_(first, last, traits_t::iterator_category());
 # elif defined(STLSOFT_COMPILER_IS_MWERKS) || \
        defined(STLSOFT_COMPILER_IS_DMC)
+
         return assign_(first, last, stlsoft_iterator_query_category_ptr(II, first));
 # else /* ? compiler */
+
         return assign_(first, last, stlsoft_iterator_query_category(II, first));
 # endif /* compiler */
     }
@@ -349,13 +357,16 @@ public:
         __GNUC__ < 3) || \
      (  defined(STLSOFT_COMPILER_IS_BORLAND) && \
         defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_BORLAND))
+
         typedef ss_typename_type_k std::iterator_traits<II> traits_t;
 
         return append_(first, last, traits_t::iterator_category());
 # elif defined(STLSOFT_COMPILER_IS_MWERKS) || \
        defined(STLSOFT_COMPILER_IS_DMC)
+
         return append_(first, last, stlsoft_iterator_query_category_ptr(II, first));
 # else /* ? compiler */
+
         return append_(first, last, stlsoft_iterator_query_category(II, first));
 # endif /* compiler */
     }
@@ -410,28 +421,28 @@ public:
 /// @{
 public:
     /// Equates the substring [pos, pos+cch) of \c this with the substring [0, cchRhs) of the given C-style string \c s
-    ss_bool_t equal(size_type pos, size_type cch, value_type const* s, size_type cchRhs) const STLSOFT_NOEXCEPT;
+    ss_bool_t equal(size_type pos, size_type cch, value_type const* s, size_type cchRhs) const;
     /// Equates the substring [pos, pos+cch) of \c this with the given C-style string \c s
-    ss_bool_t equal(size_type pos, size_type cch, value_type const* s) const STLSOFT_NOEXCEPT;
+    ss_bool_t equal(size_type pos, size_type cch, value_type const* s) const;
     /// Equates \c this with the given C-style string \c s
     ss_bool_t equal(value_type const* s) const STLSOFT_NOEXCEPT;
     /// Equates the substring [pos, pos+cch) of \c this with the substring [posRhs, posRhs+cchRhs) of the given string \c rhs
-    ss_bool_t equal(size_type pos, size_type cch, class_type const& rhs, size_type posRhs, size_type cchRhs) const STLSOFT_NOEXCEPT;
+    ss_bool_t equal(size_type pos, size_type cch, class_type const& rhs, size_type posRhs, size_type cchRhs) const;
     /// Equates the substring [pos, pos+cch) of \c this with the given string
-    ss_bool_t equal(size_type pos, size_type cch, class_type const& rhs) const STLSOFT_NOEXCEPT;
+    ss_bool_t equal(size_type pos, size_type cch, class_type const& rhs) const;
     /// Equates \c this with the given string \c rhs
     ss_bool_t equal(class_type const& rhs) const STLSOFT_NOEXCEPT;
 
     /// Compares the substring [pos, pos+cch) of \c this with the substring [0, cchRhs) of the given C-style string \c s
-    ss_sint_t compare(size_type pos, size_type cch, value_type const* s, size_type cchRhs) const STLSOFT_NOEXCEPT;
+    ss_sint_t compare(size_type pos, size_type cch, value_type const* s, size_type cchRhs) const;
     /// Compares the substring [pos, pos+cch) of \c this with the given C-style string \c s
-    ss_sint_t compare(size_type pos, size_type cch, value_type const* s) const STLSOFT_NOEXCEPT;
+    ss_sint_t compare(size_type pos, size_type cch, value_type const* s) const;
     /// Compares \c this with the given C-style string \c s
     ss_sint_t compare(value_type const* s) const STLSOFT_NOEXCEPT;
     /// Compares the substring [pos, pos+cch) of \c this with the substring [posRhs, posRhs+cchRhs) of the given string \c rhs
-    ss_sint_t compare(size_type pos, size_type cch, class_type const& rhs, size_type posRhs, size_type cchRhs) const STLSOFT_NOEXCEPT;
+    ss_sint_t compare(size_type pos, size_type cch, class_type const& rhs, size_type posRhs, size_type cchRhs) const;
     /// Compares the substring [pos, pos+cch) of \c this with the given string \c rhs
-    ss_sint_t compare(size_type pos, size_type cch, class_type const& rhs) const STLSOFT_NOEXCEPT;
+    ss_sint_t compare(size_type pos, size_type cch, class_type const& rhs) const;
     /// Compares \c this with the given string \c rhs
     ss_sint_t compare(class_type const& rhs) const STLSOFT_NOEXCEPT;
 
@@ -465,7 +476,6 @@ public:
     /// Returns non-mutable (const) reference at the given index
     const_reference operator [](size_type index) const STLSOFT_NOEXCEPT;
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     /// Returns mutable (non-const) reference at the given index
     ///
     /// \note Throws std::out_of_range if index >= size()
@@ -479,7 +489,6 @@ public:
     class_type              substr(size_type pos, size_type cch) const;
     class_type              substr(size_type pos) const;
     class_type              substr() const;
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
     /// Returns null-terminated non-mutable (const) pointer to string data
     value_type const*       c_str() const STLSOFT_NOEXCEPT;
@@ -595,17 +604,17 @@ private:
     // destroying buffer
     static void                 destroy_buffer_(string_buffer*) STLSOFT_NOEXCEPT;
 
-    // Iteration
+    // iteration
     pointer                     begin_() STLSOFT_NOEXCEPT;
     pointer                     end_() STLSOFT_NOEXCEPT;
 
-    // Invariance
+    // invariance
     ss_bool_t is_valid() const STLSOFT_NOEXCEPT;
 
-    // Empty string
+    // empty string
     static string_buffer*       empty_buffer_() STLSOFT_NOEXCEPT;
 
-    // Comparison
+    // comparison
     static ss_sint_t compare_(
         char_type const*    lhs
     ,   size_type           lhs_len
@@ -613,12 +622,6 @@ private:
     ,   size_type           rhs_len
     ) STLSOFT_NOEXCEPT;
 
-    // testing known-length lhs against css rhs
-    static ss_bool_t equal_(
-        char_type const*    lhs
-    ,   size_type           lhs_len
-    ,   char_type const*    rhs
-    ) STLSOFT_NOEXCEPT;
     // testing same-known-length lhs and rhs
     static ss_bool_t equal_(
         char_type const*    lhs
@@ -626,10 +629,6 @@ private:
     ,   size_type           len
     ) STLSOFT_NOEXCEPT;
 
-    bool contains_(
-        char_type const*    s
-    ,   size_type           n
-    ) const STLSOFT_NOEXCEPT;
     bool starts_with_(
         char_type const*    s
     ,   size_type           n
@@ -640,27 +639,32 @@ private:
     ) const STLSOFT_NOEXCEPT;
 
 
-    // Assignment
+    // assignment
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
-    // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
+
+    // there seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
     class_type& assign_(II first, II last, STLSOFT_NS_QUAL_STD(input_iterator_tag) const*)
 # else /* ? compiler */
+
     class_type& assign_(II first, II last, STLSOFT_NS_QUAL_STD(input_iterator_tag))
 # endif /* compiler */
     {
         STLSOFT_NS_QUAL_STD(copy)(first, last, STLSOFT_NS_QUAL_STD(back_inserter)(*this));
 
         STLSOFT_ASSERT(is_valid());
+
         return *this;
     }
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
-    // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
+
+    // there seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
     class_type& assign_(II first, II last, STLSOFT_NS_QUAL_STD(forward_iterator_tag) const*)
 # else /* ? compiler */
+
     class_type& assign_(II first, II last, STLSOFT_NS_QUAL_STD(forward_iterator_tag))
 # endif /* compiler */
     {
@@ -675,25 +679,30 @@ private:
         return *this;
     }
 
-    // Appending
+    // appending
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
+
     class_type& append_(II first, II last, STLSOFT_NS_QUAL_STD(input_iterator_tag) const*)
 # else /* ? compiler */
+
     class_type& append_(II first, II last, STLSOFT_NS_QUAL_STD(input_iterator_tag))
 # endif /* compiler */
     {
         STLSOFT_NS_QUAL_STD(copy)(first, last, STLSOFT_NS_QUAL_STD(back_inserter)(*this));
 
         STLSOFT_ASSERT(is_valid());
+
         return *this;
     }
     template <ss_typename_param_k II>
 # if defined(STLSOFT_COMPILER_IS_MWERKS) || \
      defined(STLSOFT_COMPILER_IS_DMC)
+
     class_type& append_(II first, II last, STLSOFT_NS_QUAL_STD(forward_iterator_tag) const*)
 # else /* ? compiler */
+
     class_type& append_(II first, II last, STLSOFT_NS_QUAL_STD(forward_iterator_tag))
 # endif /* compiler */
     {
@@ -703,6 +712,7 @@ private:
         append(buffer.data(), buffer.size());
 
         STLSOFT_ASSERT(is_valid());
+
         return *this;
     }
 /// @}
@@ -720,8 +730,13 @@ private:
  */
 
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-typedef basic_simple_string<ss_char_a_t>                    simple_string;
-typedef basic_simple_string<ss_char_w_t>                    simple_wstring;
+
+typedef basic_simple_string<
+    ss_char_a_t
+>                                                           simple_string;
+typedef basic_simple_string<
+    ss_char_w_t
+>                                                           simple_wstring;
 #else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
 typedef basic_simple_string<
     ss_char_a_t
@@ -743,6 +758,7 @@ typedef basic_simple_string<
 /** Specialisation for stlsoft::basic_simple_string<>
  */
 # ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+
 template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
@@ -795,6 +811,7 @@ struct string_traits<
     }
 };
 # else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
 STLSOFT_TEMPLATE_SPECIALISATION
 struct string_traits<simple_string>
 {
@@ -903,7 +920,7 @@ operator ==(
 ,   basic_simple_string<C, T, A> const& rhs
 )
 {
-    return 0 == lhs.compare(rhs);
+    return lhs.equal(rhs);
 }
 
 template <
@@ -925,7 +942,7 @@ operator ==(
 )
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
-    return 0 == lhs.compare(rhs);
+    return lhs.equal(rhs);
 }
 
 template <
@@ -947,7 +964,7 @@ operator ==(
 )
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
-    return 0 == rhs.compare(lhs);
+    return rhs.equal(lhs);
 }
 
 // operator !=
@@ -964,7 +981,7 @@ operator !=(
 ,   basic_simple_string<C, T, A> const& rhs
 )
 {
-    return 0 != lhs.compare(rhs);
+    return !lhs.equal(rhs);
 }
 
 template <
@@ -986,7 +1003,7 @@ operator !=(
 )
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
-    return 0 != lhs.compare(rhs);
+    return !lhs.equal(rhs);
 }
 
 template <
@@ -1008,7 +1025,7 @@ operator !=(
 )
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
-    return 0 != rhs.compare(lhs);
+    return !rhs.equal(lhs);
 }
 
 // operator <
@@ -1603,7 +1620,7 @@ swap(
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-// Implementation
+// implementation
 
 template <
     ss_typename_param_k C
@@ -1698,12 +1715,14 @@ basic_simple_string<C, T, A>::alloc_buffer_(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 )
 {
-    if (pos > rhs.size())
+    size_type const rhs_len = rhs.m_buffer->length;
+
+    if (pos > rhs_len)
     {
         STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string::alloc_buffer_()` index out of range"));
     }
 
-    return class_type::alloc_buffer_(rhs.data() + pos, rhs.size() - pos, 0);
+    return class_type::alloc_buffer_(rhs.m_buffer->contents + pos, rhs_len - pos, 0);
 }
 
 template <
@@ -1720,17 +1739,19 @@ basic_simple_string<C, T, A>::alloc_buffer_(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 )
 {
-    if (pos > rhs.size())
+    size_type const rhs_len = rhs.m_buffer->length;
+
+    if (pos > rhs_len)
     {
         STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string::alloc_buffer_()` index out of range"));
     }
 
-    if (cch + pos > rhs.size())
+    if (cch + pos > rhs_len)
     {
-        cch = rhs.size() - pos;
+        cch = rhs_len - pos;
     }
 
-    return class_type::alloc_buffer_(rhs.data() + pos, cch, 0);
+    return class_type::alloc_buffer_(rhs.m_buffer->contents + pos, cch, 0);
 }
 
 template <
@@ -1772,7 +1793,9 @@ template <
 inline
 /* static */
 void
-basic_simple_string<C, T, A>::destroy_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::string_buffer* buffer) STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::destroy_buffer_(
+    ss_typename_type_k basic_simple_string<C, T, A>::string_buffer* buffer
+) STLSOFT_NOEXCEPT
 {
     if (0 != buffer->capacity)
     {
@@ -1854,7 +1877,7 @@ basic_simple_string<C, T, A>::empty_buffer_() STLSOFT_NOEXCEPT
     return &s_empty;
 }
 
-// Construction
+// construction
 
 template <
     ss_typename_param_k C
@@ -1987,7 +2010,7 @@ basic_simple_string<C, T, A>::~basic_simple_string() STLSOFT_NOEXCEPT
     class_type::destroy_buffer_(m_buffer);
 }
 
-// Comparison
+// comparison
 
 template <
     ss_typename_param_k C
@@ -2027,9 +2050,14 @@ basic_simple_string<C, T, A>::compare(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  rhs
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cchRhs
-) const STLSOFT_NOEXCEPT
+) const
 {
-    size_type lhs_len = size();
+    size_type lhs_len = m_buffer->length;
+
+    if (pos > lhs_len)
+    {
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#compare()` index out of range"));
+    }
 
     if (!(pos < lhs_len))
     {
@@ -2052,7 +2080,7 @@ basic_simple_string<C, T, A>::compare(
         rhs_len = cchRhs;
     }
 
-    return compare_(m_buffer->contents + pos, lhs_len, rhs, rhs_len);
+    return class_type::compare_(m_buffer->contents + pos, lhs_len, rhs, rhs_len);
 }
 
 template <
@@ -2066,9 +2094,14 @@ basic_simple_string<C, T, A>::compare(
     ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  rhs
-) const STLSOFT_NOEXCEPT
+) const
 {
-    size_type lhs_len = size();
+    size_type lhs_len = m_buffer->length;
+
+    if (pos > lhs_len)
+    {
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#compare()` index out of range"));
+    }
 
     if (!(pos < lhs_len))
     {
@@ -2086,7 +2119,7 @@ basic_simple_string<C, T, A>::compare(
 
     size_type rhs_len = (ss_nullptr_k == rhs) ? 0 : traits_type::length(rhs);
 
-    return compare_(m_buffer->contents + pos, lhs_len, rhs, rhs_len);
+    return class_type::compare_(m_buffer->contents + pos, lhs_len, rhs, rhs_len);
 }
 
 template <
@@ -2097,13 +2130,18 @@ template <
 inline
 ss_sint_t
 basic_simple_string<C, T, A>::compare(
-    ss_typename_type_k basic_simple_string<C, T, A>::value_type const* rhs
+    ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  s
 ) const STLSOFT_NOEXCEPT
 {
-    size_type   lhs_len =   size();
-    size_type   rhs_len =   (ss_nullptr_k == rhs) ? 0 : traits_type::length(rhs);
-
-    return compare_(m_buffer->contents, lhs_len, rhs, rhs_len);
+    if (ss_nullptr_k == s ||
+        '\0' == *s)
+    {
+        return empty();
+    }
+    else
+    {
+        return class_type::compare_(m_buffer->contents, m_buffer->length, s, traits_type::length(s));
+    }
 }
 
 template <
@@ -2119,9 +2157,14 @@ basic_simple_string<C, T, A>::compare(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          posRhs
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cchRhs
-) const STLSOFT_NOEXCEPT
+) const
 {
-    size_type lhs_len = size();
+    size_type lhs_len = m_buffer->length;
+
+    if (pos > lhs_len)
+    {
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#compare()` index out of range"));
+    }
 
     if (pos == lhs_len)
     {
@@ -2137,7 +2180,7 @@ basic_simple_string<C, T, A>::compare(
         lhs_len = cch;
     }
 
-    size_type rhs_len = rhs.size();
+    size_type rhs_len = rhs.m_buffer->length;
 
     if (posRhs == rhs_len)
     {
@@ -2153,7 +2196,7 @@ basic_simple_string<C, T, A>::compare(
         rhs_len = cchRhs;
     }
 
-    return compare_(
+    return class_type::compare_(
         m_buffer->contents + pos, lhs_len
     ,   rhs.m_buffer->contents + posRhs, rhs_len
     );
@@ -2170,8 +2213,13 @@ basic_simple_string<C, T, A>::compare(
     ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
-) const STLSOFT_NOEXCEPT
+) const
 {
+    if (pos > m_buffer->length)
+    {
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#compare()` index out of range"));
+    }
+
     size_type lhs_len = size();
 
     if (!(pos < lhs_len))
@@ -2188,9 +2236,9 @@ basic_simple_string<C, T, A>::compare(
         lhs_len = cch;
     }
 
-    size_type rhs_len = rhs.size();
+    size_type rhs_len = rhs.m_buffer->length;
 
-    return compare_(
+    return class_type::compare_(
         m_buffer->contents + pos, lhs_len
     ,   rhs.m_buffer->contents, rhs_len
     );
@@ -2209,40 +2257,10 @@ basic_simple_string<C, T, A>::compare(
 {
     // TODO: when performance has been proven, replace these dereferences with method calls (`data()`, `size()`)
 
-    return compare_(
+    return class_type::compare_(
         m_buffer->contents, m_buffer->length
     ,   rhs.m_buffer->contents, rhs.m_buffer->length
     );
-}
-
-template <
-    ss_typename_param_k C
-,   ss_typename_param_k T
-,   ss_typename_param_k A
->
-inline
-/* static */
-ss_bool_t
-basic_simple_string<C, T, A>::equal_(
-    ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  lhs
-,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          lhs_len
-,   ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  rhs
-) STLSOFT_NOEXCEPT
-{
-    for (size_type i = 0; i != lhs_len; ++i, ++rhs, ++lhs)
-    {
-        if (*rhs == '\0')
-        {
-            return false;
-        }
-
-        if (*lhs != *rhs)
-        {
-            return false;
-        }
-    }
-
-    return true;
 }
 
 template <
@@ -2259,15 +2277,7 @@ basic_simple_string<C, T, A>::equal_(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          len
 ) STLSOFT_NOEXCEPT
 {
-    for (size_type i = 0; i != len; ++i, ++rhs, ++lhs)
-    {
-        if (*lhs != *rhs)
-        {
-            return false;
-        }
-    }
-
-    return true;
+    return 0 == traits_type::compare(lhs, rhs, len);
 }
 
 template <
@@ -2282,43 +2292,25 @@ basic_simple_string<C, T, A>::equal(
 ,   size_type           cch
 ,   value_type const*   s
 ,   size_type           cchRhs
-) const STLSOFT_NOEXCEPT
+) const
 {
     STLSOFT_ASSERT(0 == cchRhs || ss_nullptr_k != s);
 
-    if (0 == cchRhs)
+    if (pos > m_buffer->length)
     {
-        return true;
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
     }
 
-    if (cch != cchRhs)
-    {
-        return false;
-    }
+    size_type const lhs_n   =   minimum(m_buffer->length - pos, cch);
+    size_type const rhs_n   =   cchRhs;
 
-    if (0 == m_buffer->length)
+    if (lhs_n != rhs_n)
     {
-        if (0 != pos)
-        {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
-        }
-
         return false;
     }
     else
     {
-        size_type const lhs_n   =   minimum(m_buffer->length - pos, cch);
-        size_type const rhs_len =   traits_type::length(s);
-        size_type const rhs_n   =   minimum(rhs_len, cchRhs);
-
-        if (lhs_n != rhs_n)
-        {
-            return false;
-        }
-        else
-        {
-            return 0 == traits_type::compare(m_buffer->contents + pos, s, lhs_n);
-        }
+        return 0 == traits_type::compare(m_buffer->contents + pos, s, lhs_n);
     }
 }
 
@@ -2333,36 +2325,23 @@ basic_simple_string<C, T, A>::equal(
     size_type           pos
 ,   size_type           cch
 ,   value_type const*   s
-) const STLSOFT_NOEXCEPT
+) const
 {
-    if (ss_nullptr_k == s)
+    if (pos > m_buffer->length)
     {
-        return empty();
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
+    }
+
+    size_type const lhs_n   =   minimum(m_buffer->length - pos, cch);
+    size_type const rhs_n   =   (ss_nullptr_k == s) ? 0 : traits_type::length(s);
+
+    if (rhs_n != lhs_n)
+    {
+        return false;
     }
     else
     {
-        char_type const* const  lhs_ptr =   m_buffer->contents + pos;
-        size_type const         lhs_n   =   minimum(m_buffer->length - pos, cch);
-
-        if (pos >= m_buffer->length)
-        {
-            if (pos > m_buffer->length ||
-                0 != lhs_n)
-            {
-                STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
-            }
-        }
-
-        size_type const         rhs_len =   traits_type::length(s);
-
-        if (rhs_len != lhs_n)
-        {
-            return false;
-        }
-        else
-        {
-            return 0 == compare_(lhs_ptr, lhs_n, s, rhs_len);
-        }
+        return 0 == traits_type::compare(m_buffer->contents + pos, s, lhs_n);
     }
 }
 
@@ -2381,56 +2360,17 @@ basic_simple_string<C, T, A>::equal(
     {
         return empty();
     }
-
-    return class_type::equal_(m_buffer->contents, m_buffer->length, s);
-}
-
-template <
-    ss_typename_param_k C
-,   ss_typename_param_k T
-,   ss_typename_param_k A
->
-inline
-ss_bool_t
-basic_simple_string<C, T, A>::equal(
-    size_type                                                           pos
-,   size_type                                                           cch
-,   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
-,   size_type                                                           posRhs
-,   size_type                                                           cchRhs
-) const STLSOFT_NOEXCEPT
-{
-    // find if such a range exists within both
-    //
-    // if either `pos` out of range then throw
-
-    string_buffer const* const  lhs_buffer  =   m_buffer;
-    char_type const* const      lhs_ptr     =   lhs_buffer->contents + pos;
-    size_type const             lhs_n       =   minimum(lhs_buffer->length - pos, cch);
-
-    if (rhs.empty())
-    {
-        // TODO: check this and all other out_of_range throws
-        if (0 != posRhs)
-        {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
-        }
-
-        return 0 == cchRhs;
-    }
     else
     {
-        string_buffer const* const  rhs_buffer  =   rhs.m_buffer;
-        char_type const* const      rhs_ptr     =   rhs_buffer->contents + posRhs;
-        size_type const             rhs_n       =   minimum(rhs_buffer->length - posRhs, cchRhs);
+        size_type const rhs_len = traits_type::length(s);
 
-        if (lhs_n != rhs_n)
+        if (m_buffer->length != rhs_len)
         {
             return false;
         }
         else
         {
-            return 0 == traits_type::compare(lhs_ptr, rhs_ptr, lhs_n);
+            return 0 == traits_type::compare(m_buffer->contents, s, m_buffer->length);
         }
     }
 }
@@ -2443,40 +2383,67 @@ template <
 inline
 ss_bool_t
 basic_simple_string<C, T, A>::equal(
-    size_type                                                           pos
-,   size_type                                                           cch
+    ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
-) const STLSOFT_NOEXCEPT
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          posRhs
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cchRhs
+) const
 {
-    string_buffer const* const  lhs_buffer  =   m_buffer;
-    char_type const* const      lhs_ptr     =   lhs_buffer->contents + pos;
-    size_type const             lhs_n       =   minimum(lhs_buffer->length - pos, cch);
-
-    if (pos >= lhs_buffer->length)
+    if (pos > m_buffer->length)
     {
-        if (pos > lhs_buffer->length ||
-            0 != lhs_n)
-        {
-            STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
-        }
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
     }
 
-    string_buffer const* const  rhs_buffer  =   rhs.m_buffer;
-
-    if (0 == rhs_buffer->length)
+    if (posRhs > rhs.m_buffer->length)
     {
-        return true;
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
+    }
+
+    char_type const* const      lhs_ptr     =   m_buffer->contents + pos;
+    size_type const             lhs_n       =   minimum(m_buffer->length - pos, cch);
+
+    char_type const* const      rhs_ptr     =   rhs.m_buffer->contents + posRhs;
+    size_type const             rhs_n       =   minimum(rhs.m_buffer->length - posRhs, cchRhs);
+
+    if (lhs_n != rhs_n)
+    {
+        return false;
     }
     else
     {
-        if (lhs_n != rhs_buffer->length)
-        {
-            return false;
-        }
-        else
-        {
-            return 0 == traits_type::compare(lhs_ptr, rhs_buffer->contents, rhs_buffer->length);
-        }
+        return 0 == traits_type::compare(lhs_ptr, rhs_ptr, lhs_n);
+    }
+}
+
+template <
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline
+ss_bool_t
+basic_simple_string<C, T, A>::equal(
+    ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
+,   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
+) const
+{
+    if (pos > m_buffer->length)
+    {
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#equal()` index out of range"));
+    }
+
+    char_type const* const      lhs_ptr     =   m_buffer->contents + pos;
+    size_type const             lhs_n       =   minimum(m_buffer->length - pos, cch);
+
+    if (lhs_n != rhs.m_buffer->length)
+    {
+        return false;
+    }
+    else
+    {
+        return 0 == traits_type::compare(lhs_ptr, rhs.m_buffer->contents, rhs.m_buffer->length);
     }
 }
 
@@ -2511,68 +2478,9 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::contains_(
-    ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
-,   size_type                                                           n
-) const STLSOFT_NOEXCEPT
-{
-    if (n > length())
-    {
-        return false;
-    }
-
-    if (0 == n)
-    {
-        return true;
-    }
-
-    char_type first_char = s[0];
-
-    // search for each occurrence of `s[0]` in `this` using `traits_type::find()`, then
-    // testing each remaining part of `this` (if long enought) for all of `s`, using
-    // `traits::compare()`
-
-    char_type const*    in = data();
-    size_type           num_remaining = length();
-
-    for (;;)
-    {
-        if (ss_nullptr_k == traits_type::find(in, num_remaining, first_char))
-        {
-            return false;
-        }
-        else
-        {
-            size_type remaining_length = length() - (in - data());
-
-            if (n > remaining_length)
-            {
-                return false;
-            }
-
-            if (0 == traits_type::compare(s, in, n))
-            {
-                return true;
-            }
-            else
-            {
-                ++in;
-                --num_remaining;
-            }
-        }
-    }
-}
-
-template <
-    ss_typename_param_k C
-,   ss_typename_param_k T
-,   ss_typename_param_k A
->
-inline
-ss_bool_t
 basic_simple_string<C, T, A>::starts_with_(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
-,   size_type                                                           n
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          n
 ) const STLSOFT_NOEXCEPT
 {
     if (m_buffer->length < n)
@@ -2598,7 +2506,7 @@ inline
 ss_bool_t
 basic_simple_string<C, T, A>::ends_with_(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
-,   size_type                                                           n
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          n
 ) const STLSOFT_NOEXCEPT
 {
     if (m_buffer->length < n)
@@ -2622,9 +2530,21 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s) const STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::contains(
+    ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
+) const STLSOFT_NOEXCEPT
 {
-    return contains_(s.data(), s.length());
+    if (rhs.empty())
+    {
+        return true;
+    }
+
+    if (rhs.m_buffer->length > m_buffer->length)
+    {
+        return false;
+    }
+
+    return ss_nullptr_k != traits_type::find_string(m_buffer->contents, m_buffer->length, rhs.m_buffer->contents);
 }
 
 template <
@@ -2634,11 +2554,17 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s) const STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::contains(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
+) const STLSOFT_NOEXCEPT
 {
-    size_type const n = (ss_nullptr_k == s) ? 0 : traits_type::length(s);
+    if (ss_nullptr_k == s ||
+        '\0' == *s)
+    {
+        return true;
+    }
 
-    return contains_(s, n);
+    return ss_nullptr_k != traits_type::find_string(m_buffer->contents, m_buffer->length, s);
 }
 
 template <
@@ -2648,7 +2574,9 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch) const STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::contains(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
+) const STLSOFT_NOEXCEPT
 {
     if (empty())
     {
@@ -2665,9 +2593,11 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::starts_with(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s) const STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::starts_with(
+    ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
+) const STLSOFT_NOEXCEPT
 {
-    return starts_with_(s.data(), s.size());
+    return starts_with_(rhs.m_buffer->contents, rhs.m_buffer->length);
 }
 
 template <
@@ -2677,11 +2607,17 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::starts_with(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s) const STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::starts_with(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
+) const STLSOFT_NOEXCEPT
 {
-    size_type const n = (ss_nullptr_k == s) ? 0 : traits_type::length(s);
+    if (ss_nullptr_k == s ||
+        '\0' == *s)
+    {
+        return true;
+    }
 
-    return starts_with_(s, n);
+    return class_type::starts_with_(s, traits_type::length(s));
 }
 
 template <
@@ -2691,7 +2627,9 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::starts_with(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch) const STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::starts_with(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
+) const STLSOFT_NOEXCEPT
 {
     return empty() ? false : (front() == ch);
 }
@@ -2703,9 +2641,11 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::ends_with(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s) const STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::ends_with(
+    ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  s
+) const STLSOFT_NOEXCEPT
 {
-    return ends_with_(s.data(), s.size());
+    return class_type::ends_with_(s.data(), s.size());
 }
 
 template <
@@ -2715,11 +2655,17 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::ends_with(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s) const STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::ends_with(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
+) const STLSOFT_NOEXCEPT
 {
-    size_type const n = (ss_nullptr_k == s) ? 0 : traits_type::length(s);
+    if (ss_nullptr_k == s ||
+        '\0' == *s)
+    {
+        return true;
+    }
 
-    return ends_with_(s, n);
+    return class_type::ends_with_(s, traits_type::length(s));
 }
 
 template <
@@ -2729,12 +2675,15 @@ template <
 >
 inline
 ss_bool_t
-basic_simple_string<C, T, A>::ends_with(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch) const STLSOFT_NOEXCEPT
+basic_simple_string<C, T, A>::ends_with(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
+) const STLSOFT_NOEXCEPT
 {
     return empty() ? false : (back() == ch);
 }
 
-// Accessors
+// accessors
+
 template <
     ss_typename_param_k C
 ,   ss_typename_param_k T
@@ -2767,7 +2716,6 @@ basic_simple_string<C, T, A>::operator [](ss_typename_type_k basic_simple_string
     return m_buffer->contents[index];
 }
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 template <
     ss_typename_param_k C
 ,   ss_typename_param_k T
@@ -2824,19 +2772,21 @@ basic_simple_string<C, T, A>::substr(
 {
     STLSOFT_ASSERT(is_valid());
 
-    if (pos > size())
+    size_type const len = m_buffer->length;
+
+    if (pos > len)
     {
         STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());
 
-    if (cch > (this->size() - pos))
+    if (cch > (len - pos))
     {
-        cch = this->size() - pos;
+        cch = len - pos;
     }
 
-    return class_type(this->data() + pos, cch);
+    return class_type(m_buffer->contents + pos, cch);
 }
 
 template <
@@ -2852,14 +2802,16 @@ basic_simple_string<C, T, A>::substr(
 {
     STLSOFT_ASSERT(is_valid());
 
-    if (pos > size())
+    size_type const len = m_buffer->length;
+
+    if (pos > len)
     {
         STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());
 
-    return class_type(this->data() + pos, this->size() - pos);
+    return class_type(m_buffer->contents + pos, len - pos);
 }
 
 template <
@@ -2873,7 +2825,6 @@ basic_simple_string<C, T, A>::substr() const
 {
     return *this;
 }
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 template <
     ss_typename_param_k C
@@ -2960,7 +2911,7 @@ basic_simple_string<C, T, A>::copy(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type      pos /* = 0 */
 ) const STLSOFT_NOEXCEPT
 {
-    size_type len = size();
+    size_type const len = m_buffer->length;
 
     if (pos < len)
     {
@@ -2969,7 +2920,7 @@ basic_simple_string<C, T, A>::copy(
             cch = len - pos;
         }
 
-        traits_type::copy(dest, data() + pos, cch);
+        traits_type::copy(dest, m_buffer->contents + pos, cch);
     }
     else
     {
@@ -2979,7 +2930,7 @@ basic_simple_string<C, T, A>::copy(
     return cch;
 }
 
-// Iteration
+// iteration
 
 #ifndef STLSOFT_SIMPLE_STRING_ITERATOR_METHODS_INLINE
 
@@ -3032,7 +2983,8 @@ basic_simple_string<C, T, A>::end() STLSOFT_NOEXCEPT
     return end_();
 }
 
-#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+
 template <
     ss_typename_param_k C
 ,   ss_typename_param_k T
@@ -3082,7 +3034,8 @@ basic_simple_string<C, T, A>::rend() STLSOFT_NOEXCEPT
 }
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
-// Assignment
+// assignment
+
 template <
     ss_typename_param_k C
 ,   ss_typename_param_k T
@@ -3165,29 +3118,20 @@ basic_simple_string<C, T, A>::assign(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 )
 {
-    char_type const*    s   =   rhs.data();
-    size_type           len =   rhs.size();
-
-    if (len < pos)
+    if (pos > rhs.m_buffer->length)
     {
-        pos = len;
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#assign()` index out of range"));
     }
+
+    char_type const*    s   =   rhs.m_buffer->contents;
+    size_type           len =   rhs.m_buffer->length;
 
     if (len - pos < cch)
     {
         cch = len - pos;
     }
 
-    if (ss_nullptr_k != s)
-    {
-        s += pos;
-    }
-    else
-    {
-        cch = 0;
-    }
-
-    return assign(s, cch);
+    return assign(s + pos, cch);
 }
 
 template <
@@ -3201,7 +3145,7 @@ basic_simple_string<C, T, A>::assign(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
 )
 {
-    return assign(rhs.data(), rhs.size());
+    return assign(rhs.m_buffer->contents, rhs.m_buffer->length);
 }
 
 template <
@@ -3262,7 +3206,8 @@ basic_simple_string<C, T, A>::operator =(ss_typename_type_k basic_simple_string<
 }
 
 
-// Appending
+// appending
+
 template <
     ss_typename_param_k C
 ,   ss_typename_param_k T
@@ -3363,21 +3308,18 @@ basic_simple_string<C, T, A>::append(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 )
 {
-    char_type const*    s   =   rhs.data();
-    size_type           len =   rhs.size();
+    size_type const rhs_len = rhs.m_buffer->length;
 
-    if (len < pos)
+    if (pos > rhs_len)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("index out of range"));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-        pos = len;
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#append()` index out of range"));
     }
 
-    if (len - pos < cch)
+    char_type const* s = rhs.m_buffer->contents;
+
+    if (rhs_len - pos < cch)
     {
-        cch = len - pos;
+        cch = rhs_len - pos;
     }
 
     s += pos;
@@ -3492,7 +3434,7 @@ basic_simple_string<C, T, A>::pop_back() STLSOFT_NOEXCEPT
     }
 }
 
-// Modifiers
+// modifiers
 
 template <
     ss_typename_param_k C
@@ -3589,7 +3531,8 @@ basic_simple_string<C, T, A>::clear() STLSOFT_NOEXCEPT
     }
 }
 
-// Attributes
+// attributes
+
 template <
     ss_typename_param_k C
 ,   ss_typename_param_k T

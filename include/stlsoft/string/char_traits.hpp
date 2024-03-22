@@ -4,7 +4,7 @@
  * Purpose: char_traits classes.
  *
  * Created: 19th November 1998
- * Updated: 18th March 2024
+ * Updated: 19th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     97
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR       5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR       0
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    0
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -199,7 +199,7 @@ public:
     {
         char_type* ret;
 
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::assign called with NULL destination", (0 == cch || NULL != dest));
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::assign` called with NULL destination", (0 == cch || NULL != dest));
 
         for (ret = dest; 0 < cch; --cch, ++dest)
         {
@@ -231,7 +231,8 @@ public:
         return lhs < rhs;
     }
 
-    /// Compares \c cch characters of \c s1 with \c s2
+    /// Compares up to \c cch characters of \c s1 with \c s2, stopping at the
+    /// first difference
     ///
     /// \param s1 The first string to compare
     /// \param s2 The second string to compare
@@ -248,51 +249,14 @@ public:
     ,   size_type           cch
     ) STLSOFT_NOEXCEPT
     {
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s1));
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare called with NULL string", (0 == cch || NULL != s2));
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::compare` called with NULL string", (0 == cch || NULL != s1));
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::compare` called with NULL string", (0 == cch || NULL != s2));
 
         for (size_type n = 0; n != cch; ++n, ++s1, ++s2)
         {
             if (!eq(*s1, *s2))
             {
                 return lt(*s1, *s2) ? -1 : +1;
-            }
-        }
-
-        return 0;
-    }
-
-    /// Compares up to \c cch characters of \c s1 with \c, stopping at the
-    /// first difference or until the NUL-terminator is reached
-    ///
-    /// \param s1 The first string to compare
-    /// \param s2 The second string to compare
-    /// \param cch The number of characters to compare \c s1 with \c s2
-    ///
-    /// \retval <0 s1 is lexicographically less than s2
-    /// \retval 0 s1 is lexicographically equal to s2
-    /// \retval >0 s1 is lexicographically more than s2
-    // TODO: rename this to something much discoverable, e.g. `compare_maybe_nul()`
-    static
-    int_type
-    compare_max(
-        char_type const*    s1
-    ,   char_type const*    s2
-    ,   size_type           cch
-    ) STLSOFT_NOEXCEPT
-    {
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s1));
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::compare_max called with NULL string", (0 == cch || NULL != s2));
-
-        for (size_type n = 0; n != cch; ++n, ++s1, ++s2)
-        {
-            if (!eq(*s1, *s2))
-            {
-                return lt(*s1, *s2) ? -1 : +1;
-            }
-            else if (eq(*s1, char_type(0)))
-            {
-                break;
             }
         }
 
@@ -322,29 +286,6 @@ public:
         return result;
     }
 
-    /// Compares, using compare_max(), \c s1 with \c s2, either or both of which may be \c nullptr
-    static
-    int_type
-    compare_maxnull(
-        char_type const*    s1
-    ,   char_type const*    s2
-    ,   size_type           cch
-    ) STLSOFT_NOEXCEPT
-    {
-        int_type    result;
-
-        if (NULL == s1)
-        {
-            result = (NULL == s2) ? 0 : -1;
-        }
-        else
-        {
-            result = (NULL == s2) ? 1 : compare_max(s1, s2, cch);
-        }
-
-        return result;
-    }
-
     /// Evaluates the length of the string \c s
     static
     size_type
@@ -354,7 +295,7 @@ public:
     {
         size_type cch;
 
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::length called with NULL string", NULL != s);
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::length` called with NULL string", NULL != s);
 
         for (cch = 0; !eq(*s, char_type(0)); ++s)
         {
@@ -388,7 +329,7 @@ public:
     {
         size_type cch;
 
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::length_max called with NULL string", NULL != s);
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::length_max` called with NULL string", NULL != s);
 
         for (cch = 0; cch < limit && !eq(*s, char_type(0)); ++s)
         {
@@ -424,8 +365,8 @@ public:
     {
         char_type* ret;
 
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL destination", (0 == cch || NULL != dest));
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::copy called with NULL source", (0 == cch || NULL != src));
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::copy` called with NULL destination", (0 == cch || NULL != dest));
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::copy` called with NULL source", (0 == cch || NULL != src));
 
 #ifdef STLSOFT_DEBUG
         STLSOFT_API_INTERNAL_memfns_memset(dest, '~', cch * sizeof(char_type));
@@ -450,8 +391,8 @@ public:
     {
         char_type* const ret = dest;
 
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::move called with NULL destination", (0 == cch || NULL != dest));
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::move called with NULL source", (0 == cch || NULL != src));
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::move` called with NULL destination", (0 == cch || NULL != dest));
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::move` called with NULL source", (0 == cch || NULL != src));
 
         if (src < dest &&
             dest < src + cch)
@@ -481,7 +422,7 @@ public:
     ,   char_type const&    c
     ) STLSOFT_NOEXCEPT
     {
-        STLSOFT_MESSAGE_ASSERT("char_traits<X>::find called with NULL string", (0 == cch || NULL != s));
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::find` called with NULL string", (0 == cch || NULL != s));
 
         for (; 0 < cch; --cch, ++s)
         {
@@ -492,6 +433,76 @@ public:
         }
 
         return (0 < cch) ? s : NULL;
+    }
+
+    /// Searches up to \c cch1 characters of \c s1 with the NUL-terminated
+    /// C-style string \c s2
+    ///
+    /// \param s1 The string in which to search
+    /// \param cch1 The number of characters available to search in \c s1
+    /// \param s2 The C-style string for which to search
+    ///
+    /// \return pointer to the first occurrence of s2, or null if not found
+    ///
+    /// \attention Behaviour is undefined if `s1` contains a NUL-terminator
+    ///  in the range [0, cch1)
+    static
+    char_type const*
+    find_string(
+        char_type const*    s1
+    ,   size_type           cch1
+    ,   char_type const*    s2
+    ) STLSOFT_NOEXCEPT
+    {
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::find_string()` called with NULL s1", (0 == cch1 || NULL != s1));
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::find_string()` s1 may not contain NUL-terminator in range [0, cch1)", 0 == cch1 || length_max(s1, cch1) == cch1);
+        STLSOFT_MESSAGE_ASSERT("`char_traits<>::find_string()` called with NULL s2", NULL != s2);
+
+        size_type const cch2 = length(s2);
+
+        if (cch2 > cch1)
+        {
+            return ss_nullptr_k;
+        }
+
+        if (0 == cch2)
+        {
+            return s1;
+        }
+
+        char_type const*    in              =   s1;
+        size_type           num_remaining   =   cch1;
+
+        for (;;)
+        {
+            char_type const* f = find(in, num_remaining, *s2);
+
+            if (ss_nullptr_k == f)
+            {
+                return ss_nullptr_k;
+            }
+            else
+            {
+                if (cch2 > num_remaining)
+                {
+                    return ss_nullptr_k;
+                }
+                else
+                {
+                    int const rc = compare(in, s2, cch2);
+
+                    if (0 == rc)
+                    {
+                        return in;
+                    }
+                    else
+                    {
+                        ++in;
+                        --num_remaining;
+                    }
+                }
+            }
+        }
     }
 
     /// Represents the character \c in the character type \c char_type
@@ -606,7 +617,7 @@ public:
     ,   char_type const&    c
     ) STLSOFT_NOEXCEPT
     {
-        STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::assign called with NULL destination", NULL != dest);
+        STLSOFT_MESSAGE_ASSERT("`char_traits_safe<>::assign` called with NULL destination", NULL != dest);
 
         return parent_class_type::assign(dest, cch, c);
     }
@@ -653,39 +664,16 @@ public:
         return compare_null(s1, s2, cch);
     }
 
-    static
-    int_type
-    compare_max(
-        char_type const*    s1
-    ,   char_type const*    s2
-    ,   size_type           cch
-    ) STLSOFT_NOEXCEPT
-    {
-        return compare_maxnull(s1, s2, cch);
-    }
-
     /// Compares, using compare(), \c s1 with \c s2, either or both of which may be \c nullptr
     static
     int_type
     compare_null(
         char_type const*    s1
-    ,   char_type const*    s2
     ,   size_type           cch
+    ,   char_type const*    s2
     ) STLSOFT_NOEXCEPT
     {
-        return parent_class_type::compare(s1, s2, cch);
-    }
-
-    /// Compares, using compare_max(), \c s1 with \c s2, either or both of which may be \c nullptr
-    static
-    int_type
-    compare_maxnull(
-        char_type const*    s1
-    ,   char_type const*    s2
-    ,   size_type           cch
-    ) STLSOFT_NOEXCEPT
-    {
-        return parent_class_type::compare_maxnull(s1, s2, cch);
+        return parent_class_type::compare(s1, cch, s2);
     }
 
     /// Evaluates the length of the string \c s up to a given number of characters
@@ -747,8 +735,8 @@ public:
     ,   size_type           cch
     ) STLSOFT_NOEXCEPT
     {
-        STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::copy called with NULL destination", NULL != dest);
-        STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::copy called with NULL source", NULL != src);
+        STLSOFT_MESSAGE_ASSERT("`char_traits_safe<>::copy` called with NULL destination", NULL != dest);
+        STLSOFT_MESSAGE_ASSERT("`char_traits_safe<>::copy` called with NULL source", NULL != src);
 
         return parent_class_type::copy(dest, src, cch);
     }
@@ -762,8 +750,8 @@ public:
     ,   size_type           cch
     ) STLSOFT_NOEXCEPT
     {
-        STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::move called with NULL destination", NULL != dest);
-        STLSOFT_MESSAGE_ASSERT("char_traits_safe<X>::move called with NULL source", NULL != src);
+        STLSOFT_MESSAGE_ASSERT("`char_traits_safe<>::move` called with NULL destination", NULL != dest);
+        STLSOFT_MESSAGE_ASSERT("`char_traits_safe<>::move` called with NULL source", NULL != src);
 
         return parent_class_type::move(dest, src, cch);
     }
@@ -957,18 +945,6 @@ stlsoft_char_traits<char>::compare(
 
 STLSOFT_TEMPLATE_SPECIALISATION
 inline
-ss_int_t
-stlsoft_char_traits<char>::compare_max(
-    char const* s1
-,   char const* s2
-,   ss_size_t   cch
-) STLSOFT_NOEXCEPT
-{
-    return STLSOFT_NS_GLOBAL(strncmp)(s1, s2, cch);
-}
-
-STLSOFT_TEMPLATE_SPECIALISATION
-inline
 char const*
 stlsoft_char_traits<char>::find(
     char const* s
@@ -986,6 +962,18 @@ stlsoft_char_traits<char>::find(
 
     return static_cast<char const*>(p);
 #endif /* compiler */
+}
+
+STLSOFT_TEMPLATE_SPECIALISATION
+inline
+char const*
+stlsoft_char_traits<char>::find_string(
+    char const* s1
+,   size_type   cch
+,   char const* s2
+) STLSOFT_NOEXCEPT
+{
+    return STLSOFT_NS_GLOBAL(strnstr)(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -1050,18 +1038,6 @@ stlsoft_char_traits<wchar_t>::compare(
 ) STLSOFT_NOEXCEPT
 {
     return STLSOFT_NS_GLOBAL(wmemcmp)(s1, s2, cch);
-}
-
-STLSOFT_TEMPLATE_SPECIALISATION
-inline
-ss_int_t
-stlsoft_char_traits<wchar_t>::compare_max(
-    wchar_t const*  s1
-,   wchar_t const*  s2
-,   ss_size_t       cch
-) STLSOFT_NOEXCEPT
-{
-    return STLSOFT_NS_GLOBAL(wcsncmp)(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION

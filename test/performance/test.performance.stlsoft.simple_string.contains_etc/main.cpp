@@ -1,9 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.performance.stlsoft.simple_string.compare/main.cpp
+ * File:    test.performance.stlsoft.simple_string.contains_etc/main.cpp
  *
- * Purpose: Perf-test for `stlsoft::basic_simple_string#compare()`.
+ * Purpose: Perf-test for `stlsoft::basic_simple_string#contains()`,
+ *          `#starts_with()`, `#ends_with()`
  *
- * Created: 15th March 2024
+ * Created: 18th March 2024
  * Updated: 18th March 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -33,7 +34,6 @@
 #define USE_STD_CHRONO_HRC
 
 
-
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -46,9 +46,10 @@
 # else
 #  error Requires C++11 or later
 # endif /* C++11+ */
+#else
+# include <platformstl/diagnostics/stopwatch.hpp>
 #endif
 #include <stlsoft/string/string_tokeniser.hpp>
-#include <platformstl/diagnostics/stopwatch.hpp>
 #include <platformstl/filesystem/path_functions.h>
 
 #include <iomanip>
@@ -87,12 +88,14 @@ typedef stlsoft::simple_string                  string_t;
  * functions
  */
 
+#ifndef USE_std_string
+
 __attribute__((noinline))
 std::pair<
     interval_type   // total_time_ns
 ,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
 >
-do_equal_as_ccs(
+do_contains_as_ccs(
     string_t const&     s1
 ,   string_t const&     s2
 ,   ss_size_t           num_iterations
@@ -111,14 +114,18 @@ do_equal_as_ccs(
 
         for (ss_size_t i = 0; i != num_iterations; ++i)
         {
-            int const r = s1.compare(s2.c_str());
+            if (s1.contains(s2.c_str()))
+            {
+                anchoring_value += i;
+            }
+            else
+            {
+                anchoring_value -= i;
+            }
 
-            anchoring_value += r;
         }
 
         sw.stop();
-
-        interval = sw.get_nanoseconds();
     }
 
     return std::make_pair(interval, anchoring_value);
@@ -129,11 +136,11 @@ std::pair<
     interval_type   // total_time_ns
 ,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
 >
-do_equal_as_p_n_ccs(
+do_contains_as_scr(
     string_t const&     s1
 ,   string_t const&     s2
 ,   ss_size_t           num_iterations
-,   unsigned&
+,   double&
 )
 {
     stopwatch       sw;
@@ -148,29 +155,34 @@ do_equal_as_p_n_ccs(
 
         for (ss_size_t i = 0; i != num_iterations; ++i)
         {
-            int const r = s1.compare(0, s1.size(), s2.c_str());
+            if (s1.contains(s2))
+            {
+                anchoring_value += i;
+            }
+            else
+            {
+                anchoring_value -= i;
+            }
 
-            anchoring_value += r;
         }
 
         sw.stop();
-
-        interval = sw.get_nanoseconds();
     }
 
     return std::make_pair(interval, anchoring_value);
 }
+#endif
 
 __attribute__((noinline))
 std::pair<
     interval_type   // total_time_ns
 ,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
 >
-do_equal_as_p_n_ccs_n(
+do_starts_with_as_ccs(
     string_t const&     s1
 ,   string_t const&     s2
 ,   ss_size_t           num_iterations
-,   unsigned&
+,   double&
 )
 {
     stopwatch       sw;
@@ -185,14 +197,18 @@ do_equal_as_p_n_ccs_n(
 
         for (ss_size_t i = 0; i != num_iterations; ++i)
         {
-            int const r = s1.compare(0, s1.size(), s2.c_str(), s2.size());
+            if (s1.starts_with(s2.c_str()))
+            {
+                anchoring_value += i;
+            }
+            else
+            {
+                anchoring_value -= i;
+            }
 
-            anchoring_value += r;
         }
 
         sw.stop();
-
-        interval = sw.get_nanoseconds();
     }
 
     return std::make_pair(interval, anchoring_value);
@@ -203,10 +219,11 @@ std::pair<
     interval_type   // total_time_ns
 ,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
 >
-do_equal_as_scr(
+do_starts_with_as_scr(
     string_t const&     s1
 ,   string_t const&     s2
 ,   ss_size_t           num_iterations
+,   double&
 )
 {
     stopwatch       sw;
@@ -221,14 +238,18 @@ do_equal_as_scr(
 
         for (ss_size_t i = 0; i != num_iterations; ++i)
         {
-            int const r = s1.compare(s2);
+            if (s1.starts_with(s2))
+            {
+                anchoring_value += i;
+            }
+            else
+            {
+                anchoring_value -= i;
+            }
 
-            anchoring_value += r;
         }
 
         sw.stop();
-
-        interval = sw.get_nanoseconds();
     }
 
     return std::make_pair(interval, anchoring_value);
@@ -239,11 +260,11 @@ std::pair<
     interval_type   // total_time_ns
 ,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
 >
-do_equal_as_p_n_scr(
+do_ends_with_as_ccs(
     string_t const&     s1
 ,   string_t const&     s2
 ,   ss_size_t           num_iterations
-,   char const*&
+,   double&
 )
 {
     stopwatch       sw;
@@ -258,14 +279,18 @@ do_equal_as_p_n_scr(
 
         for (ss_size_t i = 0; i != num_iterations; ++i)
         {
-            int const r = s1.compare(0, s1.size(), s2);
+            if (s1.ends_with(s2.c_str()))
+            {
+                anchoring_value += i;
+            }
+            else
+            {
+                anchoring_value -= i;
+            }
 
-            anchoring_value += r;
         }
 
         sw.stop();
-
-        interval = sw.get_nanoseconds();
     }
 
     return std::make_pair(interval, anchoring_value);
@@ -276,11 +301,11 @@ std::pair<
     interval_type   // total_time_ns
 ,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
 >
-do_equal_as_p_n_scr_p_n(
+do_ends_with_as_scr(
     string_t const&     s1
 ,   string_t const&     s2
 ,   ss_size_t           num_iterations
-,   wchar_t const*&
+,   double&
 )
 {
     stopwatch       sw;
@@ -295,14 +320,18 @@ do_equal_as_p_n_scr_p_n(
 
         for (ss_size_t i = 0; i != num_iterations; ++i)
         {
-            int const r = s1.compare(0, s1.size(), s2, 0, s2.size());
+            if (s1.ends_with(s2))
+            {
+                anchoring_value += i;
+            }
+            else
+            {
+                anchoring_value -= i;
+            }
 
-            anchoring_value += r;
         }
 
         sw.stop();
-
-        interval = sw.get_nanoseconds();
     }
 
     return std::make_pair(interval, anchoring_value);
@@ -320,7 +349,7 @@ display_results(
     > const&            r
 )
 {
-    auto const total_time_ns = r.first;
+    auto const      total_time_ns    =   r.first;
 
     stm
         << '\t'
@@ -338,7 +367,6 @@ display_results(
         << r.second
         << std::endl;
 }
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -361,20 +389,35 @@ int main(int argc, char* argv[])
     const ss_size_t NUM_ITERATIONS  =   10000000;
 #endif
 
+    const char      TYPE_NAME[]     =
+#if 0
+#elif defined(USE_std_string)
+            "std::string"
+#else
+            "stlsoft::simple_string"
+# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
+                "(HAS_equal)"
+# endif
+#endif
+    ;
+
+
     auto SCENARIOS = R"EOS(
 empty (equal)|||
 very small (equal)|abcd|abcd
-very small (unequal contents)|abcd|abce
-very small (unequal lengths)|abcd|abcde
+very small (contains, begins)|abcd|abc
+very small (contains, ends)|abcd|cd
+very small (not found)|abcd|de
 small (equal)|abcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyz
-small (unequal contents)|abcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyZ
-small (unequal lengths)|abcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxy
+small (contains, begins)|abcdefghijklmnopqrstuvwxyz|abcdefghijklm
+small (contains, ends)|abcdefghijklmnopqrstuvwxyz|nopqrstuvwxyz
+small (not found)|abcdefghijklmnopqrstuvwxyz|www
 medium (equal)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz
-medium (unequal contents)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyZ
-medium (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxy
+medium (contains, begins, ends)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyz
+medium (not found)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxzy
 large (equal)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz
-large (unequal contents)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyZ
-large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxy
+large (contains, begins, ends)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyz
+large (not found)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxzy
 )EOS";
 
     typedef stlsoft::string_tokeniser<
@@ -393,9 +436,10 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
 
     line_tokeniser_t    line_tokeniser(SCENARIOS, line_delim);
 
-    // sc& <=> cc*
+
+    // starts_with sc& <=> cc*
     {
-        std::cout << "sc& <=> cc*:" << std::endl;
+        std::cout << "starts_with sc& <=> cc*:" << std::endl;
 
         for (auto i : line_tokeniser)
         {
@@ -424,29 +468,21 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
             string_t const& s2  =   fields[2];
             double          dummy;
 
-            auto const      r   =   do_equal_as_ccs(s1, s2, NUM_ITERATIONS, dummy);
+            auto const      r   =   do_starts_with_as_ccs(s1, s2, NUM_ITERATIONS, dummy);
 
             display_results(
                 std::cout
             ,   fields[0].c_str()
             ,   NUM_ITERATIONS
-#if 0
-#elif defined(USE_std_string)
-            ,   "std::string"
-#else
-            ,   "stlsoft::simple_string"
-# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
-                "(HAS_equal)"
-# endif
-#endif
+            ,   TYPE_NAME
             ,   r
             );
         }
     }
 
-    // sc& <=> p, n, cc*
+    // starts_with sc& <=> sc&
     {
-        std::cout << "sc& <=> p, n, cc*:" << std::endl;
+        std::cout << "starts_with sc& <=> sc&:" << std::endl;
 
         for (auto i : line_tokeniser)
         {
@@ -473,31 +509,24 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
 
             string_t const& s1  =   fields[1];
             string_t const& s2  =   fields[2];
-            unsigned        dummy;
+            double          dummy;
 
-            auto const      r   =   do_equal_as_p_n_ccs(s1, s2, NUM_ITERATIONS, dummy);
+            auto const      r   =   do_starts_with_as_scr(s1, s2, NUM_ITERATIONS, dummy);
 
             display_results(
                 std::cout
             ,   fields[0].c_str()
             ,   NUM_ITERATIONS
-#if 0
-#elif defined(USE_std_string)
-            ,   "std::string"
-#else
-            ,   "stlsoft::simple_string"
-# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
-                "(HAS_equal)"
-# endif
-#endif
+            ,   TYPE_NAME
             ,   r
             );
         }
     }
 
-    // sc& <=> p, n, cc*, n
+
+    // ends_with sc& <=> cc*
     {
-        std::cout << "sc& <=> p, n, cc*, n:" << std::endl;
+        std::cout << "ends_with sc& <=> cc*:" << std::endl;
 
         for (auto i : line_tokeniser)
         {
@@ -524,31 +553,23 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
 
             string_t const& s1  =   fields[1];
             string_t const& s2  =   fields[2];
-            unsigned        dummy;
+            double          dummy;
 
-            auto const      r   =   do_equal_as_p_n_ccs_n(s1, s2, NUM_ITERATIONS, dummy);
+            auto const      r   =   do_ends_with_as_ccs(s1, s2, NUM_ITERATIONS, dummy);
 
             display_results(
                 std::cout
             ,   fields[0].c_str()
             ,   NUM_ITERATIONS
-#if 0
-#elif defined(USE_std_string)
-            ,   "std::string"
-#else
-            ,   "stlsoft::simple_string"
-# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
-                "(HAS_equal)"
-# endif
-#endif
+            ,   TYPE_NAME
             ,   r
             );
         }
     }
 
-    // sc& <=> sc&
+    // ends_with sc& <=> sc&
     {
-        std::cout << "sc& <=> sc&:" << std::endl;
+        std::cout << "ends_with sc& <=> sc&:" << std::endl;
 
         for (auto i : line_tokeniser)
         {
@@ -575,30 +596,26 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
 
             string_t const& s1  =   fields[1];
             string_t const& s2  =   fields[2];
+            double          dummy;
 
-            auto const      r   =   do_equal_as_scr(s1, s2, NUM_ITERATIONS);
+            auto const      r   =   do_ends_with_as_scr(s1, s2, NUM_ITERATIONS, dummy);
 
             display_results(
                 std::cout
             ,   fields[0].c_str()
             ,   NUM_ITERATIONS
-#if 0
-#elif defined(USE_std_string)
-            ,   "std::string"
-#else
-            ,   "stlsoft::simple_string"
-# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
-                "(HAS_equal)"
-# endif
-#endif
+            ,   TYPE_NAME
             ,   r
             );
         }
     }
 
-    // sc& <=> p, n, sc&
+
+#ifndef USE_std_string
+
+    // contains sc& <=> cc*
     {
-        std::cout << "sc& <=> p/n/sc&:" << std::endl;
+        std::cout << "contains sc& <=> cc*:" << std::endl;
 
         for (auto i : line_tokeniser)
         {
@@ -625,31 +642,23 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
 
             string_t const& s1  =   fields[1];
             string_t const& s2  =   fields[2];
-            char const*     dummy;
+            double          dummy;
 
-            auto const      r   =   do_equal_as_p_n_scr(s1, s2, NUM_ITERATIONS, dummy);
+            auto const      r   =   do_contains_as_ccs(s1, s2, NUM_ITERATIONS, dummy);
 
             display_results(
                 std::cout
             ,   fields[0].c_str()
             ,   NUM_ITERATIONS
-#if 0
-#elif defined(USE_std_string)
-            ,   "std::string"
-#else
-            ,   "stlsoft::simple_string"
-# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
-                "(HAS_equal)"
-# endif
-#endif
+            ,   TYPE_NAME
             ,   r
             );
         }
     }
 
-    // sc& <=> p, n, sc&, p, n
+    // contains sc& <=> sc&
     {
-        std::cout << "sc& <=> p/n/sc&/p/n:" << std::endl;
+        std::cout << "contains sc& <=> sc&:" << std::endl;
 
         for (auto i : line_tokeniser)
         {
@@ -676,27 +685,20 @@ large (unequal lengths)|abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd
 
             string_t const& s1  =   fields[1];
             string_t const& s2  =   fields[2];
-            wchar_t const*  dummy;
+            double          dummy;
 
-            auto const      r   =   do_equal_as_p_n_scr_p_n(s1, s2, NUM_ITERATIONS, dummy);
+            auto const      r   =   do_contains_as_scr(s1, s2, NUM_ITERATIONS, dummy);
 
-             display_results(
+            display_results(
                 std::cout
             ,   fields[0].c_str()
             ,   NUM_ITERATIONS
-#if 0
-#elif defined(USE_std_string)
-            ,   "std::string"
-#else
-            ,   "stlsoft::simple_string"
-# ifdef STLSOFT_SIMPLE_STRING_HAS_equal
-                "(HAS_equal)"
-# endif
-#endif
+            ,   TYPE_NAME
             ,   r
             );
-       }
+        }
     }
+#endif
 
     return EXIT_SUCCESS;
 }

@@ -97,8 +97,9 @@ do_equal_as_ccs(
 ,   ss_size_t           num_iterations
 )
 {
-    stopwatch   sw;
-    ss_sint64_t anchoring_value = 0;
+    stopwatch       sw;
+    interval_type   interval        =   0;
+    ss_sint64_t     anchoring_value =   0;
 
     for (int W = 2; W > 0; --W)
     {
@@ -119,9 +120,11 @@ do_equal_as_ccs(
         }
 
         sw.stop();
+
+        interval = sw.get_nanoseconds();
     }
 
-    return std::make_pair(sw.get_nanoseconds(), anchoring_value);
+    return std::make_pair(interval, anchoring_value);
 }
 
 __attribute__((noinline))
@@ -135,8 +138,9 @@ do_equal_as_scr(
 ,   ss_size_t           num_iterations
 )
 {
-    stopwatch   sw;
-    ss_sint64_t anchoring_value = 0;
+    stopwatch       sw;
+    interval_type   interval        =   0;
+    ss_sint64_t     anchoring_value =   0;
 
     for (int W = 2; W > 0; --W)
     {
@@ -157,9 +161,11 @@ do_equal_as_scr(
         }
 
         sw.stop();
+
+        interval = sw.get_nanoseconds();
     }
 
-    return std::make_pair(sw.get_nanoseconds(), anchoring_value);
+    return std::make_pair(interval, anchoring_value);
 }
 
 void

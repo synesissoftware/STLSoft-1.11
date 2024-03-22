@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 4th November 2008
- * Updated: 18th March 2024
+ * Updated: 20th March 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -15,6 +15,7 @@
 
 // #define USE_std_string
 
+// #define IGNORE_traits
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -41,6 +42,10 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+
+#ifndef XTESTS_TEST_STATEMENT_THROWS_TYPE
+# define XTESTS_TEST_STATEMENT_THROWS_TYPE(block, type) do { try { block; XTESTS_FAIL_WITH_QUALIFIER("should not get here because not received expected exception", typeid(type).name()); } catch(type& ) { XTESTS_PASSED(); } } while(0)
+#endif
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -140,7 +145,7 @@ namespace
     static void test_equal_scr(void);
 #endif /* !USE_std_string */
 #if !defined(USE_std_string) || \
-    __cplusplus >= 202002L
+    __cplusplus >= 202302L
     static void test_starts_with_1(void);
     static void test_starts_with_2(void);
     static void test_contains_1(void);
@@ -190,9 +195,12 @@ namespace
 
     // traits
 
+#ifndef IGNORE_traits
+
     static void test_stlsoft_char_traits(void);
 
     static void test_string_traits(void);
+#endif
 
 
     // operators : concatenation
@@ -315,7 +323,7 @@ int main(int argc, char* argv[])
 #endif /* !USE_std_string */
 
 #if !defined(USE_std_string) || \
-    __cplusplus >= 202002L
+    __cplusplus >= 202302L
         XTESTS_RUN_CASE(test_starts_with_1);
         XTESTS_RUN_CASE(test_starts_with_2);
         XTESTS_RUN_CASE(test_contains_1);
@@ -364,9 +372,12 @@ int main(int argc, char* argv[])
 
         // traits
 
+#ifndef IGNORE_traits
+
         XTESTS_RUN_CASE(test_stlsoft_char_traits);
 
         XTESTS_RUN_CASE(test_string_traits);
+#endif
 
 
         // operators : concatenation
@@ -522,6 +533,8 @@ static void test_ctor_s_pos()
         string_t    s1("abc");
         string_t    s2(s1, 1);
 
+        XTESTS_TEST_STATEMENT_THROWS_TYPE({ (string_t(s1, 4)); }, std::out_of_range);
+
         XTESTS_TEST_INTEGER_EQUAL(2, s2.size());
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
     }
@@ -532,6 +545,8 @@ static void test_ctor_s_pos_n()
     {
         string_t    s1("abc");
         string_t    s2(s1, 0u, s1.size());
+
+        XTESTS_TEST_STATEMENT_THROWS_TYPE({ (string_t(s1, 4, 1)); }, std::out_of_range);
 
         XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
@@ -777,6 +792,9 @@ static void test_assign_3()
 
         s.assign(s_alphabet, 0, 0);
 
+        s.assign(s_alphabet, 26, 0);
+        XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s.append(s_alphabet, 27, 0)); }, std::out_of_range);
+
         XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
 
@@ -831,6 +849,9 @@ static void test_append_1()
     XTESTS_TEST_INTEGER_EQUAL(0u, s1.size());
     XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(0u, s1.capacity());
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s1);
+
+    XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s1.append(s2, 4, 0)); }, std::out_of_range);
+
 
     s1.append(s1, 0, 0);
 
@@ -1361,6 +1382,8 @@ static void test_compare_2()
     string_t    s1("abc");
     string_t    s2("def");
 
+    XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s1.equal(4, 0, s2)); }, std::out_of_range);
+
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(s2));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, s2));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, s2.c_str()));
@@ -1371,6 +1394,12 @@ static void test_compare_2()
 static void test_compare_3()
 {
     string_t    s1("def");
+
+    XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s1.equal(4, 0, "xx")); }, std::out_of_range);
+
+    XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s1.equal(4, 0, "xx", 1)); }, std::out_of_range);
+
+    XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s1.equal(4, 0, s1, 0, 0)); }, std::out_of_range);
 
     XTESTS_TEST_INTEGER_LESS(0, s1.compare("ghi"));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, "ghi"));
@@ -1460,23 +1489,57 @@ static void test_equality_operators_1()
 
 static void test_equal_p_n_ccs_n()
 {
-    string_t    s1("abc");
-    string_t    s2("def");
-    string_t    s3("abc");
-    string_t    s4("def");
+    {
+        string_t    s0;
+        string_t    s1("abc");
+        string_t    s2("abcdefghijklm");
 
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1.c_str(), 3));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2.c_str(), 3));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s3.c_str(), 3));
-    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4.c_str(), 3));
+        XTESTS_TEST_BOOLEAN_TRUE(s0.equal(0, 0, "", 0));
+        XTESTS_TEST_BOOLEAN_TRUE(s0.equal(0, 0, "abc", 0));
+        XTESTS_TEST_BOOLEAN_FALSE(s0.equal(0, 0, "abc", 3));
+        XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s0.equal(1, 0, "", 0)); }, std::out_of_range);
+
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 0, "", 0));
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 0, "abc", 0));
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 1, "abc", 1));
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 2, "abc", 2));
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, "abc", 3));
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 2, "bc", 2));
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(2, 1, "c", 1));
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(3, 0, "", 0));
+        XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s1.equal(4, 0, "", 0)); }, std::out_of_range);
+    }
+
+    {
+        string_t    s1("abc");
+        string_t    s2("def");
+        string_t    s3("abc");
+        string_t    s4("def");
+
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1.c_str(), 3));
+        XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2.c_str(), 3));
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s3.c_str(), 3));
+        XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s4.c_str(), 3));
+    }
+
+    {
+        string_t    s1(alphabet);
+
+        XTESTS_TEST_BOOLEAN_FALSE(s1.equal(13, 3, "nopQ", 2));
+        XTESTS_TEST_BOOLEAN_FALSE(s1.equal(13, 2, "nopQ", 3));
+        XTESTS_TEST_BOOLEAN_TRUE(s1.equal(13, 3, "nopQ", 3));
+    }
 }
 
 static void test_equal_p_n_ccs()
 {
+    string_t    s0;
     string_t    s1("abc");
     string_t    s2("def");
     string_t    s3("abc");
     string_t    s4("def");
+
+    XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s0.equal(1, 0, "")); }, std::out_of_range);
 
     XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1.c_str()));
     XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2.c_str()));
@@ -1503,12 +1566,14 @@ static void test_equal_ccs()
     string_t    s1("abc");
     string_t    s2("def");
     string_t    s3("abc");
-    string_t    s4("def");
+    string_t    s4("defg");
+    string_t    s5("abcd");
 
     XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s1.c_str()));
     XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s2.c_str()));
     XTESTS_TEST_BOOLEAN_TRUE(s1.equal(s3.c_str()));
     XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s4.c_str()));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(s5.c_str()));
 }
 
 static void test_equal_p_n_scr_p_n()
@@ -1521,14 +1586,19 @@ static void test_equal_p_n_scr_p_n()
 
     XTESTS_TEST_BOOLEAN_TRUE(s0.equal(0, 0, s0, 0, 0));
     XTESTS_TEST_BOOLEAN_TRUE(s0.equal(0, 1, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_FALSE(s0.equal(0, 0, s0, 0, 1));
+    XTESTS_TEST_BOOLEAN_TRUE(s0.equal(0, 0, s0, 0, 0));
+    XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s0.equal(0, 0, s0, 1, 0)); }, std::out_of_range);
+    XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s0.equal(1, 0, s0, 0, 0)); }, std::out_of_range);
+    XTESTS_TEST_STATEMENT_THROWS_TYPE({ (s0.equal(1, 0, s0, 1, 0)); }, std::out_of_range);
 
     XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 0, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 1, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 2, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 1, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 2, s0, 0, 0));
     XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 0, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 1, s0, 0, 0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 2, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(2, 0, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(3, 0, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(1, 1, s0, 0, 0));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(1, 2, s0, 0, 0));
 
     XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1, 0, s1.size()));
     XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2, 0, s2.size()));
@@ -1551,11 +1621,11 @@ static void test_equal_p_n_scr()
     string_t    s4("defg");
 
     XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 0, s0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 1, s0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 2, s0));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 1, s0));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 2, s0));
     XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 0, s0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 1, s0));
-    XTESTS_TEST_BOOLEAN_TRUE(s1.equal(1, 2, s0));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(1, 1, s0));
+    XTESTS_TEST_BOOLEAN_FALSE(s1.equal(1, 2, s0));
 
     XTESTS_TEST_BOOLEAN_TRUE(s1.equal(0, 3, s1));
     XTESTS_TEST_BOOLEAN_FALSE(s1.equal(0, 3, s2));
@@ -1587,7 +1657,7 @@ static void test_equal_scr()
 #endif /* !USE_std_string */
 
 #if !defined(USE_std_string) || \
-    __cplusplus >= 202002L
+    __cplusplus >= 202302L
 
 static void test_starts_with_1()
 {
@@ -3313,6 +3383,8 @@ static void test_find_last_not_of_string()
 
 // traits
 
+#ifndef IGNORE_traits
+
 static void test_stlsoft_char_traits()
 {
     {
@@ -3342,42 +3414,66 @@ static void test_stlsoft_char_traits()
             }
 
             {
-                int const r = traits_t::compare("a\0cd", "a\0ce", 3);
+                int const r = traits_t::compare("a\1cd", "a\1ce", 3);
 
                 XTESTS_TEST_INTEGER_EQUAL(0, r);
             }
 
             {
-                int const r = traits_t::compare("a\0d", "a\0e", 3);
+                int const r = traits_t::compare("a\1d", "a\1e", 3);
 
                 XTESTS_TEST_INTEGER_NOT_EQUAL(0, r);
             }
         }
 
-        // compare_max
+        // find_string
         {
             {
-                int const r = traits_t::compare_max("abc", "abc", 3);
+                char const* r = traits_t::find_string("abc", 3, "abc");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
             }
 
             {
-                int const r = traits_t::compare_max("abcd", "abce", 3);
+                char const* r = traits_t::find_string("abc", 3, "ab");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
             }
 
             {
-                int const r = traits_t::compare_max("a\0cd", "a\0ce", 3);
+                char const* r = traits_t::find_string("abc", 3, "bc");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
             }
 
             {
-                int const r = traits_t::compare_max("a\0d", "a\0e", 3);
+                char const* r = traits_t::find_string("abcd", 3, "abc");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
+            }
+
+            {
+                char const* r = traits_t::find_string("abcd", 3, "ab");
+
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
+            }
+
+            {
+                char const* r = traits_t::find_string("abcd", 3, "abce");
+
+                XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, r);
+            }
+
+            {
+                char const* r = traits_t::find_string("a\1cd", 3, "a\1c");
+
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
+            }
+
+            {
+                char const* r = traits_t::find_string("a\1d", 3, "a\1e");
+
+                XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, r);
             }
         }
 
@@ -3492,42 +3588,54 @@ static void test_stlsoft_char_traits()
             }
 
             {
-                int const r = traits_t::compare(L"a\0cd", L"a\0ce", 3);
+                int const r = traits_t::compare(L"a\1cd", L"a\1ce", 3);
 
                 XTESTS_TEST_INTEGER_EQUAL(0, r);
             }
 
             {
-                int const r = traits_t::compare(L"a\0d", L"a\0e", 3);
+                int const r = traits_t::compare(L"a\1d", L"a\1e", 3);
 
                 XTESTS_TEST_INTEGER_NOT_EQUAL(0, r);
             }
         }
 
-        // compare_max
+        // find_string
         {
             {
-                int const r = traits_t::compare_max(L"abc", L"abc", 3);
+                wchar_t const* r = traits_t::find_string(L"abc", 3, L"abc");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
             }
 
             {
-                int const r = traits_t::compare_max(L"abcd", L"abce", 3);
+                wchar_t const* r = traits_t::find_string(L"abcd", 3, L"abc");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
             }
 
             {
-                int const r = traits_t::compare_max(L"a\0cd", L"a\0ce", 3);
+                wchar_t const* r = traits_t::find_string(L"abcd", 3, L"abce");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, r);
             }
 
             {
-                int const r = traits_t::compare_max(L"a\0d", L"a\0e", 3);
+                wchar_t const* r = traits_t::find_string(L"a\1cd", 3, L"a\1c");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
+            }
+
+            {
+                wchar_t const* r = traits_t::find_string(L"a\1d", 3, L"a\1e");
+
+                XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, r);
+            }
+
+            {
+                wchar_t const* r = traits_t::find_string(L"a\1d", 2, L"a\1");
+
+                XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, r);
             }
         }
 
@@ -3650,6 +3758,7 @@ static void test_string_traits()
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
     }
 }
+#endif
 
 
 // operators : concatenation

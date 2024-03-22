@@ -1,17 +1,14 @@
 
-add_executable(test.unit.stlsoft.string.simple_string
-    entry.cpp
+add_executable(test.performance.stlsoft.simple_string.contains_etc
+    main.cpp
 )
 
-target_link_libraries(test.unit.stlsoft.string.simple_string
-    xTests::xTests.core
-)
-
-target_compile_options(test.unit.stlsoft.string.simple_string PRIVATE
+target_compile_options(test.performance.stlsoft.simple_string.contains_etc PRIVATE
     $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
         -Werror -Wall -Wextra -pedantic
 
-        -Wno-unused-const-variable
+        -Wno-deprecated-declarations
+        -Wno-unused-parameter
 
         ${GCC_WARN_NO_cxx11_long_long}
     >
