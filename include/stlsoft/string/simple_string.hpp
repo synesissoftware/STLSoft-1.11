@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 20th March 2024
+ * Updated: 26th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      279
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      280
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -2052,35 +2052,22 @@ basic_simple_string<C, T, A>::compare(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cchRhs
 ) const
 {
-    size_type lhs_len = m_buffer->length;
+    size_type const lhs_len = m_buffer->length;
 
     if (pos > lhs_len)
     {
         STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#compare()` index out of range"));
     }
 
-    if (!(pos < lhs_len))
+    if (pos + cch > lhs_len)
     {
-        pos = lhs_len;
-    }
-    else
-    {
-        lhs_len -= pos;
+        cch = lhs_len - pos;
     }
 
-    if (cch < lhs_len)
-    {
-        lhs_len = cch;
-    }
-
-    size_type rhs_len = (ss_nullptr_k == rhs) ? 0 : traits_type::length(rhs);
-
-    if (cchRhs < rhs_len)
-    {
-        rhs_len = cchRhs;
-    }
-
-    return class_type::compare_(m_buffer->contents + pos, lhs_len, rhs, rhs_len);
+    return class_type::compare_(
+        m_buffer->contents + pos, cch
+    ,   rhs, cchRhs
+    );
 }
 
 template <
@@ -2096,30 +2083,24 @@ basic_simple_string<C, T, A>::compare(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  rhs
 ) const
 {
-    size_type lhs_len = m_buffer->length;
+    size_type const lhs_len = m_buffer->length;
 
     if (pos > lhs_len)
     {
         STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#compare()` index out of range"));
     }
 
-    if (!(pos < lhs_len))
+    if (pos + cch > lhs_len)
     {
-        pos = lhs_len;
-    }
-    else
-    {
-        lhs_len -= pos;
+        cch = lhs_len - pos;
     }
 
-    if (cch < lhs_len)
-    {
-        lhs_len = cch;
-    }
+    size_type const rhs_len = (ss_nullptr_k == rhs) ? 0 : traits_type::length(rhs);
 
-    size_type rhs_len = (ss_nullptr_k == rhs) ? 0 : traits_type::length(rhs);
-
-    return class_type::compare_(m_buffer->contents + pos, lhs_len, rhs, rhs_len);
+    return class_type::compare_(
+        m_buffer->contents + pos, lhs_len
+    ,   rhs, rhs_len
+    );
 }
 
 template <
@@ -2133,10 +2114,9 @@ basic_simple_string<C, T, A>::compare(
     ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  s
 ) const STLSOFT_NOEXCEPT
 {
-    if (ss_nullptr_k == s ||
-        '\0' == *s)
+    if (ss_nullptr_k == s)
     {
-        return empty();
+        return empty() ? 0 : +1;
     }
     else
     {
@@ -2159,46 +2139,33 @@ basic_simple_string<C, T, A>::compare(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cchRhs
 ) const
 {
-    size_type lhs_len = m_buffer->length;
+    size_type const lhs_len = m_buffer->length;
 
     if (pos > lhs_len)
     {
         STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#compare()` index out of range"));
     }
 
-    if (pos == lhs_len)
+    if (pos + cch > lhs_len)
     {
-        lhs_len = 0u;
-    }
-    else if (pos + cch > lhs_len)
-    {
-        lhs_len -= pos;
+        cch = lhs_len - pos;
     }
 
-    if (cch < lhs_len)
+    size_type const rhs_len = rhs.m_buffer->length;
+
+    if (posRhs > rhs_len)
     {
-        lhs_len = cch;
+        STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#compare()` index out of range"));
     }
 
-    size_type rhs_len = rhs.m_buffer->length;
-
-    if (posRhs == rhs_len)
+    if (posRhs + cchRhs > rhs_len)
     {
-        rhs_len = 0u;
-    }
-    else if (posRhs + cchRhs > rhs_len)
-    {
-        rhs_len -= posRhs;
-    }
-
-    if (cchRhs < rhs_len)
-    {
-        rhs_len = cchRhs;
+        cchRhs = rhs_len - posRhs;
     }
 
     return class_type::compare_(
-        m_buffer->contents + pos, lhs_len
-    ,   rhs.m_buffer->contents + posRhs, rhs_len
+        m_buffer->contents + pos, cch
+    ,   rhs.m_buffer->contents + posRhs, cchRhs
     );
 }
 
@@ -2215,31 +2182,22 @@ basic_simple_string<C, T, A>::compare(
 ,   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
 ) const
 {
-    if (pos > m_buffer->length)
+    size_type const lhs_len = m_buffer->length;
+
+    if (pos > lhs_len)
     {
         STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(out_of_range)("`basic_simple_string#compare()` index out of range"));
     }
 
-    size_type lhs_len = size();
-
-    if (!(pos < lhs_len))
+    if (pos + cch > lhs_len)
     {
-        pos = lhs_len;
-    }
-    else
-    {
-        lhs_len -= pos;
+        cch = lhs_len - pos;
     }
 
-    if (cch < lhs_len)
-    {
-        lhs_len = cch;
-    }
-
-    size_type rhs_len = rhs.m_buffer->length;
+    size_type const rhs_len = rhs.m_buffer->length;
 
     return class_type::compare_(
-        m_buffer->contents + pos, lhs_len
+        m_buffer->contents + pos, cch
     ,   rhs.m_buffer->contents, rhs_len
     );
 }

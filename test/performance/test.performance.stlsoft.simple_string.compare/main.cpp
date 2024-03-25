@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::basic_simple_string#compare()`.
  *
  * Created: 15th March 2024
- * Updated: 18th March 2024
+ * Updated: 26th March 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
