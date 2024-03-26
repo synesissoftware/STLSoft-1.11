@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/locale/locale_scope.hpp
+ * File:    stlsoft/locale/locale_scope.hpp
  *
- * Purpose:     Defines the locale_scope class.
+ * Purpose: Defines the locale_scope class.
  *
- * Created:     23rd December 2018
- * Updated:     11th March 2024
+ * Created: 23rd December 2018
+ * Updated: 26th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2018-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_REVISION   1
-# define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_EDIT       6
+# define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_REVISION   2
+# define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,7 +105,9 @@ namespace stlsoft
 class locale_scope
 {
 public: // types
+    /// This type
     typedef locale_scope                                    class_type;
+    /// The string type
     typedef std::basic_string<
         char
     >                                                       string_type;
@@ -118,6 +120,9 @@ public: // construction
     )
         : m_category(category)
         , m_previousLocale(obtain_or_throw_(category, ss_nullptr_k))
+#if __cplusplus >= 201703L
+        , m_exception_count(std::uncaught_exceptions())
+#endif /* C++ version */
     {
         set_or_throw_(m_category, localeName);
     }
@@ -125,7 +130,11 @@ public: // construction
     /// the original locale cannot be restored.
     ~locale_scope()
     {
+#if __cplusplus >= 201703L
+        if (m_exception_count != std::uncaught_exceptions())
+#else  /* ? C++ version */
         if (!std::uncaught_exception())
+#endif /* C++ version */
         {
             set_or_throw_(m_category, m_previousLocale.c_str());
         }
@@ -179,6 +188,9 @@ private: // implementation
 private: // fields
     int const           m_category;
     string_type const   m_previousLocale;
+#if __cplusplus >= 201703L
+    int const           m_exception_count;
+#endif /* C++ version */
 };
 
 

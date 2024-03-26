@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/attribute/get_ptr/std/auto_ptr.hpp
+ * File:    stlsoft/shims/attribute/get_ptr/std/auto_ptr.hpp
  *
- * Purpose:     Contains the get_ptr attribute shim.
+ * Purpose: Contains the get_ptr attribute shim.
  *
- * Created:     10th January 2002
- * Updated:     11th March 2024
+ * Created: 10th January 2002
+ * Updated: 26th March 2024
  *
- * Thanks to:   Nevin Liber for spotting a mistake in the get_ptr
- *              definition.
+ * Thanks:   Nevin Liber for spotting a mistake in the get_ptr definition.
  *
- * Home:        http://stlsoft.org/
+ * Home:     http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -44,7 +43,10 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* STLSOFT:C++14:FILE_DEPRECATED */
 /* STLSOFT:C++17:FILE_DEPRECATED */
+/* STLSOFT:C++20:FILE_DEPRECATED */
+/* STLSOFT:C++23:FILE_DEPRECATED */
 
 /** \file stlsoft/shims/attribute/get_ptr/std/auto_ptr.hpp
  *
@@ -59,7 +61,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MINOR     1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_REVISION  8
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      62
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
