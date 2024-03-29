@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/synch/semaphore.hpp
+ * File:    unixstl/synch/semaphore.hpp
  *
- * Purpose:     Semaphore class, based on POSIX semaphore object.
+ * Purpose: Semaphore class, based on POSIX semaphore object.
  *
- * Created:     30th May 2006
- * Updated:     11th March 2024
+ * Created: 30th May 2006
+ * Updated: 29th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_SEMAPHORE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     42
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR      1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR      3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -311,9 +311,9 @@ private:
 
 // Members
 private:
-    UNIXSTL_INTERNAL_SYNCH_POSIX_sem_t               m_semInternal;  // The actual object if internally initialised
-    handle_type         m_sem;          // Handle to the underlying semaphore object
-    bool_type const     m_bOwnHandle;   // Does the instance own the handle?
+    UNIXSTL_INTERNAL_SYNCH_POSIX_sem_t  m_semInternal;  // The actual object if internally initialised
+    handle_type                         m_sem;          // Handle to the underlying semaphore object
+    bool_type const                     m_bOwnHandle;   // Does the instance own the handle?
 };
 
 

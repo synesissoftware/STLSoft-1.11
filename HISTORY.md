@@ -4,6 +4,12 @@
 ----
 
 
+29th March 2024 - 1.11.1-alpha5 released
+----------------------------------------
+
+ * various GCC-11 compatibility fixes;
+
+
 18th March 2024 - 1.11.1-alpha4 released
 ----------------------------------------
 
