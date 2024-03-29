@@ -1,13 +1,13 @@
 
-add_executable(test.unit.stlsoft.conversion.integer_to_base36_string
+add_executable(test.unit.stlsoft.conversion.number.group_functions
     entry.cpp
 )
 
-target_link_libraries(test.unit.stlsoft.conversion.integer_to_base36_string
+target_link_libraries(test.unit.stlsoft.conversion.number.group_functions
     xTests::xTests.core
 )
 
-target_compile_options(test.unit.stlsoft.conversion.integer_to_base36_string PRIVATE
+target_compile_options(test.unit.stlsoft.conversion.number.group_functions PRIVATE
     $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
         -Werror -Wall -Wextra -pedantic
 

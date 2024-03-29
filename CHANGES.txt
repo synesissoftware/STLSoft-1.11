@@ -8941,7 +8941,7 @@ Additions:
     FILE          *stm = . . .;
     std::string   str;
 
-    while(stlsoft::read_line(stm, str))
+    while (stlsoft::read_line(stm, str))
     {
       ::fprintf(stdout, "line: %.*s\n", int(str.size()), str.data());
     }
