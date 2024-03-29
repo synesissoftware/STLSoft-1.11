@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/access/string/std/basic_string_view.hpp
+ * File:    stlsoft/shims/access/string/std/basic_string_view.hpp
  *
- * Purpose:     Contains the c_str_data and c_str_len accessors.
+ * Purpose: Contains the c_str_data and c_str_len accessors.
  *
- * Created:     21st October 2020
- * Updated:     11th March 2024
+ * Created: 21st October 2020
+ * Updated: 26th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -40,6 +40,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* STLSOFT:C++98:FILE_EXCEPTED */
+/* STLSOFT:C++03:FILE_EXCEPTED */
+/* STLSOFT:C++11:FILE_EXCEPTED */
+/* STLSOFT:C++14:FILE_EXCEPTED */
+
 /** \file stlsoft/shims/access/string/std/basic_string_view.hpp
  *
  * \brief [C++] Definition of the string access shims for
@@ -54,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_MAJOR    1
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_MINOR    0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_REVISION 2
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_EDIT     3
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -18,6 +18,34 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha5 (29th March 2024)
+
+General:
+========
+
+ * various GCC-11 compatibility fixes;
+
+Changes:
+========
+
+GCC-11 compatibility fixes:
+ * dev/bin/batch_compile_check;
+ * include/stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp;
+ * include/stlsoft/internal/cccap/gcc.h;
+ * include/stlsoft/locale/locale_scope.hpp;
+ * include/stlsoft/shims/access/string/std/basic_string_view.hpp;
+ * include/stlsoft/shims/access/string/std/chrono.hpp;
+ * include/stlsoft/shims/attribute/get_ptr/std/auto_ptr.hpp;
+ * include/stlsoft/shims/attribute/get_ptr/std/shared_ptr.hpp;
+ * include/stlsoft/shims/attribute/get_ptr/std/unique_ptr.hpp;
+ * include/stlsoft/shims/logical/is_null/std/auto_ptr.hpp;
+ * include/stlsoft/shims/logical/is_null/std/shared_ptr.hpp;
+ * include/stlsoft/shims/logical/is_null/std/unique_ptr.hpp;
+ * include/stlsoft/util/options_verifier.hpp;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha4 (18th March 2024)
 
 General:
@@ -8913,7 +8941,7 @@ Additions:
     FILE          *stm = . . .;
     std::string   str;
 
-    while(stlsoft::read_line(stm, str))
+    while (stlsoft::read_line(stm, str))
     {
       ::fprintf(stdout, "line: %.*s\n", int(str.size()), str.data());
     }

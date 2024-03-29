@@ -11,7 +11,7 @@ target_compile_options(test.unit.stlsoft.string.simple_string PRIVATE
     $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
         -Werror -Wall -Wextra -pedantic
 
-        -Wno-unused-const-variable
+        # -Wno-unused-const-variable
 
         ${GCC_WARN_NO_cxx11_long_long}
     >

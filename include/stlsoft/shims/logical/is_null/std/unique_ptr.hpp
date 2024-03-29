@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/logical/is_null/std/unique_ptr.hpp
+ * File:    stlsoft/shims/logical/is_null/std/unique_ptr.hpp
  *
- * Purpose:     Generic adapted case of is_null shim std::unique_ptr<>.
+ * Purpose: Generic adapted case of is_null shim std::unique_ptr<>.
  *
- * Created:     4th October 2016
- * Updated:     11th March 2024
+ * Created: 4th October 2016
+ * Updated: 26th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -41,6 +41,9 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* STLSOFT:C++98:FILE_DEPRECATED */
+/* STLSOFT:C++03:FILE_DEPRECATED */
+
 /** \file stlsoft/shims/logical/is_null/std/unique_ptr.hpp
  *
  * \brief [C++] Generic adapted case of is_null shim std::unique_ptr<>
@@ -53,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_UNIQUE_PTR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_UNIQUE_PTR_MINOR     0
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_UNIQUE_PTR_REVISION  1
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_UNIQUE_PTR_EDIT      5
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_UNIQUE_PTR_REVISION  2
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_UNIQUE_PTR_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

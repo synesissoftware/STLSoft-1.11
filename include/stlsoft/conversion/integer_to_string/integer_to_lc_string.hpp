@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/integer_to_string/integer_to_lc_string.hpp
+ * File:    stlsoft/conversion/integer_to_string/integer_to_lc_string.hpp
  *
- * Purpose:     Efficient integer to locale-specific string conversion
- *              functions for decimal representation.
+ * Purpose: Efficient integer to locale-specific string conversion functions
+ *          for decimal representation.
  *
- * Created:     1st November 2011
- * Updated:     11th March 2024
+ * Created: 1st November 2011
+ * Updated: 29th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_REVISION 13
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_EDIT     20
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,6 +95,54 @@ namespace stlsoft
  * API functions
  */
 
+/** Converts an integer value into a decimal string representation in the
+ * given character buffer with grouping characters according to the given
+ * picture, assigning the number of characters (excluding the
+ * nul-terminator) written into the given size variable.
+ *
+ * \tparam C1 Character type 1
+ * \tparam C2 Character type 2
+ * \tparam I Integer type
+ *
+ * \param grouping A string whose elements indicate the sizes of digit
+ *   groups, a la `lconv#grouping`, e.g. "\3\2";
+ * \param thousands_sep The character used to separate groups of digits
+ *   before the decimal point, a la `lconv#thousands_sep`, e.g. ',';
+ * \param dest Pointer to buffer to receive translation. If NULL, function
+ *   returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is NULL;
+ * \param value The number to be converted;
+ * \param numWritten Pointer to a variable to receive the number of
+ *   characters written (excluding nul-terminator)
+ *
+ * \pre nullptr != buf
+ * \pre cchBuf > integral_format_width_limits<I>::maxDecimalWidth
+ * \pre nullptr != numWritten
+ *
+\code
+#include <locale.h>
+
+struct lconv const* const lc = ::localeconv();
+
+char    sz[41];
+size_t  n;
+
+char const* const s = stlsoft::integer_to_lc_string(
+    lc->grouping
+,   *lc->thousands_sep
+,   sz
+,   STLSOFT_NUM_ELEMENTS(sz)
+,   value
+,   &n
+);
+\endcode
+ *
+ * \see stlsoft::integer_to_base32_string
+ * \see stlsoft::integer_to_base36_string
+ * \see stlsoft::integer_to_decimal_string
+ * \see stlsoft::integer_to_hexadecimal_string
+ * \see stlsoft::integer_to_octal_string
+ */
 template<
     ss_typename_param_k C1
 ,   ss_typename_param_k C2
@@ -149,6 +197,7 @@ integer_to_lc_string(
                 *--d = thousands_sep;
 
                 int const nextWidth = grouping[1 + index];
+
                 if (nextWidth < 0 ||
                     CHAR_MAX == nextWidth)
                 {
@@ -164,8 +213,10 @@ integer_to_lc_string(
                     width = nextWidth;
                     ++index;
                 }
+
                 n = 0;
             }
+
             *--d = *(eRaw - (2 + i));
             ++n;
         }

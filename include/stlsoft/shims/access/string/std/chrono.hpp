@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/access/string/std/chrono.hpp
+ * File:    stlsoft/shims/access/string/std/chrono.hpp
  *
- * Purpose:     Contains the c_str_data and c_str_len accessors.
+ * Purpose: Contains the c_str_data and c_str_len accessors.
  *
- * Created:     25th October 2020
- * Updated:     11th March 2024
+ * Created: 25th October 2020
+ * Updated: 26th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -40,6 +40,9 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* STLSOFT:C++98:FILE_DEPRECATED */
+/* STLSOFT:C++03:FILE_DEPRECATED */
+
 /** \file stlsoft/shims/access/string/std/chrono.hpp
  *
  * \brief [C++] Definition of the string access shims for
@@ -53,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_MAJOR     1
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_MINOR     0
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_REVISION  3
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_EDIT      4
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_REVISION  4
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

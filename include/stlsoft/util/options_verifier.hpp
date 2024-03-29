@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/options_verifier.hpp
+ * File:    stlsoft/util/options_verifier.hpp
  *
- * Purpose:     Options verification.
+ * Purpose: Options verification.
  *
- * Created:     9th November 2004
- * Updated:     11th March 2024
+ * Created: 9th November 2004
+ * Updated: 26th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_REVISION  9
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      59
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_REVISION  10
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,14 +116,15 @@ namespace stlsoft
 /** Exception thrown by the options_verifier class template
  *
  * \ingroup group__library__Utility
- *
  */
 class option_verification_exception
     : public STLSOFT_NS_QUAL_STD(runtime_error)
 {
 public:
-    typedef STLSOFT_NS_QUAL_STD(runtime_error)  parent_class_type;
-    typedef option_verification_exception       class_type;
+    /// The parent type
+    typedef STLSOFT_NS_QUAL_STD(runtime_error)              parent_class_type;
+    /// This type
+    typedef option_verification_exception                   class_type;
 
 public:
     option_verification_exception(char const* message)
@@ -163,7 +164,7 @@ struct option_verification_policy
 {
 public:
     /// The thrown type
-    typedef option_verification_exception   thrown_type;
+    typedef option_verification_exception                   thrown_type;
 
 public:
     void operator ()(char const* message)
@@ -205,18 +206,27 @@ public:
         , m_value(value)
         , m_failureMessage(failureMessage)
         , m_bMatched(false)
+#if __cplusplus >= 201703L
+        , m_exception_count(std::uncaught_exceptions())
+#endif /* C++ version */
     {}
     options_verifier(T const& value, exception_policy_type policy, char const* failureMessage)
         : parent_class_type(policy)
         , m_value(value)
         , m_failureMessage(failureMessage)
         , m_bMatched(false)
+#if __cplusplus >= 201703L
+        , m_exception_count(std::uncaught_exceptions())
+#endif /* C++ version */
     {}
     options_verifier(class_type const& rhs)
         : parent_class_type(rhs)
         , m_value(rhs.m_value)
         , m_failureMessage(rhs.m_failureMessage)
         , m_bMatched(rhs.m_bMatched)
+#if __cplusplus >= 201703L
+        , m_exception_count(std::uncaught_exceptions())
+#endif /* C++ version */
     {
         rhs.m_bMatched = true;
     }
@@ -244,17 +254,23 @@ public:
     ~options_verifier()
     {
         if (!m_bMatched &&
-# if defined(STLSOFT_COMPILER_IS_MWERKS)
+#if defined(STLSOFT_COMPILER_IS_MWERKS)
             1)
-# else /* ? compiler */
-            !::std::uncaught_exception())
-# endif /* compiler */
+#else /* ? compiler */
+# if __cplusplus >= 201703L
+            m_exception_count != std::uncaught_exceptions())
+# else  /* ? C++ version */
+            !std::uncaught_exception())
+# endif /* C++ version */
+#endif /* compiler */
         {
             exception_policy_type   &policy =   *this;
 
             policy(m_failureMessage);
         }
     }
+private:
+    class_type& operator =(class_type const&);
 
 public:
     template <ss_typename_param_k U>
@@ -270,12 +286,12 @@ public:
     }
 
 private:
-    T const             &m_value;
+    T const&            m_value;
     char const* const   m_failureMessage;
     ss_mutable_k bool   m_bMatched;
-
-private:
-    class_type& operator =(class_type const&);
+#if __cplusplus >= 201703L
+    int const           m_exception_count;
+#endif /* C++ version */
 };
 
 #ifdef STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS
