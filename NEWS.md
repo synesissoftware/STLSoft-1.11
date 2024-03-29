@@ -3,6 +3,7 @@
 
 | Date                  | News Item                                                 |
 | --------------------- | --------------------------------------------------------- |
+| 29th March 2024       |   Release of STLSoft 1.11.1-alpha6                        |
 | 29th March 2024       |   Release of STLSoft 1.11.1-alpha5                        |
 | 18th March 2024       |   Release of STLSoft 1.11.1-alpha4                        |
 | 16th March 2024       |   Release of STLSoft 1.11.1-alpha3                        |

@@ -18,6 +18,52 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha6 (29th March 2024)
+
+General:
+========
+
+ * added unit-test projects **test.unit.stlsoft.conversion.number.group_functions** and **test.unit.stlsoft.conversion.integer_to_lc_string**;
+ * partial merge of forthcoming branch 'ss/simple_string-null_object';
+
+Changes:
+========
+
+Added unit-test projects **test.unit.stlsoft.conversion.number.group_functions** and **test.unit.stlsoft.conversion.integer_to_lc_string**:
+ * CHANGES.txt;
+ * include/stlsoft/conversion/integer_to_string/integer_to_lc_string.hpp;
+ * include/stlsoft/conversion/number/grouping_functions.hpp;
+ * test/unit/stlsoft/conversion/CMakeLists.txt;
+ * added test/unit/stlsoft/conversion/number/CMakeLists.txt;
+ * added test/unit/stlsoft/conversion/number/test.unit.stlsoft.conversion.number.group_functions/CMakeLists.txt;
+ * added test/unit/stlsoft/conversion/number/test.unit.stlsoft.conversion.number.group_functions/entry.cpp;
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.byte_format_functions/CMakeLists.txt;
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.byte_format_functions/entry.cpp;
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_base32_string/CMakeLists.txt;
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_base32_string/entry.cpp;
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_base36_string/CMakeLists.txt;
+ * test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_base36_string/entry.cpp;
+ * added test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_lc_string/CMakeLists.txt;
+ * added test/unit/stlsoft/conversion/test.unit.stlsoft.conversion.integer_to_lc_string/entry.cpp;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.string_slice/entry.cpp;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.string_view/entry.cpp;
+
+Partial merge of branch 'ss/simple_string-null_object':
+ * include/stlsoft/string/simple_string.hpp;
+ * test/performance/test.performance.stlsoft.simple_string.compare/main.cpp;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.shim_string/CMakeLists.txt;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.simple_string/CMakeLists.txt;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.simple_string/entry.cpp;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.static_string/CMakeLists.txt;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.static_string/entry.cpp;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.string_slice/CMakeLists.txt;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.string_slice/entry.cpp;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.string_view/CMakeLists.txt;
+ * test/unit/stlsoft/string/test.unit.stlsoft.string.string_view/entry.cpp;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha5 (29th March 2024)
 
 General:
@@ -8941,7 +8987,7 @@ Additions:
     FILE          *stm = . . .;
     std::string   str;
 
-    while(stlsoft::read_line(stm, str))
+    while (stlsoft::read_line(stm, str))
     {
       ::fprintf(stdout, "line: %.*s\n", int(str.size()), str.data());
     }

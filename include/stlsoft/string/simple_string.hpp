@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 18th March 2024
+ * Updated: 19th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     277
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     7
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      278
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -448,19 +448,19 @@ public:
     /// Compares \c this with the given string \c rhs
     ss_sint_t compare(class_type const& rhs) const STLSOFT_NOEXCEPT;
 
+    /// Indicates whether the string contains the string \c s
+    bool contains(class_type const& s) const STLSOFT_NOEXCEPT;
+    /// Indicates whether the string contains the C-style string \c s
+    bool contains(char_type const* s) const STLSOFT_NOEXCEPT;
+    /// Indicates whether the string contains the character \c ch
+    bool contains(char_type ch) const STLSOFT_NOEXCEPT;
+
     /// Indicates whether the string starts with the string \c s
     bool starts_with(class_type const& s) const STLSOFT_NOEXCEPT;
     /// Indicates whether the string starts with the C-style string \c s
     bool starts_with(char_type const* s) const STLSOFT_NOEXCEPT;
     /// Indicates whether the string starts with the character \c ch
     bool starts_with(char_type ch) const STLSOFT_NOEXCEPT;
-
-     /// Indicates whether the string contains the string \c s
-    bool contains(class_type const& s) const STLSOFT_NOEXCEPT;
-    /// Indicates whether the string contains the C-style string \c s
-    bool contains(char_type const* s) const STLSOFT_NOEXCEPT;
-    /// Indicates whether the string contains the character \c ch
-    bool contains(char_type ch) const STLSOFT_NOEXCEPT;
 
     /// Indicates whether the string ends with the string \c s
     bool ends_with(class_type const& s) const STLSOFT_NOEXCEPT;
@@ -656,11 +656,11 @@ private:
     ,   size_type           len
     ) STLSOFT_NOEXCEPT;
 
-    bool starts_with_(
+    bool contains_(
         char_type const*    s
     ,   size_type           n
     ) const STLSOFT_NOEXCEPT;
-    bool contains_(
+    bool starts_with_(
         char_type const*    s
     ,   size_type           n
     ) const STLSOFT_NOEXCEPT;
@@ -1650,8 +1650,10 @@ ss_typename_type_ret_k basic_simple_string<C, T, A>::char_type*
 basic_simple_string<C, T, A>::char_pointer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_pointer m) STLSOFT_NOEXCEPT
 {
 #ifdef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
+
     return (ss_nullptr_k == m) ? ss_nullptr_k : m->contents;
 #else /* ? STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST */
+
     return m;
 #endif /* STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST */
 }
@@ -1670,8 +1672,10 @@ basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_typ
     STLSOFT_MESSAGE_ASSERT("Attempt to convert a null string_buffer in basic_simple_string", ss_nullptr_k != m);
 
 #ifdef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
+
     return m;
 #else /* ? STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST */
+
     return reinterpret_cast<string_buffer*>(const_cast<void*>(ptr_byte_offset(m, -static_cast<ss_ptrdiff_t>(STLSOFT_RAW_OFFSETOF(string_buffer, contents)))));
 #endif /* STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST */
 }
@@ -1691,6 +1695,7 @@ basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_typ
 #ifdef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
     return m;
 #else /* ? STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST */
+
     return reinterpret_cast<string_buffer const*>(ptr_byte_offset(m, -static_cast<ss_ptrdiff_t>(STLSOFT_RAW_OFFSETOF(string_buffer, contents))));
 #endif /* STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST */
 }
@@ -1708,6 +1713,7 @@ basic_simple_string<C, T, A>::member_pointer_from_string_buffer_(ss_typename_typ
 #ifdef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
     return b;
 #else /* ? STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST */
+
     return b->contents;
 #endif /* STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST */
 }
@@ -2724,6 +2730,65 @@ template <
 >
 inline
 ss_bool_t
+basic_simple_string<C, T, A>::contains_(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
+,   size_type                                                           n
+) const STLSOFT_NOEXCEPT
+{
+    if (n > length())
+    {
+        return false;
+    }
+
+    if (0 == n)
+    {
+        return true;
+    }
+
+    char_type first_char = s[0];
+
+    // search for each occurrence of `s[0]` in `this` using `traits_type::find()`, then
+    // testing each remaining part of `this` (if long enought) for all of `s`, using
+    // `traits::compare()`
+
+    char_type const*    in = data();
+    size_type           num_remaining = length();
+
+    for (;;)
+    {
+        if (ss_nullptr_k == traits_type::find(in, num_remaining, first_char))
+        {
+            return false;
+        }
+        else
+        {
+            size_type remaining_length = length() - (in - data());
+
+            if (n > remaining_length)
+            {
+                return false;
+            }
+
+            if (0 == traits_type::compare(s, in, n))
+            {
+                return true;
+            }
+            else
+            {
+                ++in;
+                --num_remaining;
+            }
+        }
+    }
+}
+
+template <
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline
+ss_bool_t
 basic_simple_string<C, T, A>::starts_with_(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   size_type                                                           n
@@ -2754,65 +2819,6 @@ basic_simple_string<C, T, A>::starts_with_(
         ,   s
         ,   n
         );
-    }
-}
-
-template <
-    ss_typename_param_k C
-,   ss_typename_param_k T
-,   ss_typename_param_k A
->
-inline
-ss_bool_t
-basic_simple_string<C, T, A>::contains_(
-    ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
-,   size_type                                                           n
-) const STLSOFT_NOEXCEPT
-{
-    if (n > length())
-    {
-        return false;
-    }
-
-    if (n == 0)
-    {
-        return true;
-    }
-
-    char_type first_char = s[0];
-
-    // search for each occurrence of `s[0]` in `this` using `traits_type::find()`, then
-    // testing each remaining part of `this` (if long enought) for all of `s`, using
-    // `traits::compare()`
-
-    char_type const*    in = data();
-    size_type           num_remaining = length();
-
-    for (;;)
-    {
-        if (NULL == traits_type::find(in, num_remaining, first_char))
-        {
-            return false;
-        }
-        else
-        {
-            size_type remaining_length = length() - (in - data());
-
-            if (n > remaining_length)
-            {
-                return false;
-            }
-
-            if (0 == traits_type::compare(s, in, n))
-            {
-                return true;
-            }
-            else
-            {
-                ++in;
-                --num_remaining;
-            }
-        }
     }
 }
 
@@ -2863,6 +2869,49 @@ template <
 >
 inline
 ss_bool_t
+basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s) const STLSOFT_NOEXCEPT
+{
+    return contains_(s.data(), s.length());
+}
+
+template <
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline
+ss_bool_t
+basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s) const STLSOFT_NOEXCEPT
+{
+    size_type const n = (ss_nullptr_k == s) ? 0 : traits_type::length(s);
+
+    return contains_(s, n);
+}
+
+template <
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline
+ss_bool_t
+basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch) const STLSOFT_NOEXCEPT
+{
+    if (empty())
+    {
+        return false;
+    }
+
+    return ss_nullptr_k != traits_type::find(data(), length(), ch);
+}
+
+template <
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline
+ss_bool_t
 basic_simple_string<C, T, A>::starts_with(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s) const STLSOFT_NOEXCEPT
 {
     return starts_with_(s.data(), s.size());
@@ -2892,49 +2941,6 @@ ss_bool_t
 basic_simple_string<C, T, A>::starts_with(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch) const STLSOFT_NOEXCEPT
 {
     return empty() ? false : (front() == ch);
-}
-
-template <
-    ss_typename_param_k C
-,   ss_typename_param_k T
-,   ss_typename_param_k A
->
-inline
-ss_bool_t
-basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s) const STLSOFT_NOEXCEPT
-{
-    return contains_(s.data(), s.length());
-}
-
-template <
-    ss_typename_param_k C
-,   ss_typename_param_k T
-,   ss_typename_param_k A
->
-inline
-ss_bool_t
-basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s) const STLSOFT_NOEXCEPT
-{
-    size_type const n = (NULL == s) ? 0 : traits_type::length(s);
-
-    return contains_(s, n);
-}
-
-template <
-    ss_typename_param_k C
-,   ss_typename_param_k T
-,   ss_typename_param_k A
->
-inline
-ss_bool_t
-basic_simple_string<C, T, A>::contains(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch) const STLSOFT_NOEXCEPT
-{
-    if (empty())
-    {
-        return false;
-    }
-
-    return NULL != traits_type::find(data(), length(), ch);
 }
 
 template <
@@ -3340,7 +3346,7 @@ basic_simple_string<C, T, A>::assign(
 
     if (ss_nullptr_k == m_buffer)
     {
-        if (cch == 0)
+        if (0 == cch)
         {
             // Nothing to do
         }

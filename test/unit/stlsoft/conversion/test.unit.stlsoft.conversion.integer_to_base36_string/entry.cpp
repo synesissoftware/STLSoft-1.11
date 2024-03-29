@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.convertion.integer_to_base36_string.cpp
+ * File:    test.unit.stlsoft.conversion.integer_to_base36_string.cpp
  *
  * Purpose: Unit-tests for `stlsoft::integer_to_base36_string`.
  *
  * Created: 14th February 2024
- * Updated: 18th February 2024
+ * Updated: 29th March 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.convertion.integer_to_base36_string", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.integer_to_base36_string", verbosity))
     {
         XTESTS_RUN_CASE(test_zero);
         XTESTS_RUN_CASE(test_ones);

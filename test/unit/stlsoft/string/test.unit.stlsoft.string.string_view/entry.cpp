@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 30th January 2024
+ * Updated: 29th March 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -120,7 +120,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.stlsoft.string.string_view", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.string.string_view", verbosity))
     {
 #ifdef STLSOFT_USE_XCOVER
         xcover::init();
@@ -226,6 +226,8 @@ namespace
         }
     };
 
+#if 0
+
     SimpleStream&
     operator <<(
         SimpleStream&       stm
@@ -238,6 +240,7 @@ namespace
 
         return stm;
     }
+#endif
 
 
 static void test_types_exist(void)
@@ -544,7 +547,7 @@ static void test_refresh(void)
 
         char const* const   p1b =   s1.c_str();
 
-        if(p2a == p1a)
+        if (p2a == p1a)
         {
             XTESTS_TEST_POINTER_NOT_EQUAL(p1a, p1b);
         }

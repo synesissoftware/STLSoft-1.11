@@ -329,6 +329,11 @@ int main(int argc, char* argv[])
 {
     auto const program_name = platformstl::get_executable_name_from_path(argv[0]);
 
+    // FOOLING THE OPTIMISER:
+    //
+    // - load the scenarios (from `SCENARIOS`);
+    // - work out delimiters from `argc` (which should be 1 in reality)
+
 #ifdef STLSOFT_SIMPLE_STRING_LOG
 
     const ss_size_t NUM_ITERATIONS  =   1;

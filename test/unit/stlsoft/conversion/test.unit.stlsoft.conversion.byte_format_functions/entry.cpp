@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.convertion.byte_format_functions.cpp
+ * File:    test.unit.stlsoft.conversion.byte_format_functions.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
@@ -87,7 +87,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.convertion.byte_format_functions", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.byte_format_functions", verbosity))
     {
 #ifdef STLSOFT_USE_XCOVER
         xcover::init();
