@@ -1,13 +1,13 @@
 
-add_executable(test.unit.stlsoft.convertion.integer_to_base32_string
+add_executable(test.unit.stlsoft.conversion.integer_to_base32_string
     entry.cpp
 )
 
-target_link_libraries(test.unit.stlsoft.convertion.integer_to_base32_string
+target_link_libraries(test.unit.stlsoft.conversion.integer_to_base32_string
     xTests::xTests.core
 )
 
-target_compile_options(test.unit.stlsoft.convertion.integer_to_base32_string PRIVATE
+target_compile_options(test.unit.stlsoft.conversion.integer_to_base32_string PRIVATE
     $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
         -Werror -Wall -Wextra -pedantic
 

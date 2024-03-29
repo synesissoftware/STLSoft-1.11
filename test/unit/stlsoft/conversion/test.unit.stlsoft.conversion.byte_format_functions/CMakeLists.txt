@@ -1,13 +1,13 @@
 
-add_executable(test.unit.stlsoft.convertion.byte_format_functions
+add_executable(test.unit.stlsoft.conversion.byte_format_functions
     entry.cpp
 )
 
-target_link_libraries(test.unit.stlsoft.convertion.byte_format_functions
+target_link_libraries(test.unit.stlsoft.conversion.byte_format_functions
     xTests::xTests.core
 )
 
-target_compile_options(test.unit.stlsoft.convertion.byte_format_functions PRIVATE
+target_compile_options(test.unit.stlsoft.conversion.byte_format_functions PRIVATE
     $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
         -Werror -Wall -Wextra -pedantic
 

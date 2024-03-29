@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/number/grouping_functions.hpp
+ * File:    stlsoft/conversion/number/grouping_functions.hpp
  *
- * Purpose:     Number formatting functions.
+ * Purpose: Number formatting functions.
  *
- * Created:     28th August 2005
- * Updated:     11th March 2024
+ * Created: 28th August 2005
+ * Updated: 28th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  12
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      30
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,12 +99,18 @@ namespace stlsoft
  *
  * \ingroup group__library__Conversion
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function returns required size.
- * \param cchDest Size of available buffer. Ignored if dest is NULL.
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined if empty, or contains any characters other than <code>fmtSep</code> and non-0 digits.
- * \param rawNumber The raw number form. May not be NULL. Behaviour is undefined contains any characters other than digits.
- * \param fmtSep The separator in the format.
- * \param outputSep The separator in the output.
+ * \tparam C Type of the character
+ *
+ * \param dest Pointer to buffer to receive translation. If NULL, function
+ *   returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is NULL;
+ * \param picture Grouping picture. May not be NULL. Behaviour is undefined
+ *   if empty, or contains any characters other than <code>fmtSep</code>
+ *   and non-0 digits;
+ * \param rawNumber The raw number form. May not be NULL. Behaviour is
+ *   undefined contains any characters other than digits;
+ * \param fmtSep The separator in the format;
+ * \param outputSep The separator in the output;
  */
 template <ss_typename_param_k C>
 inline
@@ -215,20 +221,29 @@ translate_thousands(
     return translate_thousands(dest, cchDest, picture, rawNumber, cchRawNumber, fmtSep, outputSep);
 }
 
-/**
+/** Converts an integer value (\c number) into a string with grouping
+ * characters according to the given picture
  *
  * \ingroup group__library__Conversion
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function returns required size.
- * \param cchDest Size of available buffer. Ignored if dest is NULL.
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined if empty, or contains any characters other than <code>fmtSep</code> and non-0 digits.
- * \param number The raw number form. May not be NULL. Behaviour is undefined contains any characters other than digits.
- * \param fmtSep The separator in the format.
- * \param outputSep The separator in the output.
+ * \tparam C Type of the character
+ * \tparam I Type of the number
+ *
+ * \param dest Pointer to buffer to receive translation. If NULL, function
+ *   returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is NULL;
+ * \param picture Grouping picture. May not be NULL. Behaviour is undefined
+ *   if empty, or contains any characters other than <code>fmtSep</code> and
+ *   non-0 digits;
+ * \param number The raw number form. May not be NULL. Behaviour is
+ *   undefined contains any characters other than digits;
+ * \param fmtSep The separator in the format;
+ * \param outputSep The separator in the output;
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k I
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k I
+>
 inline
 ss_size_t
 format_thousands(
@@ -240,29 +255,36 @@ format_thousands(
 ,   C           outputSep
 )
 {
-    C           szRawNumber[21];    // 21 is large enough for any 64-bit number (signed or unsigned)
-    ss_size_t   cchRawNumber;
-    C const*    rawNumber = integer_to_decimal_string(szRawNumber, STLSOFT_NUM_ELEMENTS(szRawNumber), static_cast<unsigned int>(number), &cchRawNumber);
+    C               szRawNumber[21];    // 21 is large enough for any 64-bit number (signed or unsigned)
+    ss_size_t       cchRawNumber;
+    C const* const  rawNumber = integer_to_decimal_string(szRawNumber, STLSOFT_NUM_ELEMENTS(szRawNumber), static_cast<unsigned int>(number), &cchRawNumber);
 
     STLSOFT_STATIC_ASSERT(sizeof(C) <= 8);
 
     return translate_thousands(dest, cchDest, picture, rawNumber, cchRawNumber, fmtSep, outputSep);
 }
 
-/**
+/** Converts an integer value (\c number) into a string with grouping
+ * characters according to the given picture
  *
  * \ingroup group__library__Conversion
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function returns required size.
- * \param cchDest Size of available buffer. Ignored if dest is NULL.
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined if empty, or contains any characters other than <code>;</code> and non-0 digits.
- * \param number The raw number form. May not be NULL. Behaviour is undefined contains any characters other than digits.
+ * \param dest Pointer to buffer to receive translation. If NULL, function
+ *   returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is NULL;
+ * \param picture Grouping picture. May not be NULL. Behaviour is undefined
+ *   if empty, or contains any characters other than <code>;</code> and
+ *   non-0 digits;
+ * \param number The raw number form. May not be NULL. Behaviour is undefined
+ *   contains any characters other than digits;
  *
- * \return The number of characters written, including that of the nul-terminator
+ * \return The number of characters written, including that of the
+ *   nul-terminator
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k I
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k I
+>
 inline
 ss_size_t
 format_thousands(
@@ -277,10 +299,8 @@ format_thousands(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * unittest
+ * namespace
  */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

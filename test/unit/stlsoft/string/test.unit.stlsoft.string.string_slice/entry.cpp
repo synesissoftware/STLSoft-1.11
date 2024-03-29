@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_slice`.
  *
  * Created: 19th February 2010
- * Updated: 30th January 2024
+ * Updated: 29th March 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.stlsoft.string.string_slice", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.string.string_slice", verbosity))
     {
         XTESTS_RUN_CASE(test_type_exists);
         XTESTS_RUN_CASE(test_constructor_callable);
@@ -135,6 +135,8 @@ namespace
         }
     };
 
+#if 0
+
     SimpleStream&
     operator <<(
         SimpleStream&       stm
@@ -147,6 +149,7 @@ namespace
 
         return stm;
     }
+#endif
 
 
     static char const       alphabet[]      =    "abcdefghijklmnopqrstuvwxyz";
