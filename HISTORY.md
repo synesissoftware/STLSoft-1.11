@@ -4,6 +4,13 @@
 ----
 
 
+29th March 2024 - 1.11.1-alpha6 released
+----------------------------------------
+
+ * added unit-test projects **test.unit.stlsoft.conversion.number.group_functions** and **test.unit.stlsoft.conversion.integer_to_lc_string**;
+ * partial merge of forthcoming branch 'ss/simple_string-null_object';
+
+
 29th March 2024 - 1.11.1-alpha5 released
 ----------------------------------------
 
