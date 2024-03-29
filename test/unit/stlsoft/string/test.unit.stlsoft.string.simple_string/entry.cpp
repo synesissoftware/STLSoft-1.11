@@ -481,6 +481,20 @@ namespace
     }
 #endif
 
+#ifdef USE_std_string
+
+    SimpleStream&
+    operator <<(
+        SimpleStream&       stm
+    ,   std::string const&  s
+    )
+    {
+        stm.write(s.data(), s.size());
+
+        return stm;
+    }
+#endif
+
 
     static char const       alphabet[] = "abcdefghijklmnopqrstuvwxyz";
     static wchar_t const    alphabet_w[] = L"abcdefghijklmnopqrstuvwxyz";
