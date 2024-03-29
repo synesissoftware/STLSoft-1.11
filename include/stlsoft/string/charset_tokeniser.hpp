@@ -4,7 +4,7 @@
  * Purpose:     String token parsing class using char-sets.
  *
  * Created:     17th October 2005
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_MINOR     0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_REVISION  8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      38
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHARSET_TOKENISER_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # include <algorithm>
 #endif /* !STLSOFT_INCL_ALGORITHM */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -91,6 +93,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -320,6 +323,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

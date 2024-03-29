@@ -5,7 +5,7 @@
  *              resource types; special implementation for Borland.
  *
  * Created:     1st November 1994
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Maciej Kaniewski, for requesting Borland compatibility (in
  *              order to use FastFormat and Pantheios)
@@ -61,8 +61,9 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__MAJOR      6
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__MINOR      2
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__REVISION   2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__EDIT       685
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__EDIT       686
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -85,6 +87,7 @@
 # error This file is only defined for Borland C/C++ compiler versions
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -93,6 +96,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper classes
@@ -911,6 +915,7 @@ struct scoped_handle_borland_impl_
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -1234,6 +1239,7 @@ private:
     class_type& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -1244,6 +1250,7 @@ inline void swap(scoped_handle<H>& lhs, scoped_handle<H>& rhs) STLSOFT_NOEXCEPT
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -1277,6 +1284,7 @@ is_null(
     return h.empty();
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1285,9 +1293,11 @@ is_null(
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warnings
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

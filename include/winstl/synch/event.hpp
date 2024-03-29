@@ -4,7 +4,7 @@
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 6
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     81
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <winstl/api/external/HandleAndObject.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -97,6 +99,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -253,6 +256,7 @@ private:
     const ws_bool_t m_bOwnHandle;   // Does the instance own the handle?
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * attribute shims
  */
@@ -291,6 +295,7 @@ get_kernel_handle(
     return ev.get();
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -303,6 +308,7 @@ get_kernel_handle(
 } /* namespace winstl_project */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * control shims
@@ -351,6 +357,7 @@ unlock_instance(
     ev.set();
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -367,6 +374,7 @@ using ::stlsoft::unlock_instance;
 #  endif /* compiler */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * lock_traits
@@ -400,6 +408,7 @@ public:
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -413,6 +422,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Scoping class for ATL _Module
  *
  * Created:     8th December 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MAJOR       2
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MINOR       1
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_REVISION    8
-# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        41
+# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef WINSTL_INCL_WINSTL_EXCEPTION_HPP_THROW_POLICIES
 # include <stlsoft/exception/throw_policies.hpp>
 #endif /* !WINSTL_INCL_WINSTL_EXCEPTION_HPP_THROW_POLICIES */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +92,7 @@ namespace atlstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -145,7 +148,10 @@ private:
     const HRESULT   m_hr;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -156,6 +162,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

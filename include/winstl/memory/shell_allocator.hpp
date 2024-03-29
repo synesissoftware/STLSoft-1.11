@@ -4,7 +4,7 @@
  * Purpose:     shell_allocator class.
  *
  * Created:     2nd March 2002
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_MAJOR     4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_MINOR     1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_REVISION  11
-# define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_EDIT      98
+# define WINSTL_VER_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR_EDIT      99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <shlobj.h>                     // for SHGetMalloc()
 #endif /* !STLSOFT_INCL_H_SHLOBJ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -100,6 +102,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -301,6 +304,7 @@ operator !=(
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -314,6 +318,7 @@ operator !=(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

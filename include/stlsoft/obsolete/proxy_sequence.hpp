@@ -4,11 +4,11 @@
  * Purpose:     proxy_sequence template class.
  *
  * Created:     10th September 2003
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,9 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_SEQUENCE_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_SEQUENCE_MINOR      0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_SEQUENCE_REVISION   6
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_SEQUENCE_EDIT       43
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_SEQUENCE_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -220,6 +223,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

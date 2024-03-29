@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MAJOR      2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MINOR      0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   12
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       59
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -95,6 +96,7 @@
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -113,6 +115,7 @@ namespace acestl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ACESTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -256,6 +259,7 @@ namespace acestl_inet_addr_access_string_util
 
 } /* namespace acestl_inet_addr_access_string_util */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -409,6 +413,7 @@ ACE_INET_Addr const& addr
     return acestl_inet_addr_access_string_util::c_str_ptr_<ACE_TCHAR>(addr);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * stream insertion shims
  */
@@ -483,6 +488,7 @@ namespace stlsoft
 } /* namespace stlsoft */
 
 #endif /* !ACESTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     24th August 2003
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_MINOR    1
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_REVISION 5
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_EDIT     44
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TRAITS_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 # include <winstl/system/system_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -228,6 +231,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Discrimination of synchronisation features.
  *
  * Created:     3rd January 2017
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__MAJOR    1
 # define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__MINOR    2
 # define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__REVISION 3
-# define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__EDIT     9
+# define STLSOFT_VER_STLSOFT_SYNCH_UTIL_H_WINDOWS_API__EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -92,6 +94,7 @@
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Windows API declarations
  */
@@ -102,11 +105,13 @@
 extern "C" {
 # endif
 
+
 /* /////////////////////////////////////
  * 64-bit architecture
  */
 
 # if defined(_WIN64)
+
 
 /* /////////////////////////////////////
  * 64-bit interlocked API functions
@@ -178,6 +183,7 @@ _InterlockedIncrement64(
 #   pragma intrinsic(_InterlockedIncrement64)
 #   define InterlockedIncrement64                           _InterlockedIncrement64
 #  endif
+
 
 /* /////////////////////////////////////
  * 32-bit interlocked API functions (in 64-bit)
@@ -251,6 +257,7 @@ _InterlockedIncrement(
 #  endif
 #endif
 
+
 /* /////////////////////////////////////
  * 32-bit interlocked API functions
  */
@@ -289,6 +296,7 @@ InterlockedIncrement(
 );
 # endif
 
+
 /* /////////////////////////////////////
  * misc
  */
@@ -307,6 +315,7 @@ Sleep(
 # endif
 
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Runtime checking for numeric conversions.
  *
  * Created:     10th August 2006
- * Updated:     16th February 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MINOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   11
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       68
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -95,6 +96,7 @@
 #  include <crtdbg.h>
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -103,6 +105,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper classes
@@ -710,6 +713,7 @@ private:
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
@@ -748,6 +752,7 @@ truncation_test(
 
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -755,6 +760,7 @@ truncation_test(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

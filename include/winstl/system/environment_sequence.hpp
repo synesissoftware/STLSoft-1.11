@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     20th January 2024
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,9 +54,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 9
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     100
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 10
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -101,6 +102,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_WINDOW_FUNCTIONALS_NO_STD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -119,6 +121,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -288,13 +291,18 @@ public:
     /// A function class that compares environment symbols for the basic_environment_sequence class
     // [[synesis:class:binary-functor: compare_symbol]]
     struct compare_symbol
+#if __cplusplus < 201103L
         : STLSOFT_NS_QUAL_STD(binary_function)<symbol, symbol, ws_bool_t>
-//      , STLSOFT_NS_QUAL(base_property)<ws_bool_t, 0>
+#endif
     {
+    public:
+        typedef symbol                                      first_argument_type;
+        typedef symbol                                      second_argument_type;
+        typedef ws_bool_t                                   result_type;
+
     public:
         ss_explicit_k compare_symbol(ws_bool_t bIgnoreCase = true)
             : m_bIgnoreCase(bIgnoreCase)
-//          , STLSOFT_NS_QUAL(base_property)<ws_bool_t, 0>(b
         {}
 
     public:
@@ -316,7 +324,7 @@ private:
     static void             free_environment_strings_(char_type*);
 
 private:
-    const ws_int_t              m_flags;        // The flags as specified to the ctor
+    ws_int_t const              m_flags;        // The flags as specified to the ctor
     C const*                    m_p;            // Pointer to the start of the raw environment block
     C const*                    m_q;            // Pointer to the (one off the) end of the raw environment block
     symbols_buffer_type_        m_symbols;      // Array of symbols representing the parsed environment block
@@ -327,6 +335,7 @@ private:
     basic_environment_sequence(class_type const&);
     class_type const& operator =(class_type const&);
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
@@ -348,8 +357,10 @@ typedef basic_environment_sequence<ws_char_w_t>     environment_sequence_w;
  */
 typedef basic_environment_sequence<TCHAR>           environment_sequence;
 
-////////////////////////////////////////////////////////////////////////////
-// Implementation
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -660,10 +671,13 @@ basic_environment_sequence<C>::operator [](
 
     return m_symbols.data()[index];
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
+
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -674,6 +688,7 @@ basic_environment_sequence<C>::operator [](
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     null_allocator class - doesn't allocate.
  *
  * Created:     2nd January 2001
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_MINOR    0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_REVISION 10
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_EDIT     94
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_EDIT     95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <new>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -87,6 +89,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -231,6 +234,7 @@ inline ss_bool_t operator !=(const null_allocator<T> &/* lhs */, const null_allo
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

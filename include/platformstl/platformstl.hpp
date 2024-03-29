@@ -5,11 +5,11 @@
  *              discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   5
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       24
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.hpp
@@ -59,6 +59,7 @@
  *  \ref group__project__platformstl "PlatformSTL" project for C++
  *  compilation units.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +75,7 @@
 #if !defined(__cplusplus)
 # error platformstl/platformstl.hpp is only valid within C++ compilation units
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -101,6 +103,7 @@ namespace platformstl_project
 } /* namespace platformstl_project */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Special-string instance that obtains the current directory.
  *
  * Created:     1st November 2003
- * Updated:     24th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR     2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      68
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <unixstl/filesystem/filesystem_traits.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -97,6 +99,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -129,6 +132,7 @@ struct cwd_policy
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -152,6 +156,7 @@ typedef STLSOFT_NS_QUAL(special_string_instance_0)< cwd_policy<us_char_w_t> >   
  */
 typedef STLSOFT_NS_QUAL(special_string_instance_0)< cwd_policy<char> >          current_directory;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -165,6 +170,7 @@ typedef STLSOFT_NS_QUAL(special_string_instance_0)< cwd_policy<char> >          
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

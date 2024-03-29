@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/api/internal/memfns.h
+ * File:    stlsoft/api/internal/memfns.h
  *
- * Purpose:     Internal adaptations for memXXX() functions.
+ * Purpose: Internal adaptations for memXXX() functions.
  *
- * Created:     2nd January 2021
- * Updated:     2nd January 2021
+ * Created: 2nd January 2021
+ * Updated: 18th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2021-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,6 +47,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 #define STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -74,10 +75,15 @@
 #  define STLSOFT_INCL_H_STRING
 #  include <string.h>
 # endif /* !STLSOFT_INCL_H_STRING */
+# ifndef STLSOFT_INCL_H_WCHAR
+#  define STLSOFT_INCL_H_WCHAR
+#  include <wchar.h>
+# endif /* !STLSOFT_INCL_H_WCHAR */
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * time functions
+ * memory functions
  */
 
 /* The C standard function memcpy() requires that its pointer parameters are
@@ -164,6 +170,85 @@ STLSOFT_API_INTERNAL_memfns_memset(
 
     return r;
 }
+
+STLSOFT_INLINE
+wchar_t*
+STLSOFT_API_INTERNAL_memfns_wmemcpy(
+    wchar_t *       dest
+,   wchar_t  const* src
+,   size_t          count
+)
+{
+    wchar_t* const r = dest;
+
+    STLSOFT_ASSERT(0 == count || (NULL != dest && NULL != src));
+
+    if (0 != count)
+    {
+#if 1 && \
+    defined(__GNUC__) && \
+    1
+
+        wchar_t dummyDest[1];
+        wchar_t dummySrc[1];
+
+        if (NULL == dest)
+        {
+            STLSOFT_ASSERT(0 == count);
+
+            dest    =   &dummyDest[0];
+            count   =   0;
+        }
+        if (NULL == src)
+        {
+            STLSOFT_ASSERT(0 == count);
+
+            src     =   &dummySrc[0];
+            count   =   0;
+        }
+#endif
+
+        STLSOFT_NS_GLOBAL(wmemcpy)(dest, src, count);
+    }
+
+    return r;
+}
+
+STLSOFT_INLINE
+wchar_t*
+STLSOFT_API_INTERNAL_memfns_wmemset(
+    wchar_t*    dest
+,   int         value
+,   size_t      count
+)
+{
+    wchar_t* const r = dest;
+
+    STLSOFT_ASSERT(0 == count || NULL != dest);
+
+    if (0 != count)
+    {
+#if 1 && \
+    defined(__GNUC__) && \
+    1
+
+        wchar_t dummyDest[1];
+
+        if (NULL == dest)
+        {
+            STLSOFT_ASSERT(0 == count);
+
+            dest    =   &dummyDest[0];
+            count   =   0;
+        }
+#endif
+
+        STLSOFT_NS_GLOBAL(wmemset)(dest, value, count);
+    }
+
+    return r;
+}
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

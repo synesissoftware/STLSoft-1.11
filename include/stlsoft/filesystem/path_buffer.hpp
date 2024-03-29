@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_path_buffer template class.
  *
  * Created:     27th May 2020
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_MAJOR       1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_MINOR       3
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_REVISION    3
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_EDIT        9
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_EDIT        10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +89,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -96,6 +98,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -545,6 +548,7 @@ private: // fields
     size_type       m_len;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -552,6 +556,7 @@ private: // fields
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     winstl::to_SYSTEMTIME(DATE const&) overload.
  *
  * Created:     15th January 2007
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MAJOR    1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MINOR    0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_REVISION 9
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_EDIT     16
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -108,6 +110,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -146,6 +149,7 @@ to_SYSTEMTIME(
     return st;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -159,6 +163,7 @@ to_SYSTEMTIME(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

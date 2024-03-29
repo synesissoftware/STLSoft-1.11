@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     3rd July 2003
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_MINOR       0
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_REVISION    5
-# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        32
+# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_SYNCH_HANDLE_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -87,6 +89,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -117,6 +120,7 @@ inline HANDLE get_synch_handle(HANDLE h)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for the ACE_String_XXXX classes.
  *
  * Created:     2nd December 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MAJOR       2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_MINOR       0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_REVISION    6
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        40
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_STRING_BASE_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 # include <ace/String_Base.h>               // for ACE_String_Base
 #endif /* !STLSOFT_INCL_ACE_H_STRING_BASE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -96,6 +98,7 @@ namespace acestl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ACESTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -270,6 +273,7 @@ namespace stlsoft
 } /* namespace stlsoft */
 
 #endif /* !ACESTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,14 +4,14 @@
  * Purpose:     Root header for the stlsoft::std::c namespace
  *
  * Created:     22nd April 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,8 +57,9 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__MAJOR       1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__MINOR       2
 # define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__REVISION    4
-# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__EDIT        21
+# define STLSOFT_VER_STLSOFT_STD_HPP_CBASE__EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +71,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -87,6 +89,7 @@ namespace std_impl
 # define stlsoft_std_ns_qual(x)     ::x
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * functions
  */
@@ -98,6 +101,7 @@ namespace std_impl
 
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Extensions to standard algorithms.
  *
  * Created:     17th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_MINOR       2
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_REVISION    9
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_EDIT        84
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_EXT_EDIT        85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -76,6 +78,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * algorithms
@@ -200,11 +203,14 @@ inline void fill_if(O first, O last, V const& value, UP pred)
 }
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Tests whether a type is integral.
  *
  * Created:     19th November 1998
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MINOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 5
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     138
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     139
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -87,6 +89,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -150,6 +153,7 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_char_w_t, 1, yes
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

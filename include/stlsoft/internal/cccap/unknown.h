@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for unknown compilers.
  *
  * Created:     7th February 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,8 +62,9 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MINOR      18
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       78
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -73,6 +74,7 @@
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Pre-processing features
@@ -111,6 +113,7 @@
 #define STLSOFT_CF_PRETTY_FUNCTION_SYMBOL_SUPPORT
 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C/C++ Language features
  */
@@ -128,6 +131,7 @@
 /* "return void;"
  */
 #define STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -214,6 +218,7 @@
  * C++ Language Features
  */
 
+
 /* ///////////////////////////////////////////////
  * miscellaneous
  */
@@ -225,6 +230,7 @@
  * static array size determination
  */
 #define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+
 
 /* ///////////////////////////////////////////////
  * C++-98 keywords support
@@ -244,6 +250,7 @@
 
 #define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
 
+
 /* ///////////////////////////////////////////////
  * rtti support
  */
@@ -251,6 +258,7 @@
 #ifdef __cplusplus
 # define STLSOFT_CF_RTTI_SUPPORT
 #endif /* __cplusplus */
+
 
 /* ///////////////////////////////////////////////
  * exception support
@@ -265,6 +273,7 @@
 /* #define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE */
 
 #define STLSOFT_CF_THROW_BAD_ALLOC
+
 
 /* ///////////////////////////////////////////////
  * namespace support
@@ -436,6 +445,7 @@
 
 /* TODO: define here whether need -1 or 0 as the static assert invalid array quantifier */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * calling convention
  */
@@ -450,12 +460,14 @@
 /* #define   STLSOFT_FASTCALL            __fastcall */
 /* #define   STLSOFT_STDCALL             __stdcall */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline assembler
  */
 
 /* #define STSLSOFT_INLINE_ASM_SUPPORTED */
 /* #define STSLSOFT_ASM_IN_INLINE_SUPPORTED */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inline support
@@ -470,6 +482,7 @@
 #else /* ? environment */
 # define STLSOFT_CF_C99_INLINE
 #endif /* environment */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warning suppression

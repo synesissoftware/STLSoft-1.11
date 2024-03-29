@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for UNIX PThreads TSS key.
  *
  * Created:     21st January 1999
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MAJOR      3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   9
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       62
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # include <pthread.h>
 #endif /* !STLSOFT_INCL_H_PTHREAD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -102,6 +104,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -249,6 +252,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -262,6 +266,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

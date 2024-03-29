@@ -4,7 +4,7 @@
  * Purpose: Forward declaration of the string_traits traits class.
  *
  * Created: 1st April 2005
- * Updated: 20th February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_MINOR       0
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_REVISION    5
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_EDIT        29
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -81,7 +81,9 @@ namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * classes
+ */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -145,7 +147,9 @@ struct string_traits;
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

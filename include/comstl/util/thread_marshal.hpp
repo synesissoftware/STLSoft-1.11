@@ -4,11 +4,11 @@
  * Purpose:     Thread marshalling functions.
  *
  * Created:     25th May 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MAJOR    4
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_MINOR    0
 # define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_REVISION 7
-# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     69
+# define COMSTL_VER_COMSTL_UTIL_HPP_THREAD_MARSHAL_EDIT     70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
 # include <comstl/util/interface_traits.hpp>
 #endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +92,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -149,6 +152,7 @@ inline HRESULT GetInterfaceAndReleaseStream(LPSTREAM pstm, I **ppitf)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

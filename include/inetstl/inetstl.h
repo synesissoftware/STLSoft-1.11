@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    10
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 3
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     570
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     571
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -139,6 +139,7 @@
 #define _INETSTL_VER_REVISION    1
 #define _INETSTL_VER             _INETSTL_VER_1_4_1
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -197,6 +198,7 @@
 #if _STLSOFT_VER < 0x010a019a
 # error This version of the InetSTL libraries requires STLSoft version 1.10.1 beta 26, or later
 #endif /* _STLSOFT_VER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * sanity checks
@@ -363,6 +365,7 @@
  * or in the global namespace.
  */
 
+
 /* /////////////////////////////////////
  * obsolete preprocessor symbol detection
  */
@@ -384,6 +387,7 @@
 #  define INETSTL_NO_NAMESPACE
 # endif /* !INETSTL_NO_NAMESPACE */
 #endif /* _INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * namespace support discrimination
@@ -414,6 +418,7 @@
 #  endif /* !_INETSTL_NO_NAMESPACE */
 # endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
 #endif /* INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * declaration '*stl*' namespace
@@ -565,6 +570,7 @@ typedef is_streamoff_t      streamoff_t;        /*!< streamoff */
 # endif /* compiler */
 #endif /* !INETSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -620,6 +626,7 @@ const is_size_t CONST_MAX_PATH          =   INETSTL_CONST_MAX_PATH;
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * code modification macros
  */
@@ -654,6 +661,7 @@ const is_size_t CONST_MAX_PATH          =   INETSTL_CONST_MAX_PATH;
  */
 #define inetstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -668,6 +676,7 @@ const is_size_t CONST_MAX_PATH          =   INETSTL_CONST_MAX_PATH;
 namespace inetstl = ::stlsoft::inetstl_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

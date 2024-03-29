@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -58,8 +58,9 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  7
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      202
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      203
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -111,6 +112,7 @@
 # include <stdexcept>                    // for std::out_of_range
 #endif /* !STLSOFT_INCL_STDEXCEPT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -119,6 +121,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -173,8 +176,10 @@ class static_array_5d;
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-////////////////////////////////////////////////////////////////////////////
-// Classes
+
+/* /////////////////////////////////////////////////////////////////////////
+ * classes
+ */
 
 // class static_array_1d
 /** 1 dimensional static array
@@ -762,6 +767,7 @@ private:
 private:
     class_type const& operator =(class_type const& rhs);
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -1786,6 +1792,7 @@ inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_ty
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -1872,6 +1879,7 @@ inline ss_size_t array_size(static_array_5d<T, N0, N1, N2, N3, N4, P, M> const& 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

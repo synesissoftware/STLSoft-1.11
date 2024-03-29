@@ -47,6 +47,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_stdio
 #define STLSOFT_INCL_STLSOFT_API_internal_h_stdio
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -70,6 +71,7 @@
 # define STLSOFT_INCL_H_STDIO
 # include <stdio.h>
 #endif /* !STLSOFT_INCL_H_STDIO */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * time functions
@@ -97,6 +99,7 @@ STLSOFT_API_INTERNAL_stdio_fopen_m(
     return (NULL == *ph) ? errno : 0;
 #endif
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

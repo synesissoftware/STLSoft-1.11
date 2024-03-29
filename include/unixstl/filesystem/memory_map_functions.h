@@ -4,11 +4,11 @@
  * Purpose:     UNIX memory mapping functions.
  *
  * Created:     15th December 1996
- * Updated:     24th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT     106
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT     107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 # include <sys/mman.h>
 #endif /* !STLSOFT_INCL_SYS_H_MMAN */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -97,6 +99,7 @@ namespace unixstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -104,6 +107,7 @@ namespace unixstl_project
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions (C)
@@ -121,6 +125,7 @@ unixstl_C_unmap_view_of_file(
         STLSOFT_NS_GLOBAL(munmap)(view, length);
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions (C++)
@@ -140,6 +145,7 @@ unmap_view_of_file(
 
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -153,6 +159,7 @@ unmap_view_of_file(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

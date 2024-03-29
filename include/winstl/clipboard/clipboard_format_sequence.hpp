@@ -4,7 +4,7 @@
  * Purpose:     Enumerates clipboard formats.
  *
  * Created:     11th May 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Martin Moene for reporting the lack of iterator traits
  *              of the const_iterator nested class; wiluite for a defect
@@ -59,8 +59,9 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_REVISION 10
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     49
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -328,6 +331,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

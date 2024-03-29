@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     8
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  2
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      67
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -108,6 +109,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -127,6 +129,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -135,6 +138,7 @@ namespace winstl_project
     _MSC_VER < 1200
 # define WINSTL_DL_CALL_NO_ARG_TYPE_CHECK
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -157,6 +161,7 @@ namespace winstl_project
 #else /* ? WIN?? */
 # error Windows operating system not recognised
 #endif /* WIN?? */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -285,6 +290,7 @@ private:
     class_type& operator =(class_type const&);
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * enumerations
@@ -422,6 +428,7 @@ fn_desc(
 {
     return function_descriptor<0, S>(functionName, cc);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * traits
@@ -585,6 +592,7 @@ test_library_(T const&)
 {
     return dl_call_traits::library_is_not_handle();
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -5933,6 +5941,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 
 /// @}
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -5946,6 +5955,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

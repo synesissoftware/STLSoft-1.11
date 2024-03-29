@@ -4,7 +4,7 @@
  * Purpose:     integer to string slice conversions.
  *
  * Created:     18th December 2016
- * Updated:     18th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_REVISION 2
-# define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_EDIT     7
+# define STLSOFT_VER_STLSOFT_CONVERSION_H_ITOSLICE_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +77,7 @@
 # include <stlsoft/util/string/snprintf.h>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STRING_H_VSNPRINTF */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -84,6 +86,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -243,6 +246,7 @@ stlsoft_C_lutoslice21_a(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

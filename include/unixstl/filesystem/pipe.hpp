@@ -4,7 +4,7 @@
  * Purpose:     pipe class, based on UNIX pipe.
  *
  * Created:     19th June 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_REVISION   10
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       57
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # include <io.h>
 #endif /* _WIN32 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -105,6 +107,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -242,6 +245,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -255,6 +259,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose: Contains string_traits for MFC.
  *
  * Created: 25th April 2005
- * Updated: 20th February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_MAJOR       2
 # define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_MINOR       0
 # define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_REVISION    6
-# define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_EDIT        29
+# define MFCSTL_VER_MFCSTL_STRING_HPP_STRING_TRAITS_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -128,7 +128,9 @@ struct string_traits<CString>
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

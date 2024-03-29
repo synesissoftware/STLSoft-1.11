@@ -4,7 +4,7 @@
  * Purpose:     Basic functionals.
  *
  * Created:     8th June 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MAJOR        4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MINOR        0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_REVISION     5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT         55
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT         56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -69,6 +70,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -77,6 +79,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -231,6 +234,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

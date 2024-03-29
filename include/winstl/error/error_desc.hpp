@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       6
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    12
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        108
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -98,6 +99,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * feature discrimination
  */
@@ -110,6 +112,7 @@
 #  define WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_
 # endif /* compiler */
 #endif /* !WINSTL_ERROR_DESC_CANNOT_USE_FLEXIBLE_ERROR_PARAMETER_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -129,6 +132,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -432,6 +436,7 @@ typedef basic_error_desc<ws_char_w_t>                       error_desc_w;
  */
 typedef basic_error_desc<TCHAR>                             error_desc;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
@@ -595,6 +600,7 @@ basic_error_desc<C, T>::empty() const STLSOFT_NOEXCEPT
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -853,6 +859,7 @@ using ::winstl::get_ptr;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

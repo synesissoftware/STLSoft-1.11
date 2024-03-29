@@ -4,7 +4,7 @@
  * Purpose:     Number formatting functions.
  *
  * Created:     28th August 2005
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  12
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      29
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +80,7 @@
 # include <stlsoft/string/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -87,6 +89,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -272,6 +275,7 @@ format_thousands(
     return format_thousands<C, I>(dest, cchDest, picture, number, ';', ',');
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * unittest
  */
@@ -281,6 +285,7 @@ format_thousands(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

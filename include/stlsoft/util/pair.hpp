@@ -4,11 +4,11 @@
  * Purpose:     Contains the pair template.
  *
  * Created:     19th November 1998
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_REVISION  7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT      66
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT      67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -76,6 +78,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -173,6 +176,7 @@ inline pair<T1, T2> make_pair(T1 const& x, T2 const& y)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

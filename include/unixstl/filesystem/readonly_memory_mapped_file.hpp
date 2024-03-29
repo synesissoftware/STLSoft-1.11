@@ -4,7 +4,7 @@
  * Purpose:     UNIX readonly (shareable) memory mapped file.
  *
  * Created:     15th December 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT        17
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -125,6 +126,7 @@
 # include <sys/stat.h>
 #endif /* !STLSOFT_INCL_SYS_H_STAT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -143,6 +145,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -477,6 +480,7 @@ private: // Members
     HRW_Ref_type    m_ref;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -507,6 +511,7 @@ get_memory_mapped_file_view_handle(
     return (NULL != h) ? h->handle : memory_mapped_file_view_state_t(NULL, 0u);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -520,6 +525,7 @@ get_memory_mapped_file_view_handle(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

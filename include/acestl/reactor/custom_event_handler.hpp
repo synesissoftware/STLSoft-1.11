@@ -4,7 +4,7 @@
  * Purpose:     Event handler class for custom event notifications.
  *
  * Created:     1st October 2004
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR     2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR     1
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  10
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      39
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # include <map>
 #endif /* !STLSOFT_INCL_MAP */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -96,6 +98,7 @@
         _MSC_VER >= 1200)
 # define ACESTL_CUSTOM_EVENT_HANDLER_CANCEL_EVENTS_MEMBER_CLEANUP_SUPPORT
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -163,6 +166,7 @@ private:
 };
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -644,6 +648,7 @@ private:
     class_type& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
@@ -943,6 +948,7 @@ inline int custom_event_handler::handle_callback_timeout(ACE_Time_Value const& c
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -956,6 +962,7 @@ inline int custom_event_handler::handle_callback_timeout(ACE_Time_Value const& c
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ACESTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

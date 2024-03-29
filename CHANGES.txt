@@ -18,6 +18,85 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha5 (29th March 2024)
+
+General:
+========
+
+ * various GCC-11 compatibility fixes;
+
+Changes:
+========
+
+GCC-11 compatibility fixes:
+ * dev/bin/batch_compile_check;
+ * include/stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp;
+ * include/stlsoft/internal/cccap/gcc.h;
+ * include/stlsoft/locale/locale_scope.hpp;
+ * include/stlsoft/shims/access/string/std/basic_string_view.hpp;
+ * include/stlsoft/shims/access/string/std/chrono.hpp;
+ * include/stlsoft/shims/attribute/get_ptr/std/auto_ptr.hpp;
+ * include/stlsoft/shims/attribute/get_ptr/std/shared_ptr.hpp;
+ * include/stlsoft/shims/attribute/get_ptr/std/unique_ptr.hpp;
+ * include/stlsoft/shims/logical/is_null/std/auto_ptr.hpp;
+ * include/stlsoft/shims/logical/is_null/std/shared_ptr.hpp;
+ * include/stlsoft/shims/logical/is_null/std/unique_ptr.hpp;
+ * include/stlsoft/util/options_verifier.hpp;
+
+
+============================================================================
+
+Changes for 1.11.1-alpha4 (18th March 2024)
+
+General:
+========
+
+ * `stlsoft::basic_simple_string<>` now has `#equal()`;
+ * added 'stlsoft::std_chrono_hrc_stopwatch' stopwatch type;
+ * various performance improvements;
+
+Changes:
+========
+
+String enhancements:
+ * `stlsoft::basic_simple_string<>` now has `#equal()`;
+ * enhanced **test.unit.stlsoft.string.simple_string**;
+
+
+Performance:
+ * include/stlsoft/string/char_traits.hpp - significant specialisation of `stlsoft::stlsoft_char_traits` for improving performance;
+ * include/stlsoft/api/internal/memfns.h - added `STLSOFT_API_INTERNAL_memfns_wmemcpy()` and `STLSOFT_API_INTERNAL_memfns_wmemset()`;
+ * added 'stlsoft::std_chrono_hrc_stopwatch' stopwatch type (include/stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp);
+ * added project **test.performance.platformstl.stopwatch**;
+ * added project **test.performance.stlsoft.simple_string.compare**;
+ * added project **test.performance.stlsoft.simple_string.op_eq**;
+
+
+Various boilerplate improvements:
+ * build_cmake.sh - can now specify build targets;
+ * run_all_unit_tests.sh - now executes only unit/component tests;
+ * added execute_performance_tests.sh - executes performance tests;
+
+
+============================================================================
+
+Changes for 1.11.1-alpha3 (16th March 2024)
+
+General:
+========
+
+ * `stlsoft::basic_simple_string<>` now has `#contains()`;
+ * `stlsoft::basic_static_string<>` now has `#contains()`;
+ * wholesale automated layout canonicalisation;
+
+Changes:
+========
+
+* numerous
+
+
+============================================================================
+
 Changes for 1.11.1-alpha2 (1st March 2024)
 
 General:

@@ -4,11 +4,11 @@
  * Purpose:     Platform header for directory manipulation functions.
  *
  * Created:     30th May 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_REVISION   4
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_EDIT       21
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -151,6 +153,7 @@ namespace platformstl_project
 } /* namespace platformstl_project */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

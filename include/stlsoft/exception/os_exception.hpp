@@ -4,11 +4,11 @@
  * Purpose:     Definition of the stlsoft::os_exception class.
  *
  * Created:     19th January 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_MAJOR       6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_MINOR       0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_REVISION    1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_EDIT        59
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # include <stlsoft/exception/project_exception.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +83,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -133,6 +136,7 @@ public:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -140,6 +144,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

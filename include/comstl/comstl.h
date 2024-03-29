@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       9
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    8
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        130
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -164,6 +164,7 @@
 #define _COMSTL_VER_REVISION    1
 #define _COMSTL_VER             _COMSTL_VER_1_10_1
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -193,6 +194,7 @@
 #  include <oaidl.h>
 # endif /* !STLSOFT_INCL_H_OAIDL */
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility check(s)
@@ -310,6 +312,7 @@
 # define comstl_static_assert(expr)         COMSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler language feature support
  */
@@ -378,6 +381,7 @@
  * or in the global namespace.
  */
 
+
 /* /////////////////////////////////////
  * obsolete preprocessor symbol detection
  */
@@ -399,6 +403,7 @@
 #  define COMSTL_NO_NAMESPACE
 # endif /* !COMSTL_NO_NAMESPACE */
 #endif /* _COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * namespace support discrimination
@@ -429,6 +434,7 @@
 #  endif /* !_COMSTL_NO_NAMESPACE */
 # endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
 #endif /* COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * declaration '*stl*' namespace
@@ -506,6 +512,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
 # define comstl_ns_qual_std(x)                              STLSOFT_NS_QUAL_STD(x)
 # define comstl_ns_using_std(x)                             STLSOFT_NS_USING_STD(x)
 #endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Language agnostic macros.
@@ -913,6 +920,7 @@ typedef cs_uptrint_t        uptrint_t;
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -922,6 +930,7 @@ const cs_size_t COMSTL_CCH_GUID     =   38;
 #else /* ? __cplusplus */
 # define COMSTL_CCH_GUID                                    (38u)
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * code modification macros
@@ -969,6 +978,7 @@ const cs_size_t COMSTL_CCH_GUID     =   38;
 namespace comstl = ::stlsoft::comstl_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     13th November 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      1
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   12
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       114
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -102,6 +103,7 @@
 # include <shellapi.h>
 #endif /* !STLSOFT_INCL_H_SHELLAPI */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -121,6 +123,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -137,6 +140,7 @@ namespace winstl_project
 # define _STLSOFT_DROPHANDLE_SEQUENCE_VALUE_TYPE(C)     STLSOFT_NS_QUAL(basic_static_string)<C, WINSTL_CONST_MAX_PATH>
 #endif /* STLSOFT_CF_FRAME_STRING_SHIM_NOT_SUPPORTED */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -147,6 +151,7 @@ template <ss_typename_param_k C, ss_typename_param_k T>
 class basic_drophandle_sequence;
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -399,6 +404,7 @@ typedef basic_drophandle_sequence<ws_char_w_t, drophandle_sequence_traits<ws_cha
  */
 typedef basic_drophandle_sequence<TCHAR, drophandle_sequence_traits<TCHAR> >                drophandle_sequence;
 
+
 ////////////////////////////////////////////////////////////////////////////
 // Operators
 
@@ -647,6 +653,7 @@ inline ss_typename_type_ret_k basic_drophandle_sequence<C, T>::const_reverse_ite
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

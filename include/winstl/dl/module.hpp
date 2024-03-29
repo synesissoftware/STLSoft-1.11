@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      6
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       250
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       251
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -108,6 +110,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -370,6 +373,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * access shims
  */
@@ -382,6 +386,7 @@ inline HINSTANCE get_module_handle(WINSTL_NS_QUAL(module) const& m)
 {
     return m.get_module_handle();
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -622,6 +627,7 @@ inline module::module_handle_type module::get() const
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

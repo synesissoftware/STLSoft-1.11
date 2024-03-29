@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/logical/is_null/std/auto_ptr.hpp
+ * File:    stlsoft/shims/logical/is_null/std/auto_ptr.hpp
  *
- * Purpose:     Generic adapted case of is_null shim std::auto_ptr<>.
+ * Purpose: Generic adapted case of is_null shim std::auto_ptr<>.
  *
- * Created:     31st March 2007
- * Updated:     16th January 2024
+ * Created: 31st March 2007
+ * Updated: 26th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -41,7 +41,10 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* STLSOFT:C++14:FILE_DEPRECATED */
 /* STLSOFT:C++17:FILE_DEPRECATED */
+/* STLSOFT:C++20:FILE_DEPRECATED */
+/* STLSOFT:C++23:FILE_DEPRECATED */
 
 /** \file stlsoft/shims/logical/is_null/std/auto_ptr.hpp
  *
@@ -56,8 +59,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_AUTO_PTR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_AUTO_PTR_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_AUTO_PTR_REVISION    3
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_AUTO_PTR_EDIT        20
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_NULL_STD_HPP_AUTO_PTR_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +85,7 @@
 # include <memory>
 #endif /* !STLSOFT_INCL_MEMORY */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -89,6 +94,7 @@
 namespace stlsoft
 {
 #endif /* !STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -108,6 +114,7 @@ is_null(
     return NULL == p.get();
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +122,7 @@ is_null(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* !STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

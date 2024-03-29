@@ -31,7 +31,9 @@
 #include <stlsoft/conversion/integer_to_string/integer_to_decimal_string.hpp>
 
 /* Standard C++ header files */
-#include <sstream>
+#if __cplusplus >= 201402L
+# include <sstream>
+#endif
 
 /* Standard C header files */
 #include <stdlib.h>
@@ -86,6 +88,8 @@ int main(int argc, char **argv)
 
 namespace
 {
+#if __cplusplus >= 201402L
+
     struct SimpleStream
     {
         std::string     contents;
@@ -123,7 +127,7 @@ namespace
         return stm;
     }
 
-#if 0
+# if 0
 
     SimpleStream&
     operator <<(
@@ -135,6 +139,7 @@ namespace
 
         return stm;
     }
+# endif
 #endif
 
 

@@ -5,11 +5,11 @@
  *              built-in and standard string types.
  *
  * Created:     16th January 2002
- * Updated:     10th January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_MAJOR       4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_MINOR       5
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_EDIT        102
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_HPP_STRING_EDIT        103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -107,6 +108,7 @@
 #  include <stlsoft/shims/access/string/std/type_info.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO */
 #endif /* !STLSOFT_MINIMUM_SAS_INCLUDES */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

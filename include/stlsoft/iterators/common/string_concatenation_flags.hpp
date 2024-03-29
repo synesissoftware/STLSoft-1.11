@@ -5,11 +5,11 @@
  *              c_string_concatenator_iterator.
  *
  * Created:     31st July 2010
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_MAJOR    1
 # define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_MINOR    0
 # define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_REVISION 4
-# define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_EDIT     11
+# define STLSOFT_VER_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +71,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -78,6 +80,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * flags
@@ -98,6 +101,7 @@ struct string_concatenation_flags
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

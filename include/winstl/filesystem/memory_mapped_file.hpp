@@ -4,7 +4,7 @@
  * Purpose:     Memory mapped file class.
  *
  * Created:     15th December 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Pablo Aguilar for requesting multibyte / wide string
  *              ambivalence. To Joe Mariadassou for requesting swap().
@@ -57,8 +57,9 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     12
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  8
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      128
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      129
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -127,6 +128,7 @@
 # include <winstl/api/external/MemoryManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_MemoryManagement */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -145,6 +147,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -734,6 +737,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * comparison operators
  */
@@ -758,6 +762,7 @@ operator !=(
     return !lhs.equal(rhs);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -774,6 +779,7 @@ swap(
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -805,6 +811,7 @@ namespace std
 
 } /* namespace std */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

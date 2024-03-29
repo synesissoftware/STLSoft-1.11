@@ -4,7 +4,7 @@
  * Purpose:     Environment functions.
  *
  * Created:     4th March 2011
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_MINOR       0
 # define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_REVISION    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        11
+# define STLSOFT_VER_STLSOFT_SYSTEM_ENVIRONMENT_H_FUNCTIONS_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +82,7 @@
 # include <stdlib.h>
 #endif /* !STLSOFT_INCL_H_STDLIB */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -89,6 +91,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -143,6 +146,7 @@ stlsoft_C_environment_variable_exists_a(
 #endif
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ API functions
  */
@@ -167,6 +171,7 @@ environment_variable_exists(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

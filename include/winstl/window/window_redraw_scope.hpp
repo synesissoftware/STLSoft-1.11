@@ -4,7 +4,7 @@
  * Purpose:     Window redraw-state scoping class.
  *
  * Created:     5th January 1996
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_MAJOR      5
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_MINOR      1
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_REVISION   6
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_EDIT       91
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_EDIT       92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
 # include <winstl/shims/attribute/get_HWND.hpp>
 #endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +92,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -162,6 +165,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

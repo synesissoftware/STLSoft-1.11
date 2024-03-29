@@ -4,7 +4,7 @@
  * Purpose:     Definition of stlsoft_C_strnpbrkn() and stlsoft_C_wcsnpbrkn()
  *
  * Created:     11th December 2020
- * Updated:     18th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_REVISION   2
-# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_EDIT       3
+# define STLSOFT_VER_STLSOFT_STRING_C_STRING_H_STRNPBRKN_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -124,6 +126,7 @@ stlsoft_C_wcsnpbrkn(
     return ss_nullptr_k;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -133,6 +136,7 @@ namespace stlsoft
 {
 namespace c_string
 {
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions (C++)
@@ -174,6 +178,7 @@ wcsnpbrkn(
     return stlsoft_C_wcsnpbrkn(str, cchStr, charSet, cchCharSet);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -181,6 +186,7 @@ wcsnpbrkn(
 } /* namespace c_string */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

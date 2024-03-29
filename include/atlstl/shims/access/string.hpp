@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_MAJOR      4
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_MINOR      0
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_REVISION   4
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_EDIT       104
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_EDIT       105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 #  include <atlstl/shims/access/string/CWindow.hpp>
 # endif /* !ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_STRING_HPP_CWINDOW */
 #endif /* __ATLWIN__ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

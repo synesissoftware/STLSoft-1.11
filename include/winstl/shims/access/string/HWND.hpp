@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MAJOR       4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MINOR       1
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_REVISION    10
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        129
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <stlsoft/string/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -92,6 +94,7 @@
 #ifdef NOWINOFFSETS
 # error This file cannot be used when NOWINOFFSETS is specified (to suppress GWL_*, GCL_*, associated routines)
 #endif /* NOWINOFFSETS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -111,6 +114,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -556,6 +560,7 @@ c_str_ptr_HWND_proxy<ws_char_w_t>::get_window_text(
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * iostream compatibility
  */
@@ -815,6 +820,7 @@ using ::winstl::c_str_ptr_null_w;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

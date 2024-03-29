@@ -4,11 +4,11 @@
  * Purpose:     Interface-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_MAJOR     4
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_MINOR     0
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_REVISION  3
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_EDIT      73
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_INTERFACE_FUNCTIONALS_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -67,6 +68,7 @@
 [Incompatibilies-end]
 STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4)
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -85,6 +87,7 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 #ifndef COMSTL_INCL_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS
 # include <comstl/functional/type_functionals.hpp>
 #endif /* !COMSTL_INCL_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

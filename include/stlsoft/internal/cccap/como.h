@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Comeau C/C++.
  *
  * Created:     7th February 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,8 +62,9 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     18
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      79
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -73,6 +74,7 @@
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * back end discrimination
@@ -93,6 +95,7 @@
 #else /* ? compiler */
 # error Your Comeau back-end is not recognised. Please contact admin hat stlsoft dot org
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler features
@@ -332,6 +335,7 @@
 #define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
 #define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * quality assurance features
  */
@@ -377,6 +381,7 @@
 #  define __STLSOFT_CF_USE_cassert
 # endif /* compiler */
 #endif /* _STLSOFT_CUSTOM_ASSERT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * calling convention
@@ -469,6 +474,7 @@
 
 #endif /* std C */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline assembler
  */
@@ -478,11 +484,13 @@
 # define STSLSOFT_ASM_IN_INLINE_SUPPORTED
 #endif /* !_MSC_VER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inline support
  */
 
 #define STLSOFT_CF_C99_INLINE
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warning suppression

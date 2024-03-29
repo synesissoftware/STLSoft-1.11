@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MAJOR     3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MINOR     0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_REVISION  15
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      81
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -101,6 +102,7 @@
 # include <afxtempl.h>
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -138,6 +140,7 @@ namespace mfcstl_project
  * classes will implement copy semantics, rather than the default move
  * semantics.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -627,6 +630,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

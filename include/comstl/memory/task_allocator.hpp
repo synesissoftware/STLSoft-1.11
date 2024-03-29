@@ -4,7 +4,7 @@
  * Purpose:     task_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_MAJOR      4
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_MINOR      0
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_REVISION   10
-# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_EDIT       102
+# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_EDIT       103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # include <new>
 #endif /* !STLSOFT_INCL_NEW */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -95,6 +97,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -231,6 +234,7 @@ inline cs_bool_t operator !=(const task_allocator<T> &/* lhs */, const task_allo
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

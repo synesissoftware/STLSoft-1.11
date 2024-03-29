@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/gcc.h
+ * File:    stlsoft/internal/cccap/gcc.h
  *
- * Purpose:     Compiler feature discrimination for GNU C/C++.
+ * Purpose: Compiler feature discrimination for GNU C/C++.
  *
- * Created:     7th February 2003
- * Updated:     12th February 2024
+ * Created: 7th February 2003
+ * Updated: 26th March 2024
  *
- * Thanks:      To Sergey Nikulov, for PowerPC (BSD) compatibility fixes;
- *              wiluite for MinGW 64-bit compatibility.
+ * Thanks:  To Sergey Nikulov, for PowerPC (BSD) compatibility fixes;
+ *          wiluite for MinGW 64-bit compatibility.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -60,13 +60,11 @@
 #endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_GCC */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      31
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       113
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -363,7 +361,10 @@
 #if __GNUC__ > 4 || \
     (   __GNUC__ == 4 && \
         __GNUC_MINOR__ >= 3)
-# define STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+# if defined(__cplusplus) && \
+     __cplusplus >= 201103L
+#  define STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+# endif
 #endif
 
 #if __GNUC__ >= 3

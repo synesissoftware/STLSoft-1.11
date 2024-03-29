@@ -4,7 +4,7 @@
  * Purpose: basic_string_view class.
  *
  * Created: 16th October 2004
- * Updated: 20th February 2024
+ * Updated: 11th March 2024
  *
  * Thanks:  Bjorn Karlsson and Scott Patterson for discussions on various
  *          naming and design issues. Thanks also to Pablo Aguilar for
@@ -59,8 +59,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       6
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        115
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -107,6 +108,7 @@
 # endif /* !STLSOFT_INCL_STDEXCEPT */
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +117,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -454,6 +457,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -471,6 +475,7 @@ typedef basic_string_view<ss_char_w_t
                         ,   allocator_selector<ss_char_w_t>::allocator_type
                         >                                                   wstring_view;
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * traits
@@ -614,6 +619,7 @@ struct string_traits<wstring_view>
     }
 };
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operators
@@ -1825,6 +1831,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::reverse_iterator basic
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -1837,6 +1844,7 @@ inline void swap(basic_string_view<C, T, A>& lhs, basic_string_view<C, T, A>& rh
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -1988,6 +1996,7 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

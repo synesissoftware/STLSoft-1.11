@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_MINOR    0
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_REVISION 4
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_EDIT     112
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_EDIT     113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 #ifndef COMSTL_INCL_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT
 # include <comstl/shims/access/string/VARIANT.hpp>
 #endif /* !COMSTL_INCL_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

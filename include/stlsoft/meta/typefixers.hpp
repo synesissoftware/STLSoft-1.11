@@ -4,11 +4,11 @@
  * Purpose:     Combined header file for STLSoft's TypeFixer utility components.
  *
  * Created:     24th April 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_REVISION   3
-# define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_EDIT       19
+# define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -67,6 +68,7 @@
 STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 [Incompatibilies-end]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -114,6 +116,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 #ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENT_TYPE
 # include <stlsoft/meta/typefixer/referent_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENT_TYPE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

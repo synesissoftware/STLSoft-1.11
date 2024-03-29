@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_ptr template class.
  *
  * Created:     17th June 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    4
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        60
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes - 1
@@ -104,6 +105,7 @@
 # define STLSOFT_SHARED_PTR_SINGLE_THREADED
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes - 2
  */
@@ -127,6 +129,7 @@
 # define STLSOFT_SHARED_PTR_USE_std_atomic
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -136,12 +139,14 @@ namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -604,6 +609,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * swapping
  */
@@ -620,6 +626,7 @@ swap(
 {
     lhs.swap(rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -683,6 +690,7 @@ operator <<(
 
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -715,6 +723,7 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

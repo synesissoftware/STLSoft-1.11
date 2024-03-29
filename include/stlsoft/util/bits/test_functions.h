@@ -4,7 +4,7 @@
  * Purpose:     Bit test functions
  *
  * Created:     2nd June 2010
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_EDIT        11
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_TEST_FUNCTIONS_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +76,7 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -83,6 +85,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -170,6 +173,7 @@ stlsoft_C_find_highest_bit_in_64bit_unsigned_integer(
     return stlsoft_C_find_highest_bit_in_32bit_unsigned_integer(STLSOFT_STATIC_CAST(ss_uint32_t, v));
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++
  */
@@ -236,6 +240,7 @@ find_highest_bit(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    3
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 17
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     152
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -121,6 +122,7 @@
 # include <winstl/api/internal/DynamicLinkLibrary.h>
 #endif /* !WINSTL_INCL_WINSTL_API_internal_h_DynamicLinkLibrary */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -139,6 +141,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * structure headers
@@ -228,6 +231,7 @@ rounded_ptr(
 
 STLSOFT_CLOSE_WORKER_NS_(ximpl_winstl_version_info_)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -747,6 +751,7 @@ private: // fields
     StringFileInfo_hdr const*       m_sfi;
     VarFileInfo_hdr const*          m_vfi;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -1528,6 +1533,7 @@ inline void version_info::init_()
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

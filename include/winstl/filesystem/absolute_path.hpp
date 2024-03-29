@@ -4,7 +4,7 @@
  * Purpose:     Simple class that converts a relative path to an absolute one.
  *
  * Created:     20th December 2002
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        84
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -89,6 +90,7 @@
 # include <winstl/synch/spin_mutex.hpp>
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -107,6 +109,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -215,6 +218,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -234,6 +238,7 @@ typedef basic_absolute_path<ws_char_w_t>    absolute_path_w;
  * \ingroup group__library__FileSystem
  */
 typedef basic_absolute_path<TCHAR>          absolute_path;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -265,6 +270,7 @@ inline basic_absolute_path<C> make_absolute_path(C const* path)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

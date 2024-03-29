@@ -4,7 +4,7 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Martin Moene for reporting the problem with the data type
  *              in set_data_or_deallocate_and_throw_(), and for calling for
@@ -58,8 +58,9 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      1
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       54
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -97,6 +98,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +117,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -382,15 +385,13 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
 
 
-
 /* /////////////////////////////////////////////////////////////////////////
- * implementation
- */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -606,6 +607,7 @@ inline void clipboard_scope::get_data(HPALETTE& hPal) const stlsoft_throw_1(clip
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -620,6 +622,7 @@ inline void clipboard_scope::get_data(HPALETTE& hPal) const stlsoft_throw_1(clip
 # endif /* STLSOFT_NO_NAMESPACE */
 
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

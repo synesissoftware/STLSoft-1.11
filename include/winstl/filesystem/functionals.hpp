@@ -4,7 +4,7 @@
  * Purpose:     File-system related functions and predicates.
  *
  * Created:     19th January 2002
- * Updated:     20th January 2024
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,9 +55,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR     2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      104
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  6
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +89,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_FUNCTIONALS_NO_STD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * utility functions
@@ -222,9 +225,9 @@ paths_are_equal_envx_(
 
     return 0 == traits_t::str_compare_no_case(s1, s2);
 }
-
 STLSOFT_CLOSE_WORKER_NS_(ximpl_winstl_filesystem_functionals_)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -248,21 +251,25 @@ template<
 >
 // [[synesis:class:function-class:binary-predicate: path_compare<T<T_character>, T<A1>, T<A2>>]]
 struct path_compare
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A1, A2, ws_bool_t>
+#endif
 {
-private: // types
-    typedef STLSOFT_NS_QUAL_STD(binary_function)<A1, A2, ws_bool_t>     parent_class_type;
-public:
+public: // types
     /// The character type
-    typedef T_character                                                 char_type;
+    typedef T_character                                     char_type;
     /// The first argument type
-    typedef ss_typename_type_k parent_class_type::first_argument_type   first_argument_type;
+    typedef A1                                              first_argument_type;
     /// The second argument type
-    typedef ss_typename_type_k parent_class_type::second_argument_type  second_argument_type;
+    typedef A2                                              second_argument_type;
     /// The result type
-    typedef ss_typename_type_k parent_class_type::result_type           result_type;
+    typedef ws_bool_t                                       result_type;
     /// The current specialisation of the type
-    typedef path_compare<T_character, A1, A2>                           class_type;
+    typedef path_compare<
+        T_character
+    ,   A1
+    ,   A2
+    >                                                       class_type;
 
 public: // operations
     /// Function call, compares \c s1 with \c s2
@@ -298,21 +305,25 @@ template<
 >
 // [[synesis:class:function-class:binary-predicate: path_compare_env<T<T_character>, T<A1>, T<A2>>]]
 struct path_compare_env
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(binary_function)<A1, A2, ws_bool_t>
+#endif
 {
-private: // types
-    typedef STLSOFT_NS_QUAL_STD(binary_function)<A1, A2, ws_bool_t>     parent_class_type;
-public:
+public: // types
     /// The character type
-    typedef T_character                                                 char_type;
+    typedef T_character                                     char_type;
     /// The first argument type
-    typedef ss_typename_type_k parent_class_type::first_argument_type   first_argument_type;
+    typedef A1                                              first_argument_type;
     /// The second argument type
-    typedef ss_typename_type_k parent_class_type::second_argument_type  second_argument_type;
+    typedef A2                                              second_argument_type;
     /// The result type
-    typedef ss_typename_type_k parent_class_type::result_type           result_type;
+    typedef is_bool_t                                       result_type;
     /// The current specialisation of the type
-    typedef path_compare_env<T_character, A1, A2>                       class_type;
+    typedef path_compare_env<
+        T_character
+    ,   A1
+    ,   A2
+    >                                                       class_type;
 
 public: // operations
     /// Function call, compares \c s1 with \c s2
@@ -345,14 +356,11 @@ template<
 >
 // [[synesis:class:function-class:unary-predicate: path_exists<T<T_character>, T<A>>]]
 struct path_exists
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, ws_bool_t>
+#endif
 {
-private: // types
-    typedef STLSOFT_NS_QUAL_STD(unary_function)<
-        A
-    ,   ws_bool_t
-    >                                                       parent_class_type;
-public:
+public: // types
     /// The character type
     typedef T_character                                     char_type;
     /// The argument type
@@ -389,14 +397,11 @@ template<
 >
 // [[synesis:class:function-class:unary-predicate: path_exists_env<T<T_character>, T<A>>]]
 struct path_exists_env
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, ws_bool_t>
+#endif
 {
-private: // types
-    typedef STLSOFT_NS_QUAL_STD(unary_function)<
-        A
-    ,   ws_bool_t
-    >                                                       parent_class_type;
-public:
+public: // types
     /// The character type
     typedef T_character                                     char_type;
     /// The argument type
@@ -439,13 +444,17 @@ template<
 >
 // [[synesis:class:function-class:unary-predicate: directory_contains_file<T<T_character>, T<A>>]]
 struct directory_contains_file
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<A, ws_bool_t>
+#endif
 {
 private: // types
+#if __cplusplus < 201103L
     typedef STLSOFT_NS_QUAL_STD(unary_function)<
         A
     ,   ws_bool_t
     >                                                       parent_class_type;
+#endif
 public:
     /// The character type
     typedef T_character                                     char_type;
@@ -514,6 +523,7 @@ private: // fields
 typedef directory_contains_file                             path_contains_file;
 #endif // STLSOFT_OBSOLETE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -527,6 +537,7 @@ typedef directory_contains_file                             path_contains_file;
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

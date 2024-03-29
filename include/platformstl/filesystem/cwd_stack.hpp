@@ -4,7 +4,7 @@
  * Purpose: Platform header for the filesystem_traits components.
  *
  * Created: 16th July 2006
- * Updated: 20th February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  10
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      39
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -308,7 +308,9 @@ basic_cwd_stack<C, XP>::try_pop()
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

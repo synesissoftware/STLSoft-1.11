@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MINOR     3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  9
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      92
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -112,6 +113,7 @@ typedef STLSOFT_NS_QUAL(basic_simple_string)<   TCHAR
 # endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -131,6 +133,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -138,6 +141,7 @@ namespace winstl_project
 #ifndef WINSTL_NO_NAMESPACE
 using ::lvs_string_t;
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -489,6 +493,7 @@ private:
     HWND    m_hwndListView;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -548,6 +553,7 @@ inline S& operator <<(S& s, listview_sequence_item const& lvi)
     return s;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -600,6 +606,7 @@ using ::winstl::c_str_len;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

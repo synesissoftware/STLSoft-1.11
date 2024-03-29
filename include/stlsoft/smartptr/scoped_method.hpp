@@ -5,7 +5,7 @@
  *              type methods.
  *
  * Created:     1st January 2004
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_MINOR       0
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_REVISION    4
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_EDIT        11
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +71,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -78,6 +80,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -191,6 +194,7 @@ namespace impl
 } /* namespace impl */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -290,6 +294,7 @@ private: // Fields
     invoker_type*   m_invoker;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  */
@@ -308,6 +313,7 @@ is_null(
     return m.empty();
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -315,6 +321,7 @@ is_null(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

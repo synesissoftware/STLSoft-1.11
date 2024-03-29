@@ -4,11 +4,11 @@
  * Purpose:     Detects compiler features required by the is_empty shim.
  *
  * Created:     20th December 2006
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES_MAJOR     2
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES_MINOR     0
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES_REVISION  4
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES_EDIT      12
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_UTIL_HPP_FEATURES_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 #  include <stlsoft/meta/yesno.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 #endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

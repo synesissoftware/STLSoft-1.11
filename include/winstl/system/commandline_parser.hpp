@@ -4,7 +4,7 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR      2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   7
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       51
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -88,6 +89,7 @@
 # include <ctype.h>      // for isspace()
 #endif /* !STLSOFT_INCL_H_CTYPE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -106,6 +108,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -344,6 +347,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -375,6 +379,7 @@ typedef basic_commandline_parser<TCHAR>         commandline_parser;
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

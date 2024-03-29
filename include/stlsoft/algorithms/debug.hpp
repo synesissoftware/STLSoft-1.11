@@ -4,7 +4,7 @@
  * Purpose:     Debug algorithms.
  *
  * Created:     17th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_MAJOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_MINOR     1
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_REVISION  5
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_EDIT      82
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_EDIT      83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -76,6 +78,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * algorithms
@@ -168,6 +171,7 @@ inline UF for_each_postinc(I first, I last, UF func)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

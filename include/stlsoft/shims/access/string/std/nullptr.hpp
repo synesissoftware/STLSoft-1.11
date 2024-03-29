@@ -4,7 +4,7 @@
  * Purpose:     Primary include file for string access shims for nullptr.
  *
  * Created:     12th November 2020
- * Updated:     6th February 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_MINOR      0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_REVISION   3
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_EDIT       3
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # include <cstddef>
 #endif /* !STLSOFT_INCL_H_CSTDDEF */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -91,6 +93,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
@@ -113,6 +116,7 @@ c_str_data_w(
 {
     return L"";
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
@@ -145,6 +149,7 @@ c_str_len(
     return 0;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
  */
@@ -166,6 +171,7 @@ c_str_ptr_w(
 {
     return L"";
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
@@ -189,6 +195,7 @@ c_str_ptr_null_w(
     return ss_nullptr_k;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -196,6 +203,7 @@ c_str_ptr_null_w(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

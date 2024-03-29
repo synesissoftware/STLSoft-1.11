@@ -4,7 +4,7 @@
  * Purpose: Definition of stlsoft::write_string<>() function template.
  *
  * Created: 22nd February 2024
- * Updated: 22nd February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_WRITE_STRING_MAJOR     1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_WRITE_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_WRITE_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_WRITE_STRING_EDIT      1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_WRITE_STRING_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -191,7 +191,9 @@ write_string(
 }
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

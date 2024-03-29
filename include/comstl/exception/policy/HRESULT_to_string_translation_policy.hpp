@@ -5,11 +5,11 @@
  *              policy class
  *
  * Created:     8th January 2017
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_MAJOR      1
 # define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_MINOR      0
 # define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_REVISION   1
-# define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_EDIT       4
+# define COMSTL_VER_COMSTL_EXCEPTION_POLICY_HPP_HRESULT_TO_STRING_TRANSLATION_POLICY_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 #ifndef WINSTL_INCL_WINSTL_EXCEPTION_POLICY_HPP_WINDOWS_STATUS_CODE_TO_STRING_TRANSLATION_POLICY
 # include <winstl/exception/policy/windows_status_code_to_string_translation_policy.hpp>
 #endif /* !WINSTL_INCL_WINSTL_EXCEPTION_POLICY_HPP_WINDOWS_STATUS_CODE_TO_STRING_TRANSLATION_POLICY */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,6 +94,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -126,6 +129,7 @@ public:
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -139,6 +143,7 @@ public:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

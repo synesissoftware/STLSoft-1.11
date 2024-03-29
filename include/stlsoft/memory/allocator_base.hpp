@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     20th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 16
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     66
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 # include <new>         // for placement new, std::bad_alloc
 #endif /* STLSOFT_CF_THROW_BAD_ALLOC || _MSC_VER < 1100) */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -94,6 +96,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -324,6 +327,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

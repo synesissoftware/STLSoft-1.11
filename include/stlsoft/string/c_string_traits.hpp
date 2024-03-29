@@ -4,11 +4,11 @@
  * Purpose:     Contains the c_string_traits class template.
  *
  * Created:     15th November 2002
- * Updated:     2nd January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_MAJOR       6
 # define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_EDIT        162
+# define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_EDIT        163
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -91,6 +92,7 @@
 # endif /* !STLSOFT_INCL_H_WINDOWS */
 #endif /* STLSOFT_MIN_CRT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -99,6 +101,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -434,6 +437,7 @@ public:
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -441,6 +445,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

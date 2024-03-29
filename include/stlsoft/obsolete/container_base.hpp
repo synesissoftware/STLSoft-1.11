@@ -4,11 +4,11 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     17th February 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,8 +52,9 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_MINOR      2
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_REVISION   4
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_EDIT       28
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_CONTAINER_BASE_EDIT       29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -66,6 +67,7 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -74,6 +76,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -134,6 +137,7 @@ private:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

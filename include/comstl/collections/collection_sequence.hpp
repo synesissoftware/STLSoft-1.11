@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     29th January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
  *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -59,8 +59,9 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 17
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     122
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     123
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -102,6 +103,7 @@
 # include <algorithm>
 #endif /* !STLSOFT_INCL_ALGORITHM */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -120,6 +122,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -441,14 +444,19 @@ private:
     class_type const& operator =(class_type const&);
 };
 
-////////////////////////////////////////////////////////////////////////////
-// Compiler compatibility
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compiler compatibility
+ */
 
 #ifdef STLSOFT_COMPILER_IS_BORLAND
 # undef retrievalQuanta
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -459,6 +467,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

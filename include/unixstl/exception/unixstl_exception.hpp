@@ -4,11 +4,11 @@
  * Purpose:     unixstl::unixstl_exception class
  *
  * Created:     19th June 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_MINOR     4
 # define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_EDIT      66
+# define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_EDIT      67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <stlsoft/exception/policy/errno_to_string_translation_policy.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_EXCEPTION_POLICY_HPP_ERRNO_TO_STRING_TRANSLATION_POLICY */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -101,6 +103,7 @@ namespace unixstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * types
  */
@@ -117,6 +120,7 @@ typedef STLSOFT_NS_QUAL(status_code_translating_exception_base)<
 typedef unixstl_exception                                   unix_exception;
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -130,6 +134,7 @@ typedef unixstl_exception                                   unix_exception;
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

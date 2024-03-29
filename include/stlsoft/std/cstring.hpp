@@ -4,7 +4,7 @@
  * Purpose:     Mappings to std string functions
  *
  * Created:     2nd December 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
@@ -58,8 +58,9 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MINOR      5
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   10
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       47
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -90,6 +91,7 @@
 # include <malloc.h>
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +100,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -522,6 +525,7 @@ inline ss_char_w_t* strdup(ss_char_w_t const* s)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -49,6 +49,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
 #define WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -63,6 +64,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' Handle and Object Functions
@@ -87,6 +89,7 @@
 #ifndef WINSTL_API_EXTERNAL_HandleAndObject_SetHandleInformation
 # define WINSTL_API_EXTERNAL_HandleAndObject_SetHandleInformation               STLSOFT_NS_GLOBAL_(SetHandleInformation)
 #endif /* !WINSTL_API_EXTERNAL_HandleAndObject_SetHandleInformation */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

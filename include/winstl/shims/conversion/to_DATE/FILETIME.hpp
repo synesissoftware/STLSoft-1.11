@@ -4,11 +4,11 @@
  * Purpose:     winstl::to_DATE(FILETIME const&) overload.
  *
  * Created:     12th March 2007
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_MAJOR      1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_MINOR      0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_REVISION   7
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_EDIT       15
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_FILETIME_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -67,6 +68,7 @@
 STLSOFT_COMPILER_IS_GCC:
 [Incompatibilies-end]
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -89,6 +91,7 @@ STLSOFT_COMPILER_IS_GCC:
 # include <winstl/shims/conversion/to_SYSTEMTIME/FILETIME.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -107,6 +110,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -129,6 +133,7 @@ inline DATE to_DATE(FILETIME const& rhs)
     return to_DATE(to_SYSTEMTIME(rhs));
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -142,6 +147,7 @@ inline DATE to_DATE(FILETIME const& rhs)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Defines the locale_exception exception class.
  *
  * Created:     25th December 2018
- * Updated:     26th January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2018-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_MAJOR      1
 # define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_MINOR      0
 # define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_REVISION   3
-# define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_EDIT       6
+# define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <locale.h>
 #endif /* !STLSOFT_INCL_H_LOCALE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -90,6 +92,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -137,6 +140,7 @@ public: // fields
     string_type const     LocaleName;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -144,6 +148,7 @@ public: // fields
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

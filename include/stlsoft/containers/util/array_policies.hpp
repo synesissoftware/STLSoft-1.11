@@ -5,7 +5,7 @@
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -60,8 +60,9 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MINOR       1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        151
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        152
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -90,6 +92,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler
@@ -103,6 +106,7 @@ namespace stlsoft
     __GNUC__ < 4
 # define STLSOFT_MULTIDIM_ARRAY_FEATURE_REQUIRES_COPY_CTOR_WITH_RVO
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * construction policy classes
@@ -245,6 +249,7 @@ struct do_initialisation_never
     typedef three_type  type;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -377,6 +382,7 @@ void do_destroy_1(A& /* ator */, T* /* p */, ss_size_t /* n */, three_type)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper classes
  */
@@ -442,6 +448,7 @@ public:
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

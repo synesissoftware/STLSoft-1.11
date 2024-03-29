@@ -4,11 +4,11 @@
  * Purpose:     Random number range class.
  *
  * Created:     31st May 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,8 +50,9 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   7
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       41
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -63,6 +64,7 @@ STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
 STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 [Incompatibilies-end]
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +89,7 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <stdlib.h>                     // for rand(), srand()
 #endif /* !STLSOFT_INCL_H_STDLIB */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -105,6 +108,7 @@ namespace rangelib_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -274,6 +278,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

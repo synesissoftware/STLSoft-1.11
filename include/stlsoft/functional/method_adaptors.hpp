@@ -4,11 +4,11 @@
  * Purpose:     Contains the stlsoft::mem_fun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     26th December 2020
+ * Updated:     8th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,19 +55,10 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MINOR      1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_REVISION   6
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       72
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_REVISION   7
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Auto-generation and compatibility
- */
-
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_GCC:    __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4)
-[Incompatibilies-end]
- */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -92,6 +83,7 @@ STLSOFT_COMPILER_IS_GCC:    __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -100,6 +92,7 @@ STLSOFT_COMPILER_IS_GCC:    __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -117,17 +110,21 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct thiscall_mem_fun_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R           return_type;
-    typedef T           operand_class_type;
-    typedef return_type (T::*method_type)();
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
+    typedef result_type                (operand_class_type::*method_type)();
 public:
     ss_explicit_k thiscall_mem_fun_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type *pt) const
+    result_type operator ()(operand_class_type *pt) const
     {
         return (pt->*m_func)();
     }
@@ -145,21 +142,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct thiscall_mem_fun_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R           return_type;
-    typedef T           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 # ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type (T::*method_type)() const;
+    typedef result_type (operand_class_type::*method_type)() const;
 # else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (T::*method_type)() const;
+    typedef result_type (operand_class_type::*method_type)() const;
 # endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k thiscall_mem_fun_const_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type const* pt) const
+    result_type operator ()(operand_class_type const* pt) const
     {
         return (pt->*m_func)();
     }
@@ -172,15 +173,19 @@ private:
 template< ss_typename_param_k T
         >
 struct thiscall_mem_fun_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void        return_type;
-    typedef T           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type (T::*method_type)();
+    typedef result_type (operand_class_type::*method_type)();
 #  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (T::*method_type)();
+    typedef result_type (operand_class_type::*method_type)();
 #  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k thiscall_mem_fun_void_t(method_type func)
@@ -197,12 +202,16 @@ private:
 template< ss_typename_param_k T
         >
 struct thiscall_mem_fun_const_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void        return_type;
-    typedef T           operand_class_type;
-    typedef return_type (T::*method_type)() const;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
+    typedef result_type (operand_class_type::*method_type)() const;
 public:
     ss_explicit_k thiscall_mem_fun_const_void_t(method_type func)
         : m_func(func)
@@ -231,21 +240,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct cdecl_mem_fun_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                           return_type;
-    typedef T                           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 # ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_CDECL  (T::*method_type)();
+    typedef result_type STLSOFT_CDECL (operand_class_type::*method_type)();
 # else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_CDECL  T::*method_type)();
+    typedef result_type (STLSOFT_CDECL operand_class_type::*method_type)();
 # endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type *pt) const
+    result_type operator ()(operand_class_type *pt) const
     {
         return (pt->*m_func)();
     }
@@ -263,21 +276,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct cdecl_mem_fun_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                           return_type;
-    typedef T                           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 # ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_CDECL  (T::*method_type)() const;
+    typedef result_type STLSOFT_CDECL (operand_class_type::*method_type)() const;
 # else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_CDECL  T::*method_type)() const;
+    typedef result_type (STLSOFT_CDECL operand_class_type::*method_type)() const;
 # endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_const_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type const* pt) const
+    result_type operator ()(operand_class_type const* pt) const
     {
         return (pt->*m_func)();
     }
@@ -290,15 +307,19 @@ private:
 template< ss_typename_param_k T
         >
 struct cdecl_mem_fun_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                        return_type;
-    typedef T                           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_CDECL  (T::*method_type)();
+    typedef result_type STLSOFT_CDECL (operand_class_type::*method_type)();
 #  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_CDECL  T::*method_type)();
+    typedef result_type (STLSOFT_CDECL operand_class_type::*method_type)();
 #  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_void_t(method_type func)
@@ -315,15 +336,19 @@ private:
 template< ss_typename_param_k T
         >
 struct cdecl_mem_fun_const_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                        return_type;
-    typedef T                           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_CDECL  (T::*method_type)() const;
+    typedef result_type STLSOFT_CDECL (operand_class_type::*method_type)() const;
 #  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_CDECL  T::*method_type)() const;
+    typedef result_type (STLSOFT_CDECL operand_class_type::*method_type)() const;
 #  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_const_void_t(method_type func)
@@ -356,21 +381,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct fastcall_mem_fun_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_FASTCALL   (T::*method_type)();
+    typedef result_type STLSOFT_FASTCALL   (operand_class_type::*method_type)();
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_FASTCALL   T::*method_type)();
+    typedef result_type (STLSOFT_FASTCALL   operand_class_type::*method_type)();
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k fastcall_mem_fun_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type *pt) const
+    result_type operator ()(operand_class_type *pt) const
     {
         return (pt->*m_func)();
     }
@@ -388,21 +417,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct fastcall_mem_fun_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_FASTCALL   (T::*method_type)() const;
+    typedef result_type STLSOFT_FASTCALL   (operand_class_type::*method_type)() const;
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_FASTCALL   T::*method_type)() const;
+    typedef result_type (STLSOFT_FASTCALL   operand_class_type::*method_type)() const;
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k fastcall_mem_fun_const_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type const* pt) const
+    result_type operator ()(operand_class_type const* pt) const
     {
         return (pt->*m_func)();
     }
@@ -415,15 +448,19 @@ private:
 template< ss_typename_param_k T
         >
 struct fastcall_mem_fun_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_FASTCALL    (T::*method_type)();
+    typedef result_type STLSOFT_FASTCALL    (operand_class_type::*method_type)();
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_FASTCALL   T::*method_type)();
+    typedef result_type (STLSOFT_FASTCALL   operand_class_type::*method_type)();
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k fastcall_mem_fun_void_t(method_type func)
@@ -440,15 +477,19 @@ private:
 template< ss_typename_param_k T
         >
 struct fastcall_mem_fun_const_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_FASTCALL    (T::*method_type)() const;
+    typedef result_type STLSOFT_FASTCALL    (operand_class_type::*method_type)() const;
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_FASTCALL   T::*method_type)() const;
+    typedef result_type (STLSOFT_FASTCALL   operand_class_type::*method_type)() const;
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k fastcall_mem_fun_const_void_t(method_type func)
@@ -482,21 +523,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct stdcall_mem_fun_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_STDCALL    (T::*method_type)();
+    typedef result_type STLSOFT_STDCALL    (operand_class_type::*method_type)();
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_STDCALL    T::*method_type)();
+    typedef result_type (STLSOFT_STDCALL    operand_class_type::*method_type)();
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k stdcall_mem_fun_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type *pt) const
+    result_type operator ()(operand_class_type *pt) const
     {
         return (pt->*m_func)();
     }
@@ -514,21 +559,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct stdcall_mem_fun_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_STDCALL    (T::*method_type)() const;
+    typedef result_type STLSOFT_STDCALL    (operand_class_type::*method_type)() const;
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_STDCALL    T::*method_type)() const;
+    typedef result_type (STLSOFT_STDCALL    operand_class_type::*method_type)() const;
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k stdcall_mem_fun_const_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type const* pt) const
+    result_type operator ()(operand_class_type const* pt) const
     {
         return (pt->*m_func)();
     }
@@ -541,15 +590,19 @@ private:
 template< ss_typename_param_k T
         >
 struct stdcall_mem_fun_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_STDCALL     (T::*method_type)();
+    typedef result_type STLSOFT_STDCALL     (operand_class_type::*method_type)();
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_STDCALL    T::*method_type)();
+    typedef result_type (STLSOFT_STDCALL    operand_class_type::*method_type)();
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k stdcall_mem_fun_void_t(method_type func)
@@ -566,15 +619,19 @@ private:
 template< ss_typename_param_k T
         >
 struct stdcall_mem_fun_const_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_STDCALL     (T::*method_type)() const;
+    typedef result_type STLSOFT_STDCALL (operand_class_type::*method_type)() const;
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_STDCALL    T::*method_type)() const;
+    typedef result_type (STLSOFT_STDCALL operand_class_type::*method_type)() const;
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k stdcall_mem_fun_const_void_t(method_type func)
@@ -605,17 +662,21 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct thiscall_mem_fun_ref_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R           return_type;
-    typedef T           operand_class_type;
-    typedef return_type (T::*method_type)();
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
+    typedef result_type               (operand_class_type::*method_type)();
 public:
     ss_explicit_k thiscall_mem_fun_ref_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type& rt) const
+    result_type operator ()(operand_class_type& rt) const
     {
         return (rt.*m_func)();
     }
@@ -633,17 +694,21 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct thiscall_mem_fun_ref_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R           return_type;
-    typedef T           operand_class_type;
-    typedef return_type (T::*method_type)() const;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
+    typedef result_type               (operand_class_type::*method_type)() const;
 public:
     ss_explicit_k thiscall_mem_fun_ref_const_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type const& rt) const
+    result_type operator ()(operand_class_type const& rt) const
     {
         return (rt.*m_func)();
     }
@@ -656,12 +721,16 @@ private:
 template< ss_typename_param_k T
         >
 struct thiscall_mem_fun_ref_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void        return_type;
-    typedef T           operand_class_type;
-    typedef return_type (T::*method_type)();
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
+    typedef result_type               (operand_class_type::*method_type)();
 public:
     ss_explicit_k thiscall_mem_fun_ref_void_t(method_type func)
         : m_func(func)
@@ -677,12 +746,16 @@ private:
 template< ss_typename_param_k T
         >
 struct thiscall_mem_fun_ref_const_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void        return_type;
-    typedef T           operand_class_type;
-    typedef return_type (T::*method_type)() const;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
+    typedef result_type               (operand_class_type::*method_type)() const;
 public:
     ss_explicit_k thiscall_mem_fun_ref_const_void_t(method_type func)
         : m_func(func)
@@ -712,21 +785,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct cdecl_mem_fun_ref_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                           return_type;
-    typedef T                           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 # ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_CDECL  (T::*method_type)();
+    typedef result_type STLSOFT_CDECL (operand_class_type::*method_type)();
 # else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_CDECL  T::*method_type)();
+    typedef result_type (STLSOFT_CDECL operand_class_type::*method_type)();
 # endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_ref_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type& rt) const
+    result_type operator ()(operand_class_type& rt) const
     {
         return (rt.*m_func)();
     }
@@ -744,21 +821,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct cdecl_mem_fun_ref_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                           return_type;
-    typedef T                           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 # ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_CDECL  (T::*method_type)() const;
+    typedef result_type STLSOFT_CDECL  (operand_class_type::*method_type)() const;
 # else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_CDECL  T::*method_type)() const;
+    typedef result_type (STLSOFT_CDECL  operand_class_type::*method_type)() const;
 # endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_ref_const_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type const& rt) const
+    result_type operator ()(operand_class_type const& rt) const
     {
         return (rt.*m_func)();
     }
@@ -771,15 +852,19 @@ private:
 template< ss_typename_param_k T
         >
 struct cdecl_mem_fun_ref_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                        return_type;
-    typedef T                           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_CDECL  (T::*method_type)();
+    typedef result_type STLSOFT_CDECL  (operand_class_type::*method_type)();
 #  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_CDECL  T::*method_type)();
+    typedef result_type (STLSOFT_CDECL  operand_class_type::*method_type)();
 #  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_ref_void_t(method_type func)
@@ -796,15 +881,19 @@ private:
 template< ss_typename_param_k T
         >
 struct cdecl_mem_fun_ref_const_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                        return_type;
-    typedef T                           operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_CDECL  (T::*method_type)() const;
+    typedef result_type STLSOFT_CDECL  (operand_class_type::*method_type)() const;
 #  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_CDECL  T::*method_type)() const;
+    typedef result_type (STLSOFT_CDECL  operand_class_type::*method_type)() const;
 #  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k cdecl_mem_fun_ref_const_void_t(method_type func)
@@ -834,21 +923,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct fastcall_mem_fun_ref_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_FASTCALL   (T::*method_type)();
+    typedef result_type STLSOFT_FASTCALL   (operand_class_type::*method_type)();
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_FASTCALL   T::*method_type)();
+    typedef result_type (STLSOFT_FASTCALL   operand_class_type::*method_type)();
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k fastcall_mem_fun_ref_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type& rt) const
+    result_type operator ()(operand_class_type& rt) const
     {
         return (rt.*m_func)();
     }
@@ -866,21 +959,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct fastcall_mem_fun_ref_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_FASTCALL   (T::*method_type)() const;
+    typedef result_type STLSOFT_FASTCALL   (operand_class_type::*method_type)() const;
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_FASTCALL   T::*method_type)() const;
+    typedef result_type (STLSOFT_FASTCALL   operand_class_type::*method_type)() const;
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k fastcall_mem_fun_ref_const_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type const& rt) const
+    result_type operator ()(operand_class_type const& rt) const
     {
         return (rt.*m_func)();
     }
@@ -893,15 +990,19 @@ private:
 template< ss_typename_param_k T
         >
 struct fastcall_mem_fun_ref_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_FASTCALL   (T::*method_type)();
+    typedef result_type STLSOFT_FASTCALL   (operand_class_type::*method_type)();
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_FASTCALL   T::*method_type)();
+    typedef result_type (STLSOFT_FASTCALL   operand_class_type::*method_type)();
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k fastcall_mem_fun_ref_void_t(method_type func)
@@ -918,15 +1019,19 @@ private:
 template< ss_typename_param_k T
         >
 struct fastcall_mem_fun_ref_const_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_FASTCALL   (T::*method_type)() const;
+    typedef result_type STLSOFT_FASTCALL   (operand_class_type::*method_type)() const;
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_FASTCALL   T::*method_type)() const;
+    typedef result_type (STLSOFT_FASTCALL   operand_class_type::*method_type)() const;
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k fastcall_mem_fun_ref_const_void_t(method_type func)
@@ -958,21 +1063,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct stdcall_mem_fun_ref_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_STDCALL    (T::*method_type)();
+    typedef result_type STLSOFT_STDCALL    (operand_class_type::*method_type)();
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_STDCALL    T::*method_type)();
+    typedef result_type (STLSOFT_STDCALL    operand_class_type::*method_type)();
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k stdcall_mem_fun_ref_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type& rt) const
+    result_type operator ()(operand_class_type& rt) const
     {
         return (rt.*m_func)();
     }
@@ -990,21 +1099,25 @@ template< ss_typename_param_k R
         , ss_typename_param_k T
         >
 struct stdcall_mem_fun_ref_const_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, R>
+#endif
 {
 public:
-    typedef R                               return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef R                                               result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_STDCALL    (T::*method_type)() const;
+    typedef result_type STLSOFT_STDCALL    (operand_class_type::*method_type)() const;
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_STDCALL    T::*method_type)() const;
+    typedef result_type (STLSOFT_STDCALL    operand_class_type::*method_type)() const;
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k stdcall_mem_fun_ref_const_t(method_type func)
         : m_func(func)
     {}
-    return_type operator ()(operand_class_type const& rt) const
+    result_type operator ()(operand_class_type const& rt) const
     {
         return (rt.*m_func)();
     }
@@ -1017,15 +1130,19 @@ private:
 template< ss_typename_param_k T
         >
 struct stdcall_mem_fun_ref_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_STDCALL    (T::*method_type)();
+    typedef result_type STLSOFT_STDCALL    (operand_class_type::*method_type)();
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_STDCALL    T::*method_type)();
+    typedef result_type (STLSOFT_STDCALL    operand_class_type::*method_type)();
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k stdcall_mem_fun_ref_void_t(method_type func)
@@ -1042,15 +1159,19 @@ private:
 template< ss_typename_param_k T
         >
 struct stdcall_mem_fun_ref_const_void_t
+#if __cplusplus < 201103L
     : public STLSOFT_NS_QUAL_STD(unary_function)<T*, void>
+#endif
 {
 public:
-    typedef void                            return_type;
-    typedef T                               operand_class_type;
+    typedef T*                                              argument_type;
+    typedef void                                            result_type;
+    typedef result_type                                     return_type;
+    typedef T                                               operand_class_type;
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-    typedef return_type STLSOFT_STDCALL    (T::*method_type)() const;
+    typedef result_type STLSOFT_STDCALL (operand_class_type::*method_type)() const;
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-    typedef return_type (STLSOFT_STDCALL    T::*method_type)() const;
+    typedef result_type (STLSOFT_STDCALL operand_class_type::*method_type)() const;
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 public:
     ss_explicit_k stdcall_mem_fun_ref_const_void_t(method_type func)
@@ -1063,10 +1184,9 @@ public:
 private:
     method_type m_func;
 };
-
 # endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
-
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * creator functions
@@ -1083,10 +1203,11 @@ private:
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_t<R, T> mem_fun(R (T::*STLSOFT_CDECL func)())
+cdecl_mem_fun_t<R, T> mem_fun(R (T::*STLSOFT_CDECL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_t<R, T> mem_fun(R (STLSOFT_CDECL T::*func)())
+cdecl_mem_fun_t<R, T> mem_fun(R (STLSOFT_CDECL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_t<R, T>(func);
@@ -1098,10 +1219,11 @@ inline cdecl_mem_fun_t<R, T> mem_fun(R (STLSOFT_CDECL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_t<void, T> mem_fun_void(void (T::*STLSOFT_CDECL func)())
+cdecl_mem_fun_t<void, T> mem_fun_void(void (T::*STLSOFT_CDECL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_t<void, T> mem_fun_void(void (STLSOFT_CDECL T::*func)())
+cdecl_mem_fun_t<void, T> mem_fun_void(void (STLSOFT_CDECL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_t<void, T>(func);
@@ -1111,10 +1233,11 @@ inline cdecl_mem_fun_t<void, T> mem_fun_void(void (STLSOFT_CDECL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_void_t<T> mem_fun(void (T::*STLSOFT_CDECL func)())
+cdecl_mem_fun_void_t<T> mem_fun(void (T::*STLSOFT_CDECL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_void_t<T> mem_fun(void (STLSOFT_CDECL T::*func)())
+cdecl_mem_fun_void_t<T> mem_fun(void (STLSOFT_CDECL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_void_t<T>(func);
@@ -1122,10 +1245,11 @@ inline cdecl_mem_fun_void_t<T> mem_fun(void (STLSOFT_CDECL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_void_t<T> mem_fun_void(void (T::*STLSOFT_CDECL func)())
+cdecl_mem_fun_void_t<T> mem_fun_void(void (T::*STLSOFT_CDECL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_void_t<T> mem_fun_void(void (STLSOFT_CDECL T::*func)())
+cdecl_mem_fun_void_t<T> mem_fun_void(void (STLSOFT_CDECL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_void_t<T>(func);
@@ -1142,10 +1266,11 @@ inline cdecl_mem_fun_void_t<T> mem_fun_void(void (STLSOFT_CDECL T::*func)())
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_const_t<R, T> mem_fun(R (T::*STLSOFT_CDECL func)() const)
+cdecl_mem_fun_const_t<R, T> mem_fun(R (T::*STLSOFT_CDECL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_const_t<R, T> mem_fun(R (STLSOFT_CDECL T::*func)() const)
+cdecl_mem_fun_const_t<R, T> mem_fun(R (STLSOFT_CDECL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_const_t<R, T>(func);
@@ -1157,10 +1282,11 @@ inline cdecl_mem_fun_const_t<R, T> mem_fun(R (STLSOFT_CDECL T::*func)() const)
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_const_t<void, T> mem_fun_void(void (T::*STLSOFT_CDECL func)() const)
+cdecl_mem_fun_const_t<void, T> mem_fun_void(void (T::*STLSOFT_CDECL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_const_t<void, T> mem_fun_void(void (STLSOFT_CDECL T::*func)() const)
+cdecl_mem_fun_const_t<void, T> mem_fun_void(void (STLSOFT_CDECL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_const_t<void, T>(func);
@@ -1170,10 +1296,11 @@ inline cdecl_mem_fun_const_t<void, T> mem_fun_void(void (STLSOFT_CDECL T::*func)
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_const_void_t<T> mem_fun(void (T::*STLSOFT_CDECL func)() const)
+cdecl_mem_fun_const_void_t<T> mem_fun(void (T::*STLSOFT_CDECL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_const_void_t<T> mem_fun(void (STLSOFT_CDECL T::*func)() const)
+cdecl_mem_fun_const_void_t<T> mem_fun(void (STLSOFT_CDECL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_const_void_t<T>(func);
@@ -1181,10 +1308,11 @@ inline cdecl_mem_fun_const_void_t<T> mem_fun(void (STLSOFT_CDECL T::*func)() con
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_const_void_t<T> mem_fun_void(void (T::*STLSOFT_CDECL func)() const)
+cdecl_mem_fun_const_void_t<T> mem_fun_void(void (T::*STLSOFT_CDECL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_CDECL T::*func)() const)
+cdecl_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_CDECL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_const_void_t<T>(func);
@@ -1206,10 +1334,11 @@ inline cdecl_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_CDECL T::*func)(
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_t<R, T> mem_fun(R (T::*STLSOFT_FASTCALL func)())
+fastcall_mem_fun_t<R, T> mem_fun(R (T::*STLSOFT_FASTCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_t<R, T> mem_fun(R (STLSOFT_FASTCALL T::*func)())
+fastcall_mem_fun_t<R, T> mem_fun(R (STLSOFT_FASTCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_t<R, T>(func);
@@ -1221,10 +1350,11 @@ inline fastcall_mem_fun_t<R, T> mem_fun(R (STLSOFT_FASTCALL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_t<void, T> mem_fun_void(void (T::*STLSOFT_FASTCALL func)())
+fastcall_mem_fun_t<void, T> mem_fun_void(void (T::*STLSOFT_FASTCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_t<void, T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)())
+fastcall_mem_fun_t<void, T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_t<void, T>(func);
@@ -1234,10 +1364,11 @@ inline fastcall_mem_fun_t<void, T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_void_t<T> mem_fun(void (T::*STLSOFT_FASTCALL func)())
+fastcall_mem_fun_void_t<T> mem_fun(void (T::*STLSOFT_FASTCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_void_t<T> mem_fun(void (STLSOFT_FASTCALL T::*func)())
+fastcall_mem_fun_void_t<T> mem_fun(void (STLSOFT_FASTCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_void_t<T>(func);
@@ -1245,10 +1376,11 @@ inline fastcall_mem_fun_void_t<T> mem_fun(void (STLSOFT_FASTCALL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_void_t<T> mem_fun_void(void (T::*STLSOFT_FASTCALL func)())
+fastcall_mem_fun_void_t<T> mem_fun_void(void (T::*STLSOFT_FASTCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_void_t<T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)())
+fastcall_mem_fun_void_t<T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_void_t<T>(func);
@@ -1269,10 +1401,11 @@ inline fastcall_mem_fun_void_t<T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)(
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_const_t<R, T> mem_fun(R (T::*STLSOFT_FASTCALL func)() const)
+fastcall_mem_fun_const_t<R, T> mem_fun(R (T::*STLSOFT_FASTCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_const_t<R, T> mem_fun(R (STLSOFT_FASTCALL T::*func)() const)
+fastcall_mem_fun_const_t<R, T> mem_fun(R (STLSOFT_FASTCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_const_t<R, T>(func);
@@ -1284,10 +1417,11 @@ inline fastcall_mem_fun_const_t<R, T> mem_fun(R (STLSOFT_FASTCALL T::*func)() co
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_const_t<void, T> mem_fun_void(void (T::*STLSOFT_FASTCALL func)() const)
+fastcall_mem_fun_const_t<void, T> mem_fun_void(void (T::*STLSOFT_FASTCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_const_t<void, T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)() const)
+fastcall_mem_fun_const_t<void, T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_const_t<void, T>(func);
@@ -1297,10 +1431,11 @@ inline fastcall_mem_fun_const_t<void, T> mem_fun_void(void (STLSOFT_FASTCALL T::
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_const_void_t<T> mem_fun(void (T::*STLSOFT_FASTCALL func)() const)
+fastcall_mem_fun_const_void_t<T> mem_fun(void (T::*STLSOFT_FASTCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_const_void_t<T> mem_fun(void (STLSOFT_FASTCALL T::*func)() const)
+fastcall_mem_fun_const_void_t<T> mem_fun(void (STLSOFT_FASTCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_const_void_t<T>(func);
@@ -1308,10 +1443,11 @@ inline fastcall_mem_fun_const_void_t<T> mem_fun(void (STLSOFT_FASTCALL T::*func)
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_const_void_t<T> mem_fun_void(void (T::*STLSOFT_FASTCALL func)() const)
+fastcall_mem_fun_const_void_t<T> mem_fun_void(void (T::*STLSOFT_FASTCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)() const)
+fastcall_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_FASTCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_const_void_t<T>(func);
@@ -1334,10 +1470,11 @@ inline fastcall_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_FASTCALL T::*
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_t<R, T> mem_fun(R (T::*STLSOFT_STDCALL func)())
+stdcall_mem_fun_t<R, T> mem_fun(R (T::*STLSOFT_STDCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_t<R, T> mem_fun(R (STLSOFT_STDCALL T::*func)())
+stdcall_mem_fun_t<R, T> mem_fun(R (STLSOFT_STDCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_t<R, T>(func);
@@ -1349,10 +1486,11 @@ inline stdcall_mem_fun_t<R, T> mem_fun(R (STLSOFT_STDCALL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_t<void, T> mem_fun_void(void (T::*STLSOFT_STDCALL func)())
+stdcall_mem_fun_t<void, T> mem_fun_void(void (T::*STLSOFT_STDCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_t<void, T> mem_fun_void(void (STLSOFT_STDCALL T::*func)())
+stdcall_mem_fun_t<void, T> mem_fun_void(void (STLSOFT_STDCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_t<void, T>(func);
@@ -1362,10 +1500,11 @@ inline stdcall_mem_fun_t<void, T> mem_fun_void(void (STLSOFT_STDCALL T::*func)()
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_void_t<T> mem_fun(void (T::*STLSOFT_STDCALL func)())
+stdcall_mem_fun_void_t<T> mem_fun(void (T::*STLSOFT_STDCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_void_t<T> mem_fun(void (STLSOFT_STDCALL T::*func)())
+stdcall_mem_fun_void_t<T> mem_fun(void (STLSOFT_STDCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_void_t<T>(func);
@@ -1373,10 +1512,11 @@ inline stdcall_mem_fun_void_t<T> mem_fun(void (STLSOFT_STDCALL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_void_t<T> mem_fun_void(void (T::*STLSOFT_STDCALL func)())
+stdcall_mem_fun_void_t<T> mem_fun_void(void (T::*STLSOFT_STDCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_void_t<T> mem_fun_void(void (STLSOFT_STDCALL T::*func)())
+stdcall_mem_fun_void_t<T> mem_fun_void(void (STLSOFT_STDCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_void_t<T>(func);
@@ -1397,10 +1537,11 @@ inline stdcall_mem_fun_void_t<T> mem_fun_void(void (STLSOFT_STDCALL T::*func)())
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_const_t<R, T> mem_fun(R (T::*STLSOFT_STDCALL func)() const)
+stdcall_mem_fun_const_t<R, T> mem_fun(R (T::*STLSOFT_STDCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_const_t<R, T> mem_fun(R (STLSOFT_STDCALL T::*func)() const)
+stdcall_mem_fun_const_t<R, T> mem_fun(R (STLSOFT_STDCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_const_t<R, T>(func);
@@ -1412,10 +1553,11 @@ inline stdcall_mem_fun_const_t<R, T> mem_fun(R (STLSOFT_STDCALL T::*func)() cons
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_const_t<void, T> mem_fun_void(void (T::*STLSOFT_STDCALL func)() const)
+stdcall_mem_fun_const_t<void, T> mem_fun_void(void (T::*STLSOFT_STDCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_const_t<void, T> mem_fun_void(void (STLSOFT_STDCALL T::*func)() const)
+stdcall_mem_fun_const_t<void, T> mem_fun_void(void (STLSOFT_STDCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_const_t<void, T>(func);
@@ -1425,10 +1567,11 @@ inline stdcall_mem_fun_const_t<void, T> mem_fun_void(void (STLSOFT_STDCALL T::*f
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_const_void_t<T> mem_fun(void (T::*STLSOFT_STDCALL func)() const)
+stdcall_mem_fun_const_void_t<T> mem_fun(void (T::*STLSOFT_STDCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_const_void_t<T> mem_fun(void (STLSOFT_STDCALL T::*func)() const)
+stdcall_mem_fun_const_void_t<T> mem_fun(void (STLSOFT_STDCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_const_void_t<T>(func);
@@ -1436,10 +1579,11 @@ inline stdcall_mem_fun_const_void_t<T> mem_fun(void (STLSOFT_STDCALL T::*func)()
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_const_void_t<T> mem_fun_void(void (T::*STLSOFT_STDCALL func)() const)
+stdcall_mem_fun_const_void_t<T> mem_fun_void(void (T::*STLSOFT_STDCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_STDCALL T::*func)() const)
+stdcall_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_STDCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_const_void_t<T>(func);
@@ -1462,7 +1606,8 @@ inline stdcall_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_STDCALL T::*fu
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
-inline thiscall_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*func)())
+inline
+thiscall_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*func)())
 {
     return thiscall_mem_fun_ref_t<R, T>(func);
 }
@@ -1473,7 +1618,8 @@ inline thiscall_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*func)())
 
 template< ss_typename_param_k T
         >
-inline thiscall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*func)())
+inline
+thiscall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*func)())
 {
     return thiscall_mem_fun_ref_t<void, T>(func);
 }
@@ -1482,14 +1628,16 @@ inline thiscall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*func)())
 
 template< ss_typename_param_k T
         >
-inline thiscall_mem_fun_ref_void_t<T> mem_fun_ref(void (T::*func)())
+inline
+thiscall_mem_fun_ref_void_t<T> mem_fun_ref(void (T::*func)())
 {
     return thiscall_mem_fun_ref_void_t<T>(func);
 }
 
 template< ss_typename_param_k T
         >
-inline thiscall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*func)())
+inline
+thiscall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*func)())
 {
     return thiscall_mem_fun_ref_void_t<T>(func);
 }
@@ -1505,7 +1653,8 @@ inline thiscall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*func)())
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
-inline thiscall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*func)() const)
+inline
+thiscall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*func)() const)
 {
     return thiscall_mem_fun_ref_const_t<R, T>(func);
 }
@@ -1516,7 +1665,8 @@ inline thiscall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*func)() const)
 
 template< ss_typename_param_k T
         >
-inline thiscall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*func)() const)
+inline
+thiscall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*func)() const)
 {
     return thiscall_mem_fun_ref_const_t<void, T>(func);
 }
@@ -1525,14 +1675,16 @@ inline thiscall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*func)() 
 
 template< ss_typename_param_k T
         >
-inline thiscall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (T::*func)() const)
+inline
+thiscall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (T::*func)() const)
 {
     return thiscall_mem_fun_ref_const_void_t<T>(func);
 }
 
 template< ss_typename_param_k T
         >
-inline thiscall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*func)() const)
+inline
+thiscall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*func)() const)
 {
     return thiscall_mem_fun_ref_const_void_t<T>(func);
 }
@@ -1551,10 +1703,11 @@ inline thiscall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*func)() c
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*STLSOFT_CDECL func)())
+cdecl_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*STLSOFT_CDECL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_ref_t<R, T> mem_fun_ref(R (STLSOFT_CDECL T::*func)())
+cdecl_mem_fun_ref_t<R, T> mem_fun_ref(R (STLSOFT_CDECL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_ref_t<R, T>(func);
@@ -1566,10 +1719,11 @@ inline cdecl_mem_fun_ref_t<R, T> mem_fun_ref(R (STLSOFT_CDECL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_CDECL func)())
+cdecl_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_CDECL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_ref_t<void, T> mem_fun_ref_void(void (STLSOFT_CDECL T::*func)())
+cdecl_mem_fun_ref_t<void, T> mem_fun_ref_void(void (STLSOFT_CDECL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_ref_t<void, T>(func);
@@ -1579,10 +1733,11 @@ inline cdecl_mem_fun_ref_t<void, T> mem_fun_ref_void(void (STLSOFT_CDECL T::*fun
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_ref_void_t<T> mem_fun_ref(void (T::*STLSOFT_CDECL func)())
+cdecl_mem_fun_ref_void_t<T> mem_fun_ref(void (T::*STLSOFT_CDECL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_ref_void_t<T> mem_fun_ref(void (STLSOFT_CDECL T::*func)())
+cdecl_mem_fun_ref_void_t<T> mem_fun_ref(void (STLSOFT_CDECL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_ref_void_t<T>(func);
@@ -1590,10 +1745,11 @@ inline cdecl_mem_fun_ref_void_t<T> mem_fun_ref(void (STLSOFT_CDECL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_CDECL func)())
+cdecl_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_CDECL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_ref_void_t<T> mem_fun_ref_void(void (STLSOFT_CDECL T::*func)())
+cdecl_mem_fun_ref_void_t<T> mem_fun_ref_void(void (STLSOFT_CDECL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_ref_void_t<T>(func);
@@ -1610,10 +1766,11 @@ inline cdecl_mem_fun_ref_void_t<T> mem_fun_ref_void(void (STLSOFT_CDECL T::*func
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*STLSOFT_CDECL func)() const)
+cdecl_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*STLSOFT_CDECL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_ref_const_t<R, T> mem_fun_ref(R (STLSOFT_CDECL T::*func)() const)
+cdecl_mem_fun_ref_const_t<R, T> mem_fun_ref(R (STLSOFT_CDECL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_ref_const_t<R, T>(func);
@@ -1625,10 +1782,11 @@ inline cdecl_mem_fun_ref_const_t<R, T> mem_fun_ref(R (STLSOFT_CDECL T::*func)() 
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_CDECL func)() const)
+cdecl_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_CDECL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (STLSOFT_CDECL T::*func)() const)
+cdecl_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (STLSOFT_CDECL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_ref_const_t<void, T>(func);
@@ -1638,10 +1796,11 @@ inline cdecl_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (STLSOFT_CDECL T
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref(void (T::*STLSOFT_CDECL func)() const)
+cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref(void (T::*STLSOFT_CDECL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref(void (STLSOFT_CDECL T::*func)() const)
+cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref(void (STLSOFT_CDECL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_ref_const_void_t<T>(func);
@@ -1649,10 +1808,11 @@ inline cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref(void (STLSOFT_CDECL T::*fun
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_CDECL func)() const)
+cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_CDECL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_CDECL T::*func)() const)
+cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_CDECL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return cdecl_mem_fun_ref_const_void_t<T>(func);
@@ -1674,10 +1834,11 @@ inline cdecl_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_CDECL T:
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*STLSOFT_FASTCALL func)())
+fastcall_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*STLSOFT_FASTCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_ref_t<R, T> mem_fun_ref(R (STLSOFT_FASTCALL T::*func)())
+fastcall_mem_fun_ref_t<R, T> mem_fun_ref(R (STLSOFT_FASTCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_ref_t<R, T>(func);
@@ -1689,10 +1850,11 @@ inline fastcall_mem_fun_ref_t<R, T> mem_fun_ref(R (STLSOFT_FASTCALL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_FASTCALL func)())
+fastcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_FASTCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (STLSOFT_FASTCALL T::*func)())
+fastcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (STLSOFT_FASTCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_ref_t<void, T>(func);
@@ -1702,10 +1864,11 @@ inline fastcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (STLSOFT_FASTCALL T
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_ref_void_t<T> mem_fun_ref(void (T::*STLSOFT_FASTCALL func)())
+fastcall_mem_fun_ref_void_t<T> mem_fun_ref(void (T::*STLSOFT_FASTCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_ref_void_t<T> mem_fun_ref(void (STLSOFT_FASTCALL T::*func)())
+fastcall_mem_fun_ref_void_t<T> mem_fun_ref(void (STLSOFT_FASTCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_ref_void_t<T>(func);
@@ -1713,10 +1876,11 @@ inline fastcall_mem_fun_ref_void_t<T> mem_fun_ref(void (STLSOFT_FASTCALL T::*fun
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_FASTCALL func)())
+fastcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_FASTCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (STLSOFT_FASTCALL T::*func)())
+fastcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (STLSOFT_FASTCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_ref_void_t<T>(func);
@@ -1737,10 +1901,11 @@ inline fastcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (STLSOFT_FASTCALL T:
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*STLSOFT_FASTCALL func)() const)
+fastcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*STLSOFT_FASTCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (STLSOFT_FASTCALL T::*func)() const)
+fastcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (STLSOFT_FASTCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_ref_const_t<R, T>(func);
@@ -1752,10 +1917,11 @@ inline fastcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (STLSOFT_FASTCALL T::*fu
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_FASTCALL func)() const)
+fastcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_FASTCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (STLSOFT_FASTCALL T::*func)() const)
+fastcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (STLSOFT_FASTCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_ref_const_t<void, T>(func);
@@ -1765,10 +1931,11 @@ inline fastcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (STLSOFT_FAST
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (T::*STLSOFT_FASTCALL func)() const)
+fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (T::*STLSOFT_FASTCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (STLSOFT_FASTCALL T::*func)() const)
+fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (STLSOFT_FASTCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_ref_const_void_t<T>(func);
@@ -1776,10 +1943,11 @@ inline fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (STLSOFT_FASTCALL T
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_FASTCALL func)() const)
+fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_FASTCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_FASTCALL T::*func)() const)
+fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_FASTCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return fastcall_mem_fun_ref_const_void_t<T>(func);
@@ -1802,10 +1970,11 @@ inline fastcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_FASTC
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*STLSOFT_STDCALL func)())
+stdcall_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*STLSOFT_STDCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_ref_t<R, T> mem_fun_ref(R (STLSOFT_STDCALL T::*func)())
+stdcall_mem_fun_ref_t<R, T> mem_fun_ref(R (STLSOFT_STDCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_ref_t<R, T>(func);
@@ -1817,10 +1986,11 @@ inline stdcall_mem_fun_ref_t<R, T> mem_fun_ref(R (STLSOFT_STDCALL T::*func)())
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_STDCALL func)())
+stdcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_STDCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (STLSOFT_STDCALL T::*func)())
+stdcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (STLSOFT_STDCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_ref_t<void, T>(func);
@@ -1830,10 +2000,11 @@ inline stdcall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (STLSOFT_STDCALL T::
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_ref_void_t<T> mem_fun_ref(void (T::*STLSOFT_STDCALL func)())
+stdcall_mem_fun_ref_void_t<T> mem_fun_ref(void (T::*STLSOFT_STDCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_ref_void_t<T> mem_fun_ref(void (STLSOFT_STDCALL T::*func)())
+stdcall_mem_fun_ref_void_t<T> mem_fun_ref(void (STLSOFT_STDCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_ref_void_t<T>(func);
@@ -1841,10 +2012,11 @@ inline stdcall_mem_fun_ref_void_t<T> mem_fun_ref(void (STLSOFT_STDCALL T::*func)
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_STDCALL func)())
+stdcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_STDCALL func)())
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (STLSOFT_STDCALL T::*func)())
+stdcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (STLSOFT_STDCALL T::*func)())
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_ref_void_t<T>(func);
@@ -1865,10 +2037,11 @@ inline stdcall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (STLSOFT_STDCALL T::*
 template< ss_typename_param_k R
         , ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*STLSOFT_STDCALL func)() const)
+stdcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*STLSOFT_STDCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (STLSOFT_STDCALL T::*func)() const)
+stdcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (STLSOFT_STDCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_ref_const_t<R, T>(func);
@@ -1880,10 +2053,11 @@ inline stdcall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (STLSOFT_STDCALL T::*func
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_STDCALL func)() const)
+stdcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*STLSOFT_STDCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (STLSOFT_STDCALL T::*func)() const)
+stdcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (STLSOFT_STDCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_ref_const_t<void, T>(func);
@@ -1893,10 +2067,11 @@ inline stdcall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (STLSOFT_STDCA
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (T::*STLSOFT_STDCALL func)() const)
+stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (T::*STLSOFT_STDCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (STLSOFT_STDCALL T::*func)() const)
+stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (STLSOFT_STDCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_ref_const_void_t<T>(func);
@@ -1904,24 +2079,28 @@ inline stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (STLSOFT_STDCALL T::
 
 template< ss_typename_param_k T
         >
+inline
 #ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
-inline stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_STDCALL func)() const)
+stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*STLSOFT_STDCALL func)() const)
 #else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
-inline stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_STDCALL T::*func)() const)
+stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_STDCALL T::*func)() const)
 #endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
 {
     return stdcall_mem_fun_ref_const_void_t<T>(func);
 }
-
 # endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
-
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
+
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

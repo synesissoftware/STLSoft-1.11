@@ -4,11 +4,11 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MINOR      0
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_REVISION   6
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       38
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +81,7 @@
 # define STLSOFT_INCL_H_STDLIB
 # include <stdlib.h>
 #endif /* !STLSOFT_INCL_H_STDLIB */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler / library feature discrimination
@@ -119,6 +121,7 @@
 # define STLSOFT_STD_CSTDLIB_WTOF_SUPPORTED
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -127,6 +130,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper classes
@@ -258,6 +262,7 @@ inline int system(S const& s)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

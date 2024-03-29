@@ -4,11 +4,11 @@
  * Purpose:     stlsoft::filesystem_exception_base class template
  *
  * Created:     1st January 2017
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_MAJOR     1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_MINOR     0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_REVISION  1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_EDIT      4
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # error This file cannot be included when exception-handling is not supported
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +87,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -185,6 +188,7 @@ public: // Fields
     string_type const   EntryId;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -192,6 +196,7 @@ public: // Fields
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

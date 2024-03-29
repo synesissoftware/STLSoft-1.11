@@ -4,7 +4,7 @@
  * Purpose:     errorinfo_desc class for accessing description from the COM error.
  *
  * Created:     19th December 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,9 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MAJOR       1
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MINOR       1
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    3
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        47
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -66,6 +67,7 @@
 /*
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -93,6 +95,7 @@
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -111,6 +114,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -279,6 +283,7 @@ private:
 private:
     class_type const& operator =(class_type const&);
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -470,6 +475,7 @@ using ::comstl::c_str_ptr_null_o;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

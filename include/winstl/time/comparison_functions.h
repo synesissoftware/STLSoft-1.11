@@ -4,7 +4,7 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR    2
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     63
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # include <winstl/api/external/Time.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Time */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -102,6 +104,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -459,6 +462,7 @@ winstl_C_absolute_difference_in_seconds_SYSTEMTIMEs(
     return winstl_C_absolute_difference_in_milliseconds_SYSTEMTIMEs(t1, t2) / 1000;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -467,6 +471,7 @@ winstl_C_absolute_difference_in_seconds_SYSTEMTIMEs(
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -699,6 +704,7 @@ absolute_difference_in_seconds(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * backwards compatibility
  */
@@ -724,6 +730,7 @@ STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIMEs(SYSTEMTIME const* lhs, SYST
 
 #endif /* !STLSOFT_OBSOLETE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -737,6 +744,7 @@ STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIMEs(SYSTEMTIME const* lhs, SYST
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

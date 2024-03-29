@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_MINOR    2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_REVISION 3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_EDIT     116
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_HPP_STRING_EDIT     117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 #ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME
 # include <winstl/shims/access/string/time.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

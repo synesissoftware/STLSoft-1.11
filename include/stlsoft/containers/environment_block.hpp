@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MINOR     2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_REVISION  10
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT      61
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -85,6 +86,7 @@
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -93,6 +95,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -314,6 +317,7 @@ private:
     pointer_buffer_type     m_pointers;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs for commonly encountered types
  */
@@ -330,6 +334,7 @@ typedef basic_environment_block<ss_char_w_t>    environment_block_w;
 
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
@@ -339,6 +344,7 @@ typedef basic_environment_block<ss_char_w_t>    environment_block_w;
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     28th November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_MAJOR       4
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_MINOR       0
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_REVISION    7
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_EDIT        108
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_EDIT        109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -244,6 +246,7 @@ using ::atlstl::c_str_ptr_null_w;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

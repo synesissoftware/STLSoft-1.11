@@ -4,11 +4,11 @@
  * Purpose:     Range-adapted Sequence algorithms.
  *
  * Created:     19th July 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -72,8 +72,9 @@
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MAJOR     1
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MINOR     1
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_REVISION  6
-# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_EDIT      26
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
@@ -86,6 +87,7 @@ STLSOFT_COMPILER_IS_MSVC:     _MSC_VER < 1200
 STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 [Incompatibilies-end]
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -113,6 +115,7 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR */
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -131,6 +134,7 @@ namespace rangelib_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -335,6 +339,7 @@ inline void sr_replace_if(S &s, P pred, T newVal)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

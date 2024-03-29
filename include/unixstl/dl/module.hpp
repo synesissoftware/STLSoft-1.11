@@ -4,11 +4,11 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     30th November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    4
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     237
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     238
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -105,6 +107,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -309,6 +312,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * access shims
  */
@@ -321,6 +325,7 @@ inline void* get_module_handle(UNIXSTL_NS_QUAL(module) const& m)
 {
     return m.get_module_handle();
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -415,6 +420,7 @@ inline module::module_handle_type module::get_module_handle() const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -428,6 +434,7 @@ inline module::module_handle_type module::get_module_handle() const
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

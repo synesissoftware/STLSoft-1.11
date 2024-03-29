@@ -4,11 +4,11 @@
  * Purpose:     Definition of the winstl::conversion_error exception class.
  *
  * Created:     16th December 2006
- * Updated:     26th January 2021
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_MAJOR     1
 # define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_MINOR     0
 # define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_REVISION  7
-# define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_EDIT      22
+# define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_EDIT      23
 #endif /* !WINSTL_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_CONVERSION_ERROR
 # include <stlsoft/error/conversion_error.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_CONVERSION_ERROR */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -91,6 +93,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -167,6 +170,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -180,6 +184,7 @@ private:
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

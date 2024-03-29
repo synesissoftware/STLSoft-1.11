@@ -5,11 +5,11 @@
  *              class.
  *
  * Created:     1st January 2017
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ENTRY_NOT_FOUND_EXCEPTION_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ENTRY_NOT_FOUND_EXCEPTION_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ENTRY_NOT_FOUND_EXCEPTION_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ENTRY_NOT_FOUND_EXCEPTION_EDIT       5
+# define PLATFORMSTL_VER_PLATFORMSTL_EXCEPTION_HPP_ENTRY_NOT_FOUND_EXCEPTION_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/exception/entry_not_found_exception.hpp
@@ -59,6 +59,7 @@
  *   platformstl::entry_not_found_exception class
  *   (\ref group__library__Exception "Exception" Library).
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +83,7 @@
 #else /* ? operating system */
 # error Operating system not discriminated
 #endif /* operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -115,6 +117,7 @@ typedef WINSTL_NS_QUAL(entry_not_found_exception)           entry_not_found_exce
 # error Operating system not discriminated
 #endif /* operating system */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -126,6 +129,7 @@ typedef WINSTL_NS_QUAL(entry_not_found_exception)           entry_not_found_exce
 } /* namespace platformstl_project */
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

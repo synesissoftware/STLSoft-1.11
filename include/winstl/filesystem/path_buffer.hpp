@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_path_buffer template class.
  *
  * Created:     27th May 2020
- * Updated:     4th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_MAJOR     1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_MINOR     0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_REVISION  1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT      1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +75,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER
 # include <stlsoft/filesystem/path_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -97,6 +99,7 @@ namespace winstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * classes
  */
@@ -117,6 +120,7 @@ struct path_buffer_generator
     ,   V_internalBufferSize
     >                                                       type;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -146,6 +150,7 @@ typedef path_buffer_generator<
     TCHAR
 >::type                                                     path_buffer;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -164,6 +169,7 @@ typedef path_buffer_generator<
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

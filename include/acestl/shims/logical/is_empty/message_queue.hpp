@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE_Message_Queue class.
  *
  * Created:     16th December 2004
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_MAJOR       3
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_MINOR       0
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_REVISION    9
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT        40
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 # include <ace/Message_Queue.h>             // for ACE_Message_Queue<>
 #endif /* !STLSOFT_INCL_ACE_H_MESSAGE_QUEUE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +88,7 @@
 namespace stlsoft
 {
 #endif /* !STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -141,6 +144,7 @@ inline int is_empty(ACE_Message_Queue<ACE_SYNCH_USE> const& q)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* !STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

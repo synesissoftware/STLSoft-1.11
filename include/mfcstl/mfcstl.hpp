@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Thanks:      To Cláudio Albuquerque for suggesting the inclusion of
  *              atlstr.h.
@@ -55,7 +55,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     5
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  6
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      108
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp
@@ -141,6 +141,7 @@
 #define _MFCSTL_VER_REVISION    1
 #define _MFCSTL_VER             _MFCSTL_VER_1_6_1_B02
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -170,6 +171,7 @@
 # pragma warn .8022 /* Suppresses "'f()' hides virtual function 'g()'" */
 # pragma warn .8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility check(s)
@@ -312,6 +314,7 @@
  * or in the global namespace.
  */
 
+
 /* /////////////////////////////////////
  * obsolete preprocessor symbol detection
  */
@@ -333,6 +336,7 @@
 #  define MFCSTL_NO_NAMESPACE
 # endif /* !MFCSTL_NO_NAMESPACE */
 #endif /* _MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * namespace support discrimination
@@ -363,6 +367,7 @@
 #  endif /* !_MFCSTL_NO_NAMESPACE */
 # endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
 #endif /* MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////
  * declaration '*stl*' namespace
@@ -538,6 +543,7 @@ typedef STLSOFT_NS_QUAL(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
 namespace mfcstl = ::stlsoft::mfcstl_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

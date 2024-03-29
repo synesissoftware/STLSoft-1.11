@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 20th February 2024
+ * Updated: 11th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       157
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       158
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -496,8 +496,9 @@ private:
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-////////////////////////////////////////////////////////////////////////////
-// Operators
+/* /////////////////////////////////////////////////////////////////////////
+ * operators
+ */
 
 inline
 us_bool_t
@@ -948,7 +949,9 @@ readdir_sequence::const_iterator::equal(
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

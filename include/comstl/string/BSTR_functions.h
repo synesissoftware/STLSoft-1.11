@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 8
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     105
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -86,6 +87,7 @@
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -105,6 +107,7 @@ namespace comstl_project
 
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -327,6 +330,7 @@ comstl_C_BSTR_compare(
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -335,6 +339,7 @@ comstl_C_BSTR_compare(
 namespace comstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -558,6 +563,7 @@ BSTR_compare(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * backwards compatibility
  */
@@ -740,6 +746,7 @@ bstr_compare(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

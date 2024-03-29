@@ -4,11 +4,11 @@
  * Purpose:     stopwatch class.
  *
  * Created:     16th January 2002
- * Updated:     24th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR    5
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     77
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +74,7 @@
 # define STLSOFT_INCL_SYS_H_TIME
 # include <sys/time.h>
 #endif /* !STLSOFT_INCL_SYS_H_TIME */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -92,6 +94,7 @@ namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -201,6 +204,7 @@ private: // Fields
     epoch_type  m_end;
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -449,6 +453,7 @@ stopwatch::stop_get_nanoseconds_and_restart()
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

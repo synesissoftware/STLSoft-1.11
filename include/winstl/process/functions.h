@@ -4,7 +4,7 @@
  * Purpose:     Process functions.
  *
  * Created:     12th March 2006
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 6
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     32
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -83,6 +84,7 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -101,6 +103,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -201,6 +204,7 @@ STLSOFT_INLINE BOOL winstl_C_CreateProcess0A(ws_char_a_t const* cmdLine)
     return winstl_C_CreateProcessEA(cmdLine, NULL);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * obsolete functions
  */
@@ -208,6 +212,7 @@ STLSOFT_INLINE BOOL winstl_C_CreateProcess0A(ws_char_a_t const* cmdLine)
 #define winstl__CreateProcessFEA                            winstl_C_CreateProcessFEA_a
 #define winstl__CreateProcessEA                             winstl_C_CreateProcessEA
 #define winstl__CreateProcess0A                             winstl_C_CreateProcess0A
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -217,6 +222,7 @@ STLSOFT_INLINE BOOL winstl_C_CreateProcess0A(ws_char_a_t const* cmdLine)
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -324,6 +330,7 @@ inline BOOL CreateProcess(ws_char_a_t const* cmdLine)
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -337,6 +344,7 @@ inline BOOL CreateProcess(ws_char_a_t const* cmdLine)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

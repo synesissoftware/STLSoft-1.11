@@ -4,7 +4,7 @@
  * Purpose:     Facade for the standard C Streams API.
  *
  * Created:     31st May 2009
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MINOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    4
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        24
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -137,6 +138,7 @@
 # include <stdio.h>
 #endif /* !STLSOFT_INCL_H_STDIO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -154,6 +156,7 @@ namespace stlsoft
 namespace platformstl_project
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -649,6 +652,7 @@ private: // Member Variables
     Ref m_ref;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * types
  */
@@ -665,6 +669,7 @@ typedef FILE_stream_base<
     refcount_policy_multi_threaded
 ,   atomic_int_t
 >                                                           thread_shareable_FILE_stream;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shims
@@ -716,6 +721,7 @@ get_FILE_stream_Ref(
     return file.get();
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -756,6 +762,7 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !PLATFORMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

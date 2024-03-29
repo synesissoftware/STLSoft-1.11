@@ -4,7 +4,7 @@
  * Purpose:     Modification functions for Windows time structures.
  *
  * Created:     2nd February 2011
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT     12
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +68,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -88,6 +90,7 @@ namespace winstl_project
 
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -246,6 +249,7 @@ winstl_C_increment_SYSTEMTIME(
     return FALSE;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
@@ -347,6 +351,7 @@ increment_SYSTEMTIME(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * backwards compatibility
  */
@@ -354,6 +359,7 @@ increment_SYSTEMTIME(
 #ifdef STLSOFT_OBSOLETE
 
 #endif /* !STLSOFT_OBSOLETE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -368,6 +374,7 @@ increment_SYSTEMTIME(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

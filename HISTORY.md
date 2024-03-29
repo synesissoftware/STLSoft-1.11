@@ -4,6 +4,28 @@
 ----
 
 
+29th March 2024 - 1.11.1-alpha5 released
+----------------------------------------
+
+ * various GCC-11 compatibility fixes;
+
+
+18th March 2024 - 1.11.1-alpha4 released
+----------------------------------------
+
+ * `stlsoft::basic_simple_string<>` now has `#equal()`;
+ * added 'stlsoft::std_chrono_hrc_stopwatch' stopwatch type;
+ * various performance improvements;
+
+
+16th March 2024 - 1.11.1-alpha3 released
+----------------------------------------
+
+ * `stlsoft::basic_simple_string<>` now has `#contains()`;
+ * `stlsoft::basic_static_string<>` now has `#contains()`;
+ * wholesale automated layout canonicalisation;
+
+
 1st March 2024 - 1.11.1-alpha2 released
 ---------------------------------------
 

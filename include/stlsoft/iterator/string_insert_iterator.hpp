@@ -5,11 +5,11 @@
  *              form via string access shims.
  *
  * Created:     6th April 2005
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,9 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_REVISION   7
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       30
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +78,7 @@
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,12 +88,14 @@ namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -217,6 +221,7 @@ string_inserter(
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

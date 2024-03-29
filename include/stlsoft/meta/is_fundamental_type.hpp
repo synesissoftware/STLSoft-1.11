@@ -4,11 +4,11 @@
  * Purpose:     is_fundamental_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_MAJOR     1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_MINOR     1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_REVISION  5
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_EDIT      21
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -99,6 +100,7 @@
 # include <stlsoft/meta/util/meta_.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -107,6 +109,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -141,6 +144,7 @@ struct is_fundamental_type
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

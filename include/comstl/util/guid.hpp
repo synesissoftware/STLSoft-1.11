@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   11
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       64
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -87,6 +88,7 @@
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -105,6 +107,7 @@ namespace comstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * classes
@@ -230,6 +233,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
  */
@@ -346,6 +350,7 @@ inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(COMSTL_NS_QUAL(guid) c
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * operators
  */
@@ -379,6 +384,7 @@ inline cs_bool_t operator !=(GUID const& lhs, guid const& rhs)
 {
     return !operator ==(lhs, rhs);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -563,6 +569,7 @@ using ::comstl::c_str_ptr_null_o;
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

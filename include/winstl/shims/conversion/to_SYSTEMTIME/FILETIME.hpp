@@ -4,7 +4,7 @@
  * Purpose:     winstl::to_SYSTEMTIME(FILETIME const&) overload.
  *
  * Created:     24th May 2002
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_MAJOR    1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_MINOR    1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_REVISION 3
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_EDIT     22
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_FILETIME_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +85,7 @@
 # include <winstl/api/external/Time.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Time */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -102,6 +104,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -136,6 +139,7 @@ inline const SYSTEMTIME to_SYSTEMTIME(FILETIME const& rhs)
     return st;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -149,6 +153,7 @@ inline const SYSTEMTIME to_SYSTEMTIME(FILETIME const& rhs)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

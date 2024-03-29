@@ -4,11 +4,11 @@
  * Purpose:     String access shims for CString
  *
  * Created:     24th May 2002
- * Updated:     28th November 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,9 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MAJOR    4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MINOR    0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_REVISION 7
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     100
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +72,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -271,6 +273,7 @@ using ::mfcstl::c_str_ptr_null_a;
 # endif /* !STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * global namespace shims
  */
@@ -293,6 +296,7 @@ inline STLSOFT_NS_QUAL_STD(basic_ostream)<TCHAR>& operator <<(STLSOFT_NS_QUAL_ST
 }
 
 #endif /* library */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

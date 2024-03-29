@@ -4,7 +4,7 @@
  * Purpose:     Whole collection algorithms.
  *
  * Created:     17th January 2002
- * Updated:     17th January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_COLLECTION_MAJOR    3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_COLLECTION_MINOR    1
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_COLLECTION_REVISION 6
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_COLLECTION_EDIT     83
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_COLLECTION_EDIT     84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +73,7 @@
 # include <stlsoft/algorithms/std/alt.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHM_STD_HPP_ALT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -80,6 +82,7 @@
 namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * algorithms
@@ -220,6 +223,7 @@ inline O copy_all(T (&ar)[V_dimension], O dest)
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

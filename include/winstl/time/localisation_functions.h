@@ -4,7 +4,7 @@
  * Purpose:     Localisation functions for Windows time structures.
  *
  * Created:     9th October 2014
- * Updated:     22nd January 2024
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,9 @@
 # define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_EDIT       12
+# define WINSTL_VER_WINSTL_TIME_H_LOCALISATION_FUNCTIONS_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +79,7 @@
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -96,6 +98,7 @@ namespace winstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C functions
@@ -195,6 +198,7 @@ winstl_C_localise_local_FILETIME_to_UTC_FILETIME(
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -203,6 +207,7 @@ winstl_C_localise_local_FILETIME_to_UTC_FILETIME(
 namespace winstl
 {
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ functions
@@ -398,6 +403,7 @@ localise_local_time_to_UTC_time(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -411,6 +417,7 @@ localise_local_time_to_UTC_time(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control

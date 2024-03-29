@@ -4,11 +4,11 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     7th October 2002
- * Updated:     26th December 2020
+ * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,9 @@
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR     4
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR     1
 # define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION  5
-# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT      58
+# define WINSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,6 +69,7 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -136,6 +138,7 @@ inline HWND get_hwnd(W const& h)
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion control
