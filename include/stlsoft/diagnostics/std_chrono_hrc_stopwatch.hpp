@@ -4,7 +4,7 @@
  * Purpose: stopwatch class based on std::chrono::high_resolution_clock.
  *
  * Created: 17th March 2024
- * Updated: 17th March 2024
+ * Updated: 26th March 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -40,6 +40,9 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* STLSOFT:C++98:FILE_EXCEPTED */
+/* STLSOFT:C++03:FILE_EXCEPTED */
+
 /** \file stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp
  *
  * \brief [C++] Definition of the
@@ -53,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      1
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

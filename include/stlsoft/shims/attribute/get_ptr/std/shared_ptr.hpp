@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/attribute/get_ptr/std/shared_ptr.hpp
+ * File:    stlsoft/shims/attribute/get_ptr/std/shared_ptr.hpp
  *
- * Purpose:     Contains the get_ptr attribute shim.
+ * Purpose: Contains the get_ptr attribute shim.
  *
- * Created:     10th September 2019
- * Updated:     11th March 2024
+ * Created: 10th September 2019
+ * Updated: 26th March 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2019, Matthew Wilson and Synesis Software
@@ -41,6 +41,9 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* STLSOFT:C++98:FILE_DEPRECATED */
+/* STLSOFT:C++03:FILE_DEPRECATED */
+
 /** \file stlsoft/shims/attribute/get_ptr/std/shared_ptr.hpp
  *
  * \brief [C++] Pointer attribute shims for std::shared_ptr
@@ -53,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_MINOR       0
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_EDIT        3
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_REVISION    2
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
