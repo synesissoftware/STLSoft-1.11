@@ -1,17 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/std/library_discriminator.hpp
+ * File:    stlsoft/util/std/library_discriminator.hpp
  *
- * Purpose:     Discriminates between standard library implementations
+ * Purpose: Discriminates between standard library implementations
  *
- * Created:     2nd January 2000
- * Updated:     11th March 2024
+ * Created: 2nd January 2000
+ * Updated: 4th May 2024
  *
- * Thanks:      To Cláudio Albuquerque for assisting with VC++ 12 & 14
- *              support. To Gabor Fischer for reporting problems with VC++
- *              9/10 compatibility, and persisting in (re-)reporting it even
- *              when I was being a thickie and unable to reproduce it.
+ * Thanks:  To Cláudio Albuquerque for assisting with VC++ 12 & 14 support.
+ *          To Gabor Fischer for reporting problems with VC++ 9/10
+ *          compatibility, and persisting in (re-)reporting it even when I
+ *          was being a thickie and unable to reproduce it.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       11
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        125
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    4
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -198,9 +198,15 @@ namespace stlsoft
 # endif /* STLSOFT_COMPILE_VERBOSE */
 # define STLSOFT_CF_STD_LIBRARY_IS_STLPORT
 # define STLSOFT_CF_STD_LIBRARY_NAME_STRING                 "STLport"
-#elif defined(_ITERATOR_) && \
-      defined(_UTILITY_) && \
-      defined(_XSTDDEF_)
+#elif 1 && \
+      defined(_ITERATOR_) && \
+      ((1 && \
+        defined(_UTILITY_) && \
+        defined(_XSTDDEF_) && \
+      1) || (1 && \
+        defined(_YVALS_CORE_H_) && \
+      1)) && \
+      1
  /* Dinkumware */
 # define STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE
 # if defined(STLSOFT_COMPILER_IS_INTEL) || \

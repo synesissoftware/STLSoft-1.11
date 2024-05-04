@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for memXXX() functions.
  *
  * Created: 2nd January 2021
- * Updated: 18th March 2024
+ * Updated: 4th May 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -218,7 +218,7 @@ STLSOFT_INLINE
 wchar_t*
 STLSOFT_API_INTERNAL_memfns_wmemset(
     wchar_t*    dest
-,   int         value
+,   wchar_t     value
 ,   size_t      count
 )
 {
