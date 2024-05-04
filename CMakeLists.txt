@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 file(TO_CMAKE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
 if(EXISTS "${LOC_PATH}")
 
-    message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles.")
+	message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles.")
 endif()
 
 # directory for CMake specific extensions and source files.
@@ -30,9 +30,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 # project
 
 project(STLSoft
-    DESCRIPTION "STLSoft is a suite of libraries that provide STL extensions and facades over operating-system and technology-specific APIs."
-    HOMEPAGE_URL "https://github.com/synesissoftware/STLSoft-1.11"
-    LANGUAGES C CXX
+	DESCRIPTION "STLSoft is a suite of libraries that provide STL extensions and facades over operating-system and technology-specific APIs."
+	HOMEPAGE_URL "https://github.com/synesissoftware/STLSoft-1.11"
+	LANGUAGES C CXX
 )
 
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
@@ -84,8 +84,8 @@ include(BuildType)
 add_library(STLSoft INTERFACE)
 
 target_include_directories(STLSoft INTERFACE
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
+	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+	$<INSTALL_INTERFACE:include>
 )
 
 
@@ -95,10 +95,10 @@ target_include_directories(STLSoft INTERFACE
 option(BUILD_EXAMPLES "Build examples" ON)
 if(BUILD_EXAMPLES)
 
-    message("-- enabled building of examples ...")
+	message("-- enabled building of examples ...")
 
-    add_subdirectory(examples)
-endif()
+	add_subdirectory(examples)
+endif(BUILD_EXAMPLES)
 
 
 # ##########################################################
@@ -108,16 +108,16 @@ include(CTest)
 
 if(BUILD_TESTING)
 
-    message("-- enabled building of tests ...")
+	message("-- enabled building of tests ...")
 
-    set(xTests_REQUIRED_VERSION_ 0.21.2)
+	set(xTests_REQUIRED_VERSION_ 0.21.2)
 
-    find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
+	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
-    message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
 
-    add_subdirectory(test)
-endif()
+	add_subdirectory(test)
+endif(BUILD_TESTING)
 
 
 # ##########################################################
@@ -125,31 +125,31 @@ endif()
 
 # this does not actually install anything...
 install(TARGETS STLSoft
-    EXPORT project-targets
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+	EXPORT project-targets
+	PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 # ... and we have to manually copy the header files.
 foreach(ITEM
-    acestl
-    atlstl
-    comstl
-    inetstl
-    mfcstl
-    platformstl
-    rangelib
-    stlsoft
-    unixstl
-    winstl
-    wtlstl
+	acestl
+	atlstl
+	comstl
+	inetstl
+	mfcstl
+	platformstl
+	rangelib
+	stlsoft
+	unixstl
+	winstl
+	wtlstl
 )
 
-    install(
-        DIRECTORY ${CMAKE_SOURCE_DIR}/include/${ITEM}/
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${ITEM}/
-        FILES_MATCHING
-        PATTERN "*.h*"
-    )
+	install(
+		DIRECTORY ${CMAKE_SOURCE_DIR}/include/${ITEM}/
+		DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${ITEM}/
+		FILES_MATCHING
+		PATTERN "*.h*"
+	)
 endforeach()
 
 
@@ -161,29 +161,29 @@ include(CMakePackageConfigHelpers)
 string(TOLOWER ${PROJECT_NAME} EXPORT_NAME)
 
 configure_package_config_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/${EXPORT_NAME}-config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/${EXPORT_NAME}/cmake
+	${CMAKE_CURRENT_SOURCE_DIR}/cmake/${EXPORT_NAME}-config.cmake.in
+	${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake
+	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/${EXPORT_NAME}/cmake
 )
 
 write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake
-    VERSION ${PROJECT_VERSION}
-    COMPATIBILITY AnyNewerVersion
+	${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake
+	VERSION ${PROJECT_VERSION}
+	COMPATIBILITY AnyNewerVersion
 )
 
 # install stlsoft-targets.cmake => /usr/local/lib/cmake/stlsoft
 install(EXPORT project-targets
-    NAMESPACE "${PROJECT_NAME}::"
-    FILE "${EXPORT_NAME}-targets.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
+	NAMESPACE "${PROJECT_NAME}::"
+	FILE "${EXPORT_NAME}-targets.cmake"
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
 # install stlsoft-config.cmake & stlsoft-config-version.cmake => /usr/local/lib/cmake/stlsoft
 install(FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
 

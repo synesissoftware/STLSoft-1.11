@@ -1,6 +1,8 @@
 
 add_subdirectory(stlsoft)
-add_subdirectory(unixstl)
+if(UNIX)
+	add_subdirectory(unixstl)
+endif(UNIX)
 
 
 # ############################## end of file ############################# #
