@@ -14,6 +14,8 @@ target_compile_options(test.performance.platformstl.stopwatch PRIVATE
     >
     $<$<CXX_COMPILER_ID:MSVC>:
         /WX /W4
+
+          /wd4100
     >
 )
 

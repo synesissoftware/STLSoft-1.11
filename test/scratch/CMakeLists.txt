@@ -1,5 +1,7 @@
 
-add_subdirectory(unixstl)
+if(UNIX)
+	add_subdirectory(unixstl)
+endif(UNIX)
 add_subdirectory(versions)
 
 
