@@ -6,7 +6,7 @@
  *          types.
  *
  * Created: 15th January 2002
- * Updated: 29th March 2024
+ * Updated: 4th May 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    52
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 8
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     552
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 9
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     553
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -355,12 +355,13 @@
 # define _STLSOFT_VER_1_11_1_A04    0x010b0144  /*!< Version 1.11.1 alpha 4 (18th March 2024) */
 # define _STLSOFT_VER_1_11_1_A05    0x010b0145  /*!< Version 1.11.1 alpha 5 (29th March 2024) */
 # define _STLSOFT_VER_1_11_1_A06    0x010b0146  /*!< Version 1.11.1 alpha 6 (29th March 2024) */
+# define _STLSOFT_VER_1_11_1_A07    0x010b0147  /*!< Version 1.11.1 alpha 7 (4th May 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A06
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A07
 
 
 /* /////////////////////////////////////
@@ -798,13 +799,15 @@
 #  if 0
 #  elif _MSC_VER < 1920
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 15.x"
-#  elif _MSC_VER <= 1928
+#  elif _MSC_VER <= 1929
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 16.x"
+#  elif _MSC_VER <= 1939
+#   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 17.x"
 #  else
 #   error Visual C++ version that is >= vc16 is not recognised
 #  endif
 # else /* ? _MSC_VER */
-#  error Currently only versions 5.0, 6.0, 7.0, 7.1, 8.0, 9.0, 10.0, 11.0, 12.0, 14.0, and 14.1x of the Visual C++ compiler are supported by the STLSoft libraries
+#  error Currently only versions 5.0, 6.0, 7.0, 7.1, 8.0, 9.0, 10.0, 11.0, 12.0, 14.0, 15, 16, and 17 of the Visual C++ compiler are supported by the STLSoft libraries
 # endif /* _MSC_VER */
 
 #else /* ? compiler */
