@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_shim_string`.
  *
  * Created: 9th November 2008
- * Updated: 16th February 2024
+ * Updated: 5th May 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -880,7 +880,7 @@ static void test_insertion_4(void)
 
 
 #if __cplusplus >= 201402L
-    std::string expected = ([&s2, &s3]() {
+    std::string expected = ([&s2, &s3, FIELD_WIDTH]() {
 #else
     struct Expected
     {

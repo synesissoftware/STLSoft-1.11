@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 18th January 2024
+ * Updated: 5th May 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,6 +35,7 @@
 #include <vector>
 
 /* Standard C header files */
+#include <assert.h>
 #include <stdlib.h>
 
 
