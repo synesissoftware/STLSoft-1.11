@@ -1,4 +1,16 @@
 {
+    "[c_cpp]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+    },
+    "[cmake]": {
+        "editor.insertSpaces": false,
+        "editor.tabSize": 4,
+    },
+    "[json]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+    },
     "[ruby]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2,
