@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/winstl.h
+ * File:    winstl/winstl.h
  *
- * Purpose:     Root header for the WinSTL libraries. Performs compiler
- *              and platform discriminations, and definitions of types.
+ * Purpose: Root header for the WinSTL libraries. Performs compiler and
+ *          platform discriminations, and definitions of types.
  *
- * Created:     15th January 2002
- * Updated:     11th March 2024
+ * Created: 15th January 2002
+ * Updated: 5th May 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       17
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    6
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        222
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    7
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        223
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -164,12 +164,13 @@
 # define _WINSTL_VER_1_12_1_B04 0x010c0184  /*!< Version 1.12.1 beta 4 (with STLSoft 1.10.1 beta 14) */
 # define _WINSTL_VER_1_12_1_B05 0x010c0185  /*!< Version 1.12.1 beta 5 (with STLSoft 1.10.1 beta 26) */
 # define _WINSTL_VER_1_12_1     0x010c01ff  /*!< Version 1.12.1 (with STLSoft 1.10.3) */
+# define _WINSTL_VER_1_12_2     0x010c02ff  /*!< Version 1.12.2 (with STLSoft 1.11.1 alpha 7) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       12
 #define _WINSTL_VER_REVISION    1
-#define _WINSTL_VER             _WINSTL_VER_1_12_1
+#define _WINSTL_VER             _WINSTL_VER_1_12_2
 
 
 /* /////////////////////////////////////////////////////////////////////////

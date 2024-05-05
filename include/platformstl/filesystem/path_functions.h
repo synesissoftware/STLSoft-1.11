@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/path_functions.h
+ * File:    platformstl/filesystem/path_functions.h
  *
- * Purpose:     Path manipulation functions.
+ * Purpose: Path manipulation functions.
  *
- * Created:     3rd February 2011
- * Updated:     11th March 2024
+ * Created: 3rd February 2011
+ * Updated: 4th May 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef PLATFORMSTL_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_MINOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_REVISION 7
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_EDIT     28
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_REVISION 8
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_EDIT     29
 #endif /* !PLATFORMSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,14 +123,14 @@ platformstl_C_get_executable_name_from_path(
     ss_char_a_t const* path
 )
 {
-    if (NULL == path)
+    if (ss_nullptr_k == path)
     {
 #ifdef __cplusplus
 
         return stlsoft_C_string_slice_m_t::create(ss_nullptr_k, 0);
 #else /* ? __cplusplus */
 
-        stlsoft_C_string_slice_m_t r = { 0, NULL };
+        stlsoft_C_string_slice_m_t r = { 0, ss_nullptr_k };
 
         return r;
 #endif /* __cplusplus */
@@ -144,13 +144,13 @@ platformstl_C_get_executable_name_from_path(
         ss_char_a_t const* const    bslash  =   strrchr(path, '\\');
         ss_char_a_t const*          dot;
 
-        if (NULL == slash)
+        if (ss_nullptr_k == slash)
         {
             slash = bslash;
         }
         else
         {
-            if (NULL != bslash)
+            if (ss_nullptr_k != bslash)
             {
                 if (slash < bslash)
                 {
@@ -160,7 +160,7 @@ platformstl_C_get_executable_name_from_path(
         }
 #endif
 
-        if (NULL != slash)
+        if (ss_nullptr_k != slash)
         {
             r.ptr = slash + 1;
         }
@@ -171,7 +171,7 @@ platformstl_C_get_executable_name_from_path(
 
 #ifdef _WIN32
         dot = strrchr(r.ptr, '.');
-        if (NULL != dot)
+        if (ss_nullptr_k != dot)
         {
             r.len = dot - r.ptr;
         }
@@ -199,14 +199,14 @@ platformstl_C_get_executable_name_from_path_w(
     ss_char_w_t const* path
 )
 {
-    if (NULL == path)
+    if (ss_nullptr_k == path)
     {
 #ifdef __cplusplus
 
         return stlsoft_C_string_slice_w_t::create(ss_nullptr_k, 0);
 #else /* ? __cplusplus */
 
-        stlsoft_C_string_slice_w_t r = { 0, NULL };
+        stlsoft_C_string_slice_w_t r = { 0, ss_nullptr_k };
 
         return r;
 #endif /* __cplusplus */
@@ -220,13 +220,13 @@ platformstl_C_get_executable_name_from_path_w(
         ss_char_w_t const* const    bslash  =   wcsrchr(path, '\\');
         ss_char_w_t const*          dot;
 
-        if (NULL == slash)
+        if (ss_nullptr_k == slash)
         {
             slash = bslash;
         }
         else
         {
-            if (NULL != bslash)
+            if (ss_nullptr_k != bslash)
             {
                 if (slash < bslash)
                 {
@@ -236,7 +236,7 @@ platformstl_C_get_executable_name_from_path_w(
         }
 #endif
 
-        if (NULL != slash)
+        if (ss_nullptr_k != slash)
         {
             r.ptr = slash + 1;
         }
@@ -247,7 +247,7 @@ platformstl_C_get_executable_name_from_path_w(
 
 #ifdef _WIN32
         dot = wcsrchr(r.ptr, '.');
-        if (NULL != dot)
+        if (ss_nullptr_k != dot)
         {
             r.len = dot - r.ptr;
         }
@@ -277,14 +277,14 @@ platformstl_C_get_directory_path_from_path(
     ss_char_a_t const* path
 )
 {
-    if (NULL == path)
+    if (ss_nullptr_k == path)
     {
 #ifdef __cplusplus
 
         return stlsoft_C_string_slice_m_t::create(ss_nullptr_k, 0);
 #else /* ? __cplusplus */
 
-        stlsoft_C_string_slice_m_t r = { 0, NULL };
+        stlsoft_C_string_slice_m_t r = { 0, ss_nullptr_k };
 
         return r;
 #endif /* __cplusplus */
@@ -296,13 +296,13 @@ platformstl_C_get_directory_path_from_path(
 #ifdef _WIN32
         ss_char_a_t const* const    bslash  =   strrchr(path, '\\');
 
-        if (NULL == slash)
+        if (ss_nullptr_k == slash)
         {
             slash = bslash;
         }
         else
         {
-            if (NULL != bslash)
+            if (ss_nullptr_k != bslash)
             {
                 if (slash < bslash)
                 {
@@ -314,7 +314,7 @@ platformstl_C_get_directory_path_from_path(
 
         r.ptr   =   path;
 
-        if (NULL == slash)
+        if (ss_nullptr_k == slash)
         {
             r.len = 0;
         }
@@ -341,14 +341,14 @@ platformstl_C_get_directory_path_from_path_w(
     ss_char_w_t const* path
 )
 {
-    if (NULL == path)
+    if (ss_nullptr_k == path)
     {
 #ifdef __cplusplus
 
         return stlsoft_C_string_slice_w_t::create(ss_nullptr_k, 0);
 #else /* ? __cplusplus */
 
-        stlsoft_C_string_slice_w_t r = { 0, NULL };
+        stlsoft_C_string_slice_w_t r = { 0, ss_nullptr_k };
 
         return r;
 #endif /* __cplusplus */
@@ -360,13 +360,13 @@ platformstl_C_get_directory_path_from_path_w(
 #ifdef _WIN32
         ss_char_w_t const* const    bslash  =   wcsrchr(path, '\\');
 
-        if (NULL == slash)
+        if (ss_nullptr_k == slash)
         {
             slash = bslash;
         }
         else
         {
-            if (NULL != bslash)
+            if (ss_nullptr_k != bslash)
             {
                 if (slash < bslash)
                 {
@@ -378,7 +378,7 @@ platformstl_C_get_directory_path_from_path_w(
 
         r.ptr   =   path;
 
-        if (NULL == slash)
+        if (ss_nullptr_k == slash)
         {
             r.len = 0;
         }

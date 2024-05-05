@@ -18,6 +18,36 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha7 (5th May 2024)
+
+General:
+========
+
+ * Visual C++ (17) compatibility;
+ * Windows compatibility for CMake;
+ * Miscellaneous changes;
+
+Changes:
+========
+
+Visual C++ (17) compatibility:
+ * include/stlsoft/util/std/library_discriminator.hpp compatibility fix for recognising standard library;
+ * added `STLSOFT_CUSTOM_NOINLINE` pseudo-keyword macro;
+ * include/stlsoft/api/internal/memfns.h minor fix;
+ * include/stlsoft/filesystem/io_functions/write_string.hpp minor fix;
+ * include/winstl/filesystem/findfile_sequence.hpp minor fix;
+
+Windows compatibility for CMake:
+ * now works (partially) on Windows;
+
+Miscellaneous changes:
+ * added **example.winstl.filesystem.findfile_sequence** example;
+ * various minor settings improvements;
+ * include/winstl/system/temporary_file_name.hpp replaced use of deprecated names;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha6 (29th March 2024)
 
 General:

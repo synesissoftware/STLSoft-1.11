@@ -1,20 +1,20 @@
 
 add_executable(test.performance.stlsoft.simple_string.compare
-    main.cpp
+	main.cpp
 )
 
 target_compile_options(test.performance.stlsoft.simple_string.compare PRIVATE
-    $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-        -Werror -Wall -Wextra -pedantic
+	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+		-Werror -Wall -Wextra -pedantic
 
-        -Wno-deprecated-declarations
-        -Wno-unused-parameter
+		-Wno-deprecated-declarations
+		-Wno-unused-parameter
 
-        ${GCC_WARN_NO_cxx11_long_long}
-    >
-    $<$<CXX_COMPILER_ID:MSVC>:
-        /WX /W4
-    >
+		${GCC_WARN_NO_cxx11_long_long}
+	>
+	$<$<CXX_COMPILER_ID:MSVC>:
+		/WX /W4
+	>
 )
 
 

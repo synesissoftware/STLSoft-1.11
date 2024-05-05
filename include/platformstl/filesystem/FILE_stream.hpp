@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/FILE_stream.hpp
+ * File:    platformstl/filesystem/FILE_stream.hpp
  *
- * Purpose:     Facade for the standard C Streams API.
+ * Purpose: Facade for the standard C Streams API.
  *
- * Created:     31st May 2009
- * Updated:     11th March 2024
+ * Created: 31st May 2009
+ * Updated: 5th May 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MINOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    4
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        25
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -370,6 +370,7 @@ private: // Implementation
     {
 #if defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) && \
     defined(STLSOFT_COMPILER_IS_MSVC)
+
         FILE* handle;
         int   e = ::fopen_s(&handle, path, mode);
 
@@ -586,16 +587,20 @@ private: // Implementation
         switch (e)
         {
             case    ENOMEM:
+
                 STLSOFT_THROW_X(STLSOFT_NS_QUAL(out_of_memory_exception)(STLSoftProjectIdentifier_STLSoft, STLSoftLibraryIdentifier_FileSystem, e));
             case    ENOENT:
+
                 STLSOFT_THROW_X(file_not_found_exception(message, e));
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
             case    EACCES:
+
                 STLSOFT_THROW_X(WINSTL_NS_QUAL(access_exception)(message, e));
 #endif
             default:
+
                 STLSOFT_THROW_X(filesystem_exception(message, e));
         }
     }
@@ -611,16 +616,20 @@ private: // Implementation
         switch (e)
         {
             case    ENOMEM:
+
                 STLSOFT_THROW_X(STLSOFT_NS_QUAL(out_of_memory_exception)(STLSoftProjectIdentifier_STLSoft, STLSoftLibraryIdentifier_FileSystem, e));
             case    ENOENT:
+
                 STLSOFT_THROW_X(file_not_found_exception(message, e, path));
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS_)
             case    EACCES:
+
                 STLSOFT_THROW_X(WINSTL_NS_QUAL(access_exception)(message, e, path));
 #endif
             default:
+
                 STLSOFT_THROW_X(filesystem_exception(message, e, path));
         }
     }

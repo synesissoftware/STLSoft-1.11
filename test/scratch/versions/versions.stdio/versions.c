@@ -9,11 +9,14 @@ int main(int argc, char* argv[])
     STLSOFT_SUPPRESS_UNUSED(argc);
     STLSOFT_SUPPRESS_UNUSED(argv);
 
+#ifdef __STDC__
+
     fprintf(
         stdout
     ,   "__STDC__ = %d\n"
     ,   __STDC__
     );
+#endif
 
     fprintf(
         stdout

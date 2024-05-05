@@ -1,9 +1,9 @@
 
-add_executable(test.scratch.unixstl.synch.semaphore
+add_executable(example.winstl.filesystem.findfile_sequence
 	main.cpp
 )
 
-target_compile_options(test.scratch.unixstl.synch.semaphore PRIVATE
+target_compile_options(example.winstl.filesystem.findfile_sequence PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic
 

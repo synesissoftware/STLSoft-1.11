@@ -1,8 +1,5 @@
 
-if(UNIX)
-	add_subdirectory(unixstl)
-endif(UNIX)
-add_subdirectory(versions)
+add_subdirectory(findfile_sequence)
 
 
 # ############################## end of file ############################# #

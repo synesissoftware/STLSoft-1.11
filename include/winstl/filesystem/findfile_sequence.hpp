@@ -1,30 +1,30 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/findfile_sequence.hpp
+ * File:    winstl/filesystem/findfile_sequence.hpp
  *
- * Purpose:     Contains the basic_findfile_sequence template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_findfile_sequence template class, and ANSI
+ *          and Unicode specialisations thereof.
  *
- * Notes:       1. The original implementation of the class had the const_iterator
- *              and value_type as nested classes. Unfortunately, Visual C++ 5 &
- *              6 both had either compilation or linking problems so these are
- *              regretably now implemented as independent classes.
+ * Notes:   1. The original implementation of the class had the
+ *          const_iterator and value_type as nested classes. Unfortunately,
+ *          Visual C++ 5 & 6 both had either compilation or linking problems
+ *          so these are regretably now implemented as independent classes.
  *
- *              2. This class was described in detail in the article
- *              "Adapting Windows Enumeration Models to STL Iterator Concepts"
- *              (http://www.windevnet.com/documents/win0303a/), in the March
- *              2003 issue of Windows Developer Network (http://windevnet.com).
- *              Note that later implementations use a shared-enumeration
- *              context, and therefore do not suffer any of the copying/moving
- *              ownership issues described in the article.
+ *          2. This class was described in detail in the article "Adapting
+ *          Windows Enumeration Models to STL Iterator Concepts"
+ *          (http://www.windevnet.com/documents/win0303a/), in the March
+ *          2003 issue of Windows Developer Network (http://windevnet.com).
+ *          Note that later implementations use a shared-enumeration
+ *          context, and therefore do not suffer any of the copying/moving
+ *          ownership issues described in the article.
  *
- * Created:     15th January 2002
- * Updated:     11th March 2024
+ * Created: 15th January 2002
+ * Updated: 4th May 2024
  *
- * Thanks:      To Nevin Liber for pressing upon me the need to lead by
- *              example when writing books about good design/implementation;
- *              to Florin L for DMC++ missing standard symbols.
+ * Thanks:  To Nevin Liber for pressing upon me the need to lead by example
+ *          when writing books about good design/implementation; to Florin L
+ *          for DMC++ missing standard symbols.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -72,8 +72,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        267
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    10
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        268
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1187,7 +1187,7 @@ basic_findfile_sequence<C, T>::basic_findfile_sequence(
 )
     : m_delim(0)
     , m_flags(validate_flags_(flags))
-    , m_directory()
+    , m_directory(1)
     , m_patterns(1 + traits_type::str_len(pattern))
 {
     validate_directory_(NULL, m_directory, m_flags);
@@ -1206,7 +1206,7 @@ basic_findfile_sequence<C, T>::basic_findfile_sequence(
 )
     : m_delim(delim)
     , m_flags(validate_flags_(flags))
-    , m_directory()
+    , m_directory(1)
     , m_patterns(1 + traits_type::str_len(patterns))
 {
     validate_directory_(NULL, m_directory, m_flags);

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 12th February 2024
+ * Updated: 4th May 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -125,7 +125,7 @@ namespace
 
         for (I i = from; to != i; ++i)
         {
-            v.push_back(*i);
+            v.push_back(std::make_pair((*i).first, static_cast<std::uint32_t>((*i).second)));
         }
 
         std::sort(v.begin(), v.end());
@@ -149,7 +149,7 @@ namespace
 
         for (typename stlsoft::frequency_map<T_value, T_traits>::const_iterator i = fm.begin(); fm.end() != i; ++i)
         {
-            v.push_back(*i);
+            v.push_back(std::make_pair((*i).first, static_cast<std::uint32_t>((*i).second)));
         }
 
         std::sort(v.begin(), v.end());

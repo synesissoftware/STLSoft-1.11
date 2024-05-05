@@ -4,6 +4,14 @@
 ----
 
 
+5th May 2024 - 1.11.1-alpha7 released
+-------------------------------------
+
+ * Visual C++ (17) compatibility;
+ * Windows compatibility for CMake;
+ * Miscellaneous changes;
+
+
 29th March 2024 - 1.11.1-alpha6 released
 ----------------------------------------
 

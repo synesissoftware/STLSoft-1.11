@@ -3859,7 +3859,7 @@ static void test_insertion_4()
 
 
 #if __cplusplus >= 201402L
-    std::string expected = ([&s2, &s3]() {
+    std::string expected = ([&s2, &s3, FIELD_WIDTH]() {
 #else
     struct Expected
     {
