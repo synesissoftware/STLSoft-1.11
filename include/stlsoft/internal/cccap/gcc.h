@@ -4,7 +4,7 @@
  * Purpose: Compiler feature discrimination for GNU C/C++.
  *
  * Created: 7th February 2003
- * Updated: 26th March 2024
+ * Updated: 5th May 2024
  *
  * Thanks:  To Sergey Nikulov, for PowerPC (BSD) compatibility fixes;
  *          wiluite for MinGW 64-bit compatibility.
@@ -62,9 +62,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      31
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       115
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      32
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -327,6 +327,9 @@
     (__cplusplus > 199711)
 # define STLSOFT_CF_noexcept_KEYWORD_SUPPORT
 #endif /* compiler */
+
+#define STLSOFT_CF_noinline_KEYWORD_SUPPORT
+#define STLSOFT_CUSTOM_NOINLINE                             __attribute__((noinline))
 
 #if STLSOFT_GCC_VER >= 40700 &&\
     defined(__cplusplus) &&\

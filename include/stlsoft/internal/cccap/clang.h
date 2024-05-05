@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/clang.h
+ * File:    stlsoft/internal/cccap/clang.h
  *
- * Purpose:     Compiler feature discrimination for Clang C/C++.
+ * Purpose: Compiler feature discrimination for Clang C/C++.
  *
- * Created:     14th March 2015
- * Updated:     11th March 2024
+ * Created: 14th March 2015
+ * Updated: 5th May 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MAJOR    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MINOR    8
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MINOR    9
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     27
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -282,6 +282,9 @@
 #if __has_feature(cxx_noexcept)
 # define STLSOFT_CF_noexcept_KEYWORD_SUPPORT
 #endif /* compiler */
+
+#define STLSOFT_CF_noinline_KEYWORD_SUPPORT
+#define STLSOFT_CUSTOM_NOINLINE                             __attribute__((noinline))
 
 #if __has_feature(cxx_override_control)
 # define STLSOFT_CF_override_KEYWORD_SUPPORT

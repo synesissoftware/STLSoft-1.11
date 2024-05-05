@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/msvc.h
+ * File:    stlsoft/internal/cccap/msvc.h
  *
- * Purpose:     Compiler feature discrimination for Visual C++.
+ * Purpose: Compiler feature discrimination for Visual C++.
  *
- * Created:     7th February 2003
- * Updated:     11th March 2024
+ * Created: 7th February 2003
+ * Updated: 5th May 2024
  *
- * Thanks:      To Cláudio Albuquerque for working on the
- *              Win64-compatibility.
+ * Thanks:  To Cláudio Albuquerque for working on the Win64-compatibility.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -66,9 +65,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     36
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     37
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      155
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      156
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -381,6 +380,11 @@
 
 #if _MSC_VER >= 1900
 # define STLSOFT_CF_noexcept_KEYWORD_SUPPORT
+#endif /* compiler */
+
+#if _MSC_VER >= 1600
+# define STLSOFT_CF_noinline_KEYWORD_SUPPORT
+# define STLSOFT_CUSTOM_NOINLINE                            __declspec(noinline)
 #endif /* compiler */
 
 #if _MSC_VER >= 1600 && \

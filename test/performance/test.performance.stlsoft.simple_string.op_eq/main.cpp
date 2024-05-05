@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::basic_simple_string#operator ==()`.
  *
  * Created: 15th March 2024
- * Updated: 18th March 2024
+ * Updated: 4th May 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -83,10 +83,15 @@ typedef stlsoft::simple_string                  string_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * functions
  */
 
-__attribute__((noinline))
+STLSOFT_NOINLINE
 std::pair<
     interval_type   // total_time_ns
 ,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
@@ -124,7 +129,7 @@ do_equal_as_ccs(
     return std::make_pair(sw.get_nanoseconds(), anchoring_value);
 }
 
-__attribute__((noinline))
+STLSOFT_NOINLINE
 std::pair<
     interval_type   // total_time_ns
 ,   ss_sint64_t     // anchoring_value - this to incline the optimiser to not elide the whole thing
