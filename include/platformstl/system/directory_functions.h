@@ -3,7 +3,7 @@
  *
  * Purpose: Console functions.
  *
- * Created: 6th August 2015
+ * Created: 7th July 2024
  * Updated: 9th July 2024
  *
  * Home:    http://stlsoft.org/

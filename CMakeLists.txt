@@ -110,9 +110,15 @@ if(BUILD_TESTING)
 
 	message("-- enabled building of tests ...")
 
-	set(STLSoft_REQUIRED_VERSION_ 1.11)
+	find_package(STLSoft REQUIRED)
 
-	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
+	if(NOT STLSoft_FOUND)
+
+		message(FATAL_ERROR "No existing installation of STLSoft was found, which means you are not able to configure CMake with testing enabled, because STLSoft's component/unit tests are implemented in terms of xTests, which itself relies on STLSoft. Instead, you must perform an initial CMake configuration and installation with testing disabled (-DBUILD_TESTING:BOOL=OFF, or passing --disable-testing to prepare_cmake.sh), and then configure and install xTests, whereupon you will be free to (re)configure STLSoft for testing.")
+	else()
+
+		message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) to enable xTests package only - the current project's header files will be used")
+	endif()
 
 	set(xTests_REQUIRED_VERSION_ 0.22)
 
