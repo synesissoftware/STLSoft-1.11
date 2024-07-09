@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 4th November 2008
- * Updated: 18th March 2024
+ * Updated: 9th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -733,6 +733,39 @@ static void test_assign_1()
 
         XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+    }
+
+    {
+        string_t s;
+
+        s.assign("");
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+
+        s.assign(s.c_str(), 0);
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", s);
+    }
+
+    {
+        string_t s;
+
+        s.assign(alphabet);
+
+        XTESTS_TEST_INTEGER_EQUAL(26u, s.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s);
+
+        s.assign(s.c_str(), 26);
+
+        XTESTS_TEST_INTEGER_EQUAL(26u, s.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", s);
+
+        s.assign(s.c_str() + 13, 13);
+
+        XTESTS_TEST_INTEGER_EQUAL(13u, s.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("nopqrstuvwxyz", s);
     }
 }
 

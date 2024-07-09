@@ -18,6 +18,16 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha9 (9th July 2024)
+
+General:
+========
+
+* Missing fix to `stlsoft::basic_simple_string`'s `#assign()`;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha8 (9th July 2024)
 
 General:
@@ -57,7 +67,6 @@ CMake improvements:
 More examples:
  * added **example.unixstl.filesystem.readdir_sequence** project;
  * added **test.scratch.platformstl.system.directory_functions** project;
-
 
 
 ============================================================================

@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    53
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     556
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     557
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -357,12 +357,13 @@
 # define _STLSOFT_VER_1_11_1_A06    0x010b0146  /*!< Version 1.11.1 alpha 6 (29th March 2024) */
 # define _STLSOFT_VER_1_11_1_A07    0x010b0147  /*!< Version 1.11.1 alpha 7 (5th May 2024) */
 # define _STLSOFT_VER_1_11_1_A08    0x010b0148  /*!< Version 1.11.1 alpha 8 (9th July 2024) */
+# define _STLSOFT_VER_1_11_1_A09    0x010b0149  /*!< Version 1.11.1 alpha 9 (9th July 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A08
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A09
 
 
 /* /////////////////////////////////////

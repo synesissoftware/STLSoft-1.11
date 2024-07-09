@@ -4,6 +4,12 @@
 ----
 
 
+9th July 2024 - 1.11.1-alpha9 released
+--------------------------------------
+
+* Missing fix to `stlsoft::basic_simple_string`'s `#assign()`;
+
+
 9th July 2024 - 1.11.1-alpha8 released
 --------------------------------------
 

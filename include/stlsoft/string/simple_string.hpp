@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 19th March 2024
+ * Updated: 9th July 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      278
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      279
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -3380,7 +3380,7 @@ basic_simple_string<C, T, A>::assign(
                 (   s < &buffer->contents[0] ||
                     s > &buffer->contents[cch]))
             {
-                traits_type::copy(buffer->contents, s, cch);
+                traits_type::move(buffer->contents, s, cch);
                 buffer->contents[cch] = 0;
                 buffer->length = cch;
             }
