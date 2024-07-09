@@ -356,12 +356,13 @@
 # define _STLSOFT_VER_1_11_1_A05    0x010b0145  /*!< Version 1.11.1 alpha 5 (29th March 2024) */
 # define _STLSOFT_VER_1_11_1_A06    0x010b0146  /*!< Version 1.11.1 alpha 6 (29th March 2024) */
 # define _STLSOFT_VER_1_11_1_A07    0x010b0147  /*!< Version 1.11.1 alpha 7 (5th May 2024) */
+# define _STLSOFT_VER_1_11_1_A08    0x010b0148  /*!< Version 1.11.1 alpha 8 (9th July 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A07
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A08
 
 
 /* /////////////////////////////////////

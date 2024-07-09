@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/readonly_memory_mapped_file.hpp (based on MMFile.h, ::SynesisWin)
+ * File:    unixstl/filesystem/readonly_memory_mapped_file.hpp (based on MMFile.h, ::SynesisWin)
  *
- * Purpose:     UNIX readonly (shareable) memory mapped file.
+ * Purpose: UNIX readonly (shareable) memory mapped file.
  *
- * Created:     15th December 1996
- * Updated:     11th March 2024
+ * Created: 15th December 1996
+ * Updated: 5th May 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT        18
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -528,14 +528,12 @@ get_memory_mapped_file_view_handle(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * inclusion
+ * inclusion control
  */
 
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE */
 

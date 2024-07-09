@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/inetstl.h
+ * File:    inetstl/inetstl.h
  *
- * Purpose:     Root header for the InetSTL libraries. Performs compiler
- *              and platform discriminations, and definitions of types.
+ * Purpose: Root header for the InetSTL libraries. Performs compiler and
+ *          platform discriminations, and definitions of types.
  *
- * Created:     24th April 2004
- * Updated:     11th March 2024
+ * Created: 24th April 2004
+ * Updated: 9th July 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -51,7 +51,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    10
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 3
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     571
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     572
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -67,7 +67,7 @@
  * components.
  *
  * The major version is denoted by the _INETSTL_VER_MAJOR preprocessor symbol.
- * A changes to the major version component implies that a dramatic change has
+ * A change to the major version component implies that a dramatic change has
  * occurred in the libraries, such that considerable changes to source dependent
  * on previous versions would need to be effected.
  *
@@ -132,12 +132,13 @@
 # define _INETSTL_VER_1_4_1_B02  0x01040182  /*!< Version 1.4.1 beta 2 (with STLSoft 1.10.1 beta 10) */
 # define _INETSTL_VER_1_4_1_B03  0x01040183  /*!< Version 1.4.1 beta 3 (with STLSoft 1.10.1 beta 26) */
 # define _INETSTL_VER_1_4_1      0x010401ff  /*!< Version 1.4.1 (with STLSoft 1.10.3) */
+# define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1 alpha 8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       4
-#define _INETSTL_VER_REVISION    1
-#define _INETSTL_VER             _INETSTL_VER_1_4_1
+#define _INETSTL_VER_REVISION    2
+#define _INETSTL_VER             _INETSTL_VER_1_4_2
 
 
 /* /////////////////////////////////////////////////////////////////////////

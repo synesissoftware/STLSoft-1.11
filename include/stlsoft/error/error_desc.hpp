@@ -3,7 +3,7 @@
  *
  * Purpose:     Converts a standard rerror code (errno) to a printable string.
  *
- * Created:     18th July 2006
+ * Created:     19th July 2006
  * Updated:     11th March 2024
  *
  * Home:        http://stlsoft.org/

@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  5th May 2024
+# Updated:  9th July 2024
 #
 # ######################################################################## #
 
@@ -110,7 +110,11 @@ if(BUILD_TESTING)
 
 	message("-- enabled building of tests ...")
 
-	set(xTests_REQUIRED_VERSION_ 0.21.2)
+	set(STLSoft_REQUIRED_VERSION_ 1.11)
+
+	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
+
+	set(xTests_REQUIRED_VERSION_ 0.22)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

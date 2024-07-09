@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
         std::cout
             << "USAGE: "
             << program_name
-            << " <search-directory>"
+            << " [ <search-directory> ]"
             << std::endl;
 
         return EXIT_SUCCESS;
