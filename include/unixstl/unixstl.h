@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/unixstl.h
+ * File:    unixstl/unixstl.h
  *
- * Purpose:     Root header for the UNIXSTL libraries. Performs compiler
- *              and platform discriminations, and definitions of types.
+ * Purpose: Root header for the UNIXSTL libraries. Performs compiler and
+ *          platform discriminations, and definitions of types.
  *
- * Created:     15th January 2002
- * Updated:     11th March 2024
+ * Created: 15th January 2002
+ * Updated: 9th July 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    10
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 6
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     114
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -67,7 +67,7 @@
  * components.
  *
  * The major version is denoted by the _UNIXSTL_VER_MAJOR preprocessor symbol.
- * A changes to the major version component implies that a dramatic change has
+ * A change to the major version component implies that a dramatic change has
  * occurred in the libraries, such that considerable changes to source dependent
  * on previous versions would need to be effected.
  *
@@ -142,12 +142,14 @@
 # define _UNIXSTL_VER_1_8_1     0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.10.3) */
 # define _UNIXSTL_VER_1_8_2     0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.10.4) */
 # define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
+# define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
+# define _UNIXSTL_VER_1_8_4     0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.11.1 alpha 8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      8
-#define _UNIXSTL_VER_REVISION   3
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_3
+#define _UNIXSTL_VER_REVISION   4
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_4
 
 
 /* /////////////////////////////////////////////////////////////////////////

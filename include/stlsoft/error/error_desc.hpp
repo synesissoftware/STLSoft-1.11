@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/error/error_desc.hpp
+ * File:    stlsoft/error/error_desc.hpp
  *
- * Purpose:     Converts a standard rerror code (errno) to a printable string.
+ * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
- * Created:     18th July 2006
- * Updated:     11th March 2024
+ * Created: 18th July 2006
+ * Updated: 9th July 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     3
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      46
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

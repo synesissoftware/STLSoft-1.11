@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/platformstl.h
+ * File:    platformstl/platformstl.h
  *
- * Purpose:     Root header for the PlatformSTL C/C++ libraries. Performs
- *              platform discriminations, and definitions of types.
+ * Purpose: Root header for the PlatformSTL C/C++ libraries. Performs
+ *          platform discriminations, and definitions of types.
  *
- * Created:     20th March 2005
- * Updated:     11th March 2024
+ * Created: 20th March 2005
+ * Updated: 9th July 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -50,7 +50,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 6
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     59
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -67,7 +67,7 @@
  * components.
  *
  * The major version is denoted by the _PLATFORMSTL_VER_MAJOR preprocessor symbol.
- * A changes to the major version component implies that a dramatic change has
+ * A change to the major version component implies that a dramatic change has
  * occurred in the libraries, such that considerable changes to source dependent
  * on previous versions would need to be effected.
  *
@@ -132,12 +132,13 @@
 # define _PLATFORMSTL_VER_1_9_1_B03 0x01090183  /*!< Version 1.9.1 beta 3 (with STLSoft 1.10.1 beta 23) */
 # define _PLATFORMSTL_VER_1_9_1_B04 0x01090184  /*!< Version 1.9.1 beta 4 (with STLSoft 1.10.1 beta 26) */
 # define _PLATFORMSTL_VER_1_9_2     0x010902ff  /*!< Version 1.9.2 (with STLSoft 1.10.5) */
+# define _PLATFORMSTL_VER_1_9_3     0x010903ff  /*!< Version 1.9.3 (with STLSoft 1.11.1 alpha 8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      9
-#define _PLATFORMSTL_VER_REVISION   2
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_9_2
+#define _PLATFORMSTL_VER_REVISION   3
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_9_3
 
 
 /* /////////////////////////////////////////////////////////////////////////

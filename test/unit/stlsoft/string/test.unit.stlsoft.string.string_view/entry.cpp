@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 29th March 2024
+ * Updated: 9th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,6 +19,7 @@
 #endif
 
 #include <stlsoft/string/string_view.hpp>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -43,6 +44,7 @@
 
 /* Standard C header files */
 #include <stdlib.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -105,9 +107,8 @@ namespace
     static void test_insertion_4(void);
     static void test_1_30(void);
     static void test_string_traits(void);
-
-
 } // anonymous namespace
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -196,6 +197,7 @@ int main(int argc, char **argv)
 
     return retCode;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations

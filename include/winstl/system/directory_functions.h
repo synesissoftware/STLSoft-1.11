@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/directory_functions.h
+ * File:    winstl/system/directory_functions.h
  *
- * Purpose:     Directory functions.
+ * Purpose: Directory functions.
  *
- * Created:     29th January 2013
- * Updated:     11th March 2024
+ * Created: 29th January 2013
+ * Updated: 9th July 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2013-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        14
+# define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,7 +99,7 @@ namespace winstl_project
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * functions
+ * API functions
  */
 
 STLSOFT_INLINE
@@ -180,7 +180,7 @@ winstl_C_get_home_directory_w(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * C++ functions
+ * API functions (C++)
  */
 
 #if defined(__cplusplus)
@@ -204,7 +204,6 @@ get_home_directory(
 {
     return winstl_C_get_home_directory_w(buffer, cchBuffer);
 }
-
 #endif /* __cplusplus */
 
 /* ////////////////////////////////////////////////////////////////////// */

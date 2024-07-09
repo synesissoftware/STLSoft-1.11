@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 5th May 2024
+ * Updated: 9th July 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       17
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    7
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        223
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        225
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -63,32 +63,34 @@
 /* /////////////////////////////////////////////////////////////////////////
  * WinSTL version
  *
- * The libraries version information is comprised of major, minor and revision
- * components.
+ * The libraries version information is comprised of major, minor and
+ * revision components.
  *
- * The major version is denoted by the _WINSTL_VER_MAJOR preprocessor symbol.
- * A changes to the major version component implies that a dramatic change has
- * occurred in the libraries, such that considerable changes to source dependent
- * on previous versions would need to be effected.
+ * The major version is denoted by the _WINSTL_VER_MAJOR preprocessor
+ * symbol. A change to the major version component implies that a dramatic
+ * change has occurred in the libraries, such that considerable changes to
+ * source dependent on previous versions would need to be effected.
  *
- * The minor version is denoted by the _WINSTL_VER_MINOR preprocessor symbol.
- * Changes to the minor version component imply that a significant change has
- * occurred to the libraries, either in the addition of new functionality or in
- * the destructive change to one or more components such that recomplilation and
- * code change may be necessitated.
+ * The minor version is denoted by the _WINSTL_VER_MINOR preprocessor
+ * symbol. Changes to the minor version component imply that a significant
+ * change has occurred to the libraries, either in the addition of new
+ * functionality or in the destructive change to one or more components such
+ * that recomplilation and code change may be necessitated.
  *
  * The revision version is denoted by the _WINSTL_VER_REVISION preprocessor
- * symbol. Changes to the revision version component imply that a bug has been
- * fixed. Dependent code should be recompiled in order to pick up the changes.
+ * symbol. Changes to the revision version component imply that a bug has
+ * been fixed. Dependent code should be recompiled in order to pick up the
+ * changes.
  *
  * In addition to the individual version symbols - _WINSTL_VER_MAJOR,
- * _WINSTL_VER_MINOR and _WINSTL_VER_REVISION - a composite symbol _WINSTL_VER
- * is defined, where the upper 8 bits are 0, bits 16-23 represent the major
- * component,  bits 8-15 represent the minor component, and bits 0-7 represent
- * the revision component.
+ * _WINSTL_VER_MINOR and _WINSTL_VER_REVISION - a composite symbol
+ * _WINSTL_VER is defined, where the upper 8 bits are 0, bits 16-23
+ * represent the major component,  bits 8-15 represent the minor component,
+ * and bits 0-7 represent the revision component.
  *
- * Each release of the libraries will bear a different version, and that version
- * will also have its own symbol: Version 1.0.1 specifies _WINSTL_VER_1_0_1.
+ * Each release of the libraries will bear a different version, and that
+ * version will also have its own symbol: Version 1.0.1 specifies
+ * _WINSTL_VER_1_0_1.
  *
  * Thus the symbol _WINSTL_VER may be compared meaningfully with a specific
  * version symbol, e.g. #if _WINSTL_VER >= _WINSTL_VER_1_0_1
@@ -165,12 +167,13 @@
 # define _WINSTL_VER_1_12_1_B05 0x010c0185  /*!< Version 1.12.1 beta 5 (with STLSoft 1.10.1 beta 26) */
 # define _WINSTL_VER_1_12_1     0x010c01ff  /*!< Version 1.12.1 (with STLSoft 1.10.3) */
 # define _WINSTL_VER_1_12_2     0x010c02ff  /*!< Version 1.12.2 (with STLSoft 1.11.1 alpha 7) */
+# define _WINSTL_VER_1_12_3     0x010c03ff  /*!< Version 1.12.3 (with STLSoft 1.11.1 alpha 8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       12
-#define _WINSTL_VER_REVISION    1
-#define _WINSTL_VER             _WINSTL_VER_1_12_2
+#define _WINSTL_VER_REVISION    3
+#define _WINSTL_VER             _WINSTL_VER_1_12_3
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -341,9 +344,9 @@
 # undef     MAKEINTRESOURCEA
 # if defined(_WIN64) || \
      defined(_Wp64)
-#  define   MAKEINTRESOURCEA(i)         reinterpret_cast<LPSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
+#  define   MAKEINTRESOURCEA(i)                             reinterpret_cast<LPSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
 # else /* ? width */
-#  define   MAKEINTRESOURCEA(i)         reinterpret_cast<LPSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
+#  define   MAKEINTRESOURCEA(i)                             reinterpret_cast<LPSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
 # endif /* width */
 
 /** \def MAKEINTRESOURCEW
@@ -353,9 +356,9 @@
 # undef     MAKEINTRESOURCEW
 # if defined(_WIN64) || \
      defined(_Wp64)
-#  define   MAKEINTRESOURCEW(i)         reinterpret_cast<LPWSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
+#  define   MAKEINTRESOURCEW(i)                             reinterpret_cast<LPWSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
 # else /* ? width */
-#  define   MAKEINTRESOURCEW(i)         reinterpret_cast<LPWSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
+#  define   MAKEINTRESOURCEW(i)                             reinterpret_cast<LPWSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
 # endif /* width */
 
 /** \def MAKEINTRESOURCE
@@ -365,9 +368,9 @@
 # undef     MAKEINTRESOURCE
 # if defined(_WIN64) || \
      defined(_Wp64)
-#  define   MAKEINTRESOURCE(i)          reinterpret_cast<LPTSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
+#  define   MAKEINTRESOURCE(i)                              reinterpret_cast<LPTSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
 # else /* ? width */
-#  define   MAKEINTRESOURCE(i)          reinterpret_cast<LPTSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
+#  define   MAKEINTRESOURCE(i)                              reinterpret_cast<LPTSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
 # endif /* width */
 
 /** \def MAKELANGID
@@ -375,11 +378,11 @@
  *  avoid C-style cast warnings.
  */
 # undef     MAKELANGID
-# define    MAKELANGID(p, s)            ((static_cast<DWORD>(static_cast<WORD>(s)) << 10) | static_cast<WORD>(p))
+# define    MAKELANGID(p, s)                                ((static_cast<DWORD>(static_cast<WORD>(s)) << 10) | static_cast<WORD>(p))
 
 
 /* # undef     LOWORD */
-/* # define    LOWORD(l)                   static_cast<WORD>(static_cast<DWORD>(l) & 0xffff) */
+/* # define    LOWORD(l)                                    static_cast<WORD>(static_cast<DWORD>(l) & 0xffff) */
 
 /** \def INVALID_FILE_SIZE
  * A C++-only redefinition of this \#define which uses C++ cast operators to
@@ -544,7 +547,7 @@
  *  those in the other \ref group__projects "projects".
  */
 #ifndef WINSTL_ASSERT
-# define WINSTL_ASSERT(expr)                STLSOFT_ASSERT(expr)
+# define WINSTL_ASSERT(expr)                                STLSOFT_ASSERT(expr)
 #endif /* !WINSTL_ASSERT */
 
 /** Defines a runtime assertion, with message
@@ -552,7 +555,7 @@
  * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  */
-#define WINSTL_MESSAGE_ASSERT(msg, expr)    STLSOFT_MESSAGE_ASSERT(msg, expr)
+#define WINSTL_MESSAGE_ASSERT(msg, expr)                    STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /** \def WINSTL_STATIC_ASSERT(expr)
  *
@@ -562,13 +565,13 @@
  *
  * \remarks This is defined to \ref STLSOFT_STATIC_ASSERT.
  */
-#define WINSTL_STATIC_ASSERT(expr)          STLSOFT_STATIC_ASSERT(expr)
+#define WINSTL_STATIC_ASSERT(expr)                          STLSOFT_STATIC_ASSERT(expr)
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define winstl_assert(expr)                WINSTL_ASSERT(expr)
-# define winstl_message_assert(msg, expr)   WINSTL_MESSAGE_ASSERT(msg, expr)
-# define winstl_static_assert(expr)         WINSTL_STATIC_ASSERT(expr)
+# define winstl_assert(expr)                                WINSTL_ASSERT(expr)
+# define winstl_message_assert(msg, expr)                   WINSTL_MESSAGE_ASSERT(msg, expr)
+# define winstl_static_assert(expr)                         WINSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -790,9 +793,9 @@ int main()
  */
 
 #if defined(__cplusplus)
-# define WINSTL_ITF_CALL(p)         (p)
+# define WINSTL_ITF_CALL(p)                                 (p)
 #else /* ? __cplusplus */
-# define WINSTL_ITF_CALL(p)         (p)->lpVtbl
+# define WINSTL_ITF_CALL(p)                                 (p)->lpVtbl
 #endif /* __cplusplus */
 
 /** \def WINSTL_ITF_THIS(p)
@@ -807,7 +810,7 @@ int main()
 #if defined(__cplusplus)
 # define WINSTL_ITF_THIS(p)
 #else /* ? __cplusplus */
-# define WINSTL_ITF_THIS(p)         (p),
+# define WINSTL_ITF_THIS(p)                                 (p),
 #endif /* __cplusplus */
 
 /** \def WINSTL_ITF_THIS0(p)
@@ -822,7 +825,7 @@ int main()
 #if defined(__cplusplus)
 # define WINSTL_ITF_THIS0(p)
 #else /* ? __cplusplus */
-# define WINSTL_ITF_THIS0(p)        (p)
+# define WINSTL_ITF_THIS0(p)                                (p)
 #endif /* __cplusplus */
 
 /** \def WINSTL_IID_2_REF(iid)
@@ -835,9 +838,9 @@ int main()
  */
 
 #if defined(__cplusplus)
-# define WINSTL_IID_2_REF(iid)        (iid)
+# define WINSTL_IID_2_REF(iid)                              (iid)
 #else /* ? __cplusplus */
-# define WINSTL_IID_2_REF(iid)        (&(iid))
+# define WINSTL_IID_2_REF(iid)                              (&(iid))
 #endif /* __cplusplus */
 
 /** \def WINSTL_REF_2_PTR(iid)
@@ -850,9 +853,9 @@ int main()
  */
 
 #if defined(__cplusplus)
-# define WINSTL_REF_2_PTR(iid)        (&(iid))
+# define WINSTL_REF_2_PTR(iid)                              (&(iid))
 #else /* ? __cplusplus */
-# define WINSTL_REF_2_PTR(iid)        (iid)
+# define WINSTL_REF_2_PTR(iid)                              (iid)
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1017,33 +1020,33 @@ const ws_size_t CONST_MAX_PATH          =   WINSTL_CONST_MAX_PATH;
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /* Exception signatures. */
-# define winstl_throw_0()                               stlsoft_throw_0()
-# define winstl_throw_1(x1)                             stlsoft_throw_1(x1)
-# define winstl_throw_2(x1, x2)                         stlsoft_throw_2(x1, x2)
-# define winstl_throw_3(x1, x2, x3)                     stlsoft_throw_3(x1, x2, x3)
-# define winstl_throw_4(x1, x2, x3, x4)                 stlsoft_throw_4(x1, x2, x3, x4)
-# define winstl_throw_5(x1, x2, x3, x4, x5)             stlsoft_throw_5(x1, x2, x3, x4, x5)
-# define winstl_throw_6(x1, x2, x3, x4, x5, x6)         stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
-# define winstl_throw_7(x1, x2, x3, x4, x5, x6, x7)     stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
-# define winstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
+# define winstl_throw_0()                                   stlsoft_throw_0()
+# define winstl_throw_1(x1)                                 stlsoft_throw_1(x1)
+# define winstl_throw_2(x1, x2)                             stlsoft_throw_2(x1, x2)
+# define winstl_throw_3(x1, x2, x3)                         stlsoft_throw_3(x1, x2, x3)
+# define winstl_throw_4(x1, x2, x3, x4)                     stlsoft_throw_4(x1, x2, x3, x4)
+# define winstl_throw_5(x1, x2, x3, x4, x5)                 stlsoft_throw_5(x1, x2, x3, x4, x5)
+# define winstl_throw_6(x1, x2, x3, x4, x5, x6)             stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
+# define winstl_throw_7(x1, x2, x3, x4, x5, x6, x7)         stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
+# define winstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)     stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
-# define winstl_num_elements(ar)                        WINSTL_NUM_ELEMENTS(ar)
+# define WINSTL_NUM_ELEMENTS(ar)                            STLSOFT_NUM_ELEMENTS(ar)
+# define winstl_num_elements(ar)                            WINSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c type)
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  */
-#define winstl_destroy_instance(t, type, p)             STLSOFT_DESTROY_INSTANCE(t, type, p)
+#define winstl_destroy_instance(t, type, p)                 STLSOFT_DESTROY_INSTANCE(t, type, p)
 
 /** [DEPRECATED] Generates an opaque type with the name \c _htype
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  */
-#define winstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
+#define winstl_gen_opaque(htype)                            STLSOFT_GEN_OPAQUE(htype)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1051,12 +1054,13 @@ const ws_size_t CONST_MAX_PATH          =   WINSTL_CONST_MAX_PATH;
  */
 
 #ifdef __cplusplus
+
 /** Safely converts a \c BOOL to a \c bool.
  *
- * \param bVal The instance of \c BOOL to be converted to \c bool.
+ * \param value The instance of \c BOOL to be converted to \c bool.
  *
- * \retval false If \c bVal is 0.
- * \retval true If \c bVal is non-0.
+ * \retval false If \c value is 0.
+ * \retval true If \c value is non-0.
  *
  * \note In C compilation, this is defined as a functionally equivalent macro.
  *
@@ -1070,20 +1074,20 @@ const ws_size_t CONST_MAX_PATH          =   WINSTL_CONST_MAX_PATH;
  *  of <a href = "http://www.imperfectcplusplus.com/" target="blank">Imperfect C++</a>
  *  for a discussion of these issues.)
  */
-#ifdef _Wp64
-inline bool BOOL2bool(ws_int_t bVal)
-#else /* ? _Wp64 */
-inline bool BOOL2bool(BOOL bVal)
-#endif /* _Wp64 */
+# ifdef _Wp64
+inline bool BOOL2bool(ws_int_t value)
+# else /* ? _Wp64 */
+inline bool BOOL2bool(BOOL value)
+# endif /* _Wp64 */
 {
-    return bVal != FALSE;
+    return value != FALSE;
 }
 /** Safely converts a \c bool to a \c BOOL.
  *
- * \param bVal The instance of \c bool to be converted to \c BOOL.
+ * \param value The instance of \c bool to be converted to \c BOOL.
  *
- * \retval 0 If \c bVal is \c false.
- * \retval 1 If \c bVal is \c true.
+ * \retval 0 If \c value is \c false.
+ * \retval 1 If \c value is \c true.
  *
  * \note In C compilation, this is defined as a functionally equivalent macro.
  *
@@ -1099,13 +1103,14 @@ inline bool BOOL2bool(BOOL bVal)
  *  <a href = "http://www.imperfectcplusplus.com/" target="blank">Imperfect C++</a>
  *  for a discussion of these issues.)
  */
-inline BOOL bool2BOOL(bool bVal)
+inline BOOL bool2BOOL(bool value)
 {
-    return bVal != false;
+    return value != false;
 }
 #else
-# define BOOL2bool(bVal)            stlsoft_static_cast(bool, ((bVal) != FALSE))
-# define bool2BOOL(bVal)            stlsoft_static_cast(BOOL, ((bVal) != false))
+
+# define BOOL2bool(value)                                   stlsoft_static_cast(bool, ((value) != FALSE))
+# define bool2BOOL(value)                                   stlsoft_static_cast(BOOL, ((value) != false))
 #endif /* __cplusplus */
 
 /**

@@ -4,7 +4,7 @@
  * Purpose: UNIXSTL process-time stopwatch class.
  *
  * Created: 9th June 2006
- * Updated: 18th March 2024
+ * Updated: 9th July 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        26
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_REVISION    3
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -221,6 +221,13 @@ processtimes_stopwatch::processtimes_stopwatch()
     // Note that the constructor does nothing, for performance reasons. Calling
     // any of the Attribute methods before having gone through a start()-stop()
     // cycle will yield undefined results.
+
+    static const timeval_t defaultValue = { 0, 0 };
+
+    m_kernelStart = defaultValue;
+    m_kernelEnd = defaultValue;
+    m_userStart = defaultValue;
+    m_userEnd = defaultValue;
 }
 
 // Operations

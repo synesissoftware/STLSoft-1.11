@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  14th February 2024
+; Updated:  9th July 2024
 
 ============================================================================
 
@@ -17,6 +17,50 @@ STLSoft - Changes
    **************************************
 
 
+
+Changes for 1.11.1-alpha8 (9th July 2024)
+
+General:
+========
+
+ * Added `platformstl::get_home_directory()` and related functions;
+ * GCC compatibility improvements;
+ * CMake improvements;
+ * Boilerplate file improvements;
+ * More examples and test programs;
+
+Changes:
+========
+
+Added `platformstl::get_home_directory()` and related functions:
+ * added **platformstl/system/directory_functions.h** and functions `platformstl_C_get_home_directory_a()`, `platformstl_C_get_home_directory_w()`, `platformstl::get_home_directory()`;
+
+GCC compatibility improvements:
+ * **stlsoft/api/external/string.h* macros implemented in terms of **strings.h**'s `strcasecmp()` etc, when available;
+ * `STLSOFT_THROW_X()`'s implementation functions `throw_x()` renamed to `stlsoft_CXX_throw()` and marked `noreturn`;
+ * `stlsoft::basic_string_view` ctors reference full member initialisation list;
+ * `unixstl::processtimes_stopwatch` members initialised (because compiler can't read the doc markup putting use of `#stop()` before `#start()` at the responsibility of the user);
+ * **unixstl/filesystem/path.hpp** fall-through added (in implementation of `unixstl::basic_path`);
+ * ;
+
+Boilerplate file improvements:
+ * added option '--no-make' to **execute_performance_tests.sh**;
+ * added option '--no-make' to **run_all_unit_tests.sh**;
+ * improved scope of files/directories to be removed by **remove_cmake_artefacts.sh**;
+ * added **run_all_scratch_tests.sh**;
+ *
+
+CMake improvements:
+ * proper dependency management when configuring/installing for first time;
+ * move use of flag `-Wno-unused-lambda-capture` into Clang-only generator expression(s);
+
+More examples:
+ * added **example.unixstl.filesystem.readdir_sequence** project;
+ * added **test.scratch.platformstl.system.directory_functions** project;
+
+
+
+============================================================================
 
 Changes for 1.11.1-alpha7 (5th May 2024)
 

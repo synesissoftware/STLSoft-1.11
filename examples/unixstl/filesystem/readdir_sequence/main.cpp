@@ -1,18 +1,20 @@
 /* /////////////////////////////////////////////////////////////////////////
- * Purpose: Illustrates the use of `winstl::findfile_sequence` to search for
+ * Purpose: Illustrates the use of `unixstl::readdir_sequence` to search for
  *          the files and directories in a given root-directory.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#include <winstl/filesystem/findfile_sequence.hpp>
+#include <unixstl/filesystem/readdir_sequence.hpp>
 
 #include <platformstl/filesystem/path_functions.h>
+#include <unixstl/filesystem/filesystem_traits.hpp>
 
 #include <iostream>
 
 
-using winstl::findfile_sequence_a;
+using unixstl::readdir_sequence;
+typedef unixstl::filesystem_traits<char>    fs_traits_t;
 
 
 int main(int argc, char* argv[])
@@ -25,7 +27,7 @@ int main(int argc, char* argv[])
         std::cout
             << "USAGE: "
             << program_name
-            << " [ <search-directory> ]"
+            << " <search-directory>"
             << std::endl;
 
         return EXIT_SUCCESS;
@@ -56,14 +58,14 @@ int main(int argc, char* argv[])
 
     std::cout << "searching in '" << root_dir << "':" << std::endl;
 
-    findfile_sequence_a files(root_dir, "*.*");
+    readdir_sequence files(root_dir, readdir_sequence::files | readdir_sequence::directories);
 
-    for (findfile_sequence_a::const_iterator i = files.begin(); files.end() != i; ++i)
+    for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
     {
         std::cout
             << "\t"
             << *i
-            << ((*i).is_directory() ? "/" : "")
+            << (fs_traits_t::is_directory(*i) ? "/" : "")
             << std::endl;
     }
 

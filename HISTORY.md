@@ -4,6 +4,16 @@
 ----
 
 
+9th July 2024 - 1.11.1-alpha8 released
+--------------------------------------
+
+ * Added `platformstl::get_home_directory()` and related functions;
+ * GCC compatibility improvements;
+ * CMake improvements;
+ * Boilerplate file improvements;
+ * More examples and test programs;
+
+
 5th May 2024 - 1.11.1-alpha7 released
 -------------------------------------
 

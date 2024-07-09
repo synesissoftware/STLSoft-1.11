@@ -4,7 +4,7 @@
  * Purpose:     Directory functions.
  *
  * Created:     1st October 2016
- * Updated:     11th March 2024
+ * Updated:     9th July 2024
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    9
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        20
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -244,7 +244,7 @@ unixstl_C_get_home_directory_w(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * C++ functions
+ * API functions (C++)
  */
 
 #if defined(__cplusplus)
@@ -268,7 +268,6 @@ get_home_directory(
 {
     return unixstl_C_get_home_directory_w(buffer, cchBuffer);
 }
-
 #endif /* __cplusplus */
 
 /* ////////////////////////////////////////////////////////////////////// */

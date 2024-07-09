@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/memory_mapped_file.hpp (based on MMFile.h, ::SynesisWin)
+ * File:    winstl/filesystem/memory_mapped_file.hpp (based on MMFile.h, ::SynesisWin)
  *
- * Purpose:     Memory mapped file class.
+ * Purpose: Memory mapped file class.
  *
- * Created:     15th December 1996
- * Updated:     11th March 2024
+ * Created: 15th December 1996
+ * Updated: 5th May 2024
  *
- * Thanks:      To Pablo Aguilar for requesting multibyte / wide string
- *              ambivalence. To Joe Mariadassou for requesting swap().
+ * Thanks:  To Pablo Aguilar for requesting multibyte / wide string
+ *          ambivalence. To Joe Mariadassou for requesting swap().
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     12
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  8
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      129
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -814,14 +814,12 @@ namespace std
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * inclusion
+ * inclusion control
  */
 
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE */
 

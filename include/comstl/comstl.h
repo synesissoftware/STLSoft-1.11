@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/comstl.h
+ * File:    comstl/comstl.h
  *
- * Purpose:     Root header for the COMSTL libraries. Performs compiler
- *              and platform discriminations, and definitions of types.
+ * Purpose: Root header for the COMSTL libraries. Performs compiler and
+ *          platform discriminations, and definitions of types.
  *
- * Created:     15th January 2002
- * Updated:     11th March 2024
+ * Created: 15th January 2002
+ * Updated: 9th July 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       9
 # define COMSTL_VER_COMSTL_H_COMSTL_REVISION    8
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        131
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -72,7 +72,7 @@
  * components.
  *
  * The major version is denoted by the _COMSTL_VER_MAJOR preprocessor symbol.
- * A changes to the major version component implies that a dramatic change has
+ * A change to the major version component implies that a dramatic change has
  * occurred in the libraries, such that considerable changes to source dependent
  * on previous versions would need to be effected.
  *
@@ -157,12 +157,13 @@
 # define _COMSTL_VER_1_10_1_B02 0x010a0182  /*!< Version 1.10.1 beta 2 (with STLSoft 1.10.1 beta 17) */
 # define _COMSTL_VER_1_10_1_B03 0x010a0183  /*!< Version 1.10.1 beta 3 (with STLSoft 1.10.1 beta 26) */
 # define _COMSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.10.3) */
+# define _COMSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.11.1 alpha 8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       10
-#define _COMSTL_VER_REVISION    1
-#define _COMSTL_VER             _COMSTL_VER_1_10_1
+#define _COMSTL_VER_REVISION    2
+#define _COMSTL_VER             _COMSTL_VER_1_10_2
 
 
 /* /////////////////////////////////////////////////////////////////////////

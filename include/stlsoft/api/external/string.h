@@ -4,11 +4,11 @@
  * Purpose:     External preprocessor aliases for string functions.
  *
  * Created:     15th November 2002
- * Updated:     25th December 2020
+ * Updated:     9th July 2024
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -66,8 +66,22 @@
 #endif /* !STLSOFT_INCL_H_STRING */
 
 #if 0 ||\
-    defined(__MINGW32__)||\
-    defined(__MINGW64__)||\
+    (\
+        defined(_WIN32) &&\
+        (\
+            0 ||\
+            defined(__MINGW32__)||\
+            defined(__MINGW64__)||\
+            0\
+        )\
+    ) ||\
+    (\
+        0 ||\
+        defined(__linux__) ||\
+        defined(__linux) ||\
+        defined(linux) ||\
+        0\
+    ) ||\
     0
 # ifndef STLSOFT_INCL_H_STRINGS
 #  define STLSOFT_INCL_H_STRINGS
@@ -157,11 +171,12 @@
 
 #  if 0
 #  elif !defined(__STRICT_ANSI__)
-#   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(_stricmp)
+#  elif defined(STLSOFT_INCL_H_STRINGS)
+#   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(strcasecmp)
 #  endif
 
-  /* Intel */
-# elif defined(STLSOFT_COMPILER_IS_INTEL) && \
+  /* Intel (Windows) */
+# elif defined(STLSOFT_COMPILER_IS_INTEL) &&\
        defined(_WIN32)
 
 #  if 0
@@ -229,11 +244,12 @@
 
 #  if 0
 #  elif !defined(__STRICT_ANSI__)
-#   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(_wcsicmp)
+#  elif defined(STLSOFT_INCL_H_STRINGS)
+#   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(wcscasecmp)
 #  endif
 
-  /* Intel */
-# elif defined(STLSOFT_COMPILER_IS_INTEL) && \
+  /* Intel (Windows) */
+# elif defined(STLSOFT_COMPILER_IS_INTEL) &&\
        defined(_WIN32)
 
 #  if 0
@@ -298,17 +314,13 @@
 # elif defined(STLSOFT_COMPILER_IS_GCC)
 
 #  if 0
-#  elif 0 || \
-        defined(__MINGW32__)||\
-        defined(__MINGW64__)||\
-        0
-#   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(strncasecmp)
 #  elif !defined(__STRICT_ANSI__)
-#   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(_strnicmp)
+#  elif defined(STLSOFT_INCL_H_STRINGS)
+#   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(strncasecmp)
 #  endif
 
-  /* Intel */
-# elif defined(STLSOFT_COMPILER_IS_INTEL) && \
+  /* Intel (Windows) */
+# elif defined(STLSOFT_COMPILER_IS_INTEL) &&\
        defined(_WIN32)
 
 #  if 0
@@ -370,11 +382,12 @@
 
 #  if 0
 #  elif !defined(__STRICT_ANSI__)
-#   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(_wcsnicmp)
+#  elif defined(STLSOFT_INCL_H_STRINGS)
+#   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(wcsncasecmp)
 #  endif
 
-  /* Intel */
-# elif defined(STLSOFT_COMPILER_IS_INTEL) && \
+  /* Intel (Windows) */
+# elif defined(STLSOFT_COMPILER_IS_INTEL) &&\
        defined(_WIN32)
 
 #  if 0

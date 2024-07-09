@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/acestl.hpp
+ * File:    acestl/acestl.hpp
  *
- * Purpose:     Root header for the ACESTL libraries. Performs compiler
- *              and platform discriminations, and definitions of types.
+ * Purpose: Root header for the ACESTL libraries. Performs compiler and
+ *          platform discriminations, and definitions of types.
  *
- * Created:     15th September 2004
- * Updated:     11th March 2024
+ * Created: 15th September 2004
+ * Updated: 9th July 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -50,7 +50,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     8
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      55
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp
@@ -111,12 +111,13 @@
 # define _ACESTL_VER_1_1_2     0x00010102  /*!< Version 1.1.2 (STLSoft 1.9.25) */
 # define _ACESTL_VER_1_2_1_B01 0x01020181  /*!< Version 1.2.1 beta 1 (STLSoft 1.10.1 b1) */
 # define _ACESTL_VER_1_2_1_B02 0x01020182  /*!< Version 1.2.1 beta 2 (STLSoft 1.10.1 beta 26) */
+# define _ACESTL_VER_1_2_1     0x010201ff  /*!< Version 1.2.1 (with STLSoft 1.11.1 alpha 8) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _ACESTL_VER_MAJOR      1
-#define _ACESTL_VER_MINOR      1
+#define _ACESTL_VER_MINOR      2
 #define _ACESTL_VER_REVISION   1
-#define _ACESTL_VER            _ACESTL_VER_1_2_1_B02
+#define _ACESTL_VER            _ACESTL_VER_1_2_1
 
 
 /* /////////////////////////////////////////////////////////////////////////

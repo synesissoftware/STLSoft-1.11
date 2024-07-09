@@ -4,7 +4,7 @@
  * Purpose: basic_string_view class.
  *
  * Created: 16th October 2004
- * Updated: 11th March 2024
+ * Updated: 9th July 2024
  *
  * Thanks:  Bjorn Karlsson and Scott Patterson for discussions on various
  *          naming and design issues. Thanks also to Pablo Aguilar for
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        116
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1017,7 +1017,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline basic_string_view<C, T, A>::basic_string_view()
-    : m_length(0)
+    : allocator_type()
+    , stl_collection_tag()
+    , m_length(0)
     , m_base(NULL)
     , m_cstr(NULL)
 {
@@ -1029,7 +1031,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline basic_string_view<C, T, A>::basic_string_view(basic_string_view<C, T, A> const& rhs)
-    : m_length(rhs.m_length)
+    : allocator_type(rhs)
+    , stl_collection_tag(rhs)
+    , m_length(rhs.m_length)
     , m_base(rhs.m_base)
     , m_cstr(NULL)
 {
@@ -1041,7 +1045,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline basic_string_view<C, T, A>::basic_string_view(basic_string_view<C, T, A> const& rhs, ss_typename_type_k basic_string_view<C, T, A>::size_type pos)
-    : m_length(rhs.m_length - pos)
+    : allocator_type(rhs)
+    , stl_collection_tag(rhs)
+    , m_length(rhs.m_length - pos)
     , m_base(&rhs[pos]) // Use this so we get the debug-time invariant checking on the validity of pos
     , m_cstr(NULL)
 {
@@ -1057,7 +1063,9 @@ template<   ss_typename_param_k C
 inline basic_string_view<C, T, A>::basic_string_view(   basic_string_view<C, T, A> const&                           rhs
                                                     ,   ss_typename_type_k basic_string_view<C, T, A>::size_type    pos
                                                     ,   ss_typename_type_k basic_string_view<C, T, A>::size_type    cch)
-    : m_length(cch)
+    : allocator_type(rhs)
+    , stl_collection_tag(rhs)
+    , m_length(cch)
     , m_base(&rhs[pos]) // Use this so we get the debug-time invariant checking on the validity of pos
     , m_cstr(NULL)
 {
@@ -1069,7 +1077,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 inline basic_string_view<C, T, A>::basic_string_view(ss_typename_type_k basic_string_view<C, T, A>::char_type const* s)
-    : m_length(T::length(s))
+    : allocator_type()
+    , stl_collection_tag()
+    , m_length(T::length(s))
     , m_base(s)
     , m_cstr(NULL)
 {
@@ -1082,7 +1092,9 @@ template<   ss_typename_param_k C
         >
 inline basic_string_view<C, T, A>::basic_string_view(   ss_typename_type_k basic_string_view<C, T, A>::char_type const* s
                                                     ,   ss_typename_type_k basic_string_view<C, T, A>::size_type cch)
-    : m_length(cch)
+    : allocator_type()
+    , stl_collection_tag()
+    , m_length(cch)
     , m_base(s)
     , m_cstr(NULL)
 {
@@ -1095,7 +1107,9 @@ template<   ss_typename_param_k C
         >
 inline basic_string_view<C, T, A>::basic_string_view(   ss_typename_type_k basic_string_view<C, T, A>::char_type const* first
                                                     ,   ss_typename_type_k basic_string_view<C, T, A>::char_type const* last)
-    : m_length(static_cast<size_type>(last - first))
+    : allocator_type()
+    , stl_collection_tag()
+    , m_length(static_cast<size_type>(last - first))
     , m_base(first)
     , m_cstr(NULL)
 {
