@@ -6,7 +6,7 @@
  *          types.
  *
  * Created: 15th January 2002
- * Updated: 5th May 2024
+ * Updated: 9th July 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    53
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     554
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     556
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -520,7 +520,8 @@
  */
 
 #ifdef _MSC_VER
-# if defined(__BORLANDC__) ||      /* Borland */ \
+# if 0 || \
+     defined(__BORLANDC__) ||      /* Borland */ \
      defined(__clang__) ||         /* Clang */ \
      defined(__COMO__) ||          /* Comeau */ \
      defined(__DMC__) ||           /* Digital Mars */ \
@@ -530,7 +531,8 @@
      defined(__SUNPRO_C) ||        /* Sun Pro C */ \
      defined(__SUNPRO_CC) ||       /* Sun Pro C++ */ \
      defined(__VECTORC) ||         /* VectorC */ \
-     defined(__WATCOMC__)          /* Watcom */
+     defined(__WATCOMC__) ||       /* Watcom */ \
+     0
   /* Handle Microsoft Visual C++ support. */
 #  if defined(_STLSOFT_NO_MSC_VER_SUPPORT) || \
      (   defined(STLSOFT_STRICT) && \
@@ -540,7 +542,9 @@
 # endif /* compiler */
 #endif /* _MSC_VER */
 
-#if defined(_STLSOFT_FORCE_CUSTOM_COMPILER)
+#if 0
+#elif defined(_STLSOFT_FORCE_CUSTOM_COMPILER)
+
 # define STLSOFT_COMPILER_LABEL_STRING                      "Custom (forced) compiler"
 # define STLSOFT_COMPILER_VERSION_STRING                    "Custom (forced) compiler"
 # define STLSOFT_COMPILER_IS_CUSTOM
@@ -861,7 +865,8 @@
  * libraries' source code.
  */
 
-#if defined(_STLSOFT_INCLUDE_UNDEFS) || \
+#if 0 || \
+    defined(_STLSOFT_INCLUDE_UNDEFS) || \
     (  defined(STLSOFT_STRICT) && \
        !defined(STLSOFT_NO_UNDEFS))
 # include <stlsoft/internal/_undefs.h>
@@ -869,7 +874,8 @@
 
 /* Now we include the appropriate compiler-specific header */
 
-#if defined(STLSOFT_COMPILER_IS_CUSTOM)
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_CUSTOM)
 # include __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME
 #elif defined(STLSOFT_COMPILER_IS_UNKNOWN)
 # include <stlsoft/internal/cccap/unknown.h>
@@ -1418,8 +1424,8 @@
 
 #  define STLSOFT_DEPRECATED_(msg)                          [[deprecated(msg)]]
 # elif 0 || \
-       defined(__GNUC__) || \
-       defined(__clang__) || \
+       defined(STLSOFT_COMPILER_IS_GCC) || \
+       defined(STLSOFT_COMPILER_IS_CLANG) || \
        0
 
 #  define STLSOFT_DEPRECATED_(msg)                          __attribute__((deprecated))
@@ -1564,18 +1570,21 @@
  * \param msg The literal character string message to be included in the assertion
  */
 #if defined(STLSOFT_CF_ASSERT_SUPPORT)
-# if defined(__WATCOMC__)
+
+# if defined(STLSOFT_COMPILER_IS_WATCOM)
 
 #  define STLSOFT_MESSAGE_ASSERT(msg, expr)                 STLSOFT_ASSERT(expr)
-# elif defined(__COMO__) || \
-       defined(__GNUC__) || \
-       defined(__MWERKS__)
+# elif 0 || \
+       defined(STLSOFT_COMPILER_IS_COMO) || \
+       defined(STLSOFT_COMPILER_IS_GCC) || \
+       defined(STLSOFT_COMPILER_IS_MWERKS) || \
+       0
 
 #  define STLSOFT_MESSAGE_ASSERT(msg, expr)                 STLSOFT_ASSERT((msg && (expr)))
 # else /* ? compiler */
 
 #  define STLSOFT_MESSAGE_ASSERT(msg, expr)                 STLSOFT_ASSERT((msg, expr))
-# endif /* __WATCOMC__ */
+# endif /* compiler */
 #else /* ? STLSOFT_CF_ASSERT_SUPPORT */
 
 # define STLSOFT_MESSAGE_ASSERT(msg, expr)
@@ -1763,8 +1772,9 @@
  * \see STLSOFT_DECLARE_MACRO_DEPRECATION
  */
 
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    STLSOFT_MSVC_VER >= 140050320
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      STLSOFT_MSVC_VER >= 140050320
 
 # define STLSOFT_DECLARE_DEPRECATION()                                      \
                                                                             \
@@ -1787,6 +1797,7 @@
 # define STLSOFT_DECLARE_MACRO_DEPRECATION_IN_FAVOUR_OF(oldfn, newfn)
 
 #else /* ? compiler */
+
 # define STLSOFT_DECLARE_DEPRECATION()
 # define STLSOFT_DECLARE_DEPRECATION_MESSAGE(message)
 # define STLSOFT_DECLARE_FUNCTION_DEPRECATION(fn)
@@ -1987,12 +1998,15 @@ namespace stlsoft
  * 64-bit warning support
  */
 
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER >= 1310 && \
-    !defined(_WIN64) && \
-    defined(_Wp64)
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      _MSC_VER >= 1310 && \
+      !defined(_WIN64) && \
+      defined(_Wp64)
+
 # define STLSOFT_WARN_64                                    __w64
 #else /* ? compiler */
+
 # define STLSOFT_WARN_64
 #endif /* compiler */
 
@@ -2434,12 +2448,13 @@ typedef ss_streamoff_t                                      streamoff_t;        
  *        (which only took me six years to discover!) is to apply *& to the
  *        instance.
  */
-# if defined(STLSOFT_COMPILER_IS_BORLAND)
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_BORLAND)
 
 template <ss_typename_param_k X>
 inline
 void
-throw_x(
+stlsoft_CXX_throw(
     X const& x
 ) /* throw(X) */
 {
@@ -2448,14 +2463,23 @@ throw_x(
     throw x2;
 }
 
-#  define STLSOFT_THROW_X(x)                                STLSOFT_NS_QUAL(throw_x)(x)
+#  define STLSOFT_THROW_X(x)                                STLSOFT_NS_QUAL(stlsoft_CXX_throw)(x)
 
 # else
 
 template <ss_typename_param_k X>
+# if 0
+# elif __cplusplus >= 201703L
+[[noreturn]]
+# elif 0 || \
+       defined(STLSOFT_COMPILER_IS_CLANG) || \
+       defined(STLSOFT_COMPILER_IS_GCC) || \
+       0
+__attribute__((noreturn))
+# endif
 inline
 void
-throw_x(
+stlsoft_CXX_throw(
     X const& x
 )
 {
@@ -2464,12 +2488,14 @@ throw_x(
     X const* px =   &x;
 
     throw *px;
+
 #  else /* ? compiler */
     throw x;
+
 #  endif /* compiler */
 }
 
-#  define STLSOFT_THROW_X(x)                                STLSOFT_NS_QUAL(throw_x)(x)
+#  define STLSOFT_THROW_X(x)                                STLSOFT_NS_QUAL(stlsoft_CXX_throw)(x)
 
 # endif /* compiler */
 
@@ -2773,7 +2799,8 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
  * \param S The type of the structure/class
  * \param M The name of the member
  */
-#if defined(RECLS_COMPILER_IS_GCC)
+#if 0
+#elif defined(RECLS_COMPILER_IS_GCC)
 # define STLSOFT_RAW_OFFSETOF(S, M)                         STLSOFT_RAW_OFFSETOF_2(S, M)
 #elif defined(_STLSOFT_NO_STD_INCLUDES)
 # define STLSOFT_RAW_OFFSETOF(S, M)                         offsetof(S, M)
@@ -2921,7 +2948,8 @@ private:
  * template with a template type-parameter T, the declaration ["]friend class T;["] is ill-formed."</i>
  * However, it gives the expected behaviour for all compilers currently supported by STLSoft
  */
-#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
+#if 0 || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
     defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_CLANG) || \
     defined(STLSOFT_COMPILER_IS_COMO) || \
@@ -2932,9 +2960,12 @@ private:
     defined(STLSOFT_COMPILER_IS_MSVC) || \
     defined(STLSOFT_COMPILER_IS_VECTORC) || \
     defined(STLSOFT_COMPILER_IS_SUNPRO) || \
-    defined(STLSOFT_COMPILER_IS_WATCOM)
+    defined(STLSOFT_COMPILER_IS_WATCOM) || \
+    0
+
 # define    STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(T)     friend T
 #elif defined(STLSOFT_COMPILER_IS_MWERKS)
+
 # define    STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(T)     friend class T
 #elif defined(STLSOFT_COMPILER_IS_GCC) && \
       __GNUC__ >= 3
@@ -3242,7 +3273,7 @@ constexpr
 # endif
 ss_truthy_t
 # if 0
-# elif defined(__GNUC__)
+# elif defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__ ((unused))
 # endif
 stlsoft_C_always_false_(void) STLSOFT_NOEXCEPT
@@ -3257,7 +3288,7 @@ constexpr
 # endif
 ss_truthy_t
 # if 0
-# elif defined(__GNUC__)
+# elif defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__ ((unused))
 # endif
 stlsoft_C_always_true_(void) STLSOFT_NOEXCEPT

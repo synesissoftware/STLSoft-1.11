@@ -39,6 +39,10 @@ if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 endif()
 
 
+if(UNIX)
+	add_subdirectory(unixstl)
+endif(UNIX)
+
 if(WIN32)
 	add_subdirectory(winstl)
 endif(WIN32)
