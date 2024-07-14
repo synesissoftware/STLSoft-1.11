@@ -4,6 +4,13 @@
 ----
 
 
+14th July 2024 - 1.11.1-alpha10 released
+----------------------------------------
+
+* Fixing upper limit to **xTests** version as <0.23, in anticipation of imminent changes to **xTests**;
+* Compatibility with latest VC++ 17 (with Visual Studio 2022 version 17.10.1, _MSC_FULL_VER=194033811);
+
+
 9th July 2024 - 1.11.1-alpha9 released
 --------------------------------------
 

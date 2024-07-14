@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  9th July 2024
+; Updated:  14th July 2024
 
 ============================================================================
 
@@ -17,6 +17,17 @@ STLSoft - Changes
    **************************************
 
 
+
+Changes for 1.11.1-alpha10 (14th July 2024)
+
+General:
+========
+
+* Fixing upper limit to **xTests** version as <0.23, in anticipation of imminent changes to **xTests**;
+* Compatibility with latest VC++ 17 (with Visual Studio 2022 version 17.10.1, _MSC_FULL_VER=194033811);
+
+
+============================================================================
 
 Changes for 1.11.1-alpha9 (9th July 2024)
 
