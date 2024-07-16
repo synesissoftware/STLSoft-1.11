@@ -4,7 +4,7 @@ add_executable(test.unit.string.simple_string
 )
 
 target_link_libraries(test.unit.string.simple_string
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.string.simple_string PRIVATE

@@ -4,7 +4,7 @@ add_executable(test.unit.stlsoft.filesystem.io_functions.read_line
 )
 
 target_link_libraries(test.unit.stlsoft.filesystem.io_functions.read_line
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.stlsoft.filesystem.io_functions.read_line PRIVATE

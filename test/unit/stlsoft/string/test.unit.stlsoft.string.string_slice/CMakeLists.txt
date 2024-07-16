@@ -4,7 +4,7 @@ add_executable(test.unit.stlsoft.string.string_slice
 )
 
 target_link_libraries(test.unit.stlsoft.string.string_slice
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.stlsoft.string.string_slice PRIVATE

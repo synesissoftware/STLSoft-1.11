@@ -4,7 +4,7 @@ add_executable(test.unit.stlsoft.memory.auto_buffer
 )
 
 target_link_libraries(test.unit.stlsoft.memory.auto_buffer
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.stlsoft.memory.auto_buffer PRIVATE

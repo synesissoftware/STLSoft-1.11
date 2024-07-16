@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  14th July 2024
+; Updated:  16th July 2024
 
 ============================================================================
 
@@ -17,6 +17,16 @@ STLSoft - Changes
    **************************************
 
 
+
+Changes for 1.11.1-alpha11 (16th July 2024)
+
+General:
+========
+
+* CMake compatibility fixes
+
+
+============================================================================
 
 Changes for 1.11.1-alpha10 (14th July 2024)
 

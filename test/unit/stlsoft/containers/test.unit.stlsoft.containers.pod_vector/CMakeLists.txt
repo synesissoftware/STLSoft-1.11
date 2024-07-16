@@ -4,7 +4,7 @@ add_executable(test.unit.stlsoft.containers.pod_vector
 )
 
 target_link_libraries(test.unit.stlsoft.containers.pod_vector
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.stlsoft.containers.pod_vector PRIVATE

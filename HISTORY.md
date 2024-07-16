@@ -4,6 +4,12 @@
 ----
 
 
+16th July 2024 - 1.11.1-alpha11 released
+----------------------------------------
+
+* CMake compatibility fixes
+
+
 14th July 2024 - 1.11.1-alpha10 released
 ----------------------------------------
 

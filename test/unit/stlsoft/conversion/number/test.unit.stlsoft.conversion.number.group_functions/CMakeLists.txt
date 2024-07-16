@@ -4,7 +4,7 @@ add_executable(test.unit.stlsoft.conversion.number.group_functions
 )
 
 target_link_libraries(test.unit.stlsoft.conversion.number.group_functions
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.stlsoft.conversion.number.group_functions PRIVATE

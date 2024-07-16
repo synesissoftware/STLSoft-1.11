@@ -4,7 +4,7 @@ add_executable(test.unit.stlsoft.util.true_typedef
 )
 
 target_link_libraries(test.unit.stlsoft.util.true_typedef
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.stlsoft.util.true_typedef PRIVATE

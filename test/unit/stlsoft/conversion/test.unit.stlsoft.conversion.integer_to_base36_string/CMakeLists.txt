@@ -4,7 +4,7 @@ add_executable(test.unit.stlsoft.conversion.integer_to_base36_string
 )
 
 target_link_libraries(test.unit.stlsoft.conversion.integer_to_base36_string
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.stlsoft.conversion.integer_to_base36_string PRIVATE

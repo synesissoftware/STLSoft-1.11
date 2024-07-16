@@ -4,7 +4,7 @@ add_executable(test.unit.stlsoft.conversion.integer_to_lc_string
 )
 
 target_link_libraries(test.unit.stlsoft.conversion.integer_to_lc_string
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.stlsoft.conversion.integer_to_lc_string PRIVATE

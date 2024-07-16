@@ -4,7 +4,7 @@ add_executable(test.unit.unixstl.filesystem.path
 )
 
 target_link_libraries(test.unit.unixstl.filesystem.path
-	xTests::xTests.core
+	xTests::core
 )
 
 target_compile_options(test.unit.unixstl.filesystem.path PRIVATE
