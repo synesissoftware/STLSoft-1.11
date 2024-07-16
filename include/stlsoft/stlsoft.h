@@ -812,7 +812,7 @@
 #  elif _MSC_VER <= 1940
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 17.x"
 #  else
-#   error Visual C++ version that is >= 7 is not recognised
+#   error Visual C++ version that is > vc17 is not recognised
 #  endif
 # else /* ? _MSC_VER */
 #  error Currently only versions 5.0, 6.0, 7.0, 7.1, 8.0, 9.0, 10.0, 11.0, 12.0, 14.0, 15, 16, and 17 of the Visual C++ compiler are supported by the STLSoft libraries
