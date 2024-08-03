@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/reg_key.hpp
+ * File:    winstl/registry/reg_key.hpp
  *
- * Purpose:     Contains the basic_reg_key class template, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_reg_key class template, and ANSI and Unicode
+ *          specialisations thereof.
  *
- * Created:     19th January 2002
- * Updated:     11th March 2024
+ * Created: 19th January 2002
+ * Updated: 19th July 2024
  *
- * Thanks:      To Sam Fisher for spotting the defect in the set_value_()
- *              overload for REG_MULTI_SZ values (widestring only).
+ * Thanks:  To Sam Fisher for spotting the defect in the set_value_()
+ *          overload for REG_MULTI_SZ values (widestring only).
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -1374,12 +1374,33 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, ss_typename_type_k basic_reg_key<C, T, A>::char_type const* const* values, ss_typename_type_k basic_reg_key<C, T, A>::size_type numValues)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value_(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const*         valueName
+,   ss_typename_type_k basic_reg_key<C, T, A>::char_type const* const*  values
+,   ss_typename_type_k basic_reg_key<C, T, A>::size_type                numValues
+)
 {
     // Evaluate the total length of the source values
-    const size_type totalLen = STLSOFT_NS_QUAL_STD(accumulate)( STLSOFT_NS_QUAL(transformer)(values, std::ptr_fun(traits_type::str_len))
-                                                            ,   STLSOFT_NS_QUAL(transformer)(values + numValues, std::ptr_fun(traits_type::str_len))
-                                                            ,   size_type(0));
+#if 0
+#elif __cplusplus >= 201703L
+
+    const size_type totalLen = STLSOFT_NS_QUAL_STD(accumulate)(
+        values, values + numValues
+    ,   size_type(0)
+    ,   [] (char_type const* v) {
+        return traits_type::str_len(v);
+    }
+    );
+#else
+
+    const size_type totalLen = STLSOFT_NS_QUAL_STD(accumulate)(
+        STLSOFT_NS_QUAL(transformer)(values, std::ptr_fun(traits_type::str_len))
+    ,   STLSOFT_NS_QUAL(transformer)(values + numValues, std::ptr_fun(traits_type::str_len))
+    ,   size_type(0)
+    );
+#endif
 
     // Create a buffer of sufficient size: total length + a nul-terminator for each value + a double nul-terminator
     STLSOFT_NS_QUAL(auto_buffer)<char_type> buff(totalLen + numValues * 1 + 2);
@@ -1392,7 +1413,7 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
     }
 
     // Now synthesise all the data
-    char_type *p = &buff[0];
+    char_type* p = &buff[0];
 
     { for (size_type i = 0; i != numValues; ++i)
     {

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/resizeable_buffer_helpers.hpp
+ * File:    stlsoft/util/resizeable_buffer_helpers.hpp
  *
- * Purpose:     Utility functions for working with resizeable-buffers.
+ * Purpose: Utility functions for working with resizeable-buffers.
  *
- * Created:     24th December 2020
- * Updated:     11th March 2024
+ * Created: 24th December 2020
+ * Updated: 19th July 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_EDIT        5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_REVISION    4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -207,6 +207,13 @@ resizeable_buffer_resize(
 ,   ss_size_t           newSize
 )
 {
+#ifdef STLSOFT_COMPILER_IS_MSVC
+# if _MSC_VER >= 1200
+#  pragma warning(push)
+# endif /* compiler */
+# pragma warning(disable : 4459)
+#endif /* compiler */
+
 #if 0
 #elif defined(STLSOFT_COMPILER_IS_MSVC) && \
       _MSC_VER < 1310
@@ -227,6 +234,14 @@ resizeable_buffer_resize(
 
     return traits_t::do_resize(rb, newSize, &T_resizeableBuffer::resize);
 #endif
+
+#ifdef STLSOFT_COMPILER_IS_MSVC
+# if _MSC_VER >= 1200
+#  pragma warning(pop)
+# else /* ? compiler */
+#  pragma warning(default : 4459)
+# endif /* _MSC_VER */
+#endif /* compiler */
 }
 
 /* ////////////////////////////////////////////////////////////////////// */
