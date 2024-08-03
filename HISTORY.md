@@ -4,6 +4,17 @@
 ----
 
 
+3rd August 2024 - 1.11.1-alpha12 released
+----------------------------------------
+
+* `unixstl::readdir_sequence` no longer uses `stlsoft::basic_static_string<>`;
+* simplifying CMake compatibility;
+* VC++17 compatibility;
+* minor fixes;
+* now depends on xTests 0.24+
+
+
+14th July 2024 - 1.11.1-alpha10 released
 16th July 2024 - 1.11.1-alpha11 released
 ----------------------------------------
 

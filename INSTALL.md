@@ -22,17 +22,17 @@ There are three options for installing **STLSoft**, depending on how you obtain 
 
 If you obtain the latest release as an archive, e.g. from the [STLSoft SourceForge project](https://sourceforge.net/projects/stlsoft/):
 
-1. Download the latest distribution, e.g. [**STLSoft-1.11-1.11.1-alpha9.zip**](https://github.com/synesissoftware/STLSoft-1.11/releases/tag/1.11.1-alpha9);
+1. Download the latest distribution, e.g. [**STLSoft-1.11-1.11.1-alpha12.zip**](https://github.com/synesissoftware/STLSoft-1.11/releases/tag/1.11.1-alpha12);
 
 2. Unzip it to a directory of your choice, as in:
 
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip STLSoft-1.11-1.11.1-alpha9.zip
+$ unzip STLSoft-1.11-1.11.1-alpha12.zip
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11-1.11.1-alpha9`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11-1.11.1-alpha12`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
 
 
 ### Cloning project, using environment variables
