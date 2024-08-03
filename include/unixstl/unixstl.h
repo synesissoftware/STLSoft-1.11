@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th July 2024
+ * Updated: 3rd January 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    10
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 6
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     115
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 7
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -59,6 +59,7 @@
  * \brief [C, C++] Root header for the
  * \ref group__project__unixstl "UNIXSTL" project.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * UNIXSTL version
@@ -144,12 +145,13 @@
 # define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
 # define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
 # define _UNIXSTL_VER_1_8_4     0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.11.1 alpha 8) */
+# define _UNIXSTL_VER_1_8_5     0x010805ff  /*!< Version 1.8.5 (with STLSoft 1.11.1 alpha 12) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      8
-#define _UNIXSTL_VER_REVISION   4
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_4
+#define _UNIXSTL_VER_REVISION   5
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_5
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -171,6 +173,7 @@
 #if _STLSOFT_VER < 0x010a019a
 # error This version of the UNIXSTL libraries requires STLSoft version 1.10.1 beta 26, or later
 #endif /* _STLSOFT_VER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
@@ -235,6 +238,7 @@
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * architecture
  *
@@ -270,45 +274,62 @@
 # undef UNIXSTL_ARCH_IS_UNKNOWN
 #endif /* UNIXSTL_ARCH_IS_UNKNOWN */
 
-#if defined(__amd64__) || \
-      defined(__amd64) || \
-      defined(_AMD64_) || \
-      defined(_M_AMD64) || \
-      defined(_M_X64)
+#if 0 ||\
+    defined(__amd64__) || \
+    defined(__amd64) || \
+    defined(_AMD64_) || \
+    defined(_M_AMD64) || \
+    defined(_M_X64) || \
+    0
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_X64
-#elif defined(__ia64__) || \
+#elif 0 ||\
+      defined(__ia64__) || \
       defined(__ia64) || \
       defined(_IA64_) || \
-      defined(_M_IA64)
+      defined(_M_IA64) ||\
+      0
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_IA64
-#elif defined(__i386__) || \
+#elif 0 ||\
+      defined(__i386__) || \
       defined(__i386) || \
       defined(_X86_) || \
-      defined(_M_IX86)
+      defined(_M_IX86) ||\
+      0
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_X86
-#elif defined(__alpha__) || \
+#elif 0 ||\
+      defined(__alpha__) || \
       defined(__alpha) || \
-      defined(_M_ALPHA)
+      defined(_M_ALPHA) ||\
+      0
 # define UNIXSTL_ARCH_IS_ALPHA
-#elif defined(__hppa__) || \
-      defined(__hppa)
+#elif 0 ||\
+      defined(__hppa__) || \
+      defined(__hppa) ||\
+      0
 # define UNIXSTL_ARCH_IS_HPPA
-#elif defined(__ppc__) || \
+#elif 0 ||\
+      defined(__ppc__) || \
       defined(__ppc) || \
       defined(__POWERPC__) || \
       defined(_POWER) || \
-      defined(_M_PPC)
+      defined(_M_PPC) ||\
+      0
 # define UNIXSTL_ARCH_IS_POWERPC
-#elif defined(__sparc__) || \
-      defined(__sparc)
+#elif 0 ||\
+      defined(__sparc__) || \
+      defined(__sparc) ||\
+      0
+
 /* TODO: Separate out arch-family and archs (incl. Sparc32 and Sparc64) */
 # define UNIXSTL_ARCH_IS_SPARC
 #else /* ? arch */
+
 # define UNIXSTL_ARCH_IS_UNKNOWN
 #endif /* ? arch */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operating system family
@@ -326,20 +347,25 @@
 #endif /* UNIXSTL_OSFAMILY_IS_SVR4 */
 
 
-#if defined(__FreeBSD__) || \
+#if 0 ||\
+    defined(__FreeBSD__) || \
     defined(__NetBSD__) || \
     defined(__OpenBSD__) || \
     defined(__bsdi__) || \
-    defined(_SYSTYPE_BSD)
+    defined(_SYSTYPE_BSD) ||\
+    0
 # define UNIXSTL_OSFAMILY_IS_BSD
 #endif /* bsd */
 
-#if defined(__sysv__) || \
+#if 0 ||\
+    defined(__sysv__) || \
     defined(__SVR4) || \
     defined(__svr4__) || \
-    defined(_SYSTYPE_SVR4)
+    defined(_SYSTYPE_SVR4) ||\
+    0
 # define UNIXSTL_OSFAMILY_IS_SVR4
 #endif /* SVR4 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * operating system
@@ -383,27 +409,37 @@
 # undef UNIXSTL_OS_IS_UNKNOWN
 #endif /* UNIXSTL_OS_IS_UNKNOWN */
 
-#if defined(__APPLE__) || \
-    defined(__MACOSX__)
+#if 0
+#elif 0 ||\
+      defined(__APPLE__) ||\
+      defined(__MACH__) ||\
+      defined(__MACOSX__) ||\
+      0
 # define UNIXSTL_OS_IS_APPLE
 # define UNIXSTL_OS_IS_MACOSX
 #elif defined(_AIX)
 # define UNIXSTL_OS_IS_AIX
 #elif defined(__FreeBSD__)
 # define UNIXSTL_OS_IS_FREEBSD
-#elif defined(hpux) || \
-      defined(_hpux)
+#elif 0 ||\
+      defined(hpux) ||\
+      defined(_hpux) ||\
+      0
 # define UNIXSTL_OS_IS_HPUX
-#elif defined(__linux__) || \
-      defined(__linux) || \
-      defined(linux)
+#elif 0 ||\
+      defined(__linux__) ||\
+      defined(__linux) ||\
+      defined(linux) ||\
+      0
 # define UNIXSTL_OS_IS_LINUX
 #elif defined(__NetBSD__)
 # define UNIXSTL_OS_IS_NETBSD
 #elif defined(__OpenBSD__)
 # define UNIXSTL_OS_IS_OPENBSD
-#elif defined(sun) || \
-      defined(__sun)
+#elif 0 ||\
+      defined(sun) ||\
+      defined(__sun) ||\
+      0
 # if defined(UNIXSTL_OSFAMILY_IS_SVR4)
 #  define UNIXSTL_OS_IS_SOLARIS
 # else /* ? UNIXSTL_OSFAMILY_IS_SVR4 */
@@ -412,6 +448,7 @@
 #else /* ? operating system */
 # define UNIXSTL_OS_IS_UNKNOWN
 #endif /* ? operating system */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * contract enforcement
@@ -427,9 +464,9 @@
  */
 #if defined(UNIXSTL_OS_IS_MACOSX) && \
     defined(__assert)
-# define UNIXSTL_ASSERT(expr)               ((void)((expr) ? 0 : (__assert(#expr, __FILE__, __LINE__), 0)))
+# define UNIXSTL_ASSERT(expr)                               ((void)((expr) ? 0 : (__assert(#expr, __FILE__, __LINE__), 0)))
 #else /* ? UNIXSTL_OS_IS_MACOSX */
-# define UNIXSTL_ASSERT(expr)               STLSOFT_ASSERT(expr)
+# define UNIXSTL_ASSERT(expr)                               STLSOFT_ASSERT(expr)
 #endif /* UNIXSTL_OS_IS_MACOSX */
 
 /** Defines a runtime assertion, with message
@@ -439,7 +476,7 @@
  * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  */
-#define UNIXSTL_MESSAGE_ASSERT(msg, expr)   STLSOFT_MESSAGE_ASSERT(msg, expr)
+#define UNIXSTL_MESSAGE_ASSERT(msg, expr)                   STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /** Defines a compile-time assertion
  *
@@ -447,15 +484,15 @@
  *
  * \param expr Must be non-zero, or compilation will fail
  */
-#define UNIXSTL_STATIC_ASSERT(expr)         STLSOFT_STATIC_ASSERT(expr)
-
+#define UNIXSTL_STATIC_ASSERT(expr)                         STLSOFT_STATIC_ASSERT(expr)
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define unixstl_assert(expr)               UNIXSTL_ASSERT(expr)
-# define unixstl_message_assert(msg, expr)  UNIXSTL_MESSAGE_ASSERT(msg, expr)
-# define unixstl_static_assert(expr)        UNIXSTL_STATIC_ASSERT(expr)
+# define unixstl_assert(expr)                               UNIXSTL_ASSERT(expr)
+# define unixstl_message_assert(msg, expr)                  UNIXSTL_MESSAGE_ASSERT(msg, expr)
+# define unixstl_static_assert(expr)                        UNIXSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -629,6 +666,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
 # define unixstl_ns_using_std(x)                            STLSOFT_NS_USING_STD(x)
 #endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  *
@@ -715,6 +753,7 @@ typedef us_streamoff_t      streamoff_t;        /*!< streamoff */
 # endif /* compiler */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * values
  *
@@ -725,43 +764,44 @@ typedef us_streamoff_t      streamoff_t;        /*!< streamoff */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-#define us_true_v                                           ss_true_v
-#define us_false_v                                          ss_false_v
-
+# define us_true_v                                          ss_true_v
+# define us_false_v                                         ss_false_v
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
 /* /////////////////////////////////////////////////////////////////////////
  * code modification macros
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /* Exception signatures. */
-#define unixstl_throw_0()                               stlsoft_throw_0()
-#define unixstl_throw_1(x1)                             stlsoft_throw_1(x1)
-#define unixstl_throw_2(x1, x2)                         stlsoft_throw_2(x1, x2)
-#define unixstl_throw_3(x1, x2, x3)                     stlsoft_throw_3(x1, x2, x3)
-#define unixstl_throw_4(x1, x2, x3, x4)                 stlsoft_throw_4(x1, x2, x3, x4)
-#define unixstl_throw_5(x1, x2, x3, x4, x5)             stlsoft_throw_5(x1, x2, x3, x4, x5)
-#define unixstl_throw_6(x1, x2, x3, x4, x5, x6)         stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
-#define unixstl_throw_7(x1, x2, x3, x4, x5, x6, x7)     stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
-#define unixstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
+#define unixstl_throw_0()                                   stlsoft_throw_0()
+#define unixstl_throw_1(x1)                                 stlsoft_throw_1(x1)
+#define unixstl_throw_2(x1, x2)                             stlsoft_throw_2(x1, x2)
+#define unixstl_throw_3(x1, x2, x3)                         stlsoft_throw_3(x1, x2, x3)
+#define unixstl_throw_4(x1, x2, x3, x4)                     stlsoft_throw_4(x1, x2, x3, x4)
+#define unixstl_throw_5(x1, x2, x3, x4, x5)                 stlsoft_throw_5(x1, x2, x3, x4, x5)
+#define unixstl_throw_6(x1, x2, x3, x4, x5, x6)             stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
+#define unixstl_throw_7(x1, x2, x3, x4, x5, x6, x7)         stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
+#define unixstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)     stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_NUM_ELEMENTS(ar)                       STLSOFT_NUM_ELEMENTS(ar)
-# define unixstl_num_elements(ar)                       UNIXSTL_NUM_ELEMENTS(ar)
+# define UNIXSTL_NUM_ELEMENTS(ar)                           STLSOFT_NUM_ELEMENTS(ar)
+# define unixstl_num_elements(ar)                           UNIXSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c type)
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  */
-#define unixstl_destroy_instance(t, type, p)            STLSOFT_DESTROY_INSTANCE(t, type, p)
+#define unixstl_destroy_instance(t, type, p)                STLSOFT_DESTROY_INSTANCE(t, type, p)
 
 /** [DEPRECATED] Generates an opaque type with the name \c _htype
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  */
-#define unixstl_gen_opaque(htype)                       STLSOFT_GEN_OPAQUE(htype)
+#define unixstl_gen_opaque(htype)                           STLSOFT_GEN_OPAQUE(htype)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -784,8 +824,6 @@ namespace unixstl = ::stlsoft::unixstl_project;
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 

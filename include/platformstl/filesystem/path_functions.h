@@ -4,7 +4,7 @@
  * Purpose: Path manipulation functions.
  *
  * Created: 3rd February 2011
- * Updated: 4th May 2024
+ * Updated: 9th July 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef PLATFORMSTL_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_MINOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_REVISION 8
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_EDIT     29
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_REVISION 9
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_EDIT     30
 #endif /* !PLATFORMSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -118,7 +118,7 @@ namespace platformstl_project
  *   empty slice if the path is empty or has no file (stem+extension) part
  */
 STLSOFT_INLINE
-stlsoft_C_string_slice_m_t const
+stlsoft_C_string_slice_m_t
 platformstl_C_get_executable_name_from_path(
     ss_char_a_t const* path
 )
@@ -194,7 +194,7 @@ platformstl_C_get_executable_name_from_path(
  *   empty slice if the path is empty or has no file (stem+extension) part
  */
 STLSOFT_INLINE
-stlsoft_C_string_slice_w_t const
+stlsoft_C_string_slice_w_t
 platformstl_C_get_executable_name_from_path_w(
     ss_char_w_t const* path
 )
@@ -272,7 +272,7 @@ platformstl_C_get_executable_name_from_path_w(
  *   empty slice if the path is empty or has no file (stem+extension) part
  */
 STLSOFT_INLINE
-stlsoft_C_string_slice_m_t const
+stlsoft_C_string_slice_m_t
 platformstl_C_get_directory_path_from_path(
     ss_char_a_t const* path
 )
@@ -336,7 +336,7 @@ platformstl_C_get_directory_path_from_path(
  *   empty slice if the path is empty or has no file (stem+extension) part
  */
 STLSOFT_INLINE
-stlsoft_C_string_slice_w_t const
+stlsoft_C_string_slice_w_t
 platformstl_C_get_directory_path_from_path_w(
     ss_char_w_t const* path
 )
@@ -401,7 +401,7 @@ platformstl_C_get_directory_path_from_path_w(
 /** \see platformstl_C_get_executable_name_from_path()
  */
 inline
-stlsoft_C_string_slice_m_t const
+stlsoft_C_string_slice_m_t
 get_executable_name_from_path(
     ss_char_a_t const* path
 )
@@ -412,7 +412,7 @@ get_executable_name_from_path(
 /** \see platformstl_C_get_executable_name_from_path_w()
  */
 inline
-stlsoft_C_string_slice_w_t const
+stlsoft_C_string_slice_w_t
 get_executable_name_from_path(
     ss_char_w_t const* path
 )
@@ -424,7 +424,7 @@ get_executable_name_from_path(
 /** \see platformstl_C_get_directory_path_from_path()
  */
 inline
-stlsoft_C_string_slice_m_t const
+stlsoft_C_string_slice_m_t
 get_directory_path_from_path(
     ss_char_a_t const* path
 )
@@ -435,7 +435,7 @@ get_directory_path_from_path(
 /** \see platformstl_C_get_directory_path_from_path_w()
  */
 inline
-stlsoft_C_string_slice_w_t const
+stlsoft_C_string_slice_w_t
 get_directory_path_from_path(
     ss_char_w_t const* path
 )

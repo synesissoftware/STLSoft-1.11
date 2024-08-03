@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 11th March 2024
+ * Updated: 9th July 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       158
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       159
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,15 +79,9 @@
 #  include <unixstl/exception/unixstl_exception.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION */
 
-#if defined(PATH_MAX)
-# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING
-#  include <stlsoft/string/static_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING */
-#else /* ? PATH_MAX */
-# ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
-#  include <stlsoft/string/simple_string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
-#endif /* !PATH_MAX */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
+# include <stlsoft/string/simple_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
@@ -226,16 +220,9 @@ public:
     typedef us_int_t                                        flags_type;
 
 public:
-#if defined(PATH_MAX)
-    typedef STLSOFT_NS_QUAL(basic_static_string)<
-        char_type
-    ,   PATH_MAX
-    >                                                       string_type;
-#else /* ? PATH_MAX */
     typedef STLSOFT_NS_QUAL(basic_simple_string)<
         char_type
     >                                                       string_type;
-#endif /* !PATH_MAX */
 /// @}
 
 /// \name Member Constants

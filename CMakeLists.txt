@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  16th July 2024
+# Updated:  3rd August 2024
 #
 # ######################################################################## #
 
@@ -120,7 +120,7 @@ if(BUILD_TESTING)
 		message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) to enable xTests package only - the current project's header files will be used")
 	endif()
 
-	set(xTests_REQUIRED_VERSION_ 0.23)
+	set(xTests_REQUIRED_VERSION_ 0.24)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
