@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  16th July 2024
+; Updated:  4th August 2024
 
 ============================================================================
 
@@ -17,6 +17,13 @@ STLSoft - Changes
    **************************************
 
 
+
+Changes for 1.11.1-alpha13 (4th August 2024)
+
+* added `platformstl::isatty()` (and `platformstl::platformstl_C_isatty_fd()` and `platformstl::platformstl_C_isatty_stm()`), `unixstl::isatty()` (and `unixstl::unixstl_C_isatty_fd()` and `unixstl::unixstl_C_isatty_stm()`), `winstl::isatty()` (and `winstlstl::winstlstl_C_isatty_fd()` and `winstlstl::winstlstl_C_isatty_stm()`)
+
+
+============================================================================
 
 Changes for 1.11.1-alpha12 (3rd August 2024)
 

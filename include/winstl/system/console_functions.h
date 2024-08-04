@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/console_functions.h
+ * File:    winstl/system/console_functions.h
  *
- * Purpose:     Windows console functions.
+ * Purpose: Windows console functions.
  *
- * Created:     3rd December 2005
- * Updated:     11th March 2024
+ * Created: 3rd December 2005
+ * Updated: 4th August 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     4
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  8
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      45
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     5
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -177,6 +177,56 @@ winstl_C_console_read_silent_character_from_(
     }
 }
 
+STLSOFT_INLINE
+ss_truthy_t
+winstl_C_isatty_fd_(
+    int fd
+)
+{
+    int (*pfn_isatty)(int);
+
+#if defined(_MSC_VER)
+
+# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
+    pfn_isatty  =   STLSOFT_NS_GLOBAL(_isatty);
+
+# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
+#else
+
+    pfn_isatty  =   STLSOFT_NS_GLOBAL(isatty);
+#endif
+
+    return (*pfn_isatty)(fd);
+}
+
+STLSOFT_INLINE
+ss_truthy_t
+winstl_C_isatty_stm_(
+    FILE* stm
+)
+{
+    int (*pfn_fileno)(FILE*);
+    int (*pfn_isatty)(int);
+
+#if defined(_MSC_VER)
+
+# include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+
+    pfn_fileno  =   STLSOFT_NS_GLOBAL(_fileno);
+    pfn_isatty  =   STLSOFT_NS_GLOBAL(_isatty);
+
+# include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
+#else
+
+    pfn_fileno  =   STLSOFT_NS_GLOBAL(fileno);
+    pfn_isatty  =   STLSOFT_NS_GLOBAL(isatty);
+#endif
+
+    int const fd = (*pfn_fileno)(stm);
+
+    return (*pfn_isatty)(fd);
+}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -239,7 +289,6 @@ GetConsoleWindow()
         return hwnd;
     }
 }
-
 #endif /* _WIN32_WINNT */
 
 /** Returns the window handle of the current console, or NULL if it cannot
@@ -297,6 +346,25 @@ winstl_C_console_read_silent_character_from_CONIO(void)
     }
 }
 
+STLSOFT_INLINE
+ss_truthy_t
+winstl_C_isatty_fd(
+    int fd
+)
+{
+    return winstl_C_isatty_fd_(fd);
+}
+
+STLSOFT_INLINE
+ss_truthy_t
+winstl_C_isatty_stm(
+    FILE* stm
+)
+{
+    return winstl_C_isatty_stm_(stm);
+}
+
+
 /* /////////////////////////////////////////////////////////////////////////
  * obsolete symbols
  *
@@ -321,7 +389,6 @@ winstl_C_console_read_silent_character_from_CONIO(void)
  * \deprecated Use winstl_C_get_console_width
  */
 # define winstl__get_console_width                          winstl_C_get_console_width
-
 #endif /* obsolete || 1.9 */
 
 
@@ -381,9 +448,29 @@ console_read_silent_character_from_CONIO()
     return winstl_C_console_read_silent_character_from_CONIO();
 }
 
+inline
+bool
+isatty(
+    int fd
+)
+{
+    return 0 != winstl_C_isatty_fd(fd);
+}
+
+inline
+bool
+isatty(
+    FILE* stm
+)
+{
+    return 0 != winstl_C_isatty_stm(stm);
+}
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -403,8 +490,6 @@ console_read_silent_character_from_CONIO()
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS */
 
