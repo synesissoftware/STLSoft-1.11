@@ -4,14 +4,21 @@
 ----
 
 
+21st August 2024 - 1.11.1-alpha14 released
+------------------------------------------
+
+* VC++ 17 latest (`_MSC_VER`==1941) compatibility
+
+
+
 4th August 2024 - 1.11.1-alpha13 released
-----------------------------------------
+-----------------------------------------
 
 * added `platformstl::isatty()` (and `platformstl::platformstl_C_isatty_fd()` and `platformstl::platformstl_C_isatty_stm()`), `unixstl::isatty()` (and `unixstl::unixstl_C_isatty_fd()` and `unixstl::unixstl_C_isatty_stm()`), `winstl::isatty()` (and `winstlstl::winstlstl_C_isatty_fd()` and `winstlstl::winstlstl_C_isatty_stm()`)
 
 
 3rd August 2024 - 1.11.1-alpha12 released
-----------------------------------------
+-----------------------------------------
 
 * `unixstl::readdir_sequence` no longer uses `stlsoft::basic_static_string<>`;
 * simplifying CMake compatibility;

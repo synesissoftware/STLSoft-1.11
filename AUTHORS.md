@@ -14,6 +14,7 @@
 * Andrew Bond
 * Anton Sekeris
 * Bart van der Velden
+* Bai Miao (ChrisCatCP)
 * Bjorn Karlsson
 * Brad Cox
 * Carlos Santander Bernal
