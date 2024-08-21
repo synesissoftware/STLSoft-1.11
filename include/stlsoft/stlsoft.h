@@ -811,7 +811,7 @@
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 15.x"
 #  elif _MSC_VER <= 1929
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 16.x"
-#  elif _MSC_VER <= 1940
+#  elif _MSC_VER <= 1941
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 17.x"
 #  else
 #   error Visual C++ version that is > vc17 is not recognised
