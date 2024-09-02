@@ -4,7 +4,7 @@
  * Purpose: Windows console functions.
  *
  * Created: 3rd December 2005
- * Updated: 4th August 2024
+ * Updated: 2nd September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      46
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,6 +84,11 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
 # include <winstl/api/external/HandleAndObject.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
+
+#ifndef STLSOFT_INCL_H_IO
+# define STLSOFT_INCL_H_IO
+# include <io.h>
+#endif /* !STLSOFT_INCL_H_IO */
 
 
 /* /////////////////////////////////////////////////////////////////////////

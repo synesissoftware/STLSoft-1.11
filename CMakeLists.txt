@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  3rd August 2024
+# Updated:  2nd September 2024
 #
 # ######################################################################## #
 
@@ -55,18 +55,14 @@ set(PROJECT_VERSION_MINOR ${_VERSION_MINOR})
 set(PROJECT_VERSION_PATCH ${_VERSION_PATCH})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
-message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}")
-
-
 # adhere strictly to C and C++ standards plus extensions. These are actually
 # useless since we do not compile anything; they merely state our intention.
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
-
 
 # ##########################################################
 # install
@@ -80,6 +76,8 @@ include(GNUInstallDirs)
 
 # load/default `CMAKE_BUILD_TYPE`
 include(BuildType)
+include(LanguageFullVersion)
+include(TargetMacros)
 
 add_library(STLSoft INTERFACE)
 
@@ -98,6 +96,9 @@ if(BUILD_EXAMPLES)
 	message("-- enabled building of examples ...")
 
 	add_subdirectory(examples)
+else(BUILD_EXAMPLES)
+
+	message("-- disabled building of examples - define BUILD_EXAMPLES to enable")
 endif(BUILD_EXAMPLES)
 
 
@@ -117,7 +118,7 @@ if(BUILD_TESTING)
 		message(FATAL_ERROR "No existing installation of STLSoft was found, which means you are not able to configure CMake with testing enabled, because STLSoft's component/unit tests are implemented in terms of xTests, which itself relies on STLSoft. Instead, you must perform an initial CMake configuration and installation with testing disabled (-DBUILD_TESTING:BOOL=OFF, or passing --disable-testing to prepare_cmake.sh), and then configure and install xTests, whereupon you will be free to (re)configure STLSoft for testing.")
 	else()
 
-		message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) to enable xTests package only - the current project's header files will be used")
+		message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
 	endif()
 
 	set(xTests_REQUIRED_VERSION_ 0.24)
@@ -127,6 +128,9 @@ if(BUILD_TESTING)
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
 
 	add_subdirectory(test)
+else(BUILD_TESTING)
+
+	message("-- disabled building of tests - define BUILD_TESTING to enable")
 endif(BUILD_TESTING)
 
 
@@ -195,6 +199,12 @@ install(FILES
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
+
+
+# ##########################################################
+# completion
+
+message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}, for C${CMAKE_C_STANDARD} C++${CMAKE_CXX_STANDARD}")
 
 
 # ############################## end of file ############################# #

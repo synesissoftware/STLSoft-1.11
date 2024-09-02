@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 9th July 2024
+ * Updated: 31st August 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -247,11 +247,12 @@ namespace
 
 static void test_types_exist(void)
 {
-    typeid(stlsoft::basic_string_view<char>);
-    typeid(stlsoft::basic_string_view<wchar_t>);
-    typeid(stlsoft::string_view);
-    typeid(stlsoft::wstring_view);
+    STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::basic_string_view<char>));
+    STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::basic_string_view<wchar_t>));
+    STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::string_view));
+    STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::wstring_view));
 
+    XTESTS_TEST_PASSED();
 }
 
     typedef stlsoft::string_view            string_v_t;

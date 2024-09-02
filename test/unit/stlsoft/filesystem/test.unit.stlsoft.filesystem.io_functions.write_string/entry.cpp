@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::write_string<>()`.
  *
  * Created: 22nd January 2024
- * Updated: 22nd January 2024
+ * Updated: 2nd September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -113,7 +113,7 @@ namespace
 
 static void test_write_css_n_empty()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -131,7 +131,7 @@ static void test_write_css_n_empty()
 
 static void test_write_css_n_1_character()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -150,7 +150,7 @@ static void test_write_css_n_1_character()
 
 static void test_write_css_n_1_long_string()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -169,7 +169,7 @@ static void test_write_css_n_1_long_string()
 
 static void test_write_css_n_3_strings()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -193,7 +193,7 @@ static void test_write_css_n_3_strings()
 
 static void test_write_css_empty()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -211,7 +211,7 @@ static void test_write_css_empty()
 
 static void test_write_css_1_character()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -230,7 +230,7 @@ static void test_write_css_1_character()
 
 static void test_write_css_1_long_string()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -249,7 +249,7 @@ static void test_write_css_1_long_string()
 
 static void test_write_css_3_strings()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -273,7 +273,7 @@ static void test_write_css_3_strings()
 
 static void test_write_stdstring_empty()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -293,7 +293,7 @@ static void test_write_stdstring_empty()
 
 static void test_write_stdstring_1_character()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -314,7 +314,7 @@ static void test_write_stdstring_1_character()
 
 static void test_write_stdstring_1_long_string()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {
@@ -335,7 +335,7 @@ static void test_write_stdstring_1_long_string()
 
 static void test_write_stdstring_3_strings()
 {
-    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen);
+    temp_file   f(temp_file::DeleteOnClose | temp_file::EmptyOnOpen | temp_file::CloseOnOpen);
 
 
     {

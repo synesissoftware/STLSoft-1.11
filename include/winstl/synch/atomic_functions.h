@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/atomic_functions.h (originally MLAtomic.cpp, ::SynesisStd)
+ * File:    winstl/synch/atomic_functions.h (originally MLAtomic.cpp, ::SynesisStd)
  *
- * Purpose:     WinSTL atomic functions.
+ * Purpose: WinSTL atomic functions.
  *
- * Created:     23rd October 1997
- * Updated:     11th March 2024
+ * Created: 23rd October 1997
+ * Updated: 2nd September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     8
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      232
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  4
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      235
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -82,11 +82,14 @@
  * compatibility
  */
 
-#if !defined(WINSTL_ARCH_IS_X86) && \
-    !defined(WINSTL_ARCH_IS_IA64) && \
-    !defined(WINSTL_ARCH_IS_X64)
-# error Not valid for processors other than Intel
-#endif /* Win32 || Win64 */
+#if 0
+#elif defined(WINSTL_ARCH_IS_ARM64)
+#elif defined(WINSTL_ARCH_IS_IA64)
+#elif defined(WINSTL_ARCH_IS_X64)
+#elif defined(WINSTL_ARCH_IS_X86)
+#else
+# error Not valid for processors other than ARM64, IA64, x64, x86
+#endif /* arch */
 
 #ifdef STLSOFT_ATOMIC_CALLCONV
 # undef STLSOFT_ATOMIC_CALLCONV
@@ -106,7 +109,8 @@
 # endif /* compiler */
 #endif /* STLSOFT_NO_FASTCALL */
 
-#if defined(WINSTL_ARCH_IS_X86)
+#if 0
+#elif defined(WINSTL_ARCH_IS_X86)
 
 # if defined(STLSOFT_CF_FASTCALL_SUPPORTED) && \
      !defined(STLSOFT_NO_FASTCALL)
@@ -119,14 +123,17 @@
 #  error Need to define calling convention
 # endif /* call-conv */
 
-#elif defined(WINSTL_ARCH_IS_IA64) || \
-      defined(WINSTL_ARCH_IS_X64)
+#elif 0 ||\
+      defined(WINSTL_ARCH_IS_ARM64) ||\
+      defined(WINSTL_ARCH_IS_IA64) ||\
+      defined(WINSTL_ARCH_IS_X64) ||\
+      0
 
 #  define WINSTL_ATOMIC_FNS_CALLCONV_IS_CDECL
 #  define WINSTL_ATOMIC_FNS_CALLCONV                        __cdecl
 
 #else /* ? arch */
-# error Only defined for the Intel x86 and IA64 architectures
+# error Only defined for the ARM64, IA64, x64, and x86 architectures
 #endif /* arch */
 
 

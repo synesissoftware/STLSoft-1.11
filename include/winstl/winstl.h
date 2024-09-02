@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th July 2024
+ * Updated: 2nd September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       17
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    7
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        225
+# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        227
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -168,12 +168,13 @@
 # define _WINSTL_VER_1_12_1     0x010c01ff  /*!< Version 1.12.1 (with STLSoft 1.10.3) */
 # define _WINSTL_VER_1_12_2     0x010c02ff  /*!< Version 1.12.2 (with STLSoft 1.11.1 alpha 7) */
 # define _WINSTL_VER_1_12_3     0x010c03ff  /*!< Version 1.12.3 (with STLSoft 1.11.1 alpha 8) */
+# define _WINSTL_VER_1_13_0_A01 0x010d0041  /*!< Version 1.13.0 alpha 1 (with STLSoft 1.11.1 alpha 15) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
-#define _WINSTL_VER_MINOR       12
-#define _WINSTL_VER_REVISION    3
-#define _WINSTL_VER             _WINSTL_VER_1_12_3
+#define _WINSTL_VER_MINOR       13
+#define _WINSTL_VER_REVISION    0
+#define _WINSTL_VER             _WINSTL_VER_1_13_0_A01
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -297,19 +298,23 @@
  * architecture
  */
 
+#ifdef WINSTL_ARCH_IS_ARM64
+# undef WINSTL_ARCH_IS_ARM64
+#endif /* WINSTL_ARCH_IS_ARM64 */
+#ifdef WINSTL_ARCH_IS_IA64
+# undef WINSTL_ARCH_IS_IA64
+#endif /* WINSTL_ARCH_IS_IA64 */
+#ifdef WINSTL_ARCH_IS_X64
+# undef WINSTL_ARCH_IS_X64
+#endif /* WINSTL_ARCH_IS_X64 */
 #ifdef WINSTL_ARCH_IS_X86
 # undef WINSTL_ARCH_IS_X86
 #endif /* WINSTL_ARCH_IS_X86 */
 
-#ifdef WINSTL_ARCH_IS_IA64
-# undef WINSTL_ARCH_IS_IA64
-#endif /* WINSTL_ARCH_IS_IA64 */
-
-#ifdef WINSTL_ARCH_IS_X64
-# undef WINSTL_ARCH_IS_X64
-#endif /* WINSTL_ARCH_IS_X64 */
-
-#if defined(_M_IA64)
+#if 0
+#elif defined(_M_ARM64)
+# define WINSTL_ARCH_IS_ARM64
+#elif defined(_M_IA64)
 # define WINSTL_ARCH_IS_IA64
 #elif defined(_M_X64) || \
       defined(_M_AMD64)
@@ -317,7 +322,7 @@
 #elif defined(_M_IX86)
 # define WINSTL_ARCH_IS_X86
 #else /* ? _M_?? */
-# error WinSTL is only compatible with x86, IA64 and x64 architectures
+# error WinSTL is only compatible with ARM64, IA64, x64, and x86 architectures
 #endif /* _M_?? */
 
 

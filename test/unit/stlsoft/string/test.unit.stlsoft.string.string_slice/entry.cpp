@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_slice`.
  *
  * Created: 19th February 2010
- * Updated: 29th March 2024
+ * Updated: 31st August 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -158,8 +158,8 @@ namespace
 
 static void test_type_exists()
 {
-    typeid(stlsoft::string_slice<char>);
-    typeid(stlsoft::string_slice<wchar_t>);
+    STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::string_slice<char>));
+    STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::string_slice<wchar_t>));
 
     XTESTS_TEST_PASSED();
 }

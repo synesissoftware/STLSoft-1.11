@@ -32,7 +32,7 @@ endif()
 
 
 set(GCC_WARN_NO_cxx11_long_long "")
-if("${CMAKE_CXX_STANDARD}" STREQUAL "98")
+if(X_CMAKE_CXX_FULLSTANDARD LESS 2011)
 
 	set(GCC_WARN_NO_cxx11_long_long -Wno-c++11-long-long)
 endif()

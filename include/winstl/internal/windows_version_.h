@@ -196,6 +196,62 @@ winstl_C_internal_GetWkstaVersionInfo_(
     return r;
 }
 
+STLSOFT_INLINE
+BOOL
+winstl_C_internal_RtlGetVersion_(
+    OSVERSIONINFO* osvi
+)
+{
+    BOOL            r   =   FALSE;
+    HMODULE const   hm  =   WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryA("NtosKrnl.exe");
+
+    WINSTL_ASSERT(NULL != osvi);
+
+    if (NULL != hm)
+    {
+        union u_aq_
+        {
+            FARPROC                     fp;
+#ifdef STLSOFT_CF_STDCALL_SUPPORTED
+            NTSTATUS  (STLSOFT_STDCALL *fn)(OSVERSIONINFOW*);
+#else
+            NTSTATUS                  (*fn)(OSVERSIONINFOW*);
+#endif
+        } u_aq;
+
+        u_aq.fp =   WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetProcAddress(hm, "RtlGetVersion");
+
+        if (NULL != u_aq.fp)
+        {
+            OSVERSIONINFOW osviw;
+
+            osviw.dwOSVersionInfoSize = sizeof(osviw);
+
+            if (0 == (*u_aq.fn)(&osviw))
+            {
+                osvi->dwMajorVersion = osviw.dwMajorVersion;
+                osvi->dwMinorVersion = osviw.dwMinorVersion;
+                osvi->dwBuildNumber = osviw.dwBuildNumber;
+                osvi->dwPlatformId = osviw.dwPlatformId;
+
+                r = TRUE;
+            }
+            else
+            {
+                osvi->dwMajorVersion = 0;
+                osvi->dwMinorVersion = 0;
+                osvi->dwBuildNumber = 0;
+                osvi->dwPlatformId = 0;
+            }
+            osvi->szCSDVersion[0] = 0;
+        }
+
+        WINSTL_API_EXTERNAL_DynamicLinkLibrary_FreeLibrary(hm);
+    }
+
+    return r;
+}
+
 #ifdef __cplusplus
 } /* namespace ximpl_ */
 #endif /* __cplusplus */
@@ -257,18 +313,33 @@ winstl_C_internal_GetVersionEx(
     using namespace ximpl_;
 #endif /* __cplusplus */
 
-    if (winstl_C_internal_GetVersionEx_(osvi))
+    if (!winstl_C_internal_GetVersionEx_(osvi))
+    {
+        if (winstl_C_internal_RtlGetVersion_(osvi))
+        {
+            return TRUE;
+        }
+    }
+    else
     {
         if (6 == osvi->dwMajorVersion &&
             2 == osvi->dwMinorVersion)
         {
-            DWORD   verMajor;
-            DWORD   verMinor;
-
-            if (winstl_C_internal_GetWkstaVersionInfo_(&verMajor, &verMinor))
+            if (winstl_C_internal_RtlGetVersion_(osvi))
             {
-                osvi->dwMajorVersion    =   verMajor;
-                osvi->dwMinorVersion    =   verMinor;
+
+                return TRUE;
+            }
+            else
+            {
+                DWORD   verMajor;
+                DWORD   verMinor;
+
+                if (winstl_C_internal_GetWkstaVersionInfo_(&verMajor, &verMinor))
+                {
+                    osvi->dwMajorVersion    =   verMajor;
+                    osvi->dwMinorVersion    =   verMinor;
+                }
             }
         }
 

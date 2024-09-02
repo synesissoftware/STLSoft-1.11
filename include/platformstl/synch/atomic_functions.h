@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/synch/atomic_functions.h
+ * File:    platformstl/synch/atomic_functions.h
  *
- * Purpose:     Definition of the atomic functions.
+ * Purpose: Definition of the atomic functions.
  *
- * Created:     22nd March 2005
- * Updated:     11th March 2024
+ * Created: 22nd March 2005
+ * Updated: 2nd September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     3
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  7
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      42
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  8
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -221,9 +221,12 @@ namespace platformstl_project
 
 #  elif defined(PLATFORMSTL_OS_IS_WINDOWS)
    /* OS: Win32 */
-#   if defined(UNIXSTL_ARCH_IS_X86) || \
+#   if 0 ||\
+       defined(UNIXSTL_ARCH_IS_ARM64) || \
        defined(UNIXSTL_ARCH_IS_IA64) || \
-       defined(UNIXSTL_ARCH_IS_X64)
+       defined(UNIXSTL_ARCH_IS_X64) ||\
+       defined(UNIXSTL_ARCH_IS_X86) || \
+       0
     /* Arch: i386 */
     using atomic_preincrement_up;
     using atomic_predecrement_up;
@@ -321,9 +324,12 @@ namespace platformstl_project
 
 #  elif defined(PLATFORMSTL_OS_IS_WINDOWS)
    /* OS: Win32 */
-#   if defined(WINSTL_ARCH_IS_X86) || \
-       defined(WINSTL_ARCH_IS_IA64) || \
-       defined(WINSTL_ARCH_IS_X64)
+#   if 0 ||\
+       defined(WINSTL_ARCH_IS_ARM64) ||\
+       defined(WINSTL_ARCH_IS_IA64) ||\
+       defined(WINSTL_ARCH_IS_X64) ||\
+       defined(WINSTL_ARCH_IS_X86) ||\
+       0
     /* Arch: i386 */
     using implementation::platform_stl_::atomic_preincrement_up;
     using implementation::platform_stl_::atomic_predecrement_up;

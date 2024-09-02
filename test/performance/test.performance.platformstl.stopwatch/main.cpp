@@ -118,7 +118,7 @@ display_results(
  * main()
  */
 
-int main(int argc, char* argv[])
+int main(int /* argc */, char* /* argv */[])
 {
     ss_size_t const NUM_ITERATIONS  =   1000000;
 
