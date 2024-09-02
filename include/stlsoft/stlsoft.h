@@ -6,7 +6,7 @@
  *          types.
  *
  * Created: 15th January 2002
- * Updated: 21st August 2024
+ * Updated: 2nd September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    53
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 7
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     561
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 8
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     562
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -363,12 +363,13 @@
 # define _STLSOFT_VER_1_11_1_A12    0x010b014c  /*!< Version 1.11.1 alpha 12 (3rd August 2024) */
 # define _STLSOFT_VER_1_11_1_A13    0x010b014d  /*!< Version 1.11.1 alpha 13 (4th August 2024) */
 # define _STLSOFT_VER_1_11_1_A14    0x010b014e  /*!< Version 1.11.1 alpha 14 (21st August 2024) */
+# define _STLSOFT_VER_1_11_1_A15    0x010b014e  /*!< Version 1.11.1 alpha 15 (2nd September 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A14
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A15
 
 
 /* /////////////////////////////////////

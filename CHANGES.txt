@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  4th August 2024
+; Updated:  2nd September 2024
 
 ============================================================================
 
@@ -17,6 +17,48 @@ STLSoft - Changes
    **************************************
 
 
+
+Changes for 1.11.1-alpha15 (2nd September 2024)
+
+General:
+========
+
+ * Windows ARM64 architecture support;
+ * Windows 10/11 operating system detection support;
+ * significant simplification of CMake support;
+ * minor additions/enhancements to scratch tests;
+ * miscellaneous fixes;
+
+Changes:
+========
+
+Windows ARM64 architecture support:
+ * include/platformstl/platformstl.h;
+ * include/platformstl/synch/atomic_functions.h;
+ * include/stlsoft/internal/cccap/msvc.h;
+ * include/winstl/synch/atomic_functions.h;
+ * include/winstl/winstl.h;
+
+Windows 10/11 operating system detection support:
+ * include/winstl/internal/windows_version_.h - `winstl_C_internal_GetVersionEx()` now recognises operating systems from Windows 10 to Windows Server 2025;
+ * include/winstl/system/os_version.h - `winstl_C_identify_operating_system()` now recognises operating systems from Windows 10 to Windows Server 2025;
+ * added test/scratch/winstl/system/versions, which illustrates various means of getting Windows operating system version information;
+
+Significant simplification of CMake support:
+ * added **cmake/LanguageFullVersion.cmake**, which defines custom C++ language symbol `X_CMAKE_CXX_FULLSTANDARD`;
+ * added **cmake/TargetMacros.cmake**;
+ * wholesale simplification of example and test program CMakeLists.txt files;
+
+Minor additions/enhancements to scratch tests:
+ * test/scratch/versions/versions.iostreams/versions.cpp now also emits PlatformSTL and UNIXSTL/WinSTL versions;
+ * test/scratch/versions/versions.stdio/versions.c now also emits PlatformSTL and UNIXSTL/WinSTL versions;
+
+Miscellaneous fixes:
+ * include/winstl/system/console_functions.h - missing #include;
+ * test.unit.stlsoft.filesystem.io_functions.write_string - now eschews holding files (which was causing failed tests on Windows);
+
+
+============================================================================
 
 Changes for 1.11.1-alpha14 (21st August 2024)
 

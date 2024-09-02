@@ -4,11 +4,20 @@
 ----
 
 
+2nd September 2024 - 1.11.1-alpha15 released
+--------------------------------------------
+
+ * Windows ARM64 architecture support;
+ * Windows 10/11 operating system detection support;
+ * significant simplification of CMake support;
+ * minor additions/enhancements to scratch tests;
+ * miscellaneous fixes;
+
+
 21st August 2024 - 1.11.1-alpha14 released
 ------------------------------------------
 
 * VC++ 17 latest (`_MSC_VER`==1941) compatibility
-
 
 
 4th August 2024 - 1.11.1-alpha13 released
