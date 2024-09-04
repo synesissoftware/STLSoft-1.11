@@ -3,8 +3,7 @@
 ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
-CMakeDir=$Dir/_build
-
+CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 
 CMakeExamplesDisabled=0
 CMakeTestingDisabled=0
@@ -110,7 +109,7 @@ mkdir -p $CMakeDir || exit 1
 
 cd $CMakeDir
 
-echo "Executing CMake"
+echo "Executing CMake (in ${CMakeDir})"
 
 if [ $CMakeExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 
@@ -123,7 +122,9 @@ cmake \
   -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
   -DCMAKE_BUILD_TYPE=$Configuration \
   -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
-  .. || (cd ->/dev/null ; exit 1)
+  -S $Dir \
+  -B $CMakeDir \
+  || (cd ->/dev/null ; exit 1)
 
 status=0
 

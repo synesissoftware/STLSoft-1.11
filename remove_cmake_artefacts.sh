@@ -3,7 +3,8 @@
 ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
-CMakeDir=$Dir/_build
+CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
+
 OsIsWindows=0
 
 Directories=(
@@ -33,6 +34,7 @@ case "${OsName}" in
   CYGWIN*|MINGW*|MSYS_NT*)
 
     Directories+=(
+      ARM64
       Win32
       x64
     )
