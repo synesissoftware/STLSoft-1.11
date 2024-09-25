@@ -52,6 +52,12 @@ namespace
     static void test_ctor_n_v_1(void);
     static void test_ctor_n_v_2(void);
     static void test_ctor_n_v_3(void);
+#ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+
+    static void test_ctor_move_1(void);
+    static void test_ctor_move_2(void);
+    static void test_ctor_move_3(void);
+#endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 
     static void test_resize(void);
     static void test_allocator(void);
@@ -80,10 +86,15 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_ctor_n_1);
         XTESTS_RUN_CASE(test_ctor_n_2);
         XTESTS_RUN_CASE(test_ctor_n_3);
-
         XTESTS_RUN_CASE(test_ctor_n_v_1);
         XTESTS_RUN_CASE(test_ctor_n_v_2);
         XTESTS_RUN_CASE(test_ctor_n_v_3);
+#ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+
+        XTESTS_RUN_CASE(test_ctor_move_1);
+        XTESTS_RUN_CASE(test_ctor_move_2);
+        XTESTS_RUN_CASE(test_ctor_move_3);
+#endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 
         XTESTS_RUN_CASE(test_resize);
         XTESTS_RUN_CASE(test_allocator);
@@ -163,6 +174,39 @@ static void test_ctor_n_v_3()
     XTESTS_TEST_CHARACTER_EQUAL('a', buff[0]);
     XTESTS_TEST_CHARACTER_EQUAL('a', buff[9]);
 }
+
+#ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+
+static void test_ctor_move_1()
+{
+    stlsoft::auto_buffer<char> rhs(0, 'a');
+    stlsoft::auto_buffer<char> buff(std::move(rhs));
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+}
+
+static void test_ctor_move_2()
+{
+    stlsoft::auto_buffer<char, 10> rhs(0, 'a');
+    stlsoft::auto_buffer<char, 10> buff(std::move(rhs));
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+}
+
+static void test_ctor_move_3()
+{
+    stlsoft::auto_buffer<char, 10> rhs(10, 'a');
+    stlsoft::auto_buffer<char, 10> buff(std::move(rhs));
+
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+
+    XTESTS_TEST_CHARACTER_EQUAL('a', buff[0]);
+    XTESTS_TEST_CHARACTER_EQUAL('a', buff[9]);
+}
+#endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 
 static void test_resize()
 {
