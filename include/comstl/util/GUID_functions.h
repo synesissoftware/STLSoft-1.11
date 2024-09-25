@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/GUID_functions.h
+ * File:    comstl/util/GUID_functions.h
  *
- * Purpose:     GUID helper functions.
+ * Purpose: GUID helper functions.
  *
- * Created:     12th May 2010
- * Updated:     11th March 2024
+ * Created: 12th May 2010
+ * Updated: 25th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MAJOR      1
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MINOR      4
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_REVISION   6
-# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_EDIT       27
+# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,6 +96,9 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -259,7 +262,7 @@ comstl_C_GUID_binary_compare(
         }
         else
         {
-            return STLSOFT_NS_GLOBAL(memcmp)(lhs, rhs, sizeof(GUID));
+            return STLSOFT_API_EXTERNAL_memfns_memcmp(lhs, rhs, sizeof(GUID));
         }
     }
 }

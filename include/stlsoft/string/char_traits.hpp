@@ -4,7 +4,7 @@
  * Purpose: char_traits classes.
  *
  * Created: 19th November 1998
- * Updated: 18th March 2024
+ * Updated: 25th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     97
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -113,13 +113,16 @@
 # include <string>                  // for std::char_traits
 #endif /* !::stlsoft && !::std */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 #if !defined(STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS) || \
     defined(STLSOFT_DEBUG)
@@ -952,7 +955,7 @@ stlsoft_char_traits<char>::compare(
 ,   ss_size_t   cch
 ) STLSOFT_NOEXCEPT
 {
-    return STLSOFT_NS_GLOBAL(memcmp)(s1, s2, cch);
+    return STLSOFT_API_EXTERNAL_memfns_memcmp(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -1049,7 +1052,7 @@ stlsoft_char_traits<wchar_t>::compare(
 ,   ss_size_t       cch
 ) STLSOFT_NOEXCEPT
 {
-    return STLSOFT_NS_GLOBAL(wmemcmp)(s1, s2, cch);
+    return STLSOFT_API_EXTERNAL_memfns_wmemcmp(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION

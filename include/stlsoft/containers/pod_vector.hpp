@@ -1,18 +1,18 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/containers/pod_vector.hpp
+ * File:    stlsoft/containers/pod_vector.hpp
  *
- * Purpose:     Contains the pod_vector class.
+ * Purpose: Contains the pod_vector class.
  *
- * Created:     23rd December 2003
- * Updated:     11th March 2024
+ * Created: 23rd December 2003
+ * Updated: 25th September 2024
  *
- * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
- *              auto_buffer such that pod_vector was born.
+ * Thanks:  Chris Newcombe for requesting sufficient enhancements to
+ *          auto_buffer such that pod_vector was born.
  *
- *              Christian Roessel, for spotting the bug in the copy ctor that
- *              fails an assert if the copied instance is empty
+ *          Christian Roessel, for spotting the bug in the copy ctor that
+ *          fails an assert if the copied instance is empty
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -61,7 +61,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        98
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,6 +99,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef STLSOFT_INCL_STDEXCEPT
 # define STLSOFT_INCL_STDEXCEPT
@@ -312,7 +316,7 @@ operator ==(
 
         return true;
 #else /* ? 0 */
-        return 0 == memcmp(&lhs[0], &rhs[0], sizeof(ss_typename_type_k pod_vector<T_value, T_allocator, V_internalSize>::size_type) * lhs.size());
+        return 0 == STLSOFT_API_EXTERNAL_memfns_memcmp(&lhs[0], &rhs[0], sizeof(ss_typename_type_k pod_vector<T_value, T_allocator, V_internalSize>::size_type) * lhs.size());
 #endif /* 0 */
     }
 }

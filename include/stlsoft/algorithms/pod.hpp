@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/algorithms/pod.hpp
+ * File:    stlsoft/algorithms/pod.hpp
  *
- * Purpose:     Algorithms for Plain-Old Data types.
+ * Purpose: Algorithms for Plain-Old Data types.
  *
- * Created:     17th January 2002
- * Updated:     11th March 2024
+ * Created: 17th January 2002
+ * Updated: 25th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       5
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    8
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        104
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    9
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -92,6 +92,10 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -113,9 +117,7 @@ struct ximpl_stlsoft_algorithm_pod_helper_
 
     // Same-type operations
 
-    template<
-        ss_typename_param_k T
-    >
+    template <ss_typename_param_k T>
     static void pod_copy_n_(
         T*          dest
     ,   T const*    src
@@ -126,9 +128,7 @@ struct ximpl_stlsoft_algorithm_pod_helper_
         STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, n * sizeof(*dest));
     }
 
-    template<
-        ss_typename_param_k T
-    >
+    template <ss_typename_param_k T>
     static void pod_move_n_(
         T*          dest
     ,   T const*    src
@@ -136,7 +136,7 @@ struct ximpl_stlsoft_algorithm_pod_helper_
     ,   yes_type
     )
     {
-        ::memmove(dest, src, n * sizeof(*dest));
+        STLSOFT_API_EXTERNAL_memfns_memmove(dest, src, n * sizeof(*dest));
     }
 
 
@@ -188,9 +188,8 @@ struct ximpl_stlsoft_algorithm_pod_helper_
         STLSOFT_STATIC_ASSERT(int(O_IS_INTEGRAL_TYPE) == int(I_IS_INTEGRAL_TYPE));
         STLSOFT_STATIC_ASSERT(int(O_IS_POINTER_TYPE) == int(I_IS_POINTER_TYPE));
 
-        ::memmove(dest, src, n * sizeof(*dest));
+        STLSOFT_API_EXTERNAL_memfns_memmove(dest, src, n * sizeof(*dest));
     }
-
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -225,17 +224,19 @@ struct ximpl_stlsoft_algorithm_pod_helper_
  * \param last Contiguous Iterator marking the one-past-the-end of the source range
  * \param dest Contiguous Iterator marking the start of the source range
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k O
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k O
+>
 // [[synesis:function:algorithm: pod_copy(T<I> *first, T<I>* last, T<O>* dest)]]
-inline void pod_copy(I* first, I* last, O* dest)
+inline
+void
+pod_copy(I* first, I* last, O* dest)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_DMC)
 
     std_copy(&first[0], &last[0], &dest[0]);
-
 #else /* ? compiler */
 
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*first));
@@ -249,7 +250,6 @@ inline void pod_copy(I* first, I* last, O* dest)
     ss_size_t n = static_cast<ss_size_t>(last - first);
 
     ximpl_stlsoft_algorithm_pod_helper_::pod_copy_n_(dest, first, n, yesno_t());
-
 #endif /* compiler */
 }
 
@@ -278,17 +278,19 @@ inline void pod_copy(I* first, I* last, O* dest)
  * \param src Contiguous Iterator marking the start of the source range
  * \param n Number of elements in the range
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k O
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k O
+>
 // [[synesis:function:algorithm: pod_copy_n(T<O>* dest, T<I> *src, size_t n)]]
-inline void pod_copy_n(O *dest, I *src, ss_size_t n)
+inline
+void
+pod_copy_n(O* dest, I* src, ss_size_t n)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_DMC)
 
     std_copy(&src[0], &src[n], &dest[0]);
-
 #else /* ? compiler */
 
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));
@@ -300,7 +302,6 @@ inline void pod_copy_n(O *dest, I *src, ss_size_t n)
     typedef ss_typename_type_k value_to_yesno_type<TYPES_ARE_SAME>::type    yesno_t;
 
     ximpl_stlsoft_algorithm_pod_helper_::pod_copy_n_(dest, src, n, yesno_t());
-
 #endif /* compiler */
 }
 
@@ -323,17 +324,19 @@ inline void pod_copy_n(O *dest, I *src, ss_size_t n)
  * \param last Contiguous Iterator marking the one-past-the-end of the source range
  * \param dest Contiguous Iterator marking the start of the source range
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k O
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k O
+>
 // [[synesis:function:algorithm: pod_move(T<I>* first, T<I>* last, T<O>* dest)]]
-inline void pod_move(I* first, I* last, O* dest)
+inline
+void
+pod_move(I* first, I* last, O* dest)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_DMC)
 
     std_copy(&first[0], &last[0], &dest[0]);
-
 #else /* ? compiler */
 
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*first));
@@ -347,7 +350,6 @@ inline void pod_move(I* first, I* last, O* dest)
     ss_size_t n = static_cast<ss_size_t>(last - first);
 
     ximpl_stlsoft_algorithm_pod_helper_::pod_move_n_(dest, first, n, yesno_t());
-
 #endif /* compiler */
 }
 
@@ -369,17 +371,19 @@ inline void pod_move(I* first, I* last, O* dest)
  * \param src Contiguous Iterator marking the start of the source range
  * \param n Number of elements in the range
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k O
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k O
+>
 // [[synesis:function:algorithm: pod_move_n(T<O> *dest, T<I> *src, size_t n)]]
-inline void pod_move_n(O *dest, I *src, ss_size_t n)
+inline
+void
+pod_move_n(O* dest, I* src, ss_size_t n)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_DMC)
 
     std_copy(&src[0], &src[n], &dest[0]);
-
 #else /* ? compiler */
 
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));
@@ -391,7 +395,6 @@ inline void pod_move_n(O *dest, I *src, ss_size_t n)
     typedef ss_typename_type_k value_to_yesno_type<TYPES_ARE_SAME>::type    yesno_t;
 
     ximpl_stlsoft_algorithm_pod_helper_::pod_move_n_(dest, src, n, yesno_t());
-
 #endif /* compiler */
 }
 
@@ -421,11 +424,14 @@ inline void pod_move_n(O *dest, I *src, ss_size_t n)
  * \param n Number of elements in the range
  * \param value Value to which each element in dest[0, n) will be set
  */
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k V
-        >
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k V
+>
 // [[synesis:function:algorithm: pod_fill_n(T<T> *dest, T<V> const& value)]]
-inline void pod_fill_n(T *dest, ss_size_t n, V const& value)
+inline
+void
+pod_fill_n(T* dest, ss_size_t n, V const& value)
 {
     // Constrain to POD type:
     stlsoft_constraint_must_be_pod(T);
@@ -435,23 +441,32 @@ inline void pod_fill_n(T *dest, ss_size_t n, V const& value)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 // [[synesis:function:algorithm: pod_fill_n(char *dest, int value)]]
-inline void pod_fill_n(char *dest, ss_size_t n, int value)
+inline
+void
+pod_fill_n(char *dest, ss_size_t n, int value)
 {
     STLSOFT_API_INTERNAL_memfns_memset(dest, value, n);
 }
 // [[synesis:function:algorithm: pod_fill_n(signed char *dest, int value)]]
-inline void pod_fill_n(signed char *dest, ss_size_t n, int value)
+inline
+void
+pod_fill_n(signed char *dest, ss_size_t n, int value)
 {
     STLSOFT_API_INTERNAL_memfns_memset(dest, value, n);
 }
 // [[synesis:function:algorithm: pod_fill_n(unsigned char *dest, int value)]]
-inline void pod_fill_n(unsigned char *dest, ss_size_t n, int value)
+inline
+void
+pod_fill_n(unsigned char *dest, ss_size_t n, int value)
 {
     STLSOFT_API_INTERNAL_memfns_memset(dest, value, n);
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

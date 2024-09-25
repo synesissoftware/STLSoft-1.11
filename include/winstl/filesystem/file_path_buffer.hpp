@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/file_path_buffer.hpp
+ * File:    winstl/filesystem/file_path_buffer.hpp
  *
- * Purpose:     Contains the basic_file_path_buffer template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_file_path_buffer template class, and ANSI and
+ *          Unicode specialisations thereof.
  *
- * Created:     7th February 2002
- * Updated:     11th March 2024
+ * Created: 7th February 2002
+ * Updated: 25th September 2024
  *
- * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
- *              addressed with the calc_path_max_() method.
+ * Thanks:  Pablo Aguilar for discovering the Borland weirdness which is now
+ *          addressed with the calc_path_max_() method.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -119,6 +119,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -451,7 +455,7 @@ private:
             size_type const         n   =   m_buffer.size() - ecs;
             char_type const*        p   =   &m_buffer[0] + n;
 
-            if (0 != ::memcmp(p, ec, sizeof(char_type) * ecs))
+            if (0 != STLSOFT_API_EXTERNAL_memfns_memcmp(p, ec, sizeof(char_type) * ecs))
             {
                 return false;
             }

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/string_to_bool.hpp
+ * File:    stlsoft/conversion/string_to_bool.hpp
  *
- * Purpose:     String to integer conversions.
+ * Purpose: String to integer conversions.
  *
- * Created:     6th September 2014
- * Updated:     11th March 2024
+ * Created: 6th September 2014
+ * Updated: 25th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_MINOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_REVISION 5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_EDIT     13
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_BOOL_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -83,6 +83,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_COVER
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -160,7 +164,7 @@ try_parse_to_bool(
 
         if (0 != slice.len &&
             n >= slice.len &&
-            0 == ::memcmp(s, slice.ptr, slice.len * sizeof(ss_char_a_t)))
+            0 == STLSOFT_API_EXTERNAL_memfns_memcmp(s, slice.ptr, slice.len * sizeof(ss_char_a_t)))
         {
             if (n > slice.len)
             {
@@ -183,7 +187,7 @@ try_parse_to_bool(
 
         if (0 != slice.len &&
             n >= slice.len &&
-            0 == ::memcmp(s, slice.ptr, slice.len * sizeof(ss_char_a_t)))
+            0 == STLSOFT_API_EXTERNAL_memfns_memcmp(s, slice.ptr, slice.len * sizeof(ss_char_a_t)))
         {
             if (n > slice.len)
             {
@@ -232,7 +236,7 @@ try_parse_to_bool(
 
         if (0 != slice.len &&
             n >= slice.len &&
-            0 == ::memcmp(s, slice.ptr, slice.len * sizeof(ss_char_w_t)))
+            0 == STLSOFT_API_EXTERNAL_memfns_memcmp(s, slice.ptr, slice.len * sizeof(ss_char_w_t)))
         {
             if (n > slice.len)
             {
@@ -255,7 +259,7 @@ try_parse_to_bool(
 
         if (0 != slice.len &&
             n >= slice.len &&
-            0 == ::memcmp(s, slice.ptr, slice.len * sizeof(ss_char_w_t)))
+            0 == STLSOFT_API_EXTERNAL_memfns_memcmp(s, slice.ptr, slice.len * sizeof(ss_char_w_t)))
         {
             if (n > slice.len)
             {

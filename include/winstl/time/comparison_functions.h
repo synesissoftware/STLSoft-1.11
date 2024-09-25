@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/time/comparison_functions.h
+ * File:    winstl/time/comparison_functions.h
  *
- * Purpose:     Comparison functions for Windows time structures.
+ * Purpose: Comparison functions for Windows time structures.
  *
- * Created:     21st November 2003
- * Updated:     11th March 2024
+ * Created: 21st November 2003
+ * Updated: 25th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR    2
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     64
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,6 +84,10 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Time
 # include <winstl/api/external/Time.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Time */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -228,7 +232,7 @@ winstl_C_compare_SYSTEMTIMEs(
     WINSTL_ASSERT(NULL != lhs);
     WINSTL_ASSERT(NULL != rhs);
 
-    if (0 == STLSOFT_NS_GLOBAL(memcmp(lhs, rhs, sizeof(SYSTEMTIME))))
+    if (0 == STLSOFT_API_EXTERNAL_memfns_memcmp(lhs, rhs, sizeof(SYSTEMTIME)))
     {
         return 0;
     }
@@ -359,7 +363,7 @@ winstl_C_absolute_difference_in_microseconds_SYSTEMTIMEs(
     WINSTL_ASSERT(NULL != t1);
     WINSTL_ASSERT(NULL != t2);
 
-    if (0 == STLSOFT_NS_GLOBAL(memcmp(t1, t2, sizeof(SYSTEMTIME))))
+    if (0 == STLSOFT_API_EXTERNAL_memfns_memcmp(t1, t2, sizeof(SYSTEMTIME)))
     {
         return 0;
     }
