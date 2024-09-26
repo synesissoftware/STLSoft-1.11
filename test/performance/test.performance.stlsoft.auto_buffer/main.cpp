@@ -367,7 +367,6 @@ int main(int argc, char* argv[])
                 {
                     for (auto const& row : arrays_of_integers)
                     {
-                        // std::vector<int> row_copy(row.begin(), row.end());
                         std::vector<int> row_copy{row};
 
                         r += static_cast<int>(row_copy.size());
@@ -402,7 +401,6 @@ int main(int argc, char* argv[])
                 {
                     for (auto const& row : arrays_of_integers)
                     {
-                        // std::vector<int> row_copy(row.begin(), row.end());
                         stlsoft::auto_buffer<int, 10> row_copy(row.size());
 
                         std::memcpy(&row_copy[0], &row[0], sizeof(int) * row.size());
@@ -434,7 +432,6 @@ int main(int argc, char* argv[])
                 {
                     for (auto const& row : arrays_of_integers)
                     {
-                        // std::vector<int> row_copy(row.begin(), row.end());
                         stlsoft::auto_buffer<int, 100> row_copy(row.size());
 
                         std::memcpy(&row_copy[0], &row[0], sizeof(int) * row.size());
@@ -466,7 +463,6 @@ int main(int argc, char* argv[])
                 {
                     for (auto const& row : arrays_of_integers)
                     {
-                        // std::vector<int> row_copy(row.begin(), row.end());
                         stlsoft::auto_buffer<int, 1000> row_copy(row.size());
 
                         std::memcpy(&row_copy[0], &row[0], sizeof(int) * row.size());
