@@ -19,25 +19,130 @@
  * includes
  */
 
-/* xCover header files */
-#ifdef STLSOFT_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* STLSOFT_USE_XCOVER */
-
 /* xTests header files */
 #include <xtests/xtests.h>
 
 /* STLSoft header files */
-#include <stlsoft/stlsoft.h>
 #include <stlsoft/memory/null_allocator.hpp>
 
 /* Standard C++ header files */
+#include <algorithm>
+#include <list>
 #include <numeric>
 #include <vector>
 
 /* Standard C header files */
 #include <assert.h>
 #include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helper classes
+ */
+
+class int_input_iterator
+    : public STLSOFT_NS_QUAL(iterator_base)<
+        STLSOFT_NS_QUAL_STD(input_iterator_tag)
+    ,   int
+    ,   std::ptrdiff_t
+    ,   void    // By-Value Temporary reference
+    ,   int     // By-Value Temporary reference
+    >
+{
+public: // types
+    typedef int_input_iterator                              class_type;
+
+public: // construction
+    explicit
+    int_input_iterator(int const* pi)
+        : m_pi(pi)
+    {}
+    int_input_iterator(class_type& rhs)
+        : m_pi(rhs.m_pi)
+    {
+        rhs.m_pi = NULL;
+    }
+private:
+    void operator =(class_type const&);
+
+public: // operators
+    class_type& operator ++()
+    {
+        ++m_pi;
+
+        return *this;
+    }
+
+    value_type operator *() const
+    {
+        return *m_pi;
+    }
+
+    bool operator ==(class_type const& rhs) const
+    {
+        return m_pi == rhs.m_pi;
+    }
+
+    bool operator !=(class_type const& rhs) const
+    {
+        return !operator ==(rhs);
+    }
+
+/// Members
+private:
+    int const* m_pi;
+};
+
+class int_forward_iterator
+    : public STLSOFT_NS_QUAL(iterator_base)<
+        STLSOFT_NS_QUAL_STD(forward_iterator_tag)
+    ,   int
+    ,   std::ptrdiff_t
+    ,   void    // By-Value Temporary reference
+    ,   int     // By-Value Temporary reference
+    >
+{
+public: // types
+    typedef int_forward_iterator                            class_type;
+
+public: // construction
+    explicit
+    int_forward_iterator(int const* pi)
+        : m_pi(pi)
+    {}
+    int_forward_iterator(class_type& rhs)
+        : m_pi(rhs.m_pi)
+    {}
+private:
+    void operator =(class_type const&);
+
+public: // operators
+    class_type& operator ++()
+    {
+        ++m_pi;
+
+        return *this;
+    }
+
+    value_type operator *() const
+    {
+        return *m_pi;
+    }
+
+    bool operator ==(class_type const& rhs) const
+    {
+        return m_pi == rhs.m_pi;
+    }
+
+    bool operator !=(class_type const& rhs) const
+    {
+        return !operator ==(rhs);
+    }
+
+/// Members
+private:
+    int const* m_pi;
+};
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -54,12 +159,33 @@ namespace
     static void test_ctor_n_v_1(void);
     static void test_ctor_n_v_2(void);
     static void test_ctor_n_v_3(void);
+#if __cplusplus >= 201103L
+
+    static void test_ctor_initlist_1(void);
+    static void test_ctor_initlist_2(void);
+    static void test_ctor_initlist_3(void);
+#endif
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
     static void test_ctor_move_1(void);
     static void test_ctor_move_2(void);
     static void test_ctor_move_3(void);
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
+    static void test_ctor_range_pointers_1(void);
+    static void test_ctor_range_pointers_2(void);
+    static void test_ctor_range_pointers_3(void);
+    static void test_ctor_range_vec_iters_1(void);
+    static void test_ctor_range_vec_iters_2(void);
+    static void test_ctor_range_vec_iters_3(void);
+    static void test_ctor_range_list_iters_1(void);
+    static void test_ctor_range_list_iters_2(void);
+    static void test_ctor_range_list_iters_3(void);
+    static void test_ctor_range_input_iters_1(void);
+    static void test_ctor_range_input_iters_2(void);
+    static void test_ctor_range_input_iters_3(void);
+    static void test_ctor_range_fwd_iters_1(void);
+    static void test_ctor_range_fwd_iters_2(void);
+    static void test_ctor_range_fwd_iters_3(void);
 
     // resize(size_t)
     static void test_resize(void);
@@ -116,12 +242,33 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_ctor_n_v_1);
         XTESTS_RUN_CASE(test_ctor_n_v_2);
         XTESTS_RUN_CASE(test_ctor_n_v_3);
+#if __cplusplus >= 201103L
+
+        XTESTS_RUN_CASE(test_ctor_initlist_1);
+        XTESTS_RUN_CASE(test_ctor_initlist_2);
+        XTESTS_RUN_CASE(test_ctor_initlist_3);
+#endif
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
         XTESTS_RUN_CASE(test_ctor_move_1);
         XTESTS_RUN_CASE(test_ctor_move_2);
         XTESTS_RUN_CASE(test_ctor_move_3);
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
+        XTESTS_RUN_CASE(test_ctor_range_pointers_1);
+        XTESTS_RUN_CASE(test_ctor_range_pointers_2);
+        XTESTS_RUN_CASE(test_ctor_range_pointers_3);
+        XTESTS_RUN_CASE(test_ctor_range_vec_iters_1);
+        XTESTS_RUN_CASE(test_ctor_range_vec_iters_2);
+        XTESTS_RUN_CASE(test_ctor_range_vec_iters_3);
+        XTESTS_RUN_CASE(test_ctor_range_list_iters_1);
+        XTESTS_RUN_CASE(test_ctor_range_list_iters_2);
+        XTESTS_RUN_CASE(test_ctor_range_list_iters_3);
+        XTESTS_RUN_CASE(test_ctor_range_input_iters_1);
+        XTESTS_RUN_CASE(test_ctor_range_input_iters_2);
+        XTESTS_RUN_CASE(test_ctor_range_input_iters_3);
+        XTESTS_RUN_CASE(test_ctor_range_fwd_iters_1);
+        XTESTS_RUN_CASE(test_ctor_range_fwd_iters_2);
+        XTESTS_RUN_CASE(test_ctor_range_fwd_iters_3);
 
         XTESTS_RUN_CASE(test_resize);
 
@@ -164,6 +311,19 @@ int main(int argc, char **argv)
 
 namespace
 {
+    const int INTEGERS[] = {
+         0,  1,  2,  3,  4,  5,  6,  7,  8,  9
+    ,   10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+    ,   20, 21, 22, 23, 24, 25, 26, 27, 28, 29
+    ,   30, 31, 32, 33, 34, 35, 36, 37, 38, 39
+    ,   40, 41, 42, 43, 44, 45, 46, 47, 48, 49
+    ,   50, 51, 52, 53, 54, 55, 56, 57, 58, 59
+    ,   60, 61, 62, 63, 64, 65, 66, 67, 68, 69
+    ,   70, 71, 72, 73, 74, 75, 76, 77, 78, 79
+    ,   80, 81, 82, 83, 84, 85, 86, 87, 88, 89
+    ,   90, 91, 92, 93, 94, 95, 96, 97, 98, 99
+    };
+
 
 static void test_ctor_n_1()
 {
@@ -222,6 +382,39 @@ static void test_ctor_n_v_3()
     XTESTS_TEST_CHARACTER_EQUAL('a', buff[9]);
 }
 
+#if __cplusplus >= 201103L
+
+static void test_ctor_initlist_1(void)
+{
+    stlsoft::auto_buffer<int, 10> buff = {};
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+}
+
+static void test_ctor_initlist_2(void)
+{
+    stlsoft::auto_buffer<int, 10> buff = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+
+    XTESTS_TEST_INTEGER_EQUAL(0, buff[0]);
+    XTESTS_TEST_INTEGER_EQUAL(9, buff[9]);
+}
+
+static void test_ctor_initlist_3(void)
+{
+    stlsoft::auto_buffer<int, 10> buff = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+    XTESTS_TEST_INTEGER_EQUAL(11u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+
+    XTESTS_TEST_INTEGER_EQUAL(0, buff[0]);
+    XTESTS_TEST_INTEGER_EQUAL(9, buff[9]);
+    XTESTS_TEST_INTEGER_EQUAL(10, buff[10]);
+}
+#endif
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
 static void test_ctor_move_1()
@@ -257,6 +450,147 @@ static void test_ctor_move_3()
     XTESTS_TEST_CHARACTER_EQUAL('a', buff[9]);
 }
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
+
+static void test_ctor_range_pointers_1()
+{
+    stlsoft::auto_buffer<int> buff(&INTEGERS[0], &INTEGERS[0] + 0);
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_pointers_2()
+{
+    stlsoft::auto_buffer<int, 10> buff(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_pointers_3()
+{
+    stlsoft::auto_buffer<int, 100> buff(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_vec_iters_1()
+{
+    std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + 0);
+    stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_vec_iters_2()
+{
+    std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+    stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_vec_iters_3()
+{
+    std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+    stlsoft::auto_buffer<int, 100>  buff(src.begin(), src.end());
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_list_iters_1()
+{
+    std::list<int>                  src(&INTEGERS[0], &INTEGERS[0] + 0);
+    stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_list_iters_2()
+{
+    std::list<int>                  src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+    stlsoft::auto_buffer<int, 10>   buff(src.begin(), src.end());
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_list_iters_3()
+{
+    std::list<int>                  src(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+    stlsoft::auto_buffer<int, 100>  buff(src.begin(), src.end());
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_input_iters_1()
+{
+    stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0]), int_input_iterator(&INTEGERS[0] + 0));
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_input_iters_2()
+{
+    stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0]), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_input_iters_3()
+{
+    stlsoft::auto_buffer<int, 100>  buff(int_input_iterator(&INTEGERS[0]), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_fwd_iters_1()
+{
+    stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0]), int_forward_iterator(&INTEGERS[0] + 0));
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_fwd_iters_2()
+{
+    stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0]), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_ctor_range_fwd_iters_3()
+{
+    stlsoft::auto_buffer<int, 100>  buff(int_forward_iterator(&INTEGERS[0]), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
+    XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
+}
 
 static void test_resize()
 {
@@ -797,8 +1131,6 @@ static void test_rbegin_and_rend()
     XTESTS_TEST_INTEGER_EQUAL(4, std::accumulate(cbuff.rbegin() + 0, cbuff.rend() - 2, 0));
     XTESTS_TEST_INTEGER_EQUAL(-9, std::accumulate(cbuff.rbegin() + 1, cbuff.rend() - 0, 0));
 }
-
-
 } // anonymous namespace
 
 
