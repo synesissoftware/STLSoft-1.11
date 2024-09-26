@@ -1,12 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/containers/frequency_map.hpp
+ * File:    stlsoft/containers/frequency_map.hpp
  *
- * Purpose:     A container that measures the frequency of the unique elements it contains.
+ * Purpose: A container that measures the frequency of the unique elements
+ *          it contains.
  *
- * Created:     1st October 2005
- * Updated:     11th March 2024
+ * Created: 1st October 2005
+ * Updated: 26th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR     2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     8
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      52
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,7 +118,7 @@ namespace stlsoft
 
 /** @brief Base-traits for stlsoft::frequency_map
  *
- * @tparam T_value The value type of the  specialisation of
+ * @tparam T_value The value type of the specialisation of
  *   stlsoft::frequency_map
  */
 template <
@@ -149,9 +150,9 @@ struct frequency_map_traits;
 
 /** @brief Ordered traits for stlsoft::frequency_map
  *
- * @tparam T_value The value type of the  specialisation of
+ * @tparam T_value The value type of the specialisation of
  *   stlsoft::frequency_map
- * @tparam T_count The count type of the  specialisation of
+ * @tparam T_count The count type of the specialisation of
  *   stlsoft::frequency_map
  */
 template <
@@ -181,9 +182,9 @@ struct frequency_map_traits_ordered
 
 /** @brief Unordered traits for stlsoft::frequency_map
  *
- * @tparam T_value The value type of the  specialisation of
+ * @tparam T_value The value type of the specialisation of
  *   stlsoft::frequency_map
- * @tparam T_count The count type of the  specialisation of
+ * @tparam T_count The count type of the specialisation of
  *   stlsoft::frequency_map
  */
 template <
