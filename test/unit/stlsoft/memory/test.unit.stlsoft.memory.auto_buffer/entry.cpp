@@ -46,18 +46,21 @@
 
 namespace
 {
-
+    // auto_buffer(size_t)
     static void test_construct_1(void);
     static void test_construct_2(void);
     static void test_construct_3(void);
 
+    // resize(size_t)
     static void test_resize(void);
 
     static void test_allocator_null(void);
     static void test_allocator_to_exhaustion(void);
 
+    // copy_from(class_type const&)
     static void test_copy_from(void);
 
+    // swap(class_type&&)
     static void test_swap_1(void);
     static void test_swap_2(void);
     static void test_swap_3(void);
