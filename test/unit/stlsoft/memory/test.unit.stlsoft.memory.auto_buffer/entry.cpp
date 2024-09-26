@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 5th May 2024
+ * Updated: 27th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,11 +51,15 @@ namespace
     static void test_construct_3(void);
 
     static void test_resize(void);
-    static void test_allocator(void);
+
+    static void test_allocator_to_exhaustion(void);
+
     static void test_copy_from(void);
+
     static void test_swap_1(void);
     static void test_swap_2(void);
     static void test_swap_3(void);
+
     static void test_1_10(void);
 
 } // anonymous namespace
@@ -79,11 +83,15 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_construct_3);
 
         XTESTS_RUN_CASE(test_resize);
-        XTESTS_RUN_CASE(test_allocator);
+
+        XTESTS_RUN_CASE(test_allocator_to_exhaustion);
+
         XTESTS_RUN_CASE(test_copy_from);
+
         XTESTS_RUN_CASE(test_swap_1);
         XTESTS_RUN_CASE(test_swap_2);
         XTESTS_RUN_CASE(test_swap_3);
+
         XTESTS_RUN_CASE(test_1_10);
 
 #ifdef STLSOFT_USE_XCOVER
@@ -153,7 +161,7 @@ static void test_resize()
     }}
 }
 
-static void test_allocator()
+static void test_allocator_to_exhaustion(void)
 {
     stlsoft::auto_buffer<char, 10>::allocator_type  ator;
     stlsoft::auto_buffer<char, 10>                  buff(0);
