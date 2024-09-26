@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/string/bstr.hpp (originally MOBStr.h/.cpp, ::SynesisCom)
+ * File:    comstl/string/bstr.hpp (originally MOBStr.h/.cpp, ::SynesisCom)
  *
- * Purpose:     bstr class.
+ * Purpose: bstr class.
  *
- * Created:     20th December 1996
- * Updated:     11th March 2024
+ * Created: 20th December 1996
+ * Updated: 26th September 2024
  *
- * Thanks:      To Gabor Fischer for requesting attach().
+ * Thanks:  To Gabor Fischer for requesting attach().
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    15
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        83
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,6 +95,12 @@
 # include <stlsoft/internal/safestr.h>
 #endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
+#ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
+# include <winstl/api/external/ErrorHandling.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
+#ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
+# include <winstl/api/external/UnicodeAndCharacterSet.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -102,13 +108,6 @@
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
-
-#ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
-# include <winstl/api/external/ErrorHandling.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
-#ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
-# include <winstl/api/external/UnicodeAndCharacterSet.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 
 
 /* /////////////////////////////////////////////////////////////////////////

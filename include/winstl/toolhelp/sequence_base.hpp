@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/toolhelp/sequence_base.hpp
+ * File:    winstl/toolhelp/sequence_base.hpp
  *
- * Purpose:     TOOLHELP sequence_base class template.
+ * Purpose: TOOLHELP sequence_base class template.
  *
- * Created:     21st May 2005
- * Updated:     11th March 2024
+ * Created: 21st May 2005
+ * Updated: 26th September 2024
  *
- * Thanks:      To Pablo for contributing this great library.
+ * Thanks:  To Pablo for contributing this great library.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2007, Pablo Aguilar
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  12
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      33
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  13
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -86,21 +86,20 @@
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
-#ifndef STLSOFT_INCL_H_TLHELP32
-# define STLSOFT_INCL_H_TLHELP32
-# include <tlhelp32.h>
-#endif /* !STLSOFT_INCL_H_TLHELP32 */
-
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
 # include <winstl/api/external/HandleAndObject.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef STLSOFT_INCL_H_TLHELP32
+# define STLSOFT_INCL_H_TLHELP32
+# include <tlhelp32.h>
+#endif /* !STLSOFT_INCL_H_TLHELP32 */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -184,7 +183,7 @@ public:
     {
         WINSTL_ASSERT(m_snapshot != traits_type::invalid_handle());
 
-        STLSOFT_API_INTERNAL_memfns_memset(&m_value, 0, sizeof(m_value));
+        STLSOFT_API_EXTERNAL_memfns_memset(&m_value, 0, sizeof(m_value));
         m_value.dwSize = sizeof(m_value);
 
         bool ok = traits_type::first(m_snapshot, m_value);

@@ -5,7 +5,7 @@
  *          specialisations thereof.
  *
  * Created: 19th January 2002
- * Updated: 19th July 2024
+ * Updated: 26th September 2024
  *
  * Thanks:  To Sam Fisher for spotting the defect in the set_value_()
  *          overload for REG_MULTI_SZ values (widestring only).
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       10
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    13
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        164
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    14
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        165
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -112,6 +112,16 @@
 # include <stlsoft/iterators/transform_iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR */
 
+#ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
+# include <winstl/api/external/ErrorHandling.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
+#ifndef WINSTL_INCL_WINSTL_API_external_h_Registry
+# include <winstl/api/external/Registry.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_Registry */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 #ifndef STLSOFT_INCL_NUMERIC
 # define STLSOFT_INCL_NUMERIC
 # include <numeric>
@@ -120,17 +130,6 @@
 # define STLSOFT_INCL_FUNCTIONAL
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
-
-#ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
-# include <winstl/api/external/ErrorHandling.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
-#ifndef WINSTL_INCL_WINSTL_API_external_h_Registry
-# include <winstl/api/external/Registry.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_Registry */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1420,7 +1419,7 @@ basic_reg_key<C, T, A>::set_value_(
         char_type const* const  s   =   values[i];
         const size_type         len =   traits_type::str_len(s);
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, s, sizeof(char_type) * len);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, s, sizeof(char_type) * len);
         p += len;
         *p++ = '\0';
     }}

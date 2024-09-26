@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/variant.hpp (originally MOVriant.h/.cpp, ::SynesisCom)
+ * File:    comstl/util/variant.hpp (originally MOVriant.h/.cpp, ::SynesisCom)
  *
- * Purpose:     variant class.
+ * Purpose: variant class.
  *
- * Created:     12th December 1996
- * Updated:     11th March 2024
+ * Created: 12th December 1996
+ * Updated: 26th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   14
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       177
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   15
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       178
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,10 +93,9 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
 # include <winstl/api/external/Debugging.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Debugging */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -535,9 +534,9 @@ inline /* static */ void variant::swap_(VARIANT& lhs, VARIANT& rhs)
 {
     VARIANT t;
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(&t, &lhs, sizeof(VARIANT));
-    STLSOFT_API_INTERNAL_memfns_memcpy(&lhs, &rhs, sizeof(VARIANT));
-    STLSOFT_API_INTERNAL_memfns_memcpy(&rhs, &t, sizeof(VARIANT));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&t, &lhs, sizeof(VARIANT));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&lhs, &rhs, sizeof(VARIANT));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&rhs, &t, sizeof(VARIANT));
 }
 
 

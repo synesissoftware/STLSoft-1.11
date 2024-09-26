@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/conversion/char_conversions.hpp (originally MLStrCnv.h, ::SynesisStd)
+ * File:    winstl/conversion/char_conversions.hpp (originally MLStrCnv.h, ::SynesisStd)
  *
- * Purpose:     Type conversions for Windows.
+ * Purpose: Type conversions for Windows.
  *
- * Created:     31st May 2003
- * Updated:     11th March 2024
+ * Created: 31st May 2003
+ * Updated: 26th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 13
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     117
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 14
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -104,10 +104,9 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -187,9 +186,9 @@ public:
     multibyte2wide(class_type const& s)
         : parent_class_type(s.size() + 1)
     {
-        char_type* p = &static_cast<parent_class_type&>(*this)[0];
+        char_type* const p = &static_cast<parent_class_type&>(*this)[0];
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
         STLSOFT_ASSERT('\0' == (*this)[s.size()]);
     }
 # endif /* compiler */
@@ -345,9 +344,9 @@ public:
     wide2multibyte(class_type const& s)
         : parent_class_type(s.size() + 1)
     {
-        char_type* p = &static_cast<parent_class_type&>(*this)[0];
+        char_type* const p = &static_cast<parent_class_type&>(*this)[0];
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
         STLSOFT_ASSERT('\0' == (*this)[s.size()]);
     }
 # endif /* compiler */

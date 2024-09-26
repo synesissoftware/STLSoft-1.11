@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/collections/message_queue_sequence.hpp
+ * File:    acestl/collections/message_queue_sequence.hpp
  *
- * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
+ * Purpose: Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
- * Created:     15th September 2004
- * Updated:     11th March 2024
+ * Created: 15th September 2004
+ * Updated: 26th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  16
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      78
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  17
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,14 +110,15 @@
 # define STLSOFT_INCL_ACE_H_MESSAGE_QUEUE_T
 # include <ace/Message_Queue_T.h>
 #endif /* !STLSOFT_INCL_ACE_H_MESSAGE_QUEUE_T */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 #ifndef STLSOFT_INCL_ALGORITHM
 # define STLSOFT_INCL_ALGORITHM
 # include <algorithm>                // for std::copy
 #endif /* !STLSOFT_INCL_ALGORITHM */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -335,7 +336,7 @@ public:
                     {
                         // Terminal case
 
-                        STLSOFT_API_INTERNAL_memfns_memcpy(&m_entryIndex[m_entry->rd_ptr()], f, n);
+                        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_entryIndex[m_entry->rd_ptr()], f, n);
 
                         ACESTL_ASSERT(n <= m_entryLength - m_entryIndex);
 
@@ -347,7 +348,7 @@ public:
                     {
                         // Recursive case
 
-                        STLSOFT_API_INTERNAL_memfns_memcpy(&m_entryIndex[m_entry->rd_ptr()], f, n1);
+                        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_entryIndex[m_entry->rd_ptr()], f, n1);
                         f += n1;
 
                         m_entry = nextEntry();
@@ -370,13 +371,13 @@ public:
                 {
                     // Terminal case
 
-                    STLSOFT_API_INTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
                 }
                 else
                 {
                     // Recursive case
 
-                    STLSOFT_API_INTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
                     o += n1;
 
                     m_entry = nextEntry();
@@ -403,7 +404,7 @@ public:
                     //
                     // This is the terminating case.
 
-                    STLSOFT_API_INTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n);
 
                     ACESTL_ASSERT(n <= m_entryLength - m_entryIndex);
 
@@ -413,7 +414,7 @@ public:
                 }
                 else
                 {
-                    STLSOFT_API_INTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
                     o += n1;
 
                     m_entry = nextEntry();

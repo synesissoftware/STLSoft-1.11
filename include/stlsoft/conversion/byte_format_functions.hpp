@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/byte_format_functions.hpp
+ * File:    stlsoft/conversion/byte_format_functions.hpp
  *
- * Purpose:     Byte formatting functions.
+ * Purpose: Byte formatting functions.
  *
- * Created:     23rd July 2006
- * Updated:     11th March 2024
+ * Created: 23rd July 2006
+ * Updated: 26th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MINOR     1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  11
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      36
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  12
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -82,13 +82,16 @@
 # include <stlsoft/util/string/snprintf.h>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -309,8 +312,8 @@ format_bytes(
 
                 if (cb < byteGrouping)
                 {
-                    STLSOFT_API_INTERNAL_memfns_memcpy(&remaining[0], py, cb);
-                    STLSOFT_API_INTERNAL_memfns_memset(&remaining[0] + cb, 0x00, STLSOFT_NUM_ELEMENTS(remaining) - cb);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(&remaining[0], py, cb);
+                    STLSOFT_API_EXTERNAL_memfns_memset(&remaining[0] + cb, 0x00, STLSOFT_NUM_ELEMENTS(remaining) - cb);
 
                     py = &remaining[0];
                     cb = byteGrouping;  // Cause iteration to complete cleanly after this round
@@ -448,7 +451,7 @@ format_bytes(
                 {
                     if (++lineIndex < numLines)
                     {
-                        STLSOFT_API_INTERNAL_memfns_memcpy(buff, lineSeparator, cchLineSeparator * sizeof(char));
+                        STLSOFT_API_EXTERNAL_memfns_memcpy(buff, lineSeparator, cchLineSeparator * sizeof(char));
 
                         buff += cchLineSeparator;
                     }
@@ -457,7 +460,7 @@ format_bytes(
                 }
                 else if (0 != cb)
                 {
-                    STLSOFT_API_INTERNAL_memfns_memcpy(buff, groupSeparator, cchSeparator * sizeof(char));
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(buff, groupSeparator, cchSeparator * sizeof(char));
 
                     buff += cchSeparator;
                 }

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/controls/functionals.hpp
+ * File:    winstl/controls/functionals.hpp
  *
- * Purpose:     Functionals for application to controls.
+ * Purpose: Functionals for application to controls.
  *
- * Created:     8th October 2002
- * Updated:     11th March 2024
+ * Created: 8th October 2002
+ * Updated: 26th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    2
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 10
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     96
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 11
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,13 +100,13 @@
 # include <winstl/system/system_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 #ifndef _WINSTL_CONTROL_FUNCTIONALS_NO_STD
 # include <functional>
@@ -281,7 +281,7 @@ public:
 
         WINSTL_ASSERT(cchClass < STLSOFT_NUM_ELEMENTS(m_name.sza));
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(&m_name.sza[0], windowClass, cchClass);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_name.sza[0], windowClass, cchClass);
         m_name.sza[cchClass] = '\0';
     }
     ss_explicit_k
@@ -296,7 +296,7 @@ public:
 
         WINSTL_ASSERT(cchClass < STLSOFT_NUM_ELEMENTS(m_name.szw));
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(&m_name.szw[0], windowClass, cchClass);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_name.szw[0], windowClass, cchClass);
         m_name.szw[cchClass] = '\0';
     }
 

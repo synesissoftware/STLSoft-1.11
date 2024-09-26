@@ -4,7 +4,7 @@
  * Purpose: Facade for the standard C Streams API.
  *
  * Created: 31st May 2009
- * Updated: 5th May 2024
+ * Updated: 26th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MINOR       1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    4
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        26
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    5
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,13 +114,13 @@
 # include <stlsoft/synch/refcount_policies/refcount_policy_single_threaded.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_REFCOUNT_POLICIES_HPP_REFCOUNT_POLICY_SINGLE_THREADED */
 
-#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
-# include <stlsoft/internal/safestr.h>
-#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT
 # include <stlsoft/quality/contract.h>
@@ -455,11 +455,11 @@ private: // Implementation
     ,   size_type   len
     )
     {
-        STLSOFT_NS_QUAL(auto_buffer)<char>  buff(2u + len);
+        STLSOFT_NS_QUAL(auto_buffer)<char> buff(2u + len);
 
         if (0 != len)
         {
-            STLSOFT_API_INTERNAL_memfns_memcpy(&buff[0], s, sizeof(*s) * len);
+            STLSOFT_API_EXTERNAL_memfns_memcpy(&buff[0], s, sizeof(*s) * len);
         }
         buff[len + 0] = '\n';
         buff[len + 1] = '\0';
@@ -473,11 +473,11 @@ private: // Implementation
     ,   size_type       len
     )
     {
-        STLSOFT_NS_QUAL(auto_buffer)<wchar_t>  buff(2u + len);
+        STLSOFT_NS_QUAL(auto_buffer)<wchar_t> buff(2u + len);
 
         if (0 != len)
         {
-            STLSOFT_API_INTERNAL_memfns_memcpy(&buff[0], s, sizeof(*s) * len);
+            STLSOFT_API_EXTERNAL_memfns_memcpy(&buff[0], s, sizeof(*s) * len);
         }
         buff[len + 0] = '\n';
         buff[len + 1] = '\0';

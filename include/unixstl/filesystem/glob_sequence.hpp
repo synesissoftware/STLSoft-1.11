@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/glob_sequence.hpp
+ * File:    unixstl/filesystem/glob_sequence.hpp
  *
- * Purpose:     glob_sequence class.
+ * Purpose: glob_sequence class.
  *
- * Created:     15th January 2002
- * Updated:     11th March 2024
+ * Created: 15th January 2002
+ * Updated: 26th September 2024
  *
- * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
- *              To Nevin Liber for pressing upon me the need to lead by
- *              example when writing books about good design/implementation.
+ * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
+ *          To Nevin Liber for pressing upon me the need to lead by example
+ *          when writing books about good design/implementation.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      180
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      181
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,13 +95,12 @@
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
 #ifndef STLSOFT_INCL_SYS_H_TYPES
 # define STLSOFT_INCL_SYS_H_TYPES
@@ -1283,7 +1282,7 @@ glob_sequence::init_glob_3_(
 
             UNIXSTL_ASSERT(m_buffer.size() == cItems);
 
-            base = static_cast<char_type**>(STLSOFT_API_INTERNAL_memfns_memcpy(&m_buffer[0], base, m_buffer.size() * sizeof(char_type*)));
+            base = static_cast<char_type**>(STLSOFT_API_EXTERNAL_memfns_memcpy(&m_buffer[0], base, m_buffer.size() * sizeof(char_type*)));
         }
 
         // This section elides dots directories.

@@ -4,7 +4,7 @@
  * Purpose: winstl_C_identify_operating_system() function.
  *
  * Created: 18th May 1995
- * Updated: 2nd September 2024
+ * Updated: 26th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_MAJOR    1
 # define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_MINOR    1
 # define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_EDIT     18
+# define WINSTL_VER_WINSTL_SYSTEM_H_OS_VERSION_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -76,7 +76,6 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_DynamicLinkLibrary
 # include <winstl/api/external/DynamicLinkLibrary.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_DynamicLinkLibrary */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */

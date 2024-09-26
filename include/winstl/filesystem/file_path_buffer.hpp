@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 7th February 2002
- * Updated: 25th September 2024
+ * Updated: 26th September 2024
  *
  * Thanks:  Pablo Aguilar for discovering the Borland weirdness which is now
  *          addressed with the calc_path_max_() method.
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     151
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 16
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     152
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,10 +115,6 @@
 #ifdef STLSOFT_DEBUG
 # include <stlsoft/algorithms/pod.hpp>
 #endif
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>
@@ -431,7 +427,7 @@ private:
         size_type const         n   =   m_buffer.size() - ecs;
         char_type *             p   =   &m_buffer[0] + n;
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, ec, sizeof(char_type) * ecs);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, ec, sizeof(char_type) * ecs);
     }
 
     static

@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/containers/util/array_policies.hpp
+ * File:    stlsoft/containers/util/array_policies.hpp
  *
- * Purpose:     Contains the construction policies for the array (fixed and
- *              frame) classes.
+ * Purpose: Contains the construction policies for the array (fixed and
+ *          frame) classes.
  *
- * Created:     1st September 2002
- * Updated:     11th March 2024
+ * Created: 1st September 2002
+ * Updated: 26th September 2024
  *
- * Thanks to:   Neal Becker for suggesting the uninitialised mode.
+ * Thanks:  Neal Becker for suggesting the uninitialised mode.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MINOR       1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        152
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    10
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,9 +79,9 @@
 # include <stlsoft/meta/n_types.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -259,9 +259,9 @@ struct do_initialisation_never
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_1(A& ator, T *p, ss_size_t n, one_type)
+void do_construct_1(A& ator, T* p, ss_size_t n, one_type)
 {
-    for (T *e = p + n; p != e; ++p)
+    for (T* e = p + n; p != e; ++p)
     {
         ator.construct(p, T());
     }
@@ -270,11 +270,13 @@ void do_construct_1(A& ator, T *p, ss_size_t n, one_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_1(A& /* ator */, T *p, ss_size_t n, two_type)
+void do_construct_1(A& /* ator */, T* p, ss_size_t n, two_type)
 {
 #if 1
-    STLSOFT_API_INTERNAL_memfns_memset(p, 0, n * sizeof(T));
+
+    STLSOFT_API_EXTERNAL_memfns_memset(p, 0, n * sizeof(T));
 #else /* ? 0 */
+
     STLSOFT_NS_QUAL_STD(fill_n)(p, n, 0);
 #endif /* 0 */
 }
@@ -282,7 +284,7 @@ void do_construct_1(A& /* ator */, T *p, ss_size_t n, two_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_1(A& /* ator */, T * /* p */, ss_size_t /* n */, three_type)
+void do_construct_1(A& /* ator */, T* /* p */, ss_size_t /* n */, three_type)
 {}
 
 
@@ -292,12 +294,12 @@ void do_construct_1(A& /* ator */, T * /* p */, ss_size_t /* n */, three_type)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_2(A& ator, T *p, ss_size_t n, T const& value, one_type)
+void do_construct_2(A& ator, T* p, ss_size_t n, T const& value, one_type)
 {
 #if 0
     std::uninitialized_fill_n(p, n, value);
 #else /* ? 0 */
-    for (T *e = p + n; p != e; ++p)
+    for (T* e = p + n; p != e; ++p)
     {
         ator.construct(p, value);
     }
@@ -311,14 +313,14 @@ void do_construct_2(A& /* ator */, T* p, ss_size_t n, T const& value, two_type)
 {
     for (T* e = p + n; p != e; ++p)
     {
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, &value, sizeof(T));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, &value, sizeof(T));
     }
 }
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-void do_construct_2(A& /* ator */, T*  /* p */, ss_size_t /* n */, T const& /* value */, three_type)
+void do_construct_2(A& /* ator */, T* /* p */, ss_size_t /* n */, T const& /* value */, three_type)
 {}
 
 
@@ -343,7 +345,7 @@ void do_copy_construct_1(A& /* ator */, T* p, T const* src, ss_size_t n, two_typ
 {
     for (T* e = p + n; p != e; ++p, ++src)
     {
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, src, sizeof(T));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, src, sizeof(T));
     }
 }
 

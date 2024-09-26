@@ -4,7 +4,7 @@
  * Purpose: Algorithms for Plain-Old Data types.
  *
  * Created: 17th January 2002
- * Updated: 25th September 2024
+ * Updated: 26th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       5
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    9
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        105
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       6
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    1
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -92,10 +92,6 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
-# include <stlsoft/api/external/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -125,7 +121,7 @@ struct ximpl_stlsoft_algorithm_pod_helper_
     ,   yes_type
     )
     {
-        STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, n * sizeof(*dest));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, n * sizeof(*dest));
     }
 
     template <ss_typename_param_k T>
@@ -165,7 +161,7 @@ struct ximpl_stlsoft_algorithm_pod_helper_
         STLSOFT_STATIC_ASSERT(int(O_IS_INTEGRAL_TYPE) == int(I_IS_INTEGRAL_TYPE));
         STLSOFT_STATIC_ASSERT(int(O_IS_POINTER_TYPE) == int(I_IS_POINTER_TYPE));
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, n * sizeof(*dest));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, n * sizeof(*dest));
     }
 
     template<
@@ -440,26 +436,27 @@ pod_fill_n(T* dest, ss_size_t n, V const& value)
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 // [[synesis:function:algorithm: pod_fill_n(char *dest, int value)]]
 inline
 void
-pod_fill_n(char *dest, ss_size_t n, int value)
+pod_fill_n(char* dest, ss_size_t n, int value)
 {
-    STLSOFT_API_INTERNAL_memfns_memset(dest, value, n);
+    STLSOFT_API_EXTERNAL_memfns_memset(dest, value, n);
 }
 // [[synesis:function:algorithm: pod_fill_n(signed char *dest, int value)]]
 inline
 void
-pod_fill_n(signed char *dest, ss_size_t n, int value)
+pod_fill_n(signed char* dest, ss_size_t n, int value)
 {
-    STLSOFT_API_INTERNAL_memfns_memset(dest, value, n);
+    STLSOFT_API_EXTERNAL_memfns_memset(dest, value, n);
 }
 // [[synesis:function:algorithm: pod_fill_n(unsigned char *dest, int value)]]
 inline
 void
-pod_fill_n(unsigned char *dest, ss_size_t n, int value)
+pod_fill_n(unsigned char* dest, ss_size_t n, int value)
 {
-    STLSOFT_API_INTERNAL_memfns_memset(dest, value, n);
+    STLSOFT_API_EXTERNAL_memfns_memset(dest, value, n);
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

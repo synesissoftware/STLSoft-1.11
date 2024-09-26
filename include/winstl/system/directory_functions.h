@@ -4,7 +4,7 @@
  * Purpose: Directory functions.
  *
  * Created: 29th January 2013
- * Updated: 9th July 2024
+ * Updated: 26th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        15
+# define WINSTL_VER_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,10 +72,9 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_SystemInformation
 # include <winstl/api/external/SystemInformation.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_SystemInformation */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,8 +132,8 @@ winstl_C_get_home_directory_a(
         return 1 + cchTotal;
     }
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_a_t) * cchDrive);
-    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_a_t) * cchDirectory);
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_a_t) * cchDrive);
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_a_t) * cchDirectory);
     buffer[cchDrive + cchDirectory] = '\0';
 
     return cchTotal;
@@ -171,8 +170,8 @@ winstl_C_get_home_directory_w(
         return 1 + cchTotal;
     }
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_w_t) * cchDrive);
-    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_w_t) * cchDirectory);
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_w_t) * cchDrive);
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_w_t) * cchDirectory);
     buffer[cchDrive + cchDirectory] = '\0';
 
     return cchTotal;
