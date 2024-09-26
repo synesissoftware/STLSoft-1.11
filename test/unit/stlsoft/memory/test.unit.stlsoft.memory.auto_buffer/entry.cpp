@@ -67,6 +67,10 @@ namespace
 
     static void test_1_10(void);
 
+    // front() {const}
+    // back() {const}
+    static void test_front_and_back(void);
+
 } // anonymous namespace
 
 
@@ -99,6 +103,8 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_swap_3);
 
         XTESTS_RUN_CASE(test_1_10);
+
+        XTESTS_RUN_CASE(test_front_and_back);
 
 #ifdef STLSOFT_USE_XCOVER
         XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/auto_buffer.hpp", NULL);
@@ -581,6 +587,28 @@ static void test_swap_3()
 static void test_1_10()
 {
 
+}
+
+static void test_front_and_back()
+{
+    typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
+
+    int const ints[] = { -5, -4, -3, -2, -1, 0, 1, 2, 3, 4 };
+
+    ab_int_8_t          buff(STLSOFT_NUM_ELEMENTS(ints));
+    ab_int_8_t const&   cbuff = buff;
+
+    assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
+    std::copy(
+        std::begin(ints), std::end(ints)
+    ,   buff.begin()
+    );
+
+    XTESTS_TEST_INTEGER_EQUAL(-5, buff.front());
+    XTESTS_TEST_INTEGER_EQUAL(-5, cbuff.front());
+
+    XTESTS_TEST_INTEGER_EQUAL(4, buff.back());
+    XTESTS_TEST_INTEGER_EQUAL(4, cbuff.back());
 }
 
 } // anonymous namespace
