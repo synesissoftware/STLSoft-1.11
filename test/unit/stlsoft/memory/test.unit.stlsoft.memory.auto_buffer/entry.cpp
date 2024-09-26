@@ -47,9 +47,9 @@
 namespace
 {
     // auto_buffer(size_t)
-    static void test_construct_1(void);
-    static void test_construct_2(void);
-    static void test_construct_3(void);
+    static void test_ctor_n_1(void);
+    static void test_ctor_n_2(void);
+    static void test_ctor_n_3(void);
 
     // resize(size_t)
     static void test_resize(void);
@@ -100,9 +100,9 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.memory.auto_buffer", verbosity))
     {
-        XTESTS_RUN_CASE(test_construct_1);
-        XTESTS_RUN_CASE(test_construct_2);
-        XTESTS_RUN_CASE(test_construct_3);
+        XTESTS_RUN_CASE(test_ctor_n_1);
+        XTESTS_RUN_CASE(test_ctor_n_2);
+        XTESTS_RUN_CASE(test_ctor_n_3);
 
         XTESTS_RUN_CASE(test_resize);
 
@@ -146,7 +146,7 @@ int main(int argc, char **argv)
 namespace
 {
 
-static void test_construct_1()
+static void test_ctor_n_1()
 {
     stlsoft::auto_buffer<char> buff(0);
 
@@ -155,7 +155,7 @@ static void test_construct_1()
     XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
 }
 
-static void test_construct_2()
+static void test_ctor_n_2()
 {
     stlsoft::auto_buffer<char, 10> buff(0);
 
@@ -164,7 +164,7 @@ static void test_construct_2()
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
 }
 
-static void test_construct_3()
+static void test_ctor_n_3()
 {
     stlsoft::auto_buffer<char, 10> buff(10);
 
