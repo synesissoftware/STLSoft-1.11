@@ -50,6 +50,10 @@ namespace
     static void test_ctor_n_1(void);
     static void test_ctor_n_2(void);
     static void test_ctor_n_3(void);
+    // auto_buffer(size_t)
+    static void test_ctor_n_v_1(void);
+    static void test_ctor_n_v_2(void);
+    static void test_ctor_n_v_3(void);
 
     // resize(size_t)
     static void test_resize(void);
@@ -103,6 +107,9 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_ctor_n_1);
         XTESTS_RUN_CASE(test_ctor_n_2);
         XTESTS_RUN_CASE(test_ctor_n_3);
+        XTESTS_RUN_CASE(test_ctor_n_v_1);
+        XTESTS_RUN_CASE(test_ctor_n_v_2);
+        XTESTS_RUN_CASE(test_ctor_n_v_3);
 
         XTESTS_RUN_CASE(test_resize);
 
@@ -171,6 +178,33 @@ static void test_ctor_n_3()
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
     XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+}
+
+static void test_ctor_n_v_1()
+{
+    stlsoft::auto_buffer<char> buff(0, 'a');
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
+}
+
+static void test_ctor_n_v_2()
+{
+    stlsoft::auto_buffer<char, 10> buff(0, 'a');
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+}
+
+static void test_ctor_n_v_3()
+{
+    stlsoft::auto_buffer<char, 10> buff(10, 'a');
+
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+
+    XTESTS_TEST_CHARACTER_EQUAL('a', buff[0]);
+    XTESTS_TEST_CHARACTER_EQUAL('a', buff[9]);
 }
 
 static void test_resize()
