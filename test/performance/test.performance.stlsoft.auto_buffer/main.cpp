@@ -268,7 +268,7 @@ int main(int argc, char* argv[])
         {
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<10>::auto_buffer(0) + #reserve()";
+                casename = "stlsoft::auto_buffer<  10>::auto_buffer(0) + #reserve()";
 
                 int r = 0;
 
@@ -294,7 +294,7 @@ int main(int argc, char* argv[])
 
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<100>::auto_buffer(0) + #reserve()";
+                casename = "stlsoft::auto_buffer< 100>::auto_buffer(0) + #reserve()";
 
                 int r = 0;
 
@@ -392,7 +392,7 @@ int main(int argc, char* argv[])
         {
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<10>::auto_buffer(n, v)";
+                casename = "stlsoft::auto_buffer<  10>::auto_buffer(n, v)";
 
                 int r = 0;
 
@@ -421,7 +421,7 @@ int main(int argc, char* argv[])
 
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<100>::auto_buffer(n, v)";
+                casename = "stlsoft::auto_buffer< 100>::auto_buffer(n, v)";
 
                 int r = 0;
 
@@ -525,7 +525,7 @@ int main(int argc, char* argv[])
         {
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<10>::auto_buffer(n) + memcpy()";
+                casename = "stlsoft::auto_buffer<  10>::auto_buffer(n) + memcpy()";
 
                 int r = 0;
 
@@ -556,7 +556,7 @@ int main(int argc, char* argv[])
 
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<100>::auto_buffer(n) + memcpy()";
+                casename = "stlsoft::auto_buffer< 100>::auto_buffer(n) + memcpy()";
 
                 int r = 0;
 
@@ -664,7 +664,7 @@ int main(int argc, char* argv[])
         {
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<10>::auto_buffer(from : T const*, to : T const*)";
+                casename = "stlsoft::auto_buffer<  10>::auto_buffer(from : T const*, to : T const*)";
 
                 int r = 0;
 
@@ -693,7 +693,7 @@ int main(int argc, char* argv[])
 
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<100>::auto_buffer(from : T const*, to : T const*)";
+                casename = "stlsoft::auto_buffer< 100>::auto_buffer(from : T const*, to : T const*)";
 
                 int r = 0;
 
@@ -797,7 +797,7 @@ int main(int argc, char* argv[])
         {
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<10>::auto_buffer(from : T const*, to : T const*)";
+                casename = "stlsoft::auto_buffer<  10>::auto_buffer(from : T const*, to : T const*)";
 
                 int r = 0;
 
@@ -826,7 +826,7 @@ int main(int argc, char* argv[])
 
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<100>::auto_buffer(from : T const*, to : T const*)";
+                casename = "stlsoft::auto_buffer< 100>::auto_buffer(from : T const*, to : T const*)";
 
                 int r = 0;
 
@@ -931,7 +931,7 @@ int main(int argc, char* argv[])
         {
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<10>::auto_buffer(from : T const*, to : T const*)";
+                casename = "stlsoft::auto_buffer<  10>::auto_buffer(from : T const*, to : T const*)";
 
                 int r = 0;
 
@@ -960,7 +960,7 @@ int main(int argc, char* argv[])
 
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
-                casename = "stlsoft::auto_buffer<100>::auto_buffer(from : T const*, to : T const*)";
+                casename = "stlsoft::auto_buffer< 100>::auto_buffer(from : T const*, to : T const*)";
 
                 int r = 0;
 
