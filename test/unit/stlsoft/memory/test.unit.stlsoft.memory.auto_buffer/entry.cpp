@@ -189,6 +189,10 @@ namespace
 
     // resize(size_t)
     static void test_resize(void);
+    // resize(size_t, value)
+    static void test_resize_n_v_1(void);
+    static void test_resize_n_v_2(void);
+    static void test_resize_n_v_3(void);
 
     static void test_allocator_null(void);
     static void test_allocator_to_exhaustion(void);
@@ -271,6 +275,9 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_ctor_range_fwd_iters_3);
 
         XTESTS_RUN_CASE(test_resize);
+        XTESTS_RUN_CASE(test_resize_n_v_1);
+        XTESTS_RUN_CASE(test_resize_n_v_2);
+        XTESTS_RUN_CASE(test_resize_n_v_3);
 
         XTESTS_RUN_CASE(test_allocator_null);
         XTESTS_RUN_CASE(test_allocator_to_exhaustion);
@@ -613,6 +620,101 @@ static void test_resize()
         XTESTS_TEST_INTEGER_EQUAL(i, buff.size());
         XTESTS_TEST_POINTER_NOT_EQUAL(first, buff.data());
     }}
+}
+
+static void test_resize_n_v_1()
+{
+    typedef stlsoft::auto_buffer<int, 10> ab_int_10_t;
+
+    ab_int_10_t buff(0u, -9);
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
+    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
+
+    int* const p0 = buff.data();
+
+    buff.resize(4, 1);
+
+    XTESTS_TEST_INTEGER_EQUAL(4u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
+    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
+    XTESTS_TEST_INTEGER_EQUAL(4, std::accumulate(buff.begin(), buff.end(), 0));
+
+    buff.resize(8, 10);
+
+    XTESTS_TEST_INTEGER_EQUAL(8u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
+    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
+    XTESTS_TEST_INTEGER_EQUAL(44, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_resize_n_v_2()
+{
+    typedef stlsoft::auto_buffer<int, 10> ab_int_10_t;
+
+    ab_int_10_t buff(5u, -9);
+
+    XTESTS_TEST_INTEGER_EQUAL(5u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
+    XTESTS_TEST_INTEGER_EQUAL(-45, std::accumulate(buff.begin(), buff.end(), 0));
+
+    int* const p0 = buff.data();
+
+    buff.resize(10, -5);
+
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
+    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
+    XTESTS_TEST_INTEGER_EQUAL(-70, std::accumulate(buff.begin(), buff.end(), 0));
+
+    buff.resize(5, 9999);
+
+    XTESTS_TEST_INTEGER_EQUAL(5u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
+    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
+    XTESTS_TEST_INTEGER_EQUAL(-45, std::accumulate(buff.begin(), buff.end(), 0));
+
+    buff.resize(11, 100);
+
+    XTESTS_TEST_INTEGER_EQUAL(11u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
+    XTESTS_TEST_POINTER_NOT_EQUAL(p0, buff.data());
+    XTESTS_TEST_INTEGER_EQUAL(555, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+static void test_resize_n_v_3()
+{
+    typedef stlsoft::auto_buffer<int, 10> ab_int_10_t;
+
+    ab_int_10_t buff(100u, -9);
+
+    XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
+    XTESTS_TEST_INTEGER_EQUAL(-900, std::accumulate(buff.begin(), buff.end(), 0));
+
+    int* const p0 = buff.data();
+
+    buff.resize(10, 9999);
+
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
+    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
+    XTESTS_TEST_INTEGER_EQUAL(-90, std::accumulate(buff.begin(), buff.end(), 0));
+
+    buff.resize(5, 9999);
+
+    XTESTS_TEST_INTEGER_EQUAL(5u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
+    XTESTS_TEST_POINTER_EQUAL(p0, buff.data());
+    XTESTS_TEST_INTEGER_EQUAL(-45, std::accumulate(buff.begin(), buff.end(), 0));
+
+    buff.resize(0, 9999);
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_BOOLEAN_TRUE(buff.empty());
+    XTESTS_TEST_POINTER_NOT_EQUAL(p0, buff.data());
+    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
 static void test_allocator_null(void)
