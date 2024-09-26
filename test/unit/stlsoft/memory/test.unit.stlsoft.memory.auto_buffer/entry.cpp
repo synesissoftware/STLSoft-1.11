@@ -67,6 +67,12 @@ namespace
 
     static void test_1_10(void);
 
+    // operator [](size_t) {const}
+    static void test_subscript(void);
+
+    // data() {const}
+    static void test_data(void);
+
     // front() {const}
     // back() {const}
     static void test_front_and_back(void);
@@ -103,6 +109,10 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_swap_3);
 
         XTESTS_RUN_CASE(test_1_10);
+
+        XTESTS_RUN_CASE(test_subscript);
+
+        XTESTS_RUN_CASE(test_data);
 
         XTESTS_RUN_CASE(test_front_and_back);
 
@@ -587,6 +597,47 @@ static void test_swap_3()
 static void test_1_10()
 {
 
+}
+
+static void test_subscript(void)
+{
+    typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
+
+    int const ints[] = { -5, -4, -3, -2, -1, 0, 1, 2, 3, 4 };
+
+    ab_int_8_t          buff(STLSOFT_NUM_ELEMENTS(ints));
+    ab_int_8_t const&   cbuff = buff;
+
+    assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
+    std::copy(
+        std::begin(ints), std::end(ints)
+    ,   buff.begin()
+    );
+
+    for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(ints); ++i)
+    {
+        XTESTS_TEST_INTEGER_EQUAL(ints[i], buff[i]);
+        XTESTS_TEST_INTEGER_EQUAL(ints[i], cbuff[i]);
+    }
+}
+
+static void test_data(void)
+{
+    typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
+
+    int const ints[] = { -5, -4, -3, -2, -1, 0, 1, 2, 3, 4 };
+
+    ab_int_8_t          buff(STLSOFT_NUM_ELEMENTS(ints));
+    ab_int_8_t const&   cbuff = buff;
+
+    assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
+    std::copy(
+        std::begin(ints), std::end(ints)
+    ,   buff.begin()
+    );
+
+    XTESTS_TEST(0 == memcmp(&ints[0], buff.data(), sizeof(ints)));
+    XTESTS_TEST(0 == memcmp(&ints[0], cbuff.data(), sizeof(ints)));
 }
 
 static void test_front_and_back()
