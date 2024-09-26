@@ -346,6 +346,139 @@ int main(int argc, char* argv[])
         }
     }
 
+    // construct N containing value V
+    {
+        char const* const grpname = "ctor(n, v)";
+
+        fprintf(stdout, "%s:\n", grpname);
+
+        platformstl::stopwatch::interval_type   tm_vec;
+
+        // std::vector::vector :
+        {
+            { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+            {
+                casename = "std::vector::vector(n, v)";
+
+                int r = 0;
+
+                sw.start();
+                { for (std::size_t i = 0; i != NUM_ITERATIONS; ++i)
+                {
+                    for (auto const& row : arrays_of_integers)
+                    {
+                        std::vector<int> row_copy(row.size(), 12345678);
+
+                        r += static_cast<int>(row_copy.capacity());
+
+                        r += row_copy.front();
+                        r += row_copy.back();
+                    }
+                }}
+                sw.stop();
+
+                auto const duration = sw.get_microseconds();
+
+                if (1 == WARMUPS)
+                {
+                    fprintf(stdout, "\t%s: %lu (%d)\n", casename, static_cast<unsigned long>(duration), r);
+
+                    tm_vec = duration;
+                }
+            }}
+        }
+
+        // stlsoft::auto_buffer<...>::auto_buffer :
+        {
+            { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+            {
+                casename = "stlsoft::auto_buffer<10>::auto_buffer(n, v)";
+
+                int r = 0;
+
+                sw.start();
+                { for (std::size_t i = 0; i != NUM_ITERATIONS; ++i)
+                {
+                    for (auto const& row : arrays_of_integers)
+                    {
+                        stlsoft::auto_buffer<int, 10> row_copy(row.size(), 12345678);
+
+                        r += static_cast<int>(row_copy.size());
+
+                        r += row_copy.front();
+                        r += row_copy.back();
+                    }
+                }}
+                sw.stop();
+
+                auto const duration = sw.get_microseconds();
+
+                if (1 == WARMUPS)
+                {
+                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                }
+            }}
+
+            { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+            {
+                casename = "stlsoft::auto_buffer<100>::auto_buffer(n, v)";
+
+                int r = 0;
+
+                sw.start();
+                { for (std::size_t i = 0; i != NUM_ITERATIONS; ++i)
+                {
+                    for (auto const& row : arrays_of_integers)
+                    {
+                        stlsoft::auto_buffer<int, 100> row_copy(row.size(), 12345678);
+
+                        r += static_cast<int>(row_copy.size());
+
+                        r += row_copy.front();
+                        r += row_copy.back();
+                    }
+                }}
+                sw.stop();
+
+                auto const duration = sw.get_microseconds();
+
+                if (1 == WARMUPS)
+                {
+                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                }
+            }}
+
+            { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+            {
+                casename = "stlsoft::auto_buffer<1000>::auto_buffer(n, v)";
+
+                int r = 0;
+
+                sw.start();
+                { for (std::size_t i = 0; i != NUM_ITERATIONS; ++i)
+                {
+                    for (auto const& row : arrays_of_integers)
+                    {
+                        stlsoft::auto_buffer<int, 1000> row_copy(row.size(), 12345678);
+
+                        r += static_cast<int>(row_copy.size());
+
+                        r += row_copy.front();
+                        r += row_copy.back();
+                    }
+                }}
+                sw.stop();
+
+                auto const duration = sw.get_microseconds();
+
+                if (1 == WARMUPS)
+                {
+                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                }
+            }}
+        }
+    }
+
     // copy construction (or as close as can be)
     {
         char const* const grpname = "copy construction";
