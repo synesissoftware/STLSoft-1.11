@@ -29,6 +29,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
+#include <stlsoft/memory/null_allocator.hpp>
 
 /* Standard C++ header files */
 #include <numeric>
@@ -52,6 +53,7 @@ namespace
 
     static void test_resize(void);
 
+    static void test_allocator_null(void);
     static void test_allocator_to_exhaustion(void);
 
     static void test_copy_from(void);
@@ -84,6 +86,7 @@ int main(int argc, char **argv)
 
         XTESTS_RUN_CASE(test_resize);
 
+        XTESTS_RUN_CASE(test_allocator_null);
         XTESTS_RUN_CASE(test_allocator_to_exhaustion);
 
         XTESTS_RUN_CASE(test_copy_from);
@@ -158,6 +161,53 @@ static void test_resize()
 
         XTESTS_TEST_INTEGER_EQUAL(i, buff.size());
         XTESTS_TEST_POINTER_NOT_EQUAL(first, buff.data());
+    }}
+}
+
+static void test_allocator_null(void)
+{
+    typedef stlsoft::null_allocator<char>                   ator_t;
+    typedef stlsoft::auto_buffer<char, 10, ator_t>          buff_10_t;
+    typedef stlsoft::auto_buffer<char, 100, ator_t>         buff_100_t;
+    typedef stlsoft::auto_buffer<char, 1000, ator_t>        buff_1000_t;
+
+    size_t  size = 1;
+
+    { for (size_t i = 0; i != 32; ++i, size <<= 1)
+    {
+        try
+        {
+            buff_10_t buff(size);
+
+            XTESTS_TEST_INTEGER_LESS_OR_EQUAL(buff_10_t::internal_size(), size);
+        }
+        catch (std::bad_alloc&)
+        {
+            XTESTS_TEST_INTEGER_GREATER(buff_10_t::internal_size(), size);
+        }
+
+        try
+        {
+            buff_100_t buff(size);
+
+            XTESTS_TEST_INTEGER_LESS_OR_EQUAL(buff_100_t::internal_size(), size);
+        }
+        catch (std::bad_alloc&)
+        {
+            XTESTS_TEST_INTEGER_GREATER(buff_100_t::internal_size(), size);
+        }
+
+        try
+        {
+            buff_1000_t buff(size);
+
+            XTESTS_TEST_INTEGER_LESS_OR_EQUAL(buff_1000_t::internal_size(), size);
+        }
+        catch (std::bad_alloc&)
+        {
+            XTESTS_TEST_INTEGER_GREATER(buff_1000_t::internal_size(), size);
+        }
+
     }}
 }
 
