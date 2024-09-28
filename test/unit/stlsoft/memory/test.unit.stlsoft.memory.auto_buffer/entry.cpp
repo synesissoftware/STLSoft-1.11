@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 5th May 2024
+ * Updated: 4th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -177,7 +177,7 @@ static void test_allocator()
                 buffers.push_back(p);
             }
         }
-        catch(std::bad_alloc&)
+        catch (std::bad_alloc&)
         {}
     }}
 
@@ -191,7 +191,7 @@ static void test_allocator()
         {
             XTESTS_TEST_BOOLEAN_TRUE(buff.resize(size));
         }
-        catch(std::bad_alloc&)
+        catch (std::bad_alloc&)
         {}
 #endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
     }}

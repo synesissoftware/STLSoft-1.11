@@ -1,0 +1,5 @@
+if(WIN32)
+	add_subdirectory(interface_cast)
+endif(WIN32)
+add_subdirectory(sap_cast)
+add_subdirectory(union_cast)
