@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        207
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        208
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,14 +110,14 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+#ifndef STLSOFT_INCL_TYPE_TRAITS
+# define STLSOFT_INCL_TYPE_TRAITS
+# include <type_traits>
+#endif /* !STLSOFT_INCL_TYPE_TRAITS */
 #ifndef STLSOFT_INCL_UTILITY
 # define STLSOFT_INCL_UTILITY
 # include <utility>
 #endif /* !STLSOFT_INCL_UTILITY */
-
-#if __cplusplus >= 202002L
-# include <type_traits>
-#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
