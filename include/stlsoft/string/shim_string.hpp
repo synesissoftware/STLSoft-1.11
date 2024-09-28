@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/shim_string.hpp
+ * File:    stlsoft/string/shim_string.hpp
  *
- * Purpose:     Contains the basic_shim_string template class.
+ * Purpose: Contains the basic_shim_string template class.
  *
- * Created:     9th July 2004
- * Updated:     11th March 2024
+ * Created: 9th July 2004
+ * Updated: 27th September 2024
  *
- * Thanks to:   Dimitri Kaparis, for spotting a typo in the string access
- *              shims.
+ * Thanks:  Dimitri Kaparis, for spotting a typo in the string access shims.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -57,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        69
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -169,19 +168,29 @@ class basic_shim_string
 /// @{
 public:
     /// The value type
-    typedef C                                                   char_type;
+    typedef C                                               char_type;
     /// The allocator type
-    typedef A                                                   allocator_type;
+    typedef A                                               allocator_type;
     /// The traits type
-    typedef T                                                   traits_type;
+    typedef T                                               traits_type;
     /// The current specialisation of the type
-    typedef basic_shim_string<C, N, U, A, T>                    class_type;
+    typedef basic_shim_string<
+        C
+    ,   N
+    ,   U
+    ,   A
+    ,   T
+    >                                                       class_type;
     /// The size type
-    typedef ss_size_t                                           size_type;
+    typedef ss_size_t                                       size_type;
     /// The buffer type
-    typedef auto_buffer_old<char_type, allocator_type, N + 1>   buffer_type;
+    typedef auto_buffer<
+        char_type
+    ,   N + 1
+    ,   allocator_type
+    >                                                       buffer_type;
     /// The boolean type
-    typedef ss_bool_t                                           bool_type;
+    typedef ss_bool_t                                       bool_type;
 /// @}
 
 /// \name Construction

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/window_text_scope.hpp
+ * File:    winstl/window/window_text_scope.hpp
  *
- * Purpose:     Window text scoping class.
+ * Purpose: Window text scoping class.
  *
- * Created:     21st August 2003
- * Updated:     11th March 2024
+ * Created: 21st August 2003
+ * Updated: 27th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_MINOR    1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_REVISION 7
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_EDIT     56
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_REVISION 8
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -122,17 +122,19 @@ class window_text_scope
 /// @{
 public:
     /// The string type
-    typedef S                                           string_type;
+    typedef S                                               string_type;
     /// The type of the current instantiation
-    typedef window_text_scope<S>                        class_type;
+    typedef window_text_scope<S>                            class_type;
     /// The character type
-    typedef ss_typename_type_k string_type::value_type  char_type;
+    typedef ss_typename_type_k string_type::value_type      char_type;
     /// The traits type
-    typedef window_traits<char_type>                    traits_type;
+    typedef window_traits<char_type>                        traits_type;
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<   char_type
-                                            ,   processheap_allocator<char_type>
-                                            >           buffer_type_;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        char_type
+    ,   auto_buffer_internal_size_calculator<char_type>::value
+    ,   processheap_allocator<char_type>
+    >                                                       buffer_type_;
 /// @}
 
 /// \name Construction

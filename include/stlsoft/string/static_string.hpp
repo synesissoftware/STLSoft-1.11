@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 5th September 2024
+ * Updated: 27th September 2024
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     228
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     229
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -246,8 +246,9 @@ public:
     >::type                                                 const_reverse_iterator;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 private:
-    typedef auto_buffer_old<
+    typedef auto_buffer<
         char_type
+    ,   auto_buffer_internal_size_calculator<char_type>::value
     ,   allocator_type
     >                                                       buffer_type_;
 /// @}

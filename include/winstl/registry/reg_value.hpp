@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 19th January 2002
- * Updated: 11th March 2024
+ * Updated: 27th September 2024
  *
  * Thanks:  To Diego Chanoux for spotting a defect in the value_sz() method.
  *
@@ -69,8 +69,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  11
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      131
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  12
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -164,10 +164,10 @@ class reg_blob
 {
 /// \name Member Types
 /// @{
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         ws_byte_t
-    ,   processheap_allocator<ws_byte_t>
     ,   CCH_REG_API_AUTO_BUFFER
+    ,   processheap_allocator<ws_byte_t>
     >                                                       buffer_type;
 public:
     /// The allocator type
@@ -313,19 +313,19 @@ public:
     /// The blob type
     typedef reg_blob<A>                                     blob_type;
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
-    ,   allocator_type
     ,   CCH_REG_API_AUTO_BUFFER
+    ,   allocator_type
     >                                                       char_buffer_type_;
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         ws_byte_t
+    ,   CCH_REG_API_AUTO_BUFFER
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<ws_byte_t>::other
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     ,   processheap_allocator<ws_byte_t>
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-    ,   CCH_REG_API_AUTO_BUFFER
     >                                                       byte_buffer_type_;
 private:
     /// The results type of the Registry API
