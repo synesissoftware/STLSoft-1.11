@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 4th September 2024
+ * Updated: 28th September 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        205
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        207
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,9 +79,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/util/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_BOUNDED
+# include <stlsoft/algorithms/bounded.hpp>  // for stlsoft::copy_n()
+#endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_BOUNDED */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
 # include <stlsoft/algorithms/pod.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ALGORITHMS_POD */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
+# include <stlsoft/collections/util/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
@@ -99,9 +105,15 @@
 #  include <stlsoft/util/constraints.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD */
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
-# include <stlsoft/collections/util/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
+# include <stlsoft/api/internal/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef STLSOFT_INCL_UTILITY
+# define STLSOFT_INCL_UTILITY
+# include <utility>
+#endif /* !STLSOFT_INCL_UTILITY */
 
 #if __cplusplus >= 202002L
 # include <type_traits>
@@ -579,6 +591,7 @@ private: // implementation
 
         return new_p;
     }
+
 protected:
     static void block_copy(pointer dest, const_pointer src, size_type cItems)
     {
@@ -589,11 +602,129 @@ protected:
         pod_fill_n(dest, cItems, value);
     }
 
+private:
+#ifdef STLSOFT_CF_THROW_BAD_ALLOC
+
+    // Iterator: input
+    template <ss_typename_param_k I2>
+# if defined(STLSOFT_COMPILER_IS_MWERKS)
+    // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
+    void init_from_range_(I2 first, I2 last, STLSOFT_NS_QUAL_STD(input_iterator_tag) const*)
+# else /* ? compiler */
+    void init_from_range_(I2 first, I2 last, STLSOFT_NS_QUAL_STD(input_iterator_tag))
+# endif /* compiler */
+    {
+        m_buffer = &m_internal[0];
+        m_cItems = space;
+        m_bExternal = false;
+
+        size_type n = 0;
+
+        for (; first != last; ++first, ++n)
+        {
+            if (n == m_cItems)
+            {
+                // simple geometric expansion as best notion to avoid many
+                // repeated reallocations in what is a sequence of unknown
+                // length - rate (x4) is aggressive, but shown to give good
+                // performance in tests
+                size_type new_size = m_cItems * 4;
+
+                if (m_bExternal)
+                {
+                    // already in external, so need to reallocate
+
+                    m_buffer = reallocate_(m_buffer, m_cItems, new_size);
+
+                    m_cItems = new_size;
+                }
+                else
+                {
+                    // in internal, so need to allocate and transfer
+
+                    pointer const new_buffer = allocate_(new_size);
+
+                    block_copy(new_buffer, m_buffer, m_cItems);
+
+                    m_buffer = new_buffer;
+
+                    m_cItems = new_size;
+                }
+            }
+
+            m_buffer[n] = *first;
+        }
+
+        if (m_cItems != n)
+        {
+            m_cItems = n;
+        }
+    }
+#endif /* STLSOFT_CF_THROW_BAD_ALLOC */
+
+    // Iterator: forward
+    template <ss_typename_param_k I2>
+# if defined(STLSOFT_COMPILER_IS_MWERKS)
+    // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
+    void init_from_range_(I2 first, I2 last, STLSOFT_NS_QUAL_STD(forward_iterator_tag) const*)
+# else /* ? compiler */
+    void init_from_range_(I2 first, I2 last, STLSOFT_NS_QUAL_STD(forward_iterator_tag))
+# endif /* compiler */
+    {
+        size_type const d = std::distance(first, last);
+
+        if (d > space)
+        {
+            m_buffer = allocate_(d);
+
+            m_bExternal = true;
+        }
+        else
+        {
+            m_buffer = const_cast<pointer>(&m_internal[0]);
+
+            m_bExternal = false;
+        }
+        m_cItems = d;
+
+        copy_n(first, d, m_buffer);
+    }
+
+    // Iterator: random-access
+    template <ss_typename_param_k I2>
+# if defined(STLSOFT_COMPILER_IS_MWERKS)
+    // There seems to be a bug in CodeWarrior that makes it have a cow with iterator tags by value, so we just use a ptr
+    void init_from_range_(I2 first, I2 last, STLSOFT_NS_QUAL_STD(random_access_iterator_tag) const*)
+# else /* ? compiler */
+    void init_from_range_(I2 first, I2 last, STLSOFT_NS_QUAL_STD(random_access_iterator_tag))
+# endif /* compiler */
+    {
+        STLSOFT_MESSAGE_ASSERT("invalid range", first <= last);
+
+        size_type const d = static_cast<size_type>(std::distance(first, last));
+
+        if (d > space)
+        {
+            m_buffer = allocate_(d);
+
+            m_bExternal = true;
+        }
+        else
+        {
+            m_buffer = const_cast<pointer>(&m_internal[0]);
+
+            m_bExternal = false;
+        }
+        m_cItems = d;
+
+        block_copy(m_buffer, &*first, d);
+    }
+
 public: // construction
-    /// Constructs an auto_buffer instance with the given number of
-    /// uninitialised elements
+    /// Constructs an instance with the given number of **uninitialised**
+    /// elements
     ///
-    /// Constructs an auto_buffer with the given number of uninitialised
+    /// Constructs an instance with the given number of **uninitialised**
     /// elements. If the allocation fails by throwing an exception, that
     /// exception is passed through to the caller. If allocation fails by
     /// returning a null pointer the auto_buffer instance is correctly
@@ -649,10 +780,10 @@ public: // construction
         STLSOFT_ASSERT(is_valid());
     }
 
-    /// Constructs an auto_buffer instance with the given number of
-    /// initialised elements
+    /// Constructs an instance with the given number of initialised
+    /// elements
     ///
-    /// Constructs an auto_buffer with the given number of initialised
+    /// Constructs an instance with the given number of initialised
     /// elements. If the allocation fails by throwing an exception, that
     /// exception is passed through to the caller. If allocation fails by
     /// returning a null pointer the auto_buffer instance is correctly
@@ -704,10 +835,69 @@ public: // construction
         STLSOFT_ASSERT(is_valid());
     }
 
+    /// Range constructor
+    template <ss_typename_param_k I2>
+    inline
+    auto_buffer(
+        I2 first
+    ,   I2 last
+    )
+        : m_buffer()
+        , m_cItems()
+        , m_bExternal()
+    {
+        enum { argument_is_of_integral_type = is_integral_type<I2>::value };
+
+        // NOTE: if this static assertion fires, you may be passing a signed
+        // integer literal to the constructor (which fails to match the
+        // overload `auto_buffer(size_type, value_type)`)
+        STLSOFT_STATIC_ASSERT(!argument_is_of_integral_type);
+
+        // Can't create one with an empty buffer. Though such is not legal
+        // it is supported by some compilers, so we must ensure it cannot be
+        // so
+        STLSOFT_STATIC_ASSERT(0 != space);
+
+        init_from_range_(first, last, stlsoft_iterator_query_category(I2, first));
+
+        STLSOFT_ASSERT(is_valid());
+    }
+
+#if __cplusplus >= 201103L
+
+    /** Constructs an instance to hold copies of the contents of the
+     * initializer-list `init_list`, as in:
+     *
+     *
+\code
+  stlsoft::auto_buffer<int, 10> buff = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+  assert(11 == buff.size());
+\endcode
+     */
+    auto_buffer(
+        std::initializer_list<T_value>  init_list
+    )
+        // TODO: determine if any performance advantage if use `init_list.size()`
+        : m_buffer()
+        , m_cItems()
+        , m_bExternal()
+    {
+        // Can't create one with an empty buffer. Though such is not legal
+        // it is supported by some compilers, so we must ensure it cannot be
+        // so
+        STLSOFT_STATIC_ASSERT(0 != space);
+
+        init_from_range_(init_list.begin(), init_list.end(), stlsoft_iterator_query_category(T_value*, first));
+
+        STLSOFT_ASSERT(is_valid());
+    }
+#endif
+
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-    /// Constructs an auto_buffer instance by taking over the state of the
-    /// instance \c rhs
+    /// Constructs an instance by taking over the state of the instance
+    /// \c rhs
     ///
     /// \param rhs The instance whose state will be taken over. Upon return
     ///   \c rhs will be <code>empty()</code>
@@ -771,17 +961,17 @@ private: // operations
     ss_bool_t is_in_external_array_() const
     {
 #if defined(STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK)
+
         // Old implementation always uses internal array if size() <= internal_size()
+
         STLSOFT_ASSERT((space < m_cItems) == (m_buffer != &m_internal[0]));
 
         return space < m_cItems;
 #else /* ? STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK */
-        // Old implementation always uses internal array if size() <= internal_size()
-//        STLSOFT_ASSERT((m_buffer != &m_internal[0]) || !(space < m_cItems));
+
         STLSOFT_ASSERT((m_buffer != &m_internal[0]) == m_bExternal);
         STLSOFT_ASSERT(m_bExternal || !(space < m_cItems));
 
-//        return m_buffer != &m_internal[0];
         return m_bExternal;
 #endif /* STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK */
     }
