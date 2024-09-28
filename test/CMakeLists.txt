@@ -38,6 +38,7 @@ if(X_CMAKE_CXX_FULLSTANDARD LESS 2011)
 endif()
 
 
+add_subdirectory(component)
 add_subdirectory(performance)
 add_subdirectory(scratch)
 add_subdirectory(unit)

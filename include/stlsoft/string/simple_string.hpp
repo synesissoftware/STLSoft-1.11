@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 9th July 2024
+ * Updated: 27th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      279
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      280
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -590,8 +590,9 @@ private:
         char_type   contents[1];    // The first element in the array
     };
 
-    typedef auto_buffer_old<
+    typedef auto_buffer<
         char_type
+    ,   auto_buffer_internal_size_calculator<char_type>::value
     ,   allocator_type
     >                                                       buffer_type_;
 

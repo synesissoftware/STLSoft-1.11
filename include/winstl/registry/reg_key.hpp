@@ -5,7 +5,7 @@
  *          specialisations thereof.
  *
  * Created: 19th January 2002
- * Updated: 19th July 2024
+ * Updated: 27th September 2024
  *
  * Thanks:  To Sam Fisher for spotting the defect in the set_value_()
  *          overload for REG_MULTI_SZ values (widestring only).
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       10
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    13
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        164
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    14
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        165
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -184,40 +184,40 @@ class basic_reg_key
 /// @{
 public:
     /// The character type
-    typedef C                                           char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                           traits_type;
+    typedef T                                               traits_type;
     /// The allocator type
-    typedef A                                           allocator_type;
+    typedef A                                               allocator_type;
     /// The current specialisation of the type
-    typedef basic_reg_key<C, T, A>                      class_type;
+    typedef basic_reg_key<C, T, A>                          class_type;
     /// The size type
-    typedef ss_typename_type_k traits_type::size_type   size_type;
+    typedef ss_typename_type_k traits_type::size_type       size_type;
     /// The string type
-    typedef ss_typename_type_k traits_type::string_type string_type;
+    typedef ss_typename_type_k traits_type::string_type     string_type;
     /// The key type
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1100
     /* WSCB: VC5 has an internal compiler error if use traits_type::hkey_type */
-    typedef HKEY                                        hkey_type;
+    typedef HKEY                                            hkey_type;
 #else /* ? compiler */
-    typedef ss_typename_type_k traits_type::hkey_type   hkey_type;
+    typedef ss_typename_type_k traits_type::hkey_type       hkey_type;
 #endif /* compiler */
     /// The Boolean type
-    typedef ws_bool_t                                   bool_type;
+    typedef ws_bool_t                                       bool_type;
     /// The type of the key's values
-    typedef basic_reg_value<C, T, A>                    key_value_type;
+    typedef basic_reg_value<C, T, A>                        key_value_type;
 #if 0
     /// The type of the sub-key collection
-    typedef basic_reg_key_sequence<C, T, A>             subkeys_collection_type;
+    typedef basic_reg_key_sequence<C, T, A>                 subkeys_collection_type;
     /// The type of the value collection
-    typedef basic_reg_value_sequence<C, T, A>           value_collection_type;
+    typedef basic_reg_value_sequence<C, T, A>               value_collection_type;
 #endif /* 0 */
 private:
     /// The results type of the Registry API
-    typedef ss_typename_type_k traits_type::result_type result_type;
+    typedef ss_typename_type_k traits_type::result_type     result_type;
 public:
-    typedef hkey_type                                   resource_type;
+    typedef hkey_type                                       resource_type;
 /// @}
 
 /// \name Construction
@@ -1072,7 +1072,11 @@ query_fail:
     }
     else
     {
-        STLSOFT_NS_QUAL(auto_buffer_old)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>  p(++cch_key_class);
+        STLSOFT_NS_QUAL(auto_buffer)<
+            char_type
+        ,   CCH_REG_API_AUTO_BUFFER
+        ,   allocator_type
+        >   p(++cch_key_class);
 
         res = traits_type::reg_query_info(m_hkey, &p[0], &cch_key_class, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
