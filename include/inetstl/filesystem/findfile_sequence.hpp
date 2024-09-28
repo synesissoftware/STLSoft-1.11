@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/filesystem/findfile_sequence.hpp  (originally MInetEnm.h)
+ * File:    inetstl/filesystem/findfile_sequence.hpp  (originally MInetEnm.h)
  *
- * Purpose:     Contains the basic_findfile_sequence template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_findfile_sequence template class, and ANSI
+ *          and Unicode specialisations thereof.
  *
- * Created:     30th April 1999
- * Updated:     11th March 2024
+ * Created: 30th April 1999
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR     3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR     0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  25
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      168
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      169
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1395,7 +1395,7 @@ inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T,
                             }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                         }
-                        catch(...)
+                        catch (...)
                         {
                             WINSTL_API_EXTERNAL_FileManagement_FindClose(hSrch);
 

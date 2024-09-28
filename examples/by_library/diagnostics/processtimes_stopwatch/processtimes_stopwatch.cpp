@@ -48,11 +48,17 @@ int main()
     elapsedCounter.start();
 
     // 3.a. A loop that will consume some user time.
-    { for(volatile size_t i = 0; i < 0x1fffffff; ++i)
-    {}}
-    // 3.b. A loop that will consume some kernel time.
-    { for(volatile size_t i = 0; i < 0x1ffff; ++i)
+    { for (volatile size_t i = 0; i != 0x1fffffff; )
     {
+        size_t j = i;
+        i = ++j;
+    }}
+    // 3.b. A loop that will consume some kernel time.
+    { for (volatile size_t i = 0; i != 0x1ffff; )
+    {
+        size_t j = i;
+        i = ++j;
+
         fprintf(stdout, " \b");
     }}
     // 3.c. A sleep, for five seconds, to separate elapsed and usage times.

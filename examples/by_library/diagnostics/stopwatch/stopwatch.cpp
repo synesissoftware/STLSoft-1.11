@@ -40,8 +40,11 @@ int main()
     sw.start();
 
     // 3. A loop that will consume some time.
-    for(volatile size_t i = 0; i < 0x1fffffff; ++i)
-    {}
+    { for (volatile size_t i = 0; i != 0x1fffffff; )
+    {
+        size_t j = i;
+        i = ++j;
+    }}
 
     // 4. End the measurement
     sw.stop();

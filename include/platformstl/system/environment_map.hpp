@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/system/environment_map.hpp
+ * File:    platformstl/system/environment_map.hpp
  *
- * Purpose:     Definition of the environment_map class.
+ * Purpose: Definition of the environment_map class.
  *
- * Created:     14th November 2005
- * Updated:     11th March 2024
+ * Created: 14th November 2005
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       5
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        75
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -927,7 +927,7 @@ inline void environment_map::snapshot::set(first_type const& name, second_type c
         (*it).second.assign(value);
     }
 #  ifdef STLSOFT_DEBUG
-    catch(...)
+    catch (...)
     {
         STLSOFT_MESSAGE_ASSERT("Should never happen", 0);
 

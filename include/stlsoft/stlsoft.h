@@ -2254,6 +2254,11 @@ typedef ss_streamoff_t                                      streamoff_t;        
  * The STLSoft uses a number of preprocessor symbols to aid in compiler
  * compatibility in the libraries' code.
  *
+ * ss_constexpr_2011_k      -   constexpr, or nothing, if C++11 or later
+ * ss_constexpr_2014_k      -   constexpr, or nothing, if C++14 or later
+ * ss_constexpr_2017_k      -   constexpr, or nothing, if C++17 or later
+ * ss_constexpr_2020_k      -   constexpr, or nothing, if C++20 or later
+ * ss_constexpr_2023_k      -   constexpr, or nothing, if C++23 or later
  * ss_explicit_k            -   explicit, or nothing
  * ss_final_k               -   final, or nothing
  * ss_mutable_k             -   mutable, or nothing
@@ -2274,6 +2279,66 @@ typedef ss_streamoff_t                                      streamoff_t;        
  * These macros are used to handle difference in support of certain keywords between translators
  * @{
  */
+
+/** \def ss_constexpr_2011_k
+ *
+ * Evaluates to <b>explicit</b> on translators that support the keyword, for C++11 or later, otherwise to nothing.
+ */
+#if (   defined(__cplusplus) && \
+        __cplusplus >= 201103L) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define ss_constexpr_2011_k                                constexpr
+#else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
+# define ss_constexpr_2011_k
+#endif /* STLSOFT_CF_explicit_KEYWORD_SUPPORT */
+
+/** \def ss_constexpr_2014_k
+ *
+ * Evaluates to <b>explicit</b> on translators that support the keyword, for C++14 or later, otherwise to nothing.
+ */
+#if (   defined(__cplusplus) && \
+        __cplusplus >= 201402L) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define ss_constexpr_2014_k                                constexpr
+#else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
+# define ss_constexpr_2014_k
+#endif /* STLSOFT_CF_explicit_KEYWORD_SUPPORT */
+
+/** \def ss_constexpr_2017_k
+ *
+ * Evaluates to <b>explicit</b> on translators that support the keyword, for C++17 or later, otherwise to nothing.
+ */
+#if (   defined(__cplusplus) && \
+        __cplusplus >= 201703L) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define ss_constexpr_2017_k                                constexpr
+#else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
+# define ss_constexpr_2017_k
+#endif /* STLSOFT_CF_explicit_KEYWORD_SUPPORT */
+
+/** \def ss_constexpr_2020_k
+ *
+ * Evaluates to <b>explicit</b> on translators that support the keyword, for C++20 or later, otherwise to nothing.
+ */
+#if (   defined(__cplusplus) && \
+        __cplusplus >= 202002L) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define ss_constexpr_2020_k                                constexpr
+#else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
+# define ss_constexpr_2020_k
+#endif /* STLSOFT_CF_explicit_KEYWORD_SUPPORT */
+
+/** \def ss_constexpr_2023_k
+ *
+ * Evaluates to <b>explicit</b> on translators that support the keyword, for C++23 or later, otherwise to nothing.
+ */
+#if (   defined(__cplusplus) && \
+        __cplusplus >= 202302L) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define ss_constexpr_2023_k                                constexpr
+#else /* ? STLSOFT_CF_explicit_KEYWORD_SUPPORT */
+# define ss_constexpr_2023_k
+#endif /* STLSOFT_CF_explicit_KEYWORD_SUPPORT */
 
 /** \def ss_explicit_k
  *

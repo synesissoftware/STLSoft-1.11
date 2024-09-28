@@ -5,7 +5,7 @@
  *          library's union_cast component.
  *
  * Created: 10th June 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,12 +29,14 @@
 int main()
 {
 
-    short*      ps;
+    short*      ps  =   NULL;
     intptr_t    i   =   stlsoft::union_cast<intptr_t>(ps);  // Ok: both same size
 #ifdef DEMONSTRATE_ERRORS
 
     char        c   =   stlsoft::union_cast<char>(ps);      // Compile error: different size
 #endif
+
+    STLSOFT_SUPPRESS_UNUSED(i);
 
 
     return EXIT_SUCCESS;

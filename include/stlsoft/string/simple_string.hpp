@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 9th July 2024
+ * Updated: 4th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      279
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     8
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      280
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -258,6 +258,7 @@ private:
 /// @{
 public:
     /// Default constructor
+    ss_constexpr_2014_k
     basic_simple_string() STLSOFT_NOEXCEPT;
     /// Copy constructor
     basic_simple_string(class_type const& rhs);
@@ -290,6 +291,7 @@ public:
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 
     /// Destructor
+    ss_constexpr_2020_k
     ~basic_simple_string() STLSOFT_NOEXCEPT;
 /// @}
 
@@ -607,8 +609,8 @@ private:
     static char_type*           char_pointer_from_member_pointer_(member_pointer ) STLSOFT_NOEXCEPT;
 
     // Conversion between pointer and buffer
-    static string_buffer*       string_buffer_from_member_pointer_(member_pointer ) STLSOFT_NOEXCEPT;
-    static string_buffer const* string_buffer_from_member_pointer_(member_const_pointer ) STLSOFT_NOEXCEPT;
+    static ss_constexpr_2014_k string_buffer*       string_buffer_from_member_pointer_(member_pointer ) STLSOFT_NOEXCEPT;
+    static ss_constexpr_2014_k string_buffer const* string_buffer_from_member_pointer_(member_const_pointer ) STLSOFT_NOEXCEPT;
 
     // Conversion between buffer and pointer
     static member_pointer       member_pointer_from_string_buffer_(string_buffer*) STLSOFT_NOEXCEPT;
@@ -630,6 +632,7 @@ private:
     pointer                     end_() STLSOFT_NOEXCEPT;
 
     // Invariance
+    ss_constexpr_2014_k
     ss_bool_t is_valid() const STLSOFT_NOEXCEPT;
 
     // Empty string
@@ -1666,6 +1669,7 @@ template <
 >
 inline
 /* static */
+ss_constexpr_2014_k
 ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer*
 basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_pointer m) STLSOFT_NOEXCEPT
 {
@@ -1687,6 +1691,7 @@ template <
 >
 inline
 /* static */
+ss_constexpr_2014_k
 ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer const*
 basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_const_pointer m) STLSOFT_NOEXCEPT
 {
@@ -1915,6 +1920,7 @@ template <
 ,   ss_typename_param_k A
 >
 inline
+ss_constexpr_2014_k
 ss_bool_t
 basic_simple_string<C, T, A>::is_valid() const STLSOFT_NOEXCEPT
 {
@@ -1972,6 +1978,7 @@ template <
 ,   ss_typename_param_k A
 >
 inline
+ss_constexpr_2014_k
 basic_simple_string<C, T, A>::basic_simple_string() STLSOFT_NOEXCEPT
     : m_buffer(ss_nullptr_k)
 {
@@ -2105,6 +2112,7 @@ template <
 ,   ss_typename_param_k A
 >
 inline
+ss_constexpr_2020_k
 basic_simple_string<C, T, A>::~basic_simple_string() STLSOFT_NOEXCEPT
 {
 #if defined(__BORLANDC__) && \

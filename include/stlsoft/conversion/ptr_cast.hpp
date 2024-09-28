@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/ptr_cast.hpp
+ * File:    stlsoft/conversion/ptr_cast.hpp
  *
- * Purpose:     A cast that throws bad_cast for dynamic pointer casting, as well
- *              as references.
+ * Purpose: A cast that throws bad_cast for dynamic pointer casting, as well
+ *          as references.
  *
- * Created:     28th December 2002
- * Updated:     11th March 2024
+ * Created: 28th December 2002
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   13
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       55
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -156,7 +156,7 @@ try
 
   . . . // Will never get here
 }
-catch(std::bad_cast &)
+catch (std::bad_cast &)
 {
   bCastFailed1 = true;
 }
@@ -170,7 +170,7 @@ try
 
   . . . // Will never get here
 }
-catch(std::bad_cast &)
+catch (std::bad_cast &)
 {
   bCastFailed2 = true;
 }
@@ -189,7 +189,7 @@ try
 
   . . . // Will never get here
 }
-catch(std::bad_cast &)
+catch (std::bad_cast &)
 {
   bCastFailed = true;
 }

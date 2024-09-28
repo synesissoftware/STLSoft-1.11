@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/smartptr/scoped_handle_borland_.hpp (evolved from MLResPtr.h, ::SynesisStd)
+ * File:    stlsoft/smartptr/scoped_handle/scoped_handle_borland.hpp (evolved from MLResPtr.h, ::SynesisStd)
  *
- * Purpose:     scoped_handle - specialisable RAII class for arbitrary
- *              resource types; special implementation for Borland.
+ * Purpose: scoped_handle - specialisable RAII class for arbitrary resource
+ *          types; special implementation for Borland.
  *
- * Created:     1st November 1994
- * Updated:     11th March 2024
+ * Created: 1st November 1994
+ * Updated: 5th September 2024
  *
- * Thanks to:   Maciej Kaniewski, for requesting Borland compatibility (in
- *              order to use FastFormat and Pantheios)
+ * Thanks:  Maciej Kaniewski, for requesting Borland compatibility (in order
+ *          to use FastFormat and Pantheios)
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -47,21 +47,21 @@
 
 /* STLSOFT:FILE_NOT_SELF_SUFFICIENT */
 
-/** \file stlsoft/smartptr/scoped_handle_borland_.hpp
+/** \file stlsoft/smartptr/scoped_handle/scoped_handle_borland.hpp
  *
  * \brief [C++] Definition of the stlsoft::scoped_handle smart
  *   pointer class template
  *   (\ref group__library__SmartPointer "Smart Pointer" Library).
  */
 
-#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND_
-#define STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND_
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND
+#define STLSOFT_INCL_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__MAJOR      6
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__MINOR      2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__REVISION   2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__EDIT       686
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_MAJOR     6
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_MINOR     3
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_REVISION  1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_EDIT      688
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,29 +147,41 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         cdecl_function_type(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
+            STLSOFT_SUPPRESS_UNUSED(n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -215,29 +227,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         fastcall_function_type(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -283,29 +308,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         stdcall_function_type(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -349,29 +387,40 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         cdecl_function_type_v(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -414,29 +463,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         fastcall_function_type_v(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -479,29 +541,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         stdcall_function_type_v(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -544,29 +619,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         cdecl_void_function_type(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -586,7 +674,6 @@ struct scoped_handle_borland_impl_
         {
             delete this;
         }
-
 
     private:
         function_type m_fn;
@@ -609,29 +696,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         fastcall_void_function_type(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -674,29 +774,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         stdcall_void_function_type(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -738,29 +851,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         cdecl_void_function_type_v(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -801,29 +927,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         fastcall_void_function_type_v(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -864,29 +1003,42 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         stdcall_void_function_type_v(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&);
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
             STLSOFT_ASSERT(cb <= n);
 
 #ifdef USE_INTERNAL_MEMORY
+
+            STLSOFT_SUPPRESS_UNUSED(cb);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return p;
 #else /* ? USE_INTERNAL_MEMORY */
+
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             return ::operator new(cb);
 #endif /* USE_INTERNAL_MEMORY */
         }
         void operator delete(void* pv)
         {
 #ifndef USE_INTERNAL_MEMORY
+
             ::operator delete(pv);
 #else /* ? USE_INTERNAL_MEMORY */
+
             STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
         void operator delete(void* pv, void* p, size_t n)
         {
+            STLSOFT_SUPPRESS_UNUSED(p);
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             operator delete(pv);
         }
 #endif /* compiler */
@@ -912,7 +1064,6 @@ struct scoped_handle_borland_impl_
     };
 
 };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -924,11 +1075,11 @@ template <ss_typename_param_k H>
 class scoped_handle
 {
 public:
-    typedef H                   resource_type;
-    typedef H                   handle_type;
-    typedef scoped_handle<H>    class_type;
+    typedef H                                               resource_type;
+    typedef H                                               handle_type;
+    typedef scoped_handle<H>                                class_type;
 private:
-    typedef scoped_handle_borland_impl_::function_type<H>           function_type;
+    typedef scoped_handle_borland_impl_::function_type<H>   function_type;
 
 public: // NOTE: These constants have to be public for the Borland compiler
     enum
@@ -1116,16 +1267,16 @@ private:
 
 private:
     scoped_handle(class_type const&);
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&);
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 class scoped_handle<void>
 {
 public:
-    typedef void                resource_type;
-    typedef void                handle_type;
-    typedef scoped_handle<void> class_type;
+    typedef void                                            resource_type;
+    typedef void                                            handle_type;
+    typedef scoped_handle<void>                             class_type;
 private:
     typedef scoped_handle_borland_impl_::void_function_type function_type;
 public:
@@ -1236,7 +1387,7 @@ private:
 
 private:
     scoped_handle(class_type const&);
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&);
 };
 
 
@@ -1244,9 +1395,13 @@ private:
  * swapping
  */
 
-template<   ss_typename_param_k H
-        >
-inline void swap(scoped_handle<H>& lhs, scoped_handle<H>& rhs) STLSOFT_NOEXCEPT
+template <ss_typename_param_k H>
+inline
+void
+swap(
+    scoped_handle<H>& lhs
+,   scoped_handle<H>& rhs
+) STLSOFT_NOEXCEPT
 {
     lhs.swap(rhs);
 }
@@ -1309,7 +1464,7 @@ is_null(
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND_ */
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND */
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

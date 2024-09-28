@@ -5,14 +5,14 @@
  *          library memory functions.
  *
  * Created: 9th December 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* WinSTL header files */
 #include <winstl/error/error_desc.hpp>
-#include <winstl/shell/memory_functions.h>
+#include <winstl/shell/memory/functions.h>
 
 /* STLSoft header files */
 #include <stlsoft/smartptr/scoped_handle.hpp>
@@ -43,7 +43,7 @@ int main()
         void    *p3 =   winstl::SHMemAlloc(0);
         void    *p4 =   winstl::SHMemAlloc(2000000000);
 
-        if(NULL == p1)
+        if (NULL == p1)
         {
             cerr << "Failed to allocate 10 bytes: " << winstl::error_desc_a() << endl;
         }
@@ -52,7 +52,7 @@ int main()
             WINSTL_ASSERT(winstl::SHMemDidAlloc(p1));
         }
 
-        if(NULL == p2)
+        if (NULL == p2)
         {
             cerr << "Failed to allocate 10000 bytes: " << winstl::error_desc_a() << endl;
         }
@@ -61,7 +61,7 @@ int main()
             WINSTL_ASSERT(winstl::SHMemDidAlloc(p2));
         }
 
-        if(NULL == p3)
+        if (NULL == p3)
         {
             cerr << "Failed to allocate 0 bytes: " << winstl::error_desc_a() << endl;
         }
@@ -70,7 +70,7 @@ int main()
             WINSTL_ASSERT(winstl::SHMemDidAlloc(p3));
         }
 
-        if(NULL == p4)
+        if (NULL == p4)
         {
             cerr << "Failed to allocate 2000000000 bytes: " << winstl::error_desc_a() << endl;
         }

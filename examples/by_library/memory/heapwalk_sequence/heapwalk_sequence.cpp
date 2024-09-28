@@ -4,7 +4,7 @@
  * Purpose: C++ example program demonstrating use of the Memory library.
  *
  * Created: 15th September 2006
- * Updated: 4th September 2024
+ * Updated: 28th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,7 +40,7 @@ int main()
 
         winstl::heapwalk_sequence   blocks;
 
-        { for(winstl::heapwalk_sequence::const_iterator b = blocks.begin(); b != blocks.end(); ++b)
+        { for (winstl::heapwalk_sequence::const_iterator b = blocks.begin(); b != blocks.end(); ++b)
         {
             cout << "  Block of size " << (*b).cbData << " at " << (*b).lpData << endl;
         }}

@@ -5,7 +5,7 @@
  *          library.
  *
  * Created: 22nd May 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,7 +51,7 @@ int main()
         cchBuffer   =   buff.size();
         res         =   winstl::reg_get_string_value(HKEY_CURRENT_USER, "Environment", &buff[0], cchBuffer);
 
-        if(ERROR_SUCCESS == res)
+        if (ERROR_SUCCESS == res)
         {
             // 3.a Print out the value, which will be nul-terminated
             cout << "The value is: " << buff.data() << endl;
@@ -84,12 +84,12 @@ retry:
         cchBuffer   =   buff.size();
         res         =   winstl::reg_get_string_value(HKEY_CURRENT_USER, "Environment", &buff[0], cchBuffer);
 
-        if(ERROR_SUCCESS == res)
+        if (ERROR_SUCCESS == res)
         {
             // 3.a Print out the value, which will be nul-terminated
             cout << "The value is: " << buff.data() << endl;
         }
-        else if(ERROR_MORE_DATA == res)
+        else if (ERROR_MORE_DATA == res)
         {
             // 3.b Need to resize the buffer according to the latest (failed)
             // retrieval attempt.

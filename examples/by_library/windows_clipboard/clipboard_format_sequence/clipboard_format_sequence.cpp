@@ -5,7 +5,7 @@
  *          library.
  *
  * Created: 6th June 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,14 +21,14 @@ int main()
 {
     try
     {
-        winstl::clipboard_format_sequence   formats;
+        winstl::clipboard_format_sequence formats;
 
-        { for(winstl::clipboard_format_sequence::const_iterator b = files.begin(); b != files.end(); ++b)
+        { for (winstl::clipboard_format_sequence::const_iterator b = formats.begin(); b != formats.end(); ++b)
         {
             std::cout << "    " << *b << std::endl;
         }}
     }
-    catch (winstl::clipboard_scope_exception &x)
+    catch (std::exception& x)
     {
         std::cerr << "Exception: " << x.what() << std::endl;
     }

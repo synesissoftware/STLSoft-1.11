@@ -19,6 +19,15 @@ function(define_automated_test_program program_name entry_point_source_name)
 		endforeach()
 	endif()
 
+	set(X_MSVC_CUSTOM_WARNINGS_ "")
+
+	if(X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED)
+			foreach(warning ${X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED})
+
+					list(APPEND X_MSVC_CUSTOM_WARNINGS_ "/wd${warning}")
+			endforeach()
+	endif()
+
 	target_compile_options(${program_name} PRIVATE
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 			-Werror -Wall -Wextra -pedantic
@@ -31,6 +40,8 @@ function(define_automated_test_program program_name entry_point_source_name)
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4
+
+			${X_MSVC_CUSTOM_WARNINGS_}
 		>
 	)
 endfunction(define_automated_test_program)
@@ -51,6 +62,15 @@ function(define_example_program program_name entry_point_source_name)
 		endforeach()
 	endif()
 
+	set(X_MSVC_CUSTOM_WARNINGS_ "")
+
+	if(X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED)
+			foreach(warning ${X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED})
+
+					list(APPEND X_MSVC_CUSTOM_WARNINGS_ "/wd${warning}")
+			endforeach()
+	endif()
+
 	target_compile_options(${program_name} PRIVATE
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 			-Werror -Wall -Wextra -pedantic
@@ -63,6 +83,8 @@ function(define_example_program program_name entry_point_source_name)
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4
+
+			${X_MSVC_CUSTOM_WARNINGS_}
 		>
 	)
 endfunction(define_example_program)

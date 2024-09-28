@@ -5,7 +5,7 @@
  *          functions.
  *
  * Created: 13th December 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -55,7 +55,7 @@ static int main_()
     //  by specifying the CLSID
     {
         ILoggerManager *plogmgr;
-        if(SUCCEEDED(comstl::co_create_instance(CLSID_LoggerManager, &plogmgr)))
+        if (SUCCEEDED(comstl::co_create_instance(CLSID_LoggerManager, &plogmgr)))
         {
             CreateLoggersAndLog(plogmgr, "example 1");
 
@@ -67,7 +67,7 @@ static int main_()
     //  by specifying a text form of the CLSID
     {
         ILoggerManager *plogmgr;
-        if(SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}", &plogmgr)))
+        if (SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}", &plogmgr)))
         {
             CreateLoggersAndLog(plogmgr, "example 2");
 
@@ -79,7 +79,7 @@ static int main_()
     //  by specifying the ProgID
     {
         ILoggerManager *plogmgr;
-        if(SUCCEEDED(comstl::co_create_instance(L"pantheios.COM.LoggerManager", &plogmgr)))
+        if (SUCCEEDED(comstl::co_create_instance(L"pantheios.COM.LoggerManager", &plogmgr)))
         {
             CreateLoggersAndLog(plogmgr, "example 3");
 
@@ -91,7 +91,7 @@ static int main_()
     //  instance, by specifying the CLSID
     {
         stlsoft::ref_ptr<ILoggerManager>   logmgr;
-        if(SUCCEEDED(comstl::co_create_instance(CLSID_LoggerManager, logmgr)))
+        if (SUCCEEDED(comstl::co_create_instance(CLSID_LoggerManager, logmgr)))
         {
             CreateLoggersAndLog(logmgr.get(), "example 4");
 
@@ -102,7 +102,7 @@ static int main_()
     //  by specifying a text form of the CLSID
     {
         stlsoft::ref_ptr<ILoggerManager>   logmgr;
-        if(SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}", logmgr)))
+        if (SUCCEEDED(comstl::co_create_instance(L"{4E7D5C47-8F96-45DE-905D-AA3E9E592DE3}", logmgr)))
         {
             CreateLoggersAndLog(logmgr.get(), "example 5");
 
@@ -113,7 +113,7 @@ static int main_()
     //  by specifying the ProgID
     {
         stlsoft::ref_ptr<ILoggerManager>   logmgr;
-        if(SUCCEEDED(comstl::co_create_instance(L"pantheios.COM.LoggerManager", logmgr)))
+        if (SUCCEEDED(comstl::co_create_instance(L"pantheios.COM.LoggerManager", logmgr)))
         {
             CreateLoggersAndLog(logmgr.get(), "example 6");
 
@@ -162,7 +162,7 @@ static void CreateLoggersAndLog(ILoggerManager *plogmgr, char const *message)
     ILogger*    plogger;
     HRESULT     hr = logmgrmb->GetLoggerMultibyte("Console", "creation_functions example", initArguments, filterSpec, &plogger);
 
-    if(SUCCEEDED(hr))
+    if (SUCCEEDED(hr))
     {
         stlsoft::ref_ptr<ILogger>           logger(plogger, false); // Consume the reference
         stlsoft::ref_ptr<ILoggerMultibyte>  loggermb = comstl::interface_cast<ILoggerMultibyte>(logger);

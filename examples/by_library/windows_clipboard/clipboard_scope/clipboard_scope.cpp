@@ -5,7 +5,7 @@
  *          library.
  *
  * Created: 6th June 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,15 +23,15 @@ int main()
     {
         // 1. Set the data on the clipboard
         {
-            winstl::clipboard_scope     scope;
+            winstl::clipboard_scope scope;
 
             scope.set_data("The data");
         }
 
         // 2. Get the data from the clipboard
         {
-            winstl::clipboard_scope     scope;
-            char const                  *str;
+            winstl::clipboard_scope scope;
+            char const*             str;
 
             scope.get_data(str);
 
@@ -41,6 +41,10 @@ int main()
         }
     }
     catch (winstl::clipboard_scope_exception &x)
+    {
+        std::cerr << "Exception: " << x.what() << std::endl;
+    }
+    catch (std::exception& x)
     {
         std::cerr << "Exception: " << x.what() << std::endl;
     }

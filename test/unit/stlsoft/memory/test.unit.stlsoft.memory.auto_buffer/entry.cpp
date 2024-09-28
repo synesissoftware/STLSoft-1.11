@@ -49,6 +49,10 @@ namespace
     static void test_construct_1(void);
     static void test_construct_2(void);
     static void test_construct_3(void);
+    static void test_construct_init_1(void);
+#if __cplusplus >= 201103L
+    static void test_move_construct_1(void);
+#endif
 
     static void test_resize(void);
     static void test_allocator(void);
@@ -77,6 +81,10 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_construct_1);
         XTESTS_RUN_CASE(test_construct_2);
         XTESTS_RUN_CASE(test_construct_3);
+        XTESTS_RUN_CASE(test_construct_init_1);
+#if __cplusplus >= 201103L
+        XTESTS_RUN_CASE(test_move_construct_1);
+#endif
 
         XTESTS_RUN_CASE(test_resize);
         XTESTS_RUN_CASE(test_allocator);
@@ -108,6 +116,10 @@ namespace
 
 static void test_construct_1()
 {
+#if __cplusplus >= 202002L
+    static
+    ss_constexpr_2020_k
+#endif
     stlsoft::auto_buffer<char> buff(0);
 
     XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
@@ -129,6 +141,38 @@ static void test_construct_3()
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
 }
+
+static void test_construct_init_1()
+{
+    stlsoft::auto_buffer<int, 10> buff(10, 123);
+
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+
+    XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff.begin(), buff.end(), 0));
+}
+
+#if __cplusplus >= 201103L
+static void test_move_construct_1()
+{
+    stlsoft::auto_buffer<int, 10> buff(10, 123);
+
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+
+    XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff.begin(), buff.end(), 0));
+
+    stlsoft::auto_buffer<int, 10> buff2(std::move(buff));
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
+
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff2.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff2.internal_size());
+
+    XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff2.begin(), buff2.end(), 0));
+}
+#endif
 
 static void test_resize()
 {

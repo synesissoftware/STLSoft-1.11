@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 16th March 2024
+ * Updated: 5th September 2024
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     226
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     228
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -256,6 +256,7 @@ private:
 /// @{
 public:
     /// Default constructor
+    ss_constexpr_2014_k
     basic_static_string() STLSOFT_NOEXCEPT;
     /// Copy constructor
     basic_static_string(class_type const& rhs) STLSOFT_NOEXCEPT;
@@ -305,6 +306,7 @@ public:
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_RANGE_METHOD_SUPPORT */
     /// Destructor
+    ss_constexpr_2020_k
     ~basic_static_string() STLSOFT_NOEXCEPT;
 /// @}
 
@@ -1365,6 +1367,7 @@ template <
 ,   ss_typename_param_k T
 >
 inline
+ss_constexpr_2014_k
 basic_static_string<C, V_internalSize, T>::basic_static_string() STLSOFT_NOEXCEPT
     : m_length(0)
 {
@@ -1538,6 +1541,7 @@ template <
 ,   ss_typename_param_k T
 >
 inline
+ss_constexpr_2020_k
 basic_static_string<C, V_internalSize, T>::~basic_static_string() STLSOFT_NOEXCEPT
 {
     STLSOFT_ASSERT(is_valid());

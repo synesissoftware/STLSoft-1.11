@@ -5,7 +5,7 @@
  *          library filesystem functions.
  *
  * Created: 9th December 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -15,7 +15,7 @@
 #include <winstl/filesystem/current_directory.hpp>
 #include <winstl/shell/browse_for_folder.hpp>
 #include <winstl/shell/file_operations.hpp>
-#include <winstl/shell/memory_functions.h>
+#include <winstl/shell/memory/functions.h>
 
 /* STLSoft header files */
 #include <stlsoft/smartptr/scoped_handle.hpp>
@@ -46,7 +46,7 @@ int main()
         LPITEMIDLIST    iil;
         HRESULT         hr  =   ::SHGetSpecialFolderLocation(NULL, CSIDL_DRIVES, &iil);
 
-        if(FAILED(hr))
+        if (FAILED(hr))
         {
             cerr << "Could not get the My Computer special folder location: " << winstl::error_desc(hr) << endl;
         }
@@ -54,7 +54,7 @@ int main()
         {
             stlsoft::scoped_handle<void*>   iil_(iil, winstl::SHMemFree);
 
-            if(winstl::browse_for_folder("Select a file to send to the recycle bin", displayName, BIF_BROWSEINCLUDEFILES, iil))
+            if (winstl::browse_for_folder("Select a file to send to the recycle bin", displayName, BIF_BROWSEINCLUDEFILES, iil))
             {
                 winstl::shell_delete(displayName, FOF_ALLOWUNDO);
             }

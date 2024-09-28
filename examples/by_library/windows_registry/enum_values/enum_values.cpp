@@ -5,7 +5,7 @@
  *          library.
  *
  * Created: 22nd May 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,7 +14,7 @@
 #include <winstl/registry/reg_value_sequence.hpp>
 
 #include <stlsoft/iterators/ostream_iterator.hpp>
-#include <stlsoft/string_tokeniser.hpp>
+#include <stlsoft/string/string_tokeniser.hpp>
 
 /* Standard C++ header files */
 #include <algorithm>
@@ -54,7 +54,7 @@ int main()
         size_t                                      n;
 
         // 3. Enumerate through each element in turn.
-        for(n = 0; b != e; ++b, ++n)
+        for (n = 0; b != e; ++b, ++n)
         {
             // 3.a. Print the name. Can use the value as a temporary (*b), ...
             cout << "\t" << (*b).name();
@@ -65,14 +65,14 @@ int main()
 
             // 3.b. Test if it's a ; delimited path list.
 
-            if(value.end() == std::find(value.begin(), value.end(), ';'))
+            if (value.end() == std::find(value.begin(), value.end(), ';'))
             {
                 // 3.b.1 It is not, so we just print it out as is. However,
                 // it may contain an environment variable (e.g. "%USERPROFILE%\\Temp)
                 // in which case we want to also print its actual value, using
                 // the value_expand_sz() method.
 
-                if(value.end() == std::find(value.begin(), value.end(), '%'))
+                if (value.end() == std::find(value.begin(), value.end(), '%'))
                 {
                     cout << "=" << value << endl;
                 }

@@ -5,7 +5,7 @@
  *          functions.
  *
  * Created: 9th December 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,7 +46,7 @@ int main()
         void*   p3  =   ::CoTaskMemAlloc(0);
         void*   p4  =   ::CoTaskMemAlloc(2000000000);
 
-        if(NULL == p1)
+        if (NULL == p1)
         {
             cerr << "Failed to allocate 10 bytes: " << winstl::error_desc_a() << endl;
         }
@@ -55,7 +55,7 @@ int main()
             WINSTL_ASSERT(comstl::CoTaskMemDidAlloc(p1));
         }
 
-        if(NULL == p2)
+        if (NULL == p2)
         {
             cerr << "Failed to allocate 10000 bytes: " << winstl::error_desc_a() << endl;
         }
@@ -64,7 +64,7 @@ int main()
             WINSTL_ASSERT(comstl::CoTaskMemDidAlloc(p2));
         }
 
-        if(NULL == p3)
+        if (NULL == p3)
         {
             cerr << "Failed to allocate 0 bytes: " << winstl::error_desc_a() << endl;
         }
@@ -73,7 +73,7 @@ int main()
             WINSTL_ASSERT(comstl::CoTaskMemDidAlloc(p3));
         }
 
-        if(NULL == p4)
+        if (NULL == p4)
         {
             cerr << "Failed to allocate 2000000000 bytes: " << winstl::error_desc_a() << endl;
         }

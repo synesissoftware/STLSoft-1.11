@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/conversion/interface_cast.hpp
+ * File:    comstl/conversion/interface_cast.hpp
  *
- * Purpose:     Safe interface casting functions.
+ * Purpose: Safe interface casting functions.
  *
- * Created:     25th June 2002
- * Updated:     11th March 2024
+ * Created: 25th June 2002
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -64,7 +64,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   14
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       137
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       138
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -795,7 +795,7 @@ try
 
   printf("Object has IStorage interface\n");
 }
-catch(comstl::bad_interface_cast &)
+catch (comstl::bad_interface_cast &)
 {
   printf("Object does not have IStorage interface\n");
 }
@@ -842,7 +842,7 @@ try
 
   printf("Wrapper object has IStorage interface\n");
 }
-catch(comstl::bad_interface_cast &)
+catch (comstl::bad_interface_cast &)
 {
   printf("Wrapper object does not have IStorage interface\n");
 }

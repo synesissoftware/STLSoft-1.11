@@ -4,7 +4,7 @@
  * Purpose: C++ example program demonstrating use of the ToolHelp library.
  *
  * Created: 22nd May 2006
- * Updated: 4th September 2024
+ * Updated: 28th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,7 +43,7 @@ int main()
         winstl::process_sequence::const_iterator    e   =   processes.end();
 
         // 3. Loop through the range.
-        for(; b != e; ++b)
+        for (; b != e; ++b)
         {
             // 3.1. Print out the process id and the file name.
             cout << (*b).th32ProcessID << ": " << (*b).szExeFile << endl;

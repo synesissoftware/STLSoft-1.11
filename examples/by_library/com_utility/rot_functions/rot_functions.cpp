@@ -5,7 +5,7 @@
  *          components to manipulate the COM Running Object Table.
  *
  * Created: 13th December 2006
- * Updated: 4th September 2024
+ * Updated: 5th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,7 +50,7 @@ static int main_()
     IBindCtx    *pbc;
     HRESULT     hr  =   ::CreateBindCtx(0, &pbc);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         cerr << "Failed to create bind context: " << platformstl::error_desc(hr) << endl;
     }
@@ -62,7 +62,7 @@ static int main_()
         // Get an enumerator to all objects currently in the ROT
         hr = comstl::Rot_EnumRunning(&pen);
 
-        if(FAILED(hr))
+        if (FAILED(hr))
         {
             cerr << "Failed to enumerate running objects: " << platformstl::error_desc(hr) << endl;
         }
@@ -77,13 +77,13 @@ static int main_()
 
             enum_t      en(pen, false); // Consume the reference
 
-            { for(enum_t::iterator b = en.begin(); b != en.end(); ++b)
+            { for (enum_t::iterator b = en.begin(); b != en.end(); ++b)
             {
                 LPOLESTR    displayName;
 
                 hr = (*b)->GetDisplayName(bindctx.get(), NULL, &displayName);
 
-                if(FAILED(hr))
+                if (FAILED(hr))
                 {
                     cerr << "Failed to get display name: " << platformstl::error_desc(hr) << endl;
                 }

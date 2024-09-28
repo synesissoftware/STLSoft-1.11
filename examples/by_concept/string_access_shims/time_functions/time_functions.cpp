@@ -99,11 +99,11 @@ int main()
 
     // SYSTEMTIME
 #ifdef PLATFORMSTL_OS_IS_WINDOWS
+    SYSTEMTIME st;
+
+    ::GetLocalTime(&st);
+
     {
-        SYSTEMTIME st;
-
-        ::GetLocalTime(&st);
-
         output_by("SYSTEMTIME", st);
     }
 #endif

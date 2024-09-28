@@ -57,7 +57,7 @@ int main()
         stlsoft::ref_ptr<IDispatch>     obj1;
         HRESULT                         hr  =   comstl::co_create_instance(guid.get(), obj1);
 
-        if(FAILED(hr))
+        if (FAILED(hr))
         {
             throw comstl::com_exception("Failed to create Pantheios.COM.LoggerManager", hr);
         }
@@ -104,7 +104,7 @@ int main()
                                         ,   filterSpec
                                         ,   &plogmb);
 
-            if(FAILED(hr))
+            if (FAILED(hr))
             {
                 throw comstl::com_exception("Failed to elicit 'Console' logger", hr);
             }
@@ -137,7 +137,7 @@ int main()
                     ,   7,  "a debug message"
                 };
 
-                { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS_(messages); ++i)
+                { for (size_t i = 0; i < STLSOFT_NUM_ELEMENTS_(messages); ++i)
                 {
                     logger->LogMultibyte(messages[i].severity, messages[i].message, -1);
                 }}

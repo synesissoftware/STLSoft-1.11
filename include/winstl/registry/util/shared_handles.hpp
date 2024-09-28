@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/util/shared_handles.hpp
+ * File:    winstl/registry/util/shared_handles.hpp
  *
- * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
+ * Purpose: Contains the shared_handle and monitored_shared_handle classes.
  *
- * Created:     19th January 2002
- * Updated:     11th March 2024
+ * Created: 19th January 2002
+ * Updated: 28th September 2024
  *
- * Thanks:      To Austin Ziegler for fixes to defects evident on x64.
+ * Thanks:  To Austin Ziegler for fixes to defects evident on x64.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -62,7 +62,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       0
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    17
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        52
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -298,7 +298,7 @@ namespace registry_util
                     STLSOFT_THROW_X(registry_exception("could not register change notification", r));
                 }
             }
-            catch(missing_entry_point_exception&)
+            catch (missing_entry_point_exception&)
             {
                 ws_uint_t   verMajor;
                 ws_uint_t   verMinor;
