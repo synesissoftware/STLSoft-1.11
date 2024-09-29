@@ -1,3 +1,3 @@
-# SIS:AUTO_GENERATED: Do not edit!
+# TODO: sort out ARM64 build of **creation_functions**
+# add_subdirectory(creation_functions)
 add_subdirectory(rot_functions)
-add_subdirectory(creation_functions)

@@ -1,2 +1,3 @@
-# SIS:AUTO_GENERATED: Do not edit!
+
+list(APPEND X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED 4702)
 define_example_program(windows_control_panel windows_control_panel.cpp)
