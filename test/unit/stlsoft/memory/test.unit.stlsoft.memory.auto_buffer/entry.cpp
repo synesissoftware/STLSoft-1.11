@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 28th September 2024
+ * Updated: 29th September 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,6 +34,19 @@
 /* Standard C header files */
 #include <assert.h>
 #include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_GCC)
+
+  // We can't do in in GCC, as the mempcy() call (with count=1073741824) has UB
+#else
+# define ATTEMPT_ALLOCATOR_EXHAUSTION
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -197,7 +210,9 @@ namespace
     static void test_resize_n_v_3(void);
 
     static void test_allocator_null(void);
+#ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
     static void test_allocator_to_exhaustion(void);
+#endif
 
     // copy_from(class_type const&)
     static void test_copy_from(void);
@@ -206,8 +221,6 @@ namespace
     static void test_swap_1(void);
     static void test_swap_2(void);
     static void test_swap_3(void);
-
-    static void test_1_10(void);
 
     // operator [](size_t) {const}
     static void test_subscript(void);
@@ -225,7 +238,6 @@ namespace
     // rbegin() {const}
     // rend() {const}
     static void test_rbegin_and_rend(void);
-
 } // anonymous namespace
 
 
@@ -284,15 +296,15 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_resize_n_v_3);
 
         XTESTS_RUN_CASE(test_allocator_null);
+#ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
         XTESTS_RUN_CASE(test_allocator_to_exhaustion);
+#endif
 
         XTESTS_RUN_CASE(test_copy_from);
 
         XTESTS_RUN_CASE(test_swap_1);
         XTESTS_RUN_CASE(test_swap_2);
         XTESTS_RUN_CASE(test_swap_3);
-
-        XTESTS_RUN_CASE(test_1_10);
 
         XTESTS_RUN_CASE(test_subscript);
 
@@ -302,10 +314,6 @@ int main(int argc, char **argv)
 
         XTESTS_RUN_CASE(test_begin_and_end);
         XTESTS_RUN_CASE(test_rbegin_and_rend);
-
-#ifdef STLSOFT_USE_XCOVER
-        XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/auto_buffer.hpp", NULL);
-#endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
 
@@ -586,7 +594,7 @@ static void test_ctor_range_list_iters_3()
 
 static void test_ctor_range_input_iters_1()
 {
-    stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0]), int_input_iterator(&INTEGERS[0] + 0));
+    stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0] + 0), int_input_iterator(&INTEGERS[0] + 0));
 
     XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
     XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
@@ -595,7 +603,7 @@ static void test_ctor_range_input_iters_1()
 
 static void test_ctor_range_input_iters_2()
 {
-    stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0]), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+    stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0] + 0), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
 
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
@@ -604,7 +612,7 @@ static void test_ctor_range_input_iters_2()
 
 static void test_ctor_range_input_iters_3()
 {
-    stlsoft::auto_buffer<int, 100>  buff(int_input_iterator(&INTEGERS[0]), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+    stlsoft::auto_buffer<int, 100>  buff(int_input_iterator(&INTEGERS[0] + 0), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
 
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
@@ -613,7 +621,7 @@ static void test_ctor_range_input_iters_3()
 
 static void test_ctor_range_fwd_iters_1()
 {
-    stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0]), int_forward_iterator(&INTEGERS[0] + 0));
+    stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0] + 0), int_forward_iterator(&INTEGERS[0] + 0));
 
     XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
     XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
@@ -622,7 +630,7 @@ static void test_ctor_range_fwd_iters_1()
 
 static void test_ctor_range_fwd_iters_2()
 {
-    stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0]), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+    stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0] + 0), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
 
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
@@ -631,7 +639,7 @@ static void test_ctor_range_fwd_iters_2()
 
 static void test_ctor_range_fwd_iters_3()
 {
-    stlsoft::auto_buffer<int, 100>  buff(int_forward_iterator(&INTEGERS[0]), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+    stlsoft::auto_buffer<int, 100>  buff(int_forward_iterator(&INTEGERS[0] + 0), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
 
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
@@ -803,6 +811,8 @@ static void test_allocator_null(void)
     }}
 }
 
+#ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
+
 static void test_allocator_to_exhaustion(void)
 {
     stlsoft::auto_buffer<char, 10>::allocator_type  ator;
@@ -816,11 +826,11 @@ static void test_allocator_to_exhaustion(void)
     {
         try
         {
-#ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+# ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
             char* p = ator.allocate(size, NULL);
-#else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
+# else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
             char* p = ator.allocate(size);
-#endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
+# endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
 
             if (NULL != p)
             {
@@ -836,14 +846,14 @@ static void test_allocator_to_exhaustion(void)
 
     { for (size_t i = 0; i != 32; ++i, size <<= 1)
     {
-#ifdef STLSOFT_CF_THROW_BAD_ALLOC
+# ifdef STLSOFT_CF_THROW_BAD_ALLOC
         try
         {
             XTESTS_TEST_BOOLEAN_TRUE(buff.resize(size));
         }
         catch (std::bad_alloc&)
         {}
-#endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
+# endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
     }}
 
     { for (std::vector<char*>::iterator b = buffers.begin(); b != buffers.end(); ++b)
@@ -851,6 +861,7 @@ static void test_allocator_to_exhaustion(void)
         ator.deallocate(*b, 0u);
     }}
 }
+#endif
 
 static void test_copy_from()
 {
@@ -1162,11 +1173,6 @@ static void test_swap_3()
             XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
         }}
     }
-}
-
-static void test_1_10()
-{
-
 }
 
 static void test_subscript(void)

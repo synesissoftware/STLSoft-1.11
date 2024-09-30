@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 28th September 2024
+ * Updated: 29th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       160
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       161
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -173,8 +173,13 @@ public:
     {}
     ~readdir_sequence_exception() STLSOFT_NOEXCEPT
     {}
+#ifdef STLSOFT_COMPILER_IS_GCC
+    readdir_sequence_exception(class_type const&) = default;
+    class_type& operator =(class_type const&) = default;
+#else
 private:
-    class_type& operator =(class_type const&);
+    class_type& operator =(class_type const&); // copy-assignment proscribed
+#endif
 /// @}
 
 /// \name Fields
