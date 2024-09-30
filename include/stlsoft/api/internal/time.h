@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/api/internal/time.h
+ * File:    stlsoft/api/internal/time.h
  *
- * Purpose:     Internal adaptations for time.h constructs.
+ * Purpose: Internal adaptations for time.h constructs.
  *
- * Created:     11th January 2017
- * Updated:     2nd January 2021
+ * Created: 11th January 2017
+ * Updated: 30th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -85,6 +85,23 @@
  * time functions
  */
 
+/** Converts the time epoch into calendar time via call to `::gmtime()` (or
+ * "safe" equivalent, `::gmtime_s()`), as well as providing some
+ * standardisation of input validity.
+ *
+ * \ingroup group__library__Time
+ *
+ * In the case of either compilation under C++-23 (or later) or translation
+ * in context of "safe string" (`__STDC_WANT_SECURE_LIB__ == 1`), then the
+ * function is implemented in terms of `::gmtime_s()`; otherwise, in terms
+ * of `::gmtime()`.
+ *
+ * \param tm Pointer to calendar time structure. May not be NULL
+ * \param t Pointer to the time since epoch. May not be NULL
+ *
+ * \retval 0 if the operation succeeded;
+ * \retval an "errno" value if the operation failed;
+ */
 STLSOFT_INLINE
 int
 STLSOFT_API_INTERNAL_Time_gmtime(
@@ -95,7 +112,11 @@ STLSOFT_API_INTERNAL_Time_gmtime(
     STLSOFT_ASSERT(NULL != tm);
     STLSOFT_ASSERT(NULL != t);
 
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+#if 0 ||\
+    defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) ||\
+    (   defined(__cplusplus) &&\
+        __cplusplus >= 202302L) ||\
+    0
 
     STLSOFT_COVER_MARK_LINE();
 
