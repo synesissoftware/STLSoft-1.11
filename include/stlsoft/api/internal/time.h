@@ -67,9 +67,9 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
-# include <stlsoft/internal/safestr.h>
-#endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_time
+# include <stlsoft/api/external/time.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_time */
 
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
@@ -86,21 +86,31 @@
  */
 
 /** Converts the time epoch into calendar time via call to `::gmtime()` (or
- * "safe" equivalent, `::gmtime_s()`), as well as providing some
- * standardisation of input validity.
+ * a "safe" equivalent such as `::gmtime_r()` and `::gmtime_s()`), as well
+ * as providing some standardisation of input validity.
  *
  * \ingroup group__library__Time
  *
- * In the case of either compilation under C++-23 (or later) or translation
- * in context of "safe string" (`__STDC_WANT_SECURE_LIB__ == 1`), then the
- * function is implemented in terms of `::gmtime_s()`; otherwise, in terms
- * of `::gmtime()`.
+ * The function is implemented in terms of standard or compiler-specific or
+ * platform-specific functionality in descending order of availibility:
+ * - standard function `::gmtime_r()`;
+ * - GCC function `::gmtime_r()`;
+ * - MSVC function `::gmtime_s()`;
+ * - `::gmtime()`;
+ *
+ * See the discrimination of API functions in stlsoft/api/external/time.h
+ * for more information.
  *
  * \param tm Pointer to calendar time structure. May not be NULL
  * \param t Pointer to the time since epoch. May not be NULL
  *
  * \retval 0 if the operation succeeded;
  * \retval an "errno" value if the operation failed;
+ *
+ * \note Unless preprocessor object-like macro STLSOFT_API_INTERNAL_
+ *
+ * \pre nullptr != tm
+ * \pre nullptr != t
  */
 STLSOFT_INLINE
 int
@@ -112,40 +122,91 @@ STLSOFT_API_INTERNAL_Time_gmtime(
     STLSOFT_ASSERT(NULL != tm);
     STLSOFT_ASSERT(NULL != t);
 
-#if 0 ||\
-    defined(STLSOFT_USING_SAFE_STR_FUNCTIONS) ||\
-    (   defined(__cplusplus) &&\
-        __cplusplus >= 202302L) ||\
-    0
+#if 0
+#elif 0 ||\
+      defined(STLSOFT_LF_SUPPORT_STD_gmtime_r) ||\
+      defined(STLSOFT_LF_SUPPORT_GCC_gmtime_r) ||\
+      0
 
-    STLSOFT_COVER_MARK_LINE();
+    {
+        struct tm const* const ptm = STLSOFT_NS_GLOBAL_(gmtime_r)(t, tm);
 
-    return STLSOFT_NS_GLOBAL_(gmtime_s)(tm, t);
+        STLSOFT_COVER_MARK_LINE();
+
+        if (NULL == ptm)
+        {
+            STLSOFT_COVER_MARK_LINE();
+
+            return errno;
+        }
+        else
+        {
+            STLSOFT_COVER_MARK_LINE();
+
+            return 0;
+        }
+    }
+#elif 0 ||\
+      defined(STLSOFT_LF_SUPPORT_MSVCRT_gmtime_s) ||\
+      0
+
+    {
+        STLSOFT_COVER_MARK_LINE();
+
+        return STLSOFT_NS_GLOBAL_(gmtime_s)(tm, t);
+    }
 #else
 
-  {
-    struct tm const* const ptm = STLSOFT_NS_GLOBAL_(gmtime)(t);
-
-    STLSOFT_COVER_MARK_LINE();
-
-    if (NULL == ptm)
     {
+        struct tm const* const ptm = STLSOFT_NS_GLOBAL_(gmtime)(t);
+
         STLSOFT_COVER_MARK_LINE();
 
-        return errno;
-    }
-    else
-    {
-        STLSOFT_COVER_MARK_LINE();
+        if (NULL == ptm)
+        {
+            STLSOFT_COVER_MARK_LINE();
 
-        *tm = *ptm;
+            return errno;
+        }
+        else
+        {
+            STLSOFT_COVER_MARK_LINE();
 
-        return 0;
+            *tm = *ptm;
+
+            return 0;
+        }
     }
-  }
 #endif
 }
 
+/** Converts the time epoch into calendar time via call to `::localtime()`
+ * (or a "safe" equivalent such as `::localtime_r()` and `::localtime_s()`),
+ * as well as providing some standardisation of input validity.
+ *
+ * \ingroup group__library__Time
+ *
+ * The function is implemented in terms of standard or compiler-specific or
+ * platform-specific functionality in descending order of availibility:
+ * - standard function `::localtime_r()`;
+ * - GCC function `::localtime_r()`;
+ * - MSVC function `::localtime_s()`;
+ * - `::localtime()`;
+ *
+ * See the discrimination of API functions in stlsoft/api/external/time.h
+ * for more information.
+ *
+ * \param tm Pointer to calendar time structure. May not be NULL
+ * \param t Pointer to the time since epoch. May not be NULL
+ *
+ * \retval 0 if the operation succeeded;
+ * \retval an "errno" value if the operation failed;
+ *
+ * \note Unless preprocessor object-like macro STLSOFT_API_INTERNAL_
+ *
+ * \pre nullptr != tm
+ * \pre nullptr != t
+ */
 STLSOFT_INLINE
 int
 STLSOFT_API_INTERNAL_Time_localtime(
@@ -156,33 +217,61 @@ STLSOFT_API_INTERNAL_Time_localtime(
     STLSOFT_ASSERT(NULL != tm);
     STLSOFT_ASSERT(NULL != t);
 
-#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+#if 0
+#elif 0 ||\
+      defined(STLSOFT_LF_SUPPORT_STD_localtime_r) ||\
+      defined(STLSOFT_LF_SUPPORT_GCC_localtime_r) ||\
+      0
 
-    STLSOFT_COVER_MARK_LINE();
+    {
+        struct tm const* const ptm = STLSOFT_NS_GLOBAL_(localtime_r)(t, tm);
 
-    return STLSOFT_NS_GLOBAL_(localtime_s)(tm, t);
+        STLSOFT_COVER_MARK_LINE();
+
+        if (NULL == ptm)
+        {
+            STLSOFT_COVER_MARK_LINE();
+
+            return errno;
+        }
+        else
+        {
+            STLSOFT_COVER_MARK_LINE();
+
+            return 0;
+        }
+    }
+#elif 0 ||\
+      defined(STLSOFT_LF_SUPPORT_MSVCRT_localtime_s) ||\
+      0
+
+    {
+        STLSOFT_COVER_MARK_LINE();
+
+        return STLSOFT_NS_GLOBAL_(localtime_s)(tm, t);
+    }
 #else
 
-  {
-    struct tm const* const ptm = STLSOFT_NS_GLOBAL_(localtime)(t);
-
-    STLSOFT_COVER_MARK_LINE();
-
-    if (NULL == ptm)
     {
+        struct tm const* const ptm = STLSOFT_NS_GLOBAL_(localtime)(t);
+
         STLSOFT_COVER_MARK_LINE();
 
-        return errno;
-    }
-    else
-    {
-        STLSOFT_COVER_MARK_LINE();
+        if (NULL == ptm)
+        {
+            STLSOFT_COVER_MARK_LINE();
 
-        *tm = *ptm;
+            return errno;
+        }
+        else
+        {
+            STLSOFT_COVER_MARK_LINE();
 
-        return 0;
+            *tm = *ptm;
+
+            return 0;
+        }
     }
-  }
 #endif
 }
 
