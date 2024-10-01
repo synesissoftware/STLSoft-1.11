@@ -93,7 +93,7 @@ namespace
 
     struct timeval get_fixed_date()
     {
-        struct tm   tm = {};
+        struct tm   tm;
 
         tm.tm_year  =   2014 - 1900;
         tm.tm_mon   =   4;
@@ -197,13 +197,33 @@ static void test_c_str_ptr()
 
 static void test_invalid_value_conversion()
 {
-    struct timeval tv;
+    {
+        struct timeval tv = get_fixed_date();
 
-    tv.tv_sec   =   -1;
-    tv.tv_usec  =   -1;
+        tv.tv_usec  =   -1;
 
-    XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("(invalid time)", stlsoft::c_str_ptr_a(tv));
+        XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("(invalid time)", stlsoft::c_str_ptr_a(tv));
+    }
+
+    {
+        struct timeval tv = get_fixed_date();
+
+        tv.tv_sec   =   -1;
+
+        XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("(invalid time)", stlsoft::c_str_ptr_a(tv));
+    }
+
+    {
+        struct timeval tv = get_fixed_date();
+
+        tv.tv_sec   =   -1;
+        tv.tv_usec  =   -1;
+
+        XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS("(invalid time)") - 1, stlsoft::c_str_len_a(tv));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("(invalid time)", stlsoft::c_str_ptr_a(tv));
+    }
 }
 } // anonymous namespace
 
