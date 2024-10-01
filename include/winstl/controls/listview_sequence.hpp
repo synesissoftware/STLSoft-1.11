@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/controls/listview_sequence.hpp
+ * File:    winstl/controls/listview_sequence.hpp
  *
- * Purpose:     Contains the listview_sequence class template.
+ * Purpose: Contains the listview_sequence class template.
  *
- * Created:     8th May 2003
- * Updated:     11th March 2024
+ * Created: 8th May 2003
+ * Updated: 27th September 2024
  *
- * Thanks:      To Pablo Aguilar for making the requisite feature requests.
+ * Thanks:  To Pablo Aguilar for making the requisite feature requests.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MINOR     3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  9
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      93
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  10
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -166,10 +166,11 @@ public:
 public:
     lvs_string_t text(int iSubItem = 0) const
     {
-        typedef STLSOFT_NS_QUAL(auto_buffer_old)<   TCHAR
-                                                ,   processheap_allocator<TCHAR>
-                                                ,   256
-                                                >       buffer_t;
+        typedef STLSOFT_NS_QUAL(auto_buffer)<
+            TCHAR
+        ,   256
+        ,   processheap_allocator<TCHAR>
+        >                                                   buffer_t;
 
         ws_size_t   cb  =   buffer_t::internal_size();
         LV_ITEM     item;

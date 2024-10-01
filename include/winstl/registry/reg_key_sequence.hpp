@@ -13,7 +13,7 @@
  *          basic_reg_key_sequence class interface.
  *
  * Created: 19th January 2002
- * Updated: 11th March 2024
+ * Updated: 27th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   11
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       155
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   12
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       156
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -238,10 +238,10 @@ private:
     /// The results type of the Registry API
     typedef ss_typename_type_k traits_type::result_type     result_type;
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
-    ,   allocator_type
     ,   CCH_REG_API_AUTO_BUFFER
+    ,   allocator_type
     >                                                       buffer_type_;
 public:
     typedef hkey_type                                       resource_type;
@@ -485,10 +485,10 @@ private:
     /// The Boolean type
     typedef ws_bool_t                                       bool_type;
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
-    ,   allocator_type
     ,   CCH_REG_API_AUTO_BUFFER
+    ,   allocator_type
     >                                                       buffer_type_;
 /// @}
 

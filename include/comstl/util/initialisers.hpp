@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/initialisers.hpp (originally MOInit.h, ::SynesisCom)
+ * File:    comstl/util/initialisers.hpp (originally MOInit.h, ::SynesisCom)
  *
- * Purpose:     Contains classes for initialising COM/OLE.
+ * Purpose: Contains classes for initialising COM/OLE.
  *
- * Created:     8th February 1999
- * Updated:     11th March 2024
+ * Created: 8th February 1999
+ * Updated: 28th September 2024
  *
- * Thanks:      To Adi Shavit, for demanding better documentation of COMSTL.
+ * Thanks:  To Adi Shavit, for demanding better documentation of COMSTL.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   10
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       97
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -222,11 +222,11 @@ int main(int argc, char **argv)
 
     return main_(argc, argv);
   }
-  catch(comstl::com_initialisation_exception &x) // COM library initialisation failed
+  catch (comstl::com_initialisation_exception &x) // COM library initialisation failed
   {
     return EXIT_FAILURE;
   }
-  catch(std::exception &x) // other failures from main_()
+  catch (std::exception &x) // other failures from main_()
   {
     return EXIT_FAILURE;
   }

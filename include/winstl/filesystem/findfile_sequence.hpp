@@ -18,7 +18,7 @@
  *          ownership issues described in the article.
  *
  * Created: 15th January 2002
- * Updated: 4th May 2024
+ * Updated: 27th September 2024
  *
  * Thanks:  To Nevin Liber for pressing upon me the need to lead by example
  *          when writing books about good design/implementation; to Florin L
@@ -72,8 +72,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        268
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    11
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        269
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -260,10 +260,10 @@ private:
     ,   1 + WINSTL_CONST_MAX_PATH
     ,   processheap_allocator<char_type>
     >                                                       buffer_type_;
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
-    ,   processheap_allocator<char_type>
     ,   64
+    ,   processheap_allocator<char_type>
     >                                                       patterns_buffer_type_;
 /// @}
 

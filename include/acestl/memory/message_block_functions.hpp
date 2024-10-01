@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/memory/message_block_functions.hpp
+ * File:    acestl/memory/message_block_functions.hpp
  *
- * Purpose:     Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
+ * Purpose: Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
  *
- * Created:     23rd September 2004
- * Updated:     11th March 2024
+ * Created: 23rd September 2004
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MAJOR      2
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MINOR      0
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   8
-# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       44
+# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -159,7 +159,7 @@ inline ACE_Message_Block *make_copied_Message_Block(char const* p, as_size_t n)
         return pmb;
 #if defined(ACE_NEW_THROWS_EXCEPTIONS)
     }
-    catch(ACE_bad_alloc) // TODO: This should be a reference, surely??
+    catch (ACE_bad_alloc) // TODO: This should be a reference, surely??
     {
         return NULL;
     }

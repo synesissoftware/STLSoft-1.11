@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/process_module_sequence.hpp
+ * File:    winstl/system/process_module_sequence.hpp
  *
- * Purpose:     Process Id sequence class.
+ * Purpose: Process Id sequence class.
  *
- * Created:     24th June 2005
- * Updated:     11th March 2024
+ * Created: 24th June 2005
+ * Updated: 27th September 2024
  *
- * Thanks to:   Adi Shavit for spotting a small inefficiency in the
- *              resize()-ing, during the review of Extended STL volume 1
- *              (see http://extendedstl.com/).
+ * Thank:  Adi Shavit for spotting a small inefficiency in the
+ *         resize()-ing, during the review of Extended STL volume 1
+ *         (see http://extendedstl.com/).
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_MINOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_REVISION  10
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_EDIT      66
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_REVISION  11
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_EDIT      67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -223,10 +223,11 @@ public:
 /// \name Members
 /// @{
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<   value_type
-                                            ,   allocator_type
-                                            ,   64
-                                            >       buffer_type_;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        value_type
+    ,   64
+    ,   allocator_type
+    >                                                       buffer_type_;
 
     buffer_type_    m_modules;
 /// @}

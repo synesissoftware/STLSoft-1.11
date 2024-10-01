@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/system/environment_variable_traits.hpp
+ * File:    platformstl/system/environment_variable_traits.hpp
  *
- * Purpose:     Definition of the environment_variable_traits class.
+ * Purpose: Definition of the environment_variable_traits class.
  *
- * Created:     9th December 2005
- * Updated:     11th March 2024
+ * Created: 9th December 2005
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MINOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_REVISION 11
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     40
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -488,7 +488,7 @@ inline /* static */ int environment_variable_traits::call_putenv_(environment_va
             }
         }
 #ifdef STLSOFT_CF_THROW_BAD_ALLOC
-        catch(std::bad_alloc &)
+        catch (std::bad_alloc &)
         {
             errno = ENOMEM;
             return -1;

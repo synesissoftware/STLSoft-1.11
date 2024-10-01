@@ -18,6 +18,60 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha16 (1st October 2024)
+
+General:
+========
+
+ * `auto_buffer` improvements;
+ * `constexpr` applications;
+ * Time function enhancements;
+ * Brought over previously unreleased example and test programs;
+ * Significant simplification of CMake support;
+ * Boilerplate file improvements;
+ * Miscellaneous improvements;
+
+Changes:
+========
+
+`auto_buffer` improvements:
+ * removed all uses of `auto_buffer_old` throughout the rest of the libraries;
+ * significantly enhanced functionality, particularly adding range and init-list constructors;
+ * minor performance improvements;
+ * significant additional testing in **test.unit.stlsoft.memory.auto_buffer**;
+
+`constexpr` applications:
+ * limited application of `constexpr` into `auto_buffer`;
+ * limited application of `constexpr` into `simple_string`;
+ * limited application of `constexpr` into `static_string`;
+
+Time function enhancements:
+ * added **stlsoft/api/external/time.h** which discriminates support - standard, GCC, VC++ - for time functions such as `::asctime_r()`, `::gmtime_r()`, `::gmtime_s()`, ...;
+ * reimplementation of `STLSOFT_API_INTERNAL_Time_gmtime()` and `STLSOFT_API_INTERNAL_Time_localtime()` for increased portability;
+
+Brought over previously unreleased example and test programs;
+ * (almost) all **by_concept**, **by_library**, **by_project** examples;
+ * **test.component.stlsoft.system.environment_block**;
+ * **test.component.unixstl.filesystem.glob_sequence**;
+ * **test.component.unixstl.filesystem.glob_sequence**;
+ * **test.unit.unixstl.system.environment_variable**;
+ * **test.unit.stlsoft.smartptr.scoped_handle**;
+ * **test.unit.stlsoft.string.exception_string**;
+ * **test.unit.unixstl.shims.access.string.timeval**;
+
+Significant simplification of CMake support:
+ * wholesale application of macros for defining program build instructions;
+
+Boilerplate file improvements:
+ * all (Bash) CMake build scripts now recognise environment variable SIS_CMAKE_BUILD_DIR to build in a custom directory, defaulting to stock directory ./_build;
+
+Miscellaneous improvements:
+ * ensuring parent class invocation in initialiser lists;
+ * string access shims for `struct timeval` corrected to reject negative values;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha15 (2nd September 2024)
 
 General:

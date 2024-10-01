@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/path.hpp
+ * File:    unixstl/filesystem/path.hpp
  *
- * Purpose:     Simple class that represents a path.
+ * Purpose: Simple class that represents a path.
  *
- * Created:     1st May 1993
- * Updated:     9th July 2024
+ * Created: 1st May 1993
+ * Updated: 27th September 2024
  *
- * Thanks to:   Pablo Aguilar for reporting defect in push_ext() (which
- *              doesn't work for wide-string builds).
+ * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which doesn't
+ *          work for wide-string builds).
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1993-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      7
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       277
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       278
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -537,8 +537,9 @@ private:
     >::allocator_type                                       part_ator_type_;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         part_type
+    ,   stlsoft::auto_buffer_internal_size_calculator<part_type>::value
     ,   part_ator_type_
     >                                                       part_buffer_type_;
 
