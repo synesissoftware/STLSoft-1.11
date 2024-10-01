@@ -6,7 +6,7 @@
  *          types.
  *
  * Created: 15th January 2002
- * Updated: 2nd September 2024
+ * Updated: 27th September 2024
  *
  * Home:    http://stlsoft.org/
  *

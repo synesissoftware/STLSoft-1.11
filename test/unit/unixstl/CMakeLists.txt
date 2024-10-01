@@ -1,6 +1,3 @@
-
+# SIS:AUTO_GENERATED: Do not edit!
 add_subdirectory(filesystem)
-
-
-# ############################## end of file ############################# #
-
+add_subdirectory(shims)

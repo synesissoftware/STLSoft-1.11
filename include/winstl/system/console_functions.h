@@ -4,7 +4,7 @@
  * Purpose: Windows console functions.
  *
  * Created: 3rd December 2005
- * Updated: 2nd September 2024
+ * Updated: 27th September 2024
  *
  * Home:    http://stlsoft.org/
  *

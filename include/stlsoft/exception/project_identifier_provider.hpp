@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exception/project_identifier_provider.hpp
+ * File:    stlsoft/exception/project_identifier_provider.hpp
  *
- * Purpose:     Define the project_identifier_provider inteface.
+ * Purpose: Define the project_identifier_provider inteface.
  *
- * Created:     29th December 2016
- * Updated:     11th March 2024
+ * Created: 29th December 2016
+ * Updated: 1st October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_MAJOR    1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_MINOR    0
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_MINOR    1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_REVISION 1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_EDIT     5
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,13 +93,13 @@ namespace stlsoft
 
 class project_identifier_provider
 {
-public:
+public: // types
     typedef project_identifier_provider                     class_type;
     /// The project identifier type
     typedef STLSoftProjectIdentifier_t                      project_identifier_type;
 private:
 
-protected:
+protected: // construction
     project_identifier_provider()
     {}
     ~project_identifier_provider() STLSOFT_NOEXCEPT
@@ -109,7 +109,11 @@ protected:
 private:
     class_type& operator =(class_type const&);  // copy-assignment proscribed
 
-public: // Interface
+public: // modifiers
+    void swap(class_type& /* rhs */) STLSOFT_NOEXCEPT
+    {}
+
+public: // overrides
     virtual project_identifier_type
     project_identifier() const = 0;
 

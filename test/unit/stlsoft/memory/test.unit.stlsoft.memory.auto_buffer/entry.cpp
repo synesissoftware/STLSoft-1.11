@@ -189,6 +189,8 @@ namespace
     static void test_ctor_range_pointers_1(void);
     static void test_ctor_range_pointers_2(void);
     static void test_ctor_range_pointers_3(void);
+#if __cplusplus >= 201702L
+
     static void test_ctor_range_vec_iters_1(void);
     static void test_ctor_range_vec_iters_2(void);
     static void test_ctor_range_vec_iters_3(void);
@@ -201,6 +203,7 @@ namespace
     static void test_ctor_range_fwd_iters_1(void);
     static void test_ctor_range_fwd_iters_2(void);
     static void test_ctor_range_fwd_iters_3(void);
+#endif
 
     // resize(size_t)
     static void test_resize(void);
@@ -277,6 +280,8 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_ctor_range_pointers_1);
         XTESTS_RUN_CASE(test_ctor_range_pointers_2);
         XTESTS_RUN_CASE(test_ctor_range_pointers_3);
+#if __cplusplus >= 201702L
+
         XTESTS_RUN_CASE(test_ctor_range_vec_iters_1);
         XTESTS_RUN_CASE(test_ctor_range_vec_iters_2);
         XTESTS_RUN_CASE(test_ctor_range_vec_iters_3);
@@ -289,6 +294,7 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_ctor_range_fwd_iters_1);
         XTESTS_RUN_CASE(test_ctor_range_fwd_iters_2);
         XTESTS_RUN_CASE(test_ctor_range_fwd_iters_3);
+#endif
 
         XTESTS_RUN_CASE(test_resize);
         XTESTS_RUN_CASE(test_resize_n_v_1);
@@ -532,6 +538,8 @@ static void test_ctor_range_pointers_3()
     XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
+#if __cplusplus >= 201702L
+
 static void test_ctor_range_vec_iters_1()
 {
     std::vector<int>                src(&INTEGERS[0], &INTEGERS[0] + 0);
@@ -645,6 +653,7 @@ static void test_ctor_range_fwd_iters_3()
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
     XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
+#endif
 
 static void test_resize()
 {

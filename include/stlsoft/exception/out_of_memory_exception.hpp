@@ -4,7 +4,7 @@
  * Purpose: Definition of the stlsoft::out_of_memory_exception class.
  *
  * Created: 13th May 2010
- * Updated: 22nd February 2024
+ * Updated: 1st October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_MAJOR    2
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_MINOR    0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_REVISION 5
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_EDIT     23
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_REVISION 6
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,6 +147,9 @@ public:
 public: // Construction
     out_of_memory_exception()
         : parent_class_type()
+        , project_identifier_provider()
+        , library_identifier_provider()
+        , status_code_provider<int>()
         , m_projectId(STLSoftProjectIdentifier_Unspecified)
         , m_libraryId(STLSoftLibraryIdentifier_Unspecified)
         , m_statusCode(ENOMEM)
@@ -156,6 +159,9 @@ public: // Construction
         ProjectIdentifier_t projectId
     )
         : parent_class_type()
+        , project_identifier_provider()
+        , library_identifier_provider()
+        , status_code_provider<int>()
         , m_projectId(projectId)
         , m_libraryId(STLSoftLibraryIdentifier_Unspecified)
         , m_statusCode(ENOMEM)
@@ -175,6 +181,9 @@ public: // Construction
     ,   int                 statusCode
     )
         : parent_class_type()
+        , project_identifier_provider()
+        , library_identifier_provider()
+        , status_code_provider<int>()
         , m_projectId(projectId)
         , m_libraryId(libraryId)
         , m_statusCode(statusCode)

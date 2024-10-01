@@ -4,7 +4,7 @@
  * Purpose: Contains the c_str_data and c_str_len accessors.
  *
  * Created: 25th October 2020
- * Updated: 26th March 2024
+ * Updated: 1st October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_MAJOR     1
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_MINOR     0
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_REVISION  4
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_EDIT      5
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_REVISION  5
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_CHRONO_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,6 +98,7 @@ namespace stlsoft
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
@@ -130,14 +131,12 @@ c_str_data_a(
     struct tm       tm;
     int const       r   =   STLSOFT_API_INTERNAL_Time_localtime(&tm, &t);
 
-    if (0 != r)
-    {
-        return shim_string_t("(invalid time)");
-    }
-    else
+    if (0 == r)
     {
         return c_str_data_a(&tm);
     }
+
+    return shim_string_t("(invalid time)");
 }
 #endif
 
@@ -174,18 +173,19 @@ c_str_len_a(
     struct tm       tm;
     int const       r   =   STLSOFT_API_INTERNAL_Time_localtime(&tm, &t);
 
-    if (0 != r)
-    {
-        return 14u;
-    }
-    else
+    if (0 == r)
     {
         return c_str_len_a(&tm);
     }
+
+    return 14u;
 }
 #endif
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

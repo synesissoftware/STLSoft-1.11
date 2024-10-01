@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 28th September 2024
+ * Updated: 1st October 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        209
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    3
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        210
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -837,9 +837,10 @@ public: // construction
         STLSOFT_ASSERT(is_valid());
     }
 
+#if __cplusplus >= 201702L
+
     /// Range constructor
     template <ss_typename_param_k I2>
-    inline
     auto_buffer(
         I2 first
     ,   I2 last
@@ -864,7 +865,27 @@ public: // construction
 
         STLSOFT_ASSERT(is_valid());
     }
+#else
 
+    /// Range constructor
+    auto_buffer(
+        value_type const*   first
+    ,   value_type const*   last
+    )
+        : m_buffer()
+        , m_cItems()
+        , m_bExternal()
+    {
+        // Can't create one with an empty buffer. Though such is not legal
+        // it is supported by some compilers, so we must ensure it cannot be
+        // so
+        STLSOFT_STATIC_ASSERT(0 != space);
+
+        init_from_range_(first, last, stlsoft_iterator_query_category(value_type const*, first));
+
+        STLSOFT_ASSERT(is_valid());
+    }
+#endif
 #if __cplusplus >= 201103L
 
     /** Constructs an instance to hold copies of the contents of the

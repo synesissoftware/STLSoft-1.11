@@ -1,7 +1,7 @@
 
 /*
  * Created: 27th January 2017
- * Updated: 3rd September 2024
+ * Updated: 1st October 2024
  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -10,6 +10,7 @@
 
 #include <platformstl/platformstl.hpp>
 
+#include <stlsoft/shims/access/string/std/chrono.hpp>
 #include <stlsoft/shims/access/string/std/time.hpp>
 #ifdef ACE
 # include <acestl/shims/access/string/time_value.hpp>
@@ -23,6 +24,8 @@
 #ifdef PLATFORMSTL_OS_IS_WINDOWS
 # include <winstl/shims/access/string/time.hpp>
 #endif
+
+#include <chrono>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,6 +66,15 @@ output_by(
 
 int main()
 {
+    //  std::chrono::system_clock
+
+    {
+        auto const now = std::chrono::system_clock::now();
+
+        output_by("std::chrono::system_clock", now);
+    }
+
+
     // struct tm
 
     time_t now;
