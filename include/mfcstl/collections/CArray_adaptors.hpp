@@ -1,17 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/collections/CArray_adaptors.hpp (derived from mfcstl_array_adaptor.h)
+ * File:    mfcstl/collections/CArray_adaptors.hpp (derived from mfcstl_array_adaptor.h)
  *
- * Purpose:     Contains the definition of the CArray_cadaptor and CArray_iadaptor
- *              class templates.
+ * Purpose: Contains the definition of the CArray_cadaptor and
+ *          CArray_iadaptor class templates.
  *
- * Created:     1st December 2002
- * Updated:     11th March 2024
+ * Created: 1st December 2002
+ * Updated: 28th September 2024
  *
- * Thanks to:   Nevin Liber and Scott Meyers for kicking my lazy behind, and
- *              requiring that I implement the full complement of standard
- *              comparison operations.
+ * Thanks:  Nevin Liber and Scott Meyers for kicking my lazy behind, and
+ *          requiring that I implement the full complement of standard
+ *          comparison operations.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -60,7 +60,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 11
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     103
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -385,11 +385,11 @@ public:
             }
             CArray_swap(this->get_CArray(), ar);
         }
-        catch(CMemoryException *px)
+        catch (CMemoryException *px)
         {
             exception_translation_policy_type::handle(px);
         }
-        catch(STLSOFT_NS_QUAL_STD(bad_alloc) &x)
+        catch (STLSOFT_NS_QUAL_STD(bad_alloc) &x)
         {
             exception_translation_policy_type::handle(x);
         }
@@ -431,7 +431,7 @@ public:
             {
                 clear_and_assign_(first, last);
             }
-            catch(...)
+            catch (...)
             {
                 clear();
 
@@ -486,11 +486,11 @@ public:
         {
             get_CArray().SetSize(n, calc_increment_(n));
         }
-        catch(CMemoryException *px)
+        catch (CMemoryException *px)
         {
             exception_translation_policy_type::handle(px);
         }
-        catch(STLSOFT_NS_QUAL_STD(bad_alloc) &x)
+        catch (STLSOFT_NS_QUAL_STD(bad_alloc) &x)
         {
             exception_translation_policy_type::handle(x);
         }
@@ -519,7 +519,7 @@ public:
             {
                 STLSOFT_NS_QUAL_STD(fill_n)(begin() + oldSize, n - oldSize, value);
             }
-            catch(...)
+            catch (...)
             {
                 resize(oldSize);
                 throw;
@@ -754,16 +754,16 @@ public:
             {
                 get_CArray().Add(value);
             }
-            catch(CMemoryException *px)
+            catch (CMemoryException *px)
             {
                 exception_translation_policy_type::handle(px);
             }
-            catch(STLSOFT_NS_QUAL_STD(bad_alloc) &x)
+            catch (STLSOFT_NS_QUAL_STD(bad_alloc) &x)
             {
                 exception_translation_policy_type::handle(x);
             }
         }
-        catch(...)
+        catch (...)
         {
             if (size() != oldSize)
             {
@@ -816,16 +816,16 @@ public:
             {
                 get_CArray().InsertAt(static_cast<int>(index), value, 1);
             }
-            catch(CMemoryException *px)
+            catch (CMemoryException *px)
             {
                 exception_translation_policy_type::handle(px);
             }
-            catch(STLSOFT_NS_QUAL_STD(bad_alloc) &x)
+            catch (STLSOFT_NS_QUAL_STD(bad_alloc) &x)
             {
                 exception_translation_policy_type::handle(x);
             }
         }
-        catch(...)
+        catch (...)
         {
             if (size() != oldSize)
             {
@@ -881,16 +881,16 @@ public:
                         get_CArray().InsertAt(static_cast<int>(index), value, n);
                     }
                 }
-                catch(CMemoryException *px)
+                catch (CMemoryException *px)
                 {
                     exception_translation_policy_type::handle(px);
                 }
-                catch(STLSOFT_NS_QUAL_STD(bad_alloc) &x)
+                catch (STLSOFT_NS_QUAL_STD(bad_alloc) &x)
                 {
                     exception_translation_policy_type::handle(x);
                 }
             }
-            catch(...)
+            catch (...)
             {
                 if (size() != oldSize)
                 {
@@ -941,16 +941,16 @@ public:
             {
                 get_CArray().InsertAt(static_cast<int>(index), &ar);
             }
-            catch(CMemoryException *px)
+            catch (CMemoryException *px)
             {
                 exception_translation_policy_type::handle(px);
             }
-            catch(STLSOFT_NS_QUAL_STD(bad_alloc) &x)
+            catch (STLSOFT_NS_QUAL_STD(bad_alloc) &x)
             {
                 exception_translation_policy_type::handle(x);
             }
         }
-        catch(...)
+        catch (...)
         {
             if (size() != oldSize)
             {

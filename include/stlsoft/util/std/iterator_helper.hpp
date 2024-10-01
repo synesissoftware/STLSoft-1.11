@@ -1,16 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/std/iterator_helper.hpp
+ * File:    stlsoft/util/std/iterator_helper.hpp
  *
- * Purpose:     Definition of iterator class templates and macros for
- *              abstracting away standard library inconsistencies.
+ * Purpose: Definition of iterator class templates and macros for 
+ *          abstracting away standard library inconsistencies.
  *
- * Created:     2nd January 2000
- * Updated:     11th March 2024
+ * Created: 2nd January 2000
+ * Updated: 1st October 2024
  *
- * Thanks:      To Cláudio Albuquerque for assisting with VC++ 12 & 14
- *              support.
+ * Thanks:  To Cláudio Albuquerque for assisting with VC++ 12 & 14 support.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -58,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     8
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  8
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      126
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  9
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1190,7 +1189,11 @@ distance_type(pointer_iterator<V, P, R>::type const&)
 # define stlsoft_iterator_query_category(I, i)              (STLSOFT_NS_QUAL_STD(_Iter_cat)(i))
 # define stlsoft_iterator_query_category_ptr(I, i)          (&STLSOFT_NS_QUAL_STD(_Iter_cat)(i))
 
-#elif defined(STLSOFT_COMPILER_IS_CLANG)
+#elif 0 ||\
+      defined(STLSOFT_COMPILER_IS_CLANG) ||\
+      defined(STLSOFT_COMPILER_IS_GCC) ||\
+      defined(STLSOFT_COMPILER_IS_MSVC) ||\
+      0
 
 # define stlsoft_iterator_query_category(I, i)              (ss_typename_type_k std::iterator_traits<I>::iterator_category())
 

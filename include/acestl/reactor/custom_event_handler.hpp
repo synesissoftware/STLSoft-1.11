@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/reactor/custom_event_handler.hpp
+ * File:    acestl/reactor/custom_event_handler.hpp
  *
- * Purpose:     Event handler class for custom event notifications.
+ * Purpose: Event handler class for custom event notifications.
  *
- * Created:     1st October 2004
- * Updated:     11th March 2024
+ * Created: 1st October 2004
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR     2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR     1
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  10
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      40
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -739,7 +739,7 @@ inline custom_event_handler::event_id custom_event_handler::schedule_custom_even
                 // Benign if leaves code but fails to add event
                 m_entries[code][timerId] = entry;
             }
-            catch(std::bad_alloc &) // This clause is fine, since if bad_alloc not thrown, no foul
+            catch (std::bad_alloc &) // This clause is fine, since if bad_alloc not thrown, no foul
             {
                 cancel_event_(timerId);
 
@@ -750,7 +750,7 @@ inline custom_event_handler::event_id custom_event_handler::schedule_custom_even
                                     ,   ACE_TEXT("(%P|%t) out of memory"))
                                 ,   0);
             }
-            catch(std::exception &x)
+            catch (std::exception &x)
             {
                 cancel_event_(timerId);
 

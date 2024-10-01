@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/smartptr/shared_ptr.hpp (originally MLShrPtr.h, ::SynesisStd)
+ * File:    stlsoft/smartptr/shared_ptr.hpp (originally MLShrPtr.h, ::SynesisStd)
  *
- * Purpose:     Contains the shared_ptr template class.
+ * Purpose: Contains the shared_ptr template class.
  *
- * Created:     17th June 2002
- * Updated:     11th March 2024
+ * Created: 17th June 2002
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    4
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        61
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -247,7 +247,7 @@ public:
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             }
-            catch(std::bad_alloc&)
+            catch (std::bad_alloc&)
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             if (NULL == m_pc)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

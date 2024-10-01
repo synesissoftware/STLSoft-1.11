@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/automation/enumerators.hpp (originally MAEnum.h)
+ * File:    atlstl/automation/enumerators.hpp (originally MAEnum.h)
  *
- * Purpose:     Enumerator classes.
+ * Purpose: Enumerator classes.
  *
- * Created:     11th November 1998
- * Updated:     11th March 2024
+ * Created: 11th November 1998
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 9
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     82
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -260,11 +260,11 @@ public:
             return S_OK;
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(std::bad_alloc &)
+        catch (std::bad_alloc &)
         {
             return E_OUTOFMEMORY;
         }
-        catch(std::exception &)
+        catch (std::exception &)
         {
             return E_UNEXPECTED;
         }
@@ -289,11 +289,11 @@ public:
             return S_OK;
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(std::bad_alloc &)
+        catch (std::bad_alloc &)
         {
             return E_OUTOFMEMORY;
         }
-        catch(std::exception &)
+        catch (std::exception &)
         {
             return E_UNEXPECTED;
         }
@@ -561,11 +561,11 @@ inline STDMETHODIMP copy_enumerator_impl<I, piid, V, IV, I2ETx>::Clone(I** ppEnu
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc &)
+    catch (std::bad_alloc &)
     {
         return E_OUTOFMEMORY;
     }
-    catch(std::exception &)
+    catch (std::exception &)
     {
         return E_UNEXPECTED;
     }

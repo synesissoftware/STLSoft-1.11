@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/readonly_memory_mapped_file.hpp
+ * File:    winstl/filesystem/readonly_memory_mapped_file.hpp
  *
- * Purpose:     Windows readonly (shareable) memory mapped file.
+ * Purpose: Windows readonly (shareable) memory mapped file.
  *
- * Created:     30th August 2010
- * Updated:     11th March 2024
+ * Created: 30th August 2010
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MAJOR     2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MINOR     0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT      18
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -399,7 +399,7 @@ private: // Implementation
         {
             return HRW_HandleAdaptor_type::create(memory, viewSize);
         }
-        catch(...)
+        catch (...)
         {
             unmap_view_of_file(memory, viewSize);
 
@@ -439,7 +439,7 @@ private: // Implementation
         {
             return HRW_HandleAdaptor_type::create(memory, viewSize);
         }
-        catch(...)
+        catch (...)
         {
             unmap_view_of_file(memory, viewSize);
 

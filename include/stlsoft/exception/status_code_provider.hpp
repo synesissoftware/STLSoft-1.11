@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exception/status_code_provider.hpp
+ * File:    stlsoft/exception/status_code_provider.hpp
  *
- * Purpose:     Define the status_code_provider inteface.
+ * Purpose: Define the status_code_provider inteface.
  *
- * Created:     13th May 2010
- * Updated:     11th March 2024
+ * Created: 13th May 2010
+ * Updated: 1st October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_MAJOR       2
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_MINOR       0
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_MINOR       1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_REVISION    1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_EDIT        20
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,7 +93,7 @@ template<
 >
 class status_code_provider
 {
-public:
+public: // types
 //    typedef T_implementingClass                             implementing_class_type;
     typedef T_statusCode                                    status_code_type;
     typedef status_code_provider<
@@ -102,7 +102,7 @@ public:
     >                                                       class_type;
 private:
 
-protected:
+protected: // construction
     status_code_provider()
     {}
     ~status_code_provider() STLSOFT_NOEXCEPT
@@ -112,8 +112,11 @@ protected:
 private:
     class_type& operator =(class_type const&);  // copy-assignment proscribed
 
-// Interface
-public:
+public: // modifiers
+    void swap(class_type& /* rhs */) STLSOFT_NOEXCEPT
+    {}
+
+public: // overrides
     virtual status_code_type
     status_code() const = 0;
 

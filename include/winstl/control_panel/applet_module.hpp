@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/control_panel/applet_module.hpp
+ * File:    winstl/control_panel/applet_module.hpp
  *
- * Purpose:     Control Panel module/applet manipulation classes.
+ * Purpose: Control Panel module/applet manipulation classes.
  *
- * Created:     1st April 2006
- * Updated:     11th March 2024
+ * Created: 1st April 2006
+ * Updated: 5th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 21
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     43
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,8 +160,8 @@ public:
  * available by its subscript operator. For example, the following code
  * retrieves a reference to the first applet and invokes it:
 \code
-winstl::applet_module &module   = . . . ;
-winstl::applet        &applet0  = module[0];
+winstl::applet_module&  module  = . . . ;
+winstl::applet&         applet0 = module[0];
 
 applet0.open();
 \endcode
@@ -263,8 +263,8 @@ private:
  * applet contained within.
  *
 \code
-#include <winstl/findfile_sequence.hpp>
-#include <winstl/system_directory.hpp>
+#include <winstl/filesystem/findfile_sequence.hpp>
+#include <winstl/system/system_directory.hpp>
 #include <winstl/control_panel/applet_module.hpp>
 
 #include <iostream>
@@ -296,7 +296,7 @@ int main()
       std::cout << std::endl;
     }}
   }
-  catch(std::exception &x)
+  catch (std::exception &x)
   {
     std::cerr << "Exception: " << x.what() << std::endl;
   }
@@ -420,7 +420,7 @@ public:
 /// @{
 public:
     /// The path used to initialise the instance.
-    string_type const   &get_path() const;
+    string_type const&  get_path() const;
 /// @}
 
 /// \name Accessors
@@ -556,7 +556,7 @@ inline applet::applet(applet_module_base* module, applet::index_type index)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(...)
+        catch (...)
         {
             control_panel_uninit(m_module->m_pfn, m_module->m_hwnd);
 

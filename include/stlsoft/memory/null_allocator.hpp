@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/memory/null_allocator.hpp
+ * File:    stlsoft/memory/null_allocator.hpp
  *
- * Purpose:     null_allocator class - doesn't allocate.
+ * Purpose: null_allocator class - doesn't allocate.
  *
- * Created:     2nd January 2001
- * Updated:     11th March 2024
+ * Created: 2nd January 2001
+ * Updated: 1st October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2001-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_MINOR    0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_REVISION 10
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_EDIT     95
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_REVISION 11
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NULL_ALLOCATOR_EDIT     96
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -161,6 +161,15 @@ public:
 private:
     friend class allocator_base<T, null_allocator<T> >;
 
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+#  if _MSC_VER >= 1200
+#   pragma warning(push)
+#   pragma warning(disable : 4702)
+#  endif /* _MSC_VER */
+# endif /* compiler */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
     void* do_allocate(size_type n, void const* hint)
     {
         STLSOFT_SUPPRESS_UNUSED(n);
@@ -176,6 +185,15 @@ private:
 
         return NULL;
     }
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+#  if _MSC_VER >= 1200
+#   pragma warning(pop)
+#  endif /* _MSC_VER */
+# endif /* compiler */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
     void do_deallocate(void* pv, size_type n)
     {
         STLSOFT_SUPPRESS_UNUSED(n);

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/window/about_dialog.hpp
+ * File:    atlstl/window/about_dialog.hpp
  *
- * Purpose:     Simple 'about' dialog, that shell-executes hyperlinks.
+ * Purpose: Simple 'about' dialog, that shell-executes hyperlinks.
  *
- * Created:     30th January 2000
- * Updated:     11th March 2024
+ * Created: 30th January 2000
+ * Updated: 27th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MAJOR      4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MINOR      0
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION   7
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT       69
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION   8
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT       70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -196,10 +196,10 @@ protected:
 
             if (DLGC_BUTTON & ctrlCode)
             {
-                typedef ::stlsoft::auto_buffer_old<
+                typedef ::stlsoft::auto_buffer<
                     TCHAR
-                ,   ::stlsoft::malloc_allocator<TCHAR>
                 ,   512
+                ,   ::stlsoft::malloc_allocator<TCHAR>
                 >                               buffer_t;
 
                 // 3. Get text

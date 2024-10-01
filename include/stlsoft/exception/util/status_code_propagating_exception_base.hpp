@@ -1,13 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exception/util/status_code_propagating_exception_base.hpp (formerly (unix|win)stl/exception/(unix|win)stl_exception.hpp)
+ * File:    stlsoft/exception/util/status_code_propagating_exception_base.hpp (formerly (unix|win)stl/exception/(unix|win)stl_exception.hpp)
  *
- * Purpose:     stlsoft::status_code_propagating_exception_base class
- *              template
+ * Purpose: stlsoft::status_code_propagating_exception_base class template
  *
- * Created:     19th June 2004
- * Updated:     11th March 2024
+ * Created: 19th June 2004
+ * Updated: 29th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_MAJOR      6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_MINOR      0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_REVISION   1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_EDIT       80
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_REVISION   2
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_EDIT       81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -159,8 +158,13 @@ public:
     /// exception specifications between this class and its parent
     ~status_code_propagating_exception_base() STLSOFT_NOEXCEPT
     {}
+#ifdef STLSOFT_COMPILER_IS_GCC
+    status_code_propagating_exception_base(class_type const&) = default;
+    class_type& operator =(class_type const&) = default;
+#else
 private:
     class_type& operator =(class_type const&);  // copy-assignment proscribed
+#endif
 /// @}
 };
 

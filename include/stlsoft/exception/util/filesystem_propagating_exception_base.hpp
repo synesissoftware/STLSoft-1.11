@@ -1,13 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exception/util/filesystem_propagating_exception_base.hpp
+ * File:    stlsoft/exception/util/filesystem_propagating_exception_base.hpp
  *
- * Purpose:     stlsoft::filesystem_propagating_exception_base class
- *              template
+ * Purpose: stlsoft::filesystem_propagating_exception_base class template
  *
- * Created:     1st January 2017
- * Updated:     11th March 2024
+ * Created: 1st January 2017
+ * Updated: 29th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
@@ -55,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_MAJOR     1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_MINOR     0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_REVISION  1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_EDIT      5
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_REVISION  2
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -173,8 +172,13 @@ public:
     /// exception specifications between this class and its parent
     ~filesystem_propagating_exception_base() STLSOFT_NOEXCEPT
     {}
+#ifdef STLSOFT_COMPILER_IS_GCC
+    filesystem_propagating_exception_base(class_type const&) = default;
+    class_type& operator =(class_type const&) = default;
+#else
 private:
     class_type& operator =(class_type const&);  // copy-assignment proscribed
+#endif
 /// @}
 };
 

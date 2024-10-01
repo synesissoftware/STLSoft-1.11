@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/exception/policy/windows_status_code_to_string_translation_policy.hpp (formerly in winstl/error/exceptions.hpp)
+ * File:    winstl/exception/policy/windows_status_code_to_string_translation_policy.hpp (formerly in winstl/error/exceptions.hpp)
  *
- * Purpose:     winstl::windows_status_code_to_string_translation_policy
- *              policy class
+ * Purpose: winstl::windows_status_code_to_string_translation_policy policy
+ *          class
  *
- * Created:     19th June 2004
- * Updated:     11th March 2024
+ * Created: 19th June 2004
+ * Updated: 28th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_EXCEPTION_POLICY_HPP_WINDOWS_STATUS_CODE_TO_STRING_TRANSLATION_POLICY_MAJOR      6
 # define WINSTL_VER_WINSTL_EXCEPTION_POLICY_HPP_WINDOWS_STATUS_CODE_TO_STRING_TRANSLATION_POLICY_MINOR      0
 # define WINSTL_VER_WINSTL_EXCEPTION_POLICY_HPP_WINDOWS_STATUS_CODE_TO_STRING_TRANSLATION_POLICY_REVISION   1
-# define WINSTL_VER_WINSTL_EXCEPTION_POLICY_HPP_WINDOWS_STATUS_CODE_TO_STRING_TRANSLATION_POLICY_EDIT       82
+# define WINSTL_VER_WINSTL_EXCEPTION_POLICY_HPP_WINDOWS_STATUS_CODE_TO_STRING_TRANSLATION_POLICY_EDIT       83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -154,7 +154,7 @@ public:
 
                 WINSTL_NS_QUAL(winstl_C_format_message_free_buff)(s);
             }
-            catch(...)
+            catch (...)
             {
                 WINSTL_NS_QUAL(winstl_C_format_message_free_buff)(s);
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/environment_block.hpp
+ * File:    winstl/system/environment_block.hpp
  *
- * Purpose:     Contains the basic_environment_block class.
+ * Purpose: Contains the basic_environment_block class.
  *
- * Created:     25th June 2004
- * Updated:     11th March 2024
+ * Created: 25th June 2004
+ * Updated: 27th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MAJOR       4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MINOR       0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_REVISION    8
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        73
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_REVISION    9
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -148,17 +148,17 @@ class basic_environment_block
 /// @{
 public:
     /// The value type
-    typedef C                                   value_type;
+    typedef C                                               value_type;
     /// The char type
-    typedef C                                   char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                   traits_type;
+    typedef T                                               traits_type;
     /// The allocator type
-    typedef A                                   allocator_type;
+    typedef A                                               allocator_type;
     /// The current specialisation of the type
-    typedef basic_environment_block<C, T, A>    class_type;
+    typedef basic_environment_block<C, T, A>                class_type;
     /// The size type
-    typedef ws_size_t                           size_type;
+    typedef ws_size_t                                       size_type;
 /// @}
 
 /// \name Construction
@@ -369,10 +369,11 @@ public:
  * \ingroup group__library__System
  */
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<   char_type
-                                            ,   allocator_type
-                                            ,   1024
-                                            >       buffer_type_;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        char_type
+    ,   1024
+    ,   allocator_type
+    >                                                       buffer_type_;
 
     buffer_type_    m_buffer;
 };

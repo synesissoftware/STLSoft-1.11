@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/file_functions.hpp
+ * File:    winstl/filesystem/file_functions.hpp
  *
- * Purpose:     Helper functions for file handling
+ * Purpose: Helper functions for file handling
  *
- * Created:     1st January 2005
- * Updated:     11th March 2024
+ * Created: 1st January 2005
+ * Updated: 27th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   18
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       73
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   19
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -221,13 +221,15 @@ load_text_file_impl(
 
     STLSOFT_STATIC_ASSERT(sizeof(filesys_traits_t));    // Fires if no corresponding filesystem_traits defined
 
-    scoped_handle<HANDLE>   h(  filesys_traits_t::create_file(  STLSOFT_NS_QUAL(c_str_ptr)(fileName)
-                                                            ,   GENERIC_READ
-                                                            ,   FILE_SHARE_READ
-                                                            ,   NULL
-                                                            ,   OPEN_EXISTING
-                                                            ,   0
-                                                            ,   NULL)
+    scoped_handle<HANDLE>   h(  filesys_traits_t::create_file(
+                                    STLSOFT_NS_QUAL(c_str_ptr)(fileName)
+                                ,   GENERIC_READ
+                                ,   FILE_SHARE_READ
+                                ,   NULL
+                                ,   OPEN_EXISTING
+                                ,   0
+                                ,   NULL
+                                )
                             ,   (void (STLSOFT_CDECL *)(HANDLE))&filesys_traits_t::close_handle // This cast required by VC++ 5
                             ,   INVALID_HANDLE_VALUE);
 
@@ -251,10 +253,11 @@ load_text_file_impl(
         {
 // TODO: Catch the out-of-memory exception and translate to a std::out_of_range()
 
-            typedef ::stlsoft::auto_buffer_old< char_2_type
-                                            ,   processheap_allocator<char_2_type>
-                                            ,   1024
-                                            >                   buffer_t;
+            typedef ::stlsoft::auto_buffer<
+                char_2_type
+            ,   1024
+            ,   processheap_allocator<char_2_type>
+            >                                               buffer_t;
 
             buffer_t    buffer(static_cast<ss_typename_type_k buffer_t::size_type>(size));
             DWORD       dw;

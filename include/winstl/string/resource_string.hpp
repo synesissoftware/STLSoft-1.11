@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/string/resource_string.hpp (was winstl_resource_string.h; originally MWResStr.h: ::SynesisWin)
+ * File:    winstl/string/resource_string.hpp (was winstl_resource_string.h; originally MWResStr.h: ::SynesisWin)
  *
- * Purpose:     basic_resource_string class.
+ * Purpose: basic_resource_string class.
  *
- * Created:     1st November 1994
- * Updated:     11th March 2024
+ * Created: 1st November 1994
+ * Updated: 30th September 2024
  *
- * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
- *              Unicode strings on Win9x.
+ * Thanks:  Ryan Ginstrom for suggesting the implementation for handling
+ *          Unicode strings on Win9x.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    2
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 13
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     103
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 14
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -165,7 +165,7 @@ try
 
   std::cerr << "Should never get here!!" << std::endl;
 }
-catch(MyX &x)
+catch (MyX &x)
 {
   std::cerr << "This is what's expected" << std::endl;
 }
@@ -337,7 +337,24 @@ private:
             {
                 exception_policy_type()("string did not load", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError(), MAKEINTRESOURCE(id), RT_STRING);
 
-                parent_class_type::operator =(string_type());
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+#  if _MSC_VER >= 1200
+#   pragma warning(push)
+#   pragma warning(disable : 4702)
+#  endif /* _MSC_VER */
+# endif /* compiler */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+                this->parent_class_type::clear();
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+#  if _MSC_VER >= 1200
+#   pragma warning(pop)
+#  endif /* _MSC_VER */
+# endif /* compiler */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }
         else

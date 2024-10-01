@@ -4,7 +4,7 @@
  * Purpose: Contains the definition of the CComBSTR_veneer template.
  *
  * Created: 1st October 2002
- * Updated: 11th March 2024
+ * Updated: 3rd September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MAJOR    5
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    3
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 10
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     93
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -259,8 +259,8 @@ public:
 
 
 /* /////////////////////////////////////////////////////////////////////////
-* backwards compatibility
-*/
+ * backwards compatibility
+ */
 
 #ifdef STLSOFT_OBSOLETE
 

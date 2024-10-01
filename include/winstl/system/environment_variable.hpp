@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/environment_variable.hpp
+ * File:    winstl/system/environment_variable.hpp
  *
- * Purpose:     Simple class that provides access to an environment variable.
+ * Purpose: Simple class that provides access to an environment variable.
  *
- * Created:     20th December 2002
- * Updated:     11th March 2024
+ * Created: 20th December 2002
+ * Updated: 27th September 2024
  *
- * Thanks to:   Pablo Aguilar for requesting size() and empty().
+ * Thanks:  Pablo Aguilar for requesting size() and empty().
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     87
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 4
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,8 +144,9 @@ public:
     /// The Boolean type
     typedef ws_bool_t                                       bool_type;
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
+    ,   auto_buffer_internal_size_calculator<char_type>::value
     ,   allocator_type
     >                                                       buffer_type_;
 

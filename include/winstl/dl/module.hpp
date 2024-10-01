@@ -568,7 +568,7 @@ inline /* static */ void module::unload(module::module_handle_type hmodule, modu
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             }
-            catch(...)
+            catch (...)
             {
                 STLSOFT_MESSAGE_ASSERT("Module feedback procedure threw an exception", 0);
 

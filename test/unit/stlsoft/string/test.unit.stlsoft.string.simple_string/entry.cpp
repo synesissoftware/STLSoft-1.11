@@ -480,7 +480,8 @@ namespace
 static void test_ctor_default()
 {
     {
-        string_t    s;
+        ss_constexpr_2020_k
+        string_t s;
 
         XTESTS_TEST_BOOLEAN_TRUE(s.empty());
         XTESTS_TEST_INTEGER_EQUAL(0u, s.size());

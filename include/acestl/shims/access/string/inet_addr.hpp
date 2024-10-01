@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/shims/access/string/inet_addr.hpp
+ * File:    acestl/shims/access/string/inet_addr.hpp
  *
- * Purpose:     Helper functions for ACE strings.
+ * Purpose: Helper functions for ACE strings.
  *
- * Created:     23rd September 2004
- * Updated:     11th March 2024
+ * Created: 23rd September 2004
+ * Updated: 27th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MAJOR      2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MINOR      0
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   12
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       60
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   13
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,9 +131,11 @@ namespace acestl_inet_addr_access_string_util
     ,   ACE_INET_Addr const&    addr
     )
     {
-        typedef ::stlsoft::auto_buffer_old< ACE_TCHAR
-                                        ,   ::stlsoft::allocator_selector<ACE_TCHAR>::allocator_type
-                                        >       buffer_t;
+        typedef ::stlsoft::auto_buffer<
+            ACE_TCHAR
+        ,   ::stlsoft::auto_buffer_internal_size_calculator<ACE_TCHAR>::value
+        ,   ::stlsoft::allocator_selector<ACE_TCHAR>::allocator_type
+        >                                                   buffer_t;
 
         buffer_t    buffer(buffer_t::internal_size());
 

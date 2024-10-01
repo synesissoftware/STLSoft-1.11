@@ -4,7 +4,7 @@
  * Purpose: Facade for the standard C Streams API.
  *
  * Created: 31st May 2009
- * Updated: 5th May 2024
+ * Updated: 28th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_MINOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_REVISION    4
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        26
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_STREAM_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -397,7 +397,7 @@ private: // Implementation
 
             return handle_adaptor_type::create(handle);
         }
-        catch(...)
+        catch (...)
         {
             handle_adaptor_type::destroy(handle);
 
@@ -440,7 +440,7 @@ private: // Implementation
 
             return handle_adaptor_type::create(handle);
         }
-        catch(...)
+        catch (...)
         {
             handle_adaptor_type::destroy(handle);
 

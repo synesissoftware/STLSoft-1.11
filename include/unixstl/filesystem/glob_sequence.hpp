@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/glob_sequence.hpp
+ * File:    unixstl/filesystem/glob_sequence.hpp
  *
- * Purpose:     glob_sequence class.
+ * Purpose: glob_sequence class.
  *
- * Created:     15th January 2002
- * Updated:     11th March 2024
+ * Created: 15th January 2002
+ * Updated: 27th September 2024
  *
- * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
- *              To Nevin Liber for pressing upon me the need to lead by
- *              example when writing books about good design/implementation.
+ * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
+ *          To Nevin Liber for pressing upon me the need to lead by example
+ *          when writing books about good design/implementation.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      180
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      181
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -266,11 +266,11 @@ class glob_sequence_exception
 /// @{
 public:
 #if defined(STLSOFT_COMPILER_IS_DMC)
-    typedef std::exception                  parent_class_type;
+    typedef std::exception                                  parent_class_type;
 #else /* ? compiler */
-    typedef STLSOFT_NS_QUAL_STD(exception)  parent_class_type;
+    typedef STLSOFT_NS_QUAL_STD(exception)                  parent_class_type;
 #endif /* compiler */
-    typedef glob_sequence_exception         class_type;
+    typedef glob_sequence_exception                         class_type;
 /// @}
 
 /// \name Construction
@@ -290,8 +290,10 @@ public:
 /// @{
 public:
 #if defined(STLSOFT_COMPILER_IS_DMC)
+
     char const* what() const throw()
 #else /* ? compiler */
+
     char const* what() const STLSOFT_NOEXCEPT
 #endif /* compiler */
     {
@@ -313,12 +315,6 @@ public:
 private:
     us_int_t const  m_globStatus;
     us_int_t const  m_errno;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type& operator =(class_type const&);
 /// @}
 };
 
@@ -541,8 +537,8 @@ public:
     ,   char_type const*    pattern
     ,   us_int_t            flags = files | directories
     );
-
 #else /* ? constructor form */
+
 # error Constructor form not recognised
 #endif /* constructor form */
 
@@ -563,6 +559,10 @@ public:
 
     /// Releases any acquired resources
     ~glob_sequence() STLSOFT_NOEXCEPT;
+
+private:
+    glob_sequence(class_type const&);
+    void operator =(class_type const&);
 /// @}
 
 /// \name Attributes
@@ -643,23 +643,17 @@ private:
 /// \name Members
 /// @{
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<   char_type const*
-                                            ,   allocator_type
-                                            ,   128
-                                            >       buffer_type_;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        char_type const*
+    ,   128
+    ,   allocator_type
+    >                                                       buffer_type_;
 
     us_int_t const      m_flags;
     char_type const**   m_base;
     us_size_t           m_cItems;
     buffer_type_        m_buffer;
     glob_t              m_glob;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    glob_sequence(class_type const&);
-    class_type const& operator =(class_type const&);
 /// @}
 };
 
@@ -989,13 +983,13 @@ glob_sequence::init_glob_(
             directory = NULL;
         }
 
-        bool const                          reqEnd  =   (NULL == directory) ? false : !traits_type::has_dir_end(directory);
-        size_type const                     dirLen  =   (NULL == directory) ? 0u : traits_type::str_len(directory);
-        size_type const                     patLen  =   traits_type::str_len(pattern);
-        size_type const                     baseLen =   dirLen + (reqEnd ? 1 : 0);
-        size_type const                     totLen  =   baseLen + patLen;
+        bool const              reqEnd  =   (NULL == directory) ? false : !traits_type::has_dir_end(directory);
+        size_type const         dirLen  =   (NULL == directory) ? 0u : traits_type::str_len(directory);
+        size_type const         patLen  =   traits_type::str_len(pattern);
+        size_type const         baseLen =   dirLen + (reqEnd ? 1 : 0);
+        size_type const         totLen  =   baseLen + patLen;
 
-        auto_buffer<char_type>              scratch_(totLen + 1);
+        auto_buffer<char_type>  scratch_(totLen + 1);
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
 
@@ -1101,13 +1095,13 @@ glob_sequence::init_glob_2_(
         }
         else
         {
-            bool const                          reqEnd  =   !traits_type::has_dir_end(directory);
-            size_type const                     dirLen  =   traits_type::str_len(directory);
-            size_type const                     patLen  =   traits_type::str_len(pattern0);
-            size_type const                     baseLen =   dirLen + (reqEnd ? 1 : 0);
-            size_type const                     totLen  =   baseLen + patLen;
+            bool const              reqEnd  =   !traits_type::has_dir_end(directory);
+            size_type const         dirLen  =   traits_type::str_len(directory);
+            size_type const         patLen  =   traits_type::str_len(pattern0);
+            size_type const         baseLen =   dirLen + (reqEnd ? 1 : 0);
+            size_type const         totLen  =   baseLen + patLen;
 
-            auto_buffer<char_type>              scratch_(totLen + 1);
+            auto_buffer<char_type>  scratch_(totLen + 1);
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
 
@@ -1464,8 +1458,8 @@ glob_sequence::init_glob_3_(
         return cItems;
     }
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
