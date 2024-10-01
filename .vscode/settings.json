@@ -1,9 +1,4 @@
 {
-	"[shellscript]": {
-		"editor.insertSpaces": true,
-		"editor.rulers": [ 60, 76 ],
-		"editor.tabSize": 2,
-	},
 	"[bat]": {
 		"editor.insertSpaces": true,
 		"editor.rulers": [ 60, 76 ],
@@ -27,8 +22,17 @@
 		"editor.insertSpaces": true,
 		"editor.tabSize": 2,
 	},
+	"[markdown]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2,
+	},
 	"[ruby]": {
 		"editor.insertSpaces": true,
+		"editor.tabSize": 2,
+	},
+	"[shellscript]": {
+		"editor.insertSpaces": true,
+		"editor.rulers": [ 60, 76 ],
 		"editor.tabSize": 2,
 	},
 	"cmake.configureOnOpen": false,

@@ -4,6 +4,18 @@
 ----
 
 
+1st October 2024 - 1.11.1-alpha16 released
+------------------------------------------
+
+ * `auto_buffer` improvements;
+ * `constexpr` applications;
+ * Time function enhancements;
+ * Brought over previously unreleased example and test programs;
+ * Significant simplification of CMake support;
+ * Boilerplate file improvements;
+ * Miscellaneous improvements;
+
+
 2nd September 2024 - 1.11.1-alpha15 released
 --------------------------------------------
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.system.environment_block/entry.cpp
+ * File:    test.component.stlsoft.system.environment_block/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::environment_block`.
  *
  * Created: 11th August 2010
- * Updated: 27th September 2024
+ * Updated: 1st October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
