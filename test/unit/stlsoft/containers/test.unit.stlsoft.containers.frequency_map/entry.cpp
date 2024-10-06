@@ -49,6 +49,11 @@ namespace
 {
 
     static void test_ctor_default(void);
+#if __cplusplus >= 201103L
+
+    static void test_ctor_initializer_list_1(void);
+    static void test_ctor_initializer_list_2(void);
+#endif
     static void test_clear(void);
     static void test_merge(void);
     static void test_op_addassign(void);
@@ -74,6 +79,11 @@ int main(int argc, char **argv)
     if (XTESTS_START_RUNNER("test.unit.stlsoft.container.frequency_map", verbosity))
     {
         XTESTS_RUN_CASE(test_ctor_default);
+#if __cplusplus >= 201103L
+
+        XTESTS_RUN_CASE(test_ctor_initializer_list_1);
+        XTESTS_RUN_CASE(test_ctor_initializer_list_2);
+#endif
         XTESTS_RUN_CASE(test_clear);
         XTESTS_RUN_CASE(test_merge);
         XTESTS_RUN_CASE(test_op_addassign);
@@ -182,6 +192,121 @@ static void test_ctor_default()
     XTESTS_TEST_INTEGER_EQUAL(0u, fm[2]);
     XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
 }
+
+#if __cplusplus >= 201103L
+
+static void test_ctor_initializer_list_1()
+{
+    {
+        fm_ordered_int_t fm = {};
+
+        XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(2));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[2]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+    }
+
+    {
+        fm_ordered_int_t fm = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, };
+
+        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
+        XTESTS_TEST_INTEGER_EQUAL(20u, fm.size());
+        XTESTS_TEST_INTEGER_EQUAL(20u, fm.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(0));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[0]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+    }
+
+    {
+        fm_ordered_int_t fm = { 2, 2 };
+
+        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.size());
+        XTESTS_TEST_INTEGER_EQUAL(2u, fm.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
+        XTESTS_TEST_INTEGER_EQUAL(2u, fm.count(2));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
+        XTESTS_TEST_INTEGER_EQUAL(2u, fm[2]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+    }
+}
+
+static void test_ctor_initializer_list_2()
+{
+    {
+        fm_ordered_int_t fm = { { 2, 2 }, { 3, 1 } };
+
+        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
+        XTESTS_TEST_INTEGER_EQUAL(2u, fm.size());
+        XTESTS_TEST_INTEGER_EQUAL(3u, fm.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
+        XTESTS_TEST_INTEGER_EQUAL(2u, fm.count(2));
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(3));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
+        XTESTS_TEST_INTEGER_EQUAL(2u, fm[2]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[3]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+    }
+
+    {
+        fm_ordered_int_t fm = { { 1, 1 }, { 2, 1 }, { 3, 3 }, { 4, 4 } };
+
+        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
+        XTESTS_TEST_INTEGER_EQUAL(4u, fm.size());
+        XTESTS_TEST_INTEGER_EQUAL(9u, fm.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
+        XTESTS_TEST_INTEGER_EQUAL(3u, fm.count(3));
+        XTESTS_TEST_INTEGER_EQUAL(4u, fm.count(4));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
+        XTESTS_TEST_INTEGER_EQUAL(3u, fm[3]);
+        XTESTS_TEST_INTEGER_EQUAL(4u, fm[4]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+    }
+}
+#endif
 
 static void test_clear()
 {

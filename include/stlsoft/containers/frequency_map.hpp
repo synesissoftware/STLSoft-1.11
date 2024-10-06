@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR     2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     8
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     9
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      53
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -268,6 +268,69 @@ public: // construction
 
         STLSOFT_ASSERT(is_valid());
     }
+#if __cplusplus >= 201103L
+
+    /// Creates an instance containing the keys specified in `init_list`
+    frequency_map(
+        std::initializer_list<key_type> init_list
+    )
+        : m_map()
+        , m_total(0)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+
+        for (auto b = init_list.begin(); init_list.end() != b; ++b)
+        {
+            push(*b);
+        }
+
+        STLSOFT_ASSERT(is_valid());
+    }
+
+    /// Creates an instance containing the key+count pairs specified in
+    /// `init_list`
+    frequency_map(
+        std::initializer_list<value_type> init_list
+    )
+        : m_map()
+        , m_total(0)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+
+        for (auto b = init_list.begin(); init_list.end() != b; ++b)
+        {
+            push_n((*b).first, (*b).second);
+        }
+
+        STLSOFT_ASSERT(is_valid());
+    }
+#endif
+#ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+
+    /// Constructs an instance by taking over the state of the instance
+    /// \c rhs
+    ///
+    /// \param rhs The instance whose state will be taken over. Upon return
+    ///   \c rhs will be <code>empty()</code>
+    frequency_map(class_type&& rhs) STLSOFT_NOEXCEPT
+        : m_map(std::move(rhs.m_map))
+        , m_total(rhs.m_total)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+
+        rhs.m_total = 0;
+    }
+
+    /// Constructs an instance as a copy of the instance \c rhs
+    ///
+    /// \param rhs The instance whose state will be taken copied
+    frequency_map(class_type const& rhs)
+        : m_map(rhs.m_map)
+        , m_total(rhs.m_total)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+    }
+#endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 
 public: // operations
     /// Pushes an entry onto the map
