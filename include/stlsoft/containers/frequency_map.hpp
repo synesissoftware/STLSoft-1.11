@@ -469,6 +469,12 @@ public: // operations
     }
 
 public: // Search
+    /// Determines whether the given key is held in the instance
+    bool contains(key_type const& key) const STLSOFT_NOEXCEPT
+    {
+        return m_map.end() != m_map.find(key);
+    }
+
     /// Returns an iterator for the entry representing the given key, or
     /// <code>end()</code> if no such entry exists.
     const_iterator find(key_type const& key) const

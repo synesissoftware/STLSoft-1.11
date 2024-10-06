@@ -204,6 +204,30 @@ static void test_ctor_initializer_list_1()
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
 
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(0));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(1));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(2));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(3));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(4));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(5));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(6));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(7));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(8));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(9));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(10));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(11));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(12));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(13));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(14));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(15));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(16));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(17));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(18));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(19));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
@@ -224,6 +248,30 @@ static void test_ctor_initializer_list_1()
         XTESTS_TEST_INTEGER_EQUAL(20u, fm.size());
         XTESTS_TEST_INTEGER_EQUAL(20u, fm.total());
 
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(0));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(5));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(6));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(7));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(8));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(9));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(10));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(11));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(12));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(13));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(14));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(15));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(16));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(17));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(18));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(19));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+
         XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(0));
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
         XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
@@ -243,6 +291,30 @@ static void test_ctor_initializer_list_1()
         XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
         XTESTS_TEST_INTEGER_EQUAL(1u, fm.size());
         XTESTS_TEST_INTEGER_EQUAL(2u, fm.total());
+
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(0));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(1));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(3));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(4));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(5));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(6));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(7));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(8));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(9));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(10));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(11));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(12));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(13));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(14));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(15));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(16));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(17));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(18));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(19));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
 
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
@@ -267,6 +339,30 @@ static void test_ctor_initializer_list_2()
         XTESTS_TEST_INTEGER_EQUAL(2u, fm.size());
         XTESTS_TEST_INTEGER_EQUAL(3u, fm.total());
 
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(0));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(1));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(4));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(5));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(6));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(7));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(8));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(9));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(10));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(11));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(12));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(13));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(14));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(15));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(16));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(17));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(18));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(19));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
@@ -288,6 +384,30 @@ static void test_ctor_initializer_list_2()
         XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
         XTESTS_TEST_INTEGER_EQUAL(4u, fm.size());
         XTESTS_TEST_INTEGER_EQUAL(9u, fm.total());
+
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(0));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(5));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(6));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(7));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(8));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(9));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(10));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(11));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(12));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(13));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(14));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(15));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(16));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(17));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(18));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(19));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
 
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
         XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
@@ -970,7 +1090,6 @@ static void test_push(void)
             XTESTS_TEST(std::make_pair(105, 1u) == l[1]);
         }
     }
-
 #endif /* C++ */
 }
 
@@ -1179,7 +1298,6 @@ static void test_swap_std()
         XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
     }
 }
-
 
 } // anonymous namespace
 
