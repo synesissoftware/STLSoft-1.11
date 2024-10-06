@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 3rd August 2024
+ * Updated: 6th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,6 +48,7 @@
 namespace
 {
 
+    static void test_ctor_default(void);
     static void test_clear(void);
     static void test_merge(void);
     static void test_op_addassign(void);
@@ -72,6 +73,7 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.container.frequency_map", verbosity))
     {
+        XTESTS_RUN_CASE(test_ctor_default);
         XTESTS_RUN_CASE(test_clear);
         XTESTS_RUN_CASE(test_merge);
         XTESTS_RUN_CASE(test_op_addassign);
@@ -159,6 +161,27 @@ namespace
 #endif /* C++ */
 
 
+
+static void test_ctor_default()
+{
+    fm_ordered_int_t fm;
+
+    XTESTS_TEST_BOOLEAN_TRUE(fm.empty());
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm.total());
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(0));
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(1));
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(2));
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm[0]);
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm[1]);
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm[2]);
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+}
 
 static void test_clear()
 {
