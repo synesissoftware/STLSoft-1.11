@@ -5,7 +5,7 @@
  *          it contains.
  *
  * Created: 1st October 2005
- * Updated: 5th October 2024
+ * Updated: 6th October 2024
  *
  * Home:    http://stlsoft.org/
  *
