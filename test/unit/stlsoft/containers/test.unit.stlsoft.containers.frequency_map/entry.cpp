@@ -31,6 +31,9 @@
 #include <platformstl/performance/performance_counter.hpp>
 
 /* Standard C++ header files */
+#if __cplusplus >= 201103L
+# include <list>
+#endif
 #include <numeric>
 #include <stdexcept>
 #include <string>
@@ -53,6 +56,11 @@ namespace
 
     static void test_ctor_initializer_list_1(void);
     static void test_ctor_initializer_list_2(void);
+#endif
+    static void test_ctor_range_pointers_1(void);
+#if __cplusplus >= 201103L
+
+    static void test_ctor_range_list_iters_1(void);
 #endif
     static void test_clear(void);
     static void test_merge(void);
@@ -83,6 +91,11 @@ int main(int argc, char **argv)
 
         XTESTS_RUN_CASE(test_ctor_initializer_list_1);
         XTESTS_RUN_CASE(test_ctor_initializer_list_2);
+#endif
+        XTESTS_RUN_CASE(test_ctor_range_pointers_1);
+#if __cplusplus >= 201103L
+
+        XTESTS_RUN_CASE(test_ctor_range_list_iters_1);
 #endif
         XTESTS_RUN_CASE(test_clear);
         XTESTS_RUN_CASE(test_merge);
@@ -425,6 +438,121 @@ static void test_ctor_initializer_list_2()
         XTESTS_TEST_INTEGER_EQUAL(4u, fm[4]);
         XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
     }
+}
+#endif
+
+static void test_ctor_range_pointers_1()
+{
+    const int VALUES[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, };
+
+    {
+#if __cplusplus >= 201103L
+
+        fm_ordered_int_t fm = { std::begin(VALUES), std::end(VALUES) };
+#else
+
+        fm_ordered_int_t fm = { &VALUES[0] + 0, &VALUES[0] + STLSOFT_NUM_ELEMENTS(VALUES) };
+#endif
+
+        XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
+        XTESTS_TEST_INTEGER_EQUAL(20u, fm.size());
+        XTESTS_TEST_INTEGER_EQUAL(20u, fm.total());
+
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(0));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(5));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(6));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(7));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(8));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(9));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(10));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(11));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(12));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(13));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(14));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(15));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(16));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(17));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(18));
+        XTESTS_TEST_BOOLEAN_TRUE(fm.contains(19));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
+        XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(0));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(3));
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(4));
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-1]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[0]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[3]);
+        XTESTS_TEST_INTEGER_EQUAL(1u, fm[4]);
+        XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
+    }
+}
+
+#if __cplusplus >= 201103L
+
+static void test_ctor_range_list_iters_1()
+{
+    std::list<int> VALUES = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, };
+
+    fm_ordered_int_t fm(VALUES.begin(), VALUES.end());
+
+    XTESTS_TEST_BOOLEAN_FALSE(fm.empty());
+    XTESTS_TEST_INTEGER_EQUAL(20u, fm.size());
+    XTESTS_TEST_INTEGER_EQUAL(20u, fm.total());
+
+    XTESTS_TEST_BOOLEAN_FALSE(fm.contains(-1));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(0));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(1));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(2));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(3));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(4));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(5));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(6));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(7));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(8));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(9));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(10));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(11));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(12));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(13));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(14));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(15));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(16));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(17));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(18));
+    XTESTS_TEST_BOOLEAN_TRUE(fm.contains(19));
+    XTESTS_TEST_BOOLEAN_FALSE(fm.contains(20));
+    XTESTS_TEST_BOOLEAN_FALSE(fm.contains(21));
+
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(0));
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(100));
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(1));
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(2));
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(3));
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm.count(4));
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm.count(-2));
+
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm[-1]);
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm[0]);
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm[100]);
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm[1]);
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm[2]);
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm[3]);
+    XTESTS_TEST_INTEGER_EQUAL(1u, fm[4]);
+    XTESTS_TEST_INTEGER_EQUAL(0u, fm[-2]);
 }
 #endif
 

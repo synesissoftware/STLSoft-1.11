@@ -268,6 +268,29 @@ public: // construction
 
         STLSOFT_ASSERT(is_valid());
     }
+
+    /// Creates an instance containing the keys specified in the range
+    /// defined by `[from, to)`
+    ///
+    /// \param from The start of the range
+    /// \param to The end of the range
+    template <ss_typename_param_k I>
+    frequency_map(
+        I   from
+    ,   I   to
+    )
+        : m_map()
+        , m_total(0)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+
+        for (I b = from; to != b; ++b)
+        {
+            push(*b);
+        }
+
+        STLSOFT_ASSERT(is_valid());
+    }
 #if __cplusplus >= 201103L
 
     /// Creates an instance containing the keys specified in `init_list`
