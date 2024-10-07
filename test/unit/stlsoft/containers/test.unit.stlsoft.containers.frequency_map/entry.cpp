@@ -195,7 +195,6 @@ namespace
         }
     };
 
-
 #if __cplusplus >= 201103L
 
     template <
@@ -922,7 +921,6 @@ static void test_merge()
         XTESTS_TEST_INTEGER_EQUAL(7u, fm1[-2]);
         XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
     }
-
 #if __cplusplus >= 201103L
 
     {
@@ -1111,7 +1109,6 @@ static void test_op_addassign(void)
             XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
         }
     }
-
 #if __cplusplus >= 201103L
 
     {
@@ -1257,7 +1254,6 @@ static void test_op_add(void)
             XTESTS_TEST_INTEGER_EQUAL(7u, fm3[-2]);
         }
     }
-
 #if __cplusplus >= 201103L
 
     {
@@ -1333,7 +1329,6 @@ static void test_push(void)
 
         XTESTS_TEST(fm.end() == fm.begin());
         XTESTS_TEST(fmc.end() == fmc.begin());
-
 #if __cplusplus >= 201103L
 
         {
@@ -1363,7 +1358,6 @@ static void test_push(void)
 
         XTESTS_TEST(fm.end() != fm.begin());
         XTESTS_TEST(fmc.end() != fmc.begin());
-
 #if __cplusplus >= 201103L
 
         {
@@ -1395,7 +1389,6 @@ static void test_push(void)
 
         XTESTS_TEST(fm.end() != fm.begin());
         XTESTS_TEST(fmc.end() != fmc.begin());
-
 #if __cplusplus >= 201103L
 
         {
@@ -1428,7 +1421,6 @@ static void test_push(void)
 
         XTESTS_TEST(fm.end() != fm.begin());
         XTESTS_TEST(fmc.end() != fmc.begin());
-
 #if __cplusplus >= 201103L
 
         {
@@ -1441,7 +1433,6 @@ static void test_push(void)
         }
 #endif /* C++ */
     }
-
 #if __cplusplus >= 201103L
 
     {
@@ -1771,7 +1762,6 @@ static void test_swap_std()
             XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
         }
     }
-
 #if __cplusplus >= 201103L
 
     {
