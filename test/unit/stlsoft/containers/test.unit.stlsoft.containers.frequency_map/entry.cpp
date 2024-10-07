@@ -38,7 +38,7 @@
 #include <stdexcept>
 #include <string>
 #include <type_traits>
-#include <vector> // for `std::begin()`, `std::end()`
+#include <vector>
 
 /* Standard C header files */
 #include <stdlib.h>
@@ -69,6 +69,7 @@ namespace
     static void test_push(void);
     static void test_swap(void);
     static void test_swap_std(void);
+    static void test_iteration_order_1(void);
 
 } // anonymous namespace
 
@@ -104,6 +105,7 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_push);
         XTESTS_RUN_CASE(test_swap);
         XTESTS_RUN_CASE(test_swap_std);
+        XTESTS_RUN_CASE(test_iteration_order_1);
 
         XTESTS_PRINT_RESULTS();
 
@@ -111,6 +113,32 @@ int main(int argc, char **argv)
     }
 
     return retCode;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * utility functions
+ */
+
+namespace
+{
+
+    template<
+        ss_typename_param_k C
+    ,   ss_typename_param_k F
+    >
+    C
+    to_ordered(
+        C const&    c
+    ,   F           f
+    )
+    {
+        C r(c);
+
+        std::sort(r.begin(), r.end(), f);
+
+        return r;
+    }
 }
 
 
@@ -129,6 +157,43 @@ namespace
     ,   stlsoft::frequency_map_traits_unordered<int>
     >                                                       fm_unordered_int_t;
 #endif /* C++ */
+    typedef std::pair<
+        int
+    ,   std::uintptr_t
+    >                                                       pair_t;
+    typedef std::vector<pair_t>                             pairs_t;
+
+    struct compare_value_type
+    {
+    public:
+        bool operator ()(
+            pair_t const&   lhs
+        ,   pair_t const&   rhs
+        ) const
+        {
+            if (lhs.first < rhs.first)
+            {
+                return true;
+            }
+
+            if (rhs.first < lhs.first)
+            {
+                return false;
+            }
+
+            if (lhs.second < rhs.second)
+            {
+                return true;
+            }
+
+            if (rhs.second < lhs.second)
+            {
+                return false;
+            }
+
+            return false;
+        }
+    };
 
 
 #if __cplusplus >= 201103L
@@ -1809,6 +1874,39 @@ static void test_swap_std()
             XTESTS_TEST_INTEGER_EQUAL(1u, fm1[2]);
             XTESTS_TEST_INTEGER_EQUAL(7u, fm2[-2]);
         }
+    }
+#endif
+}
+
+static void test_iteration_order_1()
+{
+#if __cplusplus >= 201103L
+
+    {
+        fm_ordered_int_t fm = { 1, 2, 3, 4, 5, 4, 3, 2, 1 };
+
+        pairs_t const actual(fm.begin(), fm.end());
+        pairs_t const actual_ordered = to_ordered(actual, compare_value_type());
+
+        pairs_t const expected = { { 1, 2 }, { 2, 2 }, { 3, 2 }, { 4, 2 }, { 5, 1 }};
+        pairs_t const expected_ordered = to_ordered(expected, compare_value_type());
+
+        XTESTS_TEST(expected_ordered == actual_ordered);
+        XTESTS_TEST(expected == actual);
+    }
+
+    {
+        fm_unordered_int_t fm = { 1, 2, 3, 4, 5, 4, 3, 2, 1 };
+
+        pairs_t const actual(fm.begin(), fm.end());
+
+        pairs_t const actual_ordered = to_ordered(actual, compare_value_type());
+
+        pairs_t const expected = { { 1, 2 }, { 2, 2 }, { 3, 2 }, { 4, 2 }, { 5, 1 }};
+
+        pairs_t const expected_ordered = to_ordered(expected, compare_value_type());
+
+        XTESTS_TEST(expected_ordered == actual_ordered);
     }
 #endif
 }
