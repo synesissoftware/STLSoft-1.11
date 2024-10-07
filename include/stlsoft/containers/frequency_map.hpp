@@ -5,7 +5,7 @@
  *          it contains.
  *
  * Created: 1st October 2005
- * Updated: 6th October 2024
+ * Updated: 7th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR     2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      54
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION  2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -136,7 +136,7 @@ struct frequency_map_traits_base
 
 #elif defined(STLSOFT_UPTR_T_BASE_TYPE)
 
-    typedef uintptr_t                                       count_type;
+    typedef STLSOFT_UPTR_T_BASE_TYPE                        count_type;
 #else
 
     typedef uint32_t                                        count_type;
@@ -261,7 +261,8 @@ public:
 public: // construction
     /// Creates an empty instance
     frequency_map()
-        : m_map()
+        : stl_collection_tag()
+        , m_map()
         , m_total(0)
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
@@ -279,7 +280,8 @@ public: // construction
         I   from
     ,   I   to
     )
-        : m_map()
+        : stl_collection_tag()
+        , m_map()
         , m_total(0)
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
@@ -297,7 +299,8 @@ public: // construction
     frequency_map(
         std::initializer_list<key_type> init_list
     )
-        : m_map()
+        : stl_collection_tag()
+        , m_map()
         , m_total(0)
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
@@ -315,7 +318,8 @@ public: // construction
     frequency_map(
         std::initializer_list<value_type> init_list
     )
-        : m_map()
+        : stl_collection_tag()
+        , m_map()
         , m_total(0)
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
@@ -336,7 +340,8 @@ public: // construction
     /// \param rhs The instance whose state will be taken over. Upon return
     ///   \c rhs will be <code>empty()</code>
     frequency_map(class_type&& rhs) STLSOFT_NOEXCEPT
-        : m_map(std::move(rhs.m_map))
+        : stl_collection_tag()
+        , m_map(std::move(rhs.m_map))
         , m_total(rhs.m_total)
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
@@ -348,7 +353,8 @@ public: // construction
     ///
     /// \param rhs The instance whose state will be taken copied
     frequency_map(class_type const& rhs)
-        : m_map(rhs.m_map)
+        : stl_collection_tag(rhs)
+        , m_map(rhs.m_map)
         , m_total(rhs.m_total)
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
