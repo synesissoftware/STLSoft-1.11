@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR      3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR      5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION   4
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT       63
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR      6
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION   1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -302,6 +302,17 @@ public: // construction
         STLSOFT_ASSERT(is_valid());
     }
 #endif /* member template support? */
+#ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+
+    /// Constructs an instance by taking over the state of instance `rhs`
+    shared_ptr(class_type&& rhs)
+        : m_p(rhs.m_p)
+        , m_pc(rhs.m_pc)
+    {
+        rhs.m_p = NULL;
+        rhs.m_pc = NULL;
+    }
+#endif
 
     /// Destructor
     ~shared_ptr() STLSOFT_NOEXCEPT
