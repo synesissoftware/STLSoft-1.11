@@ -26,7 +26,7 @@ int main(int /* argc */, char* /* argv */[])
     {
 #ifdef UNIXSTL_OS_IS_LINUX
 
-        double const r = unixstl::dl_call<double>("libm.so", "fabs", -1.0);
+        double const r = unixstl::dl_call<double>("libm.so.6", "fabs", -123.0);
 
         fprintf(stdout, "libm.so:fabs: %f\n", r);
 #endif
