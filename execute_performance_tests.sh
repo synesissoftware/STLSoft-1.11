@@ -4,6 +4,7 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
+MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
 ExpandWidth=0
 RunMake=1
@@ -81,7 +82,7 @@ if [ $RunMake -ne 0 ]; then
 
   cd $CMakeDir
 
-  make
+  $MakeCmd
   status=$?
 else
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/byte_format_functions.hpp
+ * File:    stlsoft/conversion/byte_format_functions.hpp
  *
- * Purpose:     Byte formatting functions.
+ * Purpose: Byte formatting functions.
  *
- * Created:     23rd July 2006
- * Updated:     11th March 2024
+ * Created: 23rd July 2006
+ * Updated: 8th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MINOR     1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  11
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      36
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  12
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -296,13 +296,13 @@ format_bytes(
 
         if (size <= cchBuff)
         {
+            byte_t          remaining[32];
             byte_t const*   py =   static_cast<byte_t const*>(pv);
             ss_size_t       lineIndex;
             ss_size_t       groupIndex;
 
             for (lineIndex = 0, groupIndex = 0; 0 != cb; py += byteGrouping)
             {
-                byte_t  remaining[32];
 #ifdef STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF
                 int     cch;
 #endif /* STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */

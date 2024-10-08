@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/dl/dl_call.hpp
+ * File:    unixstl/dl/dl_call.hpp
  *
- * Purpose:     Invocation of functions in dynamic libraries.
+ * Purpose: Invocation of functions in dynamic libraries.
  *
- * Created:     sometime in 1998
- * Updated:     11th March 2024
+ * Created: sometime in 1998
+ * Updated: 8th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    13
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        58
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    14
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,6 +147,10 @@ public:
     virtual ~missing_entry_point_exception() STLSOFT_NOEXCEPT_STDOVR
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#if __cplusplus >= 201103L
+public:
+    missing_entry_point_exception(class_type const&) = default;
+#endif
 private:
     class_type& operator =(class_type const&);  // copy-assignment proscribed
 /// @}

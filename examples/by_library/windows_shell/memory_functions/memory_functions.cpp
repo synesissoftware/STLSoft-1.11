@@ -84,6 +84,11 @@ int main()
         size_t  cb3 =   winstl::SHMemGetSize(p3);
         size_t  cb4 =   winstl::SHMemGetSize(p4);
 
+        STLSOFT_SUPPRESS_UNUSED(cb1);
+        STLSOFT_SUPPRESS_UNUSED(cb2);
+        STLSOFT_SUPPRESS_UNUSED(cb3);
+        STLSOFT_SUPPRESS_UNUSED(cb4);
+
         p1  =   winstl::SHMemRealloc(p1, 0);
         p2  =   winstl::SHMemRealloc(p2, 1);
         p3  =   winstl::SHMemRealloc(p3, 100);

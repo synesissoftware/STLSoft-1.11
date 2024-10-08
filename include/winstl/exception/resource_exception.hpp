@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/exception/resource_exception.hpp (formerly in winstl/error/exceptions.hpp)
+ * File:    winstl/exception/resource_exception.hpp (formerly in winstl/error/exceptions.hpp)
  *
- * Purpose:     winstl::resource_exception class
+ * Purpose: winstl::resource_exception class
  *
- * Created:     19th June 2004
- * Updated:     11th March 2024
+ * Created: 19th June 2004
+ * Updated: 8th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_MAJOR       5
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_MINOR       0
-# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_REVISION    1
-# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_EDIT        75
+# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_REVISION    2
+# define WINSTL_VER_WINSTL_EXCEPTION_HPP_RESOURCE_EXCEPTION_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,6 +139,9 @@ public:
         , m_resourceId(resourceId)
         , m_resourceType(resourceType)
     {}
+#if __cplusplus >= 201103L
+    resource_exception(class_type const&) = default;
+#endif
 private:
     class_type& operator =(class_type const&);  // copy-assignment proscribed
 /// @}
