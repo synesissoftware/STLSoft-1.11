@@ -1,12 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/containers/frequency_map.hpp
+ * File:    stlsoft/containers/frequency_map.hpp
  *
- * Purpose:     A container that measures the frequency of the unique elements it contains.
+ * Purpose: A container that measures the frequency of the unique elements
+ *          it contains.
  *
- * Created:     1st October 2005
- * Updated:     11th March 2024
+ * Created: 1st October 2005
+ * Updated: 7th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -53,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR     2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     8
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      52
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR     9
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION  2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -135,7 +136,7 @@ struct frequency_map_traits_base
 
 #elif defined(STLSOFT_UPTR_T_BASE_TYPE)
 
-    typedef uintptr_t                                       count_type;
+    typedef STLSOFT_UPTR_T_BASE_TYPE                        count_type;
 #else
 
     typedef uint32_t                                        count_type;
@@ -258,15 +259,107 @@ public:
     typedef ss_bool_t                                       bool_type;
 
 public: // construction
-    /// Creates an instance of the map
+    /// Creates an empty instance
     frequency_map()
-        : m_map()
+        : stl_collection_tag()
+        , m_map()
         , m_total(0)
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
 
         STLSOFT_ASSERT(is_valid());
     }
+
+    /// Creates an instance containing the keys specified in the range
+    /// defined by `[from, to)`
+    ///
+    /// \param from The start of the range
+    /// \param to The end of the range
+    template <ss_typename_param_k I>
+    frequency_map(
+        I   from
+    ,   I   to
+    )
+        : stl_collection_tag()
+        , m_map()
+        , m_total(0)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+
+        for (I b = from; to != b; ++b)
+        {
+            push(*b);
+        }
+
+        STLSOFT_ASSERT(is_valid());
+    }
+#if __cplusplus >= 201103L
+
+    /// Creates an instance containing the keys specified in `init_list`
+    frequency_map(
+        std::initializer_list<key_type> init_list
+    )
+        : stl_collection_tag()
+        , m_map()
+        , m_total(0)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+
+        for (auto b = init_list.begin(); init_list.end() != b; ++b)
+        {
+            push(*b);
+        }
+
+        STLSOFT_ASSERT(is_valid());
+    }
+
+    /// Creates an instance containing the key+count pairs specified in
+    /// `init_list`
+    frequency_map(
+        std::initializer_list<value_type> init_list
+    )
+        : stl_collection_tag()
+        , m_map()
+        , m_total(0)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+
+        for (auto b = init_list.begin(); init_list.end() != b; ++b)
+        {
+            push_n((*b).first, (*b).second);
+        }
+
+        STLSOFT_ASSERT(is_valid());
+    }
+#endif
+#ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+
+    /// Constructs an instance by taking over the state of the instance
+    /// \c rhs
+    ///
+    /// \param rhs The instance whose state will be taken over. Upon return
+    ///   \c rhs will be <code>empty()</code>
+    frequency_map(class_type&& rhs) STLSOFT_NOEXCEPT
+        : stl_collection_tag()
+        , m_map(std::move(rhs.m_map))
+        , m_total(rhs.m_total)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+
+        rhs.m_total = 0;
+    }
+
+    /// Constructs an instance as a copy of the instance \c rhs
+    ///
+    /// \param rhs The instance whose state will be taken copied
+    frequency_map(class_type const& rhs)
+        : stl_collection_tag(rhs)
+        , m_map(rhs.m_map)
+        , m_total(rhs.m_total)
+    {
+        STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<count_type>::value);
+    }
+#endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 
 public: // operations
     /// Pushes an entry onto the map
@@ -387,6 +480,7 @@ public: // operations
         return *this;
     }
 
+    /// Merges in all entries from the given map
     class_type& operator +=(class_type const& rhs)
     {
         return merge(rhs);
@@ -404,6 +498,12 @@ public: // operations
     }
 
 public: // Search
+    /// Determines whether the given key is held in the instance
+    bool contains(key_type const& key) const STLSOFT_NOEXCEPT
+    {
+        return m_map.end() != m_map.find(key);
+    }
+
     /// Returns an iterator for the entry representing the given key, or
     /// <code>end()</code> if no such entry exists.
     const_iterator find(key_type const& key) const

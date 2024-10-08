@@ -1,8 +1,13 @@
-
-/*
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    by_concept/string_access_shims/time_functions.cpp
+ *
+ * Purpose: C++ example program demonstrating use of string access shims.
+ *
  * Created: 27th January 2017
- * Updated: 1st October 2024
- */
+ * Updated: 6th October 2024
+ *
+ * ////////////////////////////////////////////////////////////////////// */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -68,11 +73,14 @@ int main()
 {
     //  std::chrono::system_clock
 
+#if __cplusplus >= 201103L
+
     {
         auto const now = std::chrono::system_clock::now();
 
         output_by("std::chrono::system_clock", now);
     }
+#endif
 
 
     // struct tm

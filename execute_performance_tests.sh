@@ -5,6 +5,7 @@ Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 
+ExpandWidth=0
 RunMake=1
 
 
@@ -14,6 +15,11 @@ RunMake=1
 while [[ $# -gt 0 ]]; do
 
   case $1 in
+    --expand-width)
+
+      shift
+      ExpandWidth=$1
+      ;;
     -M|--no-make)
 
       RunMake=0
@@ -31,6 +37,10 @@ $ScriptPath [ ... flags/options ... ]
 Flags/options:
 
     behaviour:
+
+    --expand-width <expand-width>
+        subjects each performance test program's output to expand with the
+        given <expand-width>
 
     -M
     --no-make
@@ -94,7 +104,15 @@ if [ $status -eq 0 ]; then
     echo
     echo "executing $f:"
 
-    if $f; then
+    if [ $ExpandWidth -ne 0 ]; then
+
+      $f | expand -t $ExpandWidth
+    else
+
+      $f
+    fi
+
+    if [ $? -eq 0 ]; then
 
       :
     else

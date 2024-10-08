@@ -916,7 +916,6 @@ public: // construction
         STLSOFT_ASSERT(is_valid());
     }
 #endif
-
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
     /// Constructs an instance by taking over the state of the instance
