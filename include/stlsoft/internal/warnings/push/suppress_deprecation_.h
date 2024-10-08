@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/warnings/push/suppress_deprecation_.h
+ * File:    stlsoft/internal/warnings/push/suppress_deprecation_.h
  *
- * Purpose:     Pushes warning suppression for "".
+ * Purpose: Pushes warning suppression for "".
  *
- * Created:     6th October 2016
- * Updated:     23rd January 2021
+ * Created: 6th October 2016
+ * Updated: 9th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,6 +42,12 @@
      0
 #  pragma warning(disable: 4996)
 # endif /* VC++ 8+ */
+# if 0 || \
+     (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+         _MSC_VER >= 1920) || \
+     0
+#  pragma warning(disable: 28159)
+# endif /* VC++ 16+ */
 #endif
 
 /* ///////////////////////////// end of file //////////////////////////// */

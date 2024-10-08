@@ -4,7 +4,7 @@
  * Purpose: Error functions.
  *
  * Created: 7th May 2000
- * Updated: 8th October 2024
+ * Updated: 9th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  4
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      87
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  5
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -206,6 +206,10 @@ winstl_C_fmtmsg_elide_message_a_(
                         NULL == firstDot ||
                         firstDot == last - 1))
                 {
+                /* fall through */
+#if defined(__cplusplus) && __cplusplus >= 201702L
+                [[fallthrough]];
+#endif
             case    ' ':
             case    '\t':
             case    '\r':
@@ -217,6 +221,9 @@ winstl_C_fmtmsg_elide_message_a_(
                 else
                 {
                 /* fall through */
+#if defined(__cplusplus) && __cplusplus >= 201702L
+                [[fallthrough]];
+#endif
             default:
                 first = last;
                 break;
@@ -265,6 +272,10 @@ winstl_C_fmtmsg_elide_message_w_(
                         NULL == firstDot ||
                         firstDot == last - 1))
                 {
+                /* fall through */
+#if defined(__cplusplus) && __cplusplus >= 201702L
+                [[fallthrough]];
+#endif
             case    L' ':
             case    L'\t':
             case    L'\r':
@@ -275,6 +286,10 @@ winstl_C_fmtmsg_elide_message_w_(
                 }
                 else
                 {
+                /* fall through */
+#if defined(__cplusplus) && __cplusplus >= 201702L
+                [[fallthrough]];
+#endif
             default:
                 first = last;
                 break;
