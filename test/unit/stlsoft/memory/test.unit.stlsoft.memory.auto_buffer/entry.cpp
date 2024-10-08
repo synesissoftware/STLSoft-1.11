@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 29th September 2024
+ * Updated: 9th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -76,7 +76,9 @@ public: // construction
         rhs.m_pi = NULL;
     }
 private:
-    void operator =(class_type const&);
+#if __cplusplus >= 201103L
+    void operator =(class_type const&) = delete;
+#endif
 
 public: // operators
     class_type& operator ++()
@@ -127,7 +129,9 @@ public: // construction
         : m_pi(rhs.m_pi)
     {}
 private:
-    void operator =(class_type const&);
+#if __cplusplus >= 201103L
+    void operator =(class_type const&) = delete;
+#endif
 
 public: // operators
     class_type& operator ++()
