@@ -6,7 +6,7 @@
  *          types.
  *
  * Created: 15th January 2002
- * Updated: 1st October 2024
+ * Updated: 9th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    53
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 9
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     563
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 10
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     564
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -363,14 +363,15 @@
 # define _STLSOFT_VER_1_11_1_A12    0x010b014c  /*!< Version 1.11.1 alpha 12 (3rd August 2024) */
 # define _STLSOFT_VER_1_11_1_A13    0x010b014d  /*!< Version 1.11.1 alpha 13 (4th August 2024) */
 # define _STLSOFT_VER_1_11_1_A14    0x010b014e  /*!< Version 1.11.1 alpha 14 (21st August 2024) */
-# define _STLSOFT_VER_1_11_1_A15    0x010b015e  /*!< Version 1.11.1 alpha 15 (2nd September 2024) */
-# define _STLSOFT_VER_1_11_1_A16    0x010b016e  /*!< Version 1.11.1 alpha 16 (1st October 2024) */
+# define _STLSOFT_VER_1_11_1_A15    0x010b014e  /*!< Version 1.11.1 alpha 15 (2nd September 2024) */
+# define _STLSOFT_VER_1_11_1_A16    0x010b0150  /*!< Version 1.11.1 alpha 16 (1st October 2024) */
+# define _STLSOFT_VER_1_11_1_A17    0x010b0151  /*!< Version 1.11.1 alpha 17 (9th October 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A16
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A17
 
 
 /* /////////////////////////////////////
@@ -1010,7 +1011,6 @@
 #endif /* __FUNCTION__ or __func__ */
 
 
-
 /* __PRETTY_FUNCTION__ / __FUNCSIG__ support */
 
 /** \def STLSOFT_PRETTY_FUNCTION_SYMBOL
@@ -1032,6 +1032,27 @@
 
 # define STLSOFT_PRETTY_FUNCTION_SYMBOL                     __FUNCSIG__
 #endif /* __PRETTY_FUNCTION__ or __FUNCSIG__ */
+
+
+/** \def __STLSOFT_FILE_LINE__
+ *
+ * Shorthand for <code>__FILE__, __LINE__</code>
+ */
+
+#define __STLSOFT_FILE_LINE__                               __FILE__, __LINE__
+
+/** \def __STLSOFT_FILE_LINE_FUNCTION__
+ *
+ * Shorthand for <code>__FILE__, __LINE__, __FUNCTION__</code>
+ */
+
+#ifdef STLSOFT_FUNCTION_SYMBOL
+
+# define __STLSOFT_FILE_LINE_FUNCTION__                     __FILE__, __LINE__, STLSOFT_FUNCTION_SYMBOL
+#else
+
+# define __STLSOFT_FILE_LINE_FUNCTION__                     __FILE__, __LINE__, "<fn>"
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
