@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/dl/module.hpp (originally MXModule.h, ::SynesisUnix)
+ * File:    unixstl/dl/module.hpp (originally MXModule.h, ::SynesisUnix)
  *
- * Purpose:     Contains the module class.
+ * Purpose: Contains the module class.
  *
- * Created:     30th October 1997
- * Updated:     11th March 2024
+ * Created: 30th October 1997
+ * Updated: 9th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    4
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     238
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 3
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     239
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,18 +121,18 @@ class module
 {
 public:
     /// The handle type
-    typedef void*       module_handle_type;
+    typedef void*                                           module_handle_type;
     /// The handle type
     ///
     /// \note This member type is required to make it compatible with
     ///  the STLSoft get_module_handle access shim
-    typedef void*       handle_type;
+    typedef void*                                           handle_type;
     /// The class type
-    typedef module      class_type;
+    typedef module                                          class_type;
     /// The entry point type
-    typedef void*       proc_pointer_type;
-public:
-    typedef handle_type resource_type;
+    typedef void*                                           proc_pointer_type;
+    /// The resource type
+    typedef handle_type                                     resource_type;
 
 /// \name Construction
 /// @{
@@ -171,12 +171,7 @@ public:
     ss_explicit_k module(S const& moduleName, int mode = RTLD_NOW)
         : m_hmodule(load(moduleName, mode))
     {
-# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        if (NULL == m_hmodule)
-        {
-            STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
-        }
-# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        check_loaded_handle_(m_hmodule);
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
@@ -303,6 +298,20 @@ public:
 /// \name Implementation
 /// @{
 private:
+    static
+    void
+    check_loaded_handle_(
+        module_handle_type hmodule
+    )
+    {
+        if (NULL == hmodule)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
+            STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+    }
 /// @}
 
 /// \name Member Variables
@@ -336,34 +345,19 @@ inline void* get_module_handle(UNIXSTL_NS_QUAL(module) const& m)
 inline module::module(us_char_a_t const* moduleName, int mode)
     : m_hmodule(load(moduleName, mode))
 {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if (NULL == m_hmodule)
-    {
-        STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
-    }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    check_loaded_handle_(m_hmodule);
 }
 
 inline module::module(us_char_w_t const* moduleName, int mode)
     : m_hmodule(load(moduleName, mode))
 {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if (NULL == m_hmodule)
-    {
-        STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
-    }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    check_loaded_handle_(m_hmodule);
 }
 
 inline module::module(module::module_handle_type hmodule)
     : m_hmodule(hmodule)
 {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if (NULL == m_hmodule)
-    {
-        STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
-    }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    check_loaded_handle_(m_hmodule);
 }
 
 inline module::~module() STLSOFT_NOEXCEPT
