@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 1st October 2024
+ * Updated: 8th October 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    3
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        210
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    4
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        211
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,6 +120,18 @@
 # define STLSOFT_INCL_UTILITY
 # include <utility>
 #endif /* !STLSOFT_INCL_UTILITY */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if defined(_MSC_VER) &&\
+    _MSC_VER >= 9999
+
+# pragma warning(push)
+# pragma warning(disable : 26495)
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1832,6 +1844,17 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if defined(_MSC_VER) &&\
+    _MSC_VER >= 9999
+
+# pragma warning(pop)
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
