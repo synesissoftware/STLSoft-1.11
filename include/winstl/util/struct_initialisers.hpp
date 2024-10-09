@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/util/struct_initialisers.hpp
+ * File:    winstl/util/struct_initialisers.hpp
  *
- * Purpose:     Functions for initialising Win32 structures.
+ * Purpose: Functions for initialising Win32 structures.
  *
- * Created:     20th October 1994
- * Updated:     11th March 2024
+ * Created: 20th October 1994
+ * Updated: 9th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MAJOR       4
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       1
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    8
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        236
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        237
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -104,7 +104,9 @@ namespace winstl_project
  * \ingroup group__library__Utility
  */
 template <ss_typename_param_k T>
-inline void zero_struct(T &t)
+inline
+void
+zero_struct(T &t)
 {
     WINSTL_API_EXTERNAL_MemoryManagement_ZeroMemory(&t, sizeof(T));
 }
@@ -207,7 +209,6 @@ struct struct_has
         t.uSize    =   sizeof(T);
     }
 };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -217,9 +218,11 @@ struct struct_has
  * \ingroup group__library__Utility
  */
 template <ss_typename_param_k T>
-inline void init_struct(T &t)
+inline
+void
+init_struct(T &t)
 {
-    typedef ss_typename_type_k init_traits<T>::type     discriminator_t;
+    typedef ss_typename_type_k init_traits<T>::type         discriminator_t;
 
     struct_has::init(t, discriminator_t());
 }
@@ -352,8 +355,8 @@ WINSTL_The_structure_(NOTIFYICONDATAA, has::cbSize_member_type);
 WINSTL_The_structure_(NOTIFYICONDATAW, has::cbSize_member_type);
 
 #endif /* _INC_SHELLAPI || _SHELLAPI_H || !WIN32_LEAN_AND_MEAN */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
