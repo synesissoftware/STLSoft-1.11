@@ -8,13 +8,11 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
 /* /////////////////////////////////////////////////////////////////////////
  * test component header file include(s)
  */
 
 #include <winstl/dl/dl_call.hpp>
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -27,11 +25,13 @@
 #include <stlsoft/stlsoft.h>
 
 /* Standard C++ header files */
+#if __cplusplus >= 201103L
+#include <atomic>
+#endif
 #include <string>
 
 /* Standard C header files */
 #include <stdlib.h>
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -42,7 +42,6 @@ namespace
 
     static void test_Kernel32_GetTickCount(void);
 } // anonymous namespace
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -67,38 +66,54 @@ int main(int argc, char **argv)
     return retCode;
 }
 
-
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
 namespace
 {
-
-static void test_Kernel32_GetTickCount(void)
-{
-    try
+    inline void
+    full_fence()
     {
-        DWORD const tc_before = ::GetTickCount();
+#if __cplusplus >= 201103L
 
         std::atomic_thread_fence(std::memory_order_seq_cst);
+#else
 
-        DWORD const tc_dl = winstl::dl_call<DWORD>("Kernel32.dll", "GetTickCount");
+# if 0
+# elif defined(_WIN32_WINNT) && \
+       _WIN32_WINNT > 0x0502
 
-        std::atomic_thread_fence(std::memory_order_seq_cst);
+        ::MemoryBarrier();
+# else
 
-        DWORD const tc_after = ::GetTickCount();
-
-        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(tc_before, tc_dl);
-        XTESTS_TEST_INTEGER_LESS_OR_EQUAL(tc_after, tc_dl);
+        /* no barrier implementation */
+# endif
+#endif
     }
-    catch (winstl::missing_entry_point_exception& x)
+
+    static void test_Kernel32_GetTickCount(void)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
-    }
-}
+        try
+        {
+            DWORD const tc_before = ::GetTickCount();
 
+            full_fence();
+
+            DWORD const tc_dl = winstl::dl_call<DWORD>("Kernel32.dll", WINSTL_DL_CALL_WINx_STDCALL_LITERAL("GetTickCount"));
+
+            full_fence();
+
+            DWORD const tc_after = ::GetTickCount();
+
+            XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(tc_before, tc_dl);
+            XTESTS_TEST_INTEGER_LESS_OR_EQUAL(tc_after, tc_dl);
+        }
+        catch (winstl::missing_entry_point_exception &x)
+        {
+            XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+        }
+    }
 } // anonymous namespace
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
