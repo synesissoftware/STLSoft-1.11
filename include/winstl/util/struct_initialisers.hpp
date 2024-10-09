@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MAJOR       4
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       1
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    8
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        237
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    9
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        238
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -231,7 +231,7 @@ init_struct(T &t)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-# define WINSTL_The_structure_(S, t)                \
+# define WINSTL_THE_INITIALISABLE_STRUCTURE_(S, t)  \
                                                     \
     STLSOFT_TEMPLATE_SPECIALISATION                 \
     struct init_traits<S>                           \
@@ -241,67 +241,67 @@ init_struct(T &t)
 
 // WinBase.h:
 
-WINSTL_The_structure_(PROCESS_INFORMATION, has::no_init_member_type);
-WINSTL_The_structure_(OVERLAPPED, has::no_init_member_type);
-WINSTL_The_structure_(FILETIME, has::no_init_member_type);
-WINSTL_The_structure_(SYSTEMTIME, has::no_init_member_type);
-WINSTL_The_structure_(COMMPROP, has::no_init_member_type);
-WINSTL_The_structure_(COMSTAT, has::no_init_member_type);
-WINSTL_The_structure_(COMMTIMEOUTS, has::no_init_member_type);
-WINSTL_The_structure_(SYSTEM_INFO, has::no_init_member_type);
-WINSTL_The_structure_(EXCEPTION_DEBUG_INFO, has::no_init_member_type);
-WINSTL_The_structure_(CREATE_THREAD_DEBUG_INFO, has::no_init_member_type);
-WINSTL_The_structure_(CREATE_PROCESS_DEBUG_INFO, has::no_init_member_type);
-WINSTL_The_structure_(EXIT_THREAD_DEBUG_INFO, has::no_init_member_type);
-WINSTL_The_structure_(LOAD_DLL_DEBUG_INFO, has::no_init_member_type);
-WINSTL_The_structure_(UNLOAD_DLL_DEBUG_INFO, has::no_init_member_type);
-WINSTL_The_structure_(OUTPUT_DEBUG_STRING_INFO, has::no_init_member_type);
-WINSTL_The_structure_(RIP_INFO, has::no_init_member_type);
-WINSTL_The_structure_(DEBUG_EVENT, has::no_init_member_type);
-WINSTL_The_structure_(PROCESS_HEAP_ENTRY, has::no_init_member_type);
-WINSTL_The_structure_(BY_HANDLE_FILE_INFORMATION, has::no_init_member_type);
-WINSTL_The_structure_(TIME_ZONE_INFORMATION, has::no_init_member_type);
-WINSTL_The_structure_(WIN32_STREAM_ID, has::no_init_member_type);
-WINSTL_The_structure_(WIN32_FIND_DATAA, has::no_init_member_type);
-WINSTL_The_structure_(WIN32_FIND_DATAW, has::no_init_member_type);
-WINSTL_The_structure_(WIN32_FILE_ATTRIBUTE_DATA, has::no_init_member_type);
-WINSTL_The_structure_(SYSTEM_POWER_STATUS, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(PROCESS_INFORMATION, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(OVERLAPPED, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(FILETIME, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SYSTEMTIME, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(COMMPROP, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(COMSTAT, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(COMMTIMEOUTS, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SYSTEM_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(EXCEPTION_DEBUG_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(CREATE_THREAD_DEBUG_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(CREATE_PROCESS_DEBUG_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(EXIT_THREAD_DEBUG_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(LOAD_DLL_DEBUG_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(UNLOAD_DLL_DEBUG_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(OUTPUT_DEBUG_STRING_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(RIP_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(DEBUG_EVENT, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(PROCESS_HEAP_ENTRY, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(BY_HANDLE_FILE_INFORMATION, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(TIME_ZONE_INFORMATION, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN32_STREAM_ID, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN32_FIND_DATAA, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN32_FIND_DATAW, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN32_FILE_ATTRIBUTE_DATA, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SYSTEM_POWER_STATUS, has::no_init_member_type);
 #ifdef _WINCON_
-WINSTL_The_structure_(CONSOLE_SCREEN_BUFFER_INFO, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(CONSOLE_SCREEN_BUFFER_INFO, has::no_init_member_type);
 # if defined(_MSC_VER) && \
      _MSC_VER >= 1600
-WINSTL_The_structure_(CONSOLE_SCREEN_BUFFER_INFOEX, has::cbSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(CONSOLE_SCREEN_BUFFER_INFOEX, has::cbSize_member_type);
 # endif /* VC++ 10+ */
 #endif /* _WINCON_ */
 #ifdef WINTRUST_H
-WINSTL_The_structure_(WIN_CERTIFICATE, has::no_init_member_type);
-WINSTL_The_structure_(WIN_TRUST_ACTDATA_CONTEXT_WITH_SUBJECT, has::no_init_member_type);
-WINSTL_The_structure_(WIN_TRUST_ACTDATA_SUBJECT_ONLY, has::no_init_member_type);
-WINSTL_The_structure_(WIN_TRUST_SUBJECT_FILE, has::no_init_member_type);
-WINSTL_The_structure_(WIN_TRUST_SUBJECT_FILE_AND_DISPLAY, has::no_init_member_type);
-WINSTL_The_structure_(WIN_SPUB_TRUSTED_PUBLISHER_DATA, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN_CERTIFICATE, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN_TRUST_ACTDATA_CONTEXT_WITH_SUBJECT, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN_TRUST_ACTDATA_SUBJECT_ONLY, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN_TRUST_SUBJECT_FILE, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN_TRUST_SUBJECT_FILE_AND_DISPLAY, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN_SPUB_TRUSTED_PUBLISHER_DATA, has::no_init_member_type);
 #endif /* WINTRUST_H */
 
 
-WINSTL_The_structure_(STARTUPINFOA, has::cb_member_type);
-WINSTL_The_structure_(STARTUPINFOW, has::cb_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(STARTUPINFOA, has::cb_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(STARTUPINFOW, has::cb_member_type);
 
-WINSTL_The_structure_(OFSTRUCT, has::cBytes_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(OFSTRUCT, has::cBytes_member_type);
 
-WINSTL_The_structure_(MEMORYSTATUS, has::dwLength_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(MEMORYSTATUS, has::dwLength_member_type);
 
-WINSTL_The_structure_(OSVERSIONINFOA, has::dwOSVersionInfoSize_member_type);
-WINSTL_The_structure_(OSVERSIONINFOW, has::dwOSVersionInfoSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(OSVERSIONINFOA, has::dwOSVersionInfoSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(OSVERSIONINFOW, has::dwOSVersionInfoSize_member_type);
 #if !defined(STLSOFT_COMPILER_IS_DMC) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200)
-WINSTL_The_structure_(OSVERSIONINFOEXA, has::dwOSVersionInfoSize_member_type);
-WINSTL_The_structure_(OSVERSIONINFOEXW, has::dwOSVersionInfoSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(OSVERSIONINFOEXA, has::dwOSVersionInfoSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(OSVERSIONINFOEXW, has::dwOSVersionInfoSize_member_type);
 #endif /* compiler */
 
-WINSTL_The_structure_(COMMCONFIG, has::dwSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(COMMCONFIG, has::dwSize_member_type);
 
-WINSTL_The_structure_(SECURITY_ATTRIBUTES, has::nLength_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SECURITY_ATTRIBUTES, has::nLength_member_type);
 
 inline void init_struct(DCB &dcb)
 {
@@ -311,50 +311,58 @@ inline void init_struct(DCB &dcb)
 
 // ShellApi.h
 
-#if defined(_INC_SHELLAPI) || \
-    defined(_SHELLAPI_H) || \
-    !defined(WIN32_LEAN_AND_MEAN)
+# if 1 &&\
+     defined(_INC_SHELLAPI) ||\
+     defined(_SHELLAPI_H) ||\
+     !defined(WIN32_LEAN_AND_MEAN) &&\
+     1
 
-WINSTL_The_structure_(SHFILEOPSTRUCTA, has::no_init_member_type);
-WINSTL_The_structure_(SHFILEOPSTRUCTW, has::no_init_member_type);
-#if !defined(STLSOFT_COMPILER_IS_GCC)
-WINSTL_The_structure_(SHNAMEMAPPINGA, has::no_init_member_type);
-WINSTL_The_structure_(SHNAMEMAPPINGW, has::no_init_member_type);
-#endif /* compiler */
-WINSTL_The_structure_(SHFILEINFOA, has::no_init_member_type);
-WINSTL_The_structure_(SHFILEINFOW, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SHFILEOPSTRUCTA, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SHFILEOPSTRUCTW, has::no_init_member_type);
+#  if !defined(STLSOFT_COMPILER_IS_GCC)
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SHNAMEMAPPINGA, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SHNAMEMAPPINGW, has::no_init_member_type);
+#  endif /* compiler */
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SHFILEINFOA, has::no_init_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SHFILEINFOW, has::no_init_member_type);
 
 
-#if !defined(STLSOFT_COMPILER_IS_DMC) && \
-    !defined(STLSOFT_COMPILER_IS_GCC) && \
-    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
-        _MSC_VER >= 1200) && \
-    defined(WINVER) && \
-    WINVER >= 0x0400
-WINSTL_The_structure_(DRAGINFOA, has::uSize_member_type);
-WINSTL_The_structure_(DRAGINFOW, has::uSize_member_type);
-#endif /* WINVER */
+#  if 1 &&\
+      !defined(STLSOFT_COMPILER_IS_DMC) &&\
+      !defined(STLSOFT_COMPILER_IS_GCC) &&\
+      (   !defined(STLSOFT_COMPILER_IS_MSVC) ||\
+        _MSC_VER >= 1200) &&\
+      defined(WINVER) &&\
+      WINVER >= 0x0400 &&\
+      1
 
-WINSTL_The_structure_(APPBARDATA, has::cbSize_member_type);
-WINSTL_The_structure_(SHELLEXECUTEINFOA, has::cbSize_member_type);
-WINSTL_The_structure_(SHELLEXECUTEINFOW, has::cbSize_member_type);
-#if 1 && \
-    !defined(STLSOFT_COMPILER_IS_DMC) && \
-    (   !defined(STLSOFT_COMPILER_IS_GCC) || \
-        __GNUC__ > 3 || \
-        (   __GNUC__ == 3 && \
-            __GNUC_MINOR__ > 2)) && \
-    (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
-        _MSC_VER == 1200 || \
-        ( defined(NTDDI_VERSION) && \
-          NTDDI_VERSION >= 0x05000000)) && \
-    1
-WINSTL_The_structure_(SHQUERYRBINFO, has::cbSize_member_type);
-#endif /* compiler */
-WINSTL_The_structure_(NOTIFYICONDATAA, has::cbSize_member_type);
-WINSTL_The_structure_(NOTIFYICONDATAW, has::cbSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(DRAGINFOA, has::uSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(DRAGINFOW, has::uSize_member_type);
+#  endif /* WINVER */
 
-#endif /* _INC_SHELLAPI || _SHELLAPI_H || !WIN32_LEAN_AND_MEAN */
+WINSTL_THE_INITIALISABLE_STRUCTURE_(APPBARDATA, has::cbSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SHELLEXECUTEINFOA, has::cbSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SHELLEXECUTEINFOW, has::cbSize_member_type);
+#  if 1 && \
+      !defined(STLSOFT_COMPILER_IS_DMC) && \
+      (   !defined(STLSOFT_COMPILER_IS_GCC) || \
+          __GNUC__ > 3 || \
+          (   __GNUC__ == 3 && \
+              __GNUC_MINOR__ > 2)) && \
+      (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+          _MSC_VER == 1200 || \
+          ( defined(NTDDI_VERSION) && \
+            NTDDI_VERSION >= 0x05000000)) && \
+      1
+
+WINSTL_THE_INITIALISABLE_STRUCTURE_(SHQUERYRBINFO, has::cbSize_member_type);
+#  endif /* compiler */
+WINSTL_THE_INITIALISABLE_STRUCTURE_(NOTIFYICONDATAA, has::cbSize_member_type);
+WINSTL_THE_INITIALISABLE_STRUCTURE_(NOTIFYICONDATAW, has::cbSize_member_type);
+
+# endif /* _INC_SHELLAPI || _SHELLAPI_H || !WIN32_LEAN_AND_MEAN */
+
+# undef  WINSTL_THE_INITIALISABLE_STRUCTURE_
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
