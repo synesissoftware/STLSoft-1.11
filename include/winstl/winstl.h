@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 8th October 2024
+ * Updated: 9th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        228
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    3
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        229
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -185,9 +185,9 @@
 /* Strict */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # if 1 &&\
-     !defined(STRICT) &&\
      !defined(_WINSTL_NO_STRICT) &&\
      !defined(NO_STRICT) &&\
+     !defined(STRICT) &&\
      1
 #  ifdef _WINSTL_STRICT
 #   define STRICT                                           1
@@ -202,15 +202,19 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER == 1100
+#if 0
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      _MSC_VER == 1100
 # include <wtypes.h>    /* This is here to fix a thoroughly inexplicable VC 5 bug */
 #endif /* compiler */
 
-#if defined(STLSOFT_COMPILER_IS_GCC) && \
-    defined(_WIN32) && \
-    (   defined(WIN32) || \
-        defined(WIN64))
+#if 0
+#elif 1 &&\
+      defined(_WIN32) &&\
+      defined(STLSOFT_COMPILER_IS_GCC) &&\
+      (   defined(WIN32) ||\
+          defined(WIN64)) &&\
+      1
 
 # ifndef STLSOFT_INCL_H_BASETYPS
 #  define STLSOFT_INCL_H_BASETYPS
@@ -277,9 +281,14 @@
 # undef WINSTL_OS_IS_WIN64
 #endif /* WINSTL_OS_IS_WIN64 */
 
-#if defined(WIN64) || \
-    defined(_WIN64)
+#if 0
+#elif 0 ||\
+      defined(_WIN64) ||\
+      defined(WIN64) ||\
+      0
+
 # if !defined(WIN64)
+
 #  ifdef STLSOFT_COMPILE_VERBOSE
 #   pragma message("Win64 platform targeted, as indicated by definition of _WIN64, but WIN64 is not defined: adjust your project/make settings to define WIN64")
 #  endif /* STLSOFT_COMPILE_VERBOSE */
@@ -289,8 +298,10 @@
 #  error Compiling with WIN64 defined and _WIN64 not defined. Are you using the wrong makefile?
 # endif /* !_WIN64 */
 #elif defined(WIN32)
+
 # define WINSTL_OS_IS_WIN32
 #else /* ? WIN?? */
+
 # error WinSTL is only compatible with Win32 and Win64
 #endif /* WIN?? */
 
@@ -313,16 +324,29 @@
 #endif /* WINSTL_ARCH_IS_X86 */
 
 #if 0
-#elif defined(_M_ARM64)
+#elif 0 ||\
+      defined(_M_ARM64) ||\
+      0
+
 # define WINSTL_ARCH_IS_ARM64
-#elif defined(_M_IA64)
+#elif 0 ||\
+      defined(_M_IA64) ||\
+      0
+
 # define WINSTL_ARCH_IS_IA64
-#elif defined(_M_X64) || \
-      defined(_M_AMD64)
+#elif 0 ||\
+      defined(_M_AMD64) ||\
+      defined(_M_X64) ||\
+      0
+
 # define WINSTL_ARCH_IS_X64
-#elif defined(_M_IX86)
+#elif 0 ||\
+      defined(_M_IX86) ||\
+      0
+
 # define WINSTL_ARCH_IS_X86
 #else /* ? _M_?? */
+
 # error WinSTL is only compatible with ARM64, IA64, x64, and x86 architectures
 #endif /* _M_?? */
 
