@@ -1,0 +1,104 @@
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    test.component.winstl.dl.dl_call/entry.cpp
+ *
+ * Purpose: Component test for `winstl::dl_call`.
+ *
+ * Created: 9th October 2024
+ * Updated: 9th October 2024
+ *
+ * ////////////////////////////////////////////////////////////////////// */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test component header file include(s)
+ */
+
+#include <winstl/dl/dl_call.hpp>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* xTests header files */
+#include <xtests/xtests.h>
+
+/* STLSoft header files */
+#include <stlsoft/stlsoft.h>
+
+/* Standard C++ header files */
+#include <string>
+
+/* Standard C header files */
+#include <stdlib.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
+namespace
+{
+
+    static void test_Kernel32_GetTickCount(void);
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char **argv)
+{
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
+
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
+    if (XTESTS_START_RUNNER("test.component.winstl.dl.dl_call", verbosity))
+    {
+        XTESTS_RUN_CASE(test_Kernel32_GetTickCount);
+
+        XTESTS_PRINT_RESULTS();
+
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
+
+    return retCode;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace
+{
+
+static void test_Kernel32_GetTickCount(void)
+{
+    try
+    {
+        DWORD const tc_before = ::GetTickCount();
+
+        std::atomic_thread_fence(std::memory_order_seq_cst);
+
+        DWORD const tc_dl = winstl::dl_call<DWORD>("Kernel32.dll", "GetTickCount");
+
+        std::atomic_thread_fence(std::memory_order_seq_cst);
+
+        DWORD const tc_after = ::GetTickCount();
+
+        XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(tc_before, tc_dl);
+        XTESTS_TEST_INTEGER_LESS_OR_EQUAL(tc_after, tc_dl);
+    }
+    catch (winstl::missing_entry_point_exception& x)
+    {
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+    }
+}
+
+} // anonymous namespace
+
+
+/* ///////////////////////////// end of file //////////////////////////// */
