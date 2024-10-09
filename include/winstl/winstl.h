@@ -341,7 +341,8 @@
 #elif 0 ||\
       defined(__amd64) ||\
       defined(__amd64__) ||\
-      defined(__x86_64__ ) ||\
+      defined(__x86_64) ||\
+      defined(__x86_64__) ||\
       defined(_AMD64_) ||\
       defined(_M_AMD64) ||\
       defined(_M_X64) ||\
