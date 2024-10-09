@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/security/acl_sequence.hpp
+ * File:    winstl/security/acl_sequence.hpp
  *
- * Purpose:     Helper for accessing token information.
+ * Purpose: Helper for accessing token information.
  *
- * Created:     26th June 2003
- * Updated:     11th March 2024
+ * Created: 26th June 2003
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_MINOR      0
-# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_REVISION   6
-# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_EDIT       47
+# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_REVISION   7
+# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -122,7 +122,7 @@ public:
     {}
 private:
     acl_sequence(class_type const&);            // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Iteration

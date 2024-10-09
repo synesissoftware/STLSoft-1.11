@@ -4,7 +4,7 @@
  * Purpose: Contains the true_typedef class template.
  *
  * Created: 16th January 2002
- * Updated: 11th March 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR     1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT      92
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION  2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT      93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -171,7 +171,7 @@ public: // construction
 private:
     // Not provided, as the syntax is less ambiguous when
     // assignment from an explicit temporary is made
-    void operator =(value_type const& value);
+    void operator =(class_type const&); // copy-assignment proscribed
 
 public: // accessors
     /// Provides non-mutating (const) access to the base type value

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/file_lines.hpp
+ * File:    platformstl/filesystem/file_lines.hpp
  *
- * Purpose:     Platform header for the file_lines components.
+ * Purpose: Platform header for the file_lines components.
  *
- * Created:     25th October 2007
- * Updated:     11th March 2024
+ * Created: 25th October 2007
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 13
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     47
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 14
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -201,7 +201,7 @@ public: // Construction
 
 private:
     basic_file_lines(class_type const&);        // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 
     // Prevents the conversion constructor from being invoked on an instance
     // of a different specialisation

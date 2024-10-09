@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterator/FILE_iterator.hpp
+ * File:    stlsoft/iterator/FILE_iterator.hpp
  *
- * Purpose:     FILE* output iterator.
+ * Purpose: FILE* output iterator.
  *
- * Created:     21st April 2009
- * Updated:     11th March 2024
+ * Created: 21st April 2009
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    8
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        17
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    9
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -233,6 +233,9 @@ public:
 private:
     class deref_proxy
     {
+    public: // types
+        typedef deref_proxy                                     class_type;
+
     public:
         deref_proxy(FILE_iterator* it)
             : m_it(it)
@@ -249,7 +252,7 @@ private:
 
     // Not to be implemented
     private:
-        void operator =(deref_proxy const&);
+        void operator =(class_type const&); // copy-assignment proscribed
     };
 
     void invoke_(assigned_type const& value)

@@ -18,7 +18,7 @@
  *          ownership issues described in the article.
  *
  * Created: 15th January 2002
- * Updated: 27th September 2024
+ * Updated: 10th October 2024
  *
  * Thanks:  To Nevin Liber for pressing upon me the need to lead by example
  *          when writing books about good design/implementation; to Florin L
@@ -72,8 +72,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        269
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    12
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        270
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -321,7 +321,7 @@ public:
 
 private:
     basic_findfile_sequence(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&);         // copy-assignment proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Iteration

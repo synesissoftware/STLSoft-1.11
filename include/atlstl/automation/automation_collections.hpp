@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/automation/automation_collections.hpp
+ * File:    atlstl/automation/automation_collections.hpp
  *
- * Purpose:     Adaptor classes for creating COM collection instances.
+ * Purpose: Adaptor classes for creating COM collection instances.
  *
- * Created:     16th April 1999
- * Updated:     11th March 2024
+ * Created: 16th April 1999
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MAJOR     3
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MINOR     2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_REVISION  7
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      123
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_REVISION  8
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -305,7 +305,7 @@ public:
     }
 private:
     generic_automation_collection(class_type const&);   // copy-construction proscribed
-    class_type& operator =(class_type const&);          // copy-assignment proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Operations

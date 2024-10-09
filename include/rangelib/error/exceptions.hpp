@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/error/exceptions.hpp
+ * File:    rangelib/error/exceptions.hpp
  *
- * Purpose:     Range exceptions.
+ * Purpose: Range exceptions.
  *
- * Created:     30th December 2005
- * Updated:     11th March 2024
+ * Created: 30th December 2005
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MAJOR     2
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION  10
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      34
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION  11
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -188,7 +188,7 @@ private:
 /// \name Not to be implemented
 /// @{
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

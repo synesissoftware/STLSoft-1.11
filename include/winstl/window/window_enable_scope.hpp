@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/window_enable_scope.hpp (originally MWWndScp.h; ::SynesisWin)
+ * File:    winstl/window/window_enable_scope.hpp (originally MWWndScp.h; ::SynesisWin)
  *
- * Purpose:     Window enable-state scoping class.
+ * Purpose: Window enable-state scoping class.
  *
- * Created:     5th January 1996
- * Updated:     11th March 2024
+ * Created: 5th January 1996
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_MINOR    1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_REVISION 6
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_EDIT     105
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_REVISION 7
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_EDIT     106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -180,7 +180,7 @@ public:
     }
 private:
     window_enable_scope(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&);     // copy-assignment proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 
 // Members
 private:

@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/any_cast.hpp
+ * File:    stlsoft/conversion/any_cast.hpp
  *
- * Purpose:     A dangerous, but sometimes necessary, tool for handling bad
- *              libraries.
+ * Purpose: A dangerous, but sometimes necessary, tool for handling bad
+ *          libraries.
  *
- * Created:     12th May 2004
- * Updated:     11th March 2024
+ * Created: 12th May 2004
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       45
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   6
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -150,7 +150,7 @@ public:
     }
 private:
     any_caster(class_type const& rhs);              // copy-construction proscribed
-    class_type& operator =(class_type const& rhs);  // copy-assignment proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Conversion

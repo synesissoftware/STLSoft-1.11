@@ -5,7 +5,7 @@
  *          and Unicode specialisations thereof.
  *
  * Created: 30th April 1999
- * Updated: 28th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR     3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR     0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  25
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      169
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  26
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      170
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -324,7 +324,7 @@ private:
 /// @{
 private:
     basic_findfile_sequence(class_type const&);
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 
@@ -605,7 +605,7 @@ private:
     /// @{
     private:
         shared_handle(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
     };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

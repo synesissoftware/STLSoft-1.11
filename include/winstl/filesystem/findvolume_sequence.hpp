@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 15th January 2002
- * Updated: 28th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      138
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  16
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      139
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -346,7 +346,7 @@ private:
 
     private:
         shared_handle(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&); // copy-assignment proscribed
     };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}

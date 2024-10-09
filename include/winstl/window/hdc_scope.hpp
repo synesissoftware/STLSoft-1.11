@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/hdc_scope.hpp (originally MWGdi.h, ::SynesisWin)
+ * File:    winstl/window/hdc_scope.hpp (originally MWGdi.h, ::SynesisWin)
  *
- * Purpose:     GDI scope class.
+ * Purpose: GDI scope class.
  *
- * Created:     20th October 1994
- * Updated:     11th March 2024
+ * Created: 20th October 1994
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_REVISION   5
-# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       57
+# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_REVISION   6
+# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -165,7 +165,7 @@ private:
 // Not to be implemented
 private:
     HDC_scope(class_type const&);
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&); // copy-assignment proscribed
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterator/string_insert_iterator.hpp
+ * File:    stlsoft/iterator/string_insert_iterator.hpp
  *
- * Purpose:     Insert iterator for elements that can be expressed in string
- *              form via string access shims.
+ * Purpose: Insert iterator for elements that can be expressed in string
+ *          form via string access shims.
  *
- * Created:     6th April 2005
- * Updated:     11th March 2024
+ * Created: 6th April 2005
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_REVISION   7
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       31
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_REVISION   8
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -136,6 +136,9 @@ public:
 private:
     class deref_proxy
     {
+    public: // types
+        typedef deref_proxy                                     class_type;
+
     public:
         deref_proxy(insert_iterator_type_* it)
             : m_it(it)
@@ -153,7 +156,7 @@ private:
 
     // Not to be implemented
     private:
-        void operator =(deref_proxy const&);
+        void operator =(class_type const&); // copy-assignment proscribed
     };
 
     template <ss_typename_param_k A>

@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/window/window.hpp
+ * File:    atlstl/window/window.hpp
  *
- * Purpose:     Enhancement of ATL's CWindow, supporting shims for common
- *              operations.
+ * Purpose: Enhancement of ATL's CWindow, supporting shims for common
+ *          operations.
  *
- * Created:     25th November 2006
- * Updated:     11th March 2024
+ * Created: 25th November 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MAJOR      1
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MINOR      0
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   8
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       22
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   9
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -241,7 +241,7 @@ public:
 /// @{
 private:
     Window(class_type const&);
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

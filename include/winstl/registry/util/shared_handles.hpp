@@ -4,7 +4,7 @@
  * Purpose: Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created: 19th January 2002
- * Updated: 28th September 2024
+ * Updated: 10th October 2024
  *
  * Thanks:  To Austin Ziegler for fixes to defects evident on x64.
  *
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       0
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    17
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        53
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    18
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -223,7 +223,7 @@ namespace registry_util
     /// @{
     private:
         shared_handle(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
     };
 
@@ -331,7 +331,7 @@ namespace registry_util
     /// @{
     private:
         monitored_shared_handle(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
     };
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

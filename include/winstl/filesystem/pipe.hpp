@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/pipe.hpp
+ * File:    winstl/filesystem/pipe.hpp
  *
- * Purpose:     pipe class, based on Windows anonymous pipe.
+ * Purpose: pipe class, based on Windows anonymous pipe.
  *
- * Created:     19th June 2004
- * Updated:     11th March 2024
+ * Created: 19th June 2004
+ * Updated: 10th October 2024
  *
- * Thanks:      iceboy for reporting a defect in close_write()
+ * Thanks:  iceboy for reporting a defect in close_write()
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     55
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 12
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -218,7 +218,7 @@ private:
 /// @{
 private:
     pipe(class_type const&);
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 
