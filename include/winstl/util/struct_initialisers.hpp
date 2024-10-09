@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MAJOR       4
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       1
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    9
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        238
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        239
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,13 +106,13 @@ namespace winstl_project
 template <ss_typename_param_k T>
 inline
 void
-zero_struct(T &t)
+zero_struct(T& t)
 {
     WINSTL_API_EXTERNAL_MemoryManagement_ZeroMemory(&t, sizeof(T));
 }
 
 template <ss_typename_param_k T>
-struct init_traits;
+struct struct_initialisation_traits;
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -148,62 +148,62 @@ struct struct_has
 
 
     template <ss_typename_param_k T>
-    static void init(T &t, no_init_member_type)
+    static void init(T& t, no_init_member_type)
     {
         zero_struct(t);
     }
 
     template <ss_typename_param_k T>
-    static void init(T &t, cb_member_type)
+    static void init(T& t, cb_member_type)
     {
         zero_struct(t);
         t.cb        =   sizeof(T);
     }
 
     template <ss_typename_param_k T>
-    static void init(T &t, cBytes_member_type)
+    static void init(T& t, cBytes_member_type)
     {
         zero_struct(t);
         t.cBytes    =   sizeof(T);
     }
 
     template <ss_typename_param_k T>
-    static void init(T &t, cbSize_member_type)
+    static void init(T& t, cbSize_member_type)
     {
         zero_struct(t);
         t.cbSize    =   sizeof(T);
     }
 
     template <ss_typename_param_k T>
-    static void init(T &t, dwLength_member_type)
+    static void init(T& t, dwLength_member_type)
     {
         zero_struct(t);
         t.dwLength  =   sizeof(T);
     }
 
     template <ss_typename_param_k T>
-    static void init(T &t, dwOSVersionInfoSize_member_type)
+    static void init(T& t, dwOSVersionInfoSize_member_type)
     {
         zero_struct(t);
         t.dwOSVersionInfoSize   =   sizeof(T);
     }
 
     template <ss_typename_param_k T>
-    static void init(T &t, dwSize_member_type)
+    static void init(T& t, dwSize_member_type)
     {
         zero_struct(t);
         t.dwSize    =   sizeof(T);
     }
 
     template <ss_typename_param_k T>
-    static void init(T &t, nLength_member_type)
+    static void init(T& t, nLength_member_type)
     {
         zero_struct(t);
         t.nLength   =   sizeof(T);
     }
 
     template <ss_typename_param_k T>
-    static void init(T &t, uSize_member_type)
+    static void init(T& t, uSize_member_type)
     {
         zero_struct(t);
         t.uSize    =   sizeof(T);
@@ -220,9 +220,11 @@ struct struct_has
 template <ss_typename_param_k T>
 inline
 void
-init_struct(T &t)
+init_struct(T& t)
 {
-    typedef ss_typename_type_k init_traits<T>::type         discriminator_t;
+    typedef ss_typename_type_k struct_initialisation_traits<
+        T
+    >::type                                                 discriminator_t;
 
     struct_has::init(t, discriminator_t());
 }
@@ -234,7 +236,7 @@ init_struct(T &t)
 # define WINSTL_THE_INITIALISABLE_STRUCTURE_(S, t)  \
                                                     \
     STLSOFT_TEMPLATE_SPECIALISATION                 \
-    struct init_traits<S>                           \
+    struct struct_initialisation_traits<S>          \
     {                                               \
         typedef struct_##t  type;                   \
     }
@@ -303,9 +305,12 @@ WINSTL_THE_INITIALISABLE_STRUCTURE_(COMMCONFIG, has::dwSize_member_type);
 
 WINSTL_THE_INITIALISABLE_STRUCTURE_(SECURITY_ATTRIBUTES, has::nLength_member_type);
 
-inline void init_struct(DCB &dcb)
+inline
+void
+init_struct(DCB& dcb)
 {
     zero_struct(dcb);
+
     dcb.DCBlength = sizeof(dcb);
 }
 

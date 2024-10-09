@@ -65,6 +65,9 @@ namespace
 
     // uSize_member_type
     static void test_DRAGINFOA(void);
+
+    // DCBlength
+    static void test_DCB(void);
 } // anonymous namespace
 
 
@@ -110,6 +113,9 @@ int main(int argc, char* argv[])
 
         // uSize_member_type
         XTESTS_RUN_CASE(test_DRAGINFOA);
+
+        // DCBlength
+        XTESTS_RUN_CASE(test_DCB);
 
         XTESTS_PRINT_RESULTS();
 
@@ -364,6 +370,45 @@ static void test_DRAGINFOA(void)
     XTESTS_TEST_BOOLEAN_FALSE(da.fNC);
     XTESTS_TEST_POINTER_EQUAL(NULL, da.lpFileList);
     XTESTS_TEST_INTEGER_EQUAL(0, da.grfKeyState);
+}
+
+
+// DCBlength
+
+static void test_DCB(void)
+{
+    DCB dcb;
+
+    winstl::init_struct(dcb);
+
+    XTESTS_TEST_INTEGER_EQUAL(sizeof(dcb), dcb.DCBlength);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.BaudRate);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fBinary);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fParity);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fOutxCtsFlow);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fOutxDsrFlow);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fDtrControl);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fDsrSensitivity);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fTXContinueOnXoff);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fOutX);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fInX);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fErrorChar);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fNull);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fRtsControl);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fAbortOnError);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.fDummy2);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.wReserved);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.XonLim);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.XoffLim);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.ByteSize);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.Parity);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.StopBits);
+    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.XonChar);
+    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.XoffChar);
+    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.ErrorChar);
+    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.EofChar);
+    XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.EvtChar);
+    XTESTS_TEST_INTEGER_EQUAL(0, dcb.wReserved1);
 }
 
 
