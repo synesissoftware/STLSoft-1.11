@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    3
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        229
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    4
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        230
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -325,22 +325,33 @@
 
 #if 0
 #elif 0 ||\
+      defined(__aarch64__) ||\
       defined(_M_ARM64) ||\
       0
 
 # define WINSTL_ARCH_IS_ARM64
 #elif 0 ||\
+      defined(__ia64) ||\
+      defined(__ia64__) ||\
+      defined(_IA64_) ||\
       defined(_M_IA64) ||\
       0
 
 # define WINSTL_ARCH_IS_IA64
 #elif 0 ||\
+      defined(__amd64) ||\
+      defined(__amd64__) ||\
+      defined(__x86_64__ ) ||\
+      defined(_AMD64_) ||\
       defined(_M_AMD64) ||\
       defined(_M_X64) ||\
       0
 
 # define WINSTL_ARCH_IS_X64
 #elif 0 ||\
+      defined(__i386) ||\
+      defined(__i386__) ||\
+      defined(__X86__) ||\
       defined(_M_IX86) ||\
       0
 
