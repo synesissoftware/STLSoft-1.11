@@ -124,21 +124,22 @@ class module
 {
 public:
     /// The handle type
-    typedef HINSTANCE   module_handle_type;
+    typedef HINSTANCE                                       module_handle_type;
     /// The handle type
     ///
     /// \note This member type is required to make it compatible with
     ///  the STLSoft get_module_handle access shim
-    typedef HINSTANCE   handle_type;
+    typedef HINSTANCE                                       handle_type;
     /// The class type
-    typedef module      class_type;
+    typedef module                                          class_type;
     /// The entry point type
-    typedef void        (*proc_pointer_type)();
+    typedef void                                          (*proc_pointer_type)();
 private:
-    typedef void        (*degenerate_feedback_proc_type)();
-    typedef void        (*untyped_feedback_proc_type)(void const*, handle_type, void*);
+    typedef void                                          (*degenerate_feedback_proc_type)();
+    typedef void                                          (*untyped_feedback_proc_type)(void const*, handle_type, void*);
 public:
-    typedef handle_type resource_type;
+    /// The resource type
+    typedef handle_type                                     resource_type;
 
 /// \name Construction
 /// @{
