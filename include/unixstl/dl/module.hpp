@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    4
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     239
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 4
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     240
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -83,10 +83,13 @@
 # define STLSOFT_INCL_H_DLFCN
 # include <dlfcn.h>
 #endif /* !STLSOFT_INCL_H_DLFCN */
-#ifndef STLSOFT_INCL_H_ERRNO
-# define STLSOFT_INCL_H_ERRNO
-# include <errno.h>
-#endif /* !STLSOFT_INCL_H_ERRNO */
+#if 0
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+# ifndef STLSOFT_INCL_H_ERRNO
+#  define STLSOFT_INCL_H_ERRNO
+#  include <errno.h>
+# endif /* !STLSOFT_INCL_H_ERRNO */
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -307,8 +310,14 @@ private:
         if (NULL == hmodule)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# if 0
+# elif defined(UNIXSTL_OS_IS_MACOSX)
 
             STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
+# else
+
+            STLSOFT_THROW_X(unixstl_exception("Cannot load module", ::dlerror()));
+# endif
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
     }

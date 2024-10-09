@@ -4,7 +4,7 @@
  * Purpose: stlsoft::status_code_propagating_exception_base class template
  *
  * Created: 19th June 2004
- * Updated: 29th September 2024
+ * Updated: 9th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_MAJOR      6
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_MINOR      0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_REVISION   2
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_EDIT       81
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_MINOR      1
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_REVISION   1
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE_EDIT       82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,6 +109,7 @@ protected:
     typedef ss_typename_type_k parent_class_type::string_type
                                                             string_type;
 public:
+    /// The status code type
     typedef ss_typename_type_k parent_class_type::status_code_type
                                                             status_code_type;
 #ifndef STLSOFT_NO_PRE_1_10_BAGGAGE
@@ -142,6 +143,16 @@ public:
     )
         : parent_class_type(reason, sc)
     {}
+    /// Constructs an instance from the given message and qualifier
+    ///
+    /// \param reason The message code associated with the exception
+    /// \param qualifier The qualifier associated with the exception
+    status_code_propagating_exception_base(
+        char const*         reason
+    ,   char const*         qualifier
+    )
+        : parent_class_type(reason, qualifier)
+    {}
 protected:
     /// Contructor for derived classes
     status_code_propagating_exception_base(
@@ -149,6 +160,13 @@ protected:
     ,   status_code_type    sc
     )
         : parent_class_type(reason, sc)
+    {}
+    /// Contructor for derived classes
+    status_code_propagating_exception_base(
+        string_type const&  reason
+    ,   char const*         qualifier
+    )
+        : parent_class_type(reason, qualifier)
     {}
 public:
     /// Destructor
@@ -185,8 +203,6 @@ private:
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_PROPAGATING_EXCEPTION_BASE */
 
