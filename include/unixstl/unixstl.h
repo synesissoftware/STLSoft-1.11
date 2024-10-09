@@ -246,12 +246,15 @@
  * The UNIX architecture.
  */
 
-#ifdef UNIXSTL_ARCH_IS_X86
-# undef UNIXSTL_ARCH_IS_X86
-#endif /* UNIXSTL_ARCH_IS_X86 */
+#ifdef UNIXSTL_ARCH_IS_ARM64
+# undef UNIXSTL_ARCH_IS_ARM64
+#endif /* UNIXSTL_ARCH_IS_ARM64 */
 #ifdef UNIXSTL_ARCH_IS_IA64
 # undef UNIXSTL_ARCH_IS_IA64
 #endif /* UNIXSTL_ARCH_IS_IA64 */
+#ifdef UNIXSTL_ARCH_IS_X86
+# undef UNIXSTL_ARCH_IS_X86
+#endif /* UNIXSTL_ARCH_IS_X86 */
 #ifdef UNIXSTL_ARCH_IS_X64
 # undef UNIXSTL_ARCH_IS_X64
 #endif /* UNIXSTL_ARCH_IS_X64 */
@@ -275,13 +278,22 @@
 # undef UNIXSTL_ARCH_IS_UNKNOWN
 #endif /* UNIXSTL_ARCH_IS_UNKNOWN */
 
-#if 0 ||\
+#if 0
+#elif 0 ||\
+      defined(__aarch64__) ||\
+      defined(_M_ARM64) ||\
+      0
+
+# define UNIXSTL_ARCH_IS_INTEL
+# define UNIXSTL_ARCH_IS_ARM64
+#elif 0 ||\
     defined(__amd64) || \
     defined(__amd64__) || \
     defined(_AMD64_) || \
     defined(_M_AMD64) || \
     defined(_M_X64) || \
     0
+
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_X64
 #elif 0 ||\
@@ -290,6 +302,7 @@
       defined(_IA64_) || \
       defined(_M_IA64) ||\
       0
+
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_IA64
 #elif 0 ||\
@@ -298,6 +311,7 @@
       defined(_M_IX86) ||\
       defined(_X86_) || \
       0
+
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_X86
 #elif 0 ||\
@@ -305,11 +319,13 @@
       defined(__alpha__) || \
       defined(_M_ALPHA) ||\
       0
+
 # define UNIXSTL_ARCH_IS_ALPHA
 #elif 0 ||\
       defined(__hppa) ||\
       defined(__hppa__) || \
       0
+
 # define UNIXSTL_ARCH_IS_HPPA
 #elif 0 ||\
       defined(__POWERPC__) || \
@@ -318,13 +334,14 @@
       defined(_M_PPC) ||\
       defined(_POWER) || \
       0
+
 # define UNIXSTL_ARCH_IS_POWERPC
 #elif 0 ||\
       defined(__sparc) ||\
       defined(__sparc__) || \
       0
 
-/* TODO: Separate out arch-family and archs (incl. Sparc32 and Sparc64) */
+ /* TODO: Separate out arch-family and archs (incl. Sparc32 and Sparc64) */
 # define UNIXSTL_ARCH_IS_SPARC
 #else /* ? arch */
 
