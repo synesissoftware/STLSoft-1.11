@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 
-int main(int argc, char* argv[])
+int main(int /* argc */, char* /* argv */[])
 {
 #ifdef WINSTL_ARCH_IS_ARM64
 # define ARCH "WINSTL_ARCH_IS_ARM64"
