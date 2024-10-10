@@ -408,16 +408,13 @@ static void test_dot_and_dot()
 {
     glob_sequence_t files(".", ".");
 
-    { for(glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+    { for(glob_sequence_t::const_reverse_iterator b = files.crbegin(); b != files.crend(); ++b)
+#else
+    { for(glob_sequence_t::const_iterator b = files.cbegin(); b != files.cend(); ++b)
+#endif
     {
-#if 0
-
-        XTESTS_TEST_FAIL("dot directory should be elided");
-        return;
-#else /* ? 0 */
-
         XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-#endif /* 0 */
     }}
 
     XTESTS_TEST_PASSED();
@@ -427,7 +424,11 @@ static void test_dot_and_dot_and_includeDots()
 {
     glob_sequence_t files(".", ".", glob_sequence_t::includeDots);
 
-    { for(glob_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+    { for(glob_sequence_t::const_reverse_iterator b = files.rbegin(); b != files.rend(); ++b)
+#else
+    { for(glob_sequence_t::const_reverse_iterator b = files.begin(); b != files.end(); ++b)
+#endif
     {
         XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
         XTESTS_TEST_BOOLEAN_TRUE(!traits_m_t::is_path_absolute(stlsoft::c_str_ptr(*b)));

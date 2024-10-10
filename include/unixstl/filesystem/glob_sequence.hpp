@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      183
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      184
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -602,6 +602,14 @@ public:
     ///
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
+    /// Begins the iteration
+    ///
+    /// \return An iterator representing the start of the sequence
+    const_iterator  cbegin() const;
+    /// Ends the iteration
+    ///
+    /// \return An iterator representing the end of the sequence
+    const_iterator  cend() const;
 #ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
 
     /// Begins the reverse iteration
@@ -612,6 +620,14 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
+    /// Begins the reverse iteration
+    ///
+    /// \return An iterator representing the start of the reverse sequence
+    const_reverse_iterator  crbegin() const;
+    /// Ends the reverse iteration
+    ///
+    /// \return An iterator representing the end of the reverse sequence
+    const_reverse_iterator  crend() const;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
@@ -782,12 +798,26 @@ inline
 glob_sequence::const_iterator
 glob_sequence::begin() const
 {
-    return m_base;
+    return cbegin();
 }
 
 inline
 glob_sequence::const_iterator
 glob_sequence::end() const
+{
+    return cend();
+}
+
+inline
+glob_sequence::const_iterator
+glob_sequence::cbegin() const
+{
+    return m_base;
+}
+
+inline
+glob_sequence::const_iterator
+glob_sequence::cend() const
 {
     return m_base + m_cItems;
 }
@@ -798,12 +828,26 @@ inline
 glob_sequence::const_reverse_iterator
 glob_sequence::rbegin() const
 {
-    return const_reverse_iterator(end());
+    return crbegin();
 }
 
 inline
 glob_sequence::const_reverse_iterator
 glob_sequence::rend() const
+{
+    return crend();
+}
+
+inline
+glob_sequence::const_reverse_iterator
+glob_sequence::crbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+inline
+glob_sequence::const_reverse_iterator
+glob_sequence::crend() const
 {
     return const_reverse_iterator(begin());
 }
