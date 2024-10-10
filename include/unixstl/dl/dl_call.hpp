@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    16
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        61
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    17
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,12 +69,12 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-# ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION
-#  include <unixstl/exception/unixstl_exception.hpp>
-# endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION */
 #ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
 # include <unixstl/dl/module.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_D:_HPP_MODULE */
+#ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION
+# include <unixstl/exception/unixstl_exception.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE
 # include <stlsoft/meta/is_function_pointer_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE */
@@ -140,7 +140,10 @@ public:
 public:
     /// Constructs an instance of the exception based on the given missing
     /// function name, and system error code.
-    missing_entry_point_exception(char const* functionName, status_code_type sc)
+    missing_entry_point_exception(
+        char const*         functionName
+    ,   status_code_type    sc
+    )
         : parent_class_type(class_type::create_reason_(functionName), sc)
     {}
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -157,7 +160,9 @@ private:
 
 // Implementation
 private:
-    static string_type create_reason_(char const* functionName)
+    static
+    string_type
+    create_reason_(char const* functionName)
     {
         string_type reason("Failed to find procedure \"");
 
@@ -200,7 +205,7 @@ namespace unixstl
 } /&zwj;* namespace unixstl *&zwj;/
 \endcode
  */
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct is_valid_dl_call_arg
 {
     enum { value = 0 };
@@ -216,20 +221,24 @@ struct dl_call_traits
 /// \name Member Types
 /// @{
 public:
-    typedef void            (*entry_point_type)(void);
-    typedef void*           library_handle_type;
-    typedef unixstl::module module_wrapper_type;
+    typedef void                                          (*entry_point_type)(void);
+    typedef void*                                           library_handle_type;
+    typedef unixstl::module                                 module_wrapper_type;
 /// @}
 
 /// \name Dynamic Library Functions
 /// @{
 public:
-    static entry_point_type get_symbol(library_handle_type hLib, char const* functionName)
+    static
+    entry_point_type
+    get_symbol(
+        library_handle_type hLib
+    ,   char const*         functionName
+    ) STLSOFT_NOEXCEPT
     {
 #if 0
 
         return (dl_call_traits::entry_point_type)::dlsym(hLib, functionName);
-
 #else /* ? 0 */
 
         // If this static assert fires, this component cannot be used. (It'd also be
@@ -247,7 +256,6 @@ public:
         u.pv = ::dlsym(hLib, functionName);
 
         return u.pfn;
-
 #endif /* 0 */
     }
 /// @}
@@ -272,21 +280,22 @@ public:
 };
 
 
+inline
+dl_call_traits::library_is_handle
 #if defined(STLSOFT_COMPILER_IS_MSVC) || \
     defined(STLSOFT_COMPILER_IS_GCCx)
-inline dl_call_traits::library_is_handle test_library_(dl_call_traits::library_handle_type )
-{
-    return dl_call_traits::library_is_handle();
-}
+test_library_(dl_call_traits::library_handle_type )
 #else /* ? compiler */
-inline dl_call_traits::library_is_handle test_library_(dl_call_traits::library_handle_type const&)
+test_library_(dl_call_traits::library_handle_type const&)
+#endif /* compiler */
 {
     return dl_call_traits::library_is_handle();
 }
-#endif /* compiler */
 
 template <ss_typename_param_k T>
-inline dl_call_traits::library_is_not_handle test_library_(T const&)
+inline
+dl_call_traits::library_is_not_handle
+test_library_(T const&)
 {
     return dl_call_traits::library_is_not_handle();
 }
@@ -296,9 +305,14 @@ inline dl_call_traits::library_is_not_handle test_library_(T const&)
  * helper functions
  */
 
-inline dl_call_traits::entry_point_type lookup_symbol_(dl_call_traits::library_handle_type hinst, char const* functionName)
+inline
+dl_call_traits::entry_point_type
+lookup_symbol_(
+    dl_call_traits::library_handle_type hinst
+,   char const*                         functionName
+)
 {
-    dl_call_traits::entry_point_type    fp  =   dl_call_traits::get_symbol(hinst, functionName);
+    dl_call_traits::entry_point_type fp = dl_call_traits::get_symbol(hinst, functionName);
 
     if (dl_call_traits::entry_point_type() == fp)
     {
@@ -307,6 +321,7 @@ inline dl_call_traits::entry_point_type lookup_symbol_(dl_call_traits::library_h
 
     return fp;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

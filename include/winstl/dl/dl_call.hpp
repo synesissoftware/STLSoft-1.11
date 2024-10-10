@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     8
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  7
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      73
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -282,7 +282,9 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static string_type create_reason_(char const* callingConventionSpecifier)
+    static
+    string_type
+    create_reason_(char const* callingConventionSpecifier)
     {
         return "Unrecognised or unsupported calling convention \"" + string_type(callingConventionSpecifier) + '"';
     }
@@ -403,7 +405,7 @@ struct function_descriptor
     {}
 
     S const&    FunctionName;
-    const int   CallingConvention;
+    int const   CallingConvention;
 
 private:
     function_descriptor& operator =(function_descriptor const&);
@@ -465,9 +467,7 @@ namespace winstl
 } /&zwj;* namespace winstl *&zwj;/
 \endcode
  */
-template<
-    ss_typename_param_k T
->
+template <ss_typename_param_k T>
 struct is_valid_dl_call_arg
 {
     enum { value = 0 };
@@ -483,9 +483,9 @@ struct dl_call_traits
 /// \name Member Types
 /// @{
 public:
-    typedef FARPROC         entry_point_type;
-    typedef HINSTANCE       library_handle_type;
-    typedef winstl::module  module_wrapper_type;
+    typedef FARPROC                                         entry_point_type;
+    typedef HINSTANCE                                       library_handle_type;
+    typedef winstl::module                                  module_wrapper_type;
 /// @}
 
 /// \name Dynamic Library Functions
@@ -570,26 +570,19 @@ dl_call_traits::is_not_fd test_fd_(...)
     return dl_call_traits::is_not_fd();
 }
 
+inline
+dl_call_traits::library_is_handle
 #if defined(STLSOFT_COMPILER_IS_MSVC) || \
     defined(STLSOFT_COMPILER_IS_GCCx)
-inline
-dl_call_traits::library_is_handle
 test_library_(dl_call_traits::library_handle_type)
-{
-    return dl_call_traits::library_is_handle();
-}
 #else /* ? compiler */
-inline
-dl_call_traits::library_is_handle
 test_library_(dl_call_traits::library_handle_type const&)
+#endif /* compiler */
 {
     return dl_call_traits::library_is_handle();
 }
-#endif /* compiler */
 
-template<
-    ss_typename_param_k T
->
+template <ss_typename_param_k T>
 inline
 dl_call_traits::library_is_not_handle
 test_library_(T const&)
