@@ -47,14 +47,21 @@
 namespace
 {
 
+    // 0 parameters
     static void test_Kernel32_GetTickCount(void);
     static void test_Kernel32_GetTickCount64(void);
 
+    // 1 parameter
     static void test_Kernel32_GetSystemInfo(void);
 
+    // 2 parameters
     static void test_Kernel32_GetSystemDirectory(void);
 
+    // 3 parameters
     static void test_GetSystemTimeAdjustmentPrecise(void);
+
+    // 4 parameters
+    static void test_SystemParametersInfo(void);
 } // anonymous namespace
 
 
@@ -79,6 +86,8 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_Kernel32_GetSystemDirectory);
 
         XTESTS_RUN_CASE(test_GetSystemTimeAdjustmentPrecise);
+
+        XTESTS_RUN_CASE(test_SystemParametersInfo);
 
         XTESTS_PRINT_RESULTS();
 
@@ -227,6 +236,33 @@ static void test_GetSystemTimeAdjustmentPrecise(void)
     catch (winstl::winstl_exception& /* x */)
     {}
 }
+
+static void test_SystemParametersInfo(void)
+{
+    try
+    {
+        RECT    rc = { -1, -1, -1, -1 };
+
+        BOOL const r = winstl::dl_call<BOOL>(
+            "User32.dll"
+        ,   WINSTL_DL_CALL_WINx_STDCALL_LITERAL("SystemParametersInfoA")
+        ,   SPI_GETWORKAREA
+        ,   0
+        ,   &rc
+        ,   0
+        );
+
+        if (r)
+        {
+            XTESTS_TEST(rc.bottom != -1 || rc.top != -1 || rc.left != -1 || rc.right != -1);
+        }
+    }
+    catch (winstl::missing_entry_point_exception& x)
+    {
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+    }
+}
+
 
 } // anonymous namespace
 
