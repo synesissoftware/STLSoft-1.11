@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_REVISION   11
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       59
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_REVISION   12
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PIPE_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -163,6 +163,9 @@ public:
             close_(m_handles[1]);
         }
     }
+private:
+    pipe(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Accessors
@@ -235,13 +238,6 @@ private:
 /// @{
 private:
     int m_handles[2];
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    pipe(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        21
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    8
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -113,6 +113,8 @@ public:
     trip_bool(bool v = !V)
         : m_v(v)
     {}
+private:
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Accessors
@@ -140,13 +142,8 @@ public:
 private:
     value_type  m_v;
 /// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    void operator =(class_type const&); // copy-assignment proscribed
-/// @}
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

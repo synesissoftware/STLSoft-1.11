@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_MINOR      1
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   13
-# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       116
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_REVISION   14
+# define WINSTL_VER_WINSTL_SHELL_HPP_DROPHANDLE_SEQUENCE_EDIT       117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -342,6 +342,9 @@ public:
     ss_explicit_k basic_drophandle_sequence(HDROP hdrop, ws_bool_t bOwnHandle = true);
     /// Release any resources acquired
     ~basic_drophandle_sequence() STLSOFT_NOEXCEPT;
+private:
+    basic_drophandle_sequence(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 
 // Attributes
 public:
@@ -380,11 +383,6 @@ private:
 
 // Implementation
 private:
-
-// Not to be implemented
-private:
-    basic_drophandle_sequence(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 };
 
 /* Typedefs to commonly encountered types. */

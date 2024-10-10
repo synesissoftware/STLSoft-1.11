@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       162
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       163
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -269,6 +269,9 @@ public:
         : m_flags(validate_flags_(flags))
         , m_directory(prepare_directory_(STLSOFT_NS_QUAL(c_str_ptr)(directory), flags))
     {}
+private:
+    readdir_sequence(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Iteration
@@ -324,13 +327,6 @@ private:
 private:
     const flags_type    m_flags;
     const string_type   m_directory;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    readdir_sequence(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 
@@ -447,6 +443,11 @@ public:
         : m_dir(h)
         , m_refCount(1)
     {}
+private:
+    shared_handle(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
+
+public:
     ss_sint32_t AddRef()
     {
         return ++m_refCount;
@@ -476,13 +477,6 @@ private:
             ::closedir(m_dir);
         }
     }
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    shared_handle(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

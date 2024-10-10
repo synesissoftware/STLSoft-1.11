@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR      3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT       44
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -187,10 +187,8 @@ public:
             UNIXSTL_INTERNAL_SYNCH_POSIX_sem_destroy(m_sem);
         }
     }
-
-// Not to be implemented
 private:
-    semaphore(class_type const&);               // copy-construction proscribed
+    semaphore(class_type const&); // copy-construction proscribed
     void operator =(class_type const&); // copy-assignment proscribed
 
 #if 0

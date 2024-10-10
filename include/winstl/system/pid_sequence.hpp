@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 12
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     71
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 13
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -197,6 +197,8 @@ public:
     pid_sequence(class_type const& rhs);
     /// Releases the storage associated with the process id list
     ~pid_sequence() STLSOFT_NOEXCEPT;
+private:
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Iteration
@@ -289,12 +291,6 @@ public:
 /// @{
 private:
     buffer_type_    m_pids;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

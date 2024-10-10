@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_REVISION   6
-# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       58
+# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_REVISION   7
+# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -138,6 +138,9 @@ public:
             ::ReleaseDC(m_hwnd, m_hdc);
         }
     }
+private:
+    HDC_scope(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Accessors
@@ -161,12 +164,8 @@ private:
     HDC     m_hdc;
     HWND    m_hwnd;
 /// @}
-
-// Not to be implemented
-private:
-    HDC_scope(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

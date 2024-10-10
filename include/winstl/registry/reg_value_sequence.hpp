@@ -64,8 +64,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 14
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     149
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 15
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     150
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -294,6 +294,9 @@ public:
                             ,   bool_type           bMonitorExternalInvalidation);
     /// Destructor
     ~basic_reg_value_sequence() STLSOFT_NOEXCEPT;
+private:
+    basic_reg_value_sequence(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Iteration
@@ -355,13 +358,6 @@ private:
     hkey_type       m_hkey;
     const REGSAM    m_accessMask;
     const bool_type m_bMonitorExternalInvalidation;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    basic_reg_value_sequence(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

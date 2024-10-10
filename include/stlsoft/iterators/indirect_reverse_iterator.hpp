@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_MINOR      2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   12
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       46
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_REVISION   13
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDIRECT_REVERSE_ITERATOR_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -165,6 +165,8 @@ public:
     indirect_reverse_iterator(class_type const& rhs)
         : m_it(new iterator_type(*rhs.m_it.get()))
     {}
+private:
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Iterator Operations
@@ -267,12 +269,6 @@ public:
 /// @{
 private:
     iterator_ptr_type   m_it;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

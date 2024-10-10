@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 12
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     56
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 13
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -156,6 +156,9 @@ public:
             WINSTL_API_EXTERNAL_HandleAndObject_CloseHandle(m_hWriteHandle);
         }
     }
+private:
+    pipe(class_type const&);
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Accessors
@@ -212,14 +215,6 @@ public:
 private:
     HANDLE  m_hReadHandle;
     HANDLE  m_hWriteHandle;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    pipe(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
-/// @}
 };
 
 

@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     36
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -151,7 +151,10 @@ public:
         traits_type::copy(&m_message[0], &rhs.m_message[0], m_message.size());
         m_message[m_message.size() - 1] = '\0';
     }
+private:
+    void operator =(class_type const&); // copy-assignment proscribed
 
+public:
     /// Appends the given string to the message
     void operator +=(char_type const* s)
     {
@@ -245,12 +248,6 @@ public:
 /// @{
 private:
     buffer_type_    m_message;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

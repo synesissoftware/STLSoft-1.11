@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_REVISION   6
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_EDIT       31
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_REVISION   7
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_PUSH_INSERT_ITERATOR_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -173,6 +173,8 @@ private:
         deref_proxy(insert_iterator_type_* it)
             : m_it(it)
         {}
+    private:
+        void operator =(class_type const&); // copy-assignment proscribed
 
     public:
         template <ss_typename_param_k A>
@@ -183,10 +185,6 @@ private:
 
     private:
         insert_iterator_type_* const m_it;
-
-    // Not to be implemented
-    private:
-        void operator =(class_type const&); // copy-assignment proscribed
     };
 
     template <ss_typename_param_k A>

@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR     2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR     1
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  11
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      42
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  12
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -330,6 +330,9 @@ protected:
 public:
     /// Destructor
     virtual ~custom_event_handler() STLSOFT_NOEXCEPT;
+private:
+    custom_event_handler(class_type const&); // copy-constructor proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 
 /// \name Operations
 /// @{
@@ -641,11 +644,6 @@ private:
 
     callback_hook       m_callbackHook;
     event_code_map_type m_entries;
-
-// Not to be implemented
-private:
-    custom_event_handler(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 };
 
 

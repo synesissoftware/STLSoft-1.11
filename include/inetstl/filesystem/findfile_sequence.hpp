@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR     3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR     0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  26
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      170
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  27
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      171
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -252,6 +252,9 @@ public:
                         ,   flags_type          flags = directories | files);
     /// Destructor
     ~basic_findfile_sequence() STLSOFT_NOEXCEPT;
+private:
+    basic_findfile_sequence(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Iteration
@@ -318,13 +321,6 @@ private:
     static void         extract_subpath_(HINTERNET hconn, char_type *dest, char_type const* pattern);
 
     static  HINTERNET   find_first_file_(HINTERNET hconn, char_type const* spec, flags_type flags, find_data_type *findData);
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    basic_findfile_sequence(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 
@@ -579,6 +575,9 @@ private:
                 traits_type::find_close(hSrch);
             }
         }
+    private:
+        shared_handle(class_type const&); // copy-construction proscribed
+        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
 
     /// \name Operations
@@ -599,13 +598,6 @@ private:
 
             return rc;
         }
-    /// @}
-
-    /// \name Not to be implemented
-    /// @{
-    private:
-        shared_handle(class_type const&);
-        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
     };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

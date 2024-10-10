@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_REVISION   7
-# define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_EDIT       60
+# define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_REVISION   8
+# define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -155,6 +155,9 @@ public:
     {
         ::SetCursor(m_hcurLast);
     }
+private:
+    setcursor_scope(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 
 /// \name Implementation
 /// @{
@@ -173,13 +176,6 @@ private:
 /// @{
 private:
     HCURSOR m_hcurLast;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    setcursor_scope(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

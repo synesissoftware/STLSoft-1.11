@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MAJOR      1
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MINOR      0
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   9
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       23
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   10
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -140,7 +140,11 @@ public:
     Window(HWND hwnd = NULL)
         : parent_class_type(hwnd)
     {}
+private:
+    Window(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 
+public:
     /// Assigns a window handle to the instance
     class_type& operator =(HWND hwnd)
     {
@@ -235,13 +239,6 @@ public:
     {
         return parent_class_type::WinHelp(stlsoft::c_str_ptr(lpszHelp), nCmd, dwData);
     }
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    Window(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

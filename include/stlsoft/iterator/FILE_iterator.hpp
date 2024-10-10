@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    9
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        18
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    10
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -240,6 +240,8 @@ private:
         deref_proxy(FILE_iterator* it)
             : m_it(it)
         {}
+    private:
+        void operator =(class_type const&); // copy-assignment proscribed
 
     public:
         void operator =(assigned_type const& value)
@@ -249,10 +251,6 @@ private:
 
     private:
         FILE_iterator* const m_it;
-
-    // Not to be implemented
-    private:
-        void operator =(class_type const&); // copy-assignment proscribed
     };
 
     void invoke_(assigned_type const& value)

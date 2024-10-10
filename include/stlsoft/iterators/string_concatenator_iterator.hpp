@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MINOR       4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    7
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        59
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    8
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -191,6 +191,8 @@ private:
         deref_proxy(string_concatenator_iterator* it)
             : m_it(it)
         {}
+    private:
+        void operator =(class_type const&); // copy-assignment proscribed
 
     public:
         template <ss_typename_param_k S3>
@@ -220,10 +222,6 @@ private:
 
     private:
         string_concatenator_iterator    *const m_it;
-
-    // Not to be implemented
-    private:
-        void operator =(class_type const&); // copy-assignment proscribed
     };
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)

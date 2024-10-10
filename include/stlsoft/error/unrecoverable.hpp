@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MINOR      0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   9
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       44
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   10
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -180,6 +180,10 @@ public:
 #endif /* STLSOFT_UNRECOVERABLE_EXCEPTION_USE_WIN32_EXITPROCESS */
         }
     }
+private:
+    void operator =(class_type const&); // copy-assignment proscribed
+
+    void* operator new(ss_size_t );
 /// @}
 
 /// \name Accessors
@@ -198,12 +202,6 @@ private:
     long *const m_refcnt;
     void        (*m_pfnHandler)();
 /// @}
-
-// Not to be implemented
-private:
-    void operator =(class_type const&); // copy-assignment proscribed
-
-    void* operator new(ss_size_t );
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

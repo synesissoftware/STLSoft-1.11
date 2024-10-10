@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    2
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 11
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     97
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 12
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -299,6 +299,8 @@ public:
         STLSOFT_API_INTERNAL_memfns_memcpy(&m_name.szw[0], windowClass, cchClass);
         m_name.szw[cchClass] = '\0';
     }
+private:
+    void operator =(class_type const&); // copy-assignment proscribed
 
 public:
     BOOL operator ()(HWND hwnd) const
@@ -337,10 +339,6 @@ private:
         ws_char_w_t szw[256];
     }           m_name;
     const int   m_bUnicode;
-
-// Not to be implemented
-private:
-    void operator =(class_type const&); // copy-assignment proscribed
 };
 
 /** A function class used to insert items at the front of list-box

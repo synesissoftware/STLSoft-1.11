@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 16
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     58
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 17
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -187,6 +187,9 @@ public:
     {
         index_destroy_(m_index);
     }
+private:
+    tss_index(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Operations
@@ -256,13 +259,6 @@ private:
 /// @{
 private:
     key_type    m_index;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    tss_index(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

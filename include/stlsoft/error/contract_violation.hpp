@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_REVISION  8
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_EDIT      35
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_REVISION  9
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONTRACT_VIOLATION_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -171,6 +171,8 @@ public:
     {}
     virtual ~contract_violation() STLSOFT_NOEXCEPT_STDOVR
     {}
+private:
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Accessors
@@ -197,10 +199,6 @@ private:
 private:
     const string_type   m_error;
 /// @}
-
-// Not to be implemented
-private:
-    void operator =(class_type const&); // copy-assignment proscribed
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

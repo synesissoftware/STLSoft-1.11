@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  13
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      34
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  14
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -335,6 +335,9 @@ public:
             WINSTL_API_EXTERNAL_HandleAndObject_CloseHandle(m_snapshot);
         }
     }
+private:
+    th_sequence_base(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Iteration
@@ -375,13 +378,7 @@ private:
     handle_type m_snapshot;
 /// @}
 
-/// \name Not to be implemented
-/// @{
 private:
-    th_sequence_base(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
-/// @}
-
     void verify_construction()
     {
         if (traits_type::invalid_handle() == m_snapshot)

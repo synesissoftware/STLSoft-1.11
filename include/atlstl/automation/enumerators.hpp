@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 10
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     84
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 11
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -227,6 +227,9 @@ public:
 public:
     copy_enumerator_impl();
     ~copy_enumerator_impl() STLSOFT_NOEXCEPT;
+private:
+    copy_enumerator_impl(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Enumeration
@@ -312,7 +315,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    virtual class_type  *CreateEmptyClone() const = 0;
+    virtual class_type* CreateEmptyClone() const = 0;
 
     template <typename T>
     static difference_type count_all(T const& b, T const& e)
@@ -346,13 +349,6 @@ private:
 private:
     values_type     m_values;
     const_iterator  m_current;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    copy_enumerator_impl(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 
@@ -389,7 +385,7 @@ public:
     END_COM_MAP()
 
 protected:
-    virtual impl_type_ *CreateEmptyClone() const
+    virtual impl_type_* CreateEmptyClone() const
     {
         return new CComObject<class_type>;
     }

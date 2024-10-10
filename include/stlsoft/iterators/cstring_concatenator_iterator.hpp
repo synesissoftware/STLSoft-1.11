@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MINOR      1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   8
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       44
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   9
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -178,6 +178,8 @@ private:
         deref_proxy(concatenator_iterator_type *it)
             : m_it(it)
         {}
+    private:
+        void operator =(class_type const&); // copy-assignment proscribed
 
     public:
         template <ss_typename_param_k S>
@@ -188,10 +190,6 @@ private:
 
     private:
         concatenator_iterator_type  *const m_it;
-
-    // Not to be implemented
-    private:
-        void operator =(class_type const&); // copy-assignment proscribed
     };
 /// @}
 

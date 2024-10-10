@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   10
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       35
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   11
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -206,6 +206,9 @@ namespace platformstl_project
             : m_ffs(STLSOFT_NS_QUAL(c_str_ptr)(directory), "*.*", translate_flags_(flags))
             , m_flags(validate_flags_(flags))
         {}
+    private:
+        readdir_sequence(class_type const&); // copy-construction proscribed
+        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
 
     /// \name Iteration
@@ -258,13 +261,6 @@ namespace platformstl_project
     private:
         const underlying_sequence_type  m_ffs;
         const flags_type                m_flags;
-    /// @}
-
-    /// \name Not to be implemented
-    /// @{
-    private:
-        readdir_sequence(class_type const&);
-        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
     };
 

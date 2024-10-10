@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 22
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     45
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 23
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -414,6 +414,9 @@ public:
     ss_explicit_k applet_module(TCHAR const* path, onFailureS pfn, int flags = ignoreIconLoadFailures, HWND hwndParent = NULL);
 # endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+private:
+    applet_module(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Attributes
@@ -476,13 +479,6 @@ private:
     module              m_module;
     applets_type_       m_applets;
     error_translator    m_errorTranslator;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    applet_module(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

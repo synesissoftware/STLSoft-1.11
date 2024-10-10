@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 13
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     276
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 14
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     277
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -445,7 +445,11 @@ public:
                     m_enumerator->Release();
                 }
             }
+        private:
+            enumeration_context(class_type const&); // copy-construction proscribed
+            void operator =(class_type const&); // copy-assignment proscribed
 
+        public:
             void AddRef()
             {
                 ++m_refCount;
@@ -677,11 +681,6 @@ public:
             long            m_refCount;
             size_type       m_previousBlockTotal;
         /// @}
-
-        // Not to be implemented
-        private:
-            enumeration_context(class_type const&);
-            void operator =(class_type const&); // copy-assignment proscribed
         };
 
 

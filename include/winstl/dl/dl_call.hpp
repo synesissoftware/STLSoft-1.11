@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     8
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  4
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      70
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  5
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -262,6 +262,8 @@ public:
     virtual ~invalid_calling_convention_exception() STLSOFT_NOEXCEPT_STDOVR
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+private:
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Accessors
@@ -286,12 +288,6 @@ private:
 /// @{
 private:
     const string_type   m_ccs;
-/// @}
-
-// Not to be implemented
-/// @}
-private:
-    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 };
 

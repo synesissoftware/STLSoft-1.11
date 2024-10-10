@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       0
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    18
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        54
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    19
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -194,6 +194,9 @@ namespace registry_util
                 WINSTL_API_EXTERNAL_Registry_RegCloseKey(m_hkey);
             }
         }
+    private:
+        shared_handle(class_type const&); // copy-construction proscribed
+        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
 
     /// \name Operations
@@ -217,13 +220,6 @@ namespace registry_util
 
         virtual void test_reset_and_throw()
         {}
-    /// @}
-
-    /// \name Not to be implemented
-    /// @{
-    private:
-        shared_handle(class_type const&);
-        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
     };
 
@@ -253,6 +249,9 @@ namespace registry_util
 
             AddRef();
         }
+    private:
+        monitored_shared_handle(class_type const&); // copy-construction proscribed
+        void operator =(class_type const&); // copy-assignment proscribed
 
     /// \name Operations
     /// @{
@@ -325,13 +324,6 @@ namespace registry_util
     private:
         const int   m_eventType;
         event       m_monitor;  // The event that will monitor changes to the API.
-    /// @}
-
-    /// \name Not to be implemented
-    /// @{
-    private:
-        monitored_shared_handle(class_type const&);
-        void operator =(class_type const&); // copy-assignment proscribed
     /// @}
     };
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

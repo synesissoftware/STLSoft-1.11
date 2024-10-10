@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MINOR      0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_REVISION   7
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       16
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_REVISION   8
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,11 +99,11 @@ class singlethreaded_tss_index
 /// @{
 public:
     /// This class
-    typedef singlethreaded_tss_index        class_type;
+    typedef singlethreaded_tss_index                        class_type;
     /// The type of the TSS key
-    typedef void                            key_type;
+    typedef void                                            key_type;
     /// The type of the slot values
-    typedef void*                           value_type;
+    typedef void*                                           value_type;
 /// @}
 
 /// \name Construction
@@ -116,6 +116,9 @@ public:
     /// Releases the TSS key
     ~singlethreaded_tss_index() STLSOFT_NOEXCEPT
     {}
+private:
+    singlethreaded_tss_index(class_type const&); // copy-construction proscribed
+    void operator =(class_type const&); // copy-assignment proscribed
 /// @}
 
 /// \name Operations
@@ -138,14 +141,8 @@ public:
 private:
     value_type  m_value;
 /// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    singlethreaded_tss_index(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
-/// @}
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
