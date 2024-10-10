@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     8
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  5
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      71
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  6
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -153,12 +153,16 @@ namespace winstl_project
  */
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
 # define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)          <appropriate prefix> name
 #elif defined(WINSTL_OS_IS_WIN64)
+
 # define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)          "cdecl:" name
 #elif defined(WINSTL_OS_IS_WIN32)
+
 # define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)          "stdcall:" name
 #else /* ? WIN?? */
+
 # error Windows operating system not recognised
 #endif /* WIN?? */
 
@@ -287,7 +291,7 @@ private:
 /// \name Members
 /// @{
 private:
-    const string_type   m_ccs;
+    string_type const   m_ccs;
 /// @}
 };
 
@@ -622,23 +626,26 @@ inline
 calling_convention::calling_convention
 determine_calling_convention_(C const*& functionName)
 {
-#if 0
-#elif defined(WINSTL_ARCH_IS_IA64) || \
-      defined(WINSTL_ARCH_IS_X64)
-
-    STLSOFT_SUPPRESS_UNUSED(functionName);
-
-    return calling_convention::cdeclCallConv;
-#else
-
     typedef stlsoft::basic_string_view<C> string_t;
 
-    calling_convention::calling_convention  cc = calling_convention::cdeclCallConv;
+    calling_convention::calling_convention  cc = calling_convention::unknownCallConv;
     string_t                                s0;
     string_t                                s1;
 
     if (stlsoft::split(functionName, ':', s0, s1))
     {
+#if 0
+#elif 0 ||\
+      defined(WINSTL_ARCH_IS_ARM64) ||\
+      defined(WINSTL_ARCH_IS_IA64) ||\
+      defined(WINSTL_ARCH_IS_X64) ||\
+      0
+
+        cc = calling_convention::cdeclCallConv;
+
+        functionName = s1.empty() ? s0.base() : s1.base();
+#else
+
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
         if (s0 == "C" ||
             s0 == "cdecl")
@@ -665,10 +672,10 @@ determine_calling_convention_(C const*& functionName)
         }
 
         functionName = s1.base();
+#endif
     }
 
     return cc;
-#endif
 }
 
 template<
