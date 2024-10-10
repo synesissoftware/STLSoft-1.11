@@ -66,7 +66,7 @@ namespace
     static void test_spin_mutex32_can_be_locked_and_unlocked_with_lock_scope(void);
     static void test_spin_mutex32_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread(void);
     static void test_with_specific_policy(void);
-} // anonymous namespace
+} /* anonymous namespace */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -184,7 +184,16 @@ namespace {
 #endif
         }
     };
-} // anonymous namespace
+} /* anonymous namespace */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helpers
+ */
+
+namespace {
+
+} /* anonymous namespace */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -346,7 +355,7 @@ namespace
 
         XTESTS_TEST_PASSED();
     }
-} // anonymous namespace
+} /* anonymous namespace */
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
