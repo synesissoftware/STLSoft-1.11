@@ -5,7 +5,7 @@
  *          library filesystem functions.
  *
  * Created: 9th December 2006
- * Updated: 5th September 2024
+ * Updated: 9th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -62,7 +62,7 @@ int main()
 
         return EXIT_SUCCESS;
     }
-    catch (std::exception &x)
+    catch (std::exception& x)
     {
         cerr << "Error: " << x.what() << endl;
 

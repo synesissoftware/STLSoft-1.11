@@ -144,15 +144,15 @@ int main()
             }
         }
     }
-    catch (comstl::bad_interface_cast &x)
+    catch (comstl::bad_interface_cast& x)
     {
         std::cerr << "Failed to 'cast' interface: " << x.what() << std::endl;
     }
-    catch (comstl::com_initialisation_exception &x)
+    catch (comstl::com_initialisation_exception& x)
     {
         std::cerr << "Failed to initialise COM libraries: " << x.what() << std::endl;
     }
-    catch (std::exception &x)
+    catch (std::exception& x)
     {
         std::cerr << "Operation failed: " << x.what() << std::endl;
     }

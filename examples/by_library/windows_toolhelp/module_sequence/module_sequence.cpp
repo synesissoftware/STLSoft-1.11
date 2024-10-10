@@ -4,7 +4,7 @@
  * Purpose: C++ example program demonstrating use of the ToolHelp library.
  *
  * Created: 22nd May 2006
- * Updated: 28th September 2024
+ * Updated: 9th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,7 +51,7 @@ int main()
 
         return EXIT_SUCCESS;
     }
-    catch (std::exception &x)
+    catch (std::exception& x)
     {
         cerr << "Error: " << x.what() << endl;
 

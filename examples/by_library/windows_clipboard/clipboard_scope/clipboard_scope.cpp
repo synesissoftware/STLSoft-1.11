@@ -5,7 +5,7 @@
  *          library.
  *
  * Created: 6th June 2006
- * Updated: 5th September 2024
+ * Updated: 9th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,7 +40,7 @@ int main()
             scope.get_allocator().deallocate(str);
         }
     }
-    catch (winstl::clipboard_scope_exception &x)
+    catch (winstl::clipboard_scope_exception& x)
     {
         std::cerr << "Exception: " << x.what() << std::endl;
     }

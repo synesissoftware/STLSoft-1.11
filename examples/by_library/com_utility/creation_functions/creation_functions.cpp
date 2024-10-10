@@ -5,7 +5,7 @@
  *          functions.
  *
  * Created: 13th December 2006
- * Updated: 5th September 2024
+ * Updated: 9th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -132,7 +132,7 @@ int main()
 
         return main_();
     }
-    catch (std::exception &x)
+    catch (std::exception& x)
     {
         cerr << "Unhandled error: " << x.what() << endl;
 
