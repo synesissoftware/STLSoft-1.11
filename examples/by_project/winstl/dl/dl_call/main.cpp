@@ -7,24 +7,11 @@
 
 int main(int /* argc */, char* /* argv */[])
 {
-#ifdef WINSTL_ARCH_IS_ARM64
-# define ARCH "WINSTL_ARCH_IS_ARM64"
-#endif /* WINSTL_ARCH_IS_ARM64 */
-#ifdef WINSTL_ARCH_IS_IA64
-# define ARCH "WINSTL_ARCH_IS_IA64"
-#endif /* WINSTL_ARCH_IS_IA64 */
-#ifdef WINSTL_ARCH_IS_X64
-# define ARCH "WINSTL_ARCH_IS_X64"
-#endif /* WINSTL_ARCH_IS_X64 */
-#ifdef WINSTL_ARCH_IS_X86
-# define ARCH "WINSTL_ARCH_IS_X86"
-#endif /* WINSTL_ARCH_IS_X86 */
-
-    fprintf(stdout, "ARCH=%s\n", ARCH);
+    fprintf(stdout, "WINSTL_ARCH_LABEL_STRING=%s\n", WINSTL_ARCH_LABEL_STRING);
 
     try
     {
-        DWORD const tc = winstl::dl_call<DWORD>("Kernel32.dll", "S:GetTickCount");
+        DWORD const tc = winstl::dl_call<DWORD>("Kernel32.dll", WINSTL_DL_CALL_WINx_STDCALL_LITERAL("GetTickCount"));
 
         fprintf(stdout, "Kernel32:GetTickCount: %lu\n", static_cast<unsigned long>(tc));
     }

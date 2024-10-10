@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th October 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -264,8 +264,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the WinSTL libraries requires STLSoft version 1.10.1 beta 26, or later
+#if _STLSOFT_VER < 0x010b0151
+# error This version of the WinSTL libraries requires STLSoft version 1.11.1 alpha 17, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -329,6 +329,7 @@
       defined(_M_ARM64) ||\
       0
 
+# define WINSTL_ARCH_LABEL_STRING                           "ARM64"
 # define WINSTL_ARCH_IS_ARM64
 #elif 0 ||\
       defined(__ia64) ||\
@@ -337,6 +338,7 @@
       defined(_M_IA64) ||\
       0
 
+# define WINSTL_ARCH_LABEL_STRING                           "IA-64"
 # define WINSTL_ARCH_IS_IA64
 #elif 0 ||\
       defined(__amd64) ||\
@@ -348,6 +350,7 @@
       defined(_M_X64) ||\
       0
 
+# define WINSTL_ARCH_LABEL_STRING                           "x86-64"
 # define WINSTL_ARCH_IS_X64
 #elif 0 ||\
       defined(__i386) ||\
@@ -356,6 +359,7 @@
       defined(_M_IX86) ||\
       0
 
+# define WINSTL_ARCH_LABEL_STRING                           "80x86"
 # define WINSTL_ARCH_IS_X86
 #else /* ? _M_?? */
 
