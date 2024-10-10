@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::glob_sequence`.
  *
  * Created: 24th January 2009
- * Updated: 10th October 2024
+ * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,6 +26,9 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/util/temp_directory.hpp>
+
+
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -47,7 +50,7 @@
 namespace
 {
 
-    static void test_1_00(void);
+    static void test_empty_directory(void);
 
     static void test_dot(void);
     static void test_dot_and_includeDots(void);
@@ -99,7 +102,7 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.component.unixstl.filesystem.glob_sequence", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_00);
+        XTESTS_RUN_CASE(test_empty_directory);
 
         XTESTS_RUN_CASE(test_dot);
         XTESTS_RUN_CASE(test_dot_and_includeDots);
@@ -155,10 +158,31 @@ namespace
     typedef unixstl::filesystem_traits<char>    traits_m_t;
     typedef unixstl::basic_path<char>           path_m_t;
 
-static void test_1_00(void)
-{
-}
+    using ::xtests::cpp::util::temp_directory;
 
+
+static void test_empty_directory(void)
+{
+    temp_directory temp_dir(temp_directory::EmptyOnClose | temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
+
+    {
+        glob_sequence_t gs(temp_dir.c_str(), glob_sequence_t::files);
+
+        XTESTS_TEST_BOOLEAN_TRUE(gs.empty());
+    }
+
+    {
+        glob_sequence_t gs(temp_dir.c_str(), "*.*", glob_sequence_t::files);
+
+        XTESTS_TEST_BOOLEAN_TRUE(gs.empty());
+    }
+
+    {
+        glob_sequence_t gs(temp_dir.c_str(), "*.*");
+
+        XTESTS_TEST_BOOLEAN_TRUE(gs.empty());
+    }
+}
 
 static void test_dot()
 {
