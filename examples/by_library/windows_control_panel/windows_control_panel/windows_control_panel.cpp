@@ -5,7 +5,7 @@
  *          Panel library.
  *
  * Created: 27th May 2006
- * Updated: 5th September 2024
+ * Updated: 9th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -58,7 +58,7 @@ int main()
             std::cout << std::endl;
         }}
     }
-    catch (std::exception &x)
+    catch (std::exception& x)
     {
         std::cerr << "Exception: " << x.what() << std::endl;
     }
