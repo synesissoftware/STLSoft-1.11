@@ -526,7 +526,7 @@ static void test_ctor_range_pointers_1()
 
 static void test_ctor_range_pointers_2()
 {
-    stlsoft::auto_buffer<int, 10> buff(&INTEGERS[0], &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+    stlsoft::auto_buffer<int, 10> buff(&INTEGERS[0] + 0, &INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
 
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
