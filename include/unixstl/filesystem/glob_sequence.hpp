@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      182
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      183
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -576,10 +576,10 @@ private:
 /// @{
 public:
     /// Returns the number of elements in the sequence
-    us_size_t size() const;
+    us_size_t size() const STLSOFT_NOEXCEPT;
 
     /// Indicates whether the search sequence is empty
-    us_bool_t empty() const;
+    us_bool_t empty() const STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Element Access
@@ -619,19 +619,19 @@ public:
 /// @{
 private:
     // Tests the class invariant
-    us_bool_t           is_valid() const;
+    us_bool_t           is_valid() const STLSOFT_NOEXCEPT;
 
     // Validates the flags, and sets up defaults
-    static us_int_t     validate_flags_(us_int_t flags);
+    static us_int_t     validate_flags_(us_int_t flags) STLSOFT_NOEXCEPT;
 
     // Returns true if pch is a path separator "/" (or "\\"); false otherwise
-    static us_bool_t    is_path_separator_(char_type ch);
+    static us_bool_t    is_path_separator_(char_type ch) STLSOFT_NOEXCEPT;
 
     // Returns true if pch == "" or "/" (or "\\"); false otherwise
-    static us_bool_t    is_end_of_path_elements_(char_type const* pch, difference_type index);
+    static us_bool_t    is_end_of_path_elements_(char_type const* pch, difference_type index) STLSOFT_NOEXCEPT;
 
     // Returns true if s points to a path that is a dots directory; false otherwise
-    static us_bool_t    is_dots_maybe_slashed_(char_type const* s, us_bool_t* bTwoDots);
+    static us_bool_t    is_dots_maybe_slashed_(char_type const* s, us_bool_t* bTwoDots) STLSOFT_NOEXCEPT;
 
     // Calls glob() and process the results
     //
@@ -670,6 +670,7 @@ private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #if defined(GLOB_SEQUENCE_CTOR_OLD_FORM)
+
 inline /* ss_explicit_k */
 glob_sequence::glob_sequence(
     glob_sequence::char_type const* pattern
@@ -686,6 +687,7 @@ glob_sequence::glob_sequence(
 
 #if defined(GLOB_SEQUENCE_CTOR_OLD_FORM) || \
     defined(GLOB_SEQUENCE_CTOR_ALT_FORM)
+
 inline
 glob_sequence::glob_sequence(
     glob_sequence::char_type const*     directory
@@ -702,6 +704,7 @@ glob_sequence::glob_sequence(
 #endif /* GLOB_SEQUENCE_CTOR_OLD_FORM || GLOB_SEQUENCE_CTOR_ALT_FORM */
 
 #if 0
+
 template<   ss_typename_param_k S1
         ,   ss_typename_param_k S2
         >
@@ -721,6 +724,7 @@ glob_sequence::glob_sequence(
 #endif /* 0 */
 
 #if 0
+
 inline
 glob_sequence::glob_sequence(
     char_type const*    directory
@@ -751,14 +755,14 @@ glob_sequence::~glob_sequence() STLSOFT_NOEXCEPT
 
 inline
 us_size_t
-glob_sequence::size() const
+glob_sequence::size() const STLSOFT_NOEXCEPT
 {
     return m_cItems;
 }
 
 inline
 us_bool_t
-glob_sequence::empty() const
+glob_sequence::empty() const STLSOFT_NOEXCEPT
 {
     return 0 == size();
 }
@@ -807,7 +811,7 @@ glob_sequence::rend() const
 
 inline
 us_bool_t
-glob_sequence::is_valid() const
+glob_sequence::is_valid() const STLSOFT_NOEXCEPT
 {
     if ((0 != m_cItems) && (NULL == m_base))
     {
@@ -821,7 +825,7 @@ glob_sequence::is_valid() const
 inline /* static */ us_int_t
 glob_sequence::validate_flags_(
     us_int_t flags
-)
+) STLSOFT_NOEXCEPT
 {
     const us_int_t  validFlags  =   0
                                 |   includeDots
@@ -876,7 +880,7 @@ glob_sequence::validate_flags_(
 inline /* static */ us_bool_t
 glob_sequence::is_path_separator_(
     glob_sequence::char_type ch
-)
+) STLSOFT_NOEXCEPT
 {
     return  ch == '/'
 #if defined(_UNIXSTL_COMPILER_IS_UNKNOWN) && \
@@ -891,7 +895,7 @@ inline /* static */ us_bool_t
 glob_sequence::is_end_of_path_elements_(
     glob_sequence::char_type const* pch
 ,   glob_sequence::difference_type  index
-)
+) STLSOFT_NOEXCEPT
 {
     return  pch[index] == '\0' ||
             (   pch[index + 1] == '\0' &&
@@ -902,7 +906,7 @@ inline /* static */ us_bool_t
 glob_sequence::is_dots_maybe_slashed_(
     glob_sequence::char_type const* s
 ,   us_bool_t*                      bTwoDots
-)
+) STLSOFT_NOEXCEPT
 {
     UNIXSTL_ASSERT(NULL != s);
     UNIXSTL_ASSERT(NULL != bTwoDots);
