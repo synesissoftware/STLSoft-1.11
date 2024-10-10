@@ -6,7 +6,7 @@
  *          types.
  *
  * Created: 15th January 2002
- * Updated: 9th October 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    53
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 10
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     564
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 11
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     565
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -365,7 +365,7 @@
 # define _STLSOFT_VER_1_11_1_A14    0x010b014e  /*!< Version 1.11.1 alpha 14 (21st August 2024) */
 # define _STLSOFT_VER_1_11_1_A15    0x010b014e  /*!< Version 1.11.1 alpha 15 (2nd September 2024) */
 # define _STLSOFT_VER_1_11_1_A16    0x010b0150  /*!< Version 1.11.1 alpha 16 (1st October 2024) */
-# define _STLSOFT_VER_1_11_1_A17    0x010b0151  /*!< Version 1.11.1 alpha 17 (9th October 2024) */
+# define _STLSOFT_VER_1_11_1_A17    0x010b0151  /*!< Version 1.11.1 alpha 17 (10th October 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
@@ -2287,10 +2287,10 @@ typedef ss_streamoff_t                                      streamoff_t;        
  * ss_noexcept_k            -   noexcept, or nothing
  * ss_nullptr_k             -   nullptr, or NULL
  * ss_override_k            -   override, or nothing
+ * ss_typename_param_k      -   typename or class (used for template parameters)
  * ss_typename_type_k       -   typename, or nothing (used within template
  *                              definitions for declaring types derived from
  *                              externally derived types)
- * ss_typename_param_k      -   typename or class (used for template parameters)
  * ss_typename_type_def_k   -   typename qualifier in template default parameters
  * ss_typename_type_mil_k   -   typename qualifier in constructor initialiser lists
  * ss_typename_type_ret_k   -   typename qualifier in return types
@@ -2521,9 +2521,11 @@ typedef ss_streamoff_t                                      streamoff_t;        
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+
 # define ss_true_v                                          (true)
 # define ss_false_v                                         (false)
 #else /* ? STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+
 # define ss_true_v                                          (1)
 # define ss_false_v                                         (0)
 #endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
@@ -2559,7 +2561,6 @@ stlsoft_CXX_throw(
 }
 
 #  define STLSOFT_THROW_X(x)                                STLSOFT_NS_QUAL(stlsoft_CXX_throw)(x)
-
 # else
 
 template <ss_typename_param_k X>
@@ -2591,9 +2592,7 @@ stlsoft_CXX_throw(
 }
 
 #  define STLSOFT_THROW_X(x)                                STLSOFT_NS_QUAL(stlsoft_CXX_throw)(x)
-
 # endif /* compiler */
-
 #endif /* __cplusplus */
 
 /** \defgroup group__project__stlsoft__code_modification_macros Code Modification Macros
@@ -2896,10 +2895,13 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
  */
 #if 0
 #elif defined(RECLS_COMPILER_IS_GCC)
+
 # define STLSOFT_RAW_OFFSETOF(S, M)                         STLSOFT_RAW_OFFSETOF_2(S, M)
 #elif defined(_STLSOFT_NO_STD_INCLUDES)
+
 # define STLSOFT_RAW_OFFSETOF(S, M)                         offsetof(S, M)
 #else /* ? _STLSOFT_NO_STD_INCLUDES */
+
 # define STLSOFT_RAW_OFFSETOF(S, M)                         stlsoft_reinterpret_cast(STLSOFT_NS_QUAL(ss_size_t), &stlsoft_static_cast(S*, 0)->M)
 #endif /* !_STLSOFT_NO_STD_INCLUDES */
 
@@ -2927,6 +2929,7 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
      !defined(STLSOFT_COMPILER_IS_INTEL) && \
      !defined(STLSOFT_COMPILER_IS_WATCOM) && \
      1
+
 #  define STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
 # endif /* compiler */
 
@@ -2938,7 +2941,8 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
  */
 
 /* destroy function */
-#if defined(__cplusplus)
+#if 0
+#elif defined(__cplusplus)
 
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
@@ -2972,8 +2976,10 @@ stlsoft_destroy_instance_fn(
  */
 # if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
      defined(STLSOFT_COMPILER_IS_DMC)
+
 #  define STLSOFT_DESTROY_INSTANCE(T1, T2, P)               do { (P)->~T1(); } while (0)
 # else /* ? compiler */
+
 #  define STLSOFT_DESTROY_INSTANCE(T1, T2, P)               STLSOFT_NS_QUAL(stlsoft_destroy_instance_fn)((P))
 # endif /* compiler */
 #endif /* __cplusplus */
@@ -3097,8 +3103,8 @@ private:
     friend friend_type
 
 # endif /* __GNUC_MINOR__ */
-
 #else /* ? compiler */
+
 # error Compiler not discriminated
 #endif /* compiler */
 
@@ -3111,7 +3117,6 @@ private:
 # ifdef STLSOFT_CF_TEMPLATE_VOID_TYPE_PARAMETER
 
 #  define ss_template_void_k                                void
-
 # else
 
 #  define ss_template_void_k                                STLSOFT_WORKER_NS_QUAL_(template_ex, void_struct)
@@ -3336,6 +3341,7 @@ inline void stlsoft_suppress_unused_func(size_t )
 
 # define STLSOFT_INLINE                                     inline
 #else /* ? __cplusplus */
+
 # if 0
 # elif defined(STLSOFT_CUSTOM_C_INLINE)
 
@@ -3353,8 +3359,10 @@ inline void stlsoft_suppress_unused_func(size_t )
  * inline pseudo-keyword
  */
 #ifdef STLSOFT_CF_noinline_KEYWORD_SUPPORT
+
 # define STLSOFT_NOINLINE                                   STLSOFT_CUSTOM_NOINLINE
 #else
+
 # define STLSOFT_NOINLINE
 #endif /* STLSOFT_CF_noinline_KEYWORD_SUPPORT */
 
@@ -3498,7 +3506,6 @@ ptr_diff(
 {
     return p1 - p2;
 }
-
 #endif /* __cplusplus */
 
 /** @} end of group pointer_manipulation_functions */
@@ -3584,8 +3591,10 @@ inline T& mutable_access(T const& t)
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #  ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+
 #   define stlsoft_define_move_rhs_type(t)                  t &
 #  else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+
 #   define stlsoft_define_move_rhs_type(t)                  t const&
 #  endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
@@ -3593,8 +3602,10 @@ template <ss_typename_param_k T>
 inline T& move_lhs_from_rhs(stlsoft_define_move_rhs_type(T) t)
 {
 #  ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
+
     return t;
 #  else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
+
     return const_cast<T&>(t);
 #  endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 }
@@ -3636,18 +3647,26 @@ address(
  */
 
 #ifndef new
+
 # ifdef STLSOFT_NO_NAMESPACE
+
 #  if defined(STLSOFT_COMPILER_IS_BORLAND) && \
       __BORLANDC__ < 0x0550
+
 #   include <new.h>
 #  else /* ? compiler */
+
 #   include <new>
 #  endif /* compiler */
 # else /* ? STLSOFT_NO_NAMESPACE */
-#  if ( defined(STLSOFT_COMPILER_IS_DMC) && \
+
+#  if 0 ||\
+      ( defined(STLSOFT_COMPILER_IS_DMC) && \
         __DMC__ < 0x0833) || \
       ( defined(STLSOFT_COMPILER_IS_MSVC) && \
-        _MSC_VER < 1300)
+        _MSC_VER < 1300) || \
+      0
+
 inline
 void*
 operator new(
