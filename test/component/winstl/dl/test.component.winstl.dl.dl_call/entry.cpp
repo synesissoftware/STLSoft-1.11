@@ -45,6 +45,8 @@ namespace
 
     static void test_Kernel32_GetTickCount(void);
     static void test_Kernel32_GetTickCount64(void);
+
+    static void test_GetSystemTimeAdjustmentPrecise(void);
 } // anonymous namespace
 
 
@@ -63,6 +65,8 @@ int main(int argc, char **argv)
     {
         XTESTS_RUN_CASE(test_Kernel32_GetTickCount);
         XTESTS_RUN_CASE(test_Kernel32_GetTickCount64);
+
+        XTESTS_RUN_CASE(test_GetSystemTimeAdjustmentPrecise);
 
         XTESTS_PRINT_RESULTS();
 
@@ -143,6 +147,40 @@ static void test_Kernel32_GetTickCount64(void)
     {
         XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
+}
+
+static void test_GetSystemTimeAdjustmentPrecise(void)
+{
+    try
+    {
+        DWORD64 timeAdjustment;
+        DWORD64 timeIncrement;
+        BOOL    timeAdjustmentDisabled;
+
+        BOOL const r = winstl::dl_call<BOOL>(
+            "api-ms-win-core-version-l1-1-0.dll"
+        ,   WINSTL_DL_CALL_WINx_STDCALL_LITERAL("GetSystemTimeAdjustmentPrecise")
+        ,   &timeAdjustment
+        ,   &timeIncrement
+        ,   &timeAdjustmentDisabled
+        );
+
+        if (r)
+        {
+            fprintf(stderr, "%s:%d:%s: timeAdjustment=%llu, timeAdjustment=%llu, timeAdjustmentDisabled=%s\n"
+            ,   __STLSOFT_FILE_LINE_FUNCTION__
+            ,   timeAdjustment
+            ,   timeIncrement
+            ,   timeAdjustmentDisabled ? "true" : "false"
+            );
+        }
+    }
+    catch (winstl::missing_entry_point_exception& x)
+    {
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+    }
+    catch (winstl::winstl_exception& /* x */)
+    {}
 }
 
 } // anonymous namespace
