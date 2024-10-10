@@ -10,25 +10,29 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* ///////////////////////////////////////////////
  * test component header file include(s)
  */
 
 #include <winstl/dl/dl_call.hpp>
 
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
+/* ///////////////////////////////////////////////
+ * general includes
  */
 
 /* xTests header files */
 #include <xtests/xtests.h>
 
 /* STLSoft header files */
-#include <stlsoft/stlsoft.h>
+#include <winstl/system/system_directory.hpp>
+#include <winstl/util/struct_comparers.hpp>
 
 /* Standard C++ header files */
 #if __cplusplus >= 201103L
-#include <atomic>
+# include <atomic>
 #endif
 #include <string>
 
@@ -45,6 +49,10 @@ namespace
 
     static void test_Kernel32_GetTickCount(void);
     static void test_Kernel32_GetTickCount64(void);
+
+    static void test_Kernel32_GetSystemInfo(void);
+
+    static void test_Kernel32_GetSystemDirectory(void);
 
     static void test_GetSystemTimeAdjustmentPrecise(void);
 } // anonymous namespace
@@ -65,6 +73,10 @@ int main(int argc, char **argv)
     {
         XTESTS_RUN_CASE(test_Kernel32_GetTickCount);
         XTESTS_RUN_CASE(test_Kernel32_GetTickCount64);
+
+        XTESTS_RUN_CASE(test_Kernel32_GetSystemInfo);
+
+        XTESTS_RUN_CASE(test_Kernel32_GetSystemDirectory);
 
         XTESTS_RUN_CASE(test_GetSystemTimeAdjustmentPrecise);
 
@@ -149,6 +161,47 @@ static void test_Kernel32_GetTickCount64(void)
     }
 }
 
+static void test_Kernel32_GetSystemInfo(void)
+{
+    try
+    {
+        SYSTEM_INFO s1;
+        SYSTEM_INFO s2;
+
+        ::GetSystemInfo(&s1);
+
+        winstl::dl_call<void>("Kernel32.dll", WINSTL_DL_CALL_WINx_STDCALL_LITERAL("GetSystemInfo"), &s2);
+
+        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(s1, s2));
+    }
+    catch (winstl::missing_entry_point_exception& x)
+    {
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+    }
+}
+
+static void test_Kernel32_GetSystemDirectory(void)
+{
+    try
+    {
+        winstl::system_directory    d1;
+        CHAR                        d2[_MAX_PATH];
+
+        winstl::dl_call<UINT>(
+            "Kernel32.dll"
+        ,   WINSTL_DL_CALL_WINx_STDCALL_LITERAL("GetSystemDirectoryA")
+        ,   &d2[0]
+        ,   static_cast<UINT>(STLSOFT_NUM_ELEMENTS(d2))
+        );
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(d1, d2);
+    }
+    catch (winstl::missing_entry_point_exception& x)
+    {
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
+    }
+}
+
 static void test_GetSystemTimeAdjustmentPrecise(void)
 {
     try
@@ -165,15 +218,7 @@ static void test_GetSystemTimeAdjustmentPrecise(void)
         ,   &timeAdjustmentDisabled
         );
 
-        if (r)
-        {
-            fprintf(stderr, "%s:%d:%s: timeAdjustment=%llu, timeAdjustment=%llu, timeAdjustmentDisabled=%s\n"
-            ,   __STLSOFT_FILE_LINE_FUNCTION__
-            ,   timeAdjustment
-            ,   timeIncrement
-            ,   timeAdjustmentDisabled ? "true" : "false"
-            );
-        }
+        XTESTS_TEST_BOOLEAN_TRUE(r);
     }
     catch (winstl::missing_entry_point_exception& x)
     {
