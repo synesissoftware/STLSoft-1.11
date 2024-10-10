@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR     12
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      131
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION  10
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT      132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -591,8 +591,8 @@ public:
         WINSTL_ASSERT(is_valid());
     }
 private:
-    memory_mapped_file(class_type const&);      // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    memory_mapped_file(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

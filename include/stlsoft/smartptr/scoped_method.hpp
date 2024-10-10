@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_MINOR       0
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_REVISION    5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_EDIT        13
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_REVISION    6
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -262,8 +262,8 @@ public: // construction
     }
 
 private:
-    scoped_method(class_type const&);           // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    scoped_method(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // attributes
     bool empty() const STLSOFT_NOEXCEPT

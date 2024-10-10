@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR    6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     113
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -345,8 +345,8 @@ public:
     }
 
 private:
-    memory_mapped_file(class_type const&);      // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    memory_mapped_file(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

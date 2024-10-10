@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_MAJOR    3
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_MINOR    0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_REVISION 2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_EDIT     28
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_REVISION 3
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -153,7 +153,7 @@ namespace readers
             : m_stm(rhs.m_stm)
         {}
     private:
-        void operator =(class_type const&); // copy-assignment proscribed
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public: // operations
         int read_char() STLSOFT_NOEXCEPT
@@ -199,7 +199,7 @@ namespace readers
             , m_to(rhs.m_to)
         {}
     private:
-        void operator =(class_type const&); // copy-assignment proscribed
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public: // operations
         int read_char()
@@ -272,7 +272,7 @@ namespace readers
                 return static_cast<ss_size_t>(size);
             }
         }
-        void operator =(class_type const&); // copy-assignment proscribed
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public: // operations
         int read_char() STLSOFT_NOEXCEPT

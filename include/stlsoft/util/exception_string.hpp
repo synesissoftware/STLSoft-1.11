@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 9
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     37
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 10
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -152,7 +152,7 @@ public:
         m_message[m_message.size() - 1] = '\0';
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     /// Appends the given string to the message

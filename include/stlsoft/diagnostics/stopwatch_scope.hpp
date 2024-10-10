@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_MAJOR      5
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_REVISION   3
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_EDIT       55
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_REVISION   4
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,8 +121,8 @@ public: // Construction
         m_stopwatch.stop();
     }
 private:
-    stopwatch_scope(class_type const& rhs);         // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    stopwatch_scope(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Operations
     /// Calls stop() on the managed stopwatch

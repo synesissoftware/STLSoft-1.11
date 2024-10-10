@@ -4,7 +4,7 @@
  * Purpose: Contains the module class.
  *
  * Created: 30th October 1997
- * Updated: 9th October 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    4
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 4
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     240
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 5
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     241
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -200,8 +200,8 @@ public:
     ~module() STLSOFT_NOEXCEPT;
 
 private:
-    module(class_type const&);          // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    module(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Static operations

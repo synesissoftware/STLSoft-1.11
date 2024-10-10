@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    15
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        109
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    16
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -283,7 +283,7 @@ public:
         cstring_maker_type_::free(m_block);
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:
@@ -370,7 +370,7 @@ public:
         cstring_maker_type_::free(m_block);
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:

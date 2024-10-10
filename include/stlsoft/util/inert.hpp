@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MAJOR      4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION   10
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       56
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION   11
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -103,8 +103,8 @@ public: // construction
     ~inert() STLSOFT_NOEXCEPT
     {}
 private:
-    inert(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    inert(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 #ifndef new
     void* operator new(ss_size_t ) STLSOFT_NOEXCEPT

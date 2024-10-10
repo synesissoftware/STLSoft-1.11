@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_REVISION   7
-# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       59
+# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_REVISION   8
+# define WINSTL_VER_WINSTL_WINDOW_HPP_HDC_SCOPE_EDIT       60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,8 +139,8 @@ public:
         }
     }
 private:
-    HDC_scope(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    HDC_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

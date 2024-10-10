@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MAJOR      3
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_REVISION   8
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT       53
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_REVISION   9
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,7 +131,7 @@ public: // construction
     }
 private:
     errno_scope(errno_scope const&);
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // operations
     /// The remembered value of <code>errno</code>.

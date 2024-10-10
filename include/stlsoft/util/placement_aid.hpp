@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_REVISION 8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_EDIT     47
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_REVISION 9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -125,7 +125,7 @@ public:
     }
 private:
     placement_aid(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:

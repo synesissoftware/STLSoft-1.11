@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 14
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     277
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 15
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     278
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -322,8 +322,8 @@ public:
         }
     }
 private:
-    enumerator_sequence(class_type const&);     // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    enumerator_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /// \name Iteration
 /// @{
@@ -446,8 +446,8 @@ public:
                 }
             }
         private:
-            enumeration_context(class_type const&); // copy-construction proscribed
-            void operator =(class_type const&); // copy-assignment proscribed
+            enumeration_context(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+            void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
         public:
             void AddRef()

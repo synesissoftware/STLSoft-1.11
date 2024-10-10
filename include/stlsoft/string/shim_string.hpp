@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        71
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -289,7 +289,7 @@ public:
       m_buffer.swap(rhs.m_buffer);
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       6
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    13
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        110
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    14
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -363,9 +363,9 @@ public:
 #endif /* compiler */
 private:
 #if !defined(STLSOFT_COMPILER_IS_GCC)
-    basic_error_desc(class_type const&);        // copy-construction proscribed
+    basic_error_desc(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
 #endif /* compiler */
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes

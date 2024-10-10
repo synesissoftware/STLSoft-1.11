@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  18
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      80
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  19
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -259,8 +259,8 @@ public:
                 ACESTL_MESSAGE_ASSERT("Shared search handle being destroyed with outstanding references!", 0 == m_refCount);
             }
         private:
-            shared_handle(class_type const&);   // copy-constructor proscribed
-            void operator =(class_type const&); // copy-assignment proscribed
+            shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+            void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
         /// Accessors
         public:
@@ -618,8 +618,8 @@ public:
         : m_mq(mq)
     {}
 private:
-    message_queue_sequence(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    message_queue_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /// \name Iteration
 /// @{

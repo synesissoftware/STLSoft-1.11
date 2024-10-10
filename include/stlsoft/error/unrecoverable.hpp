@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MINOR      0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   10
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       45
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   11
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -181,7 +181,7 @@ public:
         }
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     void* operator new(ss_size_t );
 /// @}

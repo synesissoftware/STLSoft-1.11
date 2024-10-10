@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MAJOR      5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   13
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       82
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   14
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -174,8 +174,8 @@ public:
     /// Closes the session, if open
     ~basic_session() STLSOFT_NOEXCEPT;
 private:
-    basic_session(class_type const&);           // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    basic_session(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Operations
 public:

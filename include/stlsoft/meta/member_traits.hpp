@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       1
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    5
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        49
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    6
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -167,12 +167,12 @@ public: // constants
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
 private: // construction
-    member_traits(); // default-construction proscribed
+    member_traits() STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED;
 #ifdef STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
 protected:
 #endif /* STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
-    member_traits(class_type const& rhs); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    member_traits(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

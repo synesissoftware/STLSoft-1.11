@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MAJOR     4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MINOR     1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  7
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      54
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  8
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -133,7 +133,7 @@ public: // construction
         , m_lparam(lparam)
     {}
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     void operator ()(HWND hwnd) const
@@ -185,7 +185,7 @@ public:
         , m_lparam(lparam)
     {}
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     void operator ()(HWND hwnd) const

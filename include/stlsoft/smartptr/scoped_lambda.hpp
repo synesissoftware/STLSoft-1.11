@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_MINOR       0
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_REVISION    2
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_EDIT        10
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_REVISION    3
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -118,8 +118,8 @@ private:
         virtual ~lambda_releaser()
         {}
     private:
-        lambda_releaser(class_type const&);         // copy-construction proscribed
-        void operator =(class_type const&); // copy-assignment proscribed
+        lambda_releaser(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public: // overrides
         /*virtual*/ void
@@ -147,8 +147,8 @@ public: // construction
         reset();
     }
 private:
-    scoped_lambda(class_type const&);           // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    scoped_lambda(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // attributes
     bool empty() const STLSOFT_NOEXCEPT

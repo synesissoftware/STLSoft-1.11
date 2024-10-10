@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MINOR     0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  13
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      71
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  14
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -162,8 +162,8 @@ public:
         WINSTL_API_EXTERNAL_Synchronization_DeleteCriticalSection(&m_cs);
     }
 private:
-    thread_mutex(class_type const&);            // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    thread_mutex(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Operations
 public:

@@ -55,9 +55,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    53
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 11
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     565
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    54
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     566
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -2710,6 +2710,114 @@ stlsoft_CXX_throw(
 #  define stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
 #  define stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 # endif /* exception specifications */
+#endif /* __cplusplus */
+
+
+/** \def STLSOFT_COPY_ASSIGNMENT_PROSCRIBED
+ *
+ * Declarative and documentary construct that is used for proscribed,
+ * non-implemented copy assignment operators.
+ *
+\code
+class SomeString
+{
+public: // types
+    typedef SomeString                                      class_type;
+
+public: // construction
+    SomeString(char const* s);
+    ~SomeString() noexcept;
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+
+public: // attributes
+    bool empty() const noexcept;
+
+    . . .
+};
+\endcode
+ */
+#ifdef __cplusplus
+
+# if __cplusplus >= 201103L
+
+#  define STLSOFT_COPY_ASSIGNMENT_PROSCRIBED                = delete
+# else
+
+#  define STLSOFT_COPY_ASSIGNMENT_PROSCRIBED
+# endif
+#endif /* __cplusplus */
+
+
+/** \def STLSOFT_COPY_CONSTRUCTION_PROSCRIBED
+ *
+ * Declarative and documentary construct that is used for proscribed,
+ * non-implemented copy constructors.
+ *
+\code
+class SomeString
+{
+public: // types
+    typedef SomeString                                      class_type;
+
+public: // construction
+    SomeString(char const* s);
+    ~SomeString() noexcept;
+private:
+    SomeString(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+
+public: // attributes
+    bool empty() const noexcept;
+
+    . . .
+};
+\endcode
+ */
+#ifdef __cplusplus
+
+# if __cplusplus >= 201103L
+
+#  define STLSOFT_COPY_CONSTRUCTION_PROSCRIBED              = delete
+# else
+
+#  define STLSOFT_COPY_CONSTRUCTION_PROSCRIBED
+# endif
+#endif /* __cplusplus */
+
+
+/** \def STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED
+ *
+ * Declarative and documentary construct that is used for proscribed,
+ * non-implemented default constructors.
+ *
+\code
+class SomeString
+{
+public: // types
+    typedef SomeString                                      class_type;
+
+public: // construction
+    SomeString(char const* s);
+    ~SomeString() noexcept;
+private:
+    SomeString() STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED;
+
+public: // attributes
+    bool empty() const noexcept;
+
+    . . .
+};
+\endcode
+ */
+#ifdef __cplusplus
+
+# if __cplusplus >= 201103L
+
+#  define STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED           = delete
+# else
+
+#  define STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED
+# endif
 #endif /* __cplusplus */
 
 

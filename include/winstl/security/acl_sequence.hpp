@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_MAJOR      4
 # define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_MINOR      0
-# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_REVISION   7
-# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_EDIT       48
+# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_REVISION   8
+# define WINSTL_VER_WINSTL_SECURITY_HPP_ACL_SEQUENCE_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,8 +121,8 @@ public:
         : m_pacl(pacl)
     {}
 private:
-    acl_sequence(class_type const&);            // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    acl_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration

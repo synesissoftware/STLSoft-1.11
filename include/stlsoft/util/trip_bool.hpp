@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        22
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,7 +114,7 @@ public:
         : m_v(v)
     {}
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

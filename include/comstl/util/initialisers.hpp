@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      3
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   11
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       99
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   12
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -270,8 +270,8 @@ public:
     /// Uninitialises via CoUninitialize()
     ~initialiser() STLSOFT_NOEXCEPT;
 private:
-    initialiser(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    initialiser(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes

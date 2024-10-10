@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_MINOR    1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_REVISION 7
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_EDIT     106
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_REVISION 8
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ENABLE_SCOPE_EDIT     107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -179,8 +179,8 @@ public:
         ::EnableWindow(m_hwnd, m_bEnableOnDtor);
     }
 private:
-    window_enable_scope(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    window_enable_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Members
 private:

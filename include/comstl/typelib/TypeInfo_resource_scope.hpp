@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_MAJOR    1
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_MINOR    2
-# define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_REVISION 5
-# define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_EDIT     43
+# define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_REVISION 6
+# define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_EDIT     44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -175,7 +175,7 @@ public: // Construction
     }
 private:
     TypeInfo_resource_scope(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Accessors
     resource_type* get() const

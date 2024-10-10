@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MINOR       0
-# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_REVISION    13
-# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        83
+# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_REVISION    14
+# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -183,8 +183,8 @@ public:
     /// Destructor
     ~heapwalk_sequence() STLSOFT_NOEXCEPT;
 private:
-    heapwalk_sequence(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    heapwalk_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration

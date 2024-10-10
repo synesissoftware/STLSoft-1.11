@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR     2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  19
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      146
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  20
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      147
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -179,9 +179,9 @@ public: // construction
     /// Returns the current directory to its original location
     ~basic_current_directory_scope() STLSOFT_NOEXCEPT;
 private:
-    basic_current_directory_scope(); // default-construction proscribed
-    basic_current_directory_scope(class_type const&);   // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    basic_current_directory_scope() STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED;
+    basic_current_directory_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // accessors
     /// Returns a C-string pointer to the original directory

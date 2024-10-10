@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   7
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       47
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   8
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -149,8 +149,8 @@ public:
         this->t = t_;
     }
 private:
-    any_caster(class_type const& rhs);              // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    any_caster(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Conversion

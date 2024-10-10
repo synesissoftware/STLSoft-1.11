@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_REVISION  9
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      49
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_REVISION  10
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_C_STR_INSERTER_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -159,7 +159,7 @@ private:
             : m_it(it)
         {}
     private:
-        void operator =(class_type const&); // copy-assignment proscribed
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public:
         template <ss_typename_param_k S>

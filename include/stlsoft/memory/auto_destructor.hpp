@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MINOR       2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        92
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    3
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -238,8 +238,8 @@ public:
         delete m_value;
     }
 private:
-    auto_destructor(class_type const& rhs);         // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    auto_destructor(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -357,8 +357,8 @@ public:
         delete [] m_value;
     }
 private:
-    auto_array_destructor(class_type const& rhs);   // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    auto_array_destructor(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -512,7 +512,7 @@ public:
         return proxy_type(detach());
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -615,7 +615,7 @@ public:
         return proxy_type(detach());
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

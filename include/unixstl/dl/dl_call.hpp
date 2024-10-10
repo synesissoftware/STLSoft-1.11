@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    15
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        60
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    16
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -152,7 +152,7 @@ public:
     missing_entry_point_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 // Implementation

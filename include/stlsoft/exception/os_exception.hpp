@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_MAJOR       6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_MINOR       0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_REVISION    2
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_EDIT        62
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_REVISION    3
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -124,7 +124,7 @@ protected:
         : parent_class_type(rhs)
     {}
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

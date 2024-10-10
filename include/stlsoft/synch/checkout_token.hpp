@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MAJOR     2
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_REVISION  7
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      35
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_REVISION  8
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -152,7 +152,7 @@ public:
         , m_lock(rhs.m_ac)
     {}
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

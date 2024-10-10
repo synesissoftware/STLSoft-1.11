@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    2
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 13
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     118
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 14
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -207,8 +207,8 @@ public:
     /// Releases any resources
     ~basic_searchpath_sequence() STLSOFT_NOEXCEPT;
 private:
-    basic_searchpath_sequence(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    basic_searchpath_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Iteration
 public:

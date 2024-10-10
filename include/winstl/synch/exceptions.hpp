@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MINOR       5
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT        32
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION    5
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,7 +201,7 @@ public:
     synchronisation_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The subsystem-specific status code associated with the condition
@@ -238,7 +238,7 @@ public:
     synchronisation_logic_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Root exception for classes of synchronisation runtime conditions
@@ -269,7 +269,7 @@ public:
     synchronisation_runtime_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has failed
@@ -305,7 +305,7 @@ public:
     wait_failed_logic_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Root exception for classes of synchronisation runtime failures
@@ -336,7 +336,7 @@ public:
     synchronisation_runtime_failure_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has failed.
@@ -371,7 +371,7 @@ public:
     wait_failed_runtime_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has been interrupted.
@@ -402,7 +402,7 @@ public:
     wait_operation_interrupted_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 
@@ -442,7 +442,7 @@ public:
     invalid_wait_handle_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The index of the handle in a vector wait operation. -1 if scalar
@@ -481,7 +481,7 @@ public:
     null_wait_handle_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate duplicate wait handles
@@ -520,7 +520,7 @@ public:
     duplicate_wait_handle_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The first index of the first duplicated handle in a vector wait
@@ -563,7 +563,7 @@ public:
     too_many_wait_handles_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The number of wait handles specified to the operation raising the
@@ -603,7 +603,7 @@ public:
     invalid_state_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
 };
@@ -641,7 +641,7 @@ public:
     synchronisation_procurement_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that the creation of a synchronisation
@@ -683,7 +683,7 @@ public:
     synchronisation_creation_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that the open of a synchronisation
@@ -725,7 +725,7 @@ public:
     synchronisation_open_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that the creation of a thread has failed.
@@ -766,7 +766,7 @@ public:
     thread_creation_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that an operation to change the state of a
@@ -809,7 +809,7 @@ public:
     synchronisation_object_state_change_failed_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has been interrupted
@@ -847,7 +847,7 @@ public:
     wait_abandoned_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has been interrupted
@@ -889,7 +889,7 @@ public:
     wait_operation_priority_preemption_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The index of the signalled synchronisation object (that preempted

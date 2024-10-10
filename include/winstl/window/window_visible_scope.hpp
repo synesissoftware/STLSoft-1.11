@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_MAJOR       4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_MINOR       1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_REVISION    8
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_EDIT        56
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_REVISION    9
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_VISIBLE_SCOPE_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -179,8 +179,8 @@ public:
         ::ShowWindow(m_hwnd, m_stateOnDtor);
     }
 private:
-    window_visible_scope(class_type const&);    // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    window_visible_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // fields
 private:

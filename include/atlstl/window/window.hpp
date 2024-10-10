@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MAJOR      1
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MINOR      0
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   10
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       24
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   11
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,8 +141,8 @@ public:
         : parent_class_type(hwnd)
     {}
 private:
-    Window(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    Window(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     /// Assigns a window handle to the instance

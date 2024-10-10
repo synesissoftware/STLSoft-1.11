@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     89
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 6
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -167,8 +167,8 @@ public:
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 private:
-    basic_environment_variable(class_type const&);  // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    basic_environment_variable(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Conversions
 public:

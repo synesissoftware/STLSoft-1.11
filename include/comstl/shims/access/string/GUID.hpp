@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MAJOR       5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MINOR       1
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_REVISION    11
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        132
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_REVISION    12
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        133
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -135,7 +135,7 @@ public: // fields
 public: // construction
     c_str_ptr_GUID_proxy(GUID const& guid);
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // operators
     /// Implicit conversion to pointer to the character buffer

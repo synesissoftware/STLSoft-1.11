@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  8
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      204
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  9
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      205
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -261,7 +261,7 @@ public:
     static_array_1d(class_type const& rhs);
     ~static_array_1d() STLSOFT_NOEXCEPT;
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Access
 public:
@@ -398,7 +398,7 @@ public:
     static_array_2d(class_type const& rhs);
     ~static_array_2d() STLSOFT_NOEXCEPT;
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Operations
 public:
@@ -545,7 +545,7 @@ public:
     static_array_3d(class_type const& rhs);
     ~static_array_3d() STLSOFT_NOEXCEPT;
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Operations
 public:
@@ -695,7 +695,7 @@ public:
     static_array_4d(class_type const& rhs);
     ~static_array_4d() STLSOFT_NOEXCEPT;
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Operations
 public:

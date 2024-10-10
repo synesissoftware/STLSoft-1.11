@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      2
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   9
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       44
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   10
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -159,7 +159,7 @@ public:
         STLSOFT_ASSERT((maxValue - minValue) <= RAND_MAX);
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Notional Range methods

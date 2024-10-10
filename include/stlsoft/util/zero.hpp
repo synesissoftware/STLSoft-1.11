@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MINOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION    6
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        59
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION    7
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,8 +116,8 @@ public:
     ZERO_v()
     {}
 private:
-    ZERO_v(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    ZERO_v(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /** Static creation
  *

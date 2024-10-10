@@ -69,8 +69,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  13
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      133
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  14
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      134
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -213,7 +213,7 @@ public:
     /// Destructor
     ~reg_blob() STLSOFT_NOEXCEPT;
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes

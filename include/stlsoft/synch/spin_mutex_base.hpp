@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MAJOR     6
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_REVISION  4
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT      79
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_REVISION  5
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT      80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -169,8 +169,8 @@ public:
         spin_policy_::on_destroy(m_yieldContext, m_spunCount, m_cLocks);
     }
 private:
-    spin_mutex_base(class_type const&);         // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    spin_mutex_base(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

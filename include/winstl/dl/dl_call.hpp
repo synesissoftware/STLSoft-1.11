@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     8
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  6
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      72
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  7
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -213,7 +213,7 @@ public:
     missing_entry_point_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Implementation
@@ -267,7 +267,7 @@ public:
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

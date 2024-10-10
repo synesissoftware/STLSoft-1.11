@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MAJOR     2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  11
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      59
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  12
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -219,7 +219,7 @@ public:
     zorder_iterator_tmpl();
     ~zorder_iterator_tmpl() STLSOFT_NOEXCEPT;
 
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     static class_type create(HWND hwndRoot, search from);
 /// @}

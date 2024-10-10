@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_MAJOR       2
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_MINOR       1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_REVISION    2
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_EDIT        22
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_REVISION    3
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_STATUS_CODE_PROVIDER_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,7 +110,7 @@ protected: // construction
     status_code_provider(class_type const& /* rhs */)
     {}
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // modifiers
     void swap(class_type& /* rhs */) STLSOFT_NOEXCEPT

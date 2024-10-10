@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MAJOR      4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MINOR      1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   8
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       58
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   9
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -221,7 +221,7 @@ private:
     const ws_bool_t m_bShow;
 
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Functor used to enable or disable windows
@@ -269,7 +269,7 @@ private:
     const ws_bool_t m_bEnable;
 
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/dl/module.hpp (MWModule.h, ::SynesisWin)
+ * File:    winstl/dl/module.hpp (MWModule.h, ::SynesisWin)
  *
- * Purpose:     Contains the module class.
+ * Purpose: Contains the module class.
  *
- * Created:     30th October 1997
- * Updated:     11th March 2024
+ * Created: 30th October 1997
+ * Updated: 10th October 2024
  *
- * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
+ * Thanks:  Pablo Aguilar for the idea of a template-based get_symbol().
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      6
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       251
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   2
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       252
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -223,7 +223,7 @@ public:
     ~module() STLSOFT_NOEXCEPT;
 
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Static operations

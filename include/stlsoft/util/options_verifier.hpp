@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_REVISION  11
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      61
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_REVISION  12
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -270,7 +270,7 @@ public:
         }
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     template <ss_typename_param_k U>

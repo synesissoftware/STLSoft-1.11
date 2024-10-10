@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MAJOR     2
 # define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION  12
-# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      36
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_REVISION  13
+# define RANGELIB_VER_RANGELIB_ERROR_HPP_EXCEPTIONS_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,7 +160,7 @@ public:
     virtual ~range_exception() STLSOFT_NOEXCEPT_STDOVR
     {}
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

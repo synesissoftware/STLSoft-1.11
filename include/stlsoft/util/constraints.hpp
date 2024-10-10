@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION   10
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       114
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION   11
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -411,7 +411,7 @@ public:
 private:
 #if !defined(STLSOFT_COMPILER_IS_MWERKS)
     must_be_pod(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 #endif
 
 private:

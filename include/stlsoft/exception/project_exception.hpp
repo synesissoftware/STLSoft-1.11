@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_MAJOR      6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_MINOR      0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_REVISION   4
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_EDIT       63
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_REVISION   5
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_EXCEPTION_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,7 +139,7 @@ protected:
     class_type& operator =(class_type const&) = default;
 #else
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 #endif
 /// @}
 

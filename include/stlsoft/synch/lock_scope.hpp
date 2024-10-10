@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_MAJOR     6
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_REVISION  7
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_EDIT      128
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_REVISION  8
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_EDIT      129
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -241,8 +241,8 @@ public:
         traits_type::unlock(m_l);
     }
 private:
-    lock_scope(class_type const&);              // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    lock_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Members

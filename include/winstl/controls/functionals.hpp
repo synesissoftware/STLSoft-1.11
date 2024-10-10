@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    2
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 12
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     98
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 13
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -193,7 +193,7 @@ private:
     const int   m_nCheck;
 
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 
@@ -220,7 +220,7 @@ public:
         WINSTL_ASSERT((-1 == nCheckType) || (BST_UNCHECKED == nCheckType) || (BST_CHECKED == nCheckType) || (BST_INDETERMINATE == nCheckType));
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     BOOL operator ()(HWND hwnd) const
@@ -300,7 +300,7 @@ public:
         m_name.szw[cchClass] = '\0';
     }
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     BOOL operator ()(HWND hwnd) const

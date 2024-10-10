@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       0
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    19
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        55
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    20
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -195,8 +195,8 @@ namespace registry_util
             }
         }
     private:
-        shared_handle(class_type const&); // copy-construction proscribed
-        void operator =(class_type const&); // copy-assignment proscribed
+        shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     /// @}
 
     /// \name Operations
@@ -250,8 +250,8 @@ namespace registry_util
             AddRef();
         }
     private:
-        monitored_shared_handle(class_type const&); // copy-construction proscribed
-        void operator =(class_type const&); // copy-assignment proscribed
+        monitored_shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     /// \name Operations
     /// @{

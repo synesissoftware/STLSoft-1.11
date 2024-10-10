@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   13
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       208
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   14
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       209
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -254,7 +254,7 @@ public:
                   fixed_array_1d(class_type const& rhs);
                  ~fixed_array_1d() STLSOFT_NOEXCEPT;
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     allocator_type  get_allocator() const;
@@ -413,7 +413,7 @@ public:
     fixed_array_2d(class_type const& rhs);
     ~fixed_array_2d() STLSOFT_NOEXCEPT;
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     allocator_type  get_allocator() const;
@@ -578,7 +578,7 @@ public:
     fixed_array_3d(class_type const& rhs);
     ~fixed_array_3d() STLSOFT_NOEXCEPT;
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     allocator_type  get_allocator() const;
@@ -743,7 +743,7 @@ public:
     fixed_array_4d(class_type const& rhs);
     ~fixed_array_4d() STLSOFT_NOEXCEPT;
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     allocator_type  get_allocator() const;

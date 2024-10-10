@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    3
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 12
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     105
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 13
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -319,8 +319,8 @@ protected:
     ~CArray_adaptor_base() STLSOFT_NOEXCEPT
     {}
 private:
-    CArray_adaptor_base(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    CArray_adaptor_base(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 public:
     /// Returns a copy of the allocator used by the container
     allocator_type get_allocator() const
@@ -508,7 +508,7 @@ public:
     ///
     /// \note Due to the limitations of the underlying CArray-family containers, the
     ///   additional elements are default constructed and then subjected to
-    ///   copy-assignment.
+    ///   operator =().
     ///
     /// \note Exception-safety is <b>weak</b>, but the size is maintained in the case
     /// where an exception is thrown by the copy assignment of any new elements.
@@ -1469,8 +1469,8 @@ public:
 #endif /* STLSOFT_META_HAS_IS_SAME_TYPE */
     }
 private:
-    CArray_iadaptor(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    CArray_iadaptor(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Members

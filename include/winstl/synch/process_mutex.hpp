@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     85
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 4
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -253,8 +253,8 @@ public:
         }
     }
 private:
-    process_mutex(class_type const&);           // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    process_mutex(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_REVISION    9
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        153
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_REVISION    10
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        154
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -183,7 +183,7 @@ public:
     fast_string_concatenator(char_type const* lhs, class_type const& rhs);
     fast_string_concatenator(char_type const lhs, class_type const& rhs);
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

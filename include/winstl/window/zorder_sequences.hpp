@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_REVISION 9
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_EDIT     31
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_REVISION 10
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -142,8 +142,8 @@ public:
     /// Constructs a sequence of peers of the given window
     ss_explicit_k zorder_sequence_base(HWND hwndRoot);
 private:
-    zorder_sequence_base(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    zorder_sequence_base(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration

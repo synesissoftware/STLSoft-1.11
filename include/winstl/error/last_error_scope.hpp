@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_MINOR       0
-# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_REVISION    8
-# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_EDIT        60
+# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_REVISION    9
+# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,7 +147,7 @@ public: // construction
     }
 private:
     last_error_scope(last_error_scope const&);
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // attributes
     /// Returns the value of the recorded thread error, which will be

@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 17
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     59
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 18
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,7 +139,7 @@ public:
     tss_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors
@@ -188,8 +188,8 @@ public:
         index_destroy_(m_index);
     }
 private:
-    tss_index(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    tss_index(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

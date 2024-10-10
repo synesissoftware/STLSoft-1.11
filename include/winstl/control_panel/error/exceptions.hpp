@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_REVISION  8
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_EDIT      32
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_REVISION  9
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_ERROR_HPP_EXCEPTIONS_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,7 +131,7 @@ public:
     control_panel_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 
@@ -164,7 +164,7 @@ public:
     applet_entry_not_found_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 

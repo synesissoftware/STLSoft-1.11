@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 11
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     85
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 12
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -228,8 +228,8 @@ public:
     copy_enumerator_impl();
     ~copy_enumerator_impl() STLSOFT_NOEXCEPT;
 private:
-    copy_enumerator_impl(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    copy_enumerator_impl(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Enumeration

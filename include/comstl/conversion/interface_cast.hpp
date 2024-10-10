@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   15
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       139
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   16
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -511,8 +511,8 @@ public: // Construction
     {} // We need to provide this to persuade VC6 to call the parent class dtor
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 private:
-    interface_cast_noaddref(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    interface_cast_noaddref(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:
@@ -585,8 +585,8 @@ public: // Construction
     {} // We need to provide this to persuade VC6 to call the parent class dtor
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 private:
-    interface_cast_addref(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    interface_cast_addref(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:
@@ -655,8 +655,8 @@ public: // Construction
     {} // We need to provide this to persuade VC6 to call the parent class dtor
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 private:
-    interface_cast_tester(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    interface_cast_tester(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /// \name State
 /// @{

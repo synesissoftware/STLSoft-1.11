@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MINOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 10
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     30
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 11
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -204,7 +204,7 @@ public:
         : m_message(rhs.m_message)
     {}
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 public:
 
     /// Truncates the string to the given length

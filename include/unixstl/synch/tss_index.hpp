@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MAJOR      3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   10
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       64
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   11
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,7 +144,7 @@ public:
         : parent_class_type("Failed to allocate a TSS key", sc)
     {}
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -184,8 +184,8 @@ public:
         index_destroy_(m_index);
     }
 private:
-    tss_index(class_type const&);               // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    tss_index(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

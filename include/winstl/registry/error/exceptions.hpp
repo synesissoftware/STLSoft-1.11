@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_REVISION   8
-# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_EDIT       34
+# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_REVISION   9
+# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -148,7 +148,7 @@ public:
     registry_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 
@@ -181,7 +181,7 @@ public:
     key_not_duplicated_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 
@@ -218,7 +218,7 @@ public:
     wrong_value_type_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors
@@ -267,7 +267,7 @@ public:
     access_denied_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 

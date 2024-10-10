@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   14
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       158
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   15
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       159
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -316,8 +316,8 @@ public:
     /// Destructor
     ~basic_reg_key_sequence() STLSOFT_NOEXCEPT;
 private:
-    basic_reg_key_sequence(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    basic_reg_key_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration

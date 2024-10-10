@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 18
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     154
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 19
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     155
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -279,7 +279,7 @@ public: // construction
     ss_explicit_k
     fixed_file_info(resource_type_ const*);
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // accessors
     ws_uint16_t ApiVerHigh() const;
@@ -695,8 +695,8 @@ public: // construction
     /// Releases any allocated resources
     ~version_info() STLSOFT_NOEXCEPT;
 private:
-    version_info(class_type const&);    // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    version_info(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // accessors
     /// The length of the version information

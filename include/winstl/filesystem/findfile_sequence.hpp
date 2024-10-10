@@ -72,8 +72,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    12
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        270
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    13
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        271
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -320,8 +320,8 @@ public:
     ~basic_findfile_sequence() STLSOFT_NOEXCEPT;
 
 private:
-    basic_findfile_sequence(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    basic_findfile_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -638,8 +638,8 @@ private:
             }
         }
     private:
-        shared_handle(class_type const&);   // copy-construction proscribed
-        void operator =(class_type const&); // copy-assignment proscribed
+        shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     /// @}
 
     /// \name Operations

@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 13
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     57
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 14
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -158,7 +158,7 @@ public:
     }
 private:
     pipe(class_type const&);
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_MAJOR     3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_REVISION  5
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_EDIT      26
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_REVISION  6
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_EXCEPTIONS_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -128,7 +128,7 @@ public:
     synchronisation_exception(class_type const&) = default;
 #endif
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 

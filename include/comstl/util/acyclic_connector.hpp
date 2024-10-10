@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MAJOR     1
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MINOR     2
-# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_REVISION  13
-# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      35
+# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_REVISION  14
+# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -276,7 +276,7 @@ private:
     ~acyclic_connector() STLSOFT_NOEXCEPT;
 private:
     acyclic_connector(class_type const& rhs);
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Implementation

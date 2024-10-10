@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MINOR      0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_REVISION   8
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       17
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_REVISION   9
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,8 +117,8 @@ public:
     ~singlethreaded_tss_index() STLSOFT_NOEXCEPT
     {}
 private:
-    singlethreaded_tss_index(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    singlethreaded_tss_index(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

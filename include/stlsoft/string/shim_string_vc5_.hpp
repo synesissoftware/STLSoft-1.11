@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5__MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_MINOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        26
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    7
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -265,7 +265,7 @@ private:
     ss_size_t   m_length;
 
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 

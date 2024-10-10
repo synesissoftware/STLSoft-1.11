@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR      3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT       45
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION   4
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -188,8 +188,8 @@ public:
         }
     }
 private:
-    semaphore(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    semaphore(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 #if 0
     void close() STLSOFT_NOEXCEPT

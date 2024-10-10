@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_REVISION  8
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      57
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_REVISION  9
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -112,8 +112,8 @@ public:
     null_mutex() STLSOFT_NOEXCEPT
     {}
 private:
-    null_mutex(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    null_mutex(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
