@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 27th September 2024
+ * Updated: 10th October 2024
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -58,7 +58,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      181
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      182
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -251,6 +251,7 @@ namespace unixstl_project
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
 /** The exception-type thrown by unixstl::glob_sequence
  *
  * \ingroup group__library__FileSystem
@@ -360,8 +361,8 @@ public:
     ,   const_pointer
     ,   const_reference
     >::type                                                 const_iterator;
-
 #ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+
     /// The type of the const (non-mutating) reverse iterator
     typedef STLSOFT_NS_QUAL(reverse_iterator_base)<
         const_iterator
@@ -403,7 +404,9 @@ public:
 /// \name Construction
 /// @{
 public:
-#if defined(GLOB_SEQUENCE_CTOR_PRIMARY_FORM)
+#if 0
+#elif defined(GLOB_SEQUENCE_CTOR_PRIMARY_FORM)
+
     /// Constructs a sequence according to the given criteria
     ///
     /// The constructor initialises a glob_sequence instance on the given
@@ -414,7 +417,7 @@ public:
     ///
     /// \note If exceptions are supported, then this will throw a glob_sequence_exception
     /// on failure of any underlying functions
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k
     glob_sequence(
         S const&    pattern
@@ -429,7 +432,8 @@ public:
     }
 
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    template<ss_typename_param_k S>
+
+    template <ss_typename_param_k S>
     glob_sequence(S const& pattern, search_flags flag)
         : m_flags(validate_flags_(flag))
         , m_buffer(1)
@@ -451,9 +455,10 @@ public:
     ///
     /// \note If exceptions are supported, then this will throw a glob_sequence_exception
     /// on failure of any underlying functions
-    template<   ss_typename_param_k S1
-            ,   ss_typename_param_k S2
-            >
+    template<
+        ss_typename_param_k S1
+    ,   ss_typename_param_k S2
+    >
     glob_sequence(S1 const& directory, S2 const& pattern, us_int_t flags = files | directories)
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -464,9 +469,11 @@ public:
     }
 
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    template<   ss_typename_param_k S1
-            ,   ss_typename_param_k S2
-            >
+
+    template<
+        ss_typename_param_k S1
+    ,   ss_typename_param_k S2
+    >
     glob_sequence(S1 const& directory, S2 const& pattern, search_flags flag)
         : m_flags(validate_flags_(flag))
         , m_buffer(1)
@@ -479,7 +486,7 @@ public:
 
 #elif defined(GLOB_SEQUENCE_CTOR_ALT_FORM)
 
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k
     glob_sequence(
         S const& pattern
@@ -492,7 +499,7 @@ public:
         UNIXSTL_ASSERT(is_valid());
     }
 
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     glob_sequence(S const& pattern, us_int_t flags)
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -504,7 +511,7 @@ public:
 
     glob_sequence(char_type const* directory, char_type const* pattern, us_int_t flags = files | directories);
 
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     glob_sequence(S const& directory, char const* pattern, us_int_t flags = files | directories)
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -514,7 +521,7 @@ public:
         UNIXSTL_ASSERT(is_valid());
     }
 
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     glob_sequence(S const& directory, S const& pattern, us_int_t flags = files | directories)
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -523,7 +530,6 @@ public:
 
         UNIXSTL_ASSERT(is_valid());
     }
-
 #elif defined(GLOB_SEQUENCE_CTOR_OLD_FORM)
 
     ss_explicit_k
@@ -543,6 +549,7 @@ public:
 #endif /* constructor form */
 
 #if 0
+
     /// Constructs a sequence according to the given criteria
     ///
     /// The constructor initialises a glob_sequence instance on the given
@@ -595,8 +602,8 @@ public:
     ///
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
-
 #ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -636,8 +643,6 @@ private:
     us_size_t           init_glob_1_(size_type bufferSize, char_type* combinedPath);
     us_size_t           init_glob_2_(char_type const* patternDir, char_type const* pattern0);
     us_size_t           init_glob_3_(char_type const* pattern, bool isPattern0Wild);
-
-
 /// @}
 
 /// \name Members
@@ -847,6 +852,7 @@ glob_sequence::validate_flags_(
     }
 
 #ifndef UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
+
     // If we're not searching for directories, then we can optimise the
     // subsequent filtering by asking for the dots directories (so we
     // skip that filtering) and asking for directories to be marked (so
