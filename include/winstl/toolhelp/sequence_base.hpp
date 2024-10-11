@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/toolhelp/sequence_base.hpp
+ * File:    winstl/toolhelp/sequence_base.hpp
  *
- * Purpose:     TOOLHELP sequence_base class template.
+ * Purpose: TOOLHELP sequence_base class template.
  *
- * Created:     21st May 2005
- * Updated:     11th March 2024
+ * Created: 21st May 2005
+ * Updated: 10th October 2024
  *
- * Thanks:      To Pablo for contributing this great library.
+ * Thanks:  To Pablo for contributing this great library.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2007, Pablo Aguilar
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  12
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      33
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  15
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -335,6 +335,9 @@ public:
             WINSTL_API_EXTERNAL_HandleAndObject_CloseHandle(m_snapshot);
         }
     }
+private:
+    th_sequence_base(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -375,13 +378,7 @@ private:
     handle_type m_snapshot;
 /// @}
 
-/// \name Not to be implemented
-/// @{
 private:
-    th_sequence_base(class_type const&);
-    class_type& operator =(class_type const&);
-/// @}
-
     void verify_construction()
     {
         if (traits_type::invalid_handle() == m_snapshot)

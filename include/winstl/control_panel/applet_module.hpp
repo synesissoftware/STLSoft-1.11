@@ -4,7 +4,7 @@
  * Purpose: Control Panel module/applet manipulation classes.
  *
  * Created: 1st April 2006
- * Updated: 5th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 21
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     44
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 24
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -205,7 +205,7 @@ public:
      */
     ~applet() STLSOFT_NOEXCEPT;
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -414,6 +414,9 @@ public:
     ss_explicit_k applet_module(TCHAR const* path, onFailureS pfn, int flags = ignoreIconLoadFailures, HWND hwndParent = NULL);
 # endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+private:
+    applet_module(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes
@@ -476,13 +479,6 @@ private:
     module              m_module;
     applets_type_       m_applets;
     error_translator    m_errorTranslator;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    applet_module(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 

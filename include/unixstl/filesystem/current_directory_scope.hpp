@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/current_directory_scope.hpp
+ * File:    unixstl/filesystem/current_directory_scope.hpp
  *
- * Purpose:     Current working directory scoping class.
+ * Purpose: Current working directory scoping class.
  *
- * Created:     12th November 1998
- * Updated:     11th March 2024
+ * Created: 12th November 1998
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    14
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        136
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    17
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        139
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -169,9 +169,9 @@ public: // construction
     ~basic_current_directory_scope() STLSOFT_NOEXCEPT;
 
 private:
-    basic_current_directory_scope();                    // default-construction proscribed
-    basic_current_directory_scope(class_type const&);   // copy-construction proscribed
-    class_type const& operator =(class_type const&);    // copy-assignment proscribed
+    basic_current_directory_scope() STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED;
+    basic_current_directory_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // accessors
     /// Returns a C-string pointer to the original directory

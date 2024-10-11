@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterator/associative_eraser_iterator.hpp
+ * File:    stlsoft/iterator/associative_eraser_iterator.hpp
  *
- * Purpose:     Eraser iterator for associative containers.
+ * Purpose: Eraser iterator for associative containers.
  *
- * Created:     28th January 2005
- * Updated:     11th March 2024
+ * Created: 28th January 2005
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_MAJOR      1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_MINOR      3
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_REVISION   2
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_EDIT       28
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_REVISION   5
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ASSOCIATIVE_ERASE_ITERATOR_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -184,10 +184,15 @@ public:
 private:
     class deref_proxy
     {
+    public: // types
+        typedef deref_proxy                                     class_type;
+
     public:
         deref_proxy(erase_iterator_type_* it)
             : m_it(it)
         {}
+    private:
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public:
         template <ss_typename_param_k A>
@@ -198,10 +203,6 @@ private:
 
     private:
         erase_iterator_type_* const m_it;
-
-    // Not to be implemented
-    private:
-        void operator =(deref_proxy const&);
     };
 
     template <ss_typename_param_k A>

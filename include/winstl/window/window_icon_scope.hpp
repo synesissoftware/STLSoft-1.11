@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/window_icon_scope.hpp (originally MWIcnScp.h; ::SynesisWin)
+ * File:    winstl/window/window_icon_scope.hpp (originally MWIcnScp.h; ::SynesisWin)
  *
- * Purpose:     Window icon scoping class.
+ * Purpose: Window icon scoping class.
  *
- * Created:     30th June 1999
- * Updated:     11th March 2024
+ * Created: 30th June 1999
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_MINOR      1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_REVISION   6
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_EDIT       65
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_REVISION   8
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_ICON_SCOPE_EDIT       67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -216,8 +216,8 @@ public:
         set_window_icon(m_hwnd, m_iconId, m_hicon);
     }
 private:
-    window_icon_scope(class_type const&);   // copy-construction proscribed
-    void operator =(class_type const&);     // copy-assignment proscribed
+    window_icon_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Members
 private:

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/synch/checkout_token.hpp
+ * File:    stlsoft/synch/checkout_token.hpp
  *
- * Purpose:     Scoped thread-safe access locking class.
+ * Purpose: Scoped thread-safe access locking class.
  *
- * Created:     7th November 2004
- * Updated:     11th March 2024
+ * Created: 7th November 2004
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MAJOR     2
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_REVISION  5
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      33
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_REVISION  8
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -151,6 +151,8 @@ public:
         , m_am(rhs.m_am)
         , m_lock(rhs.m_ac)
     {}
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors
@@ -181,12 +183,6 @@ private:
     accessed_class_type     &m_ac;
     accessed_member_type    m_am;
     lock_type               m_lock;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type& operator =(class_type const&);
 /// @}
 };
 

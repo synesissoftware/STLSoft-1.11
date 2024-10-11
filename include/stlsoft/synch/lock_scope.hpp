@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/synch/lock_scope.hpp (originally MLLock.h, ::SynesisStd)
+ * File:    stlsoft/synch/lock_scope.hpp (originally MLLock.h, ::SynesisStd)
  *
- * Purpose:     Synchronisation object lock scoping class.
+ * Purpose: Synchronisation object lock scoping class.
  *
- * Created:     1st October 1994
- * Updated:     11th March 2024
+ * Created: 1st October 1994
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_MAJOR     6
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_REVISION  6
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_EDIT      127
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_REVISION  8
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_EDIT      129
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -241,8 +241,8 @@ public:
         traits_type::unlock(m_l);
     }
 private:
-    lock_scope(class_type const&);              // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    lock_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Members

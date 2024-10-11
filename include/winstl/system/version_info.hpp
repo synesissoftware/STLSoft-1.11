@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/version_info.hpp (originally in MWVerInf.h, ::SynesisWin)
+ * File:    winstl/system/version_info.hpp (originally in MWVerInf.h, ::SynesisWin)
  *
- * Purpose:     Helper for accessing version information.
+ * Purpose: Helper for accessing version information.
  *
- * Created:     16th February 1998
- * Updated:     11th March 2024
+ * Created: 16th February 1998
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 17
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     153
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 19
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     155
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -279,7 +279,7 @@ public: // construction
     ss_explicit_k
     fixed_file_info(resource_type_ const*);
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // accessors
     ws_uint16_t ApiVerHigh() const;
@@ -695,8 +695,8 @@ public: // construction
     /// Releases any allocated resources
     ~version_info() STLSOFT_NOEXCEPT;
 private:
-    version_info(class_type const&);    // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    version_info(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // accessors
     /// The length of the version information

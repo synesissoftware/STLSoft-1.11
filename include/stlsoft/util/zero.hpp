@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/zero.hpp
+ * File:    stlsoft/util/zero.hpp
  *
- * Purpose:     ZERO_v template class.
+ * Purpose: ZERO_v template class.
  *
- * Created:     29th July 2003
- * Updated:     11th March 2024
+ * Created: 29th July 2003
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MINOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION    5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        58
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION    7
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -107,11 +107,17 @@ namespace stlsoft
  */
 struct ZERO_v
 {
+public: // types
+    typedef ZERO_v                                          class_type;
+
 // Construction
 public:
     /// Default constructor
     ZERO_v()
     {}
+private:
+    ZERO_v(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /** Static creation
  *
@@ -213,9 +219,6 @@ public:
 // Not to be implemented
 private:
     void operator &() const;
-
-    ZERO_v(ZERO_v const&);
-    ZERO_v const& operator =(ZERO_v const&);
 };
 
 /** operator == for ZERO_v and integral types

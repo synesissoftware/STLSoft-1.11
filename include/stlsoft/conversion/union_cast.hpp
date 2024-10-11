@@ -6,7 +6,7 @@
  *          some compilers.
  *
  * Created: 2nd May 1997
- * Updated: 5th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 11
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     82
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 13
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -193,13 +193,13 @@ public:
         STLSOFT_SUPPRESS_UNUSED(bCheckAlign);
     }
 private:
-    // union_caster(class_type const&);    // copy-construction proscribed
-    // void operator =(class_type const&); // copy-assignment proscribed
+    // union_caster(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
 #if 0 ||\
     __cplusplus < 201103L ||\
     __cplusplus >= 201702L ||\
     0
-    void operator =(class_type const&); // copy-assignment proscribed
+
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 #endif
 /// @}
 

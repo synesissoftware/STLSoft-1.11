@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/setfocus_scope.hpp
+ * File:    winstl/window/setfocus_scope.hpp
  *
- * Purpose:     Cursor scoping class.
+ * Purpose: Cursor scoping class.
  *
- * Created:     4th May 2003
- * Updated:     11th March 2024
+ * Created: 4th May 2003
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_MINOR      1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_REVISION   5
-# define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_EDIT       55
+# define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_REVISION   8
+# define WINSTL_VER_WINSTL_WINDOW_HPP_SETFOCUS_SCOPE_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,19 +139,15 @@ public:
     {
         ::SetFocus(m_hwndFocus);
     }
+private:
+    setfocus_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Members
 /// @{
 private:
     HWND    m_hwndFocus;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    setfocus_scope(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 

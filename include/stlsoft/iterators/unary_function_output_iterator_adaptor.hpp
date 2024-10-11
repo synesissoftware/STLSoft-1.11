@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterators/unary_function_output_iterator_adaptor.hpp
+ * File:    stlsoft/iterators/unary_function_output_iterator_adaptor.hpp
  *
- * Purpose:     Class that adapts a unary function to an output iterator.
+ * Purpose: Class that adapts a unary function to an output iterator.
  *
- * Created:     20th July 2005
- * Updated:     11th March 2024
+ * Created: 20th July 2005
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_REVISION  5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT      27
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_REVISION  8
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,10 +121,15 @@ private:
 private:
     class deref_proxy
     {
+    public: // types
+        typedef deref_proxy                                     class_type;
+
     public:
         deref_proxy(unary_function_output_iterator_adaptor<F> *it)
             : m_it(it)
         {}
+    private:
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public:
         template <ss_typename_param_k A>
@@ -135,10 +140,6 @@ private:
 
     private:
         unary_function_output_iterator_adaptor<F>* const m_it;
-
-    // Not to be implemented
-    private:
-        void operator =(deref_proxy const&);
     };
 /// @}
 
@@ -175,7 +176,7 @@ private:
 /// @}
 
 private:
-    void operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 

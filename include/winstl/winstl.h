@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th October 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    4
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        230
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    5
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        232
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -264,8 +264,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the WinSTL libraries requires STLSoft version 1.10.1 beta 26, or later
+#if _STLSOFT_VER < 0x010b0151
+# error This version of the WinSTL libraries requires STLSoft version 1.11.1 alpha 17, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -329,6 +329,7 @@
       defined(_M_ARM64) ||\
       0
 
+# define WINSTL_ARCH_LABEL_STRING                           "ARM64"
 # define WINSTL_ARCH_IS_ARM64
 #elif 0 ||\
       defined(__ia64) ||\
@@ -337,6 +338,7 @@
       defined(_M_IA64) ||\
       0
 
+# define WINSTL_ARCH_LABEL_STRING                           "IA-64"
 # define WINSTL_ARCH_IS_IA64
 #elif 0 ||\
       defined(__amd64) ||\
@@ -348,6 +350,7 @@
       defined(_M_X64) ||\
       0
 
+# define WINSTL_ARCH_LABEL_STRING                           "x86-64"
 # define WINSTL_ARCH_IS_X64
 #elif 0 ||\
       defined(__i386) ||\
@@ -356,6 +359,7 @@
       defined(_M_IX86) ||\
       0
 
+# define WINSTL_ARCH_LABEL_STRING                           "80x86"
 # define WINSTL_ARCH_IS_X86
 #else /* ? _M_?? */
 
@@ -449,7 +453,6 @@
 #  undef INVALID_FILE_ATTRIBUTES
 # endif /* INVALID_FILE_ATTRIBUTES */
 # define INVALID_FILE_ATTRIBUTES                            static_cast<DWORD>(0xFFFFFFFF)
-
 #else /* ? __cplusplus */
 
 # ifndef INVALID_SET_FILE_POINTER
@@ -459,8 +462,8 @@
 # ifndef INVALID_FILE_ATTRIBUTES
 #  define INVALID_FILE_ATTRIBUTES                           stlsoft_c_cast(DWORD, -1)
 # endif /* !INVALID_FILE_ATTRIBUTES */
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * sanity checks
@@ -473,6 +476,7 @@
     !defined(_WIN32)
 # error The WinSTL libraries is currently only compatible with the Win32 API
 #endif /* !WIN32 && !_WIN32 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
@@ -570,8 +574,10 @@
     defined(STLSOFT_COMPILER_IS_INTEL) || \
     defined(STLSOFT_COMPILER_IS_MWERKS) || \
     defined(STLSOFT_COMPILER_IS_MSVC)
+
 # define WINSTL_UDATE_DEFINED
 #endif /* WINSTL_FORCE_UDATE || compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * contract enforcement
@@ -611,10 +617,12 @@
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 # define winstl_assert(expr)                                WINSTL_ASSERT(expr)
 # define winstl_message_assert(msg, expr)                   WINSTL_MESSAGE_ASSERT(msg, expr)
 # define winstl_static_assert(expr)                         WINSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -900,6 +908,7 @@ int main()
 # define WINSTL_REF_2_PTR(iid)                              (iid)
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  *
@@ -909,86 +918,86 @@ int main()
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-typedef STLSOFT_NS_QUAL(ss_char_a_t)        ws_char_a_t;    /*!< Ansi char type */
-typedef STLSOFT_NS_QUAL(ss_char_w_t)        ws_char_w_t;    /*!< Unicode char type */
-typedef STLSOFT_NS_QUAL(ss_sint8_t)         ws_sint8_t;     /*!< 8-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint8_t)         ws_uint8_t;     /*!< 8-bit unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_int16_t)         ws_int16_t;     /*!< 16-bit integer */
-typedef STLSOFT_NS_QUAL(ss_sint16_t)        ws_sint16_t;    /*!< 16-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint16_t)        ws_uint16_t;    /*!< 16-bit unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_int32_t)         ws_int32_t;     /*!< 32-bit integer */
-typedef STLSOFT_NS_QUAL(ss_sint32_t)        ws_sint32_t;    /*!< 32-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint32_t)        ws_uint32_t;    /*!< 32-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_char_a_t)                        ws_char_a_t;    /*!< Ansi char type */
+typedef STLSOFT_NS_QUAL(ss_char_w_t)                        ws_char_w_t;    /*!< Unicode char type */
+typedef STLSOFT_NS_QUAL(ss_sint8_t)                         ws_sint8_t;     /*!< 8-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint8_t)                         ws_uint8_t;     /*!< 8-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_int16_t)                         ws_int16_t;     /*!< 16-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint16_t)                        ws_sint16_t;    /*!< 16-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint16_t)                        ws_uint16_t;    /*!< 16-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_int32_t)                         ws_int32_t;     /*!< 32-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint32_t)                        ws_sint32_t;    /*!< 32-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint32_t)                        ws_uint32_t;    /*!< 32-bit unsigned integer */
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-typedef STLSOFT_NS_QUAL(ss_int64_t)         ws_int64_t;     /*!< 64-bit integer */
-typedef STLSOFT_NS_QUAL(ss_sint64_t)        ws_sint64_t;    /*!< 64-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint64_t)        ws_uint64_t;    /*!< 64-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_int64_t)                         ws_int64_t;     /*!< 64-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint64_t)                        ws_sint64_t;    /*!< 64-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint64_t)                        ws_uint64_t;    /*!< 64-bit unsigned integer */
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 # ifdef _WIN64
-typedef LONG_PTR                            ws_intptr_t;    /*!< integer capable of holding pointer without loss */
-typedef LONG_PTR                            ws_sintptr_t;   /*!< signed integer capable of holding pointer without loss */
-typedef ULONG_PTR                           ws_uintptr_t;   /*!< unsigned integer capable of holding pointer without loss */
+typedef LONG_PTR                                            ws_intptr_t;    /*!< integer capable of holding pointer without loss */
+typedef LONG_PTR                                            ws_sintptr_t;   /*!< signed integer capable of holding pointer without loss */
+typedef ULONG_PTR                                           ws_uintptr_t;   /*!< unsigned integer capable of holding pointer without loss */
 # else /* ? _WIN64 */
-typedef LONG                                ws_intptr_t;    /*!< integer capable of holding pointer without loss */
-typedef LONG                                ws_sintptr_t;   /*!< signed integer capable of holding pointer without loss */
-typedef ULONG                               ws_uintptr_t;   /*!< unsigned integer capable of holding pointer without loss */
+typedef LONG                                                ws_intptr_t;    /*!< integer capable of holding pointer without loss */
+typedef LONG                                                ws_sintptr_t;   /*!< signed integer capable of holding pointer without loss */
+typedef ULONG                                               ws_uintptr_t;   /*!< unsigned integer capable of holding pointer without loss */
 # endif /* _WIN64 */
-typedef STLSOFT_NS_QUAL(ss_int_t)           ws_int_t;       /*!< integer */
-typedef STLSOFT_NS_QUAL(ss_sint_t)          ws_sint_t;      /*!< signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint_t)          ws_uint_t;      /*!< unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_long_t)          ws_long_t;      /*!< long */
-typedef STLSOFT_NS_QUAL(ss_byte_t)          ws_byte_t;      /*!< Byte */
+typedef STLSOFT_NS_QUAL(ss_int_t)                           ws_int_t;       /*!< integer */
+typedef STLSOFT_NS_QUAL(ss_sint_t)                          ws_sint_t;      /*!< signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint_t)                          ws_uint_t;      /*!< unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_long_t)                          ws_long_t;      /*!< long */
+typedef STLSOFT_NS_QUAL(ss_byte_t)                          ws_byte_t;      /*!< Byte */
 #if defined(__cplusplus)
-typedef STLSOFT_NS_QUAL(ss_bool_t)          ws_bool_t;      /*!< bool */
+typedef STLSOFT_NS_QUAL(ss_bool_t)                          ws_bool_t;      /*!< bool */
 #endif /* __cplusplus */
-typedef DWORD                               ws_dword_t;     /*!< dword */
-typedef STLSOFT_NS_QUAL(ss_size_t)          ws_size_t;      /*!< size */
-typedef STLSOFT_NS_QUAL(ss_ptrdiff_t)       ws_ptrdiff_t;   /*!< ptr diff */
-typedef STLSOFT_NS_QUAL(ss_streampos_t)     ws_streampos_t; /*!< streampos */
-typedef STLSOFT_NS_QUAL(ss_streamoff_t)     ws_streamoff_t; /*!< streamoff */
+typedef DWORD                                               ws_dword_t;     /*!< dword */
+typedef STLSOFT_NS_QUAL(ss_size_t)                          ws_size_t;      /*!< size */
+typedef STLSOFT_NS_QUAL(ss_ptrdiff_t)                       ws_ptrdiff_t;   /*!< ptr diff */
+typedef STLSOFT_NS_QUAL(ss_streampos_t)                     ws_streampos_t; /*!< streampos */
+typedef STLSOFT_NS_QUAL(ss_streamoff_t)                     ws_streamoff_t; /*!< streamoff */
 #ifdef WINSTL_OS_IS_WIN64
-typedef STLSOFT_NS_QUAL(ss_sint64_t)        ws_sptrint_t;
-typedef STLSOFT_NS_QUAL(ss_uint64_t)        ws_uptrint_t;
+typedef STLSOFT_NS_QUAL(ss_sint64_t)                        ws_sptrint_t;
+typedef STLSOFT_NS_QUAL(ss_uint64_t)                        ws_uptrint_t;
 #else /* ? WINSTL_OS_IS_WIN64 */
-typedef STLSOFT_NS_QUAL(ss_sint32_t)        ws_sptrint_t;
-typedef STLSOFT_NS_QUAL(ss_uint32_t)        ws_uptrint_t;
+typedef STLSOFT_NS_QUAL(ss_sint32_t)                        ws_sptrint_t;
+typedef STLSOFT_NS_QUAL(ss_uint32_t)                        ws_uptrint_t;
 #endif /* WINSTL_OS_IS_WIN64 */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef WINSTL_NO_NAMESPACE
-typedef ws_char_a_t         char_a_t;           /*!< Ansi char type */
-typedef ws_char_w_t         char_w_t;           /*!< Unicode char type */
-/* typedef ws_int8_t           int8_t; */             /*!< 8-bit integer */
-typedef ws_sint8_t          sint8_t;            /*!< 8-bit signed integer */
-typedef ws_uint8_t          uint8_t;            /*!< 8-bit unsigned integer */
-typedef ws_int16_t          int16_t;            /*!< 16-bit integer */
-typedef ws_sint16_t         sint16_t;           /*!< 16-bit signed integer */
-typedef ws_uint16_t         uint16_t;           /*!< 16-bit unsigned integer */
-typedef ws_int32_t          int32_t;            /*!< 32-bit integer */
-typedef ws_sint32_t         sint32_t;           /*!< 32-bit signed integer */
-typedef ws_uint32_t         uint32_t;           /*!< 32-bit unsigned integer */
+typedef ws_char_a_t                                         char_a_t;           /*!< Ansi char type */
+typedef ws_char_w_t                                         char_w_t;           /*!< Unicode char type */
+/* typedef ws_int8_t                                           int8_t; */          /*!< 8-bit integer */
+typedef ws_sint8_t                                          sint8_t;            /*!< 8-bit signed integer */
+typedef ws_uint8_t                                          uint8_t;            /*!< 8-bit unsigned integer */
+typedef ws_int16_t                                          int16_t;            /*!< 16-bit integer */
+typedef ws_sint16_t                                         sint16_t;           /*!< 16-bit signed integer */
+typedef ws_uint16_t                                         uint16_t;           /*!< 16-bit unsigned integer */
+typedef ws_int32_t                                          int32_t;            /*!< 32-bit integer */
+typedef ws_sint32_t                                         sint32_t;           /*!< 32-bit signed integer */
+typedef ws_uint32_t                                         uint32_t;           /*!< 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-typedef ws_int64_t          int64_t;            /*!< 64-bit integer */
-typedef ws_sint64_t         sint64_t;           /*!< 64-bit signed integer */
-typedef ws_uint64_t         uint64_t;           /*!< 64-bit unsigned integer */
+typedef ws_int64_t                                          int64_t;            /*!< 64-bit integer */
+typedef ws_sint64_t                                         sint64_t;           /*!< 64-bit signed integer */
+typedef ws_uint64_t                                         uint64_t;           /*!< 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-/* typedef ws_short_t          short_t; */            /*!< short integer */
-typedef ws_int_t            int_t;              /*!< integer */
-typedef ws_sint_t           sint_t;             /*!< signed integer */
-typedef ws_uint_t           uint_t;             /*!< unsigned integer */
-typedef ws_long_t           long_t;             /*!< long integer */
-typedef ws_byte_t           byte_t;             /*!< Byte */
+/* typedef ws_short_t                                          short_t; */         /*!< short integer */
+typedef ws_int_t                                            int_t;              /*!< integer */
+typedef ws_sint_t                                           sint_t;             /*!< signed integer */
+typedef ws_uint_t                                           uint_t;             /*!< unsigned integer */
+typedef ws_long_t                                           long_t;             /*!< long integer */
+typedef ws_byte_t                                           byte_t;             /*!< Byte */
 #if defined(__cplusplus)
-typedef ws_bool_t           bool_t;             /*!< bool */
+typedef ws_bool_t                                           bool_t;             /*!< bool */
 #endif /* __cplusplus */
-typedef ws_dword_t          dword_t;            /*!< dword */
+typedef ws_dword_t                                          dword_t;            /*!< dword */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-typedef ws_streampos_t      streampos_t;        /*!< streampos */
-typedef ws_streamoff_t      streamoff_t;        /*!< streamoff */
+typedef ws_streampos_t                                      streampos_t;        /*!< streampos */
+typedef ws_streamoff_t                                      streamoff_t;        /*!< streamoff */
 # endif /* compiler */
-typedef ws_sptrint_t        sptrint_t;
-typedef ws_uptrint_t        uptrint_t;
+typedef ws_sptrint_t                                        sptrint_t;
+typedef ws_uptrint_t                                        uptrint_t;
 #endif /* !WINSTL_NO_NAMESPACE */
 
 
@@ -1039,8 +1048,8 @@ const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
 /** C++ constant equivalent to \ref WINSTL_CONST_MAX_PATH.
  */
 const ws_size_t CONST_MAX_PATH          =   WINSTL_CONST_MAX_PATH;
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * values
@@ -1054,8 +1063,9 @@ const ws_size_t CONST_MAX_PATH          =   WINSTL_CONST_MAX_PATH;
 
 #define ws_true_v                                           ss_true_v
 #define ws_false_v                                          ss_false_v
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
 /* /////////////////////////////////////////////////////////////////////////
  * code modification macros
  */
@@ -1116,14 +1126,17 @@ const ws_size_t CONST_MAX_PATH          =   WINSTL_CONST_MAX_PATH;
  *  of <a href = "http://www.imperfectcplusplus.com/" target="blank">Imperfect C++</a>
  *  for a discussion of these issues.)
  */
+inline
+bool
 # ifdef _Wp64
-inline bool BOOL2bool(ws_int_t value)
+BOOL2bool(ws_int_t value)
 # else /* ? _Wp64 */
-inline bool BOOL2bool(BOOL value)
+BOOL2bool(BOOL value)
 # endif /* _Wp64 */
 {
     return value != FALSE;
 }
+
 /** Safely converts a \c bool to a \c BOOL.
  *
  * \param value The instance of \c bool to be converted to \c BOOL.
@@ -1145,17 +1158,19 @@ inline bool BOOL2bool(BOOL value)
  *  <a href = "http://www.imperfectcplusplus.com/" target="blank">Imperfect C++</a>
  *  for a discussion of these issues.)
  */
-inline BOOL bool2BOOL(bool value)
+inline
+BOOL
+bool2BOOL(bool value)
 {
     return value != false;
 }
 #else
 
-# define BOOL2bool(value)                                   stlsoft_static_cast(bool, ((value) != FALSE))
-# define bool2BOOL(value)                                   stlsoft_static_cast(BOOL, ((value) != false))
+# define BOOL2bool(value)                                   STLSOFT_STATIC_CAST(bool, ((value) != FALSE))
+# define bool2BOOL(value)                                   STLSOFT_STATIC_CAST(BOOL, ((value) != false))
 #endif /* __cplusplus */
 
-/**
+/** Indicates that the given Windows API code pertains to memory failure
  */
 STLSOFT_INLINE
 ss_truthy_t
@@ -1165,11 +1180,88 @@ winstl_C_is_memory_status_code(
 {
     switch (sc)
     {
+#ifdef ERROR_HV_INSUFFICIENT_CONTIGUOUS_MEMORY
+    case ERROR_HV_INSUFFICIENT_CONTIGUOUS_MEMORY:
+#endif
+#ifdef ERROR_HV_INSUFFICIENT_CONTIGUOUS_ROOT_MEMORY
+    case ERROR_HV_INSUFFICIENT_CONTIGUOUS_ROOT_MEMORY:
+#endif
+#ifdef ERROR_HV_INSUFFICIENT_CONTIGUOUS_ROOT_MEMORY_MIRRORING
+    case ERROR_HV_INSUFFICIENT_CONTIGUOUS_ROOT_MEMORY_MIRRORING:
+#endif
+#ifdef ERROR_HV_INSUFFICIENT_MEMORY
+    case ERROR_HV_INSUFFICIENT_MEMORY:
+#endif
+#ifdef ERROR_HV_INSUFFICIENT_ROOT_MEMORY
+    case ERROR_HV_INSUFFICIENT_ROOT_MEMORY:
+#endif
+#ifdef ERROR_HV_INSUFFICIENT_ROOT_MEMORY_MIRRORING
+    case ERROR_HV_INSUFFICIENT_ROOT_MEMORY_MIRRORING:
+#endif
+#ifdef ERROR_IPSEC_IKE_OUT_OF_MEMORY
+    case ERROR_IPSEC_IKE_OUT_OF_MEMORY:
+#endif
     case ERROR_NOT_ENOUGH_MEMORY:
+#ifdef ERROR_NOT_ENOUGH_SERVER_MEMORY
+    case ERROR_NOT_ENOUGH_SERVER_MEMORY:
+#endif
     case ERROR_OUTOFMEMORY:
+#ifdef CO_E_INIT_MEMORY_ALLOCATOR
+    case STLSOFT_C_CAST(DWORD, CO_E_INIT_MEMORY_ALLOCATOR):
+#endif
+#ifdef CRYPT_E_ASN1_MEMORY
+    case STLSOFT_C_CAST(DWORD, CRYPT_E_ASN1_MEMORY):
+#endif
+#ifdef DXGI_ERROR_HW_PROTECTION_OUTOFMEMORY
+    case STLSOFT_C_CAST(DWORD, DXGI_ERROR_HW_PROTECTION_OUTOFMEMORY):
+#endif
+#ifdef DXGI_ERROR_REMOTE_OUTOFMEMORY
+    case STLSOFT_C_CAST(DWORD, DXGI_ERROR_REMOTE_OUTOFMEMORY):
+#endif
+#ifdef E_MBN_SMS_MEMORY_FAILURE
+    case STLSOFT_C_CAST(DWORD, E_MBN_SMS_MEMORY_FAILURE):
+#endif
     case STLSOFT_C_CAST(DWORD, E_OUTOFMEMORY):
+#ifdef HSP_KSP_NO_MEMORY
+    case STLSOFT_C_CAST(DWORD, HSP_KSP_NO_MEMORY):
+#endif
+#ifdef NTE_NO_MEMORY
+    case STLSOFT_C_CAST(DWORD, NTE_NO_MEMORY):
+#endif
+#ifdef OSS_OUT_MEMORY
+    case STLSOFT_C_CAST(DWORD, OSS_OUT_MEMORY):
+#endif
+#ifdef SCARD_E_NO_MEMORY
+    case STLSOFT_C_CAST(DWORD, SCARD_E_NO_MEMORY):
+#endif
+#ifdef SEC_E_INSUFFICIENT_MEMORY
+    case STLSOFT_C_CAST(DWORD, SEC_E_INSUFFICIENT_MEMORY):
+#endif
+#ifdef SQLITE_E_NOMEM
+    case STLSOFT_C_CAST(DWORD, SQLITE_E_NOMEM):
+#endif
+#ifdef STG_E_INSUFFICIENTMEMORY
+    case STLSOFT_C_CAST(DWORD, STG_E_INSUFFICIENTMEMORY):
+#endif
+#ifdef TBSIMP_E_OUT_OF_MEMORY
+    case STLSOFT_C_CAST(DWORD, TBSIMP_E_OUT_OF_MEMORY):
+#endif
+#ifdef TPM_20_E_MEMORY
+    case STLSOFT_C_CAST(DWORD, TPM_20_E_MEMORY):
+#endif
+#ifdef TPM_20_E_OBJECT_MEMORY
+    case STLSOFT_C_CAST(DWORD, TPM_20_E_OBJECT_MEMORY):
+#endif
+#ifdef TPM_20_E_SESSION_MEMORY
+    case STLSOFT_C_CAST(DWORD, TPM_20_E_SESSION_MEMORY):
+#endif
+#ifdef TPMAPI_E_OUT_OF_MEMORY
+    case STLSOFT_C_CAST(DWORD, TPMAPI_E_OUT_OF_MEMORY):
+#endif
+
         return 1;
     default:
+
         return 0;
     }
 }

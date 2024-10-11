@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/window/window.hpp
+ * File:    atlstl/window/window.hpp
  *
- * Purpose:     Enhancement of ATL's CWindow, supporting shims for common
- *              operations.
+ * Purpose: Enhancement of ATL's CWindow, supporting shims for common
+ *          operations.
  *
- * Created:     25th November 2006
- * Updated:     11th March 2024
+ * Created: 25th November 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MAJOR      1
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_MINOR      0
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   8
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       22
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_REVISION   11
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_WINDOW_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -140,7 +140,11 @@ public:
     Window(HWND hwnd = NULL)
         : parent_class_type(hwnd)
     {}
+private:
+    Window(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
+public:
     /// Assigns a window handle to the instance
     class_type& operator =(HWND hwnd)
     {
@@ -235,13 +239,6 @@ public:
     {
         return parent_class_type::WinHelp(stlsoft::c_str_ptr(lpszHelp), nCmd, dwData);
     }
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    Window(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 

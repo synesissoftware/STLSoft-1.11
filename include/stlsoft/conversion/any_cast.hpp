@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/any_cast.hpp
+ * File:    stlsoft/conversion/any_cast.hpp
  *
- * Purpose:     A dangerous, but sometimes necessary, tool for handling bad
- *              libraries.
+ * Purpose: A dangerous, but sometimes necessary, tool for handling bad
+ *          libraries.
  *
- * Created:     12th May 2004
- * Updated:     11th March 2024
+ * Created: 12th May 2004
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       45
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_REVISION   8
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_ANY_CAST_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,7 +99,7 @@ public:
     typedef any_caster_invalid_type<N>  class_type;
 /// @}
 
-/// \name Not to be implemented
+/// \name Construction
 /// @{
 #if defined(STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR)
 protected:
@@ -149,8 +149,8 @@ public:
         this->t = t_;
     }
 private:
-    any_caster(class_type const& rhs);              // copy-construction proscribed
-    class_type& operator =(class_type const& rhs);  // copy-assignment proscribed
+    any_caster(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Conversion

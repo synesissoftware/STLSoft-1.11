@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/api/external/MemoryManagement.h
+ * File:    winstl/api/external/MemoryManagement.h
  *
- * Purpose:     External preprocessor aliases for external Windows' Memory
- *              Management Functions API.
+ * Purpose: External preprocessor aliases for external Windows' Memory
+ *          Management Functions API.
  *
- * Created:     18th July 2014
- * Updated:     26th December 2020
+ * Created: 18th July 2014
+ * Updated: 9th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

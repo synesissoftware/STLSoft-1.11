@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/diagnostics/stopwatch_scope.hpp (formerly stlsoft::performance_counter_scope.hpp, stlsoft/performance/performance_counter_scope.hpp)
+ * File:    stlsoft/diagnostics/stopwatch_scope.hpp (formerly stlsoft::performance_counter_scope.hpp, stlsoft/performance/performance_counter_scope.hpp)
  *
- * Purpose:     Stopwatch scope class.
+ * Purpose: Stopwatch scope class.
  *
- * Created:     20th July 2002
- * Updated:     11th March 2024
+ * Created: 20th July 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_MAJOR      5
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_REVISION   2
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_EDIT       54
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_REVISION   4
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STOPWATCH_SCOPE_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,8 +121,8 @@ public: // Construction
         m_stopwatch.stop();
     }
 private:
-    stopwatch_scope(class_type const& rhs);         // copy-construction proscribed
-    class_type& operator =(class_type const& rhs);  // copy-assignment proscribed
+    stopwatch_scope(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Operations
     /// Calls stop() on the managed stopwatch

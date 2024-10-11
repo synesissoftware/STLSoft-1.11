@@ -4,7 +4,7 @@
  * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
  * Created: 18th July 2006
- * Updated: 9th July 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      47
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  3
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -332,9 +332,9 @@ private:
      !defined(STLSOFT_COMPILER_IS_CLANG) && \
      !defined(STLSOFT_COMPILER_IS_GCC) && \
      1
-    basic_error_desc(class_type const&);    // copy-construction proscribed
+    basic_error_desc(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
 #endif /* compiler */
-    void operator =(class_type const&);     // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // attributes
     /// The error description

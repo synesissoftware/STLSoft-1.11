@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/network/session.hpp (originally MIntSess.h)
+ * File:    inetstl/network/session.hpp (originally MIntSess.h)
  *
- * Purpose:     Contains the basic_session class.
+ * Purpose: Contains the basic_session class.
  *
- * Created:     30th April 1999
- * Updated:     11th March 2024
+ * Created: 30th April 1999
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MAJOR      5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      1
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   12
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       81
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   14
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -174,8 +174,8 @@ public:
     /// Closes the session, if open
     ~basic_session() STLSOFT_NOEXCEPT;
 private:
-    basic_session(class_type const&);           // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    basic_session(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Operations
 public:

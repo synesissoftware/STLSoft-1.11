@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 6th October 2024
+ * Updated: 10th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -540,7 +540,7 @@ static void test_ctor_range_pointers_1()
         fm_ordered_int_t fm = { std::begin(VALUES), std::end(VALUES) };
 #else
 
-        fm_ordered_int_t fm = { &VALUES[0] + 0, &VALUES[0] + STLSOFT_NUM_ELEMENTS(VALUES) };
+        fm_ordered_int_t fm(&VALUES[0] + 0, &VALUES[0] + STLSOFT_NUM_ELEMENTS(VALUES));
 #endif
 
         XTESTS_TEST_BOOLEAN_FALSE(fm.empty());

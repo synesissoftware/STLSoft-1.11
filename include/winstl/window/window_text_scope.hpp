@@ -4,7 +4,7 @@
  * Purpose: Window text scoping class.
  *
  * Created: 21st August 2003
- * Updated: 27th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_MAJOR    4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_MINOR    1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_REVISION 8
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_EDIT     57
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_REVISION 10
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_TEXT_SCOPE_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -226,8 +226,8 @@ public:
         traits_type::set_window_text(m_hwnd, m_oldText);
     }
 private:
-    window_text_scope(class_type const&);   // copy-construction proscribed
-    void operator =(class_type const&);     // copy-assignment proscribed
+    window_text_scope(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Members

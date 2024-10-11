@@ -4,7 +4,7 @@
  * Purpose: stlsoft::filesystem_propagating_exception_base class template
  *
  * Created: 1st January 2017
- * Updated: 29th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_MAJOR     1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_MINOR     0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_REVISION  2
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_EDIT      6
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_REVISION  4
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_PROPAGATING_EXCEPTION_BASE_EDIT      8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -177,7 +177,7 @@ public:
     class_type& operator =(class_type const&) = default;
 #else
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 #endif
 /// @}
 };

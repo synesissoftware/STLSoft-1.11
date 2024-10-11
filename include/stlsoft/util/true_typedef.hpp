@@ -4,7 +4,7 @@
  * Purpose: Contains the true_typedef class template.
  *
  * Created: 16th January 2002
- * Updated: 11th March 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_TRUE_TYPEDEF
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MAJOR     4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR     1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT      92
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MAJOR    4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR    1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION 3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT     94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -168,10 +168,6 @@ public: // construction
 
         return *this;
     }
-private:
-    // Not provided, as the syntax is less ambiguous when
-    // assignment from an explicit temporary is made
-    void operator =(value_type const& value);
 
 public: // accessors
     /// Provides non-mutating (const) access to the base type value
@@ -198,6 +194,7 @@ private: // fields
 
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER >= 1310
+
 #  define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED_EXCEPT_ARGS_true_typedef
 # endif /* compiler */
 
@@ -228,7 +225,7 @@ struct true_typedef_impl_
 # if __cplusplus >= 201402L
 
     /// Traits for implementing `operator <<()`, discriminating on whether
-    /// `T_lhs` is a true-typedef
+    /// `T_lhs` is a true-typedef for shifting or a stream for insertion
     template <
         ss_typename_param_k T_lhs
     ,   ss_typename_param_k T
@@ -237,24 +234,22 @@ struct true_typedef_impl_
     struct op_lshift_traits
     {
     public: // types
-        /// \brief T.B.C.
+        /// T.B.C.
         typedef T_lhs                                       lhs_type;
-        /// \brief T.B.C.
+        /// The true type
         typedef true_typedef<T, U>                          tt_type;
     private:
         enum { lhs_is_tt = 0 != is_same_type<lhs_type, tt_type>::value };
-
     public:
-        /// \brief The return-type of the operator
+        /// The return-type of the operator
         typedef ss_typename_type_k select_first_type_if<
             lhs_type
         ,   lhs_type&
         ,   lhs_is_tt
         >::type                                             return_type;
 
-
     private: // implementation
-        /// \brief Implementation for lhs of true-typedef
+        /// Implementation for lhs as a true-typedef
         static
         tt_type
         op_lshift_impl(
@@ -266,7 +261,7 @@ struct true_typedef_impl_
             return tt_type(lhs.base_type_value() << rhs.base_type_value());
         }
 
-        /// \brief Implementation for lhs as a stream
+        /// Implementation for lhs as a stream
         static
         T_lhs&
         op_lshift_impl(
@@ -975,10 +970,10 @@ operator <<(
     return true_typedef<T, U>(lhs << rhs.base_type_value());
 }
 
-/// \brief T.B.C.
+/// Left shift operator / stream insertion operator
 ///
 /// \tparam T_lhs The type of the lhs of the expression, which might be a
-///   numeric type to be shifted or m
+///   numeric type to be shifted or a stream
 template <
     ss_typename_param_k T_lhs
 ,   ss_typename_param_k T

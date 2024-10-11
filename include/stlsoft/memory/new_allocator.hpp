@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/memory/new_allocator.hpp
+ * File:    stlsoft/memory/new_allocator.hpp
  *
- * Purpose:     stlsoft_new_allocator class - use new & delete operators.
+ * Purpose: stlsoft_new_allocator class - use new & delete operators.
  *
- * Created:     2nd January 2001
- * Updated:     11th March 2024
+ * Created: 2nd January 2001
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2001-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_REVISION  8
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      97
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_REVISION  9
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -179,9 +179,6 @@ private:
         ::operator delete (pv);
 #endif /* new || delete */
     }
-
-private:
-//    class_type& operator =(class_type const&);
 };
 
 
@@ -225,8 +222,8 @@ inline ss_bool_t operator !=(const new_allocator<T> &/* lhs */, const new_alloca
 {
     return ss_false_v;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/controls/functionals.hpp
+ * File:    winstl/controls/functionals.hpp
  *
- * Purpose:     Functionals for application to controls.
+ * Purpose: Functionals for application to controls.
  *
- * Created:     8th October 2002
- * Updated:     11th March 2024
+ * Created: 8th October 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    2
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 10
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     96
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 13
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -193,7 +193,7 @@ private:
     const int   m_nCheck;
 
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 
@@ -220,7 +220,7 @@ public:
         WINSTL_ASSERT((-1 == nCheckType) || (BST_UNCHECKED == nCheckType) || (BST_CHECKED == nCheckType) || (BST_INDETERMINATE == nCheckType));
     }
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     BOOL operator ()(HWND hwnd) const
@@ -299,6 +299,8 @@ public:
         STLSOFT_API_INTERNAL_memfns_memcpy(&m_name.szw[0], windowClass, cchClass);
         m_name.szw[cchClass] = '\0';
     }
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     BOOL operator ()(HWND hwnd) const
@@ -337,10 +339,6 @@ private:
         ws_char_w_t szw[256];
     }           m_name;
     const int   m_bUnicode;
-
-// Not to be implemented
-private:
-    class_type& operator =(class_type const&);
 };
 
 /** A function class used to insert items at the front of list-box

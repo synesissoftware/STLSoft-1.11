@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/synch/process_mutex.hpp
+ * File:    unixstl/synch/process_mutex.hpp
  *
- * Purpose:     Intra-process mutext, based on PTHREADS.
+ * Purpose: Intra-process mutext, based on PTHREADS.
  *
- * Created:     15th May 2002
- * Updated:     11th March 2024
+ * Created: 15th May 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      6
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   11
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       89
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   13
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -204,8 +204,8 @@ public:
         }
     }
 private:
-    process_mutex(class_type const&);           // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    process_mutex(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/synch/spin_mutex_base.hpp (originally MWSpinMx.h, ::SynesisWin)
+ * File:    stlsoft/synch/spin_mutex_base.hpp (originally MWSpinMx.h, ::SynesisWin)
  *
- * Purpose:     stlsoft::spin_mutex_base class template.
+ * Purpose: stlsoft::spin_mutex_base class template.
  *
- * Created:     27th August 1997
- * Updated:     11th March 2024
+ * Created: 27th August 1997
+ * Updated: 10th October 2024
  *
- * Thanks:      To Rupert Kittinger, for pointing out that the prior
- *              implementation that always yielded was not really "spinning".
+ * Thanks:  To Rupert Kittinger, for pointing out that the prior
+ *          implementation that always yielded was not really "spinning".
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MAJOR     6
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_REVISION  3
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT      78
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_REVISION  5
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT      80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -169,8 +169,8 @@ public:
         spin_policy_::on_destroy(m_yieldContext, m_spunCount, m_cLocks);
     }
 private:
-    spin_mutex_base(class_type const&);         // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    spin_mutex_base(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

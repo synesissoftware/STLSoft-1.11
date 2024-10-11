@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/error/error_desc.hpp
+ * File:    winstl/error/error_desc.hpp
  *
- * Purpose:     Converts a Win32 error code to a printable string.
+ * Purpose: Converts a Win32 error code to a printable string.
  *
- * Created:     13th July 2003
- * Updated:     11th March 2024
+ * Created: 13th July 2003
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       6
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    12
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        109
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    14
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -363,9 +363,9 @@ public:
 #endif /* compiler */
 private:
 #if !defined(STLSOFT_COMPILER_IS_GCC)
-    basic_error_desc(class_type const&);        // copy-construction proscribed
+    basic_error_desc(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
 #endif /* compiler */
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes

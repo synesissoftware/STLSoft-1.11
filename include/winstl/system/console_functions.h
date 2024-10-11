@@ -4,7 +4,7 @@
  * Purpose: Windows console functions.
  *
  * Created: 3rd December 2005
- * Updated: 27th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      47
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  3
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -85,10 +85,16 @@
 # include <winstl/api/external/HandleAndObject.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
 
-#ifndef STLSOFT_INCL_H_IO
-# define STLSOFT_INCL_H_IO
-# include <io.h>
-#endif /* !STLSOFT_INCL_H_IO */
+#ifdef _MSC_VER
+# ifndef STLSOFT_INCL_H_IO
+#  define STLSOFT_INCL_H_IO
+#  include <io.h>
+# endif /* !STLSOFT_INCL_H_IO */
+#endif
+#ifndef STLSOFT_INCL_H_STDIO
+# define STLSOFT_INCL_H_STDIO
+# include <stdio.h>
+#endif /* !STLSOFT_INCL_H_STDIO */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,7 +129,7 @@ winstl_C_console_read_silent_character_from_(
     HANDLE h
 )
 {
-    DWORD   currMode;
+    DWORD currMode;
 
     if (!WINSTL_API_EXTERNAL_Console_GetConsoleMode(h, &currMode) ||
         !WINSTL_API_EXTERNAL_Console_SetConsoleMode(h, 0))
@@ -142,6 +148,7 @@ winstl_C_console_read_silent_character_from_(
             if (!WINSTL_API_EXTERNAL_Console_ReadConsoleInput(h, &ir, 1, &numRead))
             {
                 c = -1;
+
                 break;
             }
             else
@@ -149,6 +156,7 @@ winstl_C_console_read_silent_character_from_(
                 if (0 == numRead)
                 {
                     c = -1;
+
                     break;
                 }
                 else
@@ -158,15 +166,19 @@ winstl_C_console_read_silent_character_from_(
                         if (ir.Event.KeyEvent.bKeyDown)
                         {
 #ifdef UNICODE
+
                             if (0 != ir.Event.KeyEvent.uChar.UnicodeChar)
                             {
-                                c = (long)ir.Event.KeyEvent.uChar.UnicodeChar;
+                                c = STLSOFT_C_CAST(long, ir.Event.KeyEvent.uChar.UnicodeChar);
+
                                 break;
                             }
 #else /* ? UNICODE */
+
                             if (0 != ir.Event.KeyEvent.uChar.AsciiChar)
                             {
-                                c = (long)ir.Event.KeyEvent.uChar.AsciiChar;
+                                c = STLSOFT_C_CAST(long, ir.Event.KeyEvent.uChar.AsciiChar);
+
                                 break;
                             }
 #endif /* UNICODE */
@@ -260,17 +272,20 @@ winstl_C_get_console_width(void)
     }
 
 #ifdef STLSOFT_DEBUG
+
     WINSTL_API_EXTERNAL_ErrorHandling_GetLastError();
 #endif /* STLSOFT_DEBUG */
 
     return ~stlsoft_static_cast(ws_size_t, 0);
 }
 
-#if !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) && \
-    (   !defined(_WIN32_WINNT) || \
-        _WIN32_WINNT < 0x0500 || \
-        (   defined(STLSOFT_COMPILER_IS_BORLAND) && \
-            !defined(CONSOLE_NO_SELECTION)))
+#if 1 &&\
+    !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) &&\
+    (   !defined(_WIN32_WINNT) ||\
+        _WIN32_WINNT < 0x0500 ||\
+        (   defined(STLSOFT_COMPILER_IS_BORLAND) &&\
+            !defined(CONSOLE_NO_SELECTION))) &&\
+    1
 
 STLSOFT_INLINE
 HWND

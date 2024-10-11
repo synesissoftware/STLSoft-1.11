@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/placement_aid.hpp
+ * File:    stlsoft/util/placement_aid.hpp
  *
- * Purpose:     A scoping class to aid in placement new-ing.
+ * Purpose: A scoping class to aid in placement new-ing.
  *
- * Created:     9th January 2002
- * Updated:     11th March 2024
+ * Created: 9th January 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_REVISION 7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_EDIT     46
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_REVISION 9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,6 +123,9 @@ public:
     {
         m_t.~T();
     }
+private:
+    placement_aid(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:
@@ -151,11 +154,6 @@ public:
 // Members
 private:
     T   &m_t;
-
-// Not to be implemented
-private:
-    placement_aid(class_type const&);
-    class_type const& operator =(class_type const&);
 };
 
 

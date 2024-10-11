@@ -4,7 +4,7 @@
  * Purpose: Definition of the stlsoft::os_exception class.
  *
  * Created: 19th January 2002
- * Updated: 9th October 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_MAJOR       6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_MINOR       0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_REVISION    1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_EDIT        61
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_REVISION    3
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_OS_EXCEPTION_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -124,7 +124,7 @@ protected:
         : parent_class_type(rhs)
     {}
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors

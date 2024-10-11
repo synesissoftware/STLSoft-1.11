@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/properties/field_properties.hpp
+ * File:    stlsoft/properties/field_properties.hpp
  *
- * Purpose:     Field-based properties.
+ * Purpose: Field-based properties.
  *
- * Created:     6th October 2003
- * Updated:     11th March 2024
+ * Created: 6th October 2003
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -62,8 +62,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   8
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       46
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   11
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,10 +141,10 @@ template<   ss_typename_param_k V   /* The actual property value type */
 class field_property_get
 {
 public:
-    typedef V                           value_type;
-    typedef R                           reference_type;
-    typedef C                           container_type;
-    typedef field_property_get<V, R, C> class_type;
+    typedef V                                               value_type;
+    typedef R                                               reference_type;
+    typedef C                                               container_type;
+    typedef field_property_get<V, R, C>                     class_type;
 
 # if defined(STLSOFT_COMPILER_IS_DMC)
 public:
@@ -166,6 +166,9 @@ private:
     }
 
     STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(C);
+private:
+    field_property_get(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     /// Provides read-only access to the property
@@ -177,11 +180,6 @@ public:
 // Members
 private:
     value_type  m_value;
-
-// Not to be implemented
-private:
-    field_property_get(class_type const&);
-    class_type& operator =(class_type const&);
 };
 
 
@@ -212,10 +210,10 @@ template<   ss_typename_param_k V   /* The actual property value type */
 class field_property_set
 {
 public:
-    typedef V                           value_type;
-    typedef R                           reference_type;
-    typedef C                           container_type;
-    typedef field_property_set<V, R, C> class_type;
+    typedef V                                               value_type;
+    typedef R                                               reference_type;
+    typedef C                                               container_type;
+    typedef field_property_set<V, R, C>                     class_type;
 
 # if defined(STLSOFT_COMPILER_IS_DMC)
 public:
@@ -228,7 +226,11 @@ private:
     ss_explicit_k field_property_set(reference_type value)
         : m_value(value)
     {}
+private:
+    field_property_set(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
+private:
     operator reference_type () const
     {
         return m_value;
@@ -247,11 +249,6 @@ public:
 
 private:
     value_type  m_value;
-
-// Not to be implemented
-private:
-    field_property_set(class_type const&);
-    class_type& operator =(class_type const&);
 };
 
 

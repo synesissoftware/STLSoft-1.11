@@ -5,7 +5,7 @@
  *          and Unicode specialisations thereof.
  *
  * Created: 30th April 1999
- * Updated: 28th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR     3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR     0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  25
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      169
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  28
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      172
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -252,6 +252,9 @@ public:
                         ,   flags_type          flags = directories | files);
     /// Destructor
     ~basic_findfile_sequence() STLSOFT_NOEXCEPT;
+private:
+    basic_findfile_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -318,13 +321,6 @@ private:
     static void         extract_subpath_(HINTERNET hconn, char_type *dest, char_type const* pattern);
 
     static  HINTERNET   find_first_file_(HINTERNET hconn, char_type const* spec, flags_type flags, find_data_type *findData);
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    basic_findfile_sequence(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 
@@ -579,6 +575,9 @@ private:
                 traits_type::find_close(hSrch);
             }
         }
+    private:
+        shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     /// @}
 
     /// \name Operations
@@ -599,13 +598,6 @@ private:
 
             return rc;
         }
-    /// @}
-
-    /// \name Not to be implemented
-    /// @{
-    private:
-        shared_handle(class_type const&);
-        class_type& operator =(class_type const&);
     /// @}
     };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

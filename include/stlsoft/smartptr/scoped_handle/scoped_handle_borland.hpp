@@ -5,7 +5,7 @@
  *          types; special implementation for Borland.
  *
  * Created: 1st November 1994
- * Updated: 5th September 2024
+ * Updated: 10th October 2024
  *
  * Thanks:  Maciej Kaniewski, for requesting Borland compatibility (in order
  *          to use FastFormat and Pantheios)
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_MAJOR     6
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_MINOR     3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_REVISION  1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_EDIT      688
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_REVISION  3
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_BORLAND_EDIT      690
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,7 +147,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         cdecl_function_type(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -227,7 +227,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         fastcall_function_type(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -308,7 +308,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         stdcall_function_type(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -387,7 +387,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         cdecl_function_type_v(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -463,7 +463,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         fastcall_function_type_v(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -541,7 +541,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         stdcall_function_type_v(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -619,7 +619,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         cdecl_void_function_type(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -696,7 +696,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         fastcall_void_function_type(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -774,7 +774,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         stdcall_void_function_type(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -851,7 +851,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         cdecl_void_function_type_v(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -927,7 +927,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         fastcall_void_function_type_v(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -1003,7 +1003,7 @@ struct scoped_handle_borland_impl_
             : m_fn(fn)
         {}
         stdcall_void_function_type_v(class_type const&);
-        void operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     private:
         void* operator new(size_t cb, void* p, size_t n)
         {
@@ -1267,7 +1267,7 @@ private:
 
 private:
     scoped_handle(class_type const&);
-    void operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -1387,7 +1387,7 @@ private:
 
 private:
     scoped_handle(class_type const&);
-    void operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 

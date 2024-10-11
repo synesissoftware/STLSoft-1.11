@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/acyclic_connector.hpp
+ * File:    comstl/util/acyclic_connector.hpp
  *
- * Purpose:     A component for relating two COM objects without cycles.
+ * Purpose: A component for relating two COM objects without cycles.
  *
- * Created:     25th March 2006
- * Updated:     11th March 2024
+ * Created: 25th March 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MAJOR     1
 # define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_MINOR     2
-# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_REVISION  12
-# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      34
+# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_REVISION  14
+# define COMSTL_VER_COMSTL_UTIL_HPP_ACYCLIC_CONNECTOR_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -274,6 +274,9 @@ public:
                     ,   IAcyclicSide    **rightSide);
 private:
     ~acyclic_connector() STLSOFT_NOEXCEPT;
+private:
+    acyclic_connector(class_type const& rhs);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Implementation
@@ -288,13 +291,6 @@ private:
     side        m_left;
     side        m_right;
     mutex_type  m_mx;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    acyclic_connector(class_type const& rhs);
-    class_type& operator =(class_type const& rhs);
 /// @}
 };
 

@@ -4,7 +4,7 @@
  * Purpose: Contains the exception_string limited functionality string class.
  *
  * Created: 26th December 2005
- * Updated: 27th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     35
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 10
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -151,7 +151,10 @@ public:
         traits_type::copy(&m_message[0], &rhs.m_message[0], m_message.size());
         m_message[m_message.size() - 1] = '\0';
     }
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
+public:
     /// Appends the given string to the message
     void operator +=(char_type const* s)
     {
@@ -245,12 +248,6 @@ public:
 /// @{
 private:
     buffer_type_    m_message;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type& operator =(class_type const&);
 /// @}
 };
 

@@ -4,7 +4,7 @@
  * Purpose: An exception thrown when an active end iterator is exhausted.
  *
  * Created: 30th November 2005
- * Updated: 8th October 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_REVISION  7
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_EDIT      28
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_REVISION  9
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ACTIVE_END_ITERATOR_EXHAUSTION_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -127,7 +127,7 @@ public:
     active_end_iterator_exhaustion(class_type const&) = default;
 #endif
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Implementation

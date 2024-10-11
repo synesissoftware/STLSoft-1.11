@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/unused_return_value_monitor.hpp
+ * File:    stlsoft/util/unused_return_value_monitor.hpp
  *
- * Purpose:     Basic functionals.
+ * Purpose: Basic functionals.
  *
- * Created:     8th June 2002
- * Updated:     11th March 2024
+ * Created: 8th June 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MAJOR        4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MINOR        0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_REVISION     5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT         56
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_REVISION     7
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT         58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -202,6 +202,8 @@ public:
             m_monitorFn(this, m_value);
         }
     }
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Conversion
@@ -215,19 +217,12 @@ public:
     }
 /// @}
 
-/** Members
- *
- * \ingroup group__library__Utility
- */
-private:
+private: // fields
     reference_type      m_value;
     monitor_function    m_monitorFn;
     ss_bool_t           m_bUsed;
-
-// Not to be implemented
-private:
-    unused_return_value_monitor& operator =(class_type const& rhs);
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

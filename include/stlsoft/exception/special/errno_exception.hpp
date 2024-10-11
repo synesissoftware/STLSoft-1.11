@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exception/special/errno_exception.hpp
+ * File:    stlsoft/exception/special/errno_exception.hpp
  *
- * Purpose:     Defines the errno_exception exception class.
+ * Purpose: Defines the errno_exception exception class.
  *
- * Created:     17th May 2014
- * Updated:     11th March 2024
+ * Created: 17th May 2014
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MAJOR       1
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MINOR       1
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_REVISION    5
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        15
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_REVISION    6
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,7 +141,7 @@ public: // construction
 #endif
 
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 private: // implementation
     char const*

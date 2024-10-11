@@ -4,7 +4,7 @@
  * Purpose: Invocation of functions in dynamic libraries.
  *
  * Created: sometime in 1998
- * Updated: 8th October 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     8
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  3
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      69
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  7
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -153,12 +153,16 @@ namespace winstl_project
  */
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
 # define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)          <appropriate prefix> name
 #elif defined(WINSTL_OS_IS_WIN64)
+
 # define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)          "cdecl:" name
 #elif defined(WINSTL_OS_IS_WIN32)
+
 # define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)          "stdcall:" name
 #else /* ? WIN?? */
+
 # error Windows operating system not recognised
 #endif /* WIN?? */
 
@@ -209,7 +213,7 @@ public:
     missing_entry_point_exception(class_type const&) = default;
 #endif
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Implementation
@@ -262,6 +266,8 @@ public:
     virtual ~invalid_calling_convention_exception() STLSOFT_NOEXCEPT_STDOVR
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors
@@ -276,7 +282,9 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static string_type create_reason_(char const* callingConventionSpecifier)
+    static
+    string_type
+    create_reason_(char const* callingConventionSpecifier)
     {
         return "Unrecognised or unsupported calling convention \"" + string_type(callingConventionSpecifier) + '"';
     }
@@ -285,13 +293,7 @@ private:
 /// \name Members
 /// @{
 private:
-    const string_type   m_ccs;
-/// @}
-
-// Not to be implemented
-/// @}
-private:
-    class_type& operator =(class_type const&);
+    string_type const   m_ccs;
 /// @}
 };
 
@@ -403,7 +405,7 @@ struct function_descriptor
     {}
 
     S const&    FunctionName;
-    const int   CallingConvention;
+    int const   CallingConvention;
 
 private:
     function_descriptor& operator =(function_descriptor const&);
@@ -465,9 +467,7 @@ namespace winstl
 } /&zwj;* namespace winstl *&zwj;/
 \endcode
  */
-template<
-    ss_typename_param_k T
->
+template <ss_typename_param_k T>
 struct is_valid_dl_call_arg
 {
     enum { value = 0 };
@@ -483,9 +483,9 @@ struct dl_call_traits
 /// \name Member Types
 /// @{
 public:
-    typedef FARPROC         entry_point_type;
-    typedef HINSTANCE       library_handle_type;
-    typedef winstl::module  module_wrapper_type;
+    typedef FARPROC                                         entry_point_type;
+    typedef HINSTANCE                                       library_handle_type;
+    typedef winstl::module                                  module_wrapper_type;
 /// @}
 
 /// \name Dynamic Library Functions
@@ -570,26 +570,19 @@ dl_call_traits::is_not_fd test_fd_(...)
     return dl_call_traits::is_not_fd();
 }
 
+inline
+dl_call_traits::library_is_handle
 #if defined(STLSOFT_COMPILER_IS_MSVC) || \
     defined(STLSOFT_COMPILER_IS_GCCx)
-inline
-dl_call_traits::library_is_handle
 test_library_(dl_call_traits::library_handle_type)
-{
-    return dl_call_traits::library_is_handle();
-}
 #else /* ? compiler */
-inline
-dl_call_traits::library_is_handle
 test_library_(dl_call_traits::library_handle_type const&)
+#endif /* compiler */
 {
     return dl_call_traits::library_is_handle();
 }
-#endif /* compiler */
 
-template<
-    ss_typename_param_k T
->
+template <ss_typename_param_k T>
 inline
 dl_call_traits::library_is_not_handle
 test_library_(T const&)
@@ -626,23 +619,26 @@ inline
 calling_convention::calling_convention
 determine_calling_convention_(C const*& functionName)
 {
-#if 0
-#elif defined(WINSTL_ARCH_IS_IA64) || \
-      defined(WINSTL_ARCH_IS_X64)
-
-    STLSOFT_SUPPRESS_UNUSED(functionName);
-
-    return calling_convention::cdeclCallConv;
-#else
-
     typedef stlsoft::basic_string_view<C> string_t;
 
-    calling_convention::calling_convention  cc = calling_convention::cdeclCallConv;
+    calling_convention::calling_convention  cc = calling_convention::unknownCallConv;
     string_t                                s0;
     string_t                                s1;
 
     if (stlsoft::split(functionName, ':', s0, s1))
     {
+#if 0
+#elif 0 ||\
+      defined(WINSTL_ARCH_IS_ARM64) ||\
+      defined(WINSTL_ARCH_IS_IA64) ||\
+      defined(WINSTL_ARCH_IS_X64) ||\
+      0
+
+        cc = calling_convention::cdeclCallConv;
+
+        functionName = s1.empty() ? s0.base() : s1.base();
+#else
+
 # ifdef STLSOFT_CF_CDECL_SUPPORTED
         if (s0 == "C" ||
             s0 == "cdecl")
@@ -669,10 +665,10 @@ determine_calling_convention_(C const*& functionName)
         }
 
         functionName = s1.base();
+#endif
     }
 
     return cc;
-#endif
 }
 
 template<

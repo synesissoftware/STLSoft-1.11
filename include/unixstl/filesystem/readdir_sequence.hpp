@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 29th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       161
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       164
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -178,7 +178,7 @@ public:
     class_type& operator =(class_type const&) = default;
 #else
 private:
-    class_type& operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 #endif
 /// @}
 
@@ -269,6 +269,9 @@ public:
         : m_flags(validate_flags_(flags))
         , m_directory(prepare_directory_(STLSOFT_NS_QUAL(c_str_ptr)(directory), flags))
     {}
+private:
+    readdir_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -324,13 +327,6 @@ private:
 private:
     const flags_type    m_flags;
     const string_type   m_directory;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    readdir_sequence(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 
@@ -447,6 +443,11 @@ public:
         : m_dir(h)
         , m_refCount(1)
     {}
+private:
+    shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+
+public:
     ss_sint32_t AddRef()
     {
         return ++m_refCount;
@@ -476,13 +477,6 @@ private:
             ::closedir(m_dir);
         }
     }
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    shared_handle(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

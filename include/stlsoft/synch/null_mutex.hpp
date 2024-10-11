@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/synch/null_mutex.hpp (originally MLMutex.h, ::SynesisStd)
+ * File:    stlsoft/synch/null_mutex.hpp (originally MLMutex.h, ::SynesisStd)
  *
- * Purpose:     Mutual exclusion model class.
+ * Purpose: Mutual exclusion model class.
  *
- * Created:     19th December 1997
- * Updated:     11th March 2024
+ * Created: 19th December 1997
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_REVISION  7
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      56
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_REVISION  9
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_NULL_MUTEX_EDIT      58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,6 +111,9 @@ public:
     /// Creates an instance of the mutex
     null_mutex() STLSOFT_NOEXCEPT
     {}
+private:
+    null_mutex(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -122,13 +125,6 @@ public:
     /// Releases an acquired lock on the mutex
     void unlock() STLSOFT_NOEXCEPT
     {}
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    null_mutex(class_type const& rhs);
-    null_mutex& operator =(class_type const& rhs);
 /// @}
 };
 

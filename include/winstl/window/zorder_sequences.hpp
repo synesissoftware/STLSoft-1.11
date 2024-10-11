@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/zorder_sequences.hpp
+ * File:    winstl/window/zorder_sequences.hpp
  *
- * Purpose:     Collection of the peers of a given window.
+ * Purpose: Collection of the peers of a given window.
  *
- * Created:     11th July 2005
- * Updated:     11th March 2024
+ * Created: 11th July 2005
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_REVISION 7
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_EDIT     29
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_REVISION 10
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_SEQUENCES_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,6 +141,9 @@ public:
 public:
     /// Constructs a sequence of peers of the given window
     ss_explicit_k zorder_sequence_base(HWND hwndRoot);
+private:
+    zorder_sequence_base(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -166,13 +169,6 @@ public:
 /// @{
 private:
     HWND    m_hwnd;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    zorder_sequence_base(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 

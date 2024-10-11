@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/shims/access/string/GUID.hpp
+ * File:    comstl/shims/access/string/GUID.hpp
  *
- * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
+ * Purpose: Contains classes and functions for dealing with OLE/COM strings.
  *
- * Created:     24th May 2002
- * Updated:     11th March 2024
+ * Created: 24th May 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MAJOR       5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MINOR       1
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_REVISION    10
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        131
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_REVISION    12
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        133
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -135,7 +135,7 @@ public: // fields
 public: // construction
     c_str_ptr_GUID_proxy(GUID const& guid);
 private:
-    void operator =(class_type const& rhs); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // operators
     /// Implicit conversion to pointer to the character buffer
