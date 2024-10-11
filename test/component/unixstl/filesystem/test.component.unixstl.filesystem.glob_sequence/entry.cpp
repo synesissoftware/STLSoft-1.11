@@ -28,16 +28,9 @@
 #include <xtests/xtests.h>
 #include <xtests/util/temp_directory.hpp>
 
-
-
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <unixstl/filesystem/filesystem_traits.hpp>
-#include <unixstl/filesystem/path.hpp>
-#include <unixstl/filesystem/current_directory.hpp>
-
-/* Standard C++ header files */
-#include <string>
 
 /* Standard C header files */
 #include <stdlib.h>
@@ -153,9 +146,8 @@ int main(int argc, char *argv[])
 namespace
 {
 
-    typedef unixstl::glob_sequence              glob_sequence_t;
-    typedef unixstl::filesystem_traits<char>    traits_m_t;
-    typedef unixstl::basic_path<char>           path_m_t;
+    typedef unixstl::glob_sequence                          glob_sequence_t;
+    typedef unixstl::filesystem_traits<char>                traits_m_t;
 
     using ::xtests::cpp::util::temp_directory;
 

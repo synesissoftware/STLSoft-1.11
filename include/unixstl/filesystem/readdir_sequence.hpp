@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 29th September 2024
+ * Updated: 11th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       161
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       162
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,14 @@
 #  include <unixstl/exception/unixstl_exception.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION */
 
+#ifdef __GNUC__
+# ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_HPP_STD_BASIC_STRING
+#  include <stlsoft/shims/access/string/std/basic_string.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING */
+#endif
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
+# include <stlsoft/shims/access/string/fwd.h>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING
 # include <stlsoft/string/simple_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
@@ -267,7 +275,7 @@ public:
     template <ss_typename_param_k S>
     readdir_sequence(S const& directory, flags_type flags = directories | files)
         : m_flags(validate_flags_(flags))
-        , m_directory(prepare_directory_(STLSOFT_NS_QUAL(c_str_ptr)(directory), flags))
+        , m_directory(prepare_directory_T_(directory, flags))
     {}
 /// @}
 
@@ -317,6 +325,19 @@ private:
 
     /// Prepares the directory, according to the given flags
     static string_type  prepare_directory_(char_type const* directory, flags_type flags);
+
+    template <ss_typename_param_k D>
+    static
+    string_type
+    prepare_directory_T_(
+        D const&    directory
+    ,   flags_type  flags
+    )
+    {
+        STLSOFT_NS_USING(c_str_ptr);
+
+        return prepare_directory_(c_str_ptr(directory), flags);
+    }
 /// @}
 
 /// \name Members
