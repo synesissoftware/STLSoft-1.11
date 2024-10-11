@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 12th September 2019
- * Updated: 29th January 2024
+ * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -80,7 +80,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

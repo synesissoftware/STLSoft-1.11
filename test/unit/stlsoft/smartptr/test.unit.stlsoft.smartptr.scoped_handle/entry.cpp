@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::scoped_handle`.
  *
  * Created: 16th October 2008
- * Updated: 4th September 2024
+ * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -71,7 +71,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

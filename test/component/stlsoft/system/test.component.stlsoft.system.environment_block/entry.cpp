@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::environment_block`.
  *
  * Created: 11th August 2010
- * Updated: 1st October 2024
+ * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -52,7 +52,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

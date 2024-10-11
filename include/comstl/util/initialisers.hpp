@@ -4,7 +4,7 @@
  * Purpose: Contains classes for initialising COM/OLE.
  *
  * Created: 8th February 1999
- * Updated: 28th September 2024
+ * Updated: 11th October 2024
  *
  * Thanks:  To Adi Shavit, for demanding better documentation of COMSTL.
  *
@@ -57,7 +57,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   10
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       98
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -209,12 +209,12 @@ typedef STLSOFT_NS_QUAL(null_exception_policy)              ignore_initialisatio
 
 #include <stdlib.h>
 
-static int main_(int argc, char **argv)
+static int main_(int argc, char *argv[])
 {
   . . . // main application functionality
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
   try
   {

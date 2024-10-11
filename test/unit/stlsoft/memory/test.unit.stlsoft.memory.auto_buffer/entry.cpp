@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 29th September 2024
+ * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -248,7 +248,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
