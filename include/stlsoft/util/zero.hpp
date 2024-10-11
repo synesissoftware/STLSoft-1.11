@@ -4,7 +4,7 @@
  * Purpose: ZERO_v template class.
  *
  * Created: 29th July 2003
- * Updated: 10th October 2024
+ * Updated: 11th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_ZERO
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MAJOR       4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MINOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION    7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        60
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MAJOR    4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MINOR    1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION 8
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,18 +115,15 @@ public:
     /// Default constructor
     ZERO_v()
     {}
-private:
-    ZERO_v(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
-    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /** Static creation
  *
  * \ingroup group__library__Utility
  */
 public:
-    static ZERO_v create()
+    static class_type create()
     {
-        return ZERO_v();
+        return class_type();
     }
 
 // Conversion
@@ -162,6 +159,7 @@ public:
         return 0;
     }
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+
     /// A zero (of type ss_sint64_t)
     operator ss_sint64_t () const
     {
@@ -173,8 +171,8 @@ public:
         return 0;
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
+
     /// A zero (of type signed int)
     operator signed int () const
     {
@@ -186,8 +184,8 @@ public:
         return 0;
     }
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
-
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+
     /// A zero (of type signed long)
     operator signed long () const
     {
@@ -325,7 +323,10 @@ inline ss_bool_t operator !=(float const& i, ZERO_v const& /* lhs */)       { re
 inline ss_bool_t operator !=(double const& i, ZERO_v const& /* lhs */)      { return i != 0; }
 inline ss_bool_t operator !=(long double const& i, ZERO_v const& /* lhs */) { return i != 0; }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
