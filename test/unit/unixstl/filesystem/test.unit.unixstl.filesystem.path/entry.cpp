@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::basic_path`.
  *
  * Created: 16th February 2024
- * Updated: 16th February 2024
+ * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -60,7 +60,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

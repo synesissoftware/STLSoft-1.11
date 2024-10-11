@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 27th September 2024
+ * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -80,7 +80,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -136,6 +136,7 @@ int main(int argc, char **argv)
 namespace
 {
     using stlsoft::exception_string;
+
 
 static void test_default_instance()
 {
@@ -199,7 +200,7 @@ static void test_c_string_ctor_1()
 
 static void test_c_string_ctor_2()
 {
-    { for(size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
+    { for (size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
     {
         std::string s(i, '*');
 
@@ -229,7 +230,7 @@ static void test_copy_ctor_1()
 
 static void test_copy_ctor_2()
 {
-    { for(size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
+    { for (size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
     {
         std::string s(i, '*');
 
@@ -300,7 +301,7 @@ static void test_string_concatenation_1()
 
 static void test_string_concatenation_2()
 {
-    { for(size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
+    { for (size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
     {
         std::string s(i, '*');
 
@@ -340,7 +341,7 @@ static void test_string_concatenation_2()
 
 static void test_swap_1()
 {
-    { for(size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
+    { for (size_t i = 1u; i != NUM_ITERATIONS; i *= 10u)
     {
         std::string s(i, '*');
 

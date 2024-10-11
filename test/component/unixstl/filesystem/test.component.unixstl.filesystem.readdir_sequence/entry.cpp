@@ -1,9 +1,9 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.unixstl.system.environment_variable/entry.cpp
+ * File:    test.component.unixstl.filesystem.readdir_sequence/entry.cpp
  *
- * Purpose: Unit-tests for `unixstl::environment_variable`.
+ * Purpose: Component test for `unixstl::readdir_sequence`.
  *
- * Created: 11th August 2010
+ * Created: sometime in 2010s
  * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -13,8 +13,7 @@
  * test component header file include(s)
  */
 
-
-#include <unixstl/system/environment_variable.hpp>
+#include <unixstl/filesystem/readdir_sequence.hpp>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -23,6 +22,7 @@
 
 /* xTests header files */
 #include <xtests/xtests.h>
+#include <xtests/util/temp_directory.hpp>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -38,9 +38,8 @@
 namespace
 {
 
-    static void test_1_00(void);
-
-
+    static void test_empty_directory(void);
+    static void test_non_empty_directory(void);
 } // anonymous namespace
 
 
@@ -55,9 +54,10 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.component.unixstl.system.environment_variable", verbosity))
+    if (XTESTS_START_RUNNER("test.component.unixstl.filesystem.readdir_sequence", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_00);
+        XTESTS_RUN_CASE(test_empty_directory);
+        XTESTS_RUN_CASE(test_non_empty_directory);
 
         XTESTS_PRINT_RESULTS();
 
@@ -75,16 +75,26 @@ int main(int argc, char *argv[])
 namespace
 {
 
-static void test_1_00(void)
+    typedef unixstl::readdir_sequence                       readdir_sequence_t;
+
+    using ::xtests::cpp::util::temp_directory;
+
+
+static void test_empty_directory(void)
 {
-    char const* const PATH = ::getenv("PATH");
+    temp_directory dir(temp_directory::EmptyOnClose | temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 
-    if (NULL != PATH)
-    {
-        unixstl::environment_variable ev_PATH("PATH");
+    readdir_sequence_t rds(dir);
+    // readdir_sequence_t rds(dir.c_str());
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(PATH, ev_PATH);
-    }
+    XTESTS_TEST_BOOLEAN_TRUE(rds.empty());
+}
+
+static void test_non_empty_directory(void)
+{
+    readdir_sequence_t rds(".");
+
+    XTESTS_TEST_BOOLEAN_FALSE(rds.empty());
 }
 
 } // anonymous namespace

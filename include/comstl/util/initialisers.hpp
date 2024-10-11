@@ -4,7 +4,7 @@
  * Purpose: Contains classes for initialising COM/OLE.
  *
  * Created: 8th February 1999
- * Updated: 10th October 2024
+ * Updated: 11th October 2024
  *
  * Thanks:  To Adi Shavit, for demanding better documentation of COMSTL.
  *
@@ -209,12 +209,12 @@ typedef STLSOFT_NS_QUAL(null_exception_policy)              ignore_initialisatio
 
 #include <stdlib.h>
 
-static int main_(int argc, char **argv)
+static int main_(int argc, char *argv[])
 {
   . . . // main application functionality
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
   try
   {

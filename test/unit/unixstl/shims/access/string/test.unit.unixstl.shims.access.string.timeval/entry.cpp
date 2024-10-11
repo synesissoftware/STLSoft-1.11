@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:     test.unit.unixstl.shims.access.string.timeval.cpp
+ * File:    test.unit.unixstl.shims.access.string.timeval.cpp
  *
  * Purpose: Unit-tests for string-access-shims for UNIX `timeval`.
  *
- * Created:  5th May 2014
- * Updated:  30th September 2014
+ * Created: 5th May 2014
+ * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -58,7 +58,7 @@ namespace
 * main()
 */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
