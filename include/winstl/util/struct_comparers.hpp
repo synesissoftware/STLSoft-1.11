@@ -4,7 +4,7 @@
  * Purpose: Functions for comparing Windows API structures.
  *
  * Created: 9th October 2024
- * Updated: 11th October 2024
+ * Updated: 12th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_MAJOR      1
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_MINOR      0
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_REVISION   1
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_EDIT       1
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_REVISION   2
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -221,7 +221,11 @@ WINSTL_THE_COMPARABLE_STRUCTURE_(COMSTAT, is::comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(COPYFILE2_CREATE_OPLOCK_KEYS, is::comparable_by_bytes);
 #endif /* NTDDI_VERSION >= NTDDI_WIN10_GE */
 WINSTL_THE_COMPARABLE_STRUCTURE_(COPYFILE2_EXTENDED_PARAMETERS, is::comparable_by_bytes);
+#if defined(NTDDI_VERSION) &&\
+    defined(NTDDI_WIN10_FE) &&\
+    NTDDI_VERSION >= NTDDI_WIN10_FE
 WINSTL_THE_COMPARABLE_STRUCTURE_(COPYFILE2_EXTENDED_PARAMETERS_V2, is::comparable_by_bytes);
+#endif /* NTDDI_VERSION >= NTDDI_WIN10_FE */
 WINSTL_THE_COMPARABLE_STRUCTURE_(COPYFILE2_MESSAGE, is::comparable_by_bytes);
 // DCB
 inline
@@ -253,7 +257,11 @@ equal_struct(
     return 0 == STLSOFT_NS_GLOBAL(memcmp)(&lhs_, &rhs_, sizeof(DCB));
 }
 WINSTL_THE_COMPARABLE_STRUCTURE_(EVENTLOG_FULL_INFORMATION, is::comparable_by_bytes);
+#if defined(_WIN32_WINNT) &&\
+    defined(_WIN32_WINNT_WIN8) &&\
+    _WIN32_WINNT >= _WIN32_WINNT_WIN8
 WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_ALIGNMENT_INFO, is::comparable_by_bytes);
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_WIN8 */
 WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_ALLOCATION_INFO, is::comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_ATTRIBUTE_TAG_INFO, is::comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_BASIC_INFO, is::comparable_by_bytes);
@@ -265,22 +273,33 @@ WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_END_OF_FILE_INFO, is::comparable_by_bytes)
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_FULL_DIR_INFO, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_ID_BOTH_DIR_INFO, is::not_comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_ID_DESCRIPTOR, is::comparable_by_bytes);
+#if defined(_WIN32_WINNT) &&\
+    defined(_WIN32_WINNT_WIN8) &&\
+    _WIN32_WINNT >= _WIN32_WINNT_WIN8
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_ID_EXTD_DIR_INFO, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_ID_INFO, is::not_comparable_by_bytes);
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_WIN8 */
 WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_IO_PRIORITY_HINT_INFO, is::comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_NAME_INFO, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_REMOTE_PROTOCOL_INFO, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_RENAME_INFO, is::not_comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_STANDARD_INFO, is::comparable_by_bytes);
+#if defined(_WIN32_WINNT) &&\
+    defined(_WIN32_WINNT_WIN8) &&\
+    _WIN32_WINNT >= _WIN32_WINNT_WIN8
 WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_STORAGE_INFO, is::comparable_by_bytes);
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_WIN8 */
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_STREAM_INFO, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(HW_PROFILE_INFOA, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(HW_PROFILE_INFOW, is::not_comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(JIT_DEBUG_INFO, is::comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(MEMORYSTATUS, is::comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(OFSTRUCT, is::not_comparable_by_bytes);
+#if defined(_WIN32_WINNT) &&\
+    _WIN32_WINNT >= 0x0602
 WINSTL_THE_COMPARABLE_STRUCTURE_(OPERATION_END_PARAMETERS, is::comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(OPERATION_START_PARAMETERS, is::comparable_by_bytes);
+#endif /* _WIN32_WINNT >= 0x0602 */
 // WINSTL_THE_COMPARABLE_STRUCTURE_(STARTUPINFOEXA, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(STARTUPINFOEXW, is::not_comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(SYSTEM_POWER_STATUS, is::comparable_by_bytes);
@@ -290,10 +309,21 @@ WINSTL_THE_COMPARABLE_STRUCTURE_(UMS_SYSTEM_THREAD_INFORMATION, is::comparable_b
 
 // ProcessThreadsApi.h
 
+#if defined(NTDDI_VERSION) &&\
+    defined(NTDDI_WIN10_MN) &&\
+    NTDDI_VERSION >= NTDDI_WIN10_MN
 WINSTL_THE_COMPARABLE_STRUCTURE_(APC_CALLBACK_DATA, is::comparable_by_bytes);
+#endif /* NTDDI_VERSION >= NTDDI_WIN10_MN */
 WINSTL_THE_COMPARABLE_STRUCTURE_(APP_MEMORY_INFORMATION, is::comparable_by_bytes);
+
+#if defined(_WIN32_WINNT) &&\
+    defined(_WIN32_WINNT_WIN8) &&\
+    _WIN32_WINNT >= _WIN32_WINNT_WIN8
 WINSTL_THE_COMPARABLE_STRUCTURE_(MEMORY_PRIORITY_INFORMATION, is::comparable_by_bytes);
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_WIN8 */
+#if 0
 WINSTL_THE_COMPARABLE_STRUCTURE_(OVERRIDE_PREFETCH_PARAMETER, is::comparable_by_bytes);
+#endif
 WINSTL_THE_COMPARABLE_STRUCTURE_(PROCESS_INFORMATION, is::comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(PROCESS_LEAP_SECOND_INFO, is::comparable_by_bytes);
 WINSTL_THE_COMPARABLE_STRUCTURE_(PROCESS_MACHINE_INFORMATION, is::comparable_by_bytes);
@@ -492,7 +522,8 @@ WINSTL_THE_COMPARABLE_STRUCTURE_(EVENTLOGRECORD, is::comparable_by_bytes);
     NTDDI_VERSION >= NTDDI_WIN11_ZN
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_STAT_BASIC_INFORMATION, is::XXXX);
 #endif /* NTDDI_VERSION >= NTDDI_WIN11_ZN */
-#if !defined(WINSTL_ARCH_IS_ARM64)
+#if !defined(WINSTL_ARCH_IS_ARM64) &&\
+    !defined(STLSOFT_COMPILER_IS_GCC)
 WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_STAT_INFORMATION, is::comparable_by_bytes);
 #endif
 // WINSTL_THE_COMPARABLE_STRUCTURE_(FILE_STAT_LX_INFORMATION, is::XXXX);
@@ -851,40 +882,45 @@ WINSTL_THE_COMPARABLE_STRUCTURE_(WOW64_LDT_ENTRY, is::comparable_by_bytes);
 
 // WINSTL_THE_COMPARABLE_STRUCTURE_(SHFILEOPSTRUCTA, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(SHFILEOPSTRUCTW, is::not_comparable_by_bytes);
-// #if !defined(STLSOFT_COMPILER_IS_GCC)
+#if !defined(STLSOFT_COMPILER_IS_GCC)
 // WINSTL_THE_COMPARABLE_STRUCTURE_(SHNAMEMAPPINGA, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(SHNAMEMAPPINGW, is::not_comparable_by_bytes);
-// #endif /* compiler */
+#endif /* compiler */
 // WINSTL_THE_COMPARABLE_STRUCTURE_(SHFILEINFOA, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(SHFILEINFOW, is::not_comparable_by_bytes);
 
 
-// #if !defined(STLSOFT_COMPILER_IS_DMC) && \
-//     !defined(STLSOFT_COMPILER_IS_GCC) && \
-//     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
-//         _MSC_VER >= 1200) && \
-//     defined(WINVER) && \
-//     WINVER >= 0x0400
-// WINSTL_THE_COMPARABLE_STRUCTURE_(DRAGINFOA, is::not_comparable_by_bytes);
-// WINSTL_THE_COMPARABLE_STRUCTURE_(DRAGINFOW, is::not_comparable_by_bytes);
-// #endif /* WINVER */
+#if 0
+
+# if !defined(STLSOFT_COMPILER_IS_DMC) && \
+     !defined(STLSOFT_COMPILER_IS_GCC) && \
+     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+         _MSC_VER >= 1200) && \
+     defined(WINVER) && \
+     WINVER >= 0x0400
+WINSTL_THE_COMPARABLE_STRUCTURE_(DRAGINFOA, is::not_comparable_by_bytes);
+WINSTL_THE_COMPARABLE_STRUCTURE_(DRAGINFOW, is::not_comparable_by_bytes);
+# endif /* WINVER */
+#endif
 
 WINSTL_THE_COMPARABLE_STRUCTURE_(APPBARDATA, is::comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(SHELLEXECUTEINFOA, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(SHELLEXECUTEINFOW, is::not_comparable_by_bytes);
-// #if 1 && \
-//     !defined(STLSOFT_COMPILER_IS_DMC) && \
-//     (   !defined(STLSOFT_COMPILER_IS_GCC) || \
-//         __GNUC__ > 3 || \
-//         (   __GNUC__ == 3 && \
-//             __GNUC_MINOR__ > 2)) && \
-//     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
-//         _MSC_VER == 1200 || \
-//         ( defined(NTDDI_VERSION) && \
-//           NTDDI_VERSION >= 0x05000000)) && \
-//     1
+#if 0
+# if 1 && \
+     !defined(STLSOFT_COMPILER_IS_DMC) && \
+     (   !defined(STLSOFT_COMPILER_IS_GCC) || \
+         __GNUC__ > 3 || \
+         (   __GNUC__ == 3 && \
+             __GNUC_MINOR__ > 2)) && \
+     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
+         _MSC_VER == 1200 || \
+         ( defined(NTDDI_VERSION) && \
+           NTDDI_VERSION >= 0x05000000)) && \
+     1
 WINSTL_THE_COMPARABLE_STRUCTURE_(SHQUERYRBINFO, is::comparable_by_bytes);
-// #endif /* compiler */
+# endif /* compiler */
+#endif
 // WINSTL_THE_COMPARABLE_STRUCTURE_(NOTIFYICONDATAA, is::not_comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(NOTIFYICONDATAW, is::not_comparable_by_bytes);
 

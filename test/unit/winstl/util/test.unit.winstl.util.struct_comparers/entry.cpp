@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_comparers`.
  *
  * Created: 9th October 2024
- * Updated: 9th October 2024
+ * Updated: 12th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -144,7 +144,6 @@ static void test_SYSTEMTIME(void)
             .wSecond = 33,
             .wMilliseconds = 1001,
         };
-        SYSTEMTIME st2 = {0, 0};
 
         XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
     }

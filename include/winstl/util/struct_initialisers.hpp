@@ -4,7 +4,7 @@
  * Purpose: Functions for initialising Win32 structures.
  *
  * Created: 20th October 1994
- * Updated: 9th October 2024
+ * Updated: 13th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MAJOR       4
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       1
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    9
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        239
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    10
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        240
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -270,7 +270,7 @@ WINSTL_THE_INITIALISABLE_STRUCTURE_(WIN32_FILE_ATTRIBUTE_DATA, has::no_init_memb
 WINSTL_THE_INITIALISABLE_STRUCTURE_(SYSTEM_POWER_STATUS, has::no_init_member_type);
 #ifdef _WINCON_
 WINSTL_THE_INITIALISABLE_STRUCTURE_(CONSOLE_SCREEN_BUFFER_INFO, has::no_init_member_type);
-# if defined(_MSC_VER) && \
+# if !defined(_MSC_VER) ||\
      _MSC_VER >= 1600
 WINSTL_THE_INITIALISABLE_STRUCTURE_(CONSOLE_SCREEN_BUFFER_INFOEX, has::cbSize_member_type);
 # endif /* VC++ 10+ */
@@ -333,16 +333,21 @@ WINSTL_THE_INITIALISABLE_STRUCTURE_(SHFILEINFOW, has::no_init_member_type);
 
 
 #  if 1 &&\
-      !defined(STLSOFT_COMPILER_IS_DMC) &&\
-      !defined(STLSOFT_COMPILER_IS_GCC) &&\
-      (   !defined(STLSOFT_COMPILER_IS_MSVC) ||\
-        _MSC_VER >= 1200) &&\
       defined(WINVER) &&\
       WINVER >= 0x0400 &&\
       1
 
+#   if 1 &&\
+       !defined(STLSOFT_COMPILER_IS_DMC) &&\
+       (   !defined(STLSOFT_COMPILER_IS_GCC) ||\
+           __GNUC__ >= 14) &&\
+       (   !defined(STLSOFT_COMPILER_IS_MSVC) ||\
+           _MSC_VER >= 1200) &&\
+       1
+
 WINSTL_THE_INITIALISABLE_STRUCTURE_(DRAGINFOA, has::uSize_member_type);
 WINSTL_THE_INITIALISABLE_STRUCTURE_(DRAGINFOW, has::uSize_member_type);
+#   endif /* compiler */
 #  endif /* WINVER */
 
 WINSTL_THE_INITIALISABLE_STRUCTURE_(APPBARDATA, has::cbSize_member_type);
