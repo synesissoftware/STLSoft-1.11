@@ -4,7 +4,7 @@
  * Purpose: Invocation of functions in dynamic libraries.
  *
  * Created: sometime in 1998
- * Updated: 12th October 2024
+ * Updated: 13th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    19
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        64
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    20
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -240,7 +240,7 @@ struct dl_call_traits
 public:
     typedef void                                          (*entry_point_type)(void);
     typedef void*                                           library_handle_type;
-    typedef unixstl::module                                 module_wrapper_type;
+    typedef unixstl::dl_module                              module_wrapper_type;
 /// @}
 
 /// \name Dynamic Library Functions

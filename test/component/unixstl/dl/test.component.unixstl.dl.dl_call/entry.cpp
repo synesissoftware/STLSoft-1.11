@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 11th October 2024
+ * Updated: 13th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,7 +44,7 @@
 
 namespace
 {
-    typedef unixstl::module                                 unixstl_module_t;
+    typedef unixstl::dl_module                              unixstl_module_t;
     typedef unixstl_module_t::module_handle_type            h_module_t;
 } // anonymous namespace
 

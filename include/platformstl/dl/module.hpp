@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/dl/module.hpp
+ * File:    platformstl/dl/module.hpp
  *
- * Purpose:     Platform header for the module components.
+ * Purpose: Platform header for the module components.
  *
- * Created:     20th March 2005
- * Updated:     11th March 2024
+ * Created: 20th March 2005
+ * Updated: 13th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -43,7 +43,7 @@
 
 /** \file platformstl/dl/module.hpp
  *
- * \brief [C++] Definition of the platformstl::module type
+ * \brief [C++] Definition of the platformstl::dl_module type
  *   (\ref group__library__DL "DL" Library).
  */
 
@@ -52,10 +52,10 @@
 
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MAJOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MINOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_REVISION 4
-# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_EDIT     28
+# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MAJOR    3
+# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MINOR    0
+# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_REVISION 1
+# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,6 +100,7 @@ namespace platformstl_project
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -114,35 +115,37 @@ namespace platformstl_project
      * \ref section__principle__conformance__intersecting_conformance "Intersecting Conformance"
      * of the resolved platform-specific types.
      *
-     * When compiling on UNIX platforms, the platformstl::module
-     * type resolves to the unixstl::module class. On Windows
-     * platforms it resolves to the winstl::module class. It
+     * When compiling on UNIX platforms, the platformstl::dl_module
+     * type resolves to the unixstl::dl_module class. On Windows
+     * platforms it resolves to the winstl::dl_module class. It
      * is not defined for other platforms.
      */
-    class module
+    class dl_module
     {};
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 # ifdef UNIXSTL_NO_NAMESPACE
-    using ::module;
+    using ::dl_module;
 # else /* ? UNIXSTL_NO_NAMESPACE */
-    using ::unixstl::module;
+    using ::unixstl::dl_module;
 # endif /* UNIXSTL_NO_NAMESPACE */
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # ifdef WINSTL_NO_NAMESPACE
-    using ::module;
+    using ::dl_module;
 # else /* ? WINSTL_NO_NAMESPACE */
-    using ::winstl::module;
+    using ::winstl::dl_module;
 # endif /* WINSTL_NO_NAMESPACE */
-
 #else /* ? operating system */
+
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

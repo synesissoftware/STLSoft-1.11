@@ -4,7 +4,7 @@
  * Purpose: Invocation of functions in dynamic libraries.
  *
  * Created: sometime in 1998
- * Updated: 12th October 2024
+ * Updated: 13th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     8
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  9
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      76
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  10
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -505,7 +505,7 @@ struct dl_call_traits
 public:
     typedef FARPROC                                         entry_point_type;
     typedef HINSTANCE                                       library_handle_type;
-    typedef winstl::module                                  module_wrapper_type;
+    typedef winstl::dl_module                               module_wrapper_type;
 /// @}
 
 /// \name Dynamic Library Functions
