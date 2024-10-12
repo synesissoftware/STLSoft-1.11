@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 11th October 2024
+ * Updated: 13th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,6 +45,7 @@
 
   // We can't do in in GCC, as the mempcy() call (with count=1073741824) has UB
 #else
+
 # define ATTEMPT_ALLOCATOR_EXHAUSTION
 #endif
 
@@ -218,6 +219,7 @@ namespace
 
     static void test_allocator_null(void);
 #ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
+
     static void test_allocator_to_exhaustion(void);
 #endif
 
@@ -307,6 +309,7 @@ int main(int argc, char *argv[])
 
         XTESTS_RUN_CASE(test_allocator_null);
 #ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
+
         XTESTS_RUN_CASE(test_allocator_to_exhaustion);
 #endif
 
@@ -606,7 +609,17 @@ static void test_ctor_range_list_iters_3()
 
 static void test_ctor_range_input_iters_1()
 {
+# if defined(STLSOFT_COMPILER_IS_MSVC) &&\
+     __cplusplus >= 202002L
+
+    auto from = int_input_iterator(&INTEGERS[0] + 0);
+    auto to = int_input_iterator(&INTEGERS[0] + 0);
+
+    stlsoft::auto_buffer<int, 10>   buff(from, to);
+# else
+
     stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0] + 0), int_input_iterator(&INTEGERS[0] + 0));
+# endif
 
     XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
     XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
@@ -615,7 +628,17 @@ static void test_ctor_range_input_iters_1()
 
 static void test_ctor_range_input_iters_2()
 {
+# if defined(STLSOFT_COMPILER_IS_MSVC) &&\
+     __cplusplus >= 202002L
+
+    auto from = int_input_iterator(&INTEGERS[0] + 0);
+    auto to = int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+
+    stlsoft::auto_buffer<int, 10>   buff(from, to);
+# else
+
     stlsoft::auto_buffer<int, 10>   buff(int_input_iterator(&INTEGERS[0] + 0), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+# endif
 
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
@@ -624,7 +647,16 @@ static void test_ctor_range_input_iters_2()
 
 static void test_ctor_range_input_iters_3()
 {
+# if defined(STLSOFT_COMPILER_IS_MSVC) &&\
+     __cplusplus >= 202002L
+
+    auto from = int_input_iterator(&INTEGERS[0] + 0);
+    auto to = int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+
+    stlsoft::auto_buffer<int, 100>   buff(from, to);
+# else
     stlsoft::auto_buffer<int, 100>  buff(int_input_iterator(&INTEGERS[0] + 0), int_input_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+# endif
 
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
@@ -633,7 +665,17 @@ static void test_ctor_range_input_iters_3()
 
 static void test_ctor_range_fwd_iters_1()
 {
+# if defined(STLSOFT_COMPILER_IS_MSVC) &&\
+     __cplusplus >= 202002L
+
+    auto from = int_forward_iterator(&INTEGERS[0] + 0);
+    auto to = int_forward_iterator(&INTEGERS[0] + 0);
+
+    stlsoft::auto_buffer<int, 10>   buff(from, to);
+# else
+
     stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0] + 0), int_forward_iterator(&INTEGERS[0] + 0));
+# endif
 
     XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
     XTESTS_TEST_INTEGER_NOT_EQUAL(0u, buff.internal_size());
@@ -642,7 +684,17 @@ static void test_ctor_range_fwd_iters_1()
 
 static void test_ctor_range_fwd_iters_2()
 {
+# if defined(STLSOFT_COMPILER_IS_MSVC) &&\
+     __cplusplus >= 202002L
+
+    auto from = int_forward_iterator(&INTEGERS[0] + 0);
+    auto to = int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+
+    stlsoft::auto_buffer<int, 10>   buff(from, to);
+# else
+
     stlsoft::auto_buffer<int, 10>   buff(int_forward_iterator(&INTEGERS[0] + 0), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+# endif
 
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
@@ -651,7 +703,17 @@ static void test_ctor_range_fwd_iters_2()
 
 static void test_ctor_range_fwd_iters_3()
 {
+# if defined(STLSOFT_COMPILER_IS_MSVC) &&\
+     __cplusplus >= 202002L
+
+    auto from = int_forward_iterator(&INTEGERS[0] + 0);
+    auto to = int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS));
+
+    stlsoft::auto_buffer<int, 100>   buff(from, to);
+# else
+
     stlsoft::auto_buffer<int, 100>  buff(int_forward_iterator(&INTEGERS[0] + 0), int_forward_iterator(&INTEGERS[0] + STLSOFT_NUM_ELEMENTS(INTEGERS)));
+# endif
 
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(100u, buff.internal_size());
@@ -823,7 +885,6 @@ static void test_allocator_null(void)
 
     }}
 }
-
 #ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
 
 static void test_allocator_to_exhaustion(void)

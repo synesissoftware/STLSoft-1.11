@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 10th October 2024
+ * Updated: 13th October 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        212
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    6
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        213
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -756,8 +756,19 @@ public: // construction
         , m_cItems((NULL != m_buffer) ? cItems : 0)
         , m_bExternal(space < cItems)
     {
-#if __cplusplus >= 202002L
+        // initialise `m_internal` iff we are being used constexpr
+#if 0 ||\
+    __cplusplus >= 202002L ||\
+    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        __cplusplus >= 201702L &&\
+        _MSC_VER >= 1935) ||\
+    0
+
+# if __cplusplus < 202002L
+        if (std::_Is_constant_evaluated())
+#else
         if (std::is_constant_evaluated())
+#endif
         {
             for (auto& i : m_internal)
             {
