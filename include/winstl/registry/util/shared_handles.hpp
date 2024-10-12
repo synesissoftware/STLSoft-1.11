@@ -4,7 +4,7 @@
  * Purpose: Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created: 19th January 2002
- * Updated: 10th October 2024
+ * Updated: 13th October 2024
  *
  * Thanks:  To Austin Ziegler for fixes to defects evident on x64.
  *
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       0
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    20
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        56
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    21
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -278,13 +278,7 @@ namespace registry_util
             {
                 LONG const r =
                 dl_call<LONG>(  "ADVAPI32.DLL"
-#if defined(WINSTL_OS_IS_WIN64)
-                            ,   "C:RegNotifyChangeKeyValue"
-#elif defined(WINSTL_OS_IS_WIN32)
-                            ,   "S:RegNotifyChangeKeyValue"
-#else /* ? WIN?? */
-# error Windows operating system not recognised
-#endif /* WIN?? */
+                            ,   WINSTL_DL_CALL_WINx_STDCALL_LITERAL("RegNotifyChangeKeyValue")
                             ,   m_hkey
                             ,   false
                             ,   m_eventType
