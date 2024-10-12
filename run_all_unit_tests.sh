@@ -125,11 +125,11 @@ if [ $status -eq 0 ]; then
       continue
     fi
 
-    if [ $Verbosity -eq 3 ]; then
+    if [ $Verbosity -ge 3 ]; then
 
       echo
     fi
-    if [ $Verbosity -ne 0 ]; then
+    if [ $Verbosity -ge 2 ]; then
 
       echo "executing $f:"
     fi
