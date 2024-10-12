@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    5
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        232
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    6
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        233
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -329,8 +329,8 @@
       defined(_M_ARM64) ||\
       0
 
-# define WINSTL_ARCH_LABEL_STRING                           "ARM64"
 # define WINSTL_ARCH_IS_ARM64
+# define WINSTL_ARCH_LABEL_STRING                           "ARM64"
 #elif 0 ||\
       defined(__ia64) ||\
       defined(__ia64__) ||\
@@ -338,8 +338,8 @@
       defined(_M_IA64) ||\
       0
 
-# define WINSTL_ARCH_LABEL_STRING                           "IA-64"
 # define WINSTL_ARCH_IS_IA64
+# define WINSTL_ARCH_LABEL_STRING                           "IA-64"
 #elif 0 ||\
       defined(__amd64) ||\
       defined(__amd64__) ||\
@@ -350,8 +350,8 @@
       defined(_M_X64) ||\
       0
 
-# define WINSTL_ARCH_LABEL_STRING                           "x86-64"
 # define WINSTL_ARCH_IS_X64
+# define WINSTL_ARCH_LABEL_STRING                           "x86-64"
 #elif 0 ||\
       defined(__i386) ||\
       defined(__i386__) ||\
@@ -359,8 +359,8 @@
       defined(_M_IX86) ||\
       0
 
-# define WINSTL_ARCH_LABEL_STRING                           "80x86"
 # define WINSTL_ARCH_IS_X86
+# define WINSTL_ARCH_LABEL_STRING                           "80x86"
 #else /* ? _M_?? */
 
 # error WinSTL is only compatible with ARM64, IA64, x64, and x86 architectures

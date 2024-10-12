@@ -7,20 +7,7 @@
 
 int main(int /* argc */, char* /* argv */[])
 {
-#ifdef UNIXSTL_ARCH_IS_ARM64
-# define ARCH "UNIXSTL_ARCH_IS_ARM64"
-#endif /* UNIXSTL_ARCH_IS_ARM64 */
-#ifdef UNIXSTL_ARCH_IS_IA64
-# define ARCH "UNIXSTL_ARCH_IS_IA64"
-#endif /* UNIXSTL_ARCH_IS_IA64 */
-#ifdef UNIXSTL_ARCH_IS_X64
-# define ARCH "UNIXSTL_ARCH_IS_X64"
-#endif /* UNIXSTL_ARCH_IS_X64 */
-#ifdef UNIXSTL_ARCH_IS_X86
-# define ARCH "UNIXSTL_ARCH_IS_X86"
-#endif /* UNIXSTL_ARCH_IS_X86 */
-
-    fprintf(stdout, "ARCH=%s\n", ARCH);
+    fprintf(stdout, "UNIXSTL_ARCH_LABEL_STRING=%s\n", UNIXSTL_ARCH_LABEL_STRING);
 
     try
     {
