@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 11th October 2024
+ * Updated: 13th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -69,7 +69,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

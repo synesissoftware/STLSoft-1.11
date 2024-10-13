@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::shared_ptr`.
  *
  * Created: 7th October 2024
- * Updated: 7th October 2024
+ * Updated: 13th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -60,7 +60,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

@@ -4,7 +4,7 @@
  * Purpose: Component test for WinSTL atomic_functions.
  *
  * Created: sometime in 2015
- * Updated: 10th October 2024
+ * Updated: 13th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -155,7 +155,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
