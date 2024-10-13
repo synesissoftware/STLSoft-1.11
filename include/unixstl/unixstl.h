@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th October 2024
+ * Updated: 13th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    10
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 9
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     119
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -280,48 +280,48 @@
 
 #if 0
 #elif 0 ||\
-      defined(__aarch64__) ||\
       defined(_M_ARM64) ||\
+      defined(__aarch64__) ||\
       0
 
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_ARM64
 # define UNIXSTL_ARCH_LABEL_STRING                          "ARM64"
 #elif 0 ||\
-    defined(__amd64) || \
-    defined(__amd64__) || \
-    defined(_AMD64_) || \
-    defined(_M_AMD64) || \
-    defined(_M_X64) || \
-    0
+      defined(_AMD64_) || \
+      defined(_M_AMD64) || \
+      defined(_M_X64) || \
+      defined(__amd64) || \
+      defined(__amd64__) || \
+      0
 
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_IA64
 # define UNIXSTL_ARCH_LABEL_STRING                          "IA-64"
 #elif 0 ||\
-      defined(__i386) || \
-      defined(__i386__) || \
       defined(_M_IX86) ||\
       defined(_X86_) || \
+      defined(__i386) || \
+      defined(__i386__) || \
       0
 
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_X64
 # define UNIXSTL_ARCH_LABEL_STRING                          "ARM64"
 #elif 0 ||\
-      defined(__ia64) || \
-      defined(__ia64__) || \
       defined(_IA64_) || \
       defined(_M_IA64) ||\
+      defined(__ia64) || \
+      defined(__ia64__) || \
       0
 
 # define UNIXSTL_ARCH_IS_INTEL
 # define UNIXSTL_ARCH_IS_X86
 # define UNIXSTL_ARCH_LABEL_STRING                          "80x86"
 #elif 0 ||\
+      defined(_M_ALPHA) ||\
       defined(__alpha) || \
       defined(__alpha__) || \
-      defined(_M_ALPHA) ||\
       0
 
 # define UNIXSTL_ARCH_IS_ALPHA
@@ -334,11 +334,11 @@
 # define UNIXSTL_ARCH_IS_HPPA
 # define UNIXSTL_ARCH_LABEL_STRING                          "HP/PA"
 #elif 0 ||\
+      defined(_M_PPC) ||\
+      defined(_POWER) || \
       defined(__POWERPC__) || \
       defined(__ppc) || \
       defined(__ppc__) || \
-      defined(_M_PPC) ||\
-      defined(_POWER) || \
       0
 
 # define UNIXSTL_ARCH_IS_POWERPC

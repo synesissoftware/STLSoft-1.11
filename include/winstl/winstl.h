@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 10th October 2024
+ * Updated: 13th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    6
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        233
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        234
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -325,38 +325,38 @@
 
 #if 0
 #elif 0 ||\
-      defined(__aarch64__) ||\
       defined(_M_ARM64) ||\
+      defined(__aarch64__) ||\
       0
 
 # define WINSTL_ARCH_IS_ARM64
 # define WINSTL_ARCH_LABEL_STRING                           "ARM64"
 #elif 0 ||\
-      defined(__ia64) ||\
-      defined(__ia64__) ||\
       defined(_IA64_) ||\
       defined(_M_IA64) ||\
+      defined(__ia64) ||\
+      defined(__ia64__) ||\
       0
 
 # define WINSTL_ARCH_IS_IA64
 # define WINSTL_ARCH_LABEL_STRING                           "IA-64"
 #elif 0 ||\
+      defined(_AMD64_) ||\
+      defined(_M_AMD64) ||\
+      defined(_M_X64) ||\
       defined(__amd64) ||\
       defined(__amd64__) ||\
       defined(__x86_64) ||\
       defined(__x86_64__) ||\
-      defined(_AMD64_) ||\
-      defined(_M_AMD64) ||\
-      defined(_M_X64) ||\
       0
 
 # define WINSTL_ARCH_IS_X64
 # define WINSTL_ARCH_LABEL_STRING                           "x86-64"
 #elif 0 ||\
+      defined(_M_IX86) ||\
+      defined(__X86__) ||\
       defined(__i386) ||\
       defined(__i386__) ||\
-      defined(__X86__) ||\
-      defined(_M_IX86) ||\
       0
 
 # define WINSTL_ARCH_IS_X86
