@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 19th January 2002
- * Updated: 27th September 2024
+ * Updated: 10th October 2024
  *
  * Thanks:  To Diego Chanoux for spotting a defect in the value_sz() method.
  *
@@ -69,8 +69,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  12
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      132
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  14
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      134
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -212,6 +212,8 @@ public:
     reg_blob(class_type const& rhs);
     /// Destructor
     ~reg_blob() STLSOFT_NOEXCEPT;
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes
@@ -251,12 +253,6 @@ public:
 /// @{
 private:
     buffer_type m_buffer;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    reg_blob& operator =(class_type const& rhs);
 /// @}
 };
 

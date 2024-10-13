@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 12th September 2019
- * Updated: 29th January 2024
+ * Updated: 11th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -80,7 +80,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -150,7 +150,7 @@ static void test_format_bytes_1_byte_1_grouping()
                                             ,   "#"
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("01", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("01", sz, static_cast<int>(n));
 }
 
 static void test_format_bytes_1_byte_2_grouping()
@@ -164,7 +164,7 @@ static void test_format_bytes_1_byte_2_grouping()
                                             ,   "#"
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("0001", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("0001", sz, static_cast<int>(n));
 }
 
 static void test_format_bytes_1_byte_4_grouping()
@@ -178,7 +178,7 @@ static void test_format_bytes_1_byte_4_grouping()
                                             ,   "#"
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("00000001", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("00000001", sz, static_cast<int>(n));
 }
 
 static void test_format_bytes_1_byte_8_grouping()
@@ -192,7 +192,7 @@ static void test_format_bytes_1_byte_8_grouping()
                                             ,   "#"
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("0000000000000001", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("0000000000000001", sz, static_cast<int>(n));
 }
 
 static void test_format_bytes_1_byte_16_grouping()
@@ -206,7 +206,7 @@ static void test_format_bytes_1_byte_16_grouping()
                                             ,   "#"
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("00000000000000000000000000000001", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("00000000000000000000000000000001", sz, static_cast<int>(n));
 }
 
 
@@ -221,7 +221,7 @@ static void test_format_bytes_5_byte_1_grouping()
                                             ,   " "
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("01 02 03 04 05", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("01 02 03 04 05", sz, static_cast<int>(n));
 }
 
 static void test_format_bytes_5_byte_2_grouping()
@@ -235,7 +235,7 @@ static void test_format_bytes_5_byte_2_grouping()
                                             ,   " "
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("0201 0403 0005", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("0201 0403 0005", sz, static_cast<int>(n));
 }
 
 static void test_format_bytes_5_byte_4_grouping()
@@ -249,7 +249,7 @@ static void test_format_bytes_5_byte_4_grouping()
                                             ,   " "
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("04030201 00000005", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("04030201 00000005", sz, static_cast<int>(n));
 }
 
 static void test_format_bytes_5_byte_8_grouping()
@@ -263,7 +263,7 @@ static void test_format_bytes_5_byte_8_grouping()
                                             ,   " "
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("0000000504030201", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("0000000504030201", sz, static_cast<int>(n));
 }
 
 static void test_format_bytes_5_byte_16_grouping()
@@ -277,7 +277,7 @@ static void test_format_bytes_5_byte_16_grouping()
                                             ,   " "
                                             );
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("00000000000000000000000504030201", sz, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("00000000000000000000000504030201", sz, static_cast<int>(n));
 }
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/exceptions.hpp
+ * File:    winstl/synch/exceptions.hpp
  *
- * Purpose:     Synchronisation library exception(s).
+ * Purpose: Synchronisation library exception(s).
  *
- * Created:     30th May 2006
- * Updated:     11th March 2024
+ * Created: 30th May 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -50,10 +50,10 @@
 #define WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MAJOR     2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT      30
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MAJOR       2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MINOR       5
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION    5
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -196,9 +196,12 @@ protected: // Construction
         : parent_class_type(message, sc)
         , SubsystemStatusCode(subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    synchronisation_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The subsystem-specific status code associated with the condition
@@ -230,9 +233,12 @@ protected: // Construction
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    synchronisation_logic_exception(class_type const&) = default;
+#endif
 private:
-    // copy assignment is proscribed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Root exception for classes of synchronisation runtime conditions
@@ -258,9 +264,12 @@ protected: // Construction
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    synchronisation_runtime_exception(class_type const&) = default;
+#endif
 private:
-    // copy assignment is proscribed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has failed
@@ -291,9 +300,12 @@ protected:
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    wait_failed_logic_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Root exception for classes of synchronisation runtime failures
@@ -319,9 +331,12 @@ protected: // Construction
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    synchronisation_runtime_failure_exception(class_type const&) = default;
+#endif
 private:
-    // copy assignment is proscribed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has failed.
@@ -351,9 +366,12 @@ protected: // Construction
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    wait_failed_runtime_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has been interrupted.
@@ -379,9 +397,12 @@ protected: // Construction
     )
         : parent_class_type(sc, message, Synchronisation_WaitOperationInterrupted)
     {}
+#if __cplusplus >= 201103L
+public:
+    wait_operation_interrupted_exception(class_type const&) = default;
+#endif
 private:
-    // copy assignment is proscribed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 
@@ -416,9 +437,12 @@ public: // Construction
         : parent_class_type(sc, "invalid wait handle")
         , WaitIndex(waitIndex)
     {}
+#if __cplusplus >= 201103L
+public:
+    invalid_wait_handle_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The index of the handle in a vector wait operation. -1 if scalar
@@ -452,9 +476,12 @@ public: // Construction
     )
         : parent_class_type(sc, waitIndex)
     {}
+#if __cplusplus >= 201103L
+public:
+    null_wait_handle_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate duplicate wait handles
@@ -488,9 +515,12 @@ public: // Construction
         , FirstIndex(firstIndex)
         , SecondIndex(secondIndex)
     {}
+#if __cplusplus >= 201103L
+public:
+    duplicate_wait_handle_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The first index of the first duplicated handle in a vector wait
@@ -528,9 +558,12 @@ public: // Construction
         : parent_class_type(sc, "too many wait handles")
         , NumWaitHandles(numWaitHandles)
     {}
+#if __cplusplus >= 201103L
+public:
+    too_many_wait_handles_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The number of wait handles specified to the operation raising the
@@ -565,9 +598,12 @@ public: // Construction
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    invalid_state_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
 };
@@ -600,9 +636,12 @@ protected:
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    synchronisation_procurement_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that the creation of a synchronisation
@@ -639,9 +678,12 @@ protected:
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    synchronisation_creation_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that the open of a synchronisation
@@ -678,9 +720,12 @@ protected:
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    synchronisation_open_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that the creation of a thread has failed.
@@ -716,9 +761,12 @@ protected:
     )
         : parent_class_type(sc, message, subsystemStatusCode)
     {}
+#if __cplusplus >= 201103L
+public:
+    thread_creation_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that an operation to change the state of a
@@ -756,9 +804,12 @@ public: // Construction
         WINSTL_ASSERT(Synchronisation_WaitFailed != subsystemStatusCode);
         WINSTL_ASSERT(Synchronisation_WaitOperationInterrupted != subsystemStatusCode);
     }
+#if __cplusplus >= 201103L
+public:
+    synchronisation_object_state_change_failed_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has been interrupted
@@ -791,9 +842,12 @@ public: // Construction
     )
         : parent_class_type(sc, message, Synchronisation_WaitAbandoned)
     {}
+#if __cplusplus >= 201103L
+public:
+    wait_abandoned_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Exception thrown to indicate that a wait operation has been interrupted
@@ -830,9 +884,12 @@ public: // Construction
         : parent_class_type(sc, message)
         , IndexOfSignalledSynchronisationObject(indexOfSignalledSynchronisationObject)
     {}
+#if __cplusplus >= 201103L
+public:
+    wait_operation_priority_preemption_exception(class_type const&) = default;
+#endif
 private:
-    /// Copy assignment is not allowed
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // Fields
     /// The index of the signalled synchronisation object (that preempted
@@ -863,8 +920,6 @@ public: // Fields
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS */
 

@@ -4,7 +4,7 @@
  * Purpose: Compiler feature discrimination for GNU C/C++.
  *
  * Created: 7th February 2003
- * Updated: 5th May 2024
+ * Updated: 8th October 2024
  *
  * Thanks:  To Sergey Nikulov, for PowerPC (BSD) compatibility fixes;
  *          wiluite for MinGW 64-bit compatibility.
@@ -62,9 +62,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      32
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      33
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       116
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       117
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -238,6 +238,11 @@
 #define STLSOFT_CF_return_void_SUPPORT
 
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
+
+#if defined(__cplusplus) &&\
+    __cplusplus >= 201103L
+# define STLSOFT_CF_static_assert_SUPPORT
+#endif /* compiler */
 
 #define STLSOFT_CF_ANONYMOUS_UNION_SUPPORT
 

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/synch/singlethreaded_tss_index.hpp
+ * File:    stlsoft/synch/singlethreaded_tss_index.hpp
  *
- * Purpose:     An interface-compatible replacement for the tss_index
- *              classes defined elsewhere in the libraries, for use in
- *              single-threaded contexts.
+ * Purpose: An interface-compatible replacement for the tss_index classes
+ *          defined elsewhere in the libraries, for use in single-threaded
+ *          contexts.
  *
- * Created:     3rd February 2008
- * Updated:     11th March 2024
+ * Created: 3rd February 2008
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_MINOR      0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_REVISION   6
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       15
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_REVISION   9
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SINGLE_THREADED_TSS_INDEX_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,11 +99,11 @@ class singlethreaded_tss_index
 /// @{
 public:
     /// This class
-    typedef singlethreaded_tss_index        class_type;
+    typedef singlethreaded_tss_index                        class_type;
     /// The type of the TSS key
-    typedef void                            key_type;
+    typedef void                                            key_type;
     /// The type of the slot values
-    typedef void*                           value_type;
+    typedef void*                                           value_type;
 /// @}
 
 /// \name Construction
@@ -116,6 +116,9 @@ public:
     /// Releases the TSS key
     ~singlethreaded_tss_index() STLSOFT_NOEXCEPT
     {}
+private:
+    singlethreaded_tss_index(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -138,14 +141,8 @@ public:
 private:
     value_type  m_value;
 /// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    singlethreaded_tss_index(class_type const&);
-    class_type& operator =(class_type const&);
-/// @}
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

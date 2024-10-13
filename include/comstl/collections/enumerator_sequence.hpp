@@ -4,7 +4,7 @@
  * Purpose: STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created: 17th September 1998
- * Updated: 28th September 2024
+ * Updated: 10th October 2024
  *
  * Thanks:  To Eduardo Bezerra and Vivi Orunitia for reporting
  *          incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 12
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     275
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 15
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     278
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -322,8 +322,8 @@ public:
         }
     }
 private:
-    enumerator_sequence(class_type const&);     // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    enumerator_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /// \name Iteration
 /// @{
@@ -445,7 +445,11 @@ public:
                     m_enumerator->Release();
                 }
             }
+        private:
+            enumeration_context(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+            void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
+        public:
             void AddRef()
             {
                 ++m_refCount;
@@ -677,11 +681,6 @@ public:
             long            m_refCount;
             size_type       m_previousBlockTotal;
         /// @}
-
-        // Not to be implemented
-        private:
-            enumeration_context(class_type const&);
-            class_type& operator =(class_type const&);
         };
 
 

@@ -4,11 +4,11 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 24th June 2005
- * Updated: 27th September 2024
+ * Updated: 13th October 2024
  *
- * Thank:  Adi Shavit for spotting a small inefficiency in the
- *         resize()-ing, during the review of Extended STL volume 1
- *         (see http://extendedstl.com/).
+ * Thank:   Adi Shavit for spotting a small inefficiency in the
+ *          resize()-ing, during the review of Extended STL volume 1
+ *          (see http://extendedstl.com/).
  *
  * Home:    http://stlsoft.org/
  *
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_MINOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_REVISION  11
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_EDIT      67
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_REVISION  14
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PROCESS_MODULE_SEQUENCE_EDIT      71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -176,6 +176,8 @@ public:
     process_module_sequence(class_type const& rhs);
     /// Releases the storage associated with the process id list
     ~process_module_sequence() STLSOFT_NOEXCEPT;
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -231,12 +233,6 @@ private:
 
     buffer_type_    m_modules;
 /// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type& operator =(class_type const&);
-/// @}
 };
 
 
@@ -256,9 +252,11 @@ process_module_sequence::process_module_sequence(HANDLE hProcess)
     {
 #if defined(_PSAPI_H_) || \
     defined(_PSAPI_H)
+
         if (!::EnumProcessModules(hProcess, &m_modules[0], sizeof(value_type) * m_modules.size(), &cbReturned))
 #else /* ? psapi */
-        if (!dl_call<BOOL>(  "PSAPI.DLL"
+
+        if (!dl_call<BOOL>( "PSAPI.DLL"
                         ,   WINSTL_DL_CALL_WINx_STDCALL_LITERAL("EnumProcessModules")
                         ,   hProcess
                         ,   &m_modules[0]

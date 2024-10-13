@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        rangelib/random_range.hpp
+ * File:    rangelib/random_range.hpp
  *
- * Purpose:     Random number range class.
+ * Purpose: Random number range class.
  *
- * Created:     31st May 2004
- * Updated:     11th March 2024
+ * Created: 31st May 2004
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      2
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   7
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       42
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   10
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -158,6 +158,8 @@ public:
         STLSOFT_ASSERT(minValue <= maxValue);
         STLSOFT_ASSERT((maxValue - minValue) <= RAND_MAX);
     }
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Notional Range methods
@@ -261,10 +263,6 @@ private:
     const int       m_maxValue;
     ss_size_t       m_position;
     int             m_value;
-
-// Not to be implemented
-private:
-    class_type& operator =(class_type const&);
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

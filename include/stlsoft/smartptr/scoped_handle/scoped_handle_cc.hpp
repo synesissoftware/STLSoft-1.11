@@ -5,7 +5,7 @@
  *          types.
  *
  * Created: 1st November 1994
- * Updated: 4th September 2024
+ * Updated: 10th October 2024
  *
  * Thanks:  Adi Shavit, for requesting the indirect functionality
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_MAJOR      5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_MINOR      7
-# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_EDIT       691
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_REVISION   3
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_EDIT       693
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -132,7 +132,7 @@ public:
 
 private:
     H_holder(class_type const&);
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -582,8 +582,8 @@ public:
     }
 
 private:
-    scoped_handle(class_type const&);           // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    scoped_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes
@@ -803,8 +803,8 @@ public:
     }
 
 private:
-    scoped_handle(class_type const&);           // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    scoped_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes

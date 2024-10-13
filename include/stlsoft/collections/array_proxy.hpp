@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/collections/array_proxy.hpp
+ * File:    stlsoft/collections/array_proxy.hpp
  *
- * Purpose:     Definition of the array_proxy template, which provides managed
- *              access to arrays, and can be used to avoid polymorphic array
- *              problems.
+ * Purpose: Definition of the array_proxy template, which provides managed
+ *          access to arrays, and can be used to avoid polymorphic array
+ *          problems.
  *
- * Created:     11th November 2002
- * Updated:     11th March 2024
+ * Created: 11th November 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MINOR      0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_REVISION   8
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT       70
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_REVISION   10
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT       72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -259,7 +259,7 @@ public:
     }
 #endif // STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 private:
-    class_type& operator =(class_type const&);  // not to be implemented
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 ///  @}
 
 /// \name Attributes

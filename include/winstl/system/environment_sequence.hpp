@@ -4,7 +4,7 @@
  * Purpose: basic_environment_sequence class.
  *
  * Created: 31st December 2002
- * Updated: 27th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 11
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     102
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 12
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -216,6 +216,9 @@ public:
     ss_explicit_k basic_environment_sequence(ws_int_t flags = ignoreCase);
     /// Destructor, which releases any resources acquired
     ~basic_environment_sequence() STLSOFT_NOEXCEPT;
+private:
+    basic_environment_sequence(class_type const&);
+    class_type const& operator =(class_type const&);
 
 /// \name Iteration
 /// @{
@@ -331,11 +334,6 @@ private:
     C const*                    m_q;            // Pointer to the (one off the) end of the raw environment block
     symbols_buffer_type_        m_symbols;      // Array of symbols representing the parsed environment block
     environment_buffer_type_    m_environment;  // The editable (and edited) copy of the environment block
-
-// Not to be implemented
-private:
-    basic_environment_sequence(class_type const&);
-    class_type const& operator =(class_type const&);
 };
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/error/unrecoverable.hpp
+ * File:    stlsoft/error/unrecoverable.hpp
  *
- * Purpose:     Definition of the \c unrecoverable exception class.
+ * Purpose: Definition of the \c unrecoverable exception class.
  *
- * Created:     14th October 2004
- * Updated:     11th March 2024
+ * Created: 14th October 2004
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_MINOR      0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   8
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       43
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_REVISION   11
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_UNRECOVERABLE_EDIT       46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -180,6 +180,10 @@ public:
 #endif /* STLSOFT_UNRECOVERABLE_EXCEPTION_USE_WIN32_EXITPROCESS */
         }
     }
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+
+    void* operator new(ss_size_t );
 /// @}
 
 /// \name Accessors
@@ -198,12 +202,6 @@ private:
     long *const m_refcnt;
     void        (*m_pfnHandler)();
 /// @}
-
-// Not to be implemented
-private:
-    class_type& operator =(class_type const&);
-
-    void* operator new(ss_size_t );
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

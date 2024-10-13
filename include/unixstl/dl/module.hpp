@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/dl/module.hpp (originally MXModule.h, ::SynesisUnix)
+ * File:    unixstl/dl/module.hpp (originally MXModule.h, ::SynesisUnix)
  *
- * Purpose:     Contains the module class.
+ * Purpose: Contains the module class.
  *
- * Created:     30th October 1997
- * Updated:     11th March 2024
+ * Created: 30th October 1997
+ * Updated: 13th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -43,7 +43,7 @@
 
 /** \file unixstl/dl/module.hpp
  *
- * \brief [C++] Definition of the unixstl::module class
+ * \brief [C++] Definition of the unixstl::dl_module class
  *   (\ref group__library__DL "DL" Library).
  */
 
@@ -51,10 +51,10 @@
 #define UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    4
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     238
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    7
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    0
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 1
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     242
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -83,10 +83,13 @@
 # define STLSOFT_INCL_H_DLFCN
 # include <dlfcn.h>
 #endif /* !STLSOFT_INCL_H_DLFCN */
-#ifndef STLSOFT_INCL_H_ERRNO
-# define STLSOFT_INCL_H_ERRNO
-# include <errno.h>
-#endif /* !STLSOFT_INCL_H_ERRNO */
+#if 0
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+# ifndef STLSOFT_INCL_H_ERRNO
+#  define STLSOFT_INCL_H_ERRNO
+#  include <errno.h>
+# endif /* !STLSOFT_INCL_H_ERRNO */
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,22 +120,22 @@ namespace unixstl_project
  *
  * \ingroup group__library__DL
  */
-class module
+class dl_module
 {
 public:
     /// The handle type
-    typedef void*       module_handle_type;
+    typedef void*                                           module_handle_type;
     /// The handle type
     ///
     /// \note This member type is required to make it compatible with
     ///  the STLSoft get_module_handle access shim
-    typedef void*       handle_type;
+    typedef void*                                           handle_type;
     /// The class type
-    typedef module      class_type;
+    typedef dl_module                                       class_type;
     /// The entry point type
-    typedef void*       proc_pointer_type;
-public:
-    typedef handle_type resource_type;
+    typedef void*                                           proc_pointer_type;
+    /// The resource type
+    typedef handle_type                                     resource_type;
 
 /// \name Construction
 /// @{
@@ -145,7 +148,11 @@ public:
     /// \note If exception-handling is being used, then this throws a
     ///  \link unixstl::unixstl_exception unixstl_exception\endlink
     ///  if the module cannot be loaded
-    ss_explicit_k module(us_char_a_t const* moduleName, int mode = RTLD_NOW);
+    ss_explicit_k
+    dl_module(
+        us_char_a_t const*  moduleName
+    ,   int                 mode = RTLD_NOW
+    );
     /// Constructs by loading the named module
     ///
     /// \param moduleName The file name of the executable module to be loaded.
@@ -154,8 +161,13 @@ public:
     /// \note If exception-handling is being used, then this throws a
     ///  \link unixstl::unixstl_exception unixstl_exception\endlink
     ///  if the module cannot be loaded
-    ss_explicit_k module(us_char_w_t const* moduleName, int mode = RTLD_NOW);
+    ss_explicit_k
+    dl_module(
+        us_char_w_t const*  moduleName
+    ,   int                 mode = RTLD_NOW
+    );
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
+
     /// Constructs by loading the named module
     ///
     /// \param moduleName The file name of the executable module to be
@@ -168,18 +180,23 @@ public:
     ///  \link unixstl::unixstl_exception unixstl_exception\endlink
     ///  if the module cannot be loaded
     template <ss_typename_param_k S>
-    ss_explicit_k module(S const& moduleName, int mode = RTLD_NOW)
+    ss_explicit_k
+    dl_module(
+        S const&    moduleName
+    ,   int         mode = RTLD_NOW
+    )
         : m_hmodule(load(moduleName, mode))
     {
-# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        if (NULL == m_hmodule)
-        {
-            STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
-        }
-# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        check_loaded_handle_(m_hmodule);
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
-
+    /// Constructs by taking ownership of the given handle
+    ///
+    /// \note If exception-handling is being used, then this throws a
+    ///  \link unixstl::unixstl_exception unixstl_exception\endlink
+    ///  if the handle is NULL.
+    ss_explicit_k
+    dl_module(module_handle_type hmodule);
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
     /// Constructs a module instance by taking over the state of the
@@ -187,23 +204,16 @@ public:
     ///
     /// \param rhs The instance whose state will be taken over. Upon return
     ///   \c rhs <code>get_module_handle()()</code> will obtain \c nullptr
-    module(class_type&& rhs) STLSOFT_NOEXCEPT
+    dl_module(class_type&& rhs) STLSOFT_NOEXCEPT
         : m_hmodule(rhs.detach())
     {}
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
-
-    /// Constructs by taking ownership of the given handle
-    ///
-    /// \note If exception-handling is being used, then this throws a
-    ///  \link unixstl::unixstl_exception unixstl_exception\endlink
-    ///  if the handle is NULL.
-    ss_explicit_k module(module_handle_type hmodule);
     /// Closes the module handle
-    ~module() STLSOFT_NOEXCEPT;
+    ~dl_module() STLSOFT_NOEXCEPT;
 
 private:
-    module(class_type const&);          // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    dl_module(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Static operations
@@ -226,6 +236,7 @@ public:
     /// \return The module handle, or NULL if no matching module found.
     static module_handle_type   load(us_char_w_t const* moduleName, int mode = RTLD_NOW);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+
     /// Loads the named module, returning its handle, which the
     ///   caller must close with unload().
     ///
@@ -249,11 +260,12 @@ public:
     /// \return A pointer to the named symbol, or NULL if not found
     static proc_pointer_type    get_symbol(module_handle_type hmodule, us_char_a_t const* symbolName);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+
     /// Looks up a named symbol from the given module into a typed function pointer variable.
     ///
     /// \return A pointer to the named symbol, or NULL if not found.
     template <ss_typename_param_k F>
-    static proc_pointer_type    get_symbol(module_handle_type hmodule, us_char_a_t const* symbolName, F &f)
+    static proc_pointer_type    get_symbol(module_handle_type hmodule, us_char_a_t const* symbolName, F& f)
     {
         proc_pointer_type proc = class_type::get_symbol(hmodule, symbolName);
 
@@ -282,11 +294,12 @@ public:
     /// \return A pointer to the named symbol, or NULL if not found
     proc_pointer_type   get_symbol(us_char_a_t const* symbolName);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+
     /// Looks up a named symbol into a typed function pointer variable.
     ///
     /// \return A pointer to the named symbol, or NULL if not found.
     template <ss_typename_param_k F>
-    proc_pointer_type   get_symbol(us_char_a_t const* symbolName, F &f)
+    proc_pointer_type   get_symbol(us_char_a_t const* symbolName, F& f)
     {
         return class_type::get_symbol(m_hmodule, symbolName, f);
     }
@@ -298,11 +311,34 @@ public:
 public:
     /// Provides access to the underlying module handle
     module_handle_type  get_module_handle() const;
+
+    /// Provides access to the underlying module handle
+    module_handle_type  get() const;
 /// @}
 
 /// \name Implementation
 /// @{
 private:
+    static
+    void
+    check_loaded_handle_(
+        module_handle_type hmodule
+    )
+    {
+        if (NULL == hmodule)
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# if 0
+# elif defined(UNIXSTL_OS_IS_MACOSX)
+
+            STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
+# else
+
+            STLSOFT_THROW_X(unixstl_exception("Cannot load module", ::dlerror()));
+# endif
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+    }
 /// @}
 
 /// \name Member Variables
@@ -314,6 +350,16 @@ private:
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * backwards compatibility
+ */
+
+#if __cplusplus < 202002L
+
+typedef dl_module                                           module;
+#endif /* C++ version */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * access shims
  */
 
@@ -321,7 +367,9 @@ private:
  *
  * \ingroup group__concept__Shim__module_attribute
  */
-inline void* get_module_handle(UNIXSTL_NS_QUAL(module) const& m)
+inline
+dl_module::module_handle_type
+get_module_handle(UNIXSTL_NS_QUAL(dl_module) const& m)
 {
     return m.get_module_handle();
 }
@@ -333,45 +381,42 @@ inline void* get_module_handle(UNIXSTL_NS_QUAL(module) const& m)
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline module::module(us_char_a_t const* moduleName, int mode)
+inline
+dl_module::dl_module(
+    us_char_a_t const*  moduleName
+,   int                 mode
+)
     : m_hmodule(load(moduleName, mode))
 {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if (NULL == m_hmodule)
-    {
-        STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
-    }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    check_loaded_handle_(m_hmodule);
 }
 
-inline module::module(us_char_w_t const* moduleName, int mode)
+inline
+dl_module::dl_module(
+    us_char_w_t const*  moduleName
+,   int                 mode
+)
     : m_hmodule(load(moduleName, mode))
 {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if (NULL == m_hmodule)
-    {
-        STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
-    }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    check_loaded_handle_(m_hmodule);
 }
 
-inline module::module(module::module_handle_type hmodule)
+inline
+dl_module::dl_module(dl_module::module_handle_type hmodule)
     : m_hmodule(hmodule)
 {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    if (NULL == m_hmodule)
-    {
-        STLSOFT_THROW_X(unixstl_exception("Cannot load module", errno));
-    }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    check_loaded_handle_(m_hmodule);
 }
 
-inline module::~module() STLSOFT_NOEXCEPT
+inline
+dl_module::~dl_module() STLSOFT_NOEXCEPT
 {
     unload(m_hmodule);
 }
 
-inline void module::unload() STLSOFT_NOEXCEPT
+inline
+void
+dl_module::unload() STLSOFT_NOEXCEPT
 {
     if (NULL != m_hmodule)
     {
@@ -380,7 +425,9 @@ inline void module::unload() STLSOFT_NOEXCEPT
     }
 }
 
-inline module::module_handle_type module::detach()
+inline
+dl_module::module_handle_type
+dl_module::detach()
 {
     module_handle_type  h;
 
@@ -390,12 +437,21 @@ inline module::module_handle_type module::detach()
     return h;
 }
 
-inline /* static */ module::module_handle_type module::load(us_char_a_t const* moduleName, int mode)
+inline
+/* static */
+dl_module::module_handle_type
+dl_module::load(
+    us_char_a_t const*  moduleName
+,   int                 mode
+)
 {
     return ::dlopen(moduleName, mode);
 }
 
-inline /* static */ void module::unload(module::module_handle_type hmodule) STLSOFT_NOEXCEPT
+inline
+/* static */
+void
+dl_module::unload(dl_module::module_handle_type hmodule) STLSOFT_NOEXCEPT
 {
     if (NULL != hmodule)
     {
@@ -403,21 +459,37 @@ inline /* static */ void module::unload(module::module_handle_type hmodule) STLS
     }
 }
 
-inline /* static */ module::proc_pointer_type module::get_symbol(module::module_handle_type hmodule, us_char_a_t const* symbolName)
+inline
+/* static */
+dl_module::proc_pointer_type
+dl_module::get_symbol(
+    dl_module::module_handle_type   hmodule
+,   us_char_a_t const*              symbolName
+)
 {
     return ::dlsym(hmodule, symbolName);
 }
 
-inline module::proc_pointer_type module::get_symbol(us_char_a_t const* symbolName)
+inline
+dl_module::proc_pointer_type
+dl_module::get_symbol(us_char_a_t const* symbolName)
 {
     return get_symbol(m_hmodule, symbolName);
 }
 
-inline module::module_handle_type module::get_module_handle() const
+inline
+dl_module::module_handle_type
+dl_module::get_module_handle() const
 {
     return m_hmodule;
 }
 
+inline
+dl_module::module_handle_type
+dl_module::get() const
+{
+    return m_hmodule;
+}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

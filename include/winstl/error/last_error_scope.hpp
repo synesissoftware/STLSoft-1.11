@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/error/last_error_scope.hpp (originally MWTErrScp.h, ::SynesisWin)
+ * File:    winstl/error/last_error_scope.hpp (originally MWTErrScp.h, ::SynesisWin)
  *
- * Purpose:     Win32 last error scoping class.
+ * Purpose: Win32 last error scoping class.
  *
- * Created:     27th November 1998
- * Updated:     11th March 2024
+ * Created: 27th November 1998
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_MINOR       0
-# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_REVISION    7
-# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_EDIT        59
+# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_REVISION    9
+# define WINSTL_VER_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,15 +120,10 @@ namespace winstl_project
  */
 class last_error_scope
 {
-/// \name Types
-/// @{
-public:
-    typedef last_error_scope    class_type;
-/// @}
+public: // types
+    typedef last_error_scope                                class_type;
 
-/// \name Operations
-/// @{
-public:
+public: // construction
     /// Takes a copy of the current thread error, which will be reset
     /// on destruction of this instance
     last_error_scope() STLSOFT_NOEXCEPT
@@ -150,27 +145,20 @@ public:
     {
         WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(m_dwErr);
     }
-/// @}
+private:
+    last_error_scope(last_error_scope const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-/// \name Operations
-/// @{
-public:
+public: // attributes
     /// Returns the value of the recorded thread error, which will be
     /// reset on destruction of this instance
     operator ws_dword_t() const
     {
         return m_dwErr;
     }
-/// @}
 
-// Members
-private:
-    ws_dword_t  m_dwErr;
-
-// Not to be implemented
-private:
-    last_error_scope(last_error_scope const&);
-    last_error_scope& operator =(last_error_scope const&);
+private: // fields
+    ws_dword_t const m_dwErr;
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

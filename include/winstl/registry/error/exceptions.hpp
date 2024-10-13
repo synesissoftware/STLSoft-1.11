@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/error/exceptions.hpp
+ * File:    winstl/registry/error/exceptions.hpp
  *
- * Purpose:     Exceptions used by the Registry library.
+ * Purpose: Exceptions used by the Registry library.
  *
- * Created:     8th February 2006
- * Updated:     11th March 2024
+ * Created: 8th February 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_REVISION   6
-# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_EDIT       32
+# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_REVISION   9
+# define WINSTL_VER_WINSTL_REGISTRY_ERROR_HPP_EXCEPTIONS_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -143,6 +143,12 @@ public:
     registry_exception(char const* reason, status_code_alt_type sc)
         : parent_class_type(reason, static_cast<status_code_type>(sc))
     {}
+#if __cplusplus >= 201103L
+public:
+    registry_exception(class_type const&) = default;
+#endif
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 
@@ -170,12 +176,12 @@ public:
     key_not_duplicated_exception(char const* reason, status_code_alt_type sc)
         : parent_class_type(reason, sc)
     {}
-/// @}
-
-/// \name Not to be implemented
-/// @{
+#if __cplusplus >= 201103L
+public:
+    key_not_duplicated_exception(class_type const&) = default;
+#endif
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 
@@ -207,8 +213,12 @@ public:
         : parent_class_type(reason, sc)
         , m_valueType(type)
     {}
+#if __cplusplus >= 201103L
+public:
+    wrong_value_type_exception(class_type const&) = default;
+#endif
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors
@@ -252,8 +262,12 @@ public:
     access_denied_exception(char const* reason, status_code_alt_type sc)
         : parent_class_type(reason, sc)
     {}
+#if __cplusplus >= 201103L
+public:
+    access_denied_exception(class_type const&) = default;
+#endif
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 

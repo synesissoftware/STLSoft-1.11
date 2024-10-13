@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/tss_index.hpp (originally in MWTlsFns.h, ::SynesisWin)
+ * File:    winstl/synch/tss_index.hpp (originally in MWTlsFns.h, ::SynesisWin)
  *
- * Purpose:     Wrapper class for Win32 TSS key.
+ * Purpose: Wrapper class for Win32 TSS key.
  *
- * Created:     20th January 1999
- * Updated:     11th March 2024
+ * Created: 20th January 1999
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 14
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     56
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 18
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -135,6 +135,11 @@ public:
     )
         : parent_class_type(sc, message, Synchronisation_TssIndexCreationFailed)
     {}
+#if __cplusplus >= 201103L
+    tss_exception(class_type const&) = default;
+#endif
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors
@@ -144,12 +149,6 @@ public:
     {
         return "failed to allocate a TSS key";
     }
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type& operator =(class_type const&);
 /// @}
 };
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -188,6 +187,9 @@ public:
     {
         index_destroy_(m_index);
     }
+private:
+    tss_index(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -257,13 +259,6 @@ private:
 /// @{
 private:
     key_type    m_index;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    tss_index(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/semaphore.hpp
+ * File:    winstl/synch/semaphore.hpp
  *
- * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
+ * Purpose: Semaphore class, based on Win32 kernel semaphore object.
  *
- * Created:     30th May 2006
- * Updated:     11th March 2024
+ * Created: 30th May 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 16
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     45
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 17
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,8 +201,8 @@ public:
         }
     }
 private:
-    semaphore(class_type const&);       // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    semaphore(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

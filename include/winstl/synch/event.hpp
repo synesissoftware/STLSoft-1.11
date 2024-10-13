@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/event.hpp
+ * File:    winstl/synch/event.hpp
  *
- * Purpose:     event class, based on Windows EVENT.
+ * Purpose: event class, based on Windows EVENT.
  *
- * Created:     3rd July 2003
- * Updated:     11th March 2024
+ * Created: 3rd July 2003
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 6
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     82
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 7
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -157,8 +157,8 @@ public:
         }
     }
 private:
-    event(class_type const&);           // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    event(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

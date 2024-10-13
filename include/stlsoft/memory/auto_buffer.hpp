@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 1st October 2024
+ * Updated: 13th October 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    3
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        210
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    6
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        213
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,6 +120,18 @@
 # define STLSOFT_INCL_UTILITY
 # include <utility>
 #endif /* !STLSOFT_INCL_UTILITY */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if defined(_MSC_VER) &&\
+    _MSC_VER >= 9999
+
+# pragma warning(push)
+# pragma warning(disable : 26495)
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -744,8 +756,19 @@ public: // construction
         , m_cItems((NULL != m_buffer) ? cItems : 0)
         , m_bExternal(space < cItems)
     {
-#if __cplusplus >= 202002L
+        // initialise `m_internal` iff we are being used constexpr
+#if 0 ||\
+    __cplusplus >= 202002L ||\
+    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        __cplusplus >= 201702L &&\
+        _MSC_VER >= 1935) ||\
+    0
+
+# if __cplusplus < 202002L
+        if (std::_Is_constant_evaluated())
+#else
         if (std::is_constant_evaluated())
+#endif
         {
             for (auto& i : m_internal)
             {
@@ -916,7 +939,6 @@ public: // construction
         STLSOFT_ASSERT(is_valid());
     }
 #endif
-
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
     /// Constructs an instance by taking over the state of the instance
@@ -975,8 +997,8 @@ public: // construction
         }
     }
 private:
-    auto_buffer(class_type const&);     // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    auto_buffer(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 private: // operations
     // Policy functions
@@ -1659,8 +1681,8 @@ public: // construction
         : parent_class_type(cItems)
     {}
 private:
-    auto_buffer_old(class_type const&); // copy-construction proscribed
-    void operator =(class_type const&); // copy-assignment proscribed
+    auto_buffer_old(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -1833,6 +1855,17 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if defined(_MSC_VER) &&\
+    _MSC_VER >= 9999
+
+# pragma warning(pop)
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////

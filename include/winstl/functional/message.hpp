@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/functional/message.hpp
+ * File:    winstl/functional/message.hpp
  *
- * Purpose:     Window messaging function classes and predicates.
+ * Purpose: Window messaging function classes and predicates.
  *
- * Created:     19th January 2001
- * Updated:     8th March 2024
+ * Created: 19th January 2001
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2001-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MAJOR     4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MINOR     1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  6
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      53
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  8
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -133,7 +133,7 @@ public: // construction
         , m_lparam(lparam)
     {}
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     void operator ()(HWND hwnd) const
@@ -185,7 +185,7 @@ public:
         , m_lparam(lparam)
     {}
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public:
     void operator ()(HWND hwnd) const

@@ -4,6 +4,24 @@
 ----
 
 
+13th October 2024 - 1.11.1-alpha17 released
+-------------------------------------------
+
+ * `stlsoft::frequency_map<>` enhancements;
+ * `unixstl::glob_sequence` enhancements;
+ * Fixes and enhancement to `dl_call<>()` (both UNIXSTL and WinSTL);
+ * BREAKING CHANGE: Prospective compatibility with C++20 reserved word `module` (both UNIXSTL and WinSTL) by renaming existing `module` class to `dl_module`;
+ * GCC 11 compatibility;
+ * GCC 14 compatibility;
+ * MinGW-64 compatibility;
+ * VC++ 17 compatibility;
+ * General improvements and simplification for compatibility with C++11 - C++20;
+ * CMake build files improvements;
+ * Misc. minor fixes and enhancements;
+ * Misc. code canonicalisation;
+ * Bringing into repo existing (older) test and example programs;
+
+
 1st October 2024 - 1.11.1-alpha16 released
 ------------------------------------------
 

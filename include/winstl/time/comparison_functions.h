@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/time/comparison_functions.h
+ * File:    winstl/time/comparison_functions.h
  *
- * Purpose:     Comparison functions for Windows time structures.
+ * Purpose: Comparison functions for Windows time structures.
  *
- * Created:     21st November 2003
- * Updated:     11th March 2024
+ * Created: 21st November 2003
+ * Updated: 9th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR    2
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     64
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,6 +111,7 @@ namespace winstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 STLSOFT_INLINE
 ws_sint_t
 winstl_C_compare_SYSTEMTIMEs(
@@ -701,7 +702,6 @@ absolute_difference_in_seconds(
 {
     return winstl_C_absolute_difference_in_seconds_FILETIMEs(&t1, &t2);
 }
-
 #endif /* __cplusplus */
 
 
@@ -727,7 +727,6 @@ STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIMEs(SYSTEMTIME const* lhs, SYST
 {
     return winstl_C_compare_SYSTEMTIMEs(lhs, rhs);
 }
-
 #endif /* !STLSOFT_OBSOLETE */
 
 
@@ -753,8 +752,6 @@ STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIMEs(SYSTEMTIME const* lhs, SYST
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_TIME_H_COMPARISON_FUNCTIONS */
 

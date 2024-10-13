@@ -5,7 +5,7 @@
  *          Panel library.
  *
  * Created: 27th May 2006
- * Updated: 5th September 2024
+ * Updated: 13th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,12 +32,12 @@ int main()
         {
             try
             {
-                applet_module module(*b, applet_module::dontExpectNonZeroInit);
+                applet_module am(*b, applet_module::dontExpectNonZeroInit);
 
-                applet_module::const_iterator   b2 = module.begin();
-                applet_module::const_iterator   e2 = module.end();
+                applet_module::const_iterator   b2 = am.begin();
+                applet_module::const_iterator   e2 = am.end();
 
-                std::cout << "path:          " << module.get_path() << std::endl;
+                std::cout << "path:          " << am.get_path() << std::endl;
                 for (; b2 != e2; ++b2)
                 {
                     applet const& applet = *b2;
@@ -51,14 +51,14 @@ int main()
             }
             catch (control_panel_exception& x)
             {
-                //std::cout << "path:          " << module.get_path() << std::endl;
+                //std::cout << "path:          " << am.get_path() << std::endl;
                 std::cerr << "Exception: " << x.what() << std::endl;
             }
 
             std::cout << std::endl;
         }}
     }
-    catch (std::exception &x)
+    catch (std::exception& x)
     {
         std::cerr << "Exception: " << x.what() << std::endl;
     }

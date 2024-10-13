@@ -4,7 +4,7 @@
  * Purpose: Define the project_identifier_provider inteface.
  *
  * Created: 29th December 2016
- * Updated: 1st October 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_MAJOR    1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_MINOR    1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_REVISION 1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_EDIT     6
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_REVISION 3
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_PROJECT_IDENTIFIER_PROVIDER_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -107,7 +107,7 @@ protected: // construction
     project_identifier_provider(class_type const& /* rhs */)
     {}
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // modifiers
     void swap(class_type& /* rhs */) STLSOFT_NOEXCEPT

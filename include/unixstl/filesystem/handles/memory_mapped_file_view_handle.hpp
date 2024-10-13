@@ -5,7 +5,7 @@
  *          memory mapped file view handles.
  *
  * Created: 1st January 2017
- * Updated: 11th March 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MINOR    0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_REVISION 7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT     15
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_REVISION 9
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,6 +120,10 @@ namespace unixstl_project
  */
 struct memory_mapped_file_view_state_t
 {
+public: // types
+    typedef memory_mapped_file_view_state_t                 class_type;
+
+public: // fields
     /// Pointer to the base of the view, or NULL if not mapped
     void* const         memory;
     /// Size of the view
@@ -135,7 +139,7 @@ public:
     memory_mapped_file_view_state_t(memory_mapped_file_view_state_t const&) = default;
 #endif
 private:
-    void operator =(memory_mapped_file_view_state_t const&);    // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** A Handle::Ref+Wrapper handle adaptor class template for memory mapped
@@ -149,23 +153,23 @@ struct memory_mapped_file_view_handle
 {
 public: // Member Types
     /// The handle type
-    typedef memory_mapped_file_view_state_t       handle_type;
+    typedef memory_mapped_file_view_state_t                 handle_type;
     /// The reference count policy type
-    typedef R                                     refcount_policy;
+    typedef R                                               refcount_policy;
     /// This type
-    typedef memory_mapped_file_view_handle<R>     class_type;
+    typedef memory_mapped_file_view_handle<R>               class_type;
 
     /// The Handle::Ref+Wrapper <strong>Handle</strong> type.
     ///
     /// \note This type is mandatory to the pattern.
-    typedef memory_mapped_file_view_state_t       HRW_Handle_type;
+    typedef memory_mapped_file_view_state_t                 HRW_Handle_type;
     /// The Handle::Ref+Wrapper <strong>Ref</strong> type.
     ///
     /// \note This type is mandatory to the pattern.
-    typedef stlsoft::ref_ptr<class_type>          HRW_Ref_type;
+    typedef stlsoft::ref_ptr<class_type>                    HRW_Ref_type;
 
-    typedef HRW_Handle_type                       Handle;
-    typedef HRW_Ref_type                          Ref;
+    typedef HRW_Handle_type                                 Handle;
+    typedef HRW_Ref_type                                    Ref;
 
 public: // Construction
 

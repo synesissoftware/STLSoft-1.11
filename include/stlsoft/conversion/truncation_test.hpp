@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/truncation_test.hpp
+ * File:    stlsoft/conversion/truncation_test.hpp
  *
- * Purpose:     Runtime checking for numeric conversions.
+ * Purpose: Runtime checking for numeric conversions.
  *
- * Created:     10th August 2006
- * Updated:     11th March 2024
+ * Created: 10th August 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MINOR      1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   11
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       69
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   13
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,9 +115,13 @@ namespace stlsoft
 
 class stlsoft_INTERNAL_truncation_test_CrtDbg_scoper
 {
+public: // types
+    typedef stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  class_type;
+
+public: // construction
 # if defined(STLSOFT_DEBUG) && \
      defined(_MSC_VER)
-public:
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper()
         : flags(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG))
     {
@@ -128,16 +132,20 @@ public:
         _CrtSetDbgFlag(flags);
     }
 private:
-    stlsoft_INTERNAL_truncation_test_CrtDbg_scoper(stlsoft_INTERNAL_truncation_test_CrtDbg_scoper const&);
-    void operator =(stlsoft_INTERNAL_truncation_test_CrtDbg_scoper const&);
-
-private:
-    int const   flags;
+    stlsoft_INTERNAL_truncation_test_CrtDbg_scoper(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 #else
-public:
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper()
     {}
 # endif
+
+private: // fields
+# if defined(STLSOFT_DEBUG) && \
+     defined(_MSC_VER)
+
+    int const   flags;
+#endif
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

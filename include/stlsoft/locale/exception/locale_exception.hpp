@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/locale/exception/locale_exception.hpp
+ * File:    stlsoft/locale/exception/locale_exception.hpp
  *
- * Purpose:     Defines the locale_exception exception class.
+ * Purpose: Defines the locale_exception exception class.
  *
- * Created:     25th December 2018
- * Updated:     11th March 2024
+ * Created: 25th December 2018
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2018-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_MAJOR      1
 # define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_MINOR      0
-# define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_REVISION   3
-# define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_EDIT       7
+# define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_REVISION   4
+# define STLSOFT_VER_STLSOFT_LOCALE_EXCEPTION_HPP_LOCALE_EXCEPTION_EDIT       8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -134,7 +134,7 @@ public: // construction
 #endif
 
 private:
-    void operator =(class_type const&); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // fields
     string_type const     LocaleName;

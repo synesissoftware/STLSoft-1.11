@@ -5,7 +5,7 @@
  *          as references.
  *
  * Created: 28th December 2002
- * Updated: 28th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   13
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       56
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   14
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -249,8 +249,10 @@ public:
      defined(STLSOFT_COMPILER_IS_GCC) || \
      defined(STLSOFT_COMPILER_IS_MWERKS) || \
      0
+
     ptr_cast(Source*& s)
 #else /* ? compiler */
+
     ptr_cast(Source* s)
 #endif /* compiler */
         : m_p(manage_const(dynamic_cast<Target>(s)))
@@ -260,8 +262,8 @@ public:
             STLSOFT_THROW_X(STLSOFT_NS_QUAL_STD(bad_cast)());
         }
     }
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
     ptr_cast(pointer_type pt)
         : m_p(pt)
     {}
@@ -269,6 +271,8 @@ public:
         : m_p(&t)
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+private:
+    ptr_cast(class_type const&);
 
 public:
     /// Converts an instance of the cast class to a reference
@@ -284,10 +288,6 @@ public:
 
 private:
     pointer_type  m_p;
-
-// Not to be implemented
-private:
-    ptr_cast(class_type const&);
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

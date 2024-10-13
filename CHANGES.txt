@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  2nd September 2024
+; Updated:  13th October 2024
 
 ============================================================================
 
@@ -17,6 +17,105 @@ STLSoft - Changes
    **************************************
 
 
+
+Changes for 1.11.1-alpha17 (13th October 2024)
+
+General:
+========
+
+ * `stlsoft::frequency_map<>` enhancements;
+ * `unixstl::glob_sequence` enhancements;
+ * Fixes and enhancement to `dl_call<>()` (both UNIXSTL and WinSTL);
+ * BREAKING CHANGE: Prospective compatibility with C++20 reserved word `module` (both UNIXSTL and WinSTL) by renaming existing `module` class to `dl_module`;
+ * GCC 11 compatibility;
+ * GCC 14 compatibility;
+ * MinGW-64 compatibility;
+ * VC++ 17 compatibility;
+ * General improvements and simplification for compatibility with C++11 - C++20;
+ * CMake build files improvements;
+ * Misc. minor fixes and enhancements;
+ * Misc. code canonicalisation;
+ * Bringing into repo existing (older) test and example programs;
+
+Changes:
+========
+
+`stlsoft::frequency_map<>` enhancements:
+ * added range ctor;
+ * added `initializer_list` ctor overloads;
+ * added move ctor;
+ * added `#contains()` method;
+ * more unit-tests;
+ * tidying;
+ * added **test.performance.stlsoft.frequency_map**;
+
+`unixstl::glob_sequence` enhancements:
+ * added `#cbegin()`, `#cend()`;
+ * added `#crbegin()`, `#crend()`;
+ * applied `STLSOFT_NOEXCEPT` to appropriate methods;
+ * added more test cases
+
+Fixes and enhancement to `dl_call<>()` (both UNIXSTL and WinSTL):
+ * bunch of compatibility and consistency improvements;
+ * decreasing likelihood of name-clash of non-public functions;
+ * refactoring;
+ * added example program **examples/by_project/unixstl/dl/dl_call**;
+ * added example program **examples/by_project/winstl/dl/dl_call**;
+ * added **test.component.unixstl.dl.dl_call**;
+ * added test fixture project **example_so**;
+ * added **test.component.winstl.dl.dl_call**;
+ * `winstl::dl_call<>()` : ~ proper compatibility for 64-bit, now permitting (but ignoring) an in-name calling convention prefix;
+
+BREAKING CHANGE: Prospective compatibility with C++20 reserved word `module` (both UNIXSTL and WinSTL) by renaming existing `module` class to `dl_module`:
+ * BREAKING CHANGE: renamed `unixstl::module` to `unixstl::dl_module` ;
+ * BREAKING CHANGE: renamed `winstl::module` to `winstl::dl_module` ;
+ * `unixstl::module()` : ~ now no longer relies on `errno` (except macOS, where it is supported), and instead uses `dlopen()` for failure qualifier;
+ * `unixstl::module` : ~ preparatory refactoring
+ * `winstl::module` : ~ preparatory refactoring
+
+General improvements and simplification for compatibility with C++11 - C++20:
+ * canonicalised proscribed copy-assignment form and layout;
+ * canonicalised placement of copy-assignment operator / copy-constructor / default-construction proscriptions;
+ * added and applied throughout the macros `STLSOFT_COPY_ASSIGNMENT_PROSCRIBED`, `STLSOFT_COPY_CONSTRUCTION_PROSCRIBED`, `STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED`;
+
+CMake build files improvements:
+ * CMake script files : + now recognises environment variable SIS_CMAKE_COMMAND, if specified, as the make command;
+ * **execute_performance_tests.sh** : + added '--expand-width <expand-width>' option;
+ * **execute_performance_tests.sh**, **run_all_scratch_tests.sh**, **run_all_unit_tests.sh** : + added flag '--list-only';
+ * **run_all_unit_tests.sh** : ~ slight improvements to verbosity handling;
+ * dev/bin/batch_compile_check : + added "20" to C++ default versions;
+
+Misc. minor fixes and enhancements:
+ * `stlsoft::shared_ptr<>` : + added move ctor and tests;
+ * `stlsoft::true_typedef<>` : ~ minor fixes;
+ * misc exception class compatibility with modern C++ (insofar as copy semantics);
+ * expanded scope of `winstl_C_is_memory_status_code()`;
+ * discrimination of `UNIXSTL_ARCH_IS_ARM64`;
+ * added `UNIXSTL_ARCH_LABEL_STRING`;
+ * added `WINSTL_ARCH_LABEL_STRING`;
+ * added `__STLSOFT_FILE_LINE__` and `__STLSOFT_FILE_LINE_FUNCTION__`;
+ * added `winstl::equal_struct<>()`;
+ * **include/winstl/system/console_functions.h** : ~ compatibility fixes;
+ * `unixstl::readdir_sequence` : increased compiler compatibility;
+ * **test.unit.winstl.util.struct_initialisers** : + more parts;
+
+Misc. code canonicalisation:
+ * canonical `main()` signature in all example and test programs;
+ * canonicalisation of whitespace throughout;
+
+Bringing into repo existing (older) test and example programs:
+ * added **test.component.unixstl.filesystem.memory_mapped_file**;
+ * added **test.component.unixstl.filesystem.readdir_sequence**;
+ * added **test.component.unixstl.filesystem.readonly_memory_mapped_file**;
+ * added **test.unit.stlsoft.smartptr.shared_ptr**;
+ * added **test.unit.winstl.util.struct_comparers** ;
+ * added **test.unit.winstl.util.struct_initialisers**;
+ * brought over **test.component.winstl.synch.atomic_functions**;
+ * brought over **test.component.winstl.synch.spin_mutex**;
+ * brought over **test.unit.stlsoft.conversion.truncation_test**;
+
+
+============================================================================
 
 Changes for 1.11.1-alpha16 (1st October 2024)
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/collections/message_queue_sequence.hpp
+ * File:    acestl/collections/message_queue_sequence.hpp
  *
- * Purpose:     Sequence class for adapting ACE_Message_Queue to an STL sequence.
+ * Purpose: Sequence class for adapting ACE_Message_Queue to an STL sequence.
  *
- * Created:     15th September 2004
- * Updated:     11th March 2024
+ * Created: 15th September 2004
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MAJOR     2
 # define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_MINOR     1
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  16
-# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      78
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_REVISION  19
+# define ACESTL_VER_ACESTL_COLLECTIONS_HPP_MESSAGE_QUEUE_SEQUENCE_EDIT      81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -258,6 +258,9 @@ public:
             {
                 ACESTL_MESSAGE_ASSERT("Shared search handle being destroyed with outstanding references!", 0 == m_refCount);
             }
+        private:
+            shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+            void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
         /// Accessors
         public:
@@ -438,11 +441,6 @@ public:
 
                 return m_mqi.advance() ? (m_mqi.next(entry), entry) : NULL;
             }
-
-        // Not to be implemented
-        private:
-            shared_handle(class_type const&);
-            class_type& operator =(class_type const&);
         };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -619,6 +617,9 @@ public:
     ss_explicit_k message_queue_sequence(sequence_type &mq)
         : m_mq(mq)
     {}
+private:
+    message_queue_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /// \name Iteration
 /// @{
@@ -703,13 +704,6 @@ public:
 /// @{
 private:
     sequence_type   &m_mq;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    message_queue_sequence(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 

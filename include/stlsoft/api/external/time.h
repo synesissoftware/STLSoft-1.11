@@ -5,7 +5,7 @@
  *          time functions.
  *
  * Created: 30th September 2024
- * Updated: 30th September 2024
+ * Updated: 8th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -109,10 +109,14 @@
       defined(__GNUC__) ||\
       0
 
-# define STLSOFT_LF_SUPPORT_GCC_asctime_r
-# define STLSOFT_LF_SUPPORT_GCC_ctime_r
-# define STLSOFT_LF_SUPPORT_GCC_gmtime_r
-# define STLSOFT_LF_SUPPORT_GCC_localtime_r
+# if 1 &&\
+     !defined(__MINGW64__) &&\
+     1
+#  define STLSOFT_LF_SUPPORT_GCC_asctime_r
+#  define STLSOFT_LF_SUPPORT_GCC_ctime_r
+#  define STLSOFT_LF_SUPPORT_GCC_gmtime_r
+#  define STLSOFT_LF_SUPPORT_GCC_localtime_r
+# endif
 #endif
 
 /*

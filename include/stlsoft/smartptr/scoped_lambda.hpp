@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/smartptr/scoped_lambda.hpp
+ * File:    stlsoft/smartptr/scoped_lambda.hpp
  *
- * Purpose:     scoped_lambda - specialisable RAII class for arbitrary
- *              type methods.
+ * Purpose: scoped_lambda - specialisable RAII class for arbitrary type
+ *          methods.
  *
- * Created:     1st October 2014
- * Updated:     11th March 2024
+ * Created: 1st October 2014
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_MINOR       0
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_REVISION    1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_EDIT        9
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_REVISION    3
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_LAMBDA_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -118,8 +118,8 @@ private:
         virtual ~lambda_releaser()
         {}
     private:
-        lambda_releaser(class_type const&);         // copy-construction proscribed
-        class_type& operator =(class_type const&);  // copy-assignment proscribed
+        lambda_releaser(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public: // overrides
         /*virtual*/ void
@@ -147,8 +147,8 @@ public: // construction
         reset();
     }
 private:
-    scoped_lambda(class_type const&);           // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    scoped_lambda(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // attributes
     bool empty() const STLSOFT_NOEXCEPT

@@ -13,7 +13,7 @@
  *          basic_reg_key_sequence class interface.
  *
  * Created: 19th January 2002
- * Updated: 27th September 2024
+ * Updated: 10th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      9
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   12
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       156
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   15
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       159
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -315,6 +315,9 @@ public:
     );
     /// Destructor
     ~basic_reg_key_sequence() STLSOFT_NOEXCEPT;
+private:
+    basic_reg_key_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -376,13 +379,6 @@ private:
     hkey_type       m_hkey;
     const REGSAM    m_accessMask;
     const bool_type m_bMonitorExternalInvalidation;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    basic_reg_key_sequence(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 

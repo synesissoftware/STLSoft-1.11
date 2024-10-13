@@ -5,7 +5,7 @@
  *          library memory functions.
  *
  * Created: 9th December 2006
- * Updated: 5th September 2024
+ * Updated: 9th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -84,6 +84,11 @@ int main()
         size_t  cb3 =   winstl::SHMemGetSize(p3);
         size_t  cb4 =   winstl::SHMemGetSize(p4);
 
+        STLSOFT_SUPPRESS_UNUSED(cb1);
+        STLSOFT_SUPPRESS_UNUSED(cb2);
+        STLSOFT_SUPPRESS_UNUSED(cb3);
+        STLSOFT_SUPPRESS_UNUSED(cb4);
+
         p1  =   winstl::SHMemRealloc(p1, 0);
         p2  =   winstl::SHMemRealloc(p2, 1);
         p3  =   winstl::SHMemRealloc(p3, 100);
@@ -101,7 +106,7 @@ int main()
 
         return EXIT_SUCCESS;
     }
-    catch (std::exception &x)
+    catch (std::exception& x)
     {
         cerr << "Error: " << x.what() << endl;
 

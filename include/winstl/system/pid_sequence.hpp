@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 24th June 2005
- * Updated: 27th September 2024
+ * Updated: 13th October 2024
  *
  * Thanks:  Adi Shavit for spotting a small inefficiency in the
  *          resize()-ing, during the review of Extended STL volume 1
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 11
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     70
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 14
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -197,6 +197,8 @@ public:
     pid_sequence(class_type const& rhs);
     /// Releases the storage associated with the process id list
     ~pid_sequence() STLSOFT_NOEXCEPT;
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -290,12 +292,6 @@ public:
 private:
     buffer_type_    m_pids;
 /// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type& operator =(class_type const&);
-/// @}
 };
 
 
@@ -317,7 +313,7 @@ pid_sequence::pid_sequence(ws_uint32_t flags)
     defined(_PSAPI_H)
         if (!::EnumProcesses(&m_pids[0], sizeof(value_type) * m_pids.size(), &cbReturned))
 #else /* ? psapi */
-        if (!dl_call<BOOL>(  "PSAPI.DLL"
+        if (!dl_call<BOOL>( "PSAPI.DLL"
                         ,   WINSTL_DL_CALL_WINx_STDCALL_LITERAL("EnumProcesses")
                         ,   &m_pids[0]
                         ,   sizeof(value_type) * m_pids.size()

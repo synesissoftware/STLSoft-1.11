@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/constraints.hpp (originally MTAlgo.h, ::SynesisStl)
+ * File:    stlsoft/util/constraints.hpp (originally MTAlgo.h, ::SynesisStl)
  *
- * Purpose:     Compile-time template constraints templates.
+ * Purpose: Compile-time template constraints templates.
  *
- * Created:     19th November 1998
- * Updated:     11th March 2024
+ * Created: 19th November 1998
+ * Updated: 10th October 2024
  *
- * Thanks:      To Peter Bannister for having the clear thinking to see the
- *              obvious (but only in hindsight) tactic of overloading the
- *              constraints method in must_be_derived.
+ * Thanks:  To Peter Bannister for having the clear thinking to see the
+ *          obvious (but only in hindsight) tactic of overloading the
+ *          constraints method in must_be_derived.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION   9
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       113
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION   11
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -411,7 +411,7 @@ public:
 private:
 #if !defined(STLSOFT_COMPILER_IS_MWERKS)
     must_be_pod(class_type const&);
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 #endif
 
 private:

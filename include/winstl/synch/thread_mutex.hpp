@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/thread_mutex.hpp
+ * File:    winstl/synch/thread_mutex.hpp
  *
- * Purpose:     Intra-process mutex, based on Windows CRITICAL_SECTION.
+ * Purpose: Intra-process mutex, based on Windows CRITICAL_SECTION.
  *
- * Created:     17th December 1996
- * Updated:     11th March 2024
+ * Created: 17th December 1996
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MINOR     0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  12
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      70
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  14
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -162,8 +162,8 @@ public:
         WINSTL_API_EXTERNAL_Synchronization_DeleteCriticalSection(&m_cs);
     }
 private:
-    thread_mutex(class_type const&);            // copy-construction proscribed
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    thread_mutex(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Operations
 public:

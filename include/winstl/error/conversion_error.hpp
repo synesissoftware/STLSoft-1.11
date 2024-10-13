@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/error/conversion_error.hpp
+ * File:    winstl/error/conversion_error.hpp
  *
- * Purpose:     Definition of the winstl::conversion_error exception class.
+ * Purpose: Definition of the winstl::conversion_error exception class.
  *
- * Created:     16th December 2006
- * Updated:     11th March 2024
+ * Created: 16th December 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef WINSTL_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_MAJOR     1
 # define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_MINOR     0
-# define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_REVISION  7
-# define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_EDIT      23
+# define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_REVISION  9
+# define WINSTL_VER_WINSTL_ERROR_HPP_CONVERSION_ERROR_EDIT      25
 #endif /* !WINSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -145,7 +145,7 @@ public:
     virtual ~conversion_error() STLSOFT_NOEXCEPT_STDOVR
     {}
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 #endif /* !WINSTL_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
