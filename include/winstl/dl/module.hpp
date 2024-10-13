@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      7
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      0
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       254
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       255
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -233,7 +233,10 @@ public:
         : m_hmodule(rhs.detach())
         , m_param(rhs.m_param)
         , m_proc(rhs.m_proc)
-    {}
+    {
+        rhs.m_param = NULL;
+        rhs.m_proc = NULL;
+    }
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
     /// Closes the module handle
     ~dl_module() STLSOFT_NOEXCEPT;
