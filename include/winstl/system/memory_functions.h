@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/memory_functions.h
+ * File:    winstl/system/memory_functions.h
  *
- * Purpose:     Memory functions.
+ * Purpose: Memory functions.
  *
- * Created:     5th November 2014
- * Updated:     11th March 2024
+ * Created: 5th November 2014
+ * Updated: 15th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_MINOR      0
-# define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_REVISION   6
-# define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_EDIT       13
+# define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_REVISION   7
+# define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -75,6 +75,10 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
+
+#ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
+# include <winstl/api/winstl_win32_winnt_.h>
+#endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,8 +125,7 @@ STLSOFT_INLINE
 ws_uint64_t
 winstl_C_get_physical_memory_size(void)
 {
-#if defined(_WIN32_WINNT) && \
-    _WIN32_WINNT >= 0x0501
+#if WINSTL_WIN32_WINNT >= 0x0501
 
     MEMORYSTATUSEX msex;
 

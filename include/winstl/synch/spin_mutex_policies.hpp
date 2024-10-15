@@ -206,9 +206,11 @@ public: // Operations
         if (0 == (spunCount % N_yieldThreshold))
         {
 #if 0
-#elif _WIN32_WINNT >= 0x0400
+#elif _WIN32_WINNT >= _WIN32_WINNT_NT4
+
             STLSOFT_NS_GLOBAL(SwitchToThread)();
 #else /* ? _WIN32_WINNT */
+
             WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(1);
 #endif /* _WIN32_WINNT */
         }

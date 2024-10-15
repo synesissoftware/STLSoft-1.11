@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/filesystem_traits.hpp
+ * File:    winstl/filesystem/filesystem_traits.hpp
  *
- * Purpose:     Contains the filesystem_traits template class, and ANSI and
- *              Unicode specialisations thereof.
+ * Purpose: Contains the filesystem_traits template class, and ANSI and
+ *          Unicode specialisations thereof.
  *
- * Created:     15th November 2002
- * Updated:     11th March 2024
+ * Created: 15th November 2002
+ * Updated: 15th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       21
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    8
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        187
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    9
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        189
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,6 +139,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
+# include <winstl/api/winstl_win32_winnt_.h>
+#endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -707,10 +711,11 @@ public:
 
     /// Initiate a file-system search
     static HANDLE       find_first_file(char_type const* spec, find_data_type* findData);
-#if _WIN32_WINNT >= 0x0400
+#if WINSTL_WIN32_WINNT >= WINSTL_WIN32_WINNT_NT4
+
     /// Initiate a file-system search - NT4+-only
     static HANDLE       find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type* findData);
-#endif /* _WIN32_WINNT >= 0x0400 */
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_NT4 */
     /// Advance a given file-system search
     static bool_type    find_next_file(HANDLE h, find_data_type* findData);
     /// Closes the handle of the file-system search
@@ -2011,13 +2016,12 @@ public: // file-system enumeration
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileA(spec, findData);
     }
 
-#if defined(_WIN32_WINNT) && \
-    _WIN32_WINNT >= 0x0400
+#if WINSTL_WIN32_WINNT >= WINSTL_WIN32_WINNT_NT4
     static HANDLE find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type* findData)
     {
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileExA(spec, FindExInfoStandard, findData, flags, NULL, 0);
     }
-#endif /* _WIN32_WINNT >= 0x0400 */
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_NT4 */
 
     static bool_type find_next_file(HANDLE h, find_data_type* findData)
     {
@@ -3328,14 +3332,13 @@ public: // file-system enumeration
     {
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileW(spec, findData);
     }
+#if WINSTL_WIN32_WINNT >= WINSTL_WIN32_WINNT_NT4
 
-#if defined(_WIN32_WINNT) && \
-    _WIN32_WINNT >= 0x0400
     static HANDLE find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type* findData)
     {
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileExW(spec, FindExInfoStandard, findData, flags, NULL, 0);
     }
-#endif /* _WIN32_WINNT >= 0x0400 */
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_NT4 */
 
     static bool_type find_next_file(HANDLE h, find_data_type* findData)
     {

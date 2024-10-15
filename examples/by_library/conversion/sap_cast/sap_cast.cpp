@@ -5,7 +5,7 @@
  *          library's sap_cast cast operator.
  *
  * Created: 9th June 2006
- * Updated: 4th September 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,10 +21,10 @@ class   X
 
 int main()
 {
-    short               *ps;
-    int volatile        *pvi;
-    unsigned const      *pcu;
-    long const volatile *pcvl;
+    short*                  ps      =   NULL;
+    int volatile*           pvi     =   NULL;
+    unsigned const*         pcu     =   NULL;
+    long const volatile*    pcvl    =   NULL;
 
     // Can cast ps to any non-const, non-volatile pointer type, or ...
     stlsoft::sap_cast<short*>(ps);                      // Valid cast

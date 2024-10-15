@@ -4,7 +4,7 @@
  * Purpose: Component test for WinSTL atomic_functions.
  *
  * Created: sometime in 2015
- * Updated: 13th October 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,6 +41,7 @@
 
 /* Standard C++ header files */
 #include <thread>
+#include <vector>
 
 /* Standard C header files */
 #include <stdint.h>

@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::frequency_map<>`.
  *
  * Created: 5th October 2024
- * Updated: 6th October 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -456,7 +456,7 @@ run_tests(
 
             int const i = static_cast<int>(iteration);
 
-            bool const b = fm1[i];
+            bool const b = 0 != fm1[i];
 
             return b;
         });
@@ -620,8 +620,10 @@ int main(int /* argc */, char* /* argv */[])
 {
     std::cout << std::endl;
     run_tests<fm_ordered_int_t>("O");
+#if __cplusplus >= 201103L
     std::cout << std::endl;
     run_tests<fm_unordered_int_t>("U");
+#endif
 
     return EXIT_SUCCESS;
 }

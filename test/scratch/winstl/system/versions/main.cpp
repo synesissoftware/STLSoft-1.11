@@ -77,7 +77,7 @@ int main(int /* argc */, char* /* argv */[])
                     << std::endl;
             }
         }
-        catch (std::bad_alloc& )
+        catch (std::bad_alloc&)
         {
             std::cerr << "out of memory" << std::endl;
         }
@@ -108,7 +108,7 @@ int main(int /* argc */, char* /* argv */[])
                 << LOWORD(ntBuildNumber)
                 << std::endl;
         }
-        catch (std::bad_alloc& )
+        catch (std::bad_alloc&)
         {
             std::cerr << "out of memory" << std::endl;
         }
@@ -122,15 +122,13 @@ int main(int /* argc */, char* /* argv */[])
     {
         std::cout << "winstl::system_version : ";
 
-        winstl::system_version v;
-
         std::cout
             << "\t"
-            << v.major()
+            << winstl::system_version::major()
             << "."
-            << v.minor()
+            << winstl::system_version::minor()
             << "."
-            << v.build_number()
+            << winstl::system_version::build_number()
             << std::endl;
     }
 
