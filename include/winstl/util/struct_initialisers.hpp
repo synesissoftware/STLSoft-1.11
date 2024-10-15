@@ -4,7 +4,7 @@
  * Purpose: Functions for initialising Win32 structures.
  *
  * Created: 20th October 1994
- * Updated: 13th October 2024
+ * Updated: 15th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MAJOR       4
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       1
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    10
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        240
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    11
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        241
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -73,6 +73,13 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_MemoryManagement
 # include <winstl/api/external/MemoryManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_MemoryManagement */
+
+#ifndef WINSTL_INCL_WINSTL_API_H_winstl_ntddi_
+# include <winstl/api/winstl_ntddi_.h>
+#endif /* !WINSTL_INCL_WINSTL_API_H_winstl_ntddi_ */
+#ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
+# include <winstl/api/winstl_win32_winnt_.h>
+#endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -361,8 +368,7 @@ WINSTL_THE_INITIALISABLE_STRUCTURE_(SHELLEXECUTEINFOW, has::cbSize_member_type);
               __GNUC_MINOR__ > 2)) && \
       (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
           _MSC_VER == 1200 || \
-          ( defined(NTDDI_VERSION) && \
-            NTDDI_VERSION >= 0x05000000)) && \
+          WINSTL_NTDDI_VERSION >= WINSTL_NTDDI_WIN2K) && \
       1
 
 WINSTL_THE_INITIALISABLE_STRUCTURE_(SHQUERYRBINFO, has::cbSize_member_type);

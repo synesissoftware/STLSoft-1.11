@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 13th October 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -953,20 +953,20 @@ static void test_copy_from()
     );
 
     XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10, buff.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.begin(), cbuff.end(), 0));
 
 
     ab_int_8_t  buff2(0);
 
     XTESTS_TEST_BOOLEAN_TRUE(buff2.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0, buff2.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, buff2.size());
     XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff2.rbegin(), buff2.rend(), 0));
 
     buff2.copy_from(cbuff);
 
     XTESTS_TEST_BOOLEAN_FALSE(buff2.empty());
-    XTESTS_TEST_INTEGER_EQUAL(10, buff2.size());
+    XTESTS_TEST_INTEGER_EQUAL(10u, buff2.size());
     XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(buff2.rbegin(), buff2.rend(), 0));
 }
 
