@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/link_functions.h
+ * File:    winstl/filesystem/link_functions.h
  *
- * Purpose:     Link functions.
+ * Purpose: Link functions.
  *
- * Created:     14th February 2011
- * Updated:     11th March 2024
+ * Created: 14th February 2011
+ * Updated: 15th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_MINOR       2
-# define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_EDIT        26
+# define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_REVISION    2
+# define WINSTL_VER_WINSTL_H_LINK_FUNCTIONS_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -81,6 +81,10 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
 # include <winstl/api/external/HandleAndObject.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
+
+#ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
+# include <winstl/api/winstl_win32_winnt_.h>
+#endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,11 +121,11 @@ winstl_C_call_CreateHardLinkA_(
 ,   LPSECURITY_ATTRIBUTES   lpSecurityAttributes
 )
 {
-#if (_WIN32_WINNT >= 0x0500)
+#if (_WIN32_WINNT >= WINSTL_WIN32_WINNT_WIN2K)
 
     return STLSOFT_NS_GLOBAL(CreateHardLinkA)(linkPath, existingFilePath, lpSecurityAttributes);
 
-#else /* ? _WIN32_WINNT < 0x0500 */
+#else /* ? _WIN32_WINNT */
 
     typedef BOOL (WINAPI* pfn_t)(LPCSTR, LPCSTR, LPSECURITY_ATTRIBUTES);
 
@@ -151,7 +155,7 @@ winstl_C_call_CreateHardLinkA_(
 
     return r;
 
-#endif /* _WIN32_WINNT < 0x0500 */
+#endif /* _WIN32_WINNT */
 }
 
 STLSOFT_INLINE
@@ -162,11 +166,11 @@ winstl_C_call_CreateHardLinkW_(
 ,   LPSECURITY_ATTRIBUTES   lpSecurityAttributes
 )
 {
-#if (_WIN32_WINNT >= 0x0500)
+#if (_WIN32_WINNT >= WINSTL_WIN32_WINNT_WIN2K)
 
     return STLSOFT_NS_GLOBAL(CreateHardLinkW)(linkPath, existingFilePath, lpSecurityAttributes);
 
-#else /* ? _WIN32_WINNT < 0x0500 */
+#else /* ? _WIN32_WINNT */
 
     typedef BOOL (WINAPI* pfn_t)(LPCWSTR, LPCWSTR, LPSECURITY_ATTRIBUTES);
 
@@ -196,7 +200,7 @@ winstl_C_call_CreateHardLinkW_(
 
     return r;
 
-#endif /* _WIN32_WINNT < 0x0500 */
+#endif /* _WIN32_WINNT */
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

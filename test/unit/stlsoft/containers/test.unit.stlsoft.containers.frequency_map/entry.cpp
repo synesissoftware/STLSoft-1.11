@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 11th October 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -149,6 +149,8 @@ namespace
 namespace
 {
 
+	using stlsoft::ss_uintptr_t;
+
     typedef stlsoft::frequency_map<int>                     fm_ordered_int_t;
 #if __cplusplus >= 201103L
 
@@ -159,7 +161,7 @@ namespace
 #endif /* C++ */
     typedef std::pair<
         int
-    ,   std::uintptr_t
+    ,   ss_uintptr_t
     >                                                       pair_t;
     typedef std::vector<pair_t>                             pairs_t;
 

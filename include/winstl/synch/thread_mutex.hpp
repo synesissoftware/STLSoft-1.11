@@ -4,7 +4,7 @@
  * Purpose: Intra-process mutex, based on Windows CRITICAL_SECTION.
  *
  * Created: 17th December 1996
- * Updated: 10th October 2024
+ * Updated: 15th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_MINOR     0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  14
-# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      72
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_REVISION  16
+# define WINSTL_VER_WINSTL_SYNCH_HPP_THREAD_MUTEX_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,6 +72,10 @@
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_COMMON
 # include <winstl/synch/common.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_COMMON */
+
+#ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
+# include <winstl/api/winstl_win32_winnt_.h>
+#endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,13 +110,11 @@ namespace winstl_project
 # undef __WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT
 #endif /* __WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT */
 
-#if defined(_WIN32_WINNT) && \
-    _WIN32_WINNT >= 0x0403
+#if WINSTL_WIN32_WINNT >= 0x0403
 # define __WINSTL_THREAD_MUTEX_SPIN_COUNT_SUPPORT
 #endif /* _WIN32_WINNT >= 0x0403 */
 
-#if defined(_WIN32_WINNT) && \
-    _WIN32_WINNT >= 0x0400
+#if WINSTL_WIN32_WINNT >= 0x0400
 # define __WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT
 #endif /* _WIN32_WINNT >= 0x0400 */
 

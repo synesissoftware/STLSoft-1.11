@@ -4,7 +4,7 @@
  * Purpose: winstl_C_identify_operating_system() function.
  *
  * Created: 18th May 1995
- * Updated: 8th October 2024
+ * Updated: 15th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -80,6 +80,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
+#ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
+# include <winstl/api/winstl_win32_winnt_.h>
+#endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -205,8 +209,7 @@ winstl_C_identify_operating_system(
 
     if (NULL == pfn)
     {
-#if defined(_WIN32_WINNT) && \
-    _WIN32_WINNT >= 0x0501
+#if WINSTL_WIN32_WINNT >= 0x0501
 
         STLSOFT_NS_GLOBAL(GetNativeSystemInfo)(&si);
 #else /* ? XP+ */

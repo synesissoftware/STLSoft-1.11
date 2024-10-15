@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::environment_block`.
  *
  * Created: 11th August 2010
- * Updated: 11th October 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -86,7 +86,7 @@ static void test_empty(void)
 {
     stlsoft::environment_block_a block;
 
-    XTESTS_TEST_INTEGER_EQUAL(0, block.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, block.size());
 }
 
 static void test_1_element(void)
@@ -95,7 +95,7 @@ static void test_1_element(void)
 
     block.push_back("key-1", "value-1");
 
-    XTESTS_TEST_INTEGER_EQUAL(1, block.size());
+    XTESTS_TEST_INTEGER_EQUAL(1u, block.size());
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("key-1=value-1", block.base()[0]);
 }
 
@@ -106,7 +106,7 @@ static void test_2_elements(void)
     block.push_back("key-1", "value-1");
     block.push_back("key-0", "value-0");
 
-    XTESTS_TEST_INTEGER_EQUAL(2, block.size());
+    XTESTS_TEST_INTEGER_EQUAL(2u, block.size());
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("key-1=value-1", block.base()[0]);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("key-0=value-0", block.base()[1]);
 }
@@ -119,11 +119,11 @@ static void test_clear(void)
     block.push_back("key-1", "value-1");
     block.push_back("key-3", "value-3");
 
-    XTESTS_TEST_INTEGER_EQUAL(3, block.size());
+    XTESTS_TEST_INTEGER_EQUAL(3u, block.size());
 
     block.clear();
 
-    XTESTS_TEST_INTEGER_EQUAL(0, block.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, block.size());
 }
 
 } // anonymous namespace

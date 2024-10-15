@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/access/string/time.hpp
+ * File:    winstl/shims/access/string/time.hpp
  *
- * Purpose:     Helper functions for the Windows time types.
+ * Purpose: Helper functions for the Windows time types.
  *
- * Created:     2nd December 2004
- * Updated:     11th March 2024
+ * Created: 2nd December 2004
+ * Updated: 15th October 2024
  *
- * Thanks to:   David Wang, for spotting an error in one of the shim
- *              functions.
+ * Thanks:  David Wang, for spotting an error in one of the shim functions.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -57,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    17
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        76
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    18
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -170,9 +169,10 @@ struct ximpl_winstl_shims_access_string_time
         // which condition (of invalid value, out-of-range, etc.)
 
         STLSOFT_THROW_X(conversion_error("failed to convert date/time", e));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return 0;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     //

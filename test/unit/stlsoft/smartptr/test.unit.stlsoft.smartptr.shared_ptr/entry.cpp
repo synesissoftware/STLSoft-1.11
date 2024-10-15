@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::shared_ptr`.
  *
  * Created: 7th October 2024
- * Updated: 13th October 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -110,6 +110,8 @@ namespace
         {
             --m_i;
         }
+    private:
+        void operator =(CountHolder const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public: // accessors
         int i() const STLSOFT_NOEXCEPT
@@ -210,7 +212,7 @@ static void test_ctor_conversion()
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, ptr.get());
 
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123", *ptr);
-        XTESTS_TEST_INTEGER_EQUAL(3, ptr->size());
+        XTESTS_TEST_INTEGER_EQUAL(3u, ptr->size());
     }
 
     {
@@ -272,14 +274,14 @@ static void test_ctor_copy()
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, ptr.get());
 
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123", *ptr);
-        XTESTS_TEST_INTEGER_EQUAL(3, ptr->size());
+        XTESTS_TEST_INTEGER_EQUAL(3u, ptr->size());
 
         XTESTS_TEST_INTEGER_EQUAL(2, ptr2.count());
         XTESTS_TEST_INTEGER_EQUAL(2, ptr2.use_count());
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, ptr2.get());
 
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123", *ptr2);
-        XTESTS_TEST_INTEGER_EQUAL(3, ptr2->size());
+        XTESTS_TEST_INTEGER_EQUAL(3u, ptr2->size());
     }
 
     {
@@ -367,7 +369,7 @@ static void test_ctor_move()
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, ptr2.get());
 
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123", *ptr2);
-        XTESTS_TEST_INTEGER_EQUAL(3, ptr2->size());
+        XTESTS_TEST_INTEGER_EQUAL(3u, ptr2->size());
     }
 
     {
@@ -454,7 +456,7 @@ static void test_swap()
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, ptr2.get());
 
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123", *ptr2);
-        XTESTS_TEST_INTEGER_EQUAL(3, ptr2->size());
+        XTESTS_TEST_INTEGER_EQUAL(3u, ptr2->size());
     }
 
     {
@@ -542,7 +544,7 @@ static void test_std_swap()
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, ptr2.get());
 
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123", *ptr2);
-        XTESTS_TEST_INTEGER_EQUAL(3, ptr2->size());
+        XTESTS_TEST_INTEGER_EQUAL(3u, ptr2->size());
     }
 }
 

@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      7
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      0
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       255
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   2
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       256
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -421,8 +421,15 @@ private:
 /// @{
 private:
     module_handle_type                  m_hmodule;
+#ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
+
+    void*                               m_param;
+    degenerate_feedback_proc_type       m_proc;
+#else /* ? STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
+
     void* const                         m_param;
-    const degenerate_feedback_proc_type m_proc;
+    degenerate_feedback_proc_type const m_proc;
+#endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 /// @}
 };
 

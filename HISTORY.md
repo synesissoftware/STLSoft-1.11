@@ -4,6 +4,13 @@
 ----
 
 
+16th October 2024 - 1.11.1-alpha18 released
+-------------------------------------------
+
+ * Legacy (pre VS-2022) Visual C++ compatibility;
+ * Win32 compatibity;
+
+
 13th October 2024 - 1.11.1-alpha17 released
 -------------------------------------------
 

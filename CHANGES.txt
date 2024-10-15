@@ -17,6 +17,13 @@ STLSoft - Changes
    **************************************
 
 
+Changes for 1.11.1-alpha18 (16th October 2024)
+
+ * Legacy (pre VS-2022) Visual C++ compatibility;
+ * Win32 compatibity;
+
+
+============================================================================
 
 Changes for 1.11.1-alpha17 (13th October 2024)
 
