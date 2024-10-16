@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  15th October 2024
+# Updated:  16th October 2024
 #
 # ######################################################################## #
 
@@ -57,7 +57,7 @@ set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT
 
 # adhere strictly to C and C++ standards plus extensions. These are actually
 # useless since we do not compile anything; they merely state our intention.
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
 set(CMAKE_CXX_STANDARD 20)
@@ -73,53 +73,29 @@ if(MSVC)
 	endif()
 endif(MSVC)
 
-# ##########################################################
-# install
-
-# provides install directory variables as defined by the GNU Coding Standards.
-include(GNUInstallDirs)
-
 
 # ##########################################################
-# build
+# dependencies, includes, options
 
-# load/default `CMAKE_BUILD_TYPE`
+# ################################################
+# includes - 1
+
 include(BuildType)
 include(LanguageFullVersion)
 include(TargetMacros)
 
-add_library(STLSoft INTERFACE)
 
-target_include_directories(STLSoft INTERFACE
-	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
-	$<INSTALL_INTERFACE:include>
-)
-
-
-# ##########################################################
-# examples
+# ################################################
+# dependencies and options
 
 option(BUILD_EXAMPLES "Build examples" ON)
-if(BUILD_EXAMPLES)
 
-	message("-- enabled building of examples ...")
+option(USE_UNIXEM "Use UNIXem (on Windows)" ON)
 
-	add_subdirectory(examples)
-else(BUILD_EXAMPLES)
-
-	message("-- disabled building of examples - define BUILD_EXAMPLES to enable")
-endif(BUILD_EXAMPLES)
-
-
-# ##########################################################
-# test
-
-include(CTest)
 
 if(BUILD_TESTING)
 
-	message("-- enabled building of tests ...")
-
+	# NOTE: this is used _solely_ for enabling loading of xTests (see below)
 	find_package(STLSoft REQUIRED)
 
 	if(NOT STLSoft_FOUND)
@@ -135,6 +111,54 @@ if(BUILD_TESTING)
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+endif(BUILD_TESTING)
+
+
+# ################################################
+# includes - 2
+
+include(CMakePackageConfigHelpers)
+if(BUILD_TESTING)
+
+	include(CTest)
+endif(BUILD_TESTING)
+include(GNUInstallDirs)
+
+
+# ##########################################################
+# targets
+
+# ################################################
+# main library
+
+add_library(STLSoft INTERFACE)
+
+target_include_directories(STLSoft INTERFACE
+	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+	$<INSTALL_INTERFACE:include>
+)
+
+
+# ################################################
+# examples
+
+if(BUILD_EXAMPLES)
+
+	message("-- enabled building of examples ...")
+
+	add_subdirectory(examples)
+else(BUILD_EXAMPLES)
+
+	message("-- disabled building of examples - define BUILD_EXAMPLES to enable")
+endif(BUILD_EXAMPLES)
+
+
+# ################################################
+# tests
+
+if(BUILD_TESTING)
+
+	message("-- enabled building of tests ...")
 
 	add_subdirectory(test)
 else(BUILD_TESTING)
@@ -152,20 +176,37 @@ install(TARGETS STLSoft
 	PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-# ... and we have to manually copy the header files.
-foreach(ITEM
-	acestl
-	atlstl
-	comstl
-	inetstl
-	mfcstl
-	platformstl
+list(APPEND INSTALLED_STLSOFT_PROJECTS
 	rangelib
 	stlsoft
-	unixstl
-	winstl
-	wtlstl
 )
+
+if(UNIX)
+
+	list(APPEND INSTALLED_STLSOFT_PROJECTS
+		platformstl
+		unixstl
+	)
+endif(UNIX)
+
+if(WIN32)
+
+	list(APPEND INSTALLED_STLSOFT_PROJECTS
+		acestl
+		atlstl
+		comstl
+		inetstl
+		mfcstl
+		platformstl
+		winstl
+		wtlstl
+	)
+endif(WIN32)
+
+
+
+# ... and we have to manually copy the header files.
+foreach(ITEM ${INSTALLED_STLSOFT_PROJECTS})
 
 	install(
 		DIRECTORY ${CMAKE_SOURCE_DIR}/include/${ITEM}/
@@ -176,10 +217,10 @@ foreach(ITEM
 endforeach()
 
 
+
 # ##########################################################
 # export
 
-include(CMakePackageConfigHelpers)
 
 string(TOLOWER ${PROJECT_NAME} EXPORT_NAME)
 

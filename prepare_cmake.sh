@@ -6,9 +6,9 @@ Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
-CMakeExamplesDisabled=0
-CMakeTestingDisabled=0
-CMakeVerboseMakefile=0
+ExamplesDisabled=0
+TestingDisabled=0
+VerboseMakefile=0
 Configuration=Release
 MinGW=0
 RunMake=0
@@ -22,7 +22,7 @@ while [[ $# -gt 0 ]]; do
   case $1 in
     -v|--cmake-verbose-makefile)
 
-      CMakeVerboseMakefile=1
+      VerboseMakefile=1
       ;;
     -d|--debug-configuration)
 
@@ -30,7 +30,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -E|--disable-examples)
 
-      CMakeExamplesDisabled=1
+      ExamplesDisabled=1
       ;;
     -m|--run-make)
 
@@ -42,7 +42,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -T|--disable-testing)
 
-      CMakeTestingDisabled=1
+      TestingDisabled=1
       ;;
     --help)
 
@@ -120,11 +120,9 @@ cd $CMakeDir
 
 echo "Executing CMake (in ${CMakeDir})"
 
-if [ $CMakeExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
-
-if [ $CMakeTestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
-
-if [ $CMakeVerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
+if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 if [ $MinGW -ne 0 ]; then
 
@@ -160,7 +158,7 @@ fi
 
 cd ->/dev/null
 
-if [ $CMakeVerboseMakefile -ne 0 ]; then
+if [ $VerboseMakefile -ne 0 ]; then
 
   echo -e "contents of $CMakeDir:"
   ls -al $CMakeDir
