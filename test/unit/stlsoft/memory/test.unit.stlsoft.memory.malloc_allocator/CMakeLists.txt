@@ -1,3 +1,2 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(memory)
-add_subdirectory(util)
+define_automated_test_program(test.unit.stlsoft.memory.malloc_allocator entry.cpp)
