@@ -94,6 +94,8 @@ if [ $RunMake -ne 0 ]; then
 
     $MakeCmd
     status=$?
+
+    cd ->/dev/null
   fi
 else
 
@@ -101,8 +103,6 @@ else
 
     >&2 echo "$ScriptPath: cannot run in '--no-make' mode without a previous successful build step"
   fi
-
-  cd $CMakeDir
 fi
 
 if [ $status -eq 0 ]; then
@@ -150,8 +150,6 @@ else
 
   status=$?
 fi
-
-cd ->/dev/null
 
 exit $status
 

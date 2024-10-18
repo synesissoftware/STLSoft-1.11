@@ -6,12 +6,12 @@ Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
-CMakeExamplesDisabled=0
-CMakeTestingDisabled=0
-CMakeVerboseMakefile=0
 Configuration=Release
+ExamplesDisabled=0
 MinGW=0
 RunMake=0
+TestingDisabled=0
+VerboseMakefile=0
 
 
 # ##########################################################
@@ -22,7 +22,7 @@ while [[ $# -gt 0 ]]; do
   case $1 in
     -v|--cmake-verbose-makefile)
 
-      CMakeVerboseMakefile=1
+      VerboseMakefile=1
       ;;
     -d|--debug-configuration)
 
@@ -30,19 +30,19 @@ while [[ $# -gt 0 ]]; do
       ;;
     -E|--disable-examples)
 
-      CMakeExamplesDisabled=1
+      ExamplesDisabled=1
       ;;
-    -m|--run-make)
+    -T|--disable-testing)
 
-      RunMake=1
+      TestingDisabled=1
       ;;
     --mingw)
 
       MinGW=1
       ;;
-    -T|--disable-testing)
+    -m|--run-make)
 
-      CMakeTestingDisabled=1
+      RunMake=1
       ;;
     --help)
 
@@ -62,8 +62,8 @@ Flags/options:
 
     -v
     --cmake-verbose-makefile
-        configures CMake to run verbosely (by setting
-        CMAKE_VERBOSE_MAKEFILE=ON)
+        configures CMake to run verbosely (by setting CMAKE_VERBOSE_MAKEFILE
+        to be ON)
 
     -d
     --debug-configuration
@@ -120,11 +120,9 @@ cd $CMakeDir
 
 echo "Executing CMake (in ${CMakeDir})"
 
-if [ $CMakeExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
-
-if [ $CMakeTestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
-
-if [ $CMakeVerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
+if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 if [ $MinGW -ne 0 ]; then
 
@@ -152,7 +150,7 @@ status=0
 
 if [ $RunMake -ne 0 ]; then
 
-  echo "Executing make"
+  echo "Executing build (via command \`$MakeCmd\`)"
 
   $MakeCmd
   status=$?
@@ -160,7 +158,7 @@ fi
 
 cd ->/dev/null
 
-if [ $CMakeVerboseMakefile -ne 0 ]; then
+if [ $VerboseMakefile -ne 0 ]; then
 
   echo -e "contents of $CMakeDir:"
   ls -al $CMakeDir
