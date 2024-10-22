@@ -18,6 +18,13 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha20 (23rd October 2024)
+
+ * Version change only;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha19 (23rd October 2024)
 
  * Fixes to (new functionality in) `stlsoft::auto_buffer<>`;
