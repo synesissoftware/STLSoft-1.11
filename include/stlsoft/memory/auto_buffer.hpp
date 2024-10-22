@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 13th October 2024
+ * Updated: 23rd October 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        213
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    8
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        216
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -127,7 +127,7 @@
  */
 
 #if defined(_MSC_VER) &&\
-    _MSC_VER >= 9999
+    _MSC_VER >= 1935
 
 # pragma warning(push)
 # pragma warning(disable : 26495)
@@ -663,6 +663,8 @@ private:
                     m_buffer = new_buffer;
 
                     m_cItems = new_size;
+
+                    m_bExternal = true;
                 }
             }
 
@@ -731,7 +733,12 @@ private:
         }
         m_cItems = d;
 
-        block_copy(m_buffer, &*first, d);
+        if (0 != d)
+        {
+            STLSOFT_ASSERT(first != last);
+
+            block_copy(m_buffer, &*first, d);
+        }
     }
 
 public: // construction
@@ -766,9 +773,9 @@ public: // construction
 
 # if __cplusplus < 202002L
         if (std::_Is_constant_evaluated())
-#else
+# else
         if (std::is_constant_evaluated())
-#endif
+# endif
         {
             for (auto& i : m_internal)
             {
@@ -789,7 +796,15 @@ public: // construction
 #ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
         STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_buffer) < STLSOFT_RAW_OFFSETOF(class_type, m_cItems));
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
+
+#if 0 ||\
+    __cplusplus < 201702L ||\
+    !defined(_MSC_VER) ||\
+    _MSC_VER < 1935 ||\
+    0
         STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
+#endif
+
 
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
         // Use the must_be_pod constraint to ensure that
@@ -1862,7 +1877,7 @@ namespace std
  */
 
 #if defined(_MSC_VER) &&\
-    _MSC_VER >= 9999
+    _MSC_VER >= 1935
 
 # pragma warning(pop)
 #endif

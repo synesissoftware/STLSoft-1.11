@@ -4,7 +4,7 @@
  * Purpose: Windows readonly (shareable) memory mapped file.
  *
  * Created: 30th August 2010
- * Updated: 10th October 2024
+ * Updated: 21st October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MAJOR     2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MINOR     0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION  4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT      21
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION  5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,46 +144,48 @@ template <ss_typename_param_k R>
 class readonly_memory_mapped_file_base
 {
 private: // Member Types
-    typedef R                                                           refcount_policy_type_;
+    typedef R                                               refcount_policy_type_;
 public:
     /// This type
-    typedef readonly_memory_mapped_file_base<R>                         class_type;
+    typedef readonly_memory_mapped_file_base<R>             class_type;
     /// The size type
     ///
     /// This is an unsigned type that is capable of representing any
     /// address on the operating system. On 64-bit systems, it will
     /// be <code>uint64_t</code>; on 32-bit operating systems it will
     /// be <code>uint32_t</code>.
-    typedef ws_uintptr_t                                                size_type;
+    typedef ws_uintptr_t                                    size_type;
     /// The error type
-    typedef ws_dword_t                                                  status_code_type;
+    typedef ws_dword_t                                      status_code_type;
     /// The offset type
-    typedef ws_uint64_t                                                 offset_type;
+    typedef ws_uint64_t                                     offset_type;
     /// The boolean type
-    typedef ws_bool_t                                                   bool_type;
+    typedef ws_bool_t                                       bool_type;
 
     /// The Handle::Ref+Wrapper <strong>HandleAdaptor</strong> type.
     ///
     /// \note This type is optional to the pattern.
     typedef memory_mapped_file_view_handle<
         refcount_policy_type_
-    >                                                                   HRW_HandleAdaptor_type;
+    >                                                       HRW_HandleAdaptor_type;
     /// The Handle::Ref+Wrapper <strong>Handle</strong> type.
     ///
     /// \note This type is mandatory to the pattern.
-    typedef ss_typename_type_k HRW_HandleAdaptor_type::HRW_Handle_type  HRW_Handle_type;
+    typedef ss_typename_type_k HRW_HandleAdaptor_type::HRW_Handle_type
+                                                            HRW_Handle_type;
     /// The Handle::Ref+Wrapper <strong>Ref</strong> type.
     ///
     /// \note This type is mandatory to the pattern.
-    typedef ss_typename_type_k HRW_HandleAdaptor_type::HRW_Ref_type     HRW_Ref_type;
+    typedef ss_typename_type_k HRW_HandleAdaptor_type::HRW_Ref_type
+                                                            HRW_Ref_type;
     /// The Handle::Ref+Wrapper <strong>Wrapper</strong> type.
     ///
     /// \note This type is mandatory to the pattern.
-    typedef class_type                                                  HRW_Wrapper_type;
+    typedef class_type                                      HRW_Wrapper_type;
 
-    typedef HRW_Handle_type                                             Handle;
-    typedef HRW_Ref_type                                                Ref;
-    typedef HRW_Wrapper_type                                            Wrapper;
+    typedef HRW_Handle_type                                 Handle;
+    typedef HRW_Ref_type                                    Ref;
+    typedef HRW_Wrapper_type                                Wrapper;
 
 public: // Construction
     /// Maps an entire file into memory
@@ -343,10 +345,13 @@ private: // Implementation
         switch (e)
         {
         case    ERROR_FILE_NOT_FOUND:
+
             STLSOFT_THROW_X(file_not_found_exception(message, e));
         case    ERROR_ACCESS_DENIED:
+
             STLSOFT_THROW_X(access_exception(message, e));
         default:
+
             STLSOFT_THROW_X(filesystem_exception(message, e));
         }
     }
@@ -374,15 +379,15 @@ private: // Implementation
     ,   size_type           requestSize
     )
     {
-        ws_uintptr_t    viewSize;
-        void* const     memory = map_readonly_view_of_file_by_name(
-                                    fileName
-                                ,   GENERIC_READ
-                                ,   FILE_SHARE_READ
-                                ,   offset
-                                ,   requestSize
-                                ,   &viewSize
-                                );
+        ws_uintptr_t    viewSize    =   0;
+        void* const     memory      =   map_readonly_view_of_file_by_name(
+                                            fileName
+                                        ,   GENERIC_READ
+                                        ,   FILE_SHARE_READ
+                                        ,   offset
+                                        ,   requestSize
+                                        ,   &viewSize
+                                        );
 
         if (NULL == memory)
         {
@@ -414,15 +419,15 @@ private: // Implementation
     ,   size_type           requestSize
     )
     {
-        ws_uintptr_t    viewSize;
-        void* const     memory = map_readonly_view_of_file_by_name(
-                                    fileName
-                                ,   GENERIC_READ
-                                ,   FILE_SHARE_READ
-                                ,   offset
-                                ,   requestSize
-                                ,   &viewSize
-                                );
+        ws_uintptr_t    viewSize    =   0;
+        void* const     memory      =   map_readonly_view_of_file_by_name(
+                                            fileName
+                                        ,   GENERIC_READ
+                                        ,   FILE_SHARE_READ
+                                        ,   offset
+                                        ,   requestSize
+                                        ,   &viewSize
+                                        );
 
         if (NULL == memory)
         {
@@ -505,8 +510,6 @@ get_memory_mapped_file_view_handle(
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE */
 

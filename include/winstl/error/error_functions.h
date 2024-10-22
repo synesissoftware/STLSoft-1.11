@@ -4,7 +4,7 @@
  * Purpose: Error functions.
  *
  * Created: 7th May 2000
- * Updated: 9th October 2024
+ * Updated: 16th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  5
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      88
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  6
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -207,8 +207,13 @@ winstl_C_fmtmsg_elide_message_a_(
                         firstDot == last - 1))
                 {
                 /* fall through */
-#if defined(__cplusplus) && __cplusplus >= 201702L
+#ifdef __cplusplus
+# if __cplusplus >= 201702L
                 [[fallthrough]];
+# elif __cplusplus >= 201103L &&\
+       defined(__GNUC__)
+                [[gnu::fallthrough]];
+# endif
 #endif
             case    ' ':
             case    '\t':
@@ -221,8 +226,13 @@ winstl_C_fmtmsg_elide_message_a_(
                 else
                 {
                 /* fall through */
-#if defined(__cplusplus) && __cplusplus >= 201702L
+#ifdef __cplusplus
+# if __cplusplus >= 201702L
                 [[fallthrough]];
+# elif __cplusplus >= 201103L &&\
+       defined(__GNUC__)
+                [[gnu::fallthrough]];
+# endif
 #endif
             default:
                 first = last;
@@ -273,8 +283,13 @@ winstl_C_fmtmsg_elide_message_w_(
                         firstDot == last - 1))
                 {
                 /* fall through */
-#if defined(__cplusplus) && __cplusplus >= 201702L
+#ifdef __cplusplus
+# if __cplusplus >= 201702L
                 [[fallthrough]];
+# elif __cplusplus >= 201103L &&\
+       defined(__GNUC__)
+                [[gnu::fallthrough]];
+# endif
 #endif
             case    L' ':
             case    L'\t':
@@ -287,8 +302,13 @@ winstl_C_fmtmsg_elide_message_w_(
                 else
                 {
                 /* fall through */
-#if defined(__cplusplus) && __cplusplus >= 201702L
+#ifdef __cplusplus
+# if __cplusplus >= 201702L
                 [[fallthrough]];
+# elif __cplusplus >= 201103L &&\
+       defined(__GNUC__)
+                [[gnu::fallthrough]];
+# endif
 #endif
             default:
                 first = last;

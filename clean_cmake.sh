@@ -38,6 +38,7 @@ EOF
       exit 0
       ;;
     *)
+
       >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
 
       exit 1
@@ -63,6 +64,8 @@ else
   if [ ! -f "$CMakeDir/Makefile" ]; then
 
     >&2 echo "$ScriptPath: CMake build directory '$CMakeDir' does not contain expected file 'Makefile', so a clean cannot be performed. It is recommended that you remove all CMake artefacts using script 'remove_cmake_artefacts.sh' followed by regeneration via 'prepare_cmake.sh'"
+
+    cd ->/dev/null
 
     exit 1
   else

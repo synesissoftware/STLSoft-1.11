@@ -4,7 +4,7 @@
  * Purpose: Windows console functions.
  *
  * Created: 3rd December 2005
- * Updated: 15th October 2024
+ * Updated: 16th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  4
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      49
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  5
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -89,7 +89,10 @@
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
-#ifdef _MSC_VER
+#if 0 ||\
+    defined(__MINGW32__) ||\
+    defined(_MSC_VER) ||\
+    0
 # ifndef STLSOFT_INCL_H_IO
 #  define STLSOFT_INCL_H_IO
 #  include <io.h>
@@ -206,7 +209,10 @@ winstl_C_isatty_fd_(
 {
     int (*pfn_isatty)(int);
 
-#if defined(_MSC_VER)
+#if 0 ||\
+    defined(__MINGW32__) ||\
+    defined(_MSC_VER) ||\
+    0
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
 
@@ -228,25 +234,22 @@ winstl_C_isatty_stm_(
 )
 {
     int (*pfn_fileno)(FILE*);
-    int (*pfn_isatty)(int);
 
 #if defined(_MSC_VER)
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
 
     pfn_fileno  =   STLSOFT_NS_GLOBAL(_fileno);
-    pfn_isatty  =   STLSOFT_NS_GLOBAL(_isatty);
 
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 #else
 
     pfn_fileno  =   STLSOFT_NS_GLOBAL(fileno);
-    pfn_isatty  =   STLSOFT_NS_GLOBAL(isatty);
 #endif
 
     int const fd = (*pfn_fileno)(stm);
 
-    return (*pfn_isatty)(fd);
+    return winstl_C_isatty_fd_(fd);
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

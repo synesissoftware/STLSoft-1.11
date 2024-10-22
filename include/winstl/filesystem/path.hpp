@@ -4,7 +4,7 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 27th September 2024
+ * Updated: 17th October 2024
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which
  *          doesn't work for wide-string builds).
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    7
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     324
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 10
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     325
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -590,7 +590,7 @@ private:
     >::other                                                part_ator_type_;
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 # ifdef WIN32
-    typedef ss_typename_type_k processheap_allocator<
+    typedef processheap_allocator<
         part_type
     >                                                       part_ator_type_;
 # else /* ? OS */
