@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/path_classify_functions.h
+ * File:    unixstl/filesystem/path_classify_functions.h
  *
- * Purpose:     Path classification functions
+ * Purpose: Path classification functions
  *
- * Created:     21st December 2020
- * Updated:     11th March 2024
+ * Created: 21st December 2020
+ * Updated: 20th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -53,7 +53,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      8
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -170,7 +170,6 @@ typedef struct unixstl_C_path_classification_results_m_t    unixstl_C_path_class
 # undef unixstl_C_path_classify_alwaysInvalidChars_X_
 # undef unixstl_C_path_classify_root_X_
 # undef unixstl_C_path_classify_impl_X_
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

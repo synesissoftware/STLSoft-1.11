@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 4th November 2008
- * Updated: 15th October 2024
+ * Updated: 22nd October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -1383,11 +1383,15 @@ static void test_compare_1()
 
     XTESTS_TEST_BOOLEAN_TRUE(s1 == s1);
     XTESTS_TEST_BOOLEAN_TRUE(s1 == s1.c_str());
+    XTESTS_TEST_BOOLEAN_TRUE(s1 == "abc");
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() == s1);
+    XTESTS_TEST_BOOLEAN_TRUE("abc" == s1);
 
     XTESTS_TEST_BOOLEAN_TRUE(s1 != s2);
     XTESTS_TEST_BOOLEAN_TRUE(s1 != s2.c_str());
+    XTESTS_TEST_BOOLEAN_TRUE(s1 != "def");
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() != s2);
+    XTESTS_TEST_BOOLEAN_TRUE("abc" != s2);
 }
 
 static void test_compare_2()

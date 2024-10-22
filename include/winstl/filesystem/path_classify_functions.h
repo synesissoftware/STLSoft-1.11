@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/path_classify_functions.h
+ * File:    winstl/filesystem/path_classify_functions.h
  *
- * Purpose:     Path classification functions
+ * Purpose: Path classification functions
  *
- * Created:     28th November 2020
- * Updated:     11th March 2024
+ * Created: 28th November 2020
+ * Updated: 20th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        12
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -229,7 +229,6 @@ typedef struct winstl_C_path_classification_results_w_t     winstl_C_path_classi
 # undef winstl_C_path_classify_root_X_
 # undef winstl_C_path_classify_impl_X_
 # undef winstl_C_path_classify_root_impl_X_
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

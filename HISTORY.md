@@ -4,7 +4,24 @@
 ----
 
 
-16th October 2024 - 1.11.1-alpha18 released
+23rd October 2024 - 1.11.1-alpha19 released
+-------------------------------------------
+
+ * Fixes to (new functionality in) `stlsoft::auto_buffer<>`;
+ * Fix for (compile-time) defect in `winstl::basic_path<>`;
+ * Fix for defect in `winstl::basic_reg_key<>`;
+ * MinGW compatibility in **winstl/internal/windows_version_.h**;
+ * MinGW compatibility in **winstl/system/console_functions.h**;
+ * Necessary warning suppression in `stlsoft::basis_simple_string<>`;
+ * Trivial warning fix in `winstl::readonly_memory_mapped_file<>`;
+ * Added **test.unit.stlsoft.traits.integral_printf_format_traits**;
+ * Brought over **test.unit.winstl.registry.reg_value**;
+ * Added **test.unit.winstl.registry.reg_value_sequence**;
+ * GCC warnings;
+ * CMake build scripts minor fixes;
+
+
+15th October 2024 - 1.11.1-alpha18 released
 -------------------------------------------
 
  * Legacy (pre VS-2022) Visual C++ compatibility;

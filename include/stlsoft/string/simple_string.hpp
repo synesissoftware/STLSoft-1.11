@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 27th September 2024
+ * Updated: 23rd October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      281
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      282
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -221,6 +221,7 @@ public:
     ,   const_reference
     >::type                                                 const_iterator;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+
     /// The mutating (non-const) reverse iterator type
     typedef ss_typename_type_k reverse_iterator_generator<
         iterator
@@ -244,10 +245,12 @@ private:
     /// \note This has to be defined here, rather than on a use-by-use basis, because
     /// Borland gets very upset.
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+
     typedef ss_typename_type_k A::ss_template_qual_k rebind<
         ss_byte_t
     >::other                                                byte_ator_type;
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+
     typedef ss_typename_type_k allocator_selector<
         ss_byte_t
     >::allocator_type                                       byte_ator_type;
@@ -1750,8 +1753,10 @@ basic_simple_string<C, T, A>::alloc_buffer_(
 
     byte_ator_type          byte_ator;
 # ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+
     void* const             raw_buffer  =   byte_ator.allocate(capacity * sizeof(char_type), ss_nullptr_k);
 # else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
+
     void* const             raw_buffer  =   byte_ator.allocate(capacity * sizeof(char_type));
 # endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
     string_buffer* const    buffer      =   sap_cast<string_buffer*>(raw_buffer);
@@ -1846,8 +1851,10 @@ basic_simple_string<C, T, A>::copy_buffer_(ss_typename_type_k basic_simple_strin
         string_buffer* const    buffer      =   string_buffer_from_member_pointer_(m);
         ss_size_t const         cb          =   buffer->capacity * sizeof(char_type) + STLSOFT_RAW_OFFSETOF(string_buffer, contents);
 # ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+
         void* const             raw_buffer  =   byte_ator.allocate(cb, ss_nullptr_k);
 # else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
+
         void* const             raw_buffer  =   byte_ator.allocate(cb);
 # endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
         string_buffer* const    new_buffer  =   sap_cast<string_buffer*>(raw_buffer);
@@ -1873,9 +1880,29 @@ inline
 void
 basic_simple_string<C, T, A>::destroy_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::string_buffer* buffer) STLSOFT_NOEXCEPT
 {
+#ifndef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
+
+    // NOTE: the GCC warning "free-nonheap-object" is a very important one,
+    // and only suppressed here with confidence that it is being issued in
+    // error by (later versions of) GCC C++ compiler
+# ifdef __GNUC__
+
+#  pragma GCC diagnostic push
+#  pragma GCC diagnostic ignored "-Wfree-nonheap-object"
+# endif
+#endif
+
     byte_ator_type byte_ator;
 
     byte_ator.deallocate(sap_cast<ss_byte_t*>(buffer), 0);
+
+#ifndef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
+
+# ifdef __GNUC__
+
+#  pragma GCC diagnostic pop
+# endif
+#endif
 }
 
 template <
@@ -3398,6 +3425,7 @@ basic_simple_string<C, T, A>::assign(
                 member_pointer const new_buffer = alloc_buffer_(s, cch, cch);
 
                 destroy_buffer_(m_buffer);
+
                 m_buffer = new_buffer;
             }
         }

@@ -5,7 +5,7 @@
  *          specialisations thereof.
  *
  * Created: 19th January 2002
- * Updated: 27th September 2024
+ * Updated: 22nd October 2024
  *
  * Thanks:  To Sam Fisher for spotting the defect in the set_value_()
  *          overload for REG_MULTI_SZ values (widestring only).
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       10
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    14
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        165
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    15
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        166
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1393,8 +1393,8 @@ basic_reg_key<C, T, A>::set_value_(
     const size_type totalLen = STLSOFT_NS_QUAL_STD(accumulate)(
         values, values + numValues
     ,   size_type(0)
-    ,   [] (char_type const* v) {
-        return traits_type::str_len(v);
+    ,   [] (size_type total, char_type const* v) {
+        return traits_type::str_len(v) + total;
     }
     );
 #else

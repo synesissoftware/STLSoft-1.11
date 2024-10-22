@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/path_functions/classify_functions_X_.h
+ * File:    unixstl/filesystem/path_functions/classify_functions_X_.h
  *
- * Purpose:     Path classification functions char-X implementation
+ * Purpose: Path classification functions char-X implementation
  *
- * Created:     21st December 2020
- * Updated:     18th January 2024
+ * Created: 21st December 2020
+ * Updated: 20th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -192,7 +192,6 @@ unixstl_C_path_classify_root_X_(
 
     return UNIXSTL_C_PathType_Relative;
 }
-
 
 STLSOFT_INLINE
 unixstl_C_path_classification_t
@@ -462,6 +461,7 @@ unixstl_C_path_classify_impl_X_(
 
     return rcRoot;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
