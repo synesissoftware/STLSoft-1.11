@@ -18,6 +18,13 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha21 (23rd October 2024)
+
+ * Added and applied macro `STLSOFT_FALLTHROUGH()`;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha20 (23rd October 2024)
 
  * Version change only;
