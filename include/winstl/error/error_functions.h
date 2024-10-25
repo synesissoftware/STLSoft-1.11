@@ -4,7 +4,7 @@
  * Purpose: Error functions.
  *
  * Created: 7th May 2000
- * Updated: 16th October 2024
+ * Updated: 23rd October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  6
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      89
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  7
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,40 +201,30 @@ winstl_C_fmtmsg_elide_message_a_(
         switch (*(last - 1))
         {
             case    '.':
+
                 if ((WINSTL_ERROR_FUNCTIONS_ELIDE_DOT & elisionFlags) &&
                     (   0 == (WINSTL_ERROR_FUNCTIONS_ELIDE_DOT_IF_LAST_ONLY & elisionFlags) ||
                         NULL == firstDot ||
                         firstDot == last - 1))
                 {
                 /* fall through */
-#ifdef __cplusplus
-# if __cplusplus >= 201702L
-                [[fallthrough]];
-# elif __cplusplus >= 201103L &&\
-       defined(__GNUC__)
-                [[gnu::fallthrough]];
-# endif
-#endif
+                STLSOFT_FALLTHROUGH();
             case    ' ':
             case    '\t':
             case    '\r':
             case    '\n':
+
                 *(last - 1) = '\0';
                 --last;
                 break;
                 }
                 else
                 {
+
                 /* fall through */
-#ifdef __cplusplus
-# if __cplusplus >= 201702L
-                [[fallthrough]];
-# elif __cplusplus >= 201103L &&\
-       defined(__GNUC__)
-                [[gnu::fallthrough]];
-# endif
-#endif
+                STLSOFT_FALLTHROUGH();
             default:
+
                 first = last;
                 break;
                 }
@@ -277,40 +267,31 @@ winstl_C_fmtmsg_elide_message_w_(
         switch (*(last - 1))
         {
             case    L'.':
+
                 if ((WINSTL_ERROR_FUNCTIONS_ELIDE_DOT & elisionFlags) &&
                     (   0 == (WINSTL_ERROR_FUNCTIONS_ELIDE_DOT_IF_LAST_ONLY & elisionFlags) ||
                         NULL == firstDot ||
                         firstDot == last - 1))
                 {
+
                 /* fall through */
-#ifdef __cplusplus
-# if __cplusplus >= 201702L
-                [[fallthrough]];
-# elif __cplusplus >= 201103L &&\
-       defined(__GNUC__)
-                [[gnu::fallthrough]];
-# endif
-#endif
+                STLSOFT_FALLTHROUGH();
             case    L' ':
             case    L'\t':
             case    L'\r':
             case    L'\n':
+
                 *(last - 1) = L'\0';
                 --last;
                 break;
                 }
                 else
                 {
+
                 /* fall through */
-#ifdef __cplusplus
-# if __cplusplus >= 201702L
-                [[fallthrough]];
-# elif __cplusplus >= 201103L &&\
-       defined(__GNUC__)
-                [[gnu::fallthrough]];
-# endif
-#endif
+                STLSOFT_FALLTHROUGH();
             default:
+
                 first = last;
                 break;
                 }

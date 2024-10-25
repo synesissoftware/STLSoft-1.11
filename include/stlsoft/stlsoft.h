@@ -6,7 +6,7 @@
  *          types.
  *
  * Created: 15th January 2002
- * Updated: 23rd October 2024
+ * Updated: 25th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,9 +55,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    54
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     568
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    55
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     569
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -368,12 +368,14 @@
 # define _STLSOFT_VER_1_11_1_A17    0x010b0151  /*!< Version 1.11.1 alpha 17 (10th October 2024) */
 # define _STLSOFT_VER_1_11_1_A18    0x010b0152  /*!< Version 1.11.1 alpha 18 (15th October 2024) */
 # define _STLSOFT_VER_1_11_1_A19    0x010b0153  /*!< Version 1.11.1 alpha 19 (23rd October 2024) */
+# define _STLSOFT_VER_1_11_1_A20    0x010b0154  /*!< Version 1.11.1 alpha 20 (23rd October 2024) */
+# define _STLSOFT_VER_1_11_1_A21    0x010b0155  /*!< Version 1.11.1 alpha 21 (25th October 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A19
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A21
 
 
 /* /////////////////////////////////////
@@ -985,6 +987,51 @@
     defined(STLSOFT_DEBUG)
 # undef STLSOFT_DEBUG
 #endif
+
+
+/* \def STLSOFT_FALLTHROUGH
+ *
+ * Options:
+ *
+ * 1 - C++17 (or later) -> `[[fallthrough]]`;
+ * 2 - C++11 (or later) AND GCC -> `[[gnu::fallthrough]]`;
+ * 3 - C23 (or later) -> `[[fallthrough]]`;
+ * 4 - GCC -> `__attribute__ ((fallthrough))`;
+ * 5 - otherwise -> stub statement
+ */
+# if 0
+# elif 1 &&\
+       defined(__cplusplus) &&\
+       __cplusplus >= 201702L &&\
+       1
+
+   /* C++17 (or later) */
+#  define STLSOFT_FALLTHROUGH()                             [[fallthrough]]
+# elif 1 &&\
+       defined(__cplusplus) &&\
+       __cplusplus >= 201103L &&\
+       (    0 ||\
+            defined(STLSOFT_COMPILER_IS_GCC) ||\
+            0) &&\
+       1
+
+#  define STLSOFT_FALLTHROUGH()                             [[gnu::fallthrough]]
+# elif 1 &&\
+       defined(__STDC_VERSION__) &&\
+       __STDC_VERSION__ >= 202311L &&\
+       1
+
+   /* C23 (or later) */
+#  define STLSOFT_FALLTHROUGH()                             [[fallthrough]]
+# elif 0 || \
+       defined(STLSOFT_COMPILER_IS_GCC) ||\
+       0
+
+#  define STLSOFT_FALLTHROUGH()                             __attribute__ ((fallthrough))
+# else
+
+#  define STLSOFT_FALLTHROUGH()                             do {} while (XTESTS_WHILE_0_CLAUSE())
+# endif
 
 
 /* __func__ / __FUNCTION__ support */
