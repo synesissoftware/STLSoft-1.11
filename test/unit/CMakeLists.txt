@@ -1,4 +1,8 @@
 
+if(WIN32)
+	add_subdirectory(comstl)
+	add_subdirectory(mfcstl)
+endif(WIN32)
 add_subdirectory(stlsoft)
 if(UNIX)
 	add_subdirectory(unixstl)
