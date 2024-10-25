@@ -4,6 +4,13 @@
 ----
 
 
+25th October 2024 - 1.11.1-alpha21 released
+-------------------------------------------
+
+ * Added and applied macro `STLSOFT_FALLTHROUGH()`;
+ * Added unit-tests for allocator types;
+
+
 23rd October 2024 - 1.11.1-alpha20 released
 -------------------------------------------
 

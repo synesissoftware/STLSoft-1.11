@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.memory.null_allocator.cpp
+ * File:    test.unit.stlsoft.memory.null_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::null_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 18th October 2024
+ * Updated: 25th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

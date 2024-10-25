@@ -18,6 +18,31 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha21 (25th October 2024)
+
+General:
+========
+
+ * Added and applied macro `STLSOFT_FALLTHROUGH()`;
+ * Added unit-tests for allocator types;
+
+Changes:
+========
+
+Added unit-tests for allocator types:
+ * added **test.unit.comstl.memory.task_allocator**;
+ * added **test.unit.mfcstl.memory.afx_allocator**;
+ * added **test.unit.stlsoft.memory.malloc_allocator**;
+ * added **test.unit.stlsoft.memory.new_allocator**;
+ * added **test.unit.stlsoft.memory.null_allocator**;
+ * added **test.unit.winstl.memory.global_allocator**;
+ * added **test.unit.winstl.memory.netapi_allocator**;
+ * added **test.unit.winstl.memory.processheap_allocator**;
+ * added **test.unit.winstl.memory.shell_allocator**;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha20 (23rd October 2024)
 
  * Version change only;

@@ -4,7 +4,7 @@
  * Purpose: Path classification functions char-X implementation
  *
  * Created: 28th November 2020
- * Updated: 20th October 2024
+ * Updated: 23rd October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -616,7 +616,8 @@ winstl_C_path_classify_impl_X_(
                     return WinSTL_C_PathType_InvalidChars;
                 }
 
-                /* fall-through */
+                /* fall through */
+                STLSOFT_FALLTHROUGH();
             case '\\':
 
                 *((*p0 == '\\') ? &lastBSlash : &lastFSlash) = p0;

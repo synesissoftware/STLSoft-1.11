@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.comstl.memory.task_allocator.cpp
+ * File:    test.unit.comstl.memory.task_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `comstl::task_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 18th October 2024
+ * Updated: 25th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

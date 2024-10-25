@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.mfcstl.memory.afx_allocator.cpp
+ * File:    test.unit.mfcstl.memory.afx_allocator/entry.cpp
  *
  * Purpose: Unit-tests for `mfcstl::afx_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 18th October 2024
+ * Updated: 25th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
