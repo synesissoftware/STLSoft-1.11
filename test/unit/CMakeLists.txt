@@ -1,7 +1,11 @@
 
 if(WIN32)
+
 	add_subdirectory(comstl)
-	add_subdirectory(mfcstl)
+	if(HAS_MFC)
+
+		add_subdirectory(mfcstl)
+	endif(HAS_MFC)
 endif(WIN32)
 add_subdirectory(stlsoft)
 if(UNIX)
