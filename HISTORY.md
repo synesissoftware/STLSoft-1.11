@@ -4,6 +4,12 @@
 ----
 
 
+26th October 2024 - 1.11.1-alpha22 released
+-------------------------------------------
+
+ * Single fix to default definition of `STLSOFT_FALLTHROUGH()`;
+
+
 25th October 2024 - 1.11.1-alpha21 released
 -------------------------------------------
 

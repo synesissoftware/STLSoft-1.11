@@ -6,7 +6,7 @@
  *          types.
  *
  * Created: 15th January 2002
- * Updated: 25th October 2024
+ * Updated: 26th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    55
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     569
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     570
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -370,12 +370,13 @@
 # define _STLSOFT_VER_1_11_1_A19    0x010b0153  /*!< Version 1.11.1 alpha 19 (23rd October 2024) */
 # define _STLSOFT_VER_1_11_1_A20    0x010b0154  /*!< Version 1.11.1 alpha 20 (23rd October 2024) */
 # define _STLSOFT_VER_1_11_1_A21    0x010b0155  /*!< Version 1.11.1 alpha 21 (25th October 2024) */
+# define _STLSOFT_VER_1_11_1_A22    0x010b0156  /*!< Version 1.11.1 alpha 22 (26th October 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A21
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A22
 
 
 /* /////////////////////////////////////
@@ -1030,7 +1031,7 @@
 #  define STLSOFT_FALLTHROUGH()                             __attribute__ ((fallthrough))
 # else
 
-#  define STLSOFT_FALLTHROUGH()                             do {} while (XTESTS_WHILE_0_CLAUSE())
+#  define STLSOFT_FALLTHROUGH()                             do {} while (stlsoft_C_always_false_())
 # endif
 
 

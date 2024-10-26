@@ -18,6 +18,13 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha22 (26th October 2024)
+
+ * Single fix to default definition of `STLSOFT_FALLTHROUGH()`;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha21 (25th October 2024)
 
 General:
