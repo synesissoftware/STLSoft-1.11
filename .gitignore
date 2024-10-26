@@ -8,6 +8,9 @@
 /_internal/
 
 /bin/
+/ipch/
+/lib/
+
 /doc/
 /dox/
 /ideas/
@@ -16,18 +19,30 @@
 /scratch/
 /temp/
 
-Debug/
-DebugMt/
-Debug Multithreaded/
+Debug Multithreaded DLL/
 Debug Multithreaded Dll/
+Debug Multithreaded/
+Debug/
+DebugDLLUNIX/
+DebugDll/
+DebugMt/
 DebugNox/
 DebugUnix/
-Release/
-ReleaseMt/
-Release Multithreaded/
+Release Multithreaded DLL/
 Release Multithreaded Dll/
+Release Multithreaded/
+Release/
+ReleaseDLLUNIX/
+ReleaseDll/
+ReleaseMt/
 ReleaseNox/
 ReleaseUnix/
+Unicode Debug Multithreaded DLL/
+Unicode Debug Multithreaded/
+Unicode Debug/
+Unicode Release Multithreaded DLL/
+Unicode Release Multithreaded/
+Unicode Release/
 
 Win32/
 x64/
@@ -43,8 +58,11 @@ x64/
 .update_deps
 
 list_changes.cmd
+logging-bailout.txt
 prepare.cmd
 sh.exe.stackdump
+tidydir.cmd
+update_deps.cmd
 
 build/makefile.tmpl
 build/makefile.tools.xml
@@ -55,17 +73,28 @@ include/stlsoft/dos2unix.has.been.performed
 # files (by pattern)
 
 *~
+*.???_obj
 *.a
 *.app
+*.aps
 *.b64
 *.bak
+*.chm
+*.d
 *.dll
+*.dsp
 *.dylib
 *.exe
 *.gch
 *.idb
 *.ilk
+*.iobj
+*.ipch
+*.ipdb
+*.la
+*.lai
 *.lib
+*.lo
 *.log
 *.ncb
 *.o
@@ -76,10 +105,12 @@ include/stlsoft/dos2unix.has.been.performed
 *.out
 *.pch
 *.pdb
+*.rar
 *.res
 *.sbr
 *.scc
 *.sdf
+*.slo
 *.so
 *.suo
 *.swp
@@ -88,5 +119,6 @@ include/stlsoft/dos2unix.has.been.performed
 *.unsuccessfulbuild
 *.vcproj*.user
 *.vcxproj*.user
+*.xcuserstate
 *.zip
 
