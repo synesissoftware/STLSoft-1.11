@@ -6,7 +6,7 @@
  *          types.
  *
  * Created: 15th January 2002
- * Updated: 26th October 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    55
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     570
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 4
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     572
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -371,12 +371,14 @@
 # define _STLSOFT_VER_1_11_1_A20    0x010b0154  /*!< Version 1.11.1 alpha 20 (23rd October 2024) */
 # define _STLSOFT_VER_1_11_1_A21    0x010b0155  /*!< Version 1.11.1 alpha 21 (25th October 2024) */
 # define _STLSOFT_VER_1_11_1_A22    0x010b0156  /*!< Version 1.11.1 alpha 22 (26th October 2024) */
+# define _STLSOFT_VER_1_11_1_A23    0x010b0157  /*!< Version 1.11.1 alpha 23 (26th October 2024) */
+# define _STLSOFT_VER_1_11_1_A24    0x010b0158  /*!< Version 1.11.1 alpha 23 (28th October 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A22
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A23
 
 
 /* /////////////////////////////////////
@@ -1025,6 +1027,7 @@
    /* C23 (or later) */
 #  define STLSOFT_FALLTHROUGH()                             [[fallthrough]]
 # elif 0 || \
+       defined(STLSOFT_COMPILER_IS_CLANG) ||\
        defined(STLSOFT_COMPILER_IS_GCC) ||\
        0
 
@@ -1647,15 +1650,23 @@
  * Defines a runtime assertion, with message
  *
  * \param expr Must be non-zero, or an assertion will be fired
- * \param msg The literal character string message to be included in the assertion
+ * \param msg The literal character string message to be included in the
+ *   assertion
+ *
+ * \note Take care to specify the message first, expression second. This
+ *   macro would assuredley have been better implemented to take the
+ *   expression first, but, being a macro, there is no mechanism to change
+ *   this definition over time without breaking existing code.
  */
 #if defined(STLSOFT_CF_ASSERT_SUPPORT)
 
-# if defined(STLSOFT_COMPILER_IS_WATCOM)
+# if 0
+# elif defined(STLSOFT_COMPILER_IS_WATCOM)
 
 #  define STLSOFT_MESSAGE_ASSERT(msg, expr)                 STLSOFT_ASSERT(expr)
 # elif 0 || \
        defined(STLSOFT_COMPILER_IS_COMO) || \
+       defined(STLSOFT_COMPILER_IS_CLANG) || \
        defined(STLSOFT_COMPILER_IS_GCC) || \
        defined(STLSOFT_COMPILER_IS_MWERKS) || \
        0
@@ -1663,7 +1674,7 @@
 #  define STLSOFT_MESSAGE_ASSERT(msg, expr)                 STLSOFT_ASSERT((msg && (expr)))
 # else /* ? compiler */
 
-#  define STLSOFT_MESSAGE_ASSERT(msg, expr)                 STLSOFT_ASSERT((msg, expr))
+#  define STLSOFT_MESSAGE_ASSERT(msg, expr)                 STLSOFT_ASSERT(expr)
 # endif /* compiler */
 #else /* ? STLSOFT_CF_ASSERT_SUPPORT */
 

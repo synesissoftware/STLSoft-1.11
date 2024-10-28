@@ -1,5 +1,17 @@
 #! /bin/bash
 
+# ######################################################################## #
+# File:     dev/bin/batch_compile_check
+#
+# Purpose:  Finds and compiles (individually) headers in the libraries.
+#
+# Created:  14th February 2024
+# Updated:  27th October 2024
+#
+# Home:     http://stlsoft.org/
+#
+# ######################################################################## #
+
 
 ScriptPath=$0
 ProjectDir=$(cd $(dirname "$ScriptPath"); pwd)
@@ -48,8 +60,10 @@ Defines=()
 DryRun="false"
 Language=
 LanguageVersions=()
+ShowCounts="false"
 Subprojects=()
 VerboseMode=0
+
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -58,6 +72,10 @@ while [[ $# -gt 0 ]]; do
             shift
             COMPILER_COMMAND_C=$1
 
+            ;;
+        -n|--counts)
+
+            ShowCounts="true"
             ;;
         -d|--debug-configuration)
 
@@ -131,6 +149,10 @@ Flags/options:
     --c-compiler
         specifies the name of the C-compiler, which otherwise defaults
         to cc
+
+    -n
+    --counts
+        show counts of events, including number of files compiled
 
     -d
     --debug-configuration
@@ -255,9 +277,6 @@ Subprojects=($(echo "${Subprojects[@]}" | tr ' ' '\n' | awk '! a[$0]++' | tr '\n
 [ $VerboseMode -eq 0 ] || echo "subprojects{${#Subprojects[@]}}: (${Subprojects[*]})"
 
 
-# exit 0
-
-
 # ##########################################################
 # main()
 
@@ -266,6 +285,10 @@ trap "exit" INT
 
 IncludeDirLen=${#IncludeDir}+1
 
+NumFilesCompiled=0
+NumFilesFailed=0
+NumFilesSkipped=0
+NumFilesTotal=0
 
 for p in ${Subprojects[*]}
 do
@@ -275,6 +298,8 @@ do
     for f in $(find "$IncludeDir/$p" -type f -name $FilePattern)
     do
         srp=${f:$IncludeDirLen}
+
+        ((NumFilesTotal++))
 
         # at this point we need to check the language of the file, since we
         # may wish to compile the .h files as both C and C++
@@ -335,6 +360,8 @@ do
 
             [ $VerboseMode -eq 0 ] || echo "        $srp - skipped ($SkipCause)"
 
+            ((NumFilesSkipped++))
+
             continue
         fi
 
@@ -351,6 +378,8 @@ do
         if [ "$ShouldSkip" = "true" ]; then
 
             [ $VerboseMode -eq 0 ] || echo "        $srp - skipped ($SkipCause)"
+
+            ((NumFilesSkipped++))
 
             continue
         fi
@@ -373,6 +402,8 @@ do
 
                     [ $VerboseMode -eq 0 ] || echo "            ($l) - skipped ($SkipCause)"
 
+                    ((NumFilesSkipped++))
+
                     continue
                 fi
 
@@ -380,7 +411,11 @@ do
 
                 if [ "$DryRun" != "true" ]; then
 
+                    ((NumFilesCompiled++))
+
                     echo "#include <$f>" | $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
+
+                    [ $? -eq 0 ] || ((NumFilesFailed++))
                 fi
             done
         fi
@@ -391,11 +426,20 @@ do
 
             if [ "$DryRun" != "true" ]; then
 
+                ((NumFilesCompiled++))
+
                 echo "#include <$f>" | $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
+
+                [ $? -eq 0 ] || ((NumFilesFailed++))
             fi
         fi
     done
 done
+
+if [ "$ShowCounts" = "true" ]; then
+
+    echo "$NumFilesTotal file(s) found, of which $NumFilesSkipped skipped and the remaining $NumFilesCompiled compiled, of which $NumFilesFailed failed"
+fi
 
 
 # ############################## end of file ############################# #

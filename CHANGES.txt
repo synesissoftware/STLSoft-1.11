@@ -18,6 +18,18 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha23 (28th October 2024)
+
+ * `platformstl::basic_file_lines<>` now supports move semantics;
+ * Fix to definition of `STLSOFT_MESSAGE_ASSERT()` (for Clang);
+ * **dev/bin/batch_compile_check** now supports '--counts' flag;
+ * Minor improvements of ./CMakeLists.txt;
+
+
+
+============================================================================
+
+
 Changes for 1.11.1-alpha22 (26th October 2024)
 
  * Single fix to default definition of `STLSOFT_FALLTHROUGH()`;

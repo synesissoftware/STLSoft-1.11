@@ -4,6 +4,15 @@
 ----
 
 
+28th October 2024 - 1.11.1-alpha23 released
+-------------------------------------------
+
+ * `platformstl::basic_file_lines<>` now supports move semantics;
+ * Fix to definition of `STLSOFT_MESSAGE_ASSERT()` (for Clang);
+ * Minor improvements of ./CMakeLists.txt;
+ * **dev/bin/batch_compile_check** now supports '--counts' flag;
+
+
 26th October 2024 - 1.11.1-alpha22 released
 -------------------------------------------
 
