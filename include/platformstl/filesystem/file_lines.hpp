@@ -47,9 +47,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 16
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     50
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    1
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 1
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -193,6 +193,12 @@ public:
                                                             HRW_Ref_type;
 
 public: // construction
+    /// Creates an empty instance
+    basic_file_lines()
+        : m_mmf()
+        , m_contents()
+        , m_strings()
+    {}
     /// Creates an instance from the (contents of) the given path
     template <ss_typename_param_k S>
     ss_explicit_k
@@ -206,7 +212,15 @@ public: // construction
     /// Release all resources
     ~basic_file_lines() STLSOFT_NOEXCEPT
     {}
+#ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
+    /// Move the
+    basic_file_lines(class_type&& rhs) STLSOFT_NOEXCEPT
+        : m_mmf(std::move(rhs.m_mmf))
+        , m_contents(std::move(rhs.m_contents))
+        , m_strings(std::move(rhs.m_strings))
+    {}
+#endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 private:
     basic_file_lines(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
