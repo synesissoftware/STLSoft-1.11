@@ -4,7 +4,7 @@
  * Purpose: Platform header for the file_lines components.
  *
  * Created: 25th October 2007
- * Updated: 10th October 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 15
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     49
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 16
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -158,34 +158,42 @@ template<
 >
 class basic_file_lines
 {
-public: // Member Types
-    typedef basic_file_lines<C, V, B, R>                                class_type;
-    typedef C                                                           char_type;
+public: // types
+    typedef basic_file_lines<C, V, B, R>                    class_type;
+    typedef C                                               char_type;
 private:
-    typedef V                                                           value_string_type_;
-    typedef B                                                           base_string_type_;
-    typedef R                                                           refcount_policy_type_;
-    typedef std::vector<V>                                              strings_type_;
+    typedef V                                               value_string_type_;
+    typedef B                                               base_string_type_;
+    typedef R                                               refcount_policy_type_;
+    typedef std::vector<V>                                  strings_type_;
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
-    typedef UNIXSTL_NS_QUAL(memory_mapped_file_view_handle)<R>          HRW_HandleAdaptor_type_;
-    typedef UNIXSTL_NS_QUAL(readonly_memory_mapped_file_base)<R>        mmf_type_;
+    typedef UNIXSTL_NS_QUAL(memory_mapped_file_view_handle)<R>
+                                                            HRW_HandleAdaptor_type_;
+    typedef UNIXSTL_NS_QUAL(readonly_memory_mapped_file_base)<R>
+                                                            mmf_type_;
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-    typedef WINSTL_NS_QUAL(memory_mapped_file_view_handle)<R>           HRW_HandleAdaptor_type_;
-    typedef WINSTL_NS_QUAL(readonly_memory_mapped_file_base)<R>         mmf_type_;
+    typedef WINSTL_NS_QUAL(memory_mapped_file_view_handle)<R>
+                                                            HRW_HandleAdaptor_type_;
+    typedef WINSTL_NS_QUAL(readonly_memory_mapped_file_base)<R>
+                                                            mmf_type_;
 #else
 # error Platform is not discriminated
 #endif
 public:
-    typedef ss_typename_type_k strings_type_::value_type                value_type;
-    typedef ss_typename_type_k strings_type_::size_type                 size_type;
-    typedef ss_typename_type_k strings_type_::const_iterator            const_iterator;
-    typedef ss_typename_type_k strings_type_::const_reference           const_reference;
-    typedef ss_bool_t                                                   bool_type;
+    typedef ss_typename_type_k strings_type_::value_type    value_type;
+    typedef ss_typename_type_k strings_type_::size_type     size_type;
+    typedef ss_typename_type_k strings_type_::const_iterator
+                                                            const_iterator;
+    typedef ss_typename_type_k strings_type_::const_reference
+                                                            const_reference;
+    typedef ss_bool_t                                       bool_type;
 
-    typedef ss_typename_type_k HRW_HandleAdaptor_type_::HRW_Ref_type    HRW_Ref_type;
+    typedef ss_typename_type_k HRW_HandleAdaptor_type_::HRW_Ref_type
+                                                            HRW_Ref_type;
 
-public: // Construction
+public: // construction
+    /// Creates an instance from the (contents of) the given path
     template <ss_typename_param_k S>
     ss_explicit_k
     basic_file_lines(S const& path)
@@ -195,7 +203,7 @@ public: // Construction
     {
         create_(path);
     }
-
+    /// Release all resources
     ~basic_file_lines() STLSOFT_NOEXCEPT
     {}
 
@@ -213,7 +221,7 @@ private:
     >
     basic_file_lines(basic_file_lines<C2, V2, B2, R2> const&);
 
-public: // Accessors
+public: // accessors
     /// Returns the number of lines in the file
     size_type size() const
     {
@@ -259,7 +267,7 @@ public: // Accessors
         return m_strings.end();
     }
 
-public: // Comparison
+public: // comparison
 #if !defined(STLSOFT_COMPILER_IS_DMC)
     template<
         ss_typename_param_k V2
@@ -279,7 +287,7 @@ public: // Comparison
         return STLSOFT_NS_QUAL_STD(equal)(begin(), end(), rhs.begin());
     }
 
-private: // Implementation
+private: // implementation
     template <ss_typename_param_k S>
     void create_(S const& path)
     {
@@ -491,7 +499,7 @@ private: // Implementation
         }
     }
 
-private: // Fields
+private: // fields
     HRW_Ref_type        m_mmf;
     base_string_type_   m_contents;
     strings_type_       m_strings;
@@ -506,29 +514,31 @@ private: // Fields
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_file_lines<ss_char_a_t>       file_lines_a;
+typedef basic_file_lines<ss_char_a_t>                       file_lines_a;
 
 /** Specialisation of the basic_file_lines template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_file_lines<ss_char_w_t>       file_lines_w;
+typedef basic_file_lines<ss_char_w_t>                       file_lines_w;
 
 #ifdef TCHAR
+
 /** Specialisation of the basic_file_lines template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_file_lines<TCHAR>             file_lines;
+typedef basic_file_lines<TCHAR>                             file_lines;
 #else /* ? TCHAR */
-typedef file_lines_a                        file_lines;
+
+typedef file_lines_a                                        file_lines;
 #endif /* TCHAR */
 
 /** Alias for platformstl::file_lines_w;
  *
  * \ingroup group__library__FileSystem
  */
-typedef file_lines_w                        wfile_lines;
+typedef file_lines_w                                        wfile_lines;
 
 
 /* /////////////////////////////////////////////////////////////////////////
