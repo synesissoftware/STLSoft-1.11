@@ -4,23 +4,39 @@
  * Purpose: Perf-test for `stlsoft::frequency_map<>`.
  *
  * Created: 5th October 2024
- * Updated: 15th October 2024
+ * Updated: 4th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * compatibility
- */
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * feature control
  */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////
+ * test component header file include(s)
+ */
+
 #include <stlsoft/containers/frequency_map.hpp>
 
-#include <platformstl/diagnostics/stopwatch.hpp>
+/* /////////////////////////////////////
+ * general includes
+ */
+
+/* STLSoft header files */
+
+#if __cplusplus >= 201103L
+# include <stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp>
+#else
+# include <platformstl/diagnostics/stopwatch.hpp>
+#endif /* C++11+ */
+
+/* Standard header files */
 
 #if __cplusplus >= 201103L
 # include <list>
@@ -28,6 +44,8 @@
 #include <iomanip>
 #include <iostream>
 #include <numeric>
+#include <string>
+#include <vector>
 
 #include <stdlib.h>
 
@@ -41,10 +59,25 @@
  * types
  */
 
-typedef platformstl::stopwatch::interval_type               interval_t;
+#if __cplusplus >= 201103L
+
+typedef stlsoft::std_chrono_hrc_stopwatch                   stopwatch_t;
+#else
+
+typedef platformstl::stopwatch                              stopwatch_t;
+#endif /* C++11+ */
+
+typedef stopwatch_t::interval_type                          interval_t;
+
+typedef std::vector<interval_t>                             intervals_t;
+typedef std::vector<std::string>                            names_t;
+
 using stlsoft::ss_size_t;
 
-typedef stlsoft::frequency_map<int>                         fm_ordered_int_t;
+typedef stlsoft::frequency_map<
+    int
+,   stlsoft::frequency_map_traits_ordered<int>
+>                                                           fm_ordered_int_t;
 #if __cplusplus >= 201103L
 
 typedef stlsoft::frequency_map<
@@ -88,9 +121,9 @@ test_(
     )>                          timed_fn
 )
 {
-    platformstl::stopwatch  sw;
-    interval_t              interval        =   0;
-    ss_size_t               anchoring_value =   0;
+    stopwatch_t sw;
+    interval_t  interval        =   0;
+    ss_size_t   anchoring_value =   0;
 
     for (int W = 2; W != 0; --W)
     {
@@ -146,12 +179,16 @@ display_results(
 template<
     ss_typename_param_k T_fm
 >
-void
+std::pair<
+    intervals_t // intervals
+,   names_t     // names
+>
 run_tests(
     char const*         ordering_label
 )
 {
-    platformstl::stopwatch sw;
+    intervals_t intervals;
+    names_t     names;
 
     // ctor default
     {
@@ -171,6 +208,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // ctor initializer_list<int>
@@ -191,6 +231,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // ctor initializer_list<std::pair<int, uintptr_t>>
@@ -211,6 +254,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // ctor iterator range
@@ -239,6 +285,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
 #if __cplusplus >= 201103L
@@ -263,6 +312,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 #endif
 
@@ -292,6 +344,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // push (restricted)
@@ -314,6 +369,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // push (unrestricted)
@@ -336,6 +394,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // push_n (restricted)
@@ -359,6 +420,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // push_n (unrestricted)
@@ -382,6 +446,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // contains
@@ -410,6 +477,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // total
@@ -434,6 +504,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // operator []
@@ -462,6 +535,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // merge (empty)
@@ -484,6 +560,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // merge (small)
@@ -513,6 +592,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // merge (medium)
@@ -542,6 +624,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // accumulate (small)
@@ -575,6 +660,9 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
 
     // accumulate (medium)
@@ -608,7 +696,12 @@ run_tests(
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
     }
+
+    return std::make_pair(intervals, names);
 }
 
 
@@ -618,11 +711,55 @@ run_tests(
 
 int main(int /* argc */, char* /* argv */[])
 {
+    // pipe to expand: `test.performance.stlsoft.frequency_map | expand -t 8,64,80,96,112,128`
+
     std::cout << std::endl;
-    run_tests<fm_ordered_int_t>("O");
+    intervals_t const intervals_o = run_tests<fm_ordered_int_t>("O").first;
 #if __cplusplus >= 201103L
     std::cout << std::endl;
-    run_tests<fm_unordered_int_t>("U");
+    std::pair<intervals_t, names_t> const intervals_and_names_u = run_tests<fm_unordered_int_t>("U");
+
+    if (intervals_and_names_u.first.size() != intervals_o.size())
+    {
+        std::cerr << "VIOLATION: wrong sizes" << std::endl;
+
+        return EXIT_FAILURE;
+    }
+    else
+    {
+        std::cout << std::endl;
+
+        std::cout
+            << '\t'
+            << "test"
+            << '\t'
+            << "O (ns)"
+            << '\t'
+            << "U (ns)"
+            << '\t'
+            << "U / O (%%)"
+            << std::endl;
+
+        for (std::size_t i = 0; i != intervals_o.size(); ++i)
+        {
+            std::cout
+                << '\t'
+                << intervals_and_names_u.second[i]
+                << '\t'
+                << std::setw(12) << std::right
+                << intervals_o[i]
+                << '\t'
+                << std::setw(12) << std::right
+                << intervals_and_names_u.first[i]
+                << '\t'
+                << std::setw(8) << std::setfill(' ') << std::right << std::fixed << std::setprecision(3)
+                << (static_cast<double>(intervals_and_names_u.first[i]) / static_cast<double>(intervals_o[i]) * 100.0)
+                << std::endl;
+        }
+    }
+#else
+
+    STLSOFT_SUPPRESS_UNUSED(intervals_o);
 #endif
 
     return EXIT_SUCCESS;

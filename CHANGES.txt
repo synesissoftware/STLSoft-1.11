@@ -18,6 +18,15 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha24 (4th November 2024)
+
+ * `frequency_map` : ~ now default-specialised on `frequency_map_traits_unordered` when compiling with C++11+;
+ * **test.performance.stlsoft.frequency_map** : ~ improved reporting of results ; ~ now uses `stlsoft::std_chrono_hrc_stopwatch`;
+
+
+============================================================================
+
+
 Changes for 1.11.1-alpha23 (28th October 2024)
 
  * `platformstl::basic_file_lines<>` now supports move semantics;

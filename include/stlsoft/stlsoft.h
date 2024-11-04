@@ -1,12 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    stlsoft/stlsoft.h
  *
- * Purpose: Root header for the STLSoft libraries. Performs various
- *          compiler and platform discriminations, and definitions of
- *          types.
+ * Purpose: Root header for the STLSoft libraries. Performs various compiler
+ *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 28th October 2024
+ * Updated: 4th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    55
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 4
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     572
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     573
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -372,13 +371,13 @@
 # define _STLSOFT_VER_1_11_1_A21    0x010b0155  /*!< Version 1.11.1 alpha 21 (25th October 2024) */
 # define _STLSOFT_VER_1_11_1_A22    0x010b0156  /*!< Version 1.11.1 alpha 22 (26th October 2024) */
 # define _STLSOFT_VER_1_11_1_A23    0x010b0157  /*!< Version 1.11.1 alpha 23 (26th October 2024) */
-# define _STLSOFT_VER_1_11_1_A24    0x010b0158  /*!< Version 1.11.1 alpha 23 (28th October 2024) */
+# define _STLSOFT_VER_1_11_1_A24    0x010b0158  /*!< Version 1.11.1 alpha 24 (4th November 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A23
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A24
 
 
 /* /////////////////////////////////////

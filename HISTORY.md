@@ -4,6 +4,13 @@
 ----
 
 
+4th November 2024 - 1.11.1-alpha24 released
+-------------------------------------------
+
+ * `frequency_map` : ~ now default-specialised on `frequency_map_traits_unordered` when compiling with C++11+;
+ * **test.performance.stlsoft.frequency_map** : ~ improved reporting of results ; ~ now uses `stlsoft::std_chrono_hrc_stopwatch`;
+
+
 28th October 2024 - 1.11.1-alpha23 released
 -------------------------------------------
 
