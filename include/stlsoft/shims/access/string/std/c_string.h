@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/access/string/std/c_string.h
+ * File:    stlsoft/shims/access/string/std/c_string.h
  *
- * Purpose:     Contains the c_str_ptr, c_str_ptr_null, c_str_len, and
- *              c_str_size accessors.
+ * Purpose: Contains the c_str_ptr, c_str_ptr_null, c_str_len, and
+ *          c_str_size accessors.
  *
- * Created:     16th January 2002
- * Updated:     11th March 2024
+ * Created: 16th January 2002
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_MAJOR       4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_MINOR       0
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_REVISION    13
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_EDIT        108
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_REVISION    14
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_EDIT        109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -78,6 +78,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Pre-processor control

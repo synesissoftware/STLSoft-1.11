@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/access/string/std/exception.hpp
+ * File:    stlsoft/shims/access/string/std/exception.hpp
  *
- * Purpose:     Contains the string access shims for std::exception.
+ * Purpose: Contains the string access shims for std::exception.
  *
- * Created:     2nd May 2003
- * Updated:     11th March 2024
+ * Created: 2nd May 2003
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MINOR       2
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    14
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        58
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    15
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -88,10 +88,6 @@
 # include <stlsoft/internal/safestr.h>
 #endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_EXCEPTION
 # define STLSOFT_INCL_EXCEPTION
 #  include <exception>              // for std::exception
@@ -101,6 +97,10 @@
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////

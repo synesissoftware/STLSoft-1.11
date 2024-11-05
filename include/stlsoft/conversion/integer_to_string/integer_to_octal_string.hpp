@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/integer_to_string/integer_to_octal_string.hpp (originally stlsoft_integer_to_string.h)
+ * File:    stlsoft/conversion/integer_to_string/integer_to_octal_string.hpp (originally stlsoft_integer_to_string.h)
  *
- * Purpose:     Very efficient integer to string conversion functions for
- *              octal representation.
+ * Purpose: Very efficient integer to string conversion functions for
+ *          octal representation.
  *
- * Created:     7th April 2002
- * Updated:     11th March 2024
+ * Created: 7th April 2002
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_OCTAL_STRING_MAJOR     5
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_OCTAL_STRING_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_OCTAL_STRING_REVISION  22
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_OCTAL_STRING_EDIT      100
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_OCTAL_STRING_REVISION  23
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_OCTAL_STRING_EDIT      101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -97,13 +97,13 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_map class.
  *
  * Created: 14th November 2005
- * Updated: 28th September 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       5
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        76
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    3
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -104,10 +104,6 @@
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_MAP
 # define STLSOFT_INCL_MAP
 # include <map>
@@ -116,6 +112,10 @@
 # define STLSOFT_INCL_UTILITY
 # include <utility>
 #endif /* !STLSOFT_INCL_UTILITY */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////

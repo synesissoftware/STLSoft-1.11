@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 23rd October 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      282
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      283
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,10 +110,6 @@
 # include <stlsoft/util/streams/string_insertion.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
 #if defined(__BORLANDC__) && \
     __BORLANDC__ > 0x0580 && \
     defined(STLSOFT_DEBUG)
@@ -123,6 +119,10 @@
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                       // for std::out_of_range
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
+# include <stlsoft/api/internal/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////

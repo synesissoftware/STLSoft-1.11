@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/system/directory_functions.h
+ * File:    unixstl/system/directory_functions.h
  *
- * Purpose:     Directory functions.
+ * Purpose: Directory functions.
  *
- * Created:     1st October 2016
- * Updated:     9th July 2024
+ * Created: 1st October 2016
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    9
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        21
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    10
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -76,14 +76,14 @@
 # include <stlsoft/string/copy_functions.h>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_H_COPY_FUNCTIONS */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////
