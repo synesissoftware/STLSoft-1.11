@@ -4,7 +4,7 @@
  * Purpose: Runtime checking for numeric conversions.
  *
  * Created: 10th August 2006
- * Updated: 10th October 2024
+ * Updated: 6th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MINOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   13
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       71
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -225,6 +225,7 @@ truncation_test_helper_runtime_test_different_sign_FROM_is_signed_FROM_largertha
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();
@@ -266,6 +267,7 @@ truncation_test_helper_runtime_test_different_sign_FROM_is_signed_FROM_largertha
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();
@@ -307,6 +309,7 @@ truncation_test_helper_runtime_test_different_sign_FROM_is_signed_FROM_smallerth
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();
@@ -339,6 +342,7 @@ truncation_test_helper_runtime_test_different_sign_FROM_is_signed_FROM_smallerth
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();
@@ -379,6 +383,7 @@ truncation_test_helper_runtime_test_different_sign_FROM_is_signed(
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();
@@ -433,6 +438,7 @@ truncation_test_helper_runtime_test_different_sign_FROM_is_signed(
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();
@@ -485,6 +491,7 @@ truncation_test_helper_runtime_test_same_sign(
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();
@@ -533,6 +540,7 @@ truncation_test_helper_runtime_test_same_sign(
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();
@@ -573,6 +581,7 @@ truncation_test_helper_runtime_test(
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();
@@ -628,6 +637,7 @@ truncation_test_(
 )
 {
 #ifdef STLSOFT_DEBUG
+
     stlsoft_INTERNAL_truncation_test_CrtDbg_scoper  scoper;
 
     char const* const   TO_     =   typeid(T_to).name();

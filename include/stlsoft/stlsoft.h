@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 4th November 2024
+ * Updated: 6th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    55
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     573
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     574
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -975,7 +975,18 @@
 
 /* STLSOFT_DEBUG */
 
-/*
+/** \def STLSOFT_DEBUG
+ *
+ * User-definable object-like macro that is used in various components to
+ * add further runtime checking and/or rudimentary logging.
+ *
+ * Also defined automatically in absence of <code>NDEBUG</code> and in
+ * presence of <code>_DEBUG</code>.
+ */
+
+/** \def STLSOFT_NO_DEBUG
+ *
+ * Suppressed STLSOFT_DEBUG in all circumstances
  */
 
 #ifndef STLSOFT_DEBUG
@@ -991,7 +1002,7 @@
 #endif
 
 
-/* \def STLSOFT_FALLTHROUGH
+/** \def STLSOFT_FALLTHROUGH
  *
  * Options:
  *
