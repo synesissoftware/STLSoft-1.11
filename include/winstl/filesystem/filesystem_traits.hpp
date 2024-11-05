@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 15th October 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       21
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        189
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    10
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        190
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,6 +119,10 @@
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
+# include <stlsoft/api/internal/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
@@ -135,10 +139,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>

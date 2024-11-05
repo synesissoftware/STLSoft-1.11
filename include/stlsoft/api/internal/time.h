@@ -67,10 +67,6 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_time
-# include <stlsoft/api/external/time.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_time */
-
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
@@ -79,6 +75,10 @@
 # define STLSOFT_INCL_H_TIME
 # include <time.h>
 #endif /* !STLSOFT_INCL_H_TIME */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_time
+# include <stlsoft/api/external/time.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_time */
 
 
 /* /////////////////////////////////////////////////////////////////////////

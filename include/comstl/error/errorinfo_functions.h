@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/error/errorinfo_functions.h
+ * File:    comstl/error/errorinfo_functions.h
  *
- * Purpose:     Error info functions.
+ * Purpose: Error info functions.
  *
- * Created:     5th February 2004
- * Updated:     11th March 2024
+ * Created: 5th February 2004
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MINOR    2
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 11
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     60
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 12
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -68,10 +68,6 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 #ifndef STLSOFT_INCL_H_OLEAUTO
 # define STLSOFT_INCL_H_OLEAUTO
@@ -88,6 +84,10 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/conversion/char_conversions.hpp (originally MLStrCnv.h, ::SynesisStd)
+ * File:    winstl/conversion/char_conversions.hpp (originally MLStrCnv.h, ::SynesisStd)
  *
- * Purpose:     Type conversions for Windows.
+ * Purpose: Type conversions for Windows.
  *
- * Created:     31st May 2003
- * Updated:     11th March 2024
+ * Created: 31st May 2003
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 13
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     117
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 14
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,16 +98,16 @@
 # include <errno.h>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
+# include <stlsoft/api/internal/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 10th October 2024
+ * Updated: 5th November 2024
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      184
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      185
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,14 +95,6 @@
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
 #ifndef STLSOFT_INCL_SYS_H_TYPES
 # define STLSOFT_INCL_SYS_H_TYPES
 # include <sys/types.h>
@@ -132,6 +124,14 @@
 # define STLSOFT_INCL_STDEXCEPT
 # include <stdexcept>                        // for std::runtime_error
 #endif /* !STLSOFT_INCL_STDEXCEPT */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
+# include <stlsoft/api/internal/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////

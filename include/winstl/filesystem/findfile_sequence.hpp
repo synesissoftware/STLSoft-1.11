@@ -18,7 +18,7 @@
  *          ownership issues described in the article.
  *
  * Created: 15th January 2002
- * Updated: 15th October 2024
+ * Updated: 5th November 2024
  *
  * Thanks:  To Nevin Liber for pressing upon me the need to lead by example
  *          when writing books about good design/implementation; to Florin L
@@ -72,8 +72,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        273
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    16
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        274
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,16 +144,16 @@
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
+# include <stlsoft/api/internal/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_FileManagement
 # include <winstl/api/external/FileManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_FileManagement */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>

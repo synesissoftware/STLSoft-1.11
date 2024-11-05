@@ -4,7 +4,7 @@
  * Purpose: Windows console functions.
  *
  * Created: 3rd December 2005
- * Updated: 16th October 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  5
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      50
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  6
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -68,6 +68,20 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
+#if 0 ||\
+    defined(__MINGW32__) ||\
+    defined(_MSC_VER) ||\
+    0
+# ifndef STLSOFT_INCL_H_IO
+#  define STLSOFT_INCL_H_IO
+#  include <io.h>
+# endif /* !STLSOFT_INCL_H_IO */
+#endif
+#ifndef STLSOFT_INCL_H_STDIO
+# define STLSOFT_INCL_H_STDIO
+# include <stdio.h>
+#endif /* !STLSOFT_INCL_H_STDIO */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Console
 # include <winstl/api/external/Console.h>
@@ -88,20 +102,6 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
-
-#if 0 ||\
-    defined(__MINGW32__) ||\
-    defined(_MSC_VER) ||\
-    0
-# ifndef STLSOFT_INCL_H_IO
-#  define STLSOFT_INCL_H_IO
-#  include <io.h>
-# endif /* !STLSOFT_INCL_H_IO */
-#endif
-#ifndef STLSOFT_INCL_H_STDIO
-# define STLSOFT_INCL_H_STDIO
-# include <stdio.h>
-#endif /* !STLSOFT_INCL_H_STDIO */
 
 
 /* /////////////////////////////////////////////////////////////////////////

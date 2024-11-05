@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/trim_functions.hpp
+ * File:    stlsoft/string/trim_functions.hpp
  *
- * Purpose:     String utility functions for trimming and removing string contents.
+ * Purpose: String utility functions for trimming and removing string contents.
  *
- * Created:     25th April 2005
- * Updated:     11th March 2024
+ * Created: 25th April 2005
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MINOR       2
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    3
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        60
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    4
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -82,10 +82,6 @@
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_ALGORITHM
 # define STLSOFT_INCL_ALGORITHM
 # include <algorithm>
@@ -94,6 +90,10 @@
 # define STLSOFT_INCL_FUNCTIONAL
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////

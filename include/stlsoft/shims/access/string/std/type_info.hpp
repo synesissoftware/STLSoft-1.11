@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/access/string/std/type_info.hpp
+ * File:    stlsoft/shims/access/string/std/type_info.hpp
  *
- * Purpose:     Contains the string access shims for std::type_info.
+ * Purpose: Contains the string access shims for std::type_info.
  *
- * Created:     19th December 2011
- * Updated:     11th March 2024
+ * Created: 19th December 2011
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_MINOR       3
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_REVISION    3
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_EDIT        55
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_REVISION    4
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,10 +95,6 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_TYPE_INFO
 # define STLSOFT_INCL_TYPE_INFO
 #  include <typeinfo>               // for std::type_info
@@ -108,6 +104,10 @@
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////
