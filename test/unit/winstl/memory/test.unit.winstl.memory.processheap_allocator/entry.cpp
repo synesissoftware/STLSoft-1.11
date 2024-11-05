@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::processheap_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 25th October 2024
+ * Updated: 5th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,10 +31,6 @@
 #include <stlsoft/stlsoft.h>
 
 /* Standard C++ header files */
-// #include <algorithm>
-// #include <list>
-// #include <numeric>
-// #include <vector>
 
 /* Standard C header files */
 #include <assert.h>
@@ -70,7 +66,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.memory.auto_buffer", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.winstl.memory.processheap_allocator", verbosity))
     {
         XTESTS_RUN_CASE(test_alloc_0);
         XTESTS_RUN_CASE(test_alloc_small);

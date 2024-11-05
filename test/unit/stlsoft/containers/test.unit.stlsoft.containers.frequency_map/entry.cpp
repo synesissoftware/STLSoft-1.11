@@ -19,6 +19,7 @@
 
 #include <stlsoft/containers/frequency_map.hpp>
 
+
 /* ///////////////////////////////////////////////
  * general includes
  */
@@ -28,7 +29,6 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <platformstl/performance/performance_counter.hpp>
 
 /* Standard C++ header files */
 #if __cplusplus >= 201103L
