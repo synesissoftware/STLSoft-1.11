@@ -54,9 +54,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    55
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 5
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     574
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    56
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     575
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -372,12 +372,13 @@
 # define _STLSOFT_VER_1_11_1_A22    0x010b0156  /*!< Version 1.11.1 alpha 22 (26th October 2024) */
 # define _STLSOFT_VER_1_11_1_A23    0x010b0157  /*!< Version 1.11.1 alpha 23 (26th October 2024) */
 # define _STLSOFT_VER_1_11_1_A24    0x010b0158  /*!< Version 1.11.1 alpha 24 (4th November 2024) */
+# define _STLSOFT_VER_1_11_1_A25    0x010b0159  /*!< Version 1.11.1 alpha 25 (6th November 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A24
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A25
 
 
 /* /////////////////////////////////////
@@ -2933,6 +2934,30 @@ public: // attributes
 #else
 
 # define STLSOFT_NOEXCEPT_STDOVR                            STLSOFT_NOEXCEPT
+#endif
+
+
+/** \def STLSOFT_IS_CONSTANT_EVALUATED()
+ *
+ * Function-like macro that, if defined, can be invoked in the manner of
+ * `std::is_constant_evaluated()`. If not defined, the feature is not
+ * available.
+ */
+#if 0
+#elif defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+# define STLSOFT_IS_CONSTANT_EVALUATED()                    std::is_constant_evaluated()
+#elif defined(__cplusplus)
+
+# if 0
+# elif __cplusplus >= 202002L
+
+#  define STLSOFT_IS_CONSTANT_EVALUATED()                   std::is_constant_evaluated()
+# elif defined(STLSOFT_COMPILER_IS_MSVC) &&\
+       _MSC_VER  >= 1935
+
+#  define STLSOFT_IS_CONSTANT_EVALUATED()                   std::_Is_constant_evaluated()
+# endif
 #endif
 
 

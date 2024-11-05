@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 15th October 2024
+ * Updated: 6th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -372,6 +372,10 @@ static void test_ctor_n_1()
 
 static void test_ctor_n_2()
 {
+#if __cplusplus >= 202002L
+    static
+    ss_constexpr_2020_k
+#endif
     stlsoft::auto_buffer<char, 10> buff(0);
 
     XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
@@ -381,6 +385,10 @@ static void test_ctor_n_2()
 
 static void test_ctor_n_3()
 {
+#if __cplusplus >= 202002L
+    static
+    ss_constexpr_2020_k
+#endif
     stlsoft::auto_buffer<char, 10> buff(10);
 
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
@@ -390,6 +398,10 @@ static void test_ctor_n_3()
 
 static void test_ctor_n_v_1()
 {
+#if __cplusplus >= 202002L
+    static
+    ss_constexpr_2020_k
+#endif
     stlsoft::auto_buffer<char> buff(0, 'a');
 
     XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
@@ -399,6 +411,10 @@ static void test_ctor_n_v_1()
 
 static void test_ctor_n_v_2()
 {
+#if __cplusplus >= 202002L
+    static
+    ss_constexpr_2020_k
+#endif
     stlsoft::auto_buffer<char, 10> buff(0, 'a');
 
     XTESTS_TEST_INTEGER_EQUAL(0u, buff.size());
@@ -408,6 +424,10 @@ static void test_ctor_n_v_2()
 
 static void test_ctor_n_v_3()
 {
+#if __cplusplus >= 202002L
+    static
+    ss_constexpr_2020_k
+#endif
     stlsoft::auto_buffer<char, 10> buff(10, 'a');
 
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
@@ -420,6 +440,10 @@ static void test_ctor_n_v_3()
 
 static void test_ctor_n_v_4()
 {
+#if __cplusplus >= 202002L
+    static
+    ss_constexpr_2020_k
+#endif
     stlsoft::auto_buffer<int, 10> buff(10u, 123);
 
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
