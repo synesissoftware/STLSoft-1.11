@@ -4,7 +4,7 @@
  * Purpose: variant class.
  *
  * Created: 12th December 1996
- * Updated: 26th September 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -93,6 +93,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
 # include <winstl/api/external/Debugging.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Debugging */
+
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */

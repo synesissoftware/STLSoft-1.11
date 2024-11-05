@@ -99,14 +99,14 @@
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
-# include <stlsoft/api/external/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
-
 #ifndef STLSOFT_INCL_STDEXCEPT
 # define STLSOFT_INCL_STDEXCEPT
 # include <stdexcept>                            // for std::out_of_range
 #endif /* !STLSOFT_INCL_STDEXCEPT */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////

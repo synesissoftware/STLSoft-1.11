@@ -4,7 +4,7 @@
  * Purpose: char_traits classes.
  *
  * Created: 19th November 1998
- * Updated: 25th September 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -113,6 +113,16 @@
 # include <string>                  // for std::char_traits
 #endif /* !::stlsoft && !::std */
 
+#if !defined(STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS) || \
+    defined(STLSOFT_DEBUG)
+# include <string.h>
+# include <wchar.h>
+# if defined(STLSOFT_COMPILER_IS_BORLAND) && \
+     __BORLANDC__ >= 0x0560
+#  include <mem.h>
+#endif /* compiler */
+#endif /* !STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS || STLSOFT_DEBUG */
+
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
@@ -123,16 +133,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
-#if !defined(STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS) || \
-    defined(STLSOFT_DEBUG)
-# include <string.h>
-# include <wchar.h>
-# if defined(STLSOFT_COMPILER_IS_BORLAND) && \
-     __BORLANDC__ >= 0x0560
-#  include <mem.h>
-#endif /* compiler */
-#endif /* !STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS || STLSOFT_DEBUG */
 
 
 /* /////////////////////////////////////////////////////////////////////////

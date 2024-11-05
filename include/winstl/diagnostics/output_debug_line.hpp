@@ -4,7 +4,7 @@
  * Purpose: Functions to write lines to the Windows debugger.
  *
  * Created: 5th January 2011
- * Updated: 26th September 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -76,9 +76,6 @@
 # ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 #  include <stlsoft/shims/access/string.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-# ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
-#  include <winstl/api/external/Debugging.h>
-# endif /* !WINSTL_INCL_WINSTL_API_external_h_Debugging */
 #else /* ? STLSOFT_CF_VARIADIC_TEMPLATE_SUPPORT */
 # ifndef WINSTL_INCL_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE
 #  include <winstl/diagnostics/output_debug_line.h>
@@ -91,6 +88,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_COVER
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
+
+#ifdef STLSOFT_CF_VARIADIC_TEMPLATE_SUPPORT
+# ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
+#  include <winstl/api/external/Debugging.h>
+# endif /* !WINSTL_INCL_WINSTL_API_external_h_Debugging */
+#endif /* STLSOFT_CF_VARIADIC_TEMPLATE_SUPPORT */
 
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>

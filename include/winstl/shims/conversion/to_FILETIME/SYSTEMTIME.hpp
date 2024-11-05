@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/conversion/to_FILETIME/SYSTEMTIME.hpp
+ * File:    winstl/shims/conversion/to_FILETIME/SYSTEMTIME.hpp
  *
- * Purpose:     winstl::to_FILETIME(SYSTEMTIME const&) overload.
+ * Purpose: winstl::to_FILETIME(SYSTEMTIME const&) overload.
  *
- * Created:     24th May 2002
- * Updated:     11th March 2024
+ * Created: 24th May 2002
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_MAJOR    1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_MINOR    1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_REVISION 3
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_EDIT     23
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_REVISION 4
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_SYSTEMTIME_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -78,13 +78,12 @@
 # include <winstl/util/struct_initialisers.hpp>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_API_external_h_Time
-# include <winstl/api/external/Time.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_Time */
-
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
+#ifndef WINSTL_INCL_WINSTL_API_external_h_Time
+# include <winstl/api/external/Time.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_Time */
 
 
 /* /////////////////////////////////////////////////////////////////////////

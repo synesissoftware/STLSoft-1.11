@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       21
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        189
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    10
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        190
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,13 +110,21 @@
 # include <stlsoft/util/resizeable_buffer_helpers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS */
 
+#ifndef STLSOFT_INCL_H_CTYPE
+# define STLSOFT_INCL_H_CTYPE
+# include <ctype.h>
+#endif /* !STLSOFT_INCL_H_CTYPE */
+#ifndef STLSOFT_INCL_H_WCTYPE
+# define STLSOFT_INCL_H_WCTYPE
+# include <wctype.h>
+#endif /* !STLSOFT_INCL_H_WCTYPE */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_FileManagement
 # include <winstl/api/external/FileManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_FileManagement */
-
 #ifndef WINSTL_INCL_WINSTL_API_internal_h_FileManagement
 # include <winstl/api/internal/FileManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_internal_h_FileManagement */
@@ -134,15 +142,6 @@
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
-
-#ifndef STLSOFT_INCL_H_CTYPE
-# define STLSOFT_INCL_H_CTYPE
-# include <ctype.h>
-#endif /* !STLSOFT_INCL_H_CTYPE */
-#ifndef STLSOFT_INCL_H_WCTYPE
-# define STLSOFT_INCL_H_WCTYPE
-# include <wctype.h>
-#endif /* !STLSOFT_INCL_H_WCTYPE */
 
 
 /* /////////////////////////////////////////////////////////////////////////

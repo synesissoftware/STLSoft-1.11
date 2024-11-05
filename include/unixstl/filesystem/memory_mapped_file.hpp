@@ -100,10 +100,6 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
-# include <stlsoft/api/external/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
-
 #ifndef STLSOFT_INCL_SYS_H_MMAN
 # define STLSOFT_INCL_SYS_H_MMAN
 # include <sys/mman.h>
@@ -112,6 +108,10 @@
 # define STLSOFT_INCL_SYS_H_STAT
 # include <sys/stat.h>
 #endif /* !STLSOFT_INCL_SYS_H_STAT */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////

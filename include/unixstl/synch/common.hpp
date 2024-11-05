@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/synch/common.hpp
+ * File:    unixstl/synch/common.hpp
  *
- * Purpose:     Common (C++) includes for Synchronisation library.
+ * Purpose: Common (C++) includes for Synchronisation library.
  *
- * Created:     17th December 2016
- * Updated:     11th March 2024
+ * Created: 17th December 2016
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_COMMON_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_COMMON_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_COMMON_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_COMMON_EDIT      9
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_COMMON_REVISION  5
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_COMMON_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,13 +77,13 @@
 # include <unixstl/synch/util/features.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_UTIL_H_FEATURES */
 
-#ifndef UNIXSTL_INCL_UNIXSTL_API_external_h_Synchronization
-//# include <unixstl/api/external/Synchronization.h>
-#endif /* !UNIXSTL_INCL_UNIXSTL_API_external_h_Synchronization */
-
 #ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
 # include <stlsoft/synch/concepts.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
+
+#ifndef UNIXSTL_INCL_UNIXSTL_API_external_h_Synchronization
+//# include <unixstl/api/external/Synchronization.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_API_external_h_Synchronization */
 
 
 /* /////////////////////////////////////////////////////////////////////////

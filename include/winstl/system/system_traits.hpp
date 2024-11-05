@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    winstl/system/system_traits.hpp
  *
- * Purpose: Contains the system_traits template class, and ANSI and Unicode
- *          specialisations thereof.
+ * Purpose: Contains the system_traits template class, and ANSI and
+ *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 26th September 2024
+ * Updated: 5th November 2024
  *
- * Thanks to:   Austin Ziegler for spotting the defective pre-condition
- *              enforcement of expand_environment_strings().
+ * Thanks:  Austin Ziegler for spotting the defective pre-condition
+ *          enforcement of expand_environment_strings().
  *
  * Home:    http://stlsoft.org/
  *
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       6
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        167
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    5
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        168
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,6 +109,11 @@
 # include <winstl/system/system_information_functions.h>
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_H_SYSTEM_INFORMATION_FUNCTIONS */
 
+#ifndef STLSOFT_INCL_H_CTYPE
+# define STLSOFT_INCL_H_CTYPE
+# include <ctype.h>
+#endif /* !STLSOFT_INCL_H_CTYPE */
+
 #ifndef WINSTL_INCL_WINSTL_API_internal_h_DynamicLinkLibrary
 # include <winstl/api/internal/DynamicLinkLibrary.h>
 #endif /* !WINSTL_INCL_WINSTL_API_internal_h_DynamicLinkLibrary */
@@ -128,14 +133,10 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_SystemInformation
 # include <winstl/api/external/SystemInformation.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_SystemInformation */
+
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
-#ifndef STLSOFT_INCL_H_CTYPE
-# define STLSOFT_INCL_H_CTYPE
-# include <ctype.h>
-#endif /* !STLSOFT_INCL_H_CTYPE */
 
 
 /* /////////////////////////////////////////////////////////////////////////

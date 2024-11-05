@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_variable_traits class.
  *
  * Created: 9th December 2005
- * Updated: 28th September 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -87,10 +87,6 @@
 # include <stlsoft/string/c_string_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_C_STRING_TRAITS */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO
 # include <errno.h>
@@ -102,6 +98,10 @@
 #if defined(STLSOFT_COMPILER_IS_MWERKS)
 # include <crtl.h>  // for _environ
 #endif /* compiler */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    stlsoft/conversion/integer_to_string/integer_to_octal_string.hpp (originally stlsoft_integer_to_string.h)
  *
- * Purpose: Very efficient integer to string conversion functions for octal
- *          representation.
+ * Purpose: Very efficient integer to string conversion functions for
+ *          octal representation.
  *
  * Created: 7th April 2002
- * Updated: 26th September 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *

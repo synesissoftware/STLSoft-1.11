@@ -5,7 +5,7 @@
  *          decimal representation.
  *
  * Created: 7th April 2002
- * Updated: 26th September 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
