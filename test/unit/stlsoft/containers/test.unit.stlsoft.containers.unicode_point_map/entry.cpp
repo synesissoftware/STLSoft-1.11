@@ -645,7 +645,314 @@ static void test_swap(void)
 
 static void test_swap_std(void)
 {
+    {
+        unicode_point_map upm1;
+        unicode_point_map upm2;
 
+        XTESTS_TEST_BOOLEAN_TRUE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.total());
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.total());
+
+        std::swap(upm1, upm2);
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.total());
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.total());
+    }
+
+    {
+        unicode_point_map upm1;
+        unicode_point_map upm2;
+
+        upm1.push('A');
+        upm1.push('a');
+        upm1.push('1');
+
+        upm2.push('B');
+        upm2.push('b');
+        upm2.push('2');
+        upm2.push_n('3', 10);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm1.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['A']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['C']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['a']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['0']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['1']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['2']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['3']);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(4, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(13, upm2.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['A']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['C']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['a']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['0']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['1']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['2']);
+        XTESTS_TEST_INTEGER_EQUAL(10, upm2['3']);
+
+        std::swap(upm1, upm2);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(4, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(13, upm1.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['A']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['C']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['a']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['0']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['1']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['2']);
+        XTESTS_TEST_INTEGER_EQUAL(10, upm1['3']);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm2.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['A']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['C']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['a']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['0']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['1']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['2']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['3']);
+    }
+
+    {
+        unicode_point_map upm1(0x60);
+        unicode_point_map upm2(0x60);
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.total());
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.total());
+
+        std::swap(upm1, upm2);
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.total());
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.total());
+    }
+
+    {
+        unicode_point_map upm1(0x60);
+        unicode_point_map upm2(0x60);
+
+        upm1.push('A');
+        upm1.push('a');
+        upm1.push('1');
+
+        upm2.push('B');
+        upm2.push('b');
+        upm2.push('2');
+        upm2.push_n('3', 10);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm1.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['A']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['C']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['a']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['0']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['1']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['2']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['3']);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(4, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(13, upm2.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['A']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['C']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['a']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['0']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['1']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['2']);
+        XTESTS_TEST_INTEGER_EQUAL(10, upm2['3']);
+
+        std::swap(upm1, upm2);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(4, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(13, upm1.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['A']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['C']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['a']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['0']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['1']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['2']);
+        XTESTS_TEST_INTEGER_EQUAL(10, upm1['3']);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm2.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['A']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['C']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['a']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['0']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['1']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['2']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['3']);
+    }
+
+    {
+        unicode_point_map upm1(0);
+        unicode_point_map upm2(0x60);
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.total());
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.total());
+
+        std::swap(upm1, upm2);
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1.total());
+
+        XTESTS_TEST_BOOLEAN_TRUE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2.total());
+    }
+
+    {
+        unicode_point_map upm1(0);
+        unicode_point_map upm2(0x60);
+
+        upm1.push('A');
+        upm1.push('a');
+        upm1.push('1');
+
+        upm2.push('B');
+        upm2.push('b');
+        upm2.push('2');
+        upm2.push_n('3', 10);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm1.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['A']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['C']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['a']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['0']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['1']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['2']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['3']);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(4, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(13, upm2.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['A']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['C']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['a']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['0']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['1']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['2']);
+        XTESTS_TEST_INTEGER_EQUAL(10, upm2['3']);
+
+        std::swap(upm1, upm2);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm1.empty());
+        XTESTS_TEST_INTEGER_EQUAL(4, upm1.size());
+        XTESTS_TEST_INTEGER_EQUAL(13, upm1.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['A']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['C']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['a']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['0']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm1['1']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm1['2']);
+        XTESTS_TEST_INTEGER_EQUAL(10, upm1['3']);
+
+        XTESTS_TEST_BOOLEAN_FALSE(upm2.empty());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm2.size());
+        XTESTS_TEST_INTEGER_EQUAL(3, upm2.total());
+
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2[' ']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['A']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['B']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['C']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['a']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['b']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['c']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['0']);
+        XTESTS_TEST_INTEGER_EQUAL(1, upm2['1']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['2']);
+        XTESTS_TEST_INTEGER_EQUAL(0, upm2['3']);
+    }
 }
 } // anonymous namespace
 

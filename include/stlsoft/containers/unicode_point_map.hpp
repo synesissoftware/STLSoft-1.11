@@ -491,12 +491,50 @@ unicode_point_map::total() const STLSOFT_NOEXCEPT
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * swapping
+ */
+
+#if !defined(STLSOFT_COMPILER_IS_WATCOM)
+
+inline
+void
+swap(
+    unicode_point_map& lhs
+,   unicode_point_map& rhs
+)
+{
+    lhs.swap(rhs);
+}
+#endif /* compiler */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
+#if defined(STLSOFT_CF_std_NAMESPACE)
+namespace std
+{
+
+# if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+       _MSC_VER >= 1310
+
+    inline
+    void
+    swap(
+        STLSOFT_NS_QUAL(unicode_point_map)& lhs
+    ,   STLSOFT_NS_QUAL(unicode_point_map)& rhs
+    )
+    {
+        lhs.swap(rhs);
+    }
+# endif
+} /* namespace std */
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 
 /* /////////////////////////////////////////////////////////////////////////
