@@ -68,6 +68,7 @@ namespace
 //     static void test_op_add(void);
     static void test_swap(void);
     static void test_swap_std(void);
+    static void test_iteration_1(void);
 //     static void test_iteration_order_1(void);
 
 } // anonymous namespace
@@ -100,6 +101,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_clear);
         XTESTS_RUN_CASE(test_swap);
         XTESTS_RUN_CASE(test_swap_std);
+        XTESTS_RUN_CASE(test_iteration_1);
 
         XTESTS_PRINT_RESULTS();
 
@@ -954,6 +956,71 @@ static void test_swap_std(void)
         XTESTS_TEST_INTEGER_EQUAL(0, upm2['3']);
     }
 }
+
+static void test_iteration_1(void)
+{
+    {
+        unicode_point_map const upm;
+
+        XTESTS_TEST(upm.end() == upm.begin());
+        XTESTS_TEST(upm.cend() == upm.cbegin());
+    }
+
+    {
+        unicode_point_map upm;
+
+        upm.push_n('a', -97);
+
+        XTESTS_TEST(upm.end() != upm.begin());
+        XTESTS_TEST(upm.cend() != upm.cbegin());
+
+        unicode_point_map::value_type const v = *upm.cbegin();
+
+        XTESTS_TEST_INTEGER_EQUAL(97u, v.first);
+        XTESTS_TEST_INTEGER_EQUAL(-97, v.second);
+    }
+
+    {
+        unicode_point_map upm(1000); // set large ceiling to be assured of order
+
+        upm.push_n('a', -97);
+        upm.push_n('b', -98);
+        upm.push_n('c', -99);
+
+        XTESTS_TEST(upm.end() != upm.begin());
+        XTESTS_TEST(upm.cend() != upm.cbegin());
+
+        unicode_point_map::const_iterator i;
+
+        i = upm.begin();
+
+        {
+            unicode_point_map::value_type const v = *i++;
+
+            XTESTS_TEST_INTEGER_EQUAL(97u, v.first);
+            XTESTS_TEST_INTEGER_EQUAL(-97, v.second);
+        }
+
+        {
+            unicode_point_map::value_type const v = *i;
+
+            XTESTS_TEST_INTEGER_EQUAL(98u, v.first);
+            XTESTS_TEST_INTEGER_EQUAL(-98, v.second);
+
+            ++i;
+        }
+
+        {
+            unicode_point_map::value_type const v = *i++;
+
+            XTESTS_TEST_INTEGER_EQUAL(99u, v.first);
+            XTESTS_TEST_INTEGER_EQUAL(-99, v.second);
+        }
+
+        XTESTS_TEST(upm.end() == i);
+    }
+}
+
 } // anonymous namespace
 
 

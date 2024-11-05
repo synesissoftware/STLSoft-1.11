@@ -68,6 +68,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
 # include <stlsoft/algorithms/pod.hpp>          // for pod_copy_n(), etc.
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS
+# include <stlsoft/util/std/iterator_generators.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_GENERATORS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
@@ -76,6 +79,7 @@
 # include <initializer_list>
 #endif
 #include <unordered_map>
+#include <utility>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,6 +104,10 @@ namespace stlsoft
 class unicode_point_map
 {
 public: // types
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+    typedef unicode_point_map                               collection_type;
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// This type
     typedef unicode_point_map                               class_type;
     /// The char type
@@ -112,6 +120,11 @@ public: // types
     typedef ss_size_t                                       size_type;
     /// The key type
     struct                                                  key_type;
+    /// The value type
+    typedef std::pair<
+        unicode_point_type
+    ,   count_type
+    >                                                       value_type;
 
 private:
     typedef auto_buffer<
@@ -124,7 +137,7 @@ private:
 
 public:
     /// The iterator type
-    struct const_iterator;
+    class const_iterator;
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
@@ -157,6 +170,54 @@ public:
 
     public: // fields
         unicode_point_type  key;
+    };
+
+    class const_iterator
+        : public STLSOFT_NS_QUAL(iterator_base)<
+                STLSOFT_NS_QUAL_STD(input_iterator_tag)
+            ,   value_type
+            ,   ss_ptrdiff_t
+            ,   void        // By-Value Temporary reference
+            ,   value_type  // By-Value Temporary reference
+            >
+    {
+        friend class unicode_point_map;
+
+    public: // types
+        typedef const_iterator                                  class_type;
+
+    private: // construction
+        ss_explicit_k
+        const_iterator(
+            collection_type const& collection
+        );
+    public:
+        const_iterator();
+        const_iterator(class_type const& rhs);
+        class_type& operator =(class_type const& rhs);
+
+    public: // operators
+        value_type
+        operator *() const STLSOFT_NOEXCEPT;
+
+        bool
+        operator ==(class_type const& rhs) const STLSOFT_NOEXCEPT;
+        bool
+        operator !=(class_type const& rhs) const STLSOFT_NOEXCEPT;
+
+        const_iterator&
+        operator ++();
+        const_iterator
+        operator ++(int);
+
+    private: // implementation
+        bool
+        is_at_end() const STLSOFT_NOEXCEPT;
+
+    private: // fields
+        collection_type const*      m_collection;
+        vec_type_::const_iterator   m_vec_iter;
+        map_type_::const_iterator   m_map_iter;
     };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -229,7 +290,24 @@ public: // attributes
     total() const STLSOFT_NOEXCEPT;
 
 
-public: // fields
+public: // iteration
+    const_iterator
+    begin() const;
+
+    const_iterator
+    end() const;
+
+    const_iterator
+    cbegin() const;
+
+    const_iterator
+    cend() const;
+
+
+private: // implementation
+
+
+private: // fields
     size_type   m_len;
     count_type  m_total;
     vec_type_   m_vec;
@@ -243,7 +321,187 @@ public: // fields
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-// constructors
+
+// //// unicode_point_map::const_iterator
+
+// construction
+
+inline
+/* ss_explicit_k */
+unicode_point_map::const_iterator::const_iterator(
+    collection_type const& collection
+)
+    : m_collection(&collection)
+    , m_vec_iter(collection.m_vec.begin())
+    , m_map_iter(collection.m_map.begin())
+{
+    // advance to first non-zero element in vec
+
+    for (; collection.m_vec.end() != m_vec_iter; ++m_vec_iter)
+    {
+        if (0 != *m_vec_iter)
+        {
+            break;
+        }
+    }
+}
+
+inline
+unicode_point_map::const_iterator::const_iterator()
+    : m_collection(NULL)
+    , m_vec_iter()
+    , m_map_iter()
+{}
+
+inline
+unicode_point_map::const_iterator::const_iterator(class_type const& rhs)
+    : m_collection(rhs.m_collection)
+    , m_vec_iter(rhs.m_vec_iter)
+    , m_map_iter(rhs.m_map_iter)
+{}
+
+inline
+unicode_point_map::const_iterator&
+unicode_point_map::const_iterator::operator =(class_type const& rhs)
+{
+    m_collection = rhs.m_collection;
+    m_vec_iter = rhs.m_vec_iter;
+    m_map_iter = rhs.m_map_iter;
+
+    return *this;
+}
+
+
+// operators
+
+inline
+unicode_point_map::const_iterator::value_type
+unicode_point_map::const_iterator::operator *() const STLSOFT_NOEXCEPT
+{
+    STLSOFT_ASSERT(NULL != m_collection);
+    STLSOFT_ASSERT(m_vec_iter != m_collection->m_vec.end() || m_map_iter != m_collection.m_map.end());
+
+    if (m_vec_iter != m_collection->m_vec.end())
+    {
+        return std::make_pair(std::distance(m_collection->m_vec.begin(), m_vec_iter), *m_vec_iter);
+    }
+    else
+    {
+        return *m_map_iter;
+    }
+}
+
+inline
+bool
+unicode_point_map::const_iterator::operator ==(class_type const& rhs) const STLSOFT_NOEXCEPT
+{
+    STLSOFT_MESSAGE_ASSERT("cannot compare iterators from different containers", NULL == m_collection || NULL == rhs.m_collection || m_collection == rhs.m_collection);
+
+    if (is_at_end())
+    {
+        if (rhs.is_at_end())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        if (rhs.is_at_end())
+        {
+            return false;
+        }
+        else
+        {
+            if (m_vec_iter != rhs.m_vec_iter)
+            {
+                return false;
+            }
+
+            if (m_map_iter != rhs.m_map_iter)
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
+}
+
+inline
+bool
+unicode_point_map::const_iterator::operator !=(class_type const& rhs) const STLSOFT_NOEXCEPT
+{
+    return !operator ==(rhs);
+}
+
+inline
+unicode_point_map::const_iterator&
+unicode_point_map::const_iterator::operator ++()
+{
+    STLSOFT_ASSERT(NULL != m_collection);
+    STLSOFT_ASSERT(m_vec_iter != m_collection->m_vec.end() || m_map_iter != m_collection.m_map.end());
+
+    if (m_vec_iter != m_collection->m_vec.end())
+    {
+        while (m_vec_iter != m_collection->m_vec.end())
+        {
+            if (0 != *++m_vec_iter)
+            {
+                break;
+            }
+        }
+    }
+    else
+    {
+        ++m_map_iter;
+    }
+
+    return *this;
+}
+
+inline
+unicode_point_map::const_iterator
+unicode_point_map::const_iterator::operator ++(int)
+{
+    class_type  r(*this);
+
+    operator ++();
+
+    return r;
+}
+
+// implementation
+
+inline
+bool
+unicode_point_map::const_iterator::is_at_end() const STLSOFT_NOEXCEPT
+{
+    if (NULL == m_collection)
+    {
+        return true;
+    }
+
+    if (m_vec_iter != m_collection->m_vec.end())
+    {
+        return false;
+    }
+
+    if (m_map_iter != m_collection->m_map.end())
+    {
+        return false;
+    }
+
+    return true;
+}
+
+
+// //// unicode_point_map
+
+// construction
 
 inline
 unicode_point_map::unicode_point_map()
@@ -486,6 +744,37 @@ unicode_point_map::count_type
 unicode_point_map::total() const STLSOFT_NOEXCEPT
 {
     return m_total;
+}
+
+
+// iteration
+
+inline
+unicode_point_map::const_iterator
+unicode_point_map::begin() const
+{
+    return cbegin();
+}
+
+inline
+unicode_point_map::const_iterator
+unicode_point_map::end() const
+{
+    return cend();
+}
+
+inline
+unicode_point_map::const_iterator
+unicode_point_map::cbegin() const
+{
+    return const_iterator(*this);
+}
+
+inline
+unicode_point_map::const_iterator
+unicode_point_map::cend() const
+{
+    return const_iterator();
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
