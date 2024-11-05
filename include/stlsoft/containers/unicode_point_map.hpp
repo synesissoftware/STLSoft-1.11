@@ -63,8 +63,16 @@
  * includes
  */
 
-#include <stlsoft/memory/auto_buffer.hpp>
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
 # include <stlsoft/algorithms/pod.hpp>          // for pod_copy_n(), etc.
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD */
@@ -125,7 +133,6 @@ public: // types
         unicode_point_type
     ,   count_type
     >                                                       value_type;
-
 private:
     typedef auto_buffer<
         count_type
@@ -134,7 +141,6 @@ private:
         unicode_point_type
     ,   count_type
     >                                                       map_type_;
-
 public:
     /// The iterator type
     class const_iterator;
@@ -153,6 +159,7 @@ public:
                 ss_uint32_t u32;
             } u;
 
+            u.u32 = 0;
             u.c = c;
 
             STLSOFT_MESSAGE_ASSERT("`c` may not contain a non-ASCII value", 0 == (u.u32 & 0xFFFFFF80));
@@ -246,11 +253,14 @@ public: // operations
     void
     clear() STLSOFT_NOEXCEPT;
 
+#if 0 // TODO: implement these methods in next version
+
     class_type&
     merge(class_type const& rhs);
 
     class_type&
     operator +=(class_type const& rhs);
+#endif
 
     void
     push(key_type key);
@@ -378,8 +388,7 @@ inline
 unicode_point_map::const_iterator::value_type
 unicode_point_map::const_iterator::operator *() const STLSOFT_NOEXCEPT
 {
-    STLSOFT_ASSERT(NULL != m_collection);
-    STLSOFT_ASSERT(m_vec_iter != m_collection->m_vec.end() || m_map_iter != m_collection.m_map.end());
+    STLSOFT_ASSERT(!is_at_end());
 
     if (m_vec_iter != m_collection->m_vec.end())
     {
@@ -442,8 +451,7 @@ inline
 unicode_point_map::const_iterator&
 unicode_point_map::const_iterator::operator ++()
 {
-    STLSOFT_ASSERT(NULL != m_collection);
-    STLSOFT_ASSERT(m_vec_iter != m_collection->m_vec.end() || m_map_iter != m_collection.m_map.end());
+    STLSOFT_ASSERT(!is_at_end());
 
     if (m_vec_iter != m_collection->m_vec.end())
     {
