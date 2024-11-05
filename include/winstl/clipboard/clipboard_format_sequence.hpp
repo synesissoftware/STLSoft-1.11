@@ -1,16 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/clipboard/clipboard_format_sequence.hpp
+ * File:    winstl/clipboard/clipboard_format_sequence.hpp
  *
- * Purpose:     Enumerates clipboard formats.
+ * Purpose: Enumerates clipboard formats.
  *
- * Created:     11th May 2003
- * Updated:     11th March 2024
+ * Created: 11th May 2003
+ * Updated: 10th October 2024
  *
- * Thanks:      To Martin Moene for reporting the lack of iterator traits
- *              of the const_iterator nested class; wiluite for a defect
- *              report.
+ * Thanks:  To Martin Moene for reporting the lack of iterator traits of the
+ *          const_iterator nested class; wiluite for a defect report.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -58,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_REVISION 10
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     50
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_REVISION 12
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -144,13 +143,13 @@ class clipboard_format_sequence
 /// @{
 public:
     /// The type
-    typedef clipboard_format_sequence       class_type;
+    typedef clipboard_format_sequence                       class_type;
     /// The value type
-    typedef UINT                            value_type;
+    typedef UINT                                            value_type;
     /// The size type
-    typedef ws_size_t                       size_type;
+    typedef ws_size_t                                       size_type;
     /// The difference type
-    typedef ws_ptrdiff_t                    difference_type;
+    typedef ws_ptrdiff_t                                    difference_type;
 /// @}
 
 /// \name Construction
@@ -169,6 +168,9 @@ public:
             ::CloseClipboard();
         }
     }
+private:
+    clipboard_format_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -310,13 +312,6 @@ public:
 /// @{
 private:
     ws_bool_t   m_bOpen;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    clipboard_format_sequence(clipboard_format_sequence const&);
-    clipboard_format_sequence& operator =(clipboard_format_sequence const&);
 /// @}
 };
 

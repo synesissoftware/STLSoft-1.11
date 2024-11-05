@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/functional/window.hpp
+ * File:    winstl/functional/window.hpp
  *
- * Purpose:     Window function classes and predicates.
+ * Purpose: Window function classes and predicates.
  *
- * Created:     19th January 2001
- * Updated:     11th March 2024
+ * Created: 19th January 2001
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2001-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MAJOR      4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MINOR      1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   7
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       57
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   9
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -221,7 +221,7 @@ private:
     const ws_bool_t m_bShow;
 
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /** Functor used to enable or disable windows
@@ -269,7 +269,7 @@ private:
     const ws_bool_t m_bEnable;
 
 private:
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

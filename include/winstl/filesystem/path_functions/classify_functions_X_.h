@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/path_functions/classify_functions_X_.h
+ * File:    winstl/filesystem/path_functions/classify_functions_X_.h
  *
- * Purpose:     Path classification functions char-X implementation
+ * Purpose: Path classification functions char-X implementation
  *
- * Created:     28th November 2020
- * Updated:     18th January 2024
+ * Created: 28th November 2020
+ * Updated: 23rd October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -616,7 +616,8 @@ winstl_C_path_classify_impl_X_(
                     return WinSTL_C_PathType_InvalidChars;
                 }
 
-                /* fall-through */
+                /* fall through */
+                STLSOFT_FALLTHROUGH();
             case '\\':
 
                 *((*p0 == '\\') ? &lastBSlash : &lastFSlash) = p0;
@@ -830,6 +831,7 @@ winstl_C_path_classify_root_impl_X_(
 
     return rcRoot;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

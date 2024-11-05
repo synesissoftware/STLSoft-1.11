@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/error/error_functions.h (originally MWBase.h, ::SynesisWin)
+ * File:    winstl/error/error_functions.h (originally MWBase.h, ::SynesisWin)
  *
- * Purpose:     Error functions.
+ * Purpose: Error functions.
  *
- * Created:     7th May 2000
- * Updated:     11th March 2024
+ * Created: 7th May 2000
+ * Updated: 23rd October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  3
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      86
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  7
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,22 +201,30 @@ winstl_C_fmtmsg_elide_message_a_(
         switch (*(last - 1))
         {
             case    '.':
+
                 if ((WINSTL_ERROR_FUNCTIONS_ELIDE_DOT & elisionFlags) &&
                     (   0 == (WINSTL_ERROR_FUNCTIONS_ELIDE_DOT_IF_LAST_ONLY & elisionFlags) ||
                         NULL == firstDot ||
                         firstDot == last - 1))
                 {
+                /* fall through */
+                STLSOFT_FALLTHROUGH();
             case    ' ':
             case    '\t':
             case    '\r':
             case    '\n':
+
                 *(last - 1) = '\0';
                 --last;
                 break;
                 }
                 else
                 {
+
+                /* fall through */
+                STLSOFT_FALLTHROUGH();
             default:
+
                 first = last;
                 break;
                 }
@@ -259,22 +267,31 @@ winstl_C_fmtmsg_elide_message_w_(
         switch (*(last - 1))
         {
             case    L'.':
+
                 if ((WINSTL_ERROR_FUNCTIONS_ELIDE_DOT & elisionFlags) &&
                     (   0 == (WINSTL_ERROR_FUNCTIONS_ELIDE_DOT_IF_LAST_ONLY & elisionFlags) ||
                         NULL == firstDot ||
                         firstDot == last - 1))
                 {
+
+                /* fall through */
+                STLSOFT_FALLTHROUGH();
             case    L' ':
             case    L'\t':
             case    L'\r':
             case    L'\n':
+
                 *(last - 1) = L'\0';
                 --last;
                 break;
                 }
                 else
                 {
+
+                /* fall through */
+                STLSOFT_FALLTHROUGH();
             default:
+
                 first = last;
                 break;
                 }

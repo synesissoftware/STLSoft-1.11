@@ -4,7 +4,7 @@
  * Purpose: String token parsing class.
  *
  * Created: 6th January 2001
- * Updated: 11th March 2024
+ * Updated: 18th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_MINOR     1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  15
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      242
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_REVISION  17
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TOKENISER_EDIT      245
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -762,7 +762,7 @@ public:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
 private:
-    class_type const& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -887,7 +887,7 @@ public:
 #if 0
             auto v = traits_type::create(m_find0, m_find1);
 
-            fprintf(stderr, "%s:%d:%s: v.data()=%p, v.size()=%lu [v='%.*s'] [%c ... %c]\n", __FILE__, __LINE__, __FUNCTION__
+            fprintf(stderr, "%s:%d:%s: v.data()=%p, v.size()=%lu [v='%.*s'] [%c ... %c]\n", __STLSOFT_FILE_LINE_FUNCTION__
             ,   static_cast<void const*>(v.data())
             ,   v.size()
             ,   int(v.size()), v.data()

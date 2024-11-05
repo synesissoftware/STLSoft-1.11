@@ -1,0 +1,155 @@
+/* /////////////////////////////////////////////////////////////////////////
+ * File:    test.component.winstl.util.struct_comparers/entry.cpp
+ *
+ * Purpose: Component test for `winstl::struct_comparers`.
+ *
+ * Created: 9th October 2024
+ * Updated: 12th October 2024
+ *
+ * ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test component header file include(s)
+ */
+
+#include <winstl/util/struct_comparers.hpp>
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* xTests header files */
+#include <xtests/xtests.h>
+
+/* STLSoft header files */
+#include <winstl/util/struct_initialisers.hpp>
+
+/* Standard C header files */
+#include <stdlib.h>
+
+/* /////////////////////////////////////////////////////////////////////////
+ * forward declarations
+ */
+
+namespace
+{
+    static void test_FILETIME(void);
+    static void test_SYSTEMTIME(void);
+} // anonymous namespace
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char *argv[])
+{
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
+
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+
+    // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
+
+    if (XTESTS_START_RUNNER("test.component.winstl.dl.struct_comparers", verbosity))
+    {
+        // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
+
+        XTESTS_RUN_CASE(test_FILETIME);
+        XTESTS_RUN_CASE(test_SYSTEMTIME);
+
+        // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
+
+        XTESTS_PRINT_RESULTS();
+
+        // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
+
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+
+        // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
+    }
+
+    return retCode;
+}
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace
+{
+    using stlsoft::ss_size_t;
+
+static void test_FILETIME(void)
+{
+    {
+        FILETIME ft1 = {0, 0};
+        FILETIME ft2 = {0, 0};
+
+        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(ft1, ft2));
+    }
+
+    {
+        FILETIME ft1 = {0, 0};
+        FILETIME ft2 = {0, 1};
+
+        XTESTS_TEST_BOOLEAN_FALSE(winstl::equal_struct(ft1, ft2));
+    }
+}
+
+static void test_SYSTEMTIME(void)
+{
+    {
+        SYSTEMTIME st1;
+        SYSTEMTIME st2;
+
+        winstl::init_struct(st1);
+        winstl::init_struct(st2);
+
+        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
+    }
+
+    {
+        SYSTEMTIME st1;
+        SYSTEMTIME st2;
+
+        winstl::init_struct(st1);
+        winstl::init_struct(st2);
+
+        st1.wDayOfWeek = 1;
+        st2.wDayOfWeek = 2;
+
+        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
+    }
+
+#if __cplusplus >= 202002L
+
+    {
+        SYSTEMTIME st1 = {
+            .wYear = 2024,
+            .wMonth = 10,
+            .wDayOfWeek = 3,
+            .wDay = 9,
+            .wHour = 19,
+            .wMinute = 59,
+            .wSecond = 33,
+            .wMilliseconds = 1001,
+        };
+        SYSTEMTIME st2 = {
+            .wYear = 2024,
+            .wMonth = 10,
+            .wDayOfWeek = 13,
+            .wDay = 9,
+            .wHour = 19,
+            .wMinute = 59,
+            .wSecond = 33,
+            .wMilliseconds = 1001,
+        };
+
+        XTESTS_TEST_BOOLEAN_TRUE(winstl::equal_struct(st1, st2));
+    }
+#endif
+}
+
+} // anonymous namespace
+
+/* ///////////////////////////// end of file //////////////////////////// */

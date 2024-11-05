@@ -4,7 +4,7 @@
  * Purpose: Facade for the standard C Streams API.
  *
  * Created: 31st May 2009
- * Updated: 26th September 2024
+ * Updated: 28th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -397,7 +397,7 @@ private: // Implementation
 
             return handle_adaptor_type::create(handle);
         }
-        catch(...)
+        catch (...)
         {
             handle_adaptor_type::destroy(handle);
 
@@ -440,7 +440,7 @@ private: // Implementation
 
             return handle_adaptor_type::create(handle);
         }
-        catch(...)
+        catch (...)
         {
             handle_adaptor_type::destroy(handle);
 

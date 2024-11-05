@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shell/browse_for_folder.hpp
+ * File:    winstl/shell/browse_for_folder.hpp
  *
- * Purpose:     Shell browsing functions.
+ * Purpose: Shell browsing functions.
  *
- * Created:     2nd March 2002
- * Updated:     11th March 2024
+ * Created: 2nd March 2002
+ * Updated: 30th September 2024
  *
- * Thanks:      To Pablo Aguilar for default folder enhancements.
+ * Thanks:  To Pablo Aguilar for default folder enhancements.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    2
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 10
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     79
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 11
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -71,15 +71,17 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR
-# include <winstl/memory/shell_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_SHELL_ALLOCATOR */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
 # include <winstl/shims/access/string.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
+
+#ifndef STLSOFT_INCL_H_SHLOBJ
+# define STLSOFT_INCL_H_SHLOBJ
+# include <shlobj.h>                     // for SHBrowseForFolderA(), ...
+#endif /* !STLSOFT_INCL_H_SHLOBJ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -238,7 +240,7 @@ inline ws_bool_t shell_browse_impl( C const*        title
             bRet = true;
         }
 
-        shell_allocator<ITEMIDLIST>().deallocate(lpiidl);
+        ::CoTaskMemFree(lpiidl);
     }
 
     if (!bRet)

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterators/null_output_iterator.hpp
+ * File:    stlsoft/iterators/null_output_iterator.hpp
  *
- * Purpose:     Null output iterator.
+ * Purpose: Null output iterator.
  *
- * Created:     18th February 2006
- * Updated:     11th March 2024
+ * Created: 18th February 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_REVISION    9
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        32
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_REVISION    12
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,10 +160,15 @@ public:
 private:
     class deref_proxy
     {
+    public: // types
+        typedef deref_proxy                                     class_type;
+
     public:
         deref_proxy(null_output_iterator *it)
             : m_it(it)
         {}
+    private:
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public:
         void operator =(assigned_type const& value)
@@ -173,10 +178,6 @@ private:
 
     private:
         null_output_iterator  *const m_it;
-
-    // Not to be implemented
-    private:
-        void operator =(deref_proxy const&);
     };
 /// @}
 

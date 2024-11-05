@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_variable_traits class.
  *
  * Created: 9th December 2005
- * Updated: 26th September 2024
+ * Updated: 28th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -489,7 +489,7 @@ inline /* static */ int environment_variable_traits::call_putenv_(environment_va
             }
         }
 #ifdef STLSOFT_CF_THROW_BAD_ALLOC
-        catch(std::bad_alloc &)
+        catch (std::bad_alloc &)
         {
             errno = ENOMEM;
             return -1;

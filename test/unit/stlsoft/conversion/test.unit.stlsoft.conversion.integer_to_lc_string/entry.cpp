@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_lc_string`.
  *
  * Created: 1st November 2011
- * Updated: 29th March 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -67,7 +67,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -115,22 +115,22 @@ static void test_987654321()
 
     s = stlsoft::integer_to_lc_string("\3\3", ',', &sz[0], STLSOFT_NUM_ELEMENTS(sz), 987654321, &n);
 
-    XTESTS_TEST_INTEGER_EQUAL(11, n);
+    XTESTS_TEST_INTEGER_EQUAL(11u, n);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987,654,321", s);
 
     s = stlsoft::integer_to_lc_string("\3\2", ',', &sz[0], STLSOFT_NUM_ELEMENTS(sz), 987654321, &n);
 
-    XTESTS_TEST_INTEGER_EQUAL(12, n);
+    XTESTS_TEST_INTEGER_EQUAL(12u, n);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("98,76,54,321", s);
 
     s = stlsoft::integer_to_lc_string("\10", ',', &sz[0], STLSOFT_NUM_ELEMENTS(sz), 987654321, &n);
 
-    XTESTS_TEST_INTEGER_EQUAL(10, n);
+    XTESTS_TEST_INTEGER_EQUAL(10u, n);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("9,87654321", s);
 
     s = stlsoft::integer_to_lc_string("\x8", ',', &sz[0], STLSOFT_NUM_ELEMENTS(sz), 987654321, &n);
 
-    XTESTS_TEST_INTEGER_EQUAL(10, n);
+    XTESTS_TEST_INTEGER_EQUAL(10u, n);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("9,87654321", s);
 }
 
@@ -329,7 +329,6 @@ static void test_1_6()
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mappings[i].result, s);
     }}
 }
-
 
 } // anonymous namespace
 

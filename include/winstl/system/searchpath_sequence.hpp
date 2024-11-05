@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/searchpath_sequence.hpp
+ * File:    winstl/system/searchpath_sequence.hpp
  *
- * Purpose:     Contains the basic_searchpath_sequence template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_searchpath_sequence template class, and ANSI
+ *          and Unicode specialisations thereof.
  *
- * Created:     12th July 2002
- * Updated:     11th March 2024
+ * Created: 12th July 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    2
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 11
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     116
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 14
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -206,6 +206,9 @@ public:
     );
     /// Releases any resources
     ~basic_searchpath_sequence() STLSOFT_NOEXCEPT;
+private:
+    basic_searchpath_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Iteration
 public:
@@ -254,15 +257,15 @@ private:
 
     typedef processheap_allocator<char_type>                main_allocator_type_;
     typedef processheap_allocator<value_type>               value_allocator_type_;
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
-    ,   main_allocator_type_
     ,   1024
+    ,   main_allocator_type_
     >                                                       main_buffer_type_;
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         value_type
-    ,   value_allocator_type_
     ,   24
+    ,   value_allocator_type_
     >                                                       value_buffer_type_;
 
     main_buffer_type_   m_buffer;
@@ -466,11 +469,6 @@ private:
         return static_cast<char_type*>((sizeof(char_type) == sizeof(ws_char_w_t)) ? static_cast<void*>(literal_w) : static_cast<void*>(literal_a));
 #endif /* compiler */
     }
-
-// Not to be implemented
-private:
-    basic_searchpath_sequence(class_type const&);
-    basic_searchpath_sequence const& operator =(class_type const&);
 };
 
 

@@ -4,7 +4,7 @@
  * Purpose: basic_simple_string class template.
  *
  * Created: 19th March 1993
- * Updated: 26th September 2024
+ * Updated: 23rd October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR     4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      280
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR     8
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION  2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT      282
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -221,6 +221,7 @@ public:
     ,   const_reference
     >::type                                                 const_iterator;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+
     /// The mutating (non-const) reverse iterator type
     typedef ss_typename_type_k reverse_iterator_generator<
         iterator
@@ -244,10 +245,12 @@ private:
     /// \note This has to be defined here, rather than on a use-by-use basis, because
     /// Borland gets very upset.
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
+
     typedef ss_typename_type_k A::ss_template_qual_k rebind<
         ss_byte_t
     >::other                                                byte_ator_type;
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
+
     typedef ss_typename_type_k allocator_selector<
         ss_byte_t
     >::allocator_type                                       byte_ator_type;
@@ -258,6 +261,7 @@ private:
 /// @{
 public:
     /// Default constructor
+    ss_constexpr_2014_k
     basic_simple_string() STLSOFT_NOEXCEPT;
     /// Copy constructor
     basic_simple_string(class_type const& rhs);
@@ -290,6 +294,7 @@ public:
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
 
     /// Destructor
+    ss_constexpr_2020_k
     ~basic_simple_string() STLSOFT_NOEXCEPT;
 /// @}
 
@@ -590,8 +595,9 @@ private:
         char_type   contents[1];    // The first element in the array
     };
 
-    typedef auto_buffer_old<
+    typedef auto_buffer<
         char_type
+    ,   auto_buffer_internal_size_calculator<char_type>::value
     ,   allocator_type
     >                                                       buffer_type_;
 
@@ -607,8 +613,8 @@ private:
     static char_type*           char_pointer_from_member_pointer_(member_pointer ) STLSOFT_NOEXCEPT;
 
     // Conversion between pointer and buffer
-    static string_buffer*       string_buffer_from_member_pointer_(member_pointer ) STLSOFT_NOEXCEPT;
-    static string_buffer const* string_buffer_from_member_pointer_(member_const_pointer ) STLSOFT_NOEXCEPT;
+    static ss_constexpr_2014_k string_buffer*       string_buffer_from_member_pointer_(member_pointer ) STLSOFT_NOEXCEPT;
+    static ss_constexpr_2014_k string_buffer const* string_buffer_from_member_pointer_(member_const_pointer ) STLSOFT_NOEXCEPT;
 
     // Conversion between buffer and pointer
     static member_pointer       member_pointer_from_string_buffer_(string_buffer*) STLSOFT_NOEXCEPT;
@@ -630,6 +636,7 @@ private:
     pointer                     end_() STLSOFT_NOEXCEPT;
 
     // Invariance
+    ss_constexpr_2014_k
     ss_bool_t is_valid() const STLSOFT_NOEXCEPT;
 
     // Empty string
@@ -1666,6 +1673,7 @@ template <
 >
 inline
 /* static */
+ss_constexpr_2014_k
 ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer*
 basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_pointer m) STLSOFT_NOEXCEPT
 {
@@ -1687,6 +1695,7 @@ template <
 >
 inline
 /* static */
+ss_constexpr_2014_k
 ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer const*
 basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_const_pointer m) STLSOFT_NOEXCEPT
 {
@@ -1744,8 +1753,10 @@ basic_simple_string<C, T, A>::alloc_buffer_(
 
     byte_ator_type          byte_ator;
 # ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+
     void* const             raw_buffer  =   byte_ator.allocate(capacity * sizeof(char_type), ss_nullptr_k);
 # else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
+
     void* const             raw_buffer  =   byte_ator.allocate(capacity * sizeof(char_type));
 # endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
     string_buffer* const    buffer      =   sap_cast<string_buffer*>(raw_buffer);
@@ -1840,8 +1851,10 @@ basic_simple_string<C, T, A>::copy_buffer_(ss_typename_type_k basic_simple_strin
         string_buffer* const    buffer      =   string_buffer_from_member_pointer_(m);
         ss_size_t const         cb          =   buffer->capacity * sizeof(char_type) + STLSOFT_RAW_OFFSETOF(string_buffer, contents);
 # ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+
         void* const             raw_buffer  =   byte_ator.allocate(cb, ss_nullptr_k);
 # else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
+
         void* const             raw_buffer  =   byte_ator.allocate(cb);
 # endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
         string_buffer* const    new_buffer  =   sap_cast<string_buffer*>(raw_buffer);
@@ -1867,9 +1880,29 @@ inline
 void
 basic_simple_string<C, T, A>::destroy_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::string_buffer* buffer) STLSOFT_NOEXCEPT
 {
+#ifndef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
+
+    // NOTE: the GCC warning "free-nonheap-object" is a very important one,
+    // and only suppressed here with confidence that it is being issued in
+    // error by (later versions of) GCC C++ compiler
+# ifdef __GNUC__
+
+#  pragma GCC diagnostic push
+#  pragma GCC diagnostic ignored "-Wfree-nonheap-object"
+# endif
+#endif
+
     byte_ator_type byte_ator;
 
     byte_ator.deallocate(sap_cast<ss_byte_t*>(buffer), 0);
+
+#ifndef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
+
+# ifdef __GNUC__
+
+#  pragma GCC diagnostic pop
+# endif
+#endif
 }
 
 template <
@@ -1915,6 +1948,7 @@ template <
 ,   ss_typename_param_k A
 >
 inline
+ss_constexpr_2014_k
 ss_bool_t
 basic_simple_string<C, T, A>::is_valid() const STLSOFT_NOEXCEPT
 {
@@ -1972,6 +2006,7 @@ template <
 ,   ss_typename_param_k A
 >
 inline
+ss_constexpr_2014_k
 basic_simple_string<C, T, A>::basic_simple_string() STLSOFT_NOEXCEPT
     : m_buffer(ss_nullptr_k)
 {
@@ -2105,6 +2140,7 @@ template <
 ,   ss_typename_param_k A
 >
 inline
+ss_constexpr_2020_k
 basic_simple_string<C, T, A>::~basic_simple_string() STLSOFT_NOEXCEPT
 {
 #if defined(__BORLANDC__) && \
@@ -3389,6 +3425,7 @@ basic_simple_string<C, T, A>::assign(
                 member_pointer const new_buffer = alloc_buffer_(s, cch, cch);
 
                 destroy_buffer_(m_buffer);
+
                 m_buffer = new_buffer;
             }
         }

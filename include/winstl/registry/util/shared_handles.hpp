@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/util/shared_handles.hpp
+ * File:    winstl/registry/util/shared_handles.hpp
  *
- * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
+ * Purpose: Contains the shared_handle and monitored_shared_handle classes.
  *
- * Created:     19th January 2002
- * Updated:     11th March 2024
+ * Created: 19th January 2002
+ * Updated: 13th October 2024
  *
- * Thanks:      To Austin Ziegler for fixes to defects evident on x64.
+ * Thanks:  To Austin Ziegler for fixes to defects evident on x64.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MAJOR       2
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_MINOR       0
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    17
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        52
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_REVISION    21
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -194,6 +194,9 @@ namespace registry_util
                 WINSTL_API_EXTERNAL_Registry_RegCloseKey(m_hkey);
             }
         }
+    private:
+        shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     /// @}
 
     /// \name Operations
@@ -217,13 +220,6 @@ namespace registry_util
 
         virtual void test_reset_and_throw()
         {}
-    /// @}
-
-    /// \name Not to be implemented
-    /// @{
-    private:
-        shared_handle(class_type const&);
-        class_type& operator =(class_type const&);
     /// @}
     };
 
@@ -253,6 +249,9 @@ namespace registry_util
 
             AddRef();
         }
+    private:
+        monitored_shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     /// \name Operations
     /// @{
@@ -279,13 +278,7 @@ namespace registry_util
             {
                 LONG const r =
                 dl_call<LONG>(  "ADVAPI32.DLL"
-#if defined(WINSTL_OS_IS_WIN64)
-                            ,   "C:RegNotifyChangeKeyValue"
-#elif defined(WINSTL_OS_IS_WIN32)
-                            ,   "S:RegNotifyChangeKeyValue"
-#else /* ? WIN?? */
-# error Windows operating system not recognised
-#endif /* WIN?? */
+                            ,   WINSTL_DL_CALL_WINx_STDCALL_LITERAL("RegNotifyChangeKeyValue")
                             ,   m_hkey
                             ,   false
                             ,   m_eventType
@@ -298,7 +291,7 @@ namespace registry_util
                     STLSOFT_THROW_X(registry_exception("could not register change notification", r));
                 }
             }
-            catch(missing_entry_point_exception&)
+            catch (missing_entry_point_exception&)
             {
                 ws_uint_t   verMajor;
                 ws_uint_t   verMinor;
@@ -325,13 +318,6 @@ namespace registry_util
     private:
         const int   m_eventType;
         event       m_monitor;  // The event that will monitor changes to the API.
-    /// @}
-
-    /// \name Not to be implemented
-    /// @{
-    private:
-        monitored_shared_handle(class_type const&);
-        class_type& operator =(class_type const&);
     /// @}
     };
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

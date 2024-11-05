@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/trip_bool.hpp
+ * File:    stlsoft/util/trip_bool.hpp
  *
- * Purpose:     Defines the stlsoft::trip_bool class template.
+ * Purpose: Defines the stlsoft::trip_bool class template.
  *
- * Created:     22nd October 2006
- * Updated:     11th March 2024
+ * Created: 22nd October 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    6
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        20
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_REVISION    9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRIP_BOOL_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -113,6 +113,8 @@ public:
     trip_bool(bool v = !V)
         : m_v(v)
     {}
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors
@@ -140,13 +142,8 @@ public:
 private:
     value_type  m_v;
 /// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type& operator =(class_type const&);
-/// @}
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

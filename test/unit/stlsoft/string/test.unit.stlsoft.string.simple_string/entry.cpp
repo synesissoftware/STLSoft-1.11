@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 4th November 2008
- * Updated: 9th July 2024
+ * Updated: 22nd October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -429,7 +429,7 @@ namespace
         ,   std::streamsize n
         )
         {
-            contents.append(s, n);
+            contents.append(s, static_cast<std::size_t>(n));
 
             return *this;
         }
@@ -480,7 +480,8 @@ namespace
 static void test_ctor_default()
 {
     {
-        string_t    s;
+        ss_constexpr_2020_k
+        string_t s;
 
         XTESTS_TEST_BOOLEAN_TRUE(s.empty());
         XTESTS_TEST_INTEGER_EQUAL(0u, s.size());
@@ -522,7 +523,7 @@ static void test_ctor_s_pos()
         string_t    s1("abc");
         string_t    s2(s1, 1);
 
-        XTESTS_TEST_INTEGER_EQUAL(2, s2.size());
+        XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
     }
 }
@@ -1382,11 +1383,15 @@ static void test_compare_1()
 
     XTESTS_TEST_BOOLEAN_TRUE(s1 == s1);
     XTESTS_TEST_BOOLEAN_TRUE(s1 == s1.c_str());
+    XTESTS_TEST_BOOLEAN_TRUE(s1 == "abc");
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() == s1);
+    XTESTS_TEST_BOOLEAN_TRUE("abc" == s1);
 
     XTESTS_TEST_BOOLEAN_TRUE(s1 != s2);
     XTESTS_TEST_BOOLEAN_TRUE(s1 != s2.c_str());
+    XTESTS_TEST_BOOLEAN_TRUE(s1 != "def");
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() != s2);
+    XTESTS_TEST_BOOLEAN_TRUE("abc" != s2);
 }
 
 static void test_compare_2()
@@ -2191,7 +2196,7 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 26);
         dest[26] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(26, n);
+        XTESTS_TEST_INTEGER_EQUAL(26u, n);
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", dest);
     }
 
@@ -2201,7 +2206,7 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 20);
         dest[20] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(20, n);
+        XTESTS_TEST_INTEGER_EQUAL(20u, n);
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrst", dest);
     }
 
@@ -2211,7 +2216,7 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 20, 6);
         dest[20] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(20, n);
+        XTESTS_TEST_INTEGER_EQUAL(20u, n);
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ghijklmnopqrstuvwxyz", dest);
     }
 
@@ -2221,7 +2226,7 @@ static void test_copy()
         size_t n = s_alphabet.copy(&dest[0], 20, 16);
         dest[10] = '\0';
 
-        XTESTS_TEST_INTEGER_EQUAL(10, n);
+        XTESTS_TEST_INTEGER_EQUAL(10u, n);
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("qrstuvwxyz", dest);
     }
 }
@@ -3442,19 +3447,19 @@ static void test_stlsoft_char_traits()
             {
                 ss_size_t const r = traits_t::length("");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_INTEGER_EQUAL(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length("abc");
 
-                XTESTS_TEST_INTEGER_EQUAL(3, r);
+                XTESTS_TEST_INTEGER_EQUAL(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length(alphabet);
 
-                XTESTS_TEST_INTEGER_EQUAL(26, r);
+                XTESTS_TEST_INTEGER_EQUAL(26u, r);
             }
         }
 
@@ -3463,37 +3468,37 @@ static void test_stlsoft_char_traits()
             {
                 ss_size_t const r = traits_t::length_max("", 0);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_INTEGER_EQUAL(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max("", 10);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_INTEGER_EQUAL(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max("abc", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(3, r);
+                XTESTS_TEST_INTEGER_EQUAL(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max("abc", 2);
 
-                XTESTS_TEST_INTEGER_EQUAL(2, r);
+                XTESTS_TEST_INTEGER_EQUAL(2u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max("abc", 22);
 
-                XTESTS_TEST_INTEGER_EQUAL(3, r);
+                XTESTS_TEST_INTEGER_EQUAL(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(alphabet, 1000);
 
-                XTESTS_TEST_INTEGER_EQUAL(26, r);
+                XTESTS_TEST_INTEGER_EQUAL(26u, r);
             }
         }
     }
@@ -3592,19 +3597,19 @@ static void test_stlsoft_char_traits()
             {
                 ss_size_t const r = traits_t::length(L"");
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_INTEGER_EQUAL(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length(L"abc");
 
-                XTESTS_TEST_INTEGER_EQUAL(3, r);
+                XTESTS_TEST_INTEGER_EQUAL(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length(alphabet_w);
 
-                XTESTS_TEST_INTEGER_EQUAL(26, r);
+                XTESTS_TEST_INTEGER_EQUAL(26u, r);
             }
         }
 
@@ -3613,37 +3618,37 @@ static void test_stlsoft_char_traits()
             {
                 ss_size_t const r = traits_t::length_max(L"", 0);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_INTEGER_EQUAL(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(L"", 10);
 
-                XTESTS_TEST_INTEGER_EQUAL(0, r);
+                XTESTS_TEST_INTEGER_EQUAL(0u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(L"abc", 3);
 
-                XTESTS_TEST_INTEGER_EQUAL(3, r);
+                XTESTS_TEST_INTEGER_EQUAL(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(L"abc", 2);
 
-                XTESTS_TEST_INTEGER_EQUAL(2, r);
+                XTESTS_TEST_INTEGER_EQUAL(2u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(L"abc", 22);
 
-                XTESTS_TEST_INTEGER_EQUAL(3, r);
+                XTESTS_TEST_INTEGER_EQUAL(3u, r);
             }
 
             {
                 ss_size_t const r = traits_t::length_max(alphabet_w, 1000);
 
-                XTESTS_TEST_INTEGER_EQUAL(26, r);
+                XTESTS_TEST_INTEGER_EQUAL(26u, r);
             }
         }
     }
@@ -3873,6 +3878,12 @@ static void test_insertion_3()
 static void test_insertion_4()
 {
     const std::size_t FIELD_WIDTH = 2000;
+#if defined(_MSC_VER) &&\
+    _MSC_VER == 1700
+
+    STLSOFT_SUPPRESS_UNUSED(&FIELD_WIDTH);
+# define FIELD_WIDTH (2000)
+#endif
 
     string_t const  s1;
     string_t const  s2("abc");
@@ -3928,6 +3939,10 @@ static void test_insertion_4()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL(
         expected
         , ss.str());
+
+#ifdef FIELD_WIDTH
+# undef FIELD_WIDTH
+#endif
 }
 
 

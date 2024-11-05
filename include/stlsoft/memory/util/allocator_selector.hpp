@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/memory/util/allocator_selector.hpp (formerly stlsoft/memory/allocator_selector.hpp)
+ * File:    stlsoft/memory/util/allocator_selector.hpp (formerly stlsoft/memory/allocator_selector.hpp)
  *
- * Purpose:     Selects the most appropriate allocator.
+ * Purpose: Selects the most appropriate allocator.
  *
- * Created:     20th August 2005
- * Updated:     11th March 2024
+ * Created: 20th August 2005
+ * Updated: 22nd October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_MAJOR       3
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_REVISION    5
-# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_EDIT        36
+# define STLSOFT_VER_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,12 +95,12 @@
 #endif /* allocator */
 
 
-
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     (   defined(STLSOFT_COMPILER_IS_DMC) && \
         __DMC__ < 0x0845) || \
     (   defined(STLSOFT_COMPILER_IS_GCC) && \
         __GNUC__ < 3)
+
  // Something's wrong with Borland - big shock! - that causes crashes in deallocation
  //
  // Same for GCC 2.95
@@ -110,6 +110,7 @@
 #elif defined(STLSOFT_COMPILER_IS_WATCOM) || \
       (   defined(STLSOFT_COMPILER_IS_MSVC) && \
           _MSC_VER >= 1400)
+
  // Watcom's got major problems, so we use malloc_allocator
  //
  // VC++ 8 & 9 has a bug that results in a definition of
@@ -117,17 +118,23 @@
  // which breaks the linker with LNK2005 (multiple definitions)
 # define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR
 #else /* ? compiler */
+
  // Now we work out which to select by default for each
 # if !defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR) && \
      !defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR) && \
      !defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR)
+
 #  if !defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR)
+
 #   define STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR
 #  elif !defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_NEW_ALLOCATOR)
+
 #   define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR
 #  elif !defined(STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_MALLOC_ALLOCATOR)
+
 #   define STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR
 #  else /* ? NO_USE_??? */
+
 #   error All allocator types disabled. You must enable one or more, by disabling one or more of
 #   error symbols STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STD_ALLOCATOR,
 #   error STLSOFT_ALLOCATOR_SELECTOR_NO_USE_STLSOFT_NEW_ALLOCATOR
@@ -203,7 +210,9 @@ public: // Member types
 template <ss_typename_param_k T>
 struct allocator_selector
 {
-#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if 0
+#elif defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
     /// The actual allocator specialisation
     ///
     /// This will be one of:
@@ -213,12 +222,16 @@ struct allocator_selector
     ///  stlsoft::std::allocator<T>.
     typedef _some_allocator_<T>                 allocator_type;
 #elif defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_MALLOC_ALLOCATOR)
+
     typedef malloc_allocator<T>                 allocator_type;
 #elif defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STLSOFT_NEW_ALLOCATOR)
+
     typedef new_allocator<T>                    allocator_type;
 #elif defined(STLSOFT_ALLOCATOR_SELECTOR_USE_STD_ALLOCATOR)
+
     typedef STLSOFT_NS_QUAL_STD(allocator)<T>   allocator_type;
 #else /* USE_??? */
+
 # error Error in discrimination. allocator_selector must select either std::allocator, stlsoft::malloc_allocator or stlsoft::new_allocator
 #endif /* allocator */
 };

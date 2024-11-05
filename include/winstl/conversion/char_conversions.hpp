@@ -142,15 +142,15 @@ template <
     ws_size_t V_internalSize
 >
 class multibyte2wide
-    : private auto_buffer_old<ws_char_w_t, processheap_allocator<ws_char_w_t>, V_internalSize>
+    : private auto_buffer<ws_char_w_t, V_internalSize, processheap_allocator<ws_char_w_t>>
 {
 /// \name Member Types
 /// @{
 private:
-    typedef auto_buffer_old<
+    typedef auto_buffer<
         ws_char_w_t
-    ,   processheap_allocator<ws_char_w_t>
     ,   V_internalSize
+    ,   processheap_allocator<ws_char_w_t>
     >                                                       parent_class_type;
 public:
     /// The character type
@@ -300,15 +300,15 @@ private:
  */
 template <ws_size_t V_internalSize>
 class wide2multibyte
-    : private auto_buffer_old<ws_char_a_t, processheap_allocator<ws_char_a_t>, V_internalSize>
+    : private auto_buffer<ws_char_a_t, V_internalSize, processheap_allocator<ws_char_a_t>>
 {
 /// \name Member Types
 /// @{
 private:
-    typedef auto_buffer_old<
+    typedef auto_buffer<
         ws_char_a_t
-    ,   processheap_allocator<ws_char_a_t>
     ,   V_internalSize
+    ,   processheap_allocator<ws_char_a_t>
     >                                                       parent_class_type;
 public:
     /// The character type

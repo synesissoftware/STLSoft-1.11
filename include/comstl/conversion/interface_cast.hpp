@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/conversion/interface_cast.hpp
+ * File:    comstl/conversion/interface_cast.hpp
  *
- * Purpose:     Safe interface casting functions.
+ * Purpose: Safe interface casting functions.
  *
- * Created:     25th June 2002
- * Updated:     11th March 2024
+ * Created: 25th June 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   14
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       137
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   16
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -510,6 +510,9 @@ public: // Construction
     ~interface_cast_noaddref() STLSOFT_NOEXCEPT
     {} // We need to provide this to persuade VC6 to call the parent class dtor
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+private:
+    interface_cast_noaddref(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:
@@ -523,8 +526,6 @@ public:
 
 // Not to be implemented
 private:
-    interface_cast_noaddref(class_type const& rhs);
-    class_type const& operator =(class_type const& rhs);
 
     // These are defined to placate Borland C/C++
     void* operator new(cs_size_t /* si */) STLSOFT_NOEXCEPT
@@ -583,6 +584,9 @@ public: // Construction
     ~interface_cast_addref() STLSOFT_NOEXCEPT
     {} // We need to provide this to persuade VC6 to call the parent class dtor
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+private:
+    interface_cast_addref(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:
@@ -594,8 +598,6 @@ public:
 
 // Not to be implemented
 private:
-    interface_cast_addref(class_type const& rhs);
-    class_type const& operator =(class_type const& rhs);
 
     // These are defined to placate Borland C/C++
     void* operator new(cs_size_t /* si */) STLSOFT_NOEXCEPT
@@ -652,6 +654,9 @@ public: // Construction
     ~interface_cast_tester() STLSOFT_NOEXCEPT
     {} // We need to provide this to persuade VC6 to call the parent class dtor
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+private:
+    interface_cast_tester(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /// \name State
 /// @{
@@ -678,8 +683,6 @@ public:
 
 // Not to be implemented
 private:
-    interface_cast_tester(class_type const& rhs);
-    class_type const& operator =(class_type const& rhs);
 
     // These are defined to placate Borland C/C++
     void* operator new(cs_size_t /* si */) STLSOFT_NOEXCEPT
@@ -795,7 +798,7 @@ try
 
   printf("Object has IStorage interface\n");
 }
-catch(comstl::bad_interface_cast &)
+catch (comstl::bad_interface_cast &)
 {
   printf("Object does not have IStorage interface\n");
 }
@@ -842,7 +845,7 @@ try
 
   printf("Wrapper object has IStorage interface\n");
 }
-catch(comstl::bad_interface_cast &)
+catch (comstl::bad_interface_cast &)
 {
   printf("Wrapper object does not have IStorage interface\n");
 }

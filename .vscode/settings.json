@@ -1,10 +1,10 @@
 {
-	"[c]": {
+	"[bat]": {
 		"editor.insertSpaces": true,
 		"editor.rulers": [ 60, 76 ],
 		"editor.tabSize": 4,
 	},
-	"[cpp]": {
+	"[c]": {
 		"editor.insertSpaces": true,
 		"editor.rulers": [ 60, 76 ],
 		"editor.tabSize": 4,
@@ -13,12 +13,32 @@
 		"editor.insertSpaces": false,
 		"editor.tabSize": 4,
 	},
+	"[cpp]": {
+		"editor.insertSpaces": true,
+		"editor.rulers": [ 60, 64, 68, 76 ],
+		"editor.tabSize": 4,
+	},
 	"[json]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2,
+	},
+	"[markdown]": {
 		"editor.insertSpaces": true,
 		"editor.tabSize": 2,
 	},
 	"[ruby]": {
 		"editor.insertSpaces": true,
+		"editor.rulers": [ 60, 76 ],
+		"editor.tabSize": 2,
+	},
+	"[rust]": {
+		"editor.insertSpaces": true,
+		"editor.rulers": [ 60, 76 ],
+		"editor.tabSize": 4,
+	},
+	"[shellscript]": {
+		"editor.insertSpaces": true,
+		"editor.rulers": [ 60, 76 ],
 		"editor.tabSize": 2,
 	},
 	"cmake.configureOnOpen": false,
@@ -72,7 +92,9 @@
 		"deque": "cpp",
 		"exception": "cpp",
 		"execution": "cpp",
+		"format": "cpp",
 		"functional": "cpp",
+		"implicit_link.h": "c",
 		"initializer_list": "cpp",
 		"iomanip": "cpp",
 		"ios": "cpp",
@@ -94,6 +116,7 @@
 		"queue": "cpp",
 		"ratio": "cpp",
 		"set": "cpp",
+		"shwild.h": "c",
 		"sstream": "cpp",
 		"stack": "cpp",
 		"stdexcept": "cpp",
@@ -109,8 +132,22 @@
 		"utility": "cpp",
 		"variant": "cpp",
 		"vector": "cpp",
+		"xfacet": "cpp",
+		"xiosbase": "cpp",
+		"xlocale": "cpp",
+		"xlocbuf": "cpp",
+		"xlocinfo": "cpp",
+		"xlocmes": "cpp",
+		"xlocmon": "cpp",
+		"xlocnum": "cpp",
+		"xloctime": "cpp",
+		"xmemory": "cpp",
+		"xstring": "cpp",
+		"xtr1common": "cpp",
+		"xtree": "cpp",
 		"xutility": "cpp",
 	},
 	"files.insertFinalNewline": true,
 	"files.trimTrailingWhitespace": true,
+	"git.mergeEditor": false,
 }

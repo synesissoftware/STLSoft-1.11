@@ -4,6 +4,7 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
+MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
 IgnoreRemainingFlagsAndOptions=0
 Targets=()
@@ -69,6 +70,7 @@ EOF
       exit 0
       ;;
     *)
+
       >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
 
       exit 1
@@ -95,18 +97,20 @@ else
 
     >&2 echo "$ScriptPath: CMake build directory '$CMakeDir' does not contain expected file 'Makefile', so a clean cannot be performed. It is recommended that you remove all CMake artefacts using script 'remove_cmake_artefacts.sh' followed by regeneration via 'prepare_cmake.sh'"
 
+    cd ->/dev/null
+
     exit 1
   else
 
     if [ -z "$Targets" ]; then
 
-      echo "Executing build (via command \`make\`)"
+      echo "Executing build (via command \`$MakeCmd\`)"
     else
 
-      echo "Executing build (via command \`make\`) with specific target(s) $(join_by , "${Targets[@]}")"
+      echo "Executing build (via command \`$MakeCmd\`) with specific target(s) $(join_by , "${Targets[@]}")"
     fi
 
-    make ${Targets[*]}
+    $MakeCmd ${Targets[*]}
     status=$?
 
     cd ->/dev/null

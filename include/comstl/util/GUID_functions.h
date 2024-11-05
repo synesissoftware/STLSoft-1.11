@@ -4,7 +4,7 @@
  * Purpose: GUID helper functions.
  *
  * Created: 12th May 2010
- * Updated: 25th September 2024
+ * Updated: 20th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MAJOR      1
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MINOR      4
-# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_REVISION   6
+# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_REVISION   7
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -94,6 +94,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>              /* for wcscmp() */
+#endif /* !STLSOFT_INCL_H_WCHAR */
 
 #ifndef STLSOFT_INCL_H_WCHAR
 # define STLSOFT_INCL_H_WCHAR
@@ -352,6 +357,8 @@ comstl_C_GUID_to_string_w(
 
     if (0 == r)
     {
+        (*buff)[0] = L'\0';
+
         return E_INVALIDARG;
     }
     else
@@ -432,17 +439,17 @@ comstl_C_GUID_to_string(
 {
     return comstl_C_GUID_to_string_a(guid, buff);
 }
-
 #else /* ? __cplusplus */
 
 # ifdef UNICODE
+
 #  define comstl_C_GUID_from_string                         comstl_C_GUID_from_string_w
 #  define comstl_C_GUID_to_string                           comstl_C_GUID_to_string_w
 # else /* ? UNICODE */
+
 #  define comstl_C_GUID_from_string                         comstl_C_GUID_from_string_a
 #  define comstl_C_GUID_to_string                           comstl_C_GUID_to_string_a
 # endif /* UNICODE */
-
 #endif /* __cplusplus */
 
 
@@ -605,6 +612,7 @@ GUID_equal(
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # if !defined(STLSOFT_COMPILER_IS_MSVC) || \
      _MSC_VER >= 1310
+
 programmer_error::cannot_pass_GUID_type_to_GUID_from_string
 GUID_from_string(GUID const&, GUID*);
 # endif /* _MSC_VER */
@@ -640,10 +648,11 @@ GUID_to_string(
 {
     return comstl_C_GUID_to_string_a(guid, buff);
 }
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

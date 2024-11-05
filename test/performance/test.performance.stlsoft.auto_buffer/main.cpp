@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *
  * Created: ... mid 2010s ...
- * Updated: 26th September 2024
+ * Updated: 5th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -84,7 +84,7 @@ public: // construction
         rhs.m_pi = NULL;
     }
 private:
-    void operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // operators
     class_type& operator ++()

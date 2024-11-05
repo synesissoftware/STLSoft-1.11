@@ -1,18 +1,18 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/findvolume_sequence.hpp
+ * File:    winstl/filesystem/findvolume_sequence.hpp
  *
- * Purpose:     Contains the basic_findvolume_sequence template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_findvolume_sequence template class, and ANSI
+ *          and Unicode specialisations thereof.
  *
- * Notes:       The original implementation of the class had the const_iterator
- *              and value_type as nested classes. Unfortunately, Visual C++ 5 &
- *              6 both had either compilation or linking problems so these are
- *              regretably now implemented as independent classes.
+ * Notes:   The original implementation of the class had the const_iterator
+ *          and value_type as nested classes. Unfortunately, Visual C++ 5 &
+ *          6 both had either compilation or linking problems so these are
+ *          regretably now implemented as independent classes.
  *
- * Created:     15th January 2002
- * Updated:     11th March 2024
+ * Created: 15th January 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      137
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  17
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -346,7 +346,7 @@ private:
 
     private:
         shared_handle(class_type const&);
-        class_type& operator =(class_type const&);
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
@@ -559,7 +559,7 @@ inline ss_typename_type_ret_k basic_findvolume_sequence<C, T>::const_iterator ba
             return const_iterator(*this, hSrch, vol_name);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(...)
+        catch (...)
         {
             traits_type::find_volume_close(hSrch);
 

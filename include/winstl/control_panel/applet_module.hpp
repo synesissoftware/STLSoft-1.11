@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/control_panel/applet_module.hpp
+ * File:    winstl/control_panel/applet_module.hpp
  *
- * Purpose:     Control Panel module/applet manipulation classes.
+ * Purpose: Control Panel module/applet manipulation classes.
  *
- * Created:     1st April 2006
- * Updated:     11th March 2024
+ * Created: 1st April 2006
+ * Updated: 13th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 21
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     43
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 25
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,8 +160,8 @@ public:
  * available by its subscript operator. For example, the following code
  * retrieves a reference to the first applet and invokes it:
 \code
-winstl::applet_module &module   = . . . ;
-winstl::applet        &applet0  = module[0];
+winstl::applet_module&  am  = . . . ;
+winstl::applet&         applet0 = am[0];
 
 applet0.open();
 \endcode
@@ -197,7 +197,7 @@ private:
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
     applet(
-        applet_module_base* module
+        applet_module_base* am
     ,   index_type          index
     );
 public:
@@ -205,7 +205,7 @@ public:
      */
     ~applet() STLSOFT_NOEXCEPT;
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -263,8 +263,8 @@ private:
  * applet contained within.
  *
 \code
-#include <winstl/findfile_sequence.hpp>
-#include <winstl/system_directory.hpp>
+#include <winstl/filesystem/findfile_sequence.hpp>
+#include <winstl/system/system_directory.hpp>
 #include <winstl/control_panel/applet_module.hpp>
 
 #include <iostream>
@@ -278,12 +278,12 @@ int main()
 
     { for (winstl::findfile_sequence::const_iterator b = files.begin(); b != files.end(); ++b)
     {
-      winstl::applet_module module(*b, winstl::applet_module:dontExpectNonZeroInit);
+      winstl::applet_module am(*b, winstl::applet_module:dontExpectNonZeroInit);
 
-      winstl::applet_module::const_iterator b = module.begin();
-      winstl::applet_module::const_iterator e = module.end();
+      winstl::applet_module::const_iterator b = am.begin();
+      winstl::applet_module::const_iterator e = am.end();
 
-      std::cout << "path:          " << module.get_path() << std::endl;
+      std::cout << "path:          " << am.get_path() << std::endl;
       for (; b != e; ++b)
       {
         winstl::applet const  &applet = *b;
@@ -296,7 +296,7 @@ int main()
       std::cout << std::endl;
     }}
   }
-  catch(std::exception &x)
+  catch (std::exception &x)
   {
     std::cerr << "Exception: " << x.what() << std::endl;
   }
@@ -414,13 +414,16 @@ public:
     ss_explicit_k applet_module(TCHAR const* path, onFailureS pfn, int flags = ignoreIconLoadFailures, HWND hwndParent = NULL);
 # endif
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+private:
+    applet_module(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes
 /// @{
 public:
     /// The path used to initialise the instance.
-    string_type const   &get_path() const;
+    string_type const&  get_path() const;
 /// @}
 
 /// \name Accessors
@@ -473,16 +476,9 @@ private:
 /// @{
 private:
     const string_type   m_path;
-    module              m_module;
+    dl_module           m_module;
     applets_type_       m_applets;
     error_translator    m_errorTranslator;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    applet_module(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 
@@ -495,15 +491,15 @@ private:
 
 // applet
 
-inline applet::applet(applet_module_base* module, applet::index_type index)
-    : m_module(module)
+inline applet::applet(applet_module_base* am, applet::index_type index)
+    : m_module(am)
     , m_index(index)
     , m_icon(NULL)
     , m_name()
     , m_description()
     , m_data(0)
 {
-    WINSTL_ASSERT(NULL != module);
+    WINSTL_ASSERT(NULL != am);
     WINSTL_ASSERT(0 == index || index < control_panel_get_count(m_module->m_pfn, m_module->m_hwnd));
 
     WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(0);
@@ -556,7 +552,7 @@ inline applet::applet(applet_module_base* module, applet::index_type index)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(...)
+        catch (...)
         {
             control_panel_uninit(m_module->m_pfn, m_module->m_hwnd);
 

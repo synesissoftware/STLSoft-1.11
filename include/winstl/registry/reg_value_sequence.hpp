@@ -1,22 +1,22 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/reg_value_sequence.hpp
+ * File:    winstl/registry/reg_value_sequence.hpp
  *
- * Purpose:     Contains the basic_reg_value_sequence class template, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_reg_value_sequence class template, and ANSI
+ *          and Unicode specialisations thereof.
  *
- * Notes:       The original implementation of the class had the iterator
- *              and value_type as nested classes. Unfortunately, Visual C++ 5 &
- *              6 both had either compilation or linking problems so these are
- *              regretably now implemented as independent classes.
+ * Notes:   The original implementation of the class had the iterator and
+ *          value_type as nested classes. Unfortunately, Visual C++ 5 & 6
+ *          both had either compilation or linking problems so these are
+ *          regretably now implemented as independent classes.
  *
- * Thanks:      To Allan McLellan, for pointing out some inadequacies in the
- *              basic_reg_key_sequence class interface (that equally applied to.
- *              basic_reg_value_sequence).
+ * Thanks:  To Allan McLellan, for pointing out some inadequacies in the
+ *          basic_reg_key_sequence class interface (that equally applied to
+ *          basic_reg_value_sequence).
  *
- * Created:     19th January 2002
- * Updated:     11th March 2024
+ * Created: 19th January 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -64,8 +64,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 12
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     147
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 16
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     151
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -171,60 +171,67 @@ class basic_reg_value_sequence
 /// @{
 public:
     /// The character type
-    typedef C                                                                   char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                                                   traits_type;
+    typedef T                                               traits_type;
     /// The allocator type
-    typedef A                                                                   allocator_type;
+    typedef A                                               allocator_type;
     /// The current specialisation of the type
-    typedef basic_reg_value_sequence<C, T, A>                                   class_type;
+    typedef basic_reg_value_sequence<C, T, A>               class_type;
     /// The value type
-    typedef basic_reg_value<C, T, A>                                            value_type;
+    typedef basic_reg_value<C, T, A>                        value_type;
     /// The size type
-    typedef ss_typename_type_k traits_type::size_type                           size_type;
+    typedef ss_typename_type_k traits_type::size_type       size_type;
     /// The get key type
-    typedef basic_reg_key<C, T, A>                                              reg_key_type;
+    typedef basic_reg_key<C, T, A>                          reg_key_type;
     /// The non-mutating (const) iterator type
-    typedef basic_reg_value_sequence_iterator<C, T, value_type, A>              iterator;
+    typedef basic_reg_value_sequence_iterator<
+        C
+    ,   T
+    ,   value_type
+    ,   A
+    >                                                       iterator;
     /// The non-mutating (const) iterator type
     ///
     /// \note This is retained for backwards compatibility
-    typedef iterator                                                            const_iterator;
+    typedef iterator                                        const_iterator;
     /// The reference type
-    typedef value_type&                                                         reference;
+    typedef value_type&                                     reference;
     /// The non-mutable (const) reference type
-    typedef value_type const&                                                   const_reference;
+    typedef value_type const&                               const_reference;
     /// The hkey type
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1100
     /* WSCB: VC5 has an unresolved external linker error if use traits_type::hkey_type */
-    typedef HKEY                                                                hkey_type;
+    typedef HKEY                                            hkey_type;
 #else /* ? compiler */
-    typedef ss_typename_type_k traits_type::hkey_type                           hkey_type;
+    typedef ss_typename_type_k traits_type::hkey_type       hkey_type;
 #endif /* compiler */
     /// The difference type
-    typedef ws_ptrdiff_t                                                        difference_type;
+    typedef ws_ptrdiff_t                                    difference_type;
     /// The non-mutating (const) reverse iterator type
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    typedef STLSOFT_NS_QUAL(reverse_bidirectional_iterator_base)  <   iterator
-                                                                  ,   value_type
-                                                                  ,   value_type  // By-Value Temporary reference category
-                                                                  ,   void        // By-Value Temporary reference category
-                                                                  ,   difference_type
-                                                                  >             reverse_iterator;
+    typedef STLSOFT_NS_QUAL(reverse_bidirectional_iterator_base)<
+        iterator
+    ,   value_type
+    ,   value_type  // By-Value Temporary reference category
+    ,   void        // By-Value Temporary reference category
+    ,   difference_type
+    >                                                       reverse_iterator;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The Boolean type
-    typedef ws_bool_t                                                           bool_type;
+    typedef ws_bool_t                                       bool_type;
 private:
     /// The results type of the Registry API
-    typedef ss_typename_type_k traits_type::result_type                         result_type;
+    typedef ss_typename_type_k traits_type::result_type     result_type;
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<   char_type
-                                            ,   allocator_type
-                                            ,   CCH_REG_API_AUTO_BUFFER
-                                            >                                   buffer_type_;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        char_type
+    ,   CCH_REG_API_AUTO_BUFFER
+    ,   allocator_type
+    >                                                       buffer_type_;
 public:
-    typedef hkey_type                                                           resource_type;
+    typedef hkey_type                                       resource_type;
 /// @}
 
 /// \name Construction
@@ -287,6 +294,9 @@ public:
                             ,   bool_type           bMonitorExternalInvalidation);
     /// Destructor
     ~basic_reg_value_sequence() STLSOFT_NOEXCEPT;
+private:
+    basic_reg_value_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -349,13 +359,6 @@ private:
     const REGSAM    m_accessMask;
     const bool_type m_bMonitorExternalInvalidation;
 /// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    basic_reg_value_sequence(class_type const&);
-    class_type& operator =(class_type const&);
-/// @}
 };
 
 
@@ -417,36 +420,36 @@ class basic_reg_value_sequence_iterator
 /// @{
 public:
     /// The character type
-    typedef C                                                           char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                                           traits_type;
+    typedef T                                               traits_type;
     /// The value type
-    typedef V                                                           value_type;
+    typedef V                                               value_type;
     /// The allocator type
-    typedef A                                                           allocator_type;
+    typedef A                                               allocator_type;
     /// The current specialisation of the type
-    typedef basic_reg_value_sequence_iterator<C, T, V, A>               class_type;
+    typedef basic_reg_value_sequence_iterator<C, T, V, A>   class_type;
     /// The size type
-    typedef ss_typename_type_k traits_type::size_type                   size_type;
+    typedef ss_typename_type_k traits_type::size_type       size_type;
     /// The difference type
-    typedef ss_typename_type_k traits_type::difference_type             difference_type;
+    typedef ss_typename_type_k traits_type::difference_type difference_type;
     /// The string type
-    typedef ss_typename_type_k traits_type::string_type                 string_type;
+    typedef ss_typename_type_k traits_type::string_type     string_type;
     /// The index type
-    typedef ws_sint32_t                                                 index_type;
+    typedef ws_sint32_t                                     index_type;
     /// The hkey type
-    typedef ss_typename_type_k traits_type::hkey_type                   hkey_type;
+    typedef ss_typename_type_k traits_type::hkey_type       hkey_type;
 private:
     /// The results type of the Registry API
-    typedef ss_typename_type_k traits_type::result_type                 result_type;
+    typedef ss_typename_type_k traits_type::result_type     result_type;
     /// The Boolean type
-    typedef ws_bool_t                                                   bool_type;
+    typedef ws_bool_t                                       bool_type;
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
-    ,   allocator_type
     ,   CCH_REG_API_AUTO_BUFFER
-    >                                                                   buffer_type_;
+    ,   allocator_type
+    >                                                       buffer_type_;
 /// @}
 
 /// \name Construction

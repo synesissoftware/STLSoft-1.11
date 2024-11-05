@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/clipboard/clipboard_scope.hpp
+ * File:    winstl/clipboard/clipboard_scope.hpp
  *
- * Purpose:     Clipboard scoping and facade class.
+ * Purpose: Clipboard scoping and facade class.
  *
- * Created:     26th May 2005
- * Updated:     11th March 2024
+ * Created: 26th May 2005
+ * Updated: 10th October 2024
  *
- * Thanks:      To Martin Moene for reporting the problem with the data type
- *              in set_data_or_deallocate_and_throw_(), and for calling for
- *              clarification of the get_data() semantics
+ * Thanks:  To Martin Moene for reporting the problem with the data type in
+ *          set_data_or_deallocate_and_throw_(), and for calling for
+ *          clarification of the get_data() semantics
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      1
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       55
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   4
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -148,7 +148,7 @@ public:
         : clipboard_exception(reason, sc)
     {}
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 };
@@ -361,7 +361,7 @@ private:
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(...)
+        catch (...)
         {
 # ifdef STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT
             ator.deallocate(memory, n);
@@ -381,7 +381,7 @@ private:
 /// @{
 private:
     clipboard_scope(class_type const&);
-    class_type& operator =(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 };
 
@@ -391,7 +391,7 @@ private:
  */
 
 
-/* /////////////////////////////////////////////////////////////////////////
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 

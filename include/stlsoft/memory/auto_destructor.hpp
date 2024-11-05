@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/memory/auto_destructor.hpp
+ * File:    stlsoft/memory/auto_destructor.hpp
  *
- * Purpose:     Contains the auto_destructor and auto_array_destructor template
- *              classes.
+ * Purpose: Contains the auto_destructor and auto_array_destructor template
+ *          classes.
  *
- * Created:     1st November 1994
- * Updated:     11th March 2024
+ * Created: 1st November 1994
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MINOR       2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        91
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    3
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -238,8 +238,8 @@ public:
         delete m_value;
     }
 private:
-    auto_destructor(class_type const& rhs);         // copy-construction proscribed
-    class_type& operator =(class_type const& rhs);  // copy-assignment proscribed
+    auto_destructor(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -357,8 +357,8 @@ public:
         delete [] m_value;
     }
 private:
-    auto_array_destructor(class_type const& rhs);   // copy-construction proscribed
-    class_type& operator =(class_type const& rhs);  // copy-assignment proscribed
+    auto_array_destructor(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -512,7 +512,7 @@ public:
         return proxy_type(detach());
     }
 private:
-    class_type& operator =(class_type const& rhs);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations
@@ -615,7 +615,7 @@ public:
         return proxy_type(detach());
     }
 private:
-    class_type& operator =(class_type const& rhs);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Operations

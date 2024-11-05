@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/string_to_integer.hpp
+ * File:    stlsoft/conversion/string_to_integer.hpp
  *
- * Purpose:     String to integer conversions.
+ * Purpose: String to integer conversions.
  *
- * Created:     18th November 2008
- * Updated:     11th March 2024
+ * Created: 18th November 2008
+ * Updated: 23rd October 2024
  *
- * Thanks to:   Chris Oldwood for righteous criticism of one of my hastily-
- *              written articles, which led to the creation of the
- *              try_parse_to<>() functions.
+ * Thanks:  Chris Oldwood for righteous criticism of one of my hastily-
+ *          written articles, which led to the creation of the
+ *          try_parse_to<>() functions.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      73
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_REVISION  2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -173,10 +173,12 @@ struct ximpl_string_to_integer_util_
                 case    '7':
                 case    '8':
                 case    '9':
+
                     STLSOFT_COVER_MARK_LINE();
                     result = 10 * result + (*s - '0');
                     continue;
                 default:
+
                     STLSOFT_COVER_MARK_LINE();
                     *endptr = s;
                     break;
@@ -218,26 +220,32 @@ struct ximpl_string_to_integer_util_
             {
                 case    'a':
                 case    'A':
+
                     c = 10;
                     goto calc;
                 case    'b':
                 case    'B':
+
                     c = 11;
                     goto calc;
                 case    'c':
                 case    'C':
+
                     c = 12;
                     goto calc;
                 case    'd':
                 case    'D':
+
                     c = 13;
                     goto calc;
                 case    'e':
                 case    'E':
+
                     c = 14;
                     goto calc;
                 case    'f':
                 case    'F':
+
                     c = 15;
                     goto calc;
 
@@ -251,12 +259,14 @@ struct ximpl_string_to_integer_util_
                 case    '7':
                 case    '8':
                 case    '9':
+
                     c = c - '0';
 calc:
                     STLSOFT_COVER_MARK_LINE();
                     *result = I(16 * *result + c);
                     continue;
                 default:
+
                     STLSOFT_COVER_MARK_LINE();
                     break;
             }
@@ -346,10 +356,12 @@ calc:
                 case    '7':
                 case    '8':
                 case    '9':
+
                     STLSOFT_COVER_MARK_LINE();
                     *result = I(10 * *result + (*s - '0'));
                     continue;
                 default:
+
                     STLSOFT_COVER_MARK_LINE();
                     break;
             }
@@ -477,9 +489,11 @@ calc:
                 case    '\r':
                 case    '\n':
                 case    '\v':
+
                     STLSOFT_COVER_MARK_LINE();
                     continue;
                 default:
+
                     STLSOFT_COVER_MARK_LINE();
                     break;
             }
@@ -489,9 +503,12 @@ calc:
         switch (*s)
         {
             case    '+':
+
                 STLSOFT_COVER_MARK_LINE();
                 ++s;
-                // Fall through
+
+                // fall through
+                STLSOFT_FALLTHROUGH();
             case    '0':
             case    '1':
             case    '2':
@@ -502,9 +519,11 @@ calc:
             case    '7':
             case    '8':
             case    '9':
+
                 STLSOFT_COVER_MARK_LINE();
                 return string_to_integer_raw_2_(s, endptr, I());
             case    '-':
+
                 STLSOFT_COVER_MARK_LINE();
                 {
                     STLSOFT_COVER_MARK_LINE();
@@ -515,9 +534,13 @@ calc:
                         return v;
                     }
                 }
-                // Fall through
+
                 STLSOFT_COVER_MARK_LINE();
+
+                // fall through
+                STLSOFT_FALLTHROUGH();
             default:
+
                 STLSOFT_COVER_MARK_LINE();
                 *endptr = s;
                 return 0;
@@ -578,9 +601,11 @@ calc:
                 case    '\r':
                 case    '\n':
                 case    '\v':
+
                     STLSOFT_COVER_MARK_LINE();
                     continue;
                 default:
+
                     STLSOFT_COVER_MARK_LINE();
                     break;
             }
@@ -608,7 +633,9 @@ calc:
                 }
                 ++s;
                 --len;
+
                 // fall through
+                STLSOFT_FALLTHROUGH();
             case    '0':
             case    '1':
             case    '2':
@@ -619,9 +646,11 @@ calc:
             case    '7':
             case    '8':
             case    '9':
+
                 STLSOFT_COVER_MARK_LINE();
                 return string_to_integer_len_raw_5_(s, len, endptr, result, fail_value);
             case    '-':
+
                 if (len < 2 || !isdigit(char(s[1])))
                 {
                     *endptr = s;
@@ -638,9 +667,13 @@ calc:
                         return true;
                     }
                 }
-                // Fall through
+
                 STLSOFT_COVER_MARK_LINE();
+
+                // fall through
+                STLSOFT_FALLTHROUGH();
             default:
+
                 STLSOFT_COVER_MARK_LINE();
                 *endptr = s;
                 return false;

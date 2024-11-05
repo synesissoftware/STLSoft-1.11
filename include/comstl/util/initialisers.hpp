@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/initialisers.hpp (originally MOInit.h, ::SynesisCom)
+ * File:    comstl/util/initialisers.hpp (originally MOInit.h, ::SynesisCom)
  *
- * Purpose:     Contains classes for initialising COM/OLE.
+ * Purpose: Contains classes for initialising COM/OLE.
  *
- * Created:     8th February 1999
- * Updated:     11th March 2024
+ * Created: 8th February 1999
+ * Updated: 11th October 2024
  *
- * Thanks:      To Adi Shavit, for demanding better documentation of COMSTL.
+ * Thanks:  To Adi Shavit, for demanding better documentation of COMSTL.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      3
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   10
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       97
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   12
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -209,12 +209,12 @@ typedef STLSOFT_NS_QUAL(null_exception_policy)              ignore_initialisatio
 
 #include <stdlib.h>
 
-static int main_(int argc, char **argv)
+static int main_(int argc, char *argv[])
 {
   . . . // main application functionality
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
   try
   {
@@ -222,11 +222,11 @@ int main(int argc, char **argv)
 
     return main_(argc, argv);
   }
-  catch(comstl::com_initialisation_exception &x) // COM library initialisation failed
+  catch (comstl::com_initialisation_exception &x) // COM library initialisation failed
   {
     return EXIT_FAILURE;
   }
-  catch(std::exception &x) // other failures from main_()
+  catch (std::exception &x) // other failures from main_()
   {
     return EXIT_FAILURE;
   }
@@ -269,6 +269,9 @@ public:
 #endif /* __COMSTL_CF_DCOM_SUPPORT */
     /// Uninitialises via CoUninitialize()
     ~initialiser() STLSOFT_NOEXCEPT;
+private:
+    initialiser(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes
@@ -286,13 +289,6 @@ public:
 /// @{
 private:
     HRESULT const   m_hr;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    initialiser(class_type const& rhs);
-    class_type const& operator =(class_type const& rhs);
 /// @}
 };
 

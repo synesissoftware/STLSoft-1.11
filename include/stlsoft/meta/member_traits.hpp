@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/member_traits.hpp
+ * File:    stlsoft/meta/member_traits.hpp
  *
- * Purpose:     An amalgamation of meta traits that's been pending reification
- *              for too long.
+ * Purpose: An amalgamation of meta traits that's been pending reification
+ *          for too long.
  *
- * Created:     11th October 2004
- * Updated:     11th March 2024
+ * Created: 11th October 2004
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       1
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    4
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        48
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    6
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -137,13 +137,11 @@ namespace stlsoft
 template<ss_typename_param_k T>
 struct member_traits
 {
-public:
-    typedef T                   value_type;
-    typedef member_traits<T>    class_type;
+public: // types
+    typedef T                                               value_type;
+    typedef member_traits<T>                                class_type;
 
-/// \name Member Constants
-/// @{
-public:
+public: // constants
 
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
     enum {  has_member_iterator_category    =   0 != has_iterator_category<T>::value    /*!< Indicates whether the type has an \c iterator_category member  */  };
@@ -167,17 +165,14 @@ public:
     enum {  has_member_mapped_type          =   0 != has_mapped_type<T>::value          /*!< Indicates whether the type has a \c mapped_type member         */  };
     enum {  has_member_referent_type        =   0 != has_referent_type<T>::value        /*!< Indicates whether the type has a \c referent_type member       */  };
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
-/// @}
 
-// Not to be implemented
-private:
-    member_traits();
+private: // construction
+    member_traits() STLSOFT_DEFAULT_CONSTRUCTION_PROSCRIBED;
 #ifdef STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
 protected:
 #endif /* STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
-
-    member_traits(class_type const& rhs);
-    class_type& operator =(class_type const& rhs);
+    member_traits(class_type const& rhs) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

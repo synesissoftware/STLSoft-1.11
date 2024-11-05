@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  2nd September 2024
+# Updated:  27th October 2024
 #
 # ######################################################################## #
 
@@ -60,37 +60,114 @@ set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
+if(MSVC)
+
+	if(MSVC_VERSION LESS 1930)
+
+		set(CMAKE_C_STANDARD 90)
+		set(CMAKE_CXX_STANDARD 98)
+	endif()
+endif(MSVC)
+
 # ##########################################################
-# install
+# dependencies, includes, options
 
-# provides install directory variables as defined by the GNU Coding Standards.
-include(GNUInstallDirs)
+# ################################################
+# includes - 1
 
-
-# ##########################################################
-# build
-
-# load/default `CMAKE_BUILD_TYPE`
 include(BuildType)
 include(LanguageFullVersion)
 include(TargetMacros)
 
-add_library(STLSoft INTERFACE)
 
-target_include_directories(STLSoft INTERFACE
-	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
-	$<INSTALL_INTERFACE:include>
-)
+# ################################################
+# dependencies, features, and options
+
+# ######################################
+# options
+
+option(BUILD_EXAMPLES "Build examples" ON)
+
+
+# ######################################
+# features
+
+
+# ######################################
+# dependencies
+#
+# required:
+# - (STLSoft) - required (to exist only) for testing;
+# - xTests - required for testing;
+#
+# optional:
+
+
+# ############################
+# STLSoft
+#
+# Since we use xTests for testing, and it relies in turn on STLSoft, we must
+# detect a CMake installation of STLSoft in order to run testing.
+#
+# (This implication, therefore, is that first-time installation of
+# STLSoft/xTests must follow the sequence:
+#  1. Configure/build/install STLSoft **without** tests;
+#  2. Configure/build/install xTests;
+#  3. Configure/build/install STLSoft in full;
+# )
+
+if(BUILD_TESTING)
+
+	find_package(STLSoft REQUIRED)
+
+	if(NOT STLSoft_FOUND)
+
+		message(FATAL_ERROR "No existing installation of STLSoft was found, which means you are not able to configure CMake with testing enabled, because STLSoft's component/unit tests are implemented in terms of xTests, which itself relies on STLSoft. Instead, you must perform an initial CMake configuration and installation with testing disabled (-DBUILD_TESTING:BOOL=OFF, or passing --disable-testing to prepare_cmake.sh), and then configure and install xTests, whereupon you will be free to (re)configure STLSoft for testing.")
+	else()
+
+		message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
+	endif()
+endif(BUILD_TESTING)
+
+
+# ############################
+# xTests
+
+if(BUILD_TESTING)
+
+	set(xTests_REQUIRED_VERSION_ 0.25.2)
+
+	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
+
+	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+endif(BUILD_TESTING)
+
+
+# ################################################
+# includes - 2
+
+include(CMakePackageConfigHelpers)
+if(BUILD_TESTING)
+
+	include(CTest)
+endif(BUILD_TESTING)
+include(GNUInstallDirs)
 
 
 # ##########################################################
+# targets
+
+# ################################################
+# main libraries
+
+
+# ################################################
 # examples
 
-option(BUILD_EXAMPLES "Build examples" ON)
 if(BUILD_EXAMPLES)
 
 	message("-- enabled building of examples ...")
@@ -102,36 +179,30 @@ else(BUILD_EXAMPLES)
 endif(BUILD_EXAMPLES)
 
 
-# ##########################################################
-# test
-
-include(CTest)
+# ################################################
+# tests
 
 if(BUILD_TESTING)
 
 	message("-- enabled building of tests ...")
-
-	find_package(STLSoft REQUIRED)
-
-	if(NOT STLSoft_FOUND)
-
-		message(FATAL_ERROR "No existing installation of STLSoft was found, which means you are not able to configure CMake with testing enabled, because STLSoft's component/unit tests are implemented in terms of xTests, which itself relies on STLSoft. Instead, you must perform an initial CMake configuration and installation with testing disabled (-DBUILD_TESTING:BOOL=OFF, or passing --disable-testing to prepare_cmake.sh), and then configure and install xTests, whereupon you will be free to (re)configure STLSoft for testing.")
-	else()
-
-		message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
-	endif()
-
-	set(xTests_REQUIRED_VERSION_ 0.24)
-
-	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
-
-	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
 
 	add_subdirectory(test)
 else(BUILD_TESTING)
 
 	message("-- disabled building of tests - define BUILD_TESTING to enable")
 endif(BUILD_TESTING)
+
+
+# ##########################################################
+# build
+
+
+add_library(STLSoft INTERFACE)
+
+target_include_directories(STLSoft INTERFACE
+	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+	$<INSTALL_INTERFACE:include>
+)
 
 
 # ##########################################################
@@ -170,9 +241,7 @@ endforeach()
 # ##########################################################
 # export
 
-include(CMakePackageConfigHelpers)
-
-string(TOLOWER ${PROJECT_NAME} EXPORT_NAME)
+set(EXPORT_NAME ${PROJECT_NAME_LOWER})
 
 configure_package_config_file(
 	${CMAKE_CURRENT_SOURCE_DIR}/cmake/${EXPORT_NAME}-config.cmake.in
@@ -186,14 +255,15 @@ write_basic_package_version_file(
 	COMPATIBILITY AnyNewerVersion
 )
 
-# install stlsoft-targets.cmake => /usr/local/lib/cmake/stlsoft
+# install stlsoft-targets.cmake        => /usr/local/lib/cmake/stlsoft
 install(EXPORT project-targets
 	NAMESPACE "${PROJECT_NAME}::"
 	FILE "${EXPORT_NAME}-targets.cmake"
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
-# install stlsoft-config.cmake & stlsoft-config-version.cmake => /usr/local/lib/cmake/stlsoft
+# install stlsoft-config-version.cmake => /usr/local/lib/cmake/stlsoft
+# install stlsoft-config.cmake         => /usr/local/lib/cmake/stlsoft
 install(FILES
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
@@ -204,7 +274,7 @@ install(FILES
 # ##########################################################
 # completion
 
-message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}, for C${CMAKE_C_STANDARD} C++${CMAKE_CXX_STANDARD}")
+message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}, for C${CMAKE_C_STANDARD} C++${CMAKE_CXX_STANDARD}, with build type ${CMAKE_BUILD_TYPE}")
 
 
 # ############################## end of file ############################# #

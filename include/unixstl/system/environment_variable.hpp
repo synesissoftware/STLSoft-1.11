@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/system/environment_variable.hpp
+ * File:    unixstl/system/environment_variable.hpp
  *
- * Purpose:     Simple class that provides access to an environment variable.
+ * Purpose: Simple class that provides access to an environment variable.
  *
- * Created:     2nd November 2003
- * Updated:     11th March 2024
+ * Created: 2nd November 2003
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   6
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       82
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   9
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,39 +121,39 @@ namespace unixstl_project
  * \param T The traits type. Defaults to system_traits<C>. On translators that do not support default template arguments, it must be explicitly stipulated
  * \param A The allocator class. Defaults to stlsoft::allocator_selector<C>::allocator_type. On translators that do not support default template arguments, it is not part of the template parameter list.
  */
-template<   ss_typename_param_k C
+template<
+    ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-        ,   ss_typename_param_k T = system_traits<C>
-        ,   ss_typename_param_k A = ss_typename_type_def_k STLSOFT_NS_QUAL(allocator_selector)<C>::allocator_type
+,   ss_typename_param_k T = system_traits<C>
+,   ss_typename_param_k A = ss_typename_type_def_k STLSOFT_NS_QUAL(allocator_selector)<C>::allocator_type
 #else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        ,   ss_typename_param_k T /* = system_traits<C> */
+,   ss_typename_param_k T /* = system_traits<C> */
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        >
+>
 class basic_environment_variable
 {
-public:
+public: // types
     /// The char type
-    typedef C                                   char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                   traits_type;
+    typedef T                                               traits_type;
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
     /// The allocator type
-    typedef A                                   allocator_type;
+    typedef A                                               allocator_type;
     /// The current specialisation of the type
-    typedef basic_environment_variable<C, T, A> class_type;
+    typedef basic_environment_variable<C, T, A>             class_type;
 #else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
     /// The current specialisation of the type
-    typedef basic_environment_variable<C, T>    class_type;
+    typedef basic_environment_variable<C, T>                class_type;
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
     /// The size type
-    typedef us_size_t                           size_type;
+    typedef us_size_t                                       size_type;
     /// The difference type
-    typedef us_ptrdiff_t                        difference_type;
+    typedef us_ptrdiff_t                                    difference_type;
     /// The Boolean type
-    typedef us_bool_t                           bool_type;
+    typedef us_bool_t                                       bool_type;
 
-// Construction
-public:
+public: // construction
     /// Create an instance representing the given environment variable
     ss_explicit_k basic_environment_variable(char_type const* name)
         : m_buffer(1 + traits_type::get_environment_variable(name, 0, 0))
@@ -165,8 +165,9 @@ public:
         }
     }
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
+
     /// Create an instance representing the given environment variable
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k basic_environment_variable(S const& name)
         : m_buffer(1 + traits_type::get_environment_variable(STLSOFT_NS_QUAL(c_str_ptr)(name), 0, 0))
     {
@@ -177,9 +178,11 @@ public:
         }
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+private:
+    basic_environment_variable(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-// Conversions
-public:
+public: // conversions
     /// Implicit conversion to a non-mutable (const) pointer to the variable
     operator char_type const* () const
     {
@@ -192,8 +195,7 @@ public:
         return m_buffer.data();
     }
 
-// Attributes
-public:
+public: // attributes
     /// Returns the length of the variable
     size_type length() const
     {
@@ -209,22 +211,14 @@ public:
         return 0u == size();
     }
 
-// Members
-private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<   char_type
-#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-                                            ,   allocator_type
-#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-                                            ,   malloc_allocator<char_type>
-#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-                                            >       buffer_type;
+private: // fields
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        char_type
+    ,   auto_buffer_internal_size_calculator<char_type>::value
+    ,   allocator_type
+    >                                                       buffer_type_;
 
-    buffer_type m_buffer;
-
-// Not to be implemented
-private:
-    basic_environment_variable(basic_environment_variable const&);
-    basic_environment_variable& operator =(basic_environment_variable const&);
+    buffer_type_ m_buffer;
 };
 
 
@@ -236,17 +230,32 @@ private:
  *
  * \ingroup group__library__System
  */
-typedef basic_environment_variable<us_char_a_t, system_traits<us_char_a_t> >    environment_variable_a;
+typedef basic_environment_variable<
+    us_char_a_t
+,   system_traits<
+        us_char_a_t
+    >
+>                                                           environment_variable_a;
 /** Specialisation of the basic_environment_variable template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__System
  */
-typedef basic_environment_variable<us_char_w_t, system_traits<us_char_w_t> >    environment_variable_w;
+typedef basic_environment_variable<
+    us_char_w_t
+,   system_traits<
+        us_char_w_t
+    >
+>                                                           environment_variable_w;
 /** Specialisation of the basic_environment_variable template for the 'default' character type \c char
  *
  * \ingroup group__library__System
  */
-typedef basic_environment_variable<char, system_traits<char> >                  environment_variable;
+typedef basic_environment_variable<
+    char
+,   system_traits<
+        char
+    >
+>                                                           environment_variable;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -261,8 +270,10 @@ typedef basic_environment_variable<char, system_traits<char> >                  
  *
  * \ingroup group__library__System
  */
-template<ss_typename_param_k C>
-inline basic_environment_variable<C> make_environment_variable(C const* path)
+template <ss_typename_param_k C>
+inline
+basic_environment_variable<C>
+make_environment_variable(C const* path)
 {
     return basic_environment_variable<C>(path);
 }

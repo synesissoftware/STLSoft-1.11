@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/time/format_functions.hpp
+ * File:    winstl/time/format_functions.hpp
  *
- * Purpose:     Comparison functions for Windows time structures.
+ * Purpose: Comparison functions for Windows time structures.
  *
- * Created:     21st November 2003
- * Updated:     11th March 2024
+ * Created: 21st November 2003
+ * Updated: 27th September 2024
  *
- * Thanks to:   Mikael Pahmp, for spotting the failure to handle 24-hour
- *              time pictures.
+ * Thanks:  Mikael Pahmp, for spotting the failure to handle 24-hour time
+ *          pictures.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   10
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       78
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   11
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -185,12 +185,13 @@ STLSOFT_STDCALL GetTimeFormat_ms_(
 ,   int const           cchTime     // size of string buffer
 )
 {
-    typedef C                                       char_t;
-    typedef time_format_functions_traits<char_t>    traits_t;
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<
+    typedef C                                               char_t;
+    typedef time_format_functions_traits<char_t>            traits_t;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_t
+    ,   auto_buffer_internal_size_calculator<char_t>::value
     ,   processheap_allocator<char_t>
-    >                                               buffer_t_;
+    >                                                       buffer_t_;
 
     if (dwFlags & (TIME_NOMINUTESORSECONDS | TIME_NOSECONDS))
     {

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/dl/dl_call.hpp
+ * File:    unixstl/dl/dl_call.hpp
  *
- * Purpose:     Invocation of functions in dynamic libraries.
+ * Purpose: Invocation of functions in dynamic libraries.
  *
- * Created:     sometime in 1998
- * Updated:     11th March 2024
+ * Created: sometime in 1998
+ * Updated: 13th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    13
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        58
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    20
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,12 +69,13 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-# ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION
-#  include <unixstl/exception/unixstl_exception.hpp>
-# endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION */
 #ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
 # include <unixstl/dl/module.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_D:_HPP_MODULE */
+#ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION
+# include <unixstl/exception/unixstl_exception.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION */
+
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE
 # include <stlsoft/meta/is_function_pointer_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE */
@@ -110,6 +111,16 @@ namespace unixstl_project
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * compiler compatibility
+ */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * classes
  */
 
@@ -140,29 +151,44 @@ public:
 public:
     /// Constructs an instance of the exception based on the given missing
     /// function name, and system error code.
-    missing_entry_point_exception(char const* functionName, status_code_type sc)
+    missing_entry_point_exception(
+        char const*         functionName
+    ,   status_code_type    sc
+    )
         : parent_class_type(class_type::create_reason_(functionName), sc)
     {}
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     virtual ~missing_entry_point_exception() STLSOFT_NOEXCEPT_STDOVR
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+#if __cplusplus >= 201103L
+public:
+    missing_entry_point_exception(class_type const&) = default;
+#endif
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 // Implementation
 private:
-    static string_type create_reason_(char const* functionName)
+    static
+    string_type
+    create_reason_(
+        char const* functionName
+    )
     {
+        UNIXSTL_ASSERT(NULL != functionName);
+
         string_type reason("Failed to find procedure \"");
 
-        reason += functionName;
-        reason += '"';
-
-        return reason;
+        return reason + functionName + '"';
     }
 };
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * enumerations
+ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -196,7 +222,7 @@ namespace unixstl
 } /&zwj;* namespace unixstl *&zwj;/
 \endcode
  */
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct is_valid_dl_call_arg
 {
     enum { value = 0 };
@@ -212,20 +238,24 @@ struct dl_call_traits
 /// \name Member Types
 /// @{
 public:
-    typedef void            (*entry_point_type)(void);
-    typedef void*           library_handle_type;
-    typedef unixstl::module module_wrapper_type;
+    typedef void                                          (*entry_point_type)(void);
+    typedef void*                                           library_handle_type;
+    typedef unixstl::dl_module                              module_wrapper_type;
 /// @}
 
 /// \name Dynamic Library Functions
 /// @{
 public:
-    static entry_point_type get_symbol(library_handle_type hLib, char const* functionName)
+    static
+    entry_point_type
+    get_symbol(
+        library_handle_type hLib
+    ,   char const*         functionName
+    ) STLSOFT_NOEXCEPT
     {
 #if 0
 
         return (dl_call_traits::entry_point_type)::dlsym(hLib, functionName);
-
 #else /* ? 0 */
 
         // If this static assert fires, this component cannot be used. (It'd also be
@@ -235,15 +265,13 @@ public:
 
         union
         {
-            dl_call_traits::entry_point_type    pfn;
+            dl_call_traits::entry_point_type    pfn_v;
             void*                               pv;
-
         } u;
 
         u.pv = ::dlsym(hLib, functionName);
 
-        return u.pfn;
-
+        return u.pfn_v;
 #endif /* 0 */
     }
 /// @}
@@ -265,24 +293,49 @@ public:
     {};
 /// @}
 
+/// \name Implementation functions
+/// @{
+public:
+    template <ss_typename_param_k T_function>
+    static
+    void
+    specialise_function_ptr(
+        T_function&         pfn
+    ,   entry_point_type&   pfn_v
+    )
+    {
+        STLSOFT_STATIC_ASSERT(sizeof(pfn) == sizeof(pfn_v));
+
+        union
+        {
+            dl_call_traits::entry_point_type    pfn_v;
+            T_function                          pfn;
+        } u;
+
+        u.pfn_v = pfn_v;
+
+        pfn = u.pfn;
+    }
+/// @}
 };
 
 
+inline
+dl_call_traits::library_is_handle
 #if defined(STLSOFT_COMPILER_IS_MSVC) || \
     defined(STLSOFT_COMPILER_IS_GCCx)
-inline dl_call_traits::library_is_handle test_library_(dl_call_traits::library_handle_type )
-{
-    return dl_call_traits::library_is_handle();
-}
+dl_test_library_(dl_call_traits::library_handle_type )
 #else /* ? compiler */
-inline dl_call_traits::library_is_handle test_library_(dl_call_traits::library_handle_type const&)
+dl_test_library_(dl_call_traits::library_handle_type const&)
+#endif /* compiler */
 {
     return dl_call_traits::library_is_handle();
 }
-#endif /* compiler */
 
 template <ss_typename_param_k T>
-inline dl_call_traits::library_is_not_handle test_library_(T const&)
+inline
+dl_call_traits::library_is_not_handle
+dl_test_library_(T const&)
 {
     return dl_call_traits::library_is_not_handle();
 }
@@ -292,9 +345,14 @@ inline dl_call_traits::library_is_not_handle test_library_(T const&)
  * helper functions
  */
 
-inline dl_call_traits::entry_point_type lookup_symbol_(dl_call_traits::library_handle_type hinst, char const* functionName)
+inline
+dl_call_traits::entry_point_type
+dl_lookup_symbol_(
+    dl_call_traits::library_handle_type hinst
+,   char const*                         functionName
+)
 {
-    dl_call_traits::entry_point_type    fp  =   dl_call_traits::get_symbol(hinst, functionName);
+    dl_call_traits::entry_point_type fp = dl_call_traits::get_symbol(hinst, functionName);
 
     if (dl_call_traits::entry_point_type() == fp)
     {
@@ -303,6 +361,7 @@ inline dl_call_traits::entry_point_type lookup_symbol_(dl_call_traits::library_h
 
     return fp;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -326,7 +385,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp)
 {
   R (STLSOFT_CDECL* pfn)();
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn();
 }
@@ -340,7 +399,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0)
 {
   R (STLSOFT_CDECL* pfn)(A0 a0);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0);
 }
@@ -354,7 +413,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1)
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1);
 }
@@ -368,7 +427,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2);
 }
@@ -382,7 +441,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3);
 }
@@ -396,7 +455,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4);
 }
@@ -410,7 +469,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5);
 }
@@ -424,7 +483,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6);
 }
@@ -438,7 +497,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7);
 }
@@ -452,7 +511,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8);
 }
@@ -466,7 +525,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
 }
@@ -480,7 +539,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 }
@@ -494,7 +553,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
 }
@@ -508,7 +567,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
 }
@@ -522,7 +581,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 }
@@ -536,7 +595,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
 }
@@ -550,7 +609,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
 }
@@ -564,7 +623,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
 }
@@ -578,7 +637,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
 }
@@ -592,7 +651,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
 }
@@ -606,7 +665,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
 }
@@ -620,7 +679,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
 }
@@ -634,7 +693,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
 }
@@ -648,7 +707,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
 }
@@ -662,7 +721,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
 }
@@ -676,7 +735,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
 }
@@ -690,7 +749,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
 }
@@ -704,7 +763,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
 }
@@ -718,7 +777,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
 }
@@ -732,7 +791,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
 }
@@ -746,7 +805,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
 }
@@ -760,7 +819,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
 }
@@ -774,7 +833,7 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 {
   R (STLSOFT_CDECL* pfn)(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30, A31 a31);
 
-  reinterpret_cast<dl_call_traits::entry_point_type&>(pfn) = fp;
+  dl_call_traits::specialise_function_ptr(pfn, fp);
 
   return pfn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
 }
@@ -803,7 +862,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_0(dl_call_traits::entry_point_type fp)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp);
 }
@@ -815,7 +874,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_1(dl_call_traits::entry_point_type fp, A0 a0)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0);
 }
@@ -827,7 +886,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_2(dl_call_traits::entry_point_type fp, A0 a0, A1 a1)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1);
 }
@@ -839,7 +898,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_3(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2);
 }
@@ -851,7 +910,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_4(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3);
 }
@@ -863,7 +922,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_5(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4);
 }
@@ -875,7 +934,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_6(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5);
 }
@@ -887,7 +946,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_7(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6);
 }
@@ -899,7 +958,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_8(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7);
 }
@@ -911,7 +970,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_9(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8);
 }
@@ -923,7 +982,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_10(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
 }
@@ -935,7 +994,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_11(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 }
@@ -947,7 +1006,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_12(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
 }
@@ -959,7 +1018,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_13(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
 }
@@ -971,7 +1030,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_14(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 }
@@ -983,7 +1042,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_15(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
 }
@@ -995,7 +1054,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_16(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
 }
@@ -1007,7 +1066,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_17(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
 }
@@ -1019,7 +1078,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_18(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
 }
@@ -1031,7 +1090,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_19(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
 }
@@ -1043,7 +1102,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_20(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
 }
@@ -1055,7 +1114,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_21(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
 }
@@ -1067,7 +1126,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_22(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
 }
@@ -1079,7 +1138,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_23(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
 }
@@ -1091,7 +1150,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_24(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
 }
@@ -1103,7 +1162,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_25(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
 }
@@ -1115,7 +1174,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_26(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
 }
@@ -1127,7 +1186,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_27(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
 }
@@ -1139,7 +1198,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_28(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
 }
@@ -1151,7 +1210,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_29(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
 }
@@ -1163,7 +1222,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_30(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
 }
@@ -1175,7 +1234,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_31(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
 }
@@ -1187,7 +1246,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_dispatch_32(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30, A31 a31)
 {
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_invoke_cdecl<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
 }
@@ -1214,12 +1273,12 @@ inline R dl_call_dispatch_32(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, 
 // 0 params
 template< ss_typename_param_k R
         >
-inline R dl_call_lookup_0( void*       hinst
-                        ,   char const* functionName)
+inline R dl_call_lookup_0(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_0<R>(fp);
 }
@@ -1229,13 +1288,13 @@ inline R dl_call_lookup_0( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0
         >
-inline R dl_call_lookup_1( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_1(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_1<R>(fp, a0);
 }
@@ -1245,13 +1304,13 @@ inline R dl_call_lookup_1( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1
         >
-inline R dl_call_lookup_2( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_2(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_2<R>(fp, a0, a1);
 }
@@ -1261,13 +1320,13 @@ inline R dl_call_lookup_2( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2
         >
-inline R dl_call_lookup_3( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_3(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_3<R>(fp, a0, a1, a2);
 }
@@ -1277,13 +1336,13 @@ inline R dl_call_lookup_3( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3
         >
-inline R dl_call_lookup_4( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_4(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_4<R>(fp, a0, a1, a2, a3);
 }
@@ -1293,13 +1352,13 @@ inline R dl_call_lookup_4( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4
         >
-inline R dl_call_lookup_5( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_5(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_5<R>(fp, a0, a1, a2, a3, a4);
 }
@@ -1309,13 +1368,13 @@ inline R dl_call_lookup_5( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5
         >
-inline R dl_call_lookup_6( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_6(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_6<R>(fp, a0, a1, a2, a3, a4, a5);
 }
@@ -1325,13 +1384,13 @@ inline R dl_call_lookup_6( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6
         >
-inline R dl_call_lookup_7( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_7(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_7<R>(fp, a0, a1, a2, a3, a4, a5, a6);
 }
@@ -1341,13 +1400,13 @@ inline R dl_call_lookup_7( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7
         >
-inline R dl_call_lookup_8( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_8(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_8<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7);
 }
@@ -1357,13 +1416,13 @@ inline R dl_call_lookup_8( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8
         >
-inline R dl_call_lookup_9( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_9(  dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_9<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8);
 }
@@ -1373,13 +1432,13 @@ inline R dl_call_lookup_9( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9
         >
-inline R dl_call_lookup_10( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_10( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_10<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
 }
@@ -1389,13 +1448,13 @@ inline R dl_call_lookup_10( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10
         >
-inline R dl_call_lookup_11( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_11( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_11<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 }
@@ -1405,13 +1464,13 @@ inline R dl_call_lookup_11( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11
         >
-inline R dl_call_lookup_12( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_12( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_12<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
 }
@@ -1421,13 +1480,13 @@ inline R dl_call_lookup_12( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12
         >
-inline R dl_call_lookup_13( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_13( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_13<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
 }
@@ -1437,13 +1496,13 @@ inline R dl_call_lookup_13( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13
         >
-inline R dl_call_lookup_14( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_14( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_14<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 }
@@ -1453,13 +1512,13 @@ inline R dl_call_lookup_14( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14
         >
-inline R dl_call_lookup_15( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_15( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_15<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
 }
@@ -1469,13 +1528,13 @@ inline R dl_call_lookup_15( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15
         >
-inline R dl_call_lookup_16( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_16( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_16<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
 }
@@ -1485,13 +1544,13 @@ inline R dl_call_lookup_16( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16
         >
-inline R dl_call_lookup_17( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_17( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_17<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
 }
@@ -1501,13 +1560,13 @@ inline R dl_call_lookup_17( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17
         >
-inline R dl_call_lookup_18( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_18( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_18<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
 }
@@ -1517,13 +1576,13 @@ inline R dl_call_lookup_18( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18
         >
-inline R dl_call_lookup_19( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_19( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_19<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
 }
@@ -1533,13 +1592,13 @@ inline R dl_call_lookup_19( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19
         >
-inline R dl_call_lookup_20( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_20( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_20<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
 }
@@ -1549,13 +1608,13 @@ inline R dl_call_lookup_20( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20
         >
-inline R dl_call_lookup_21( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_21( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_21<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
 }
@@ -1565,13 +1624,13 @@ inline R dl_call_lookup_21( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21
         >
-inline R dl_call_lookup_22( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_22( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_22<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
 }
@@ -1581,13 +1640,13 @@ inline R dl_call_lookup_22( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22
         >
-inline R dl_call_lookup_23( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_23( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_23<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
 }
@@ -1597,13 +1656,13 @@ inline R dl_call_lookup_23( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23
         >
-inline R dl_call_lookup_24( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_24( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_24<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
 }
@@ -1613,13 +1672,13 @@ inline R dl_call_lookup_24( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24
         >
-inline R dl_call_lookup_25( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_25( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_25<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
 }
@@ -1629,13 +1688,13 @@ inline R dl_call_lookup_25( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25
         >
-inline R dl_call_lookup_26( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_26( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_26<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
 }
@@ -1645,13 +1704,13 @@ inline R dl_call_lookup_26( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26
         >
-inline R dl_call_lookup_27( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_27( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_27<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
 }
@@ -1661,13 +1720,13 @@ inline R dl_call_lookup_27( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27
         >
-inline R dl_call_lookup_28( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_28( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_28<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
 }
@@ -1677,13 +1736,13 @@ inline R dl_call_lookup_28( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28
         >
-inline R dl_call_lookup_29( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_29( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_29<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
 }
@@ -1693,13 +1752,13 @@ inline R dl_call_lookup_29( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29
         >
-inline R dl_call_lookup_30( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_30( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_30<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
 }
@@ -1709,13 +1768,13 @@ inline R dl_call_lookup_30( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30
         >
-inline R dl_call_lookup_31( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_31( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_31<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
 }
@@ -1725,13 +1784,13 @@ inline R dl_call_lookup_31( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30, ss_typename_param_k A31
         >
-inline R dl_call_lookup_32( void*       hinst
-                        ,   char const* functionName
+inline R dl_call_lookup_32( dl_call_traits::library_handle_type hinst
+                        ,   char const*                         functionName
                         ,   A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30, A31 a31)
 {
-  dl_call_traits::entry_point_type fp = lookup_symbol_(hinst, functionName);
+  dl_call_traits::entry_point_type fp = dl_lookup_symbol_(hinst, functionName);
 
-  UNIXSTL_ASSERT(NULL != fp);
+  UNIXSTL_ASSERT(dl_call_traits::entry_point_type() != fp);
 
   return dl_call_dispatch_32<R>(fp, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
 }
@@ -1760,7 +1819,7 @@ inline R dl_call_lookup_32( void*       hinst
 template< ss_typename_param_k R
         , ss_typename_param_k FD
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd)
 {
   return dl_call_lookup_0<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1773,7 +1832,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd);
 }
 
 
@@ -1783,7 +1842,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0)
 {
   return dl_call_lookup_1<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1797,7 +1856,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0);
 }
 
 
@@ -1807,7 +1866,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1)
 {
   return dl_call_lookup_2<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1821,7 +1880,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1);
 }
 
 
@@ -1831,7 +1890,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2)
 {
   return dl_call_lookup_3<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1845,7 +1904,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2);
 }
 
 
@@ -1855,7 +1914,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3)
 {
   return dl_call_lookup_4<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1869,7 +1928,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3);
 }
 
 
@@ -1879,7 +1938,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4)
 {
   return dl_call_lookup_5<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1893,7 +1952,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4);
 }
 
 
@@ -1903,7 +1962,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5)
 {
   return dl_call_lookup_6<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1917,7 +1976,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5);
 }
 
 
@@ -1927,7 +1986,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6)
 {
   return dl_call_lookup_7<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1941,7 +2000,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6);
 }
 
 
@@ -1951,7 +2010,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7)
 {
   return dl_call_lookup_8<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1965,7 +2024,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7);
 }
 
 
@@ -1975,7 +2034,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8)
 {
   return dl_call_lookup_9<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -1989,7 +2048,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8);
 }
 
 
@@ -1999,7 +2058,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9)
 {
   return dl_call_lookup_10<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2013,7 +2072,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
 }
 
 
@@ -2023,7 +2082,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10)
 {
   return dl_call_lookup_11<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2037,7 +2096,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 }
 
 
@@ -2047,7 +2106,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11)
 {
   return dl_call_lookup_12<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2061,7 +2120,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
 }
 
 
@@ -2071,7 +2130,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12)
 {
   return dl_call_lookup_13<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2085,7 +2144,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
 }
 
 
@@ -2095,7 +2154,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13)
 {
   return dl_call_lookup_14<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2109,7 +2168,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 }
 
 
@@ -2119,7 +2178,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14)
 {
   return dl_call_lookup_15<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2133,7 +2192,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
 }
 
 
@@ -2143,7 +2202,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15)
 {
   return dl_call_lookup_16<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2157,7 +2216,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
 }
 
 
@@ -2167,7 +2226,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16)
 {
   return dl_call_lookup_17<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2181,7 +2240,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
 }
 
 
@@ -2191,7 +2250,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17)
 {
   return dl_call_lookup_18<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2205,7 +2264,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
 }
 
 
@@ -2215,7 +2274,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18)
 {
   return dl_call_lookup_19<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2229,7 +2288,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
 }
 
 
@@ -2239,7 +2298,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19)
 {
   return dl_call_lookup_20<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2253,7 +2312,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
 }
 
 
@@ -2263,7 +2322,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20)
 {
   return dl_call_lookup_21<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2277,7 +2336,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
 }
 
 
@@ -2287,7 +2346,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21)
 {
   return dl_call_lookup_22<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2301,7 +2360,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
 }
 
 
@@ -2311,7 +2370,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22)
 {
   return dl_call_lookup_23<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2325,7 +2384,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
 }
 
 
@@ -2335,7 +2394,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23)
 {
   return dl_call_lookup_24<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2349,7 +2408,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
 }
 
 
@@ -2359,7 +2418,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24)
 {
   return dl_call_lookup_25<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2373,7 +2432,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
 }
 
 
@@ -2383,7 +2442,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25)
 {
   return dl_call_lookup_26<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2397,7 +2456,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
 }
 
 
@@ -2407,7 +2466,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26)
 {
   return dl_call_lookup_27<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2421,7 +2480,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
 }
 
 
@@ -2431,7 +2490,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27)
 {
   return dl_call_lookup_28<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2445,7 +2504,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
 }
 
 
@@ -2455,7 +2514,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28)
 {
   return dl_call_lookup_29<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2469,7 +2528,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
 }
 
 
@@ -2479,7 +2538,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29)
 {
   return dl_call_lookup_30<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2493,7 +2552,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
 }
 
 
@@ -2503,7 +2562,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30)
 {
   return dl_call_lookup_31<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2517,7 +2576,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
 }
 
 
@@ -2527,7 +2586,7 @@ template< ss_typename_param_k R
         , ss_typename_param_k FD
         , ss_typename_param_k A0, ss_typename_param_k A1, ss_typename_param_k A2, ss_typename_param_k A3, ss_typename_param_k A4, ss_typename_param_k A5, ss_typename_param_k A6, ss_typename_param_k A7, ss_typename_param_k A8, ss_typename_param_k A9, ss_typename_param_k A10, ss_typename_param_k A11, ss_typename_param_k A12, ss_typename_param_k A13, ss_typename_param_k A14, ss_typename_param_k A15, ss_typename_param_k A16, ss_typename_param_k A17, ss_typename_param_k A18, ss_typename_param_k A19, ss_typename_param_k A20, ss_typename_param_k A21, ss_typename_param_k A22, ss_typename_param_k A23, ss_typename_param_k A24, ss_typename_param_k A25, ss_typename_param_k A26, ss_typename_param_k A27, ss_typename_param_k A28, ss_typename_param_k A29, ss_typename_param_k A30, ss_typename_param_k A31
         >
-inline R dl_call_MOD(dl_call_traits::library_is_handle, void* hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30, A31 a31)
+inline R dl_call_MOD(dl_call_traits::library_is_handle, dl_call_traits::library_handle_type hinst, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30, A31 a31)
 {
   return dl_call_lookup_32<R>( hinst
                           ,   stlsoft::c_str_ptr(fd)
@@ -2541,7 +2600,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30, A31 a31)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), unixstl::module(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
 }
 
 //[<[STLSOFT-AUTO:DL_CALL-MODULES:END]>]
@@ -2577,7 +2636,7 @@ inline R dl_call(L const& library, FD const& fd)
 #ifndef UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd);
 }
 
 
@@ -2597,7 +2656,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0)
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A0>::value || stlsoft::is_pointer_type<A0>::value || stlsoft::is_function_pointer_type<A0>::value || unixstl::is_valid_dl_call_arg<A0>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0);
 }
 
 
@@ -2618,7 +2677,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1)
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A1>::value || stlsoft::is_pointer_type<A1>::value || stlsoft::is_function_pointer_type<A1>::value || unixstl::is_valid_dl_call_arg<A1>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1);
 }
 
 
@@ -2640,7 +2699,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2)
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A2>::value || stlsoft::is_pointer_type<A2>::value || stlsoft::is_function_pointer_type<A2>::value || unixstl::is_valid_dl_call_arg<A2>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2);
 }
 
 
@@ -2663,7 +2722,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3)
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A3>::value || stlsoft::is_pointer_type<A3>::value || stlsoft::is_function_pointer_type<A3>::value || unixstl::is_valid_dl_call_arg<A3>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3);
 }
 
 
@@ -2687,7 +2746,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A4>::value || stlsoft::is_pointer_type<A4>::value || stlsoft::is_function_pointer_type<A4>::value || unixstl::is_valid_dl_call_arg<A4>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4);
 }
 
 
@@ -2712,7 +2771,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A5>::value || stlsoft::is_pointer_type<A5>::value || stlsoft::is_function_pointer_type<A5>::value || unixstl::is_valid_dl_call_arg<A5>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5);
 }
 
 
@@ -2738,7 +2797,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A6>::value || stlsoft::is_pointer_type<A6>::value || stlsoft::is_function_pointer_type<A6>::value || unixstl::is_valid_dl_call_arg<A6>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6);
 }
 
 
@@ -2765,7 +2824,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A7>::value || stlsoft::is_pointer_type<A7>::value || stlsoft::is_function_pointer_type<A7>::value || unixstl::is_valid_dl_call_arg<A7>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7);
 }
 
 
@@ -2793,7 +2852,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A8>::value || stlsoft::is_pointer_type<A8>::value || stlsoft::is_function_pointer_type<A8>::value || unixstl::is_valid_dl_call_arg<A8>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8);
 }
 
 
@@ -2822,7 +2881,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A9>::value || stlsoft::is_pointer_type<A9>::value || stlsoft::is_function_pointer_type<A9>::value || unixstl::is_valid_dl_call_arg<A9>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
 }
 
 
@@ -2852,7 +2911,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A10>::value || stlsoft::is_pointer_type<A10>::value || stlsoft::is_function_pointer_type<A10>::value || unixstl::is_valid_dl_call_arg<A10>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 }
 
 
@@ -2883,7 +2942,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A11>::value || stlsoft::is_pointer_type<A11>::value || stlsoft::is_function_pointer_type<A11>::value || unixstl::is_valid_dl_call_arg<A11>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
 }
 
 
@@ -2915,7 +2974,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A12>::value || stlsoft::is_pointer_type<A12>::value || stlsoft::is_function_pointer_type<A12>::value || unixstl::is_valid_dl_call_arg<A12>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
 }
 
 
@@ -2948,7 +3007,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A13>::value || stlsoft::is_pointer_type<A13>::value || stlsoft::is_function_pointer_type<A13>::value || unixstl::is_valid_dl_call_arg<A13>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 }
 
 
@@ -2982,7 +3041,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A14>::value || stlsoft::is_pointer_type<A14>::value || stlsoft::is_function_pointer_type<A14>::value || unixstl::is_valid_dl_call_arg<A14>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
 }
 
 
@@ -3017,7 +3076,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A15>::value || stlsoft::is_pointer_type<A15>::value || stlsoft::is_function_pointer_type<A15>::value || unixstl::is_valid_dl_call_arg<A15>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
 }
 
 
@@ -3053,7 +3112,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A16>::value || stlsoft::is_pointer_type<A16>::value || stlsoft::is_function_pointer_type<A16>::value || unixstl::is_valid_dl_call_arg<A16>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
 }
 
 
@@ -3090,7 +3149,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A17>::value || stlsoft::is_pointer_type<A17>::value || stlsoft::is_function_pointer_type<A17>::value || unixstl::is_valid_dl_call_arg<A17>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
 }
 
 
@@ -3128,7 +3187,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A18>::value || stlsoft::is_pointer_type<A18>::value || stlsoft::is_function_pointer_type<A18>::value || unixstl::is_valid_dl_call_arg<A18>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
 }
 
 
@@ -3167,7 +3226,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A19>::value || stlsoft::is_pointer_type<A19>::value || stlsoft::is_function_pointer_type<A19>::value || unixstl::is_valid_dl_call_arg<A19>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
 }
 
 
@@ -3207,7 +3266,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A20>::value || stlsoft::is_pointer_type<A20>::value || stlsoft::is_function_pointer_type<A20>::value || unixstl::is_valid_dl_call_arg<A20>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
 }
 
 
@@ -3248,7 +3307,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A21>::value || stlsoft::is_pointer_type<A21>::value || stlsoft::is_function_pointer_type<A21>::value || unixstl::is_valid_dl_call_arg<A21>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
 }
 
 
@@ -3290,7 +3349,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A22>::value || stlsoft::is_pointer_type<A22>::value || stlsoft::is_function_pointer_type<A22>::value || unixstl::is_valid_dl_call_arg<A22>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
 }
 
 
@@ -3333,7 +3392,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A23>::value || stlsoft::is_pointer_type<A23>::value || stlsoft::is_function_pointer_type<A23>::value || unixstl::is_valid_dl_call_arg<A23>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
 }
 
 
@@ -3377,7 +3436,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A24>::value || stlsoft::is_pointer_type<A24>::value || stlsoft::is_function_pointer_type<A24>::value || unixstl::is_valid_dl_call_arg<A24>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
 }
 
 
@@ -3422,7 +3481,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A25>::value || stlsoft::is_pointer_type<A25>::value || stlsoft::is_function_pointer_type<A25>::value || unixstl::is_valid_dl_call_arg<A25>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
 }
 
 
@@ -3468,7 +3527,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A26>::value || stlsoft::is_pointer_type<A26>::value || stlsoft::is_function_pointer_type<A26>::value || unixstl::is_valid_dl_call_arg<A26>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
 }
 
 
@@ -3515,7 +3574,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A27>::value || stlsoft::is_pointer_type<A27>::value || stlsoft::is_function_pointer_type<A27>::value || unixstl::is_valid_dl_call_arg<A27>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
 }
 
 
@@ -3563,7 +3622,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A28>::value || stlsoft::is_pointer_type<A28>::value || stlsoft::is_function_pointer_type<A28>::value || unixstl::is_valid_dl_call_arg<A28>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
 }
 
 
@@ -3612,7 +3671,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A29>::value || stlsoft::is_pointer_type<A29>::value || stlsoft::is_function_pointer_type<A29>::value || unixstl::is_valid_dl_call_arg<A29>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
 }
 
 
@@ -3662,7 +3721,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A30>::value || stlsoft::is_pointer_type<A30>::value || stlsoft::is_function_pointer_type<A30>::value || unixstl::is_valid_dl_call_arg<A30>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
 }
 
 
@@ -3713,7 +3772,7 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
   STLSOFT_STATIC_ASSERT(stlsoft::is_fundamental_type<A31>::value || stlsoft::is_pointer_type<A31>::value || stlsoft::is_function_pointer_type<A31>::value || unixstl::is_valid_dl_call_arg<A31>::value);
 #endif /* !UNIXSTL_DL_CALL_NO_ARG_TYPE_CHECK */
 
-  return dl_call_MOD<R>(test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
+  return dl_call_MOD<R>(dl_test_library_(library), library, fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
 }
 
 //[<[STLSOFT-AUTO:DL_CALL-FUNCTIONS:END]>]

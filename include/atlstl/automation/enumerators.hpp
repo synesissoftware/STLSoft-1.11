@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/automation/enumerators.hpp (originally MAEnum.h)
+ * File:    atlstl/automation/enumerators.hpp (originally MAEnum.h)
  *
- * Purpose:     Enumerator classes.
+ * Purpose: Enumerator classes.
  *
- * Created:     11th November 1998
- * Updated:     11th March 2024
+ * Created: 11th November 1998
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 9
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     82
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 12
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -227,6 +227,9 @@ public:
 public:
     copy_enumerator_impl();
     ~copy_enumerator_impl() STLSOFT_NOEXCEPT;
+private:
+    copy_enumerator_impl(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Enumeration
@@ -260,11 +263,11 @@ public:
             return S_OK;
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(std::bad_alloc &)
+        catch (std::bad_alloc &)
         {
             return E_OUTOFMEMORY;
         }
-        catch(std::exception &)
+        catch (std::exception &)
         {
             return E_UNEXPECTED;
         }
@@ -289,11 +292,11 @@ public:
             return S_OK;
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(std::bad_alloc &)
+        catch (std::bad_alloc &)
         {
             return E_OUTOFMEMORY;
         }
-        catch(std::exception &)
+        catch (std::exception &)
         {
             return E_UNEXPECTED;
         }
@@ -312,7 +315,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    virtual class_type  *CreateEmptyClone() const = 0;
+    virtual class_type* CreateEmptyClone() const = 0;
 
     template <typename T>
     static difference_type count_all(T const& b, T const& e)
@@ -346,13 +349,6 @@ private:
 private:
     values_type     m_values;
     const_iterator  m_current;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    copy_enumerator_impl(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 
@@ -389,7 +385,7 @@ public:
     END_COM_MAP()
 
 protected:
-    virtual impl_type_ *CreateEmptyClone() const
+    virtual impl_type_* CreateEmptyClone() const
     {
         return new CComObject<class_type>;
     }
@@ -561,11 +557,11 @@ inline STDMETHODIMP copy_enumerator_impl<I, piid, V, IV, I2ETx>::Clone(I** ppEnu
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc &)
+    catch (std::bad_alloc &)
     {
         return E_OUTOFMEMORY;
     }
-    catch(std::exception &)
+    catch (std::exception &)
     {
         return E_UNEXPECTED;
     }

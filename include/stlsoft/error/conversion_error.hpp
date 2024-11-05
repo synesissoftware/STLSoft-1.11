@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/error/conversion_error.hpp
+ * File:    stlsoft/error/conversion_error.hpp
  *
- * Purpose:     Definition of the stlsoft::conversion_error exception class.
+ * Purpose: Definition of the stlsoft::conversion_error exception class.
  *
- * Created:     15th December 2006
- * Updated:     11th March 2024
+ * Created: 15th December 2006
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_REVISION    11
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_EDIT        24
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_REVISION    13
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_CONVERSION_ERROR_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -180,7 +180,7 @@ public:
     virtual ~conversion_error() STLSOFT_NOEXCEPT_STDOVR
     {}
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /// @}
 

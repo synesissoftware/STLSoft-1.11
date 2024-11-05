@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/reactor/custom_event_handler.hpp
+ * File:    acestl/reactor/custom_event_handler.hpp
  *
- * Purpose:     Event handler class for custom event notifications.
+ * Purpose: Event handler class for custom event notifications.
  *
- * Created:     1st October 2004
- * Updated:     11th March 2024
+ * Created: 1st October 2004
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR     2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR     1
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  10
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      40
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  13
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -330,6 +330,9 @@ protected:
 public:
     /// Destructor
     virtual ~custom_event_handler() STLSOFT_NOEXCEPT;
+private:
+    custom_event_handler(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /// \name Operations
 /// @{
@@ -641,11 +644,6 @@ private:
 
     callback_hook       m_callbackHook;
     event_code_map_type m_entries;
-
-// Not to be implemented
-private:
-    custom_event_handler(class_type const&);
-    class_type& operator =(class_type const&);
 };
 
 
@@ -739,7 +737,7 @@ inline custom_event_handler::event_id custom_event_handler::schedule_custom_even
                 // Benign if leaves code but fails to add event
                 m_entries[code][timerId] = entry;
             }
-            catch(std::bad_alloc &) // This clause is fine, since if bad_alloc not thrown, no foul
+            catch (std::bad_alloc &) // This clause is fine, since if bad_alloc not thrown, no foul
             {
                 cancel_event_(timerId);
 
@@ -750,7 +748,7 @@ inline custom_event_handler::event_id custom_event_handler::schedule_custom_even
                                     ,   ACE_TEXT("(%P|%t) out of memory"))
                                 ,   0);
             }
-            catch(std::exception &x)
+            catch (std::exception &x)
             {
                 cancel_event_(timerId);
 

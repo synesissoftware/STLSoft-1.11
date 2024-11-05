@@ -1,12 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/error/errorinfo_desc.hpp
+ * File:    comstl/error/errorinfo_desc.hpp
  *
- * Purpose:     errorinfo_desc class for accessing description from the COM error.
+ * Purpose: errorinfo_desc class for accessing description from the COM
+ *          error.
  *
- * Created:     19th December 2002
- * Updated:     11th March 2024
+ * Created: 19th December 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MAJOR       1
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MINOR       1
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    3
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        48
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    5
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -166,6 +167,8 @@ public:
         ::SysFreeString(m_description);
         ::CoTaskMemFree(m_description_a);
     }
+private:
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors
@@ -278,10 +281,6 @@ private:
     char*       m_description_a;
     cs_size_t   m_len;
 /// @}
-
-// Not to be implemented
-private:
-    class_type const& operator =(class_type const&);
 };
 
 

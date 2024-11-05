@@ -4,7 +4,7 @@
  * Purpose: Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
  *
  * Created: 23rd September 2004
- * Updated: 26th September 2024
+ * Updated: 28th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -159,7 +159,7 @@ inline ACE_Message_Block *make_copied_Message_Block(char const* p, as_size_t n)
         return pmb;
 #if defined(ACE_NEW_THROWS_EXCEPTIONS)
     }
-    catch(ACE_bad_alloc) // TODO: This should be a reference, surely??
+    catch (ACE_bad_alloc) // TODO: This should be a reference, surely??
     {
         return NULL;
     }

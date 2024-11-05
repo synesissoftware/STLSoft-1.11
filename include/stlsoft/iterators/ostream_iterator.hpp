@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/iterators/ostream_iterator.hpp
+ * File:    stlsoft/iterators/ostream_iterator.hpp
  *
- * Purpose:     Enhanced ostream iterator.
+ * Purpose: Enhanced ostream iterator.
  *
- * Created:     16th December 2005
- * Updated:     11th March 2024
+ * Created: 16th December 2005
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    9
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        52
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    12
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -228,10 +228,15 @@ public:
 private:
     class deref_proxy
     {
+    public: // types
+        typedef deref_proxy                                     class_type;
+
     public:
         deref_proxy(ostream_iterator* it)
             : m_it(it)
         {}
+    private:
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public:
         void operator =(assigned_type const& value)
@@ -241,10 +246,6 @@ private:
 
     private:
         ostream_iterator* const m_it;
-
-    // Not to be implemented
-    private:
-        void operator =(deref_proxy const&);
     };
 
     void invoke_(assigned_type const& value)

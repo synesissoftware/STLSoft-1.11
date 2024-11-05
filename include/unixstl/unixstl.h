@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 3rd August 2024
+ * Updated: 13th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    10
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 7
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     117
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 9
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -146,12 +146,13 @@
 # define _UNIXSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.10.5) */
 # define _UNIXSTL_VER_1_8_4     0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.11.1 alpha 8) */
 # define _UNIXSTL_VER_1_8_5     0x010805ff  /*!< Version 1.8.5 (with STLSoft 1.11.1 alpha 12) */
+# define _UNIXSTL_VER_1_8_6_A01 0x01080641  /*!< Version 1.8.8 alpha 1 (with STLSoft 1.11.1 alpha 17) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      8
-#define _UNIXSTL_VER_REVISION   5
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_5
+#define _UNIXSTL_VER_REVISION   6
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_6_A01
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -170,8 +171,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the UNIXSTL libraries requires STLSoft version 1.10.1 beta 26, or later
+#if _STLSOFT_VER < 0x010b0151
+# error This version of the UNIXSTL libraries requires STLSoft version 1.11.1 alpha 17, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -245,12 +246,15 @@
  * The UNIX architecture.
  */
 
-#ifdef UNIXSTL_ARCH_IS_X86
-# undef UNIXSTL_ARCH_IS_X86
-#endif /* UNIXSTL_ARCH_IS_X86 */
+#ifdef UNIXSTL_ARCH_IS_ARM64
+# undef UNIXSTL_ARCH_IS_ARM64
+#endif /* UNIXSTL_ARCH_IS_ARM64 */
 #ifdef UNIXSTL_ARCH_IS_IA64
 # undef UNIXSTL_ARCH_IS_IA64
 #endif /* UNIXSTL_ARCH_IS_IA64 */
+#ifdef UNIXSTL_ARCH_IS_X86
+# undef UNIXSTL_ARCH_IS_X86
+#endif /* UNIXSTL_ARCH_IS_X86 */
 #ifdef UNIXSTL_ARCH_IS_X64
 # undef UNIXSTL_ARCH_IS_X64
 #endif /* UNIXSTL_ARCH_IS_X64 */
@@ -274,60 +278,83 @@
 # undef UNIXSTL_ARCH_IS_UNKNOWN
 #endif /* UNIXSTL_ARCH_IS_UNKNOWN */
 
-#if 0 ||\
-    defined(__amd64__) || \
-    defined(__amd64) || \
-    defined(_AMD64_) || \
-    defined(_M_AMD64) || \
-    defined(_M_X64) || \
-    0
-# define UNIXSTL_ARCH_IS_INTEL
-# define UNIXSTL_ARCH_IS_X64
+#if 0
 #elif 0 ||\
-      defined(__ia64__) || \
-      defined(__ia64) || \
-      defined(_IA64_) || \
-      defined(_M_IA64) ||\
-      0
-# define UNIXSTL_ARCH_IS_INTEL
-# define UNIXSTL_ARCH_IS_IA64
-#elif 0 ||\
-      defined(__i386__) || \
-      defined(__i386) || \
-      defined(_X86_) || \
-      defined(_M_IX86) ||\
-      0
-# define UNIXSTL_ARCH_IS_INTEL
-# define UNIXSTL_ARCH_IS_X86
-#elif 0 ||\
-      defined(__alpha__) || \
-      defined(__alpha) || \
-      defined(_M_ALPHA) ||\
-      0
-# define UNIXSTL_ARCH_IS_ALPHA
-#elif 0 ||\
-      defined(__hppa__) || \
-      defined(__hppa) ||\
-      0
-# define UNIXSTL_ARCH_IS_HPPA
-#elif 0 ||\
-      defined(__ppc__) || \
-      defined(__ppc) || \
-      defined(__POWERPC__) || \
-      defined(_POWER) || \
-      defined(_M_PPC) ||\
-      0
-# define UNIXSTL_ARCH_IS_POWERPC
-#elif 0 ||\
-      defined(__sparc__) || \
-      defined(__sparc) ||\
+      defined(_M_ARM64) ||\
+      defined(__aarch64__) ||\
       0
 
-/* TODO: Separate out arch-family and archs (incl. Sparc32 and Sparc64) */
+# define UNIXSTL_ARCH_IS_INTEL
+# define UNIXSTL_ARCH_IS_ARM64
+# define UNIXSTL_ARCH_LABEL_STRING                          "ARM64"
+#elif 0 ||\
+      defined(_AMD64_) || \
+      defined(_M_AMD64) || \
+      defined(_M_X64) || \
+      defined(__amd64) || \
+      defined(__amd64__) || \
+      0
+
+# define UNIXSTL_ARCH_IS_INTEL
+# define UNIXSTL_ARCH_IS_IA64
+# define UNIXSTL_ARCH_LABEL_STRING                          "IA-64"
+#elif 0 ||\
+      defined(_M_IX86) ||\
+      defined(_X86_) || \
+      defined(__i386) || \
+      defined(__i386__) || \
+      0
+
+# define UNIXSTL_ARCH_IS_INTEL
+# define UNIXSTL_ARCH_IS_X64
+# define UNIXSTL_ARCH_LABEL_STRING                          "ARM64"
+#elif 0 ||\
+      defined(_IA64_) || \
+      defined(_M_IA64) ||\
+      defined(__ia64) || \
+      defined(__ia64__) || \
+      0
+
+# define UNIXSTL_ARCH_IS_INTEL
+# define UNIXSTL_ARCH_IS_X86
+# define UNIXSTL_ARCH_LABEL_STRING                          "80x86"
+#elif 0 ||\
+      defined(_M_ALPHA) ||\
+      defined(__alpha) || \
+      defined(__alpha__) || \
+      0
+
+# define UNIXSTL_ARCH_IS_ALPHA
+# define UNIXSTL_ARCH_LABEL_STRING                          "Alpha"
+#elif 0 ||\
+      defined(__hppa) ||\
+      defined(__hppa__) || \
+      0
+
+# define UNIXSTL_ARCH_IS_HPPA
+# define UNIXSTL_ARCH_LABEL_STRING                          "HP/PA"
+#elif 0 ||\
+      defined(_M_PPC) ||\
+      defined(_POWER) || \
+      defined(__POWERPC__) || \
+      defined(__ppc) || \
+      defined(__ppc__) || \
+      0
+
+# define UNIXSTL_ARCH_IS_POWERPC
+# define UNIXSTL_ARCH_LABEL_STRING                          "PowerPC"
+#elif 0 ||\
+      defined(__sparc) ||\
+      defined(__sparc__) || \
+      0
+
+ /* TODO: Separate out arch-family and archs (incl. Sparc32 and Sparc64) */
 # define UNIXSTL_ARCH_IS_SPARC
+# define UNIXSTL_ARCH_LABEL_STRING                          "Sparc"
 #else /* ? arch */
 
 # define UNIXSTL_ARCH_IS_UNKNOWN
+# define UNIXSTL_ARCH_LABEL_STRING                          "Unknown"
 #endif /* ? arch */
 
 

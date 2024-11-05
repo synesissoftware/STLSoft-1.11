@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/exception/bad_interface_cast.hpp (formerly comstl/error/bad_interface_cast.hpp)
+ * File:    comstl/exception/bad_interface_cast.hpp (formerly comstl/error/bad_interface_cast.hpp)
  *
- * Purpose:     Exception thrown when interface casts fail.
+ * Purpose: Exception thrown when interface casts fail.
  *
- * Created:     22nd December 2003
- * Updated:     11th March 2024
+ * Created: 22nd December 2003
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_MAJOR       6
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_MINOR       0
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_REVISION    2
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_EDIT        52
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_REVISION    5
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,11 +147,13 @@ public:
     ,   status_code_type    sc
     ) STLSOFT_NOEXCEPT
         : parent_class_type()
+        , STLSOFT_NS_QUAL(status_code_provider)<HRESULT>()
+        , project_identifier_provider()
         , m_iid(riid)
         , m_sc(sc)
     {}
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Accessors
@@ -231,8 +233,6 @@ private:
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !COMSTL_INCL_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST */
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exception/library_identifier_provider.hpp
+ * File:    stlsoft/exception/library_identifier_provider.hpp
  *
- * Purpose:     Define the library_identifier_provider inteface.
+ * Purpose: Define the library_identifier_provider inteface.
  *
- * Created:     29th December 2016
- * Updated:     11th March 2024
+ * Created: 29th December 2016
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_MAJOR    1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_MINOR    0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_REVISION 1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_EDIT     5
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_MINOR    1
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_REVISION 3
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,13 +93,13 @@ namespace stlsoft
 
 class library_identifier_provider
 {
-public:
+public: // types
     typedef library_identifier_provider                     class_type;
     /// The library identifier type
     typedef STLSoftLibraryIdentifier_t                      library_identifier_type;
 private:
 
-protected:
+protected: // construction
     library_identifier_provider()
     {}
     ~library_identifier_provider() STLSOFT_NOEXCEPT
@@ -107,9 +107,13 @@ protected:
     library_identifier_provider(class_type const& /* rhs */)
     {}
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-public:
+public: // modifiers
+    void swap(class_type& /* rhs */) STLSOFT_NOEXCEPT
+    {}
+
+public: // overrides
     virtual library_identifier_type
     library_identifier() const = 0;
 

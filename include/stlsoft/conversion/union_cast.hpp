@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/union_cast.hpp (originally MLTypCnv.h, ::SynesisStd)
+ * File:    stlsoft/conversion/union_cast.hpp (originally MLTypCnv.h, ::SynesisStd)
  *
- * Purpose:     A powerful cast operator that limits the danger of
- *              reinterpret_cast, while avoiding the spurious warnings issued by
- *              some compilers.
+ * Purpose: A powerful cast operator that limits the danger of
+ *          reinterpret_cast, while avoiding the spurious warnings issued by
+ *          some compilers.
  *
- * Created:     2nd May 1997
- * Updated:     11th March 2024
+ * Created: 2nd May 1997
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 10
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     80
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 13
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -193,7 +193,14 @@ public:
         STLSOFT_SUPPRESS_UNUSED(bCheckAlign);
     }
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    // union_caster(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+#if 0 ||\
+    __cplusplus < 201103L ||\
+    __cplusplus >= 201702L ||\
+    0
+
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+#endif
 /// @}
 
 /// \name Conversion
@@ -362,7 +369,6 @@ make_union_cast(
 {
     return union_caster<TO, FROM, true>(from, bCheckAlign);
 }
-
 #endif /* compiler */
 
 
@@ -423,8 +429,8 @@ operator <(
 
     return lhs_ < rhs_;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

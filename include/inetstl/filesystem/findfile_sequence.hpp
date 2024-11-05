@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/filesystem/findfile_sequence.hpp  (originally MInetEnm.h)
+ * File:    inetstl/filesystem/findfile_sequence.hpp  (originally MInetEnm.h)
  *
- * Purpose:     Contains the basic_findfile_sequence template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_findfile_sequence template class, and ANSI
+ *          and Unicode specialisations thereof.
  *
- * Created:     30th April 1999
- * Updated:     11th March 2024
+ * Created: 30th April 1999
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR     3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR     0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  25
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      168
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  28
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      172
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -252,6 +252,9 @@ public:
                         ,   flags_type          flags = directories | files);
     /// Destructor
     ~basic_findfile_sequence() STLSOFT_NOEXCEPT;
+private:
+    basic_findfile_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -318,13 +321,6 @@ private:
     static void         extract_subpath_(HINTERNET hconn, char_type *dest, char_type const* pattern);
 
     static  HINTERNET   find_first_file_(HINTERNET hconn, char_type const* spec, flags_type flags, find_data_type *findData);
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    basic_findfile_sequence(class_type const&);
-    class_type& operator =(class_type const&);
 /// @}
 };
 
@@ -579,6 +575,9 @@ private:
                 traits_type::find_close(hSrch);
             }
         }
+    private:
+        shared_handle(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     /// @}
 
     /// \name Operations
@@ -599,13 +598,6 @@ private:
 
             return rc;
         }
-    /// @}
-
-    /// \name Not to be implemented
-    /// @{
-    private:
-        shared_handle(class_type const&);
-        class_type& operator =(class_type const&);
     /// @}
     };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -1395,7 +1387,7 @@ inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T,
                             }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                         }
-                        catch(...)
+                        catch (...)
                         {
                             WINSTL_API_EXTERNAL_FileManagement_FindClose(hSrch);
 

@@ -9,7 +9,7 @@ endif(UNIX)
 
 if(WIN32)
 
-	if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 
 		message (STATUS "Compiling for 64-bit Windows")
 
@@ -25,7 +25,7 @@ if(WIN32)
 endif(WIN32)
 
 
-if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 
 	add_compile_options("/Zc:__cplusplus")
 endif()
@@ -38,6 +38,9 @@ if(X_CMAKE_CXX_FULLSTANDARD LESS 2011)
 endif()
 
 
+add_subdirectory(fixtures)
+
+add_subdirectory(component)
 add_subdirectory(performance)
 add_subdirectory(scratch)
 add_subdirectory(unit)

@@ -5,24 +5,22 @@ Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 
-OsIsWindows=0
-
 Directories=(
-    CMakeFiles
-    Testing
-    cmake
-    examples
-    projects
-    src
-    test
+  CMakeFiles
+  Testing
+  cmake
+  examples
+  projects
+  src
+  test
 )
 Files=(
-    CMakeCache.txt
-    CTestTestfile.cmake
-    DartConfiguration.tcl
-    Makefile
-    cmake_install.cmake
-    install_manifest.txt
+  CMakeCache.txt
+  CTestTestfile.cmake
+  DartConfiguration.tcl
+  Makefile
+  cmake_install.cmake
+  install_manifest.txt
 )
 
 
@@ -81,6 +79,7 @@ EOF
       exit 0
       ;;
     *)
+
       >&2 echo "$ScriptPath: unrecognised argument '$1'; use --help for usage"
 
       exit 1
@@ -124,8 +123,10 @@ else
 
   for f in ${Files[@]}
   do
+
     for fq_file_path in $f
     do
+
       [ -f "$fq_file_path" ] || continue
 
       echo "removing file '$fq_file_path'"

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/internal/windows_version_.h
+ * File:    winstl/internal/windows_version_.h
  *
- * Purpose:     Windows version discrimination.
+ * Purpose: Windows version discrimination.
  *
- * Created:     4th August 2015
- * Updated:     11th March 2024
+ * Created: 4th August 2015
+ * Updated: 20th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 #define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__MAJOR     1
 #define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__MINOR     0
-#define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__REVISION  3
-#define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__EDIT      15
+#define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__REVISION  4
+#define WINSTL_VER_WINSTL_INTERNAL_H_WINDOWS_VERSION__EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -213,9 +213,9 @@ winstl_C_internal_RtlGetVersion_(
         {
             FARPROC                     fp;
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
-            NTSTATUS  (STLSOFT_STDCALL *fn)(OSVERSIONINFOW*);
+            LONG      (STLSOFT_STDCALL *fn)(OSVERSIONINFOW*);
 #else
-            NTSTATUS                  (*fn)(OSVERSIONINFOW*);
+            LONG                      (*fn)(OSVERSIONINFOW*);
 #endif
         } u_aq;
 

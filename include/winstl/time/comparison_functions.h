@@ -4,7 +4,7 @@
  * Purpose: Comparison functions for Windows time structures.
  *
  * Created: 21st November 2003
- * Updated: 26th September 2024
+ * Updated: 9th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -114,6 +114,7 @@ namespace winstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 STLSOFT_INLINE
 ws_sint_t
 winstl_C_compare_SYSTEMTIMEs(
@@ -704,7 +705,6 @@ absolute_difference_in_seconds(
 {
     return winstl_C_absolute_difference_in_seconds_FILETIMEs(&t1, &t2);
 }
-
 #endif /* __cplusplus */
 
 
@@ -730,7 +730,6 @@ STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIMEs(SYSTEMTIME const* lhs, SYST
 {
     return winstl_C_compare_SYSTEMTIMEs(lhs, rhs);
 }
-
 #endif /* !STLSOFT_OBSOLETE */
 
 
@@ -756,8 +755,6 @@ STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIMEs(SYSTEMTIME const* lhs, SYST
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_TIME_H_COMPARISON_FUNCTIONS */
 

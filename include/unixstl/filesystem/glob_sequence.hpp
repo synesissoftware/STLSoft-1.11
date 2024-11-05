@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 26th September 2024
+ * Updated: 10th October 2024
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      181
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      184
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -250,6 +250,7 @@ namespace unixstl_project
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
 /** The exception-type thrown by unixstl::glob_sequence
  *
  * \ingroup group__library__FileSystem
@@ -265,11 +266,11 @@ class glob_sequence_exception
 /// @{
 public:
 #if defined(STLSOFT_COMPILER_IS_DMC)
-    typedef std::exception                  parent_class_type;
+    typedef std::exception                                  parent_class_type;
 #else /* ? compiler */
-    typedef STLSOFT_NS_QUAL_STD(exception)  parent_class_type;
+    typedef STLSOFT_NS_QUAL_STD(exception)                  parent_class_type;
 #endif /* compiler */
-    typedef glob_sequence_exception         class_type;
+    typedef glob_sequence_exception                         class_type;
 /// @}
 
 /// \name Construction
@@ -289,8 +290,10 @@ public:
 /// @{
 public:
 #if defined(STLSOFT_COMPILER_IS_DMC)
+
     char const* what() const throw()
 #else /* ? compiler */
+
     char const* what() const STLSOFT_NOEXCEPT
 #endif /* compiler */
     {
@@ -312,12 +315,6 @@ public:
 private:
     us_int_t const  m_globStatus;
     us_int_t const  m_errno;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type& operator =(class_type const&);
 /// @}
 };
 
@@ -363,8 +360,8 @@ public:
     ,   const_pointer
     ,   const_reference
     >::type                                                 const_iterator;
-
 #ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+
     /// The type of the const (non-mutating) reverse iterator
     typedef STLSOFT_NS_QUAL(reverse_iterator_base)<
         const_iterator
@@ -406,7 +403,9 @@ public:
 /// \name Construction
 /// @{
 public:
-#if defined(GLOB_SEQUENCE_CTOR_PRIMARY_FORM)
+#if 0
+#elif defined(GLOB_SEQUENCE_CTOR_PRIMARY_FORM)
+
     /// Constructs a sequence according to the given criteria
     ///
     /// The constructor initialises a glob_sequence instance on the given
@@ -417,7 +416,7 @@ public:
     ///
     /// \note If exceptions are supported, then this will throw a glob_sequence_exception
     /// on failure of any underlying functions
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k
     glob_sequence(
         S const&    pattern
@@ -432,7 +431,8 @@ public:
     }
 
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    template<ss_typename_param_k S>
+
+    template <ss_typename_param_k S>
     glob_sequence(S const& pattern, search_flags flag)
         : m_flags(validate_flags_(flag))
         , m_buffer(1)
@@ -454,9 +454,10 @@ public:
     ///
     /// \note If exceptions are supported, then this will throw a glob_sequence_exception
     /// on failure of any underlying functions
-    template<   ss_typename_param_k S1
-            ,   ss_typename_param_k S2
-            >
+    template<
+        ss_typename_param_k S1
+    ,   ss_typename_param_k S2
+    >
     glob_sequence(S1 const& directory, S2 const& pattern, us_int_t flags = files | directories)
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -467,9 +468,11 @@ public:
     }
 
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-    template<   ss_typename_param_k S1
-            ,   ss_typename_param_k S2
-            >
+
+    template<
+        ss_typename_param_k S1
+    ,   ss_typename_param_k S2
+    >
     glob_sequence(S1 const& directory, S2 const& pattern, search_flags flag)
         : m_flags(validate_flags_(flag))
         , m_buffer(1)
@@ -482,7 +485,7 @@ public:
 
 #elif defined(GLOB_SEQUENCE_CTOR_ALT_FORM)
 
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k
     glob_sequence(
         S const& pattern
@@ -495,7 +498,7 @@ public:
         UNIXSTL_ASSERT(is_valid());
     }
 
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     glob_sequence(S const& pattern, us_int_t flags)
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -507,7 +510,7 @@ public:
 
     glob_sequence(char_type const* directory, char_type const* pattern, us_int_t flags = files | directories);
 
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     glob_sequence(S const& directory, char const* pattern, us_int_t flags = files | directories)
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -517,7 +520,7 @@ public:
         UNIXSTL_ASSERT(is_valid());
     }
 
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     glob_sequence(S const& directory, S const& pattern, us_int_t flags = files | directories)
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -526,7 +529,6 @@ public:
 
         UNIXSTL_ASSERT(is_valid());
     }
-
 #elif defined(GLOB_SEQUENCE_CTOR_OLD_FORM)
 
     ss_explicit_k
@@ -540,12 +542,13 @@ public:
     ,   char_type const*    pattern
     ,   us_int_t            flags = files | directories
     );
-
 #else /* ? constructor form */
+
 # error Constructor form not recognised
 #endif /* constructor form */
 
 #if 0
+
     /// Constructs a sequence according to the given criteria
     ///
     /// The constructor initialises a glob_sequence instance on the given
@@ -562,16 +565,20 @@ public:
 
     /// Releases any acquired resources
     ~glob_sequence() STLSOFT_NOEXCEPT;
+
+private:
+    glob_sequence(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Attributes
 /// @{
 public:
     /// Returns the number of elements in the sequence
-    us_size_t size() const;
+    us_size_t size() const STLSOFT_NOEXCEPT;
 
     /// Indicates whether the search sequence is empty
-    us_bool_t empty() const;
+    us_bool_t empty() const STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Element Access
@@ -594,8 +601,16 @@ public:
     ///
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
-
+    /// Begins the iteration
+    ///
+    /// \return An iterator representing the start of the sequence
+    const_iterator  cbegin() const;
+    /// Ends the iteration
+    ///
+    /// \return An iterator representing the end of the sequence
+    const_iterator  cend() const;
 #ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
+
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -604,6 +619,14 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
+    /// Begins the reverse iteration
+    ///
+    /// \return An iterator representing the start of the reverse sequence
+    const_reverse_iterator  crbegin() const;
+    /// Ends the reverse iteration
+    ///
+    /// \return An iterator representing the end of the reverse sequence
+    const_reverse_iterator  crend() const;
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
@@ -611,19 +634,19 @@ public:
 /// @{
 private:
     // Tests the class invariant
-    us_bool_t           is_valid() const;
+    us_bool_t           is_valid() const STLSOFT_NOEXCEPT;
 
     // Validates the flags, and sets up defaults
-    static us_int_t     validate_flags_(us_int_t flags);
+    static us_int_t     validate_flags_(us_int_t flags) STLSOFT_NOEXCEPT;
 
     // Returns true if pch is a path separator "/" (or "\\"); false otherwise
-    static us_bool_t    is_path_separator_(char_type ch);
+    static us_bool_t    is_path_separator_(char_type ch) STLSOFT_NOEXCEPT;
 
     // Returns true if pch == "" or "/" (or "\\"); false otherwise
-    static us_bool_t    is_end_of_path_elements_(char_type const* pch, difference_type index);
+    static us_bool_t    is_end_of_path_elements_(char_type const* pch, difference_type index) STLSOFT_NOEXCEPT;
 
     // Returns true if s points to a path that is a dots directory; false otherwise
-    static us_bool_t    is_dots_maybe_slashed_(char_type const* s, us_bool_t* bTwoDots);
+    static us_bool_t    is_dots_maybe_slashed_(char_type const* s, us_bool_t* bTwoDots) STLSOFT_NOEXCEPT;
 
     // Calls glob() and process the results
     //
@@ -635,30 +658,22 @@ private:
     us_size_t           init_glob_1_(size_type bufferSize, char_type* combinedPath);
     us_size_t           init_glob_2_(char_type const* patternDir, char_type const* pattern0);
     us_size_t           init_glob_3_(char_type const* pattern, bool isPattern0Wild);
-
-
 /// @}
 
 /// \name Members
 /// @{
 private:
-    typedef STLSOFT_NS_QUAL(auto_buffer_old)<   char_type const*
-                                            ,   allocator_type
-                                            ,   128
-                                            >       buffer_type_;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        char_type const*
+    ,   128
+    ,   allocator_type
+    >                                                       buffer_type_;
 
     us_int_t const      m_flags;
     char_type const**   m_base;
     us_size_t           m_cItems;
     buffer_type_        m_buffer;
     glob_t              m_glob;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    glob_sequence(class_type const&);
-    class_type const& operator =(class_type const&);
 /// @}
 };
 
@@ -670,6 +685,7 @@ private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #if defined(GLOB_SEQUENCE_CTOR_OLD_FORM)
+
 inline /* ss_explicit_k */
 glob_sequence::glob_sequence(
     glob_sequence::char_type const* pattern
@@ -686,6 +702,7 @@ glob_sequence::glob_sequence(
 
 #if defined(GLOB_SEQUENCE_CTOR_OLD_FORM) || \
     defined(GLOB_SEQUENCE_CTOR_ALT_FORM)
+
 inline
 glob_sequence::glob_sequence(
     glob_sequence::char_type const*     directory
@@ -702,6 +719,7 @@ glob_sequence::glob_sequence(
 #endif /* GLOB_SEQUENCE_CTOR_OLD_FORM || GLOB_SEQUENCE_CTOR_ALT_FORM */
 
 #if 0
+
 template<   ss_typename_param_k S1
         ,   ss_typename_param_k S2
         >
@@ -721,6 +739,7 @@ glob_sequence::glob_sequence(
 #endif /* 0 */
 
 #if 0
+
 inline
 glob_sequence::glob_sequence(
     char_type const*    directory
@@ -751,14 +770,14 @@ glob_sequence::~glob_sequence() STLSOFT_NOEXCEPT
 
 inline
 us_size_t
-glob_sequence::size() const
+glob_sequence::size() const STLSOFT_NOEXCEPT
 {
     return m_cItems;
 }
 
 inline
 us_bool_t
-glob_sequence::empty() const
+glob_sequence::empty() const STLSOFT_NOEXCEPT
 {
     return 0 == size();
 }
@@ -778,12 +797,26 @@ inline
 glob_sequence::const_iterator
 glob_sequence::begin() const
 {
-    return m_base;
+    return cbegin();
 }
 
 inline
 glob_sequence::const_iterator
 glob_sequence::end() const
+{
+    return cend();
+}
+
+inline
+glob_sequence::const_iterator
+glob_sequence::cbegin() const
+{
+    return m_base;
+}
+
+inline
+glob_sequence::const_iterator
+glob_sequence::cend() const
 {
     return m_base + m_cItems;
 }
@@ -794,12 +827,26 @@ inline
 glob_sequence::const_reverse_iterator
 glob_sequence::rbegin() const
 {
-    return const_reverse_iterator(end());
+    return crbegin();
 }
 
 inline
 glob_sequence::const_reverse_iterator
 glob_sequence::rend() const
+{
+    return crend();
+}
+
+inline
+glob_sequence::const_reverse_iterator
+glob_sequence::crbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+inline
+glob_sequence::const_reverse_iterator
+glob_sequence::crend() const
 {
     return const_reverse_iterator(begin());
 }
@@ -807,7 +854,7 @@ glob_sequence::rend() const
 
 inline
 us_bool_t
-glob_sequence::is_valid() const
+glob_sequence::is_valid() const STLSOFT_NOEXCEPT
 {
     if ((0 != m_cItems) && (NULL == m_base))
     {
@@ -821,7 +868,7 @@ glob_sequence::is_valid() const
 inline /* static */ us_int_t
 glob_sequence::validate_flags_(
     us_int_t flags
-)
+) STLSOFT_NOEXCEPT
 {
     const us_int_t  validFlags  =   0
                                 |   includeDots
@@ -852,6 +899,7 @@ glob_sequence::validate_flags_(
     }
 
 #ifndef UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
+
     // If we're not searching for directories, then we can optimise the
     // subsequent filtering by asking for the dots directories (so we
     // skip that filtering) and asking for directories to be marked (so
@@ -875,7 +923,7 @@ glob_sequence::validate_flags_(
 inline /* static */ us_bool_t
 glob_sequence::is_path_separator_(
     glob_sequence::char_type ch
-)
+) STLSOFT_NOEXCEPT
 {
     return  ch == '/'
 #if defined(_UNIXSTL_COMPILER_IS_UNKNOWN) && \
@@ -890,7 +938,7 @@ inline /* static */ us_bool_t
 glob_sequence::is_end_of_path_elements_(
     glob_sequence::char_type const* pch
 ,   glob_sequence::difference_type  index
-)
+) STLSOFT_NOEXCEPT
 {
     return  pch[index] == '\0' ||
             (   pch[index + 1] == '\0' &&
@@ -901,7 +949,7 @@ inline /* static */ us_bool_t
 glob_sequence::is_dots_maybe_slashed_(
     glob_sequence::char_type const* s
 ,   us_bool_t*                      bTwoDots
-)
+) STLSOFT_NOEXCEPT
 {
     UNIXSTL_ASSERT(NULL != s);
     UNIXSTL_ASSERT(NULL != bTwoDots);
@@ -988,13 +1036,13 @@ glob_sequence::init_glob_(
             directory = NULL;
         }
 
-        bool const                          reqEnd  =   (NULL == directory) ? false : !traits_type::has_dir_end(directory);
-        size_type const                     dirLen  =   (NULL == directory) ? 0u : traits_type::str_len(directory);
-        size_type const                     patLen  =   traits_type::str_len(pattern);
-        size_type const                     baseLen =   dirLen + (reqEnd ? 1 : 0);
-        size_type const                     totLen  =   baseLen + patLen;
+        bool const              reqEnd  =   (NULL == directory) ? false : !traits_type::has_dir_end(directory);
+        size_type const         dirLen  =   (NULL == directory) ? 0u : traits_type::str_len(directory);
+        size_type const         patLen  =   traits_type::str_len(pattern);
+        size_type const         baseLen =   dirLen + (reqEnd ? 1 : 0);
+        size_type const         totLen  =   baseLen + patLen;
 
-        auto_buffer<char_type>              scratch_(totLen + 1);
+        auto_buffer<char_type>  scratch_(totLen + 1);
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
 
@@ -1100,13 +1148,13 @@ glob_sequence::init_glob_2_(
         }
         else
         {
-            bool const                          reqEnd  =   !traits_type::has_dir_end(directory);
-            size_type const                     dirLen  =   traits_type::str_len(directory);
-            size_type const                     patLen  =   traits_type::str_len(pattern0);
-            size_type const                     baseLen =   dirLen + (reqEnd ? 1 : 0);
-            size_type const                     totLen  =   baseLen + patLen;
+            bool const              reqEnd  =   !traits_type::has_dir_end(directory);
+            size_type const         dirLen  =   traits_type::str_len(directory);
+            size_type const         patLen  =   traits_type::str_len(pattern0);
+            size_type const         baseLen =   dirLen + (reqEnd ? 1 : 0);
+            size_type const         totLen  =   baseLen + patLen;
 
-            auto_buffer<char_type>              scratch_(totLen + 1);
+            auto_buffer<char_type>  scratch_(totLen + 1);
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
 
@@ -1463,8 +1511,8 @@ glob_sequence::init_glob_3_(
         return cItems;
     }
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

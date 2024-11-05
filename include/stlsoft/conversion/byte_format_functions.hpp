@@ -4,7 +4,7 @@
  * Purpose: Byte formatting functions.
  *
  * Created: 23rd July 2006
- * Updated: 26th September 2024
+ * Updated: 8th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -299,13 +299,13 @@ format_bytes(
 
         if (size <= cchBuff)
         {
+            byte_t          remaining[32];
             byte_t const*   py =   static_cast<byte_t const*>(pv);
             ss_size_t       lineIndex;
             ss_size_t       groupIndex;
 
             for (lineIndex = 0, groupIndex = 0; 0 != cb; py += byteGrouping)
             {
-                byte_t  remaining[32];
 #ifdef STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF
                 int     cch;
 #endif /* STLSOFT_CONVERSION_BYTE_FORMAT_FUNCTIONS_USE_SPRINTF */

@@ -3,8 +3,8 @@
  *
  * Purpose: Definition of the string access shims for the VARIANT type.
  *
- * Created: May 2002
- * Updated: 26th September 2024
+ * Created: 24th May 2002
+ * Updated: 20th October 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MINOR    4
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 9
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     151
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 10
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -155,13 +155,15 @@ public:
             WCHAR   code[23];
             LPWSTR  msg     =   NULL;
             DWORD   cchCode =   static_cast<DWORD>(::wsprintfW(&code[0], L"%d\00x%08x" + ((0x8000000 & scode) ? 3 : 0), scode));
-            DWORD   cchMsg  =   ::FormatMessageW(   FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
-                                                ,   NULL
-                                                ,   DWORD(scode)
-                                                ,   MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT)
-                                                ,   (LPWSTR)&msg
-                                                ,   0
-                                                ,   NULL);
+            DWORD   cchMsg  =   ::FormatMessageW(
+                                    FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
+                                ,   NULL
+                                ,   DWORD(scode)
+                                ,   MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT)
+                                ,   (LPWSTR)&msg
+                                ,   0
+                                ,   NULL
+                                );
             DWORD   cchAll  =   cchCode;
 
             if (0 == cchMsg)
@@ -412,7 +414,7 @@ public:
         ::SysFreeString(m_bstr);
     }
 private:
-    void operator =(class_type const& rhs); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:
@@ -510,7 +512,7 @@ public:
         }
     }
 private:
-    void operator =(class_type const& rhs); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:
@@ -654,7 +656,7 @@ public:
         ::SysFreeString(m_bstr);
     }
 private:
-    void operator =(class_type const& rhs); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:
@@ -751,7 +753,7 @@ public:
         }
     }
 private:
-    void operator =(class_type const& rhs); // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 // Accessors
 public:

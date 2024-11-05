@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/collections/collection_sequence.hpp (originally MOEnSeq.h, ::SynesisCom)
+ * File:     comstl/collections/collection_sequence.hpp (originally MOEnSeq.h, ::SynesisCom)
  *
- * Purpose:     STL sequence for COM collection interfaces.
+ * Purpose:  STL sequence for COM collection interfaces.
  *
- * Created:     17th September 1998
- * Updated:     11th March 2024
+ * Created:  17th September 1998
+ * Updated:  10th October 2024
  *
- * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
- *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
- *              preprocessor hack around retrievalQuanta are the result. ;)
+ * Thanks:   To Eduardo Bezerra and Vivi Orunitia for reporting
+ *           incompatibilities with Borland's 5.82 (Turbo C++). The awful
+ *           preprocessor hack around retrievalQuanta are the result. ;)
  *
- * Home:        http://stlsoft.org/
+ * Home:     http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 17
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     123
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 19
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -315,6 +315,9 @@ public:
 
         m_i->Release();
     }
+private:
+    collection_sequence(class_type const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 /// \name Iteration
 /// @{
@@ -437,11 +440,6 @@ private:
 private:
     collection_interface_type   *m_i;
     size_type const             m_quanta;
-
-// Not to be implemented
-private:
-    collection_sequence(class_type const&);
-    class_type const& operator =(class_type const&);
 };
 
 

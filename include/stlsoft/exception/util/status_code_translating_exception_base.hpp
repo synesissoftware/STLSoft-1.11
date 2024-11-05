@@ -1,13 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/exception/util/status_code_translating_exception_base.hpp (formerly (unix|win)stl/exception/(unix|win)stl_exception.hpp)
+ * File:    stlsoft/exception/util/status_code_translating_exception_base.hpp (formerly (unix|win)stl/exception/(unix|win)stl_exception.hpp)
  *
- * Purpose:     stlsoft::status_code_translating_exception_base class
- *              template
+ * Purpose: stlsoft::status_code_translating_exception_base class template
  *
- * Created:     19th June 2004
- * Updated:     11th March 2024
+ * Created: 19th June 2004
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -54,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_TRANSLATING_EXCEPTION_BASE_MAJOR      6
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_TRANSLATING_EXCEPTION_BASE_MINOR      0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_TRANSLATING_EXCEPTION_BASE_REVISION   2
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_TRANSLATING_EXCEPTION_BASE_EDIT       81
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_TRANSLATING_EXCEPTION_BASE_MINOR      1
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_TRANSLATING_EXCEPTION_BASE_REVISION   3
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_STATUS_CODE_TRANSLATING_EXCEPTION_BASE_EDIT       85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -128,7 +127,6 @@ public:
     typedef P_statusCodeToStringTranslator                  status_code_to_string_translator_policy_type;
     /// The status code type
     typedef ss_typename_type_k status_code_to_string_translator_policy_type::status_code_type
-
                                                             status_code_type;
 #ifndef STLSOFT_NO_PRE_1_10_BAGGAGE
     typedef status_code_type                                error_code_type;
@@ -169,6 +167,18 @@ public:
         , m_message(create_message_(reason, sc))
         , m_statusCode(sc)
     {}
+    /// Constructs an instance from the given message and qualifier
+    ///
+    /// \param reason The message code associated with the exception
+    /// \param qualifier The qualifier associated with the exception
+    status_code_translating_exception_base(
+        char const*         reason
+    ,   char const*         qualifier
+    )
+        : parent_class_type(V_libraryIdentifier)
+        , m_message(create_message_(reason, qualifier))
+        , m_statusCode()
+    {}
 protected:
     /// Contructor for derived classes
     status_code_translating_exception_base(
@@ -179,6 +189,15 @@ protected:
         , m_message(reason)
         , m_statusCode(sc)
     {}
+    /// Contructor for derived classes
+    status_code_translating_exception_base(
+        string_type const&  reason
+    ,   char const*         qualifier
+    )
+        : parent_class_type(V_libraryIdentifier)
+        , m_message(create_message_(reason, qualifier))
+        , m_statusCode()
+    {}
 public:
     /// Destructor
     ///
@@ -187,8 +206,13 @@ public:
     /// exception specifications between this class and its parent
     ~status_code_translating_exception_base() STLSOFT_NOEXCEPT
     {}
+#ifdef STLSOFT_COMPILER_IS_GCC
+    status_code_translating_exception_base(class_type const&) = default;
+    class_type& operator =(class_type const&) = default;
+#else
 private:
-    class_type& operator =(class_type const&);  // copy-assignment proscribed
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+#endif
 /// @}
 
 /// \name Overrides
@@ -218,6 +242,16 @@ private:
     )
     {
         return status_code_to_string_translator_policy_type::create_message(sc, message);
+    }
+
+    static
+    string_type
+    create_message_(
+        char const*         message
+    ,   char const*         qualifier
+    )
+    {
+        return status_code_to_string_translator_policy_type::create_message(message, qualifier);
     }
 /// @}
 

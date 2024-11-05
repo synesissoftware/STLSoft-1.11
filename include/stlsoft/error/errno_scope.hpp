@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/error/errno_scope.hpp (originally MLTErrScp.h, ::SynesisStd)
+ * File:    stlsoft/error/errno_scope.hpp (originally MLTErrScp.h, ::SynesisStd)
  *
- * Purpose:     errno scoping class.
+ * Purpose: errno scoping class.
  *
- * Created:     28th November 1998
- * Updated:     11th March 2024
+ * Created: 28th November 1998
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MAJOR      3
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_MINOR      0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_REVISION   7
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT       52
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_REVISION   9
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERRNO_SCOPE_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,12 +110,10 @@ namespace stlsoft
  */
 class errno_scope
 {
-public:
-    typedef errno_scope    class_type;
+public: // types
+    typedef errno_scope                                     class_type;
 
-/// \name Operations
-/// @{
-public:
+public: // construction
     /// Remembers the current value of <code>errno</code>.
     errno_scope() STLSOFT_NOEXCEPT
         : m_errno(errno)
@@ -131,32 +129,19 @@ public:
     {
         errno = m_errno;
     }
+private:
+    errno_scope(errno_scope const&);
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-/// @}
-
-/// \name Operations
-/// @{
-public:
+public: // operations
     /// The remembered value of <code>errno</code>.
     operator int () const
     {
         return m_errno;
     }
 
-/// @}
-
-/// \name Members
-/// @{
-private:
+private: // fields
     int m_errno;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    errno_scope(errno_scope const&);
-    errno_scope& operator =(errno_scope const&);
-/// @}
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

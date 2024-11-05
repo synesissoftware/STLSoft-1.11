@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/shims/access/string/timeval.hpp
+ * File:    unixstl/shims/access/string/timeval.hpp
  *
- * Purpose:     String shims for UNIX timeval structure.
+ * Purpose: String shims for UNIX timeval structure.
  *
- * Created:     5th May 2014
- * Updated:     11th March 2024
+ * Created: 5th May 2014
+ * Updated: 1st October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_REVISION   5
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_EDIT       18
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_REVISION   6
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -112,6 +112,7 @@ namespace unixstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * shims
  *
@@ -138,7 +139,7 @@ c_str_data_a(
     {
         return shim_string_t();
     }
-    else
+    else if (tv->tv_sec >= 0 && tv->tv_usec >= 0)
     {
         STLSOFT_ASSERT(tv->tv_usec >= 0 && tv->tv_usec < 1000000);
 
@@ -148,14 +149,13 @@ c_str_data_a(
 
         if (0 == e)
         {
-            ss_char_a_t         fmt[101];
-            ss_size_t const     n0  =   STLSOFT_NS_GLOBAL(strftime)(&fmt[0], STLSOFT_NUM_ELEMENTS(fmt), "%b %%d %%H:%%M:%%S.000000 %%Y", &tm);
+            ss_char_a_t     fmt[101];
+            ss_size_t const n0  =   STLSOFT_NS_GLOBAL(strftime)(&fmt[0], STLSOFT_NUM_ELEMENTS(fmt), "%b %%d %%H:%%M:%%S.000000 %%Y", &tm);
 
             if (0 != n0)
             {
-                shim_string_t       s(n0 + 2);
-
-                ss_size_t const     n1  =   STLSOFT_NS_GLOBAL(strftime)(s.data(), 1 + s.size(), fmt, &tm);
+                shim_string_t   s(n0 + 2);
+                ss_size_t const n1  =   STLSOFT_NS_GLOBAL(strftime)(s.data(), 1 + s.size(), fmt, &tm);
 
                 if (0 != n1)
                 {
@@ -175,9 +175,9 @@ c_str_data_a(
                 }
             }
         }
-
-        return shim_string_t("(invalid time)");
     }
+
+    return shim_string_t("(invalid time)");
 }
 
 /** \ref group__concept__Shim__string_access__c_str_data function
@@ -215,7 +215,7 @@ c_str_len_a(
     {
         return 0;
     }
-    else
+    else if (tv->tv_sec >= 0 && tv->tv_usec >= 0)
     {
         struct tm       tm;
         time_t const    t = tv->tv_sec;
@@ -232,9 +232,9 @@ c_str_len_a(
                 return 24 + n1;
             }
         }
-
-        return 14;
     }
+
+    return 14;
 }
 
 /** \ref group__concept__Shim__string_access__c_str_len function
@@ -478,6 +478,7 @@ c_str_ptr_null(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -4,6 +4,95 @@
 ----
 
 
+4th November 2024 - 1.11.1-alpha24 released
+-------------------------------------------
+
+ * `frequency_map` : ~ now default-specialised on `frequency_map_traits_unordered` when compiling with C++11+;
+ * **test.performance.stlsoft.frequency_map** : ~ improved reporting of results ; ~ now uses `stlsoft::std_chrono_hrc_stopwatch`;
+
+
+28th October 2024 - 1.11.1-alpha23 released
+-------------------------------------------
+
+ * `platformstl::basic_file_lines<>` now supports move semantics;
+ * Fix to definition of `STLSOFT_MESSAGE_ASSERT()` (for Clang);
+ * Minor improvements of ./CMakeLists.txt;
+ * **dev/bin/batch_compile_check** now supports '--counts' flag;
+
+
+26th October 2024 - 1.11.1-alpha22 released
+-------------------------------------------
+
+ * Single fix to default definition of `STLSOFT_FALLTHROUGH()`;
+
+
+25th October 2024 - 1.11.1-alpha21 released
+-------------------------------------------
+
+ * Added and applied macro `STLSOFT_FALLTHROUGH()`;
+ * Added unit-tests for allocator types;
+
+
+23rd October 2024 - 1.11.1-alpha20 released
+-------------------------------------------
+
+ * Version change only;
+
+
+23rd October 2024 - 1.11.1-alpha19 released
+-------------------------------------------
+
+ * Fixes to (new functionality in) `stlsoft::auto_buffer<>`;
+ * Fix for (compile-time) defect in `winstl::basic_path<>`;
+ * Fix for defect in `winstl::basic_reg_key<>`;
+ * MinGW compatibility in **winstl/internal/windows_version_.h**;
+ * MinGW compatibility in **winstl/system/console_functions.h**;
+ * Necessary warning suppression in `stlsoft::basis_simple_string<>`;
+ * Trivial warning fix in `winstl::readonly_memory_mapped_file<>`;
+ * Added **test.unit.stlsoft.traits.integral_printf_format_traits**;
+ * Brought over **test.unit.winstl.registry.reg_value**;
+ * Added **test.unit.winstl.registry.reg_value_sequence**;
+ * GCC warnings;
+ * CMake build scripts minor fixes;
+
+
+15th October 2024 - 1.11.1-alpha18 released
+-------------------------------------------
+
+ * Legacy (pre VS-2022) Visual C++ compatibility;
+ * Win32 compatibity;
+
+
+13th October 2024 - 1.11.1-alpha17 released
+-------------------------------------------
+
+ * `stlsoft::frequency_map<>` enhancements;
+ * `unixstl::glob_sequence` enhancements;
+ * Fixes and enhancement to `dl_call<>()` (both UNIXSTL and WinSTL);
+ * BREAKING CHANGE: Prospective compatibility with C++20 reserved word `module` (both UNIXSTL and WinSTL) by renaming existing `module` class to `dl_module`;
+ * GCC 11 compatibility;
+ * GCC 14 compatibility;
+ * MinGW-64 compatibility;
+ * VC++ 17 compatibility;
+ * General improvements and simplification for compatibility with C++11 - C++20;
+ * CMake build files improvements;
+ * Misc. minor fixes and enhancements;
+ * Misc. code canonicalisation;
+ * Bringing into repo existing (older) test and example programs;
+
+
+1st October 2024 - 1.11.1-alpha16 released
+------------------------------------------
+
+ * `auto_buffer` improvements;
+ * `constexpr` applications;
+ * Time function enhancements;
+ * Brought over previously unreleased example and test programs;
+ * Significant simplification of CMake support;
+ * Boilerplate file improvements;
+ * Miscellaneous improvements;
+
+
 2nd September 2024 - 1.11.1-alpha15 released
 --------------------------------------------
 

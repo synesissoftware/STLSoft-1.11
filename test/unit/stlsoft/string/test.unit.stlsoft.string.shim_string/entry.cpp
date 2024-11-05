@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_shim_string`.
  *
  * Created: 9th November 2008
- * Updated: 5th May 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -85,7 +85,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -148,7 +148,7 @@ namespace
         ,   std::streamsize n
         )
         {
-            contents.append(s, n);
+            contents.append(s, static_cast<std::size_t>(n));
 
             return *this;
         }
@@ -861,6 +861,12 @@ static void test_insertion_3(void)
 static void test_insertion_4(void)
 {
     const std::size_t FIELD_WIDTH = 2000;
+#if defined(_MSC_VER) &&\
+    _MSC_VER == 1700
+
+    STLSOFT_SUPPRESS_UNUSED(&FIELD_WIDTH);
+# define FIELD_WIDTH (2000)
+#endif
 
     stlsoft::basic_shim_string<char> const  s1;
     stlsoft::basic_shim_string<char> const  s2("abc");
@@ -916,6 +922,10 @@ static void test_insertion_4(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL(
         expected
         , ss.str());
+
+#ifdef FIELD_WIDTH
+# undef FIELD_WIDTH
+#endif
 }
 
 

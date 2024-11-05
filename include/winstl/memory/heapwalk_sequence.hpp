@@ -1,18 +1,18 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/memory/heapwalk_sequence.hpp (originally MWHeapWk.h; ::SynesisWin)
+ * File:    winstl/memory/heapwalk_sequence.hpp (originally MWHeapWk.h; ::SynesisWin)
  *
- * Purpose:     Contains the heapwalk_sequence template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the heapwalk_sequence template class, and ANSI and
+ *          Unicode specialisations thereof.
  *
- * Notes:       The original implementation of the class had the const_iterator
- *              and value_type as nested classes. Unfortunately, Visual C++ 5 &
- *              6 both had either compilation or linking problems so these are
- *              regretably now implemented as independent classes.
+ * Notes:   The original implementation of the class had the const_iterator
+ *          and value_type as nested classes. Unfortunately, Visual C++ 5 &
+ *          6 both had either compilation or linking problems so these are
+ *          regretably now implemented as independent classes.
  *
- * Created:     15th January 2002
- * Updated:     11th March 2024
+ * Created: 15th January 2002
+ * Updated: 10th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MINOR       0
-# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_REVISION    12
-# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        82
+# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_REVISION    14
+# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -182,6 +182,9 @@ public:
     ss_explicit_k heapwalk_sequence(HANDLE hHeap);
     /// Destructor
     ~heapwalk_sequence() STLSOFT_NOEXCEPT;
+private:
+    heapwalk_sequence(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 /// @}
 
 /// \name Iteration
@@ -207,13 +210,6 @@ private:
 /// @{
 private:
     HANDLE  m_hHeap;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    heapwalk_sequence(class_type const&);
-    heapwalk_sequence const& operator =(class_type const&);
 /// @}
 };
 

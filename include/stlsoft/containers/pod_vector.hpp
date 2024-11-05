@@ -4,13 +4,12 @@
  * Purpose: Contains the pod_vector class.
  *
  * Created: 23rd December 2003
- * Updated: 25th September 2024
+ * Updated: 27th September 2024
  *
  * Thanks:  Chris Newcombe for requesting sufficient enhancements to
- *          auto_buffer such that pod_vector was born.
- *
- *          Christian Roessel, for spotting the bug in the copy ctor that
- *          fails an assert if the copied instance is empty
+ *          auto_buffer such that pod_vector was born. Christian Roessel,
+ *          for spotting the bug in the copy ctor that fails an assert if
+ *          the copied instance is empty
  *
  * Home:    http://stlsoft.org/
  *
@@ -60,7 +59,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MINOR       3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    3
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -145,10 +144,10 @@ class pod_vector
 /// \name Typedefs
 /// @{
 private:
-    typedef auto_buffer_old<
+    typedef auto_buffer<
         T_value
-    ,   T_allocator
     ,   V_internalSize
+    ,   T_allocator
     >                                                       buffer_type_;
 public:
     /// The value type

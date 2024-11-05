@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_base32_string`.
  *
  * Created: 17th February 2024
- * Updated: 5th May 2024
+ * Updated: 15th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,13 +53,14 @@
  * forward declarations
  */
 
-
 namespace
 {
 
     static void test_zero(void);
     static void test_ones(void);
+#if __cplusplus >= 201103L
     static void test_fibonacci(void);
+#endif
     static void test_limits(void);
 
 } // anonymous namespace
@@ -69,7 +70,7 @@ namespace
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -80,7 +81,9 @@ int main(int argc, char **argv)
     {
         XTESTS_RUN_CASE(test_zero);
         XTESTS_RUN_CASE(test_ones);
+#if __cplusplus >= 201103L
         XTESTS_RUN_CASE(test_fibonacci);
+#endif
         XTESTS_RUN_CASE(test_limits);
 
         XTESTS_PRINT_RESULTS();
@@ -211,6 +214,8 @@ static void test_ones()
     }
 }
 
+#if __cplusplus >= 201103L
+
 static void test_fibonacci()
 {
     for (size_t i = 0; STLSOFT_NUM_ELEMENTS(fibonacci_mappings) != i; ++i)
@@ -310,6 +315,7 @@ static void test_fibonacci()
         }
     }
 }
+#endif
 
 static void test_limits()
 {

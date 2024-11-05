@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 26th September 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       21
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        188
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        189
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,6 +110,13 @@
 # include <stlsoft/util/resizeable_buffer_helpers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS */
 
+#ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
+# include <winstl/api/external/ErrorHandling.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
+#ifndef WINSTL_INCL_WINSTL_API_external_h_FileManagement
+# include <winstl/api/external/FileManagement.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_FileManagement */
+
 #ifndef WINSTL_INCL_WINSTL_API_internal_h_FileManagement
 # include <winstl/api/internal/FileManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_internal_h_FileManagement */
@@ -117,18 +124,16 @@
 # include <winstl/internal/windows_version_.h>
 #endif /* !WINSTL_INCL_WINSTL_INTERNAL_H_WINDOWS_VERSION_ */
 
-#ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
-# include <winstl/api/external/ErrorHandling.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
-#ifndef WINSTL_INCL_WINSTL_API_external_h_FileManagement
-# include <winstl/api/external/FileManagement.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_FileManagement */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
+#ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
+# include <winstl/api/winstl_win32_winnt_.h>
+#endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
 
 #ifndef STLSOFT_INCL_H_CTYPE
 # define STLSOFT_INCL_H_CTYPE
@@ -706,10 +711,11 @@ public:
 
     /// Initiate a file-system search
     static HANDLE       find_first_file(char_type const* spec, find_data_type* findData);
-#if _WIN32_WINNT >= 0x0400
+#if WINSTL_WIN32_WINNT >= WINSTL_WIN32_WINNT_NT4
+
     /// Initiate a file-system search - NT4+-only
     static HANDLE       find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type* findData);
-#endif /* _WIN32_WINNT >= 0x0400 */
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_NT4 */
     /// Advance a given file-system search
     static bool_type    find_next_file(HANDLE h, find_data_type* findData);
     /// Closes the handle of the file-system search
@@ -2010,13 +2016,12 @@ public: // file-system enumeration
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileA(spec, findData);
     }
 
-#if defined(_WIN32_WINNT) && \
-    _WIN32_WINNT >= 0x0400
+#if WINSTL_WIN32_WINNT >= WINSTL_WIN32_WINNT_NT4
     static HANDLE find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type* findData)
     {
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileExA(spec, FindExInfoStandard, findData, flags, NULL, 0);
     }
-#endif /* _WIN32_WINNT >= 0x0400 */
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_NT4 */
 
     static bool_type find_next_file(HANDLE h, find_data_type* findData)
     {
@@ -3327,14 +3332,13 @@ public: // file-system enumeration
     {
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileW(spec, findData);
     }
+#if WINSTL_WIN32_WINNT >= WINSTL_WIN32_WINNT_NT4
 
-#if defined(_WIN32_WINNT) && \
-    _WIN32_WINNT >= 0x0400
     static HANDLE find_first_file_ex(char_type const* spec, FINDEX_SEARCH_OPS flags, find_data_type* findData)
     {
         return WINSTL_API_EXTERNAL_FileManagement_FindFirstFileExW(spec, FindExInfoStandard, findData, flags, NULL, 0);
     }
-#endif /* _WIN32_WINNT >= 0x0400 */
+#endif /* _WIN32_WINNT >= _WIN32_WINNT_NT4 */
 
     static bool_type find_next_file(HANDLE h, find_data_type* findData)
     {

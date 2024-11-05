@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/streams/string_insertion.hpp
+ * File:    stlsoft/util/streams/string_insertion.hpp
  *
- * Purpose:     Contains equivalents to contents of std's <utility>.
+ * Purpose: Contains equivalents to contents of std's <utility>.
  *
- * Created:     29th January 2024
- * Updated:     11th March 2024
+ * Created: 29th January 2024
+ * Updated: 15th October 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     3
+# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_REVISION 3
+# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -145,7 +145,7 @@ string_insert_3_common_(
 )
 {
     T_character const   c_fill  =   stm.fill();
-    ss_ptrdiff_t const  n_width =   stm.width();
+    ss_ptrdiff_t const  n_width =   static_cast<std::ptrdiff_t>(stm.width());
 
     if (0 == n_width ||
         static_cast<ss_ptrdiff_t>(cch) >= n_width ||
