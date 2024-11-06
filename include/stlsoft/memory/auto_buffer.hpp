@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 5th November 2024
+ * Updated: 6th November 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    9
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        217
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    10
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        218
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -764,25 +764,16 @@ public: // construction
         , m_bExternal(space < cItems)
     {
         // initialise `m_internal` iff we are being used constexpr
-#if 0 ||\
-    __cplusplus >= 202002L ||\
-    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-        __cplusplus >= 201702L &&\
-        _MSC_VER >= 1935) ||\
-    0
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-# if __cplusplus < 202002L
-        if (std::_Is_constant_evaluated())
-# else
-        if (std::is_constant_evaluated())
-# endif
+        if (STLSOFT_IS_CONSTANT_EVALUATED())
         {
             for (auto& i : m_internal)
             {
                 i = value_type();
             }
         }
-#endif
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
 
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be
@@ -794,19 +785,20 @@ public: // construction
         // m_cItems. The runtime assert is included for those compilers that
         // do not implement compile-time asserts.
 #ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+
         STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_buffer) < STLSOFT_RAW_OFFSETOF(class_type, m_cItems));
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-#if 0 ||\
-    __cplusplus < 201702L ||\
-    !defined(_MSC_VER) ||\
-    _MSC_VER < 1935 ||\
-    0
-        STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
-#endif
+        if (!STLSOFT_IS_CONSTANT_EVALUATED())
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
 
+            STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
+        }
 
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
+
         // Use the must_be_pod constraint to ensure that
         // no type is managed in auto_buffer which would result in
         // dangerous mismanagement of the lifetime of its instances.
@@ -820,10 +812,10 @@ public: // construction
         STLSOFT_ASSERT(is_valid());
     }
 
-    /// Constructs an instance with the given number of initialised
+    /// Constructs an instance with the given number of **initialised**
     /// elements
     ///
-    /// Constructs an instance with the given number of initialised
+    /// Constructs an instance with the given number of **initialised**
     /// elements. If the allocation fails by throwing an exception, that
     /// exception is passed through to the caller. If allocation fails by
     /// returning a null pointer the auto_buffer instance is correctly
@@ -842,6 +834,18 @@ public: // construction
         , m_cItems((NULL != m_buffer) ? cItems : 0)
         , m_bExternal(space < cItems)
     {
+        // initialise `m_internal` iff we are being used constexpr
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
+
+        if (STLSOFT_IS_CONSTANT_EVALUATED())
+        {
+            for (auto& i : m_internal)
+            {
+                i = value_type();
+            }
+        }
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be
         // so
@@ -855,8 +859,14 @@ public: // construction
 
         STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_buffer) < STLSOFT_RAW_OFFSETOF(class_type, m_cItems));
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-        STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
+        if (!STLSOFT_IS_CONSTANT_EVALUATED())
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
+
+            STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
+        }
 
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
 
@@ -870,11 +880,20 @@ public: // construction
         stlsoft_constraint_must_be_pod(value_type);
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD */
 
-        block_set(&m_buffer[0], m_cItems, v);
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
+
+        if (STLSOFT_IS_CONSTANT_EVALUATED())
+        {
+            std::fill_n(&m_buffer[0], m_cItems, v);
+        }
+        else
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
+            block_set(&m_buffer[0], m_cItems, v);
+        }
 
         STLSOFT_ASSERT(is_valid());
     }
-
 #if __cplusplus >= 201702L
 
     /// Range constructor

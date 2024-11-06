@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/file_path_buffer.hpp
+ * File:    winstl/filesystem/file_path_buffer.hpp
  *
- * Purpose:     Contains the basic_file_path_buffer template class, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose: Contains the basic_file_path_buffer template class, and ANSI and
+ *          Unicode specialisations thereof.
  *
- * Created:     7th February 2002
- * Updated:     11th March 2024
+ * Created: 7th February 2002
+ * Updated: 6th November 2024
  *
- * Thanks to:   Pablo Aguilar for discovering the Borland weirdness which is now
- *              addressed with the calc_path_max_() method.
+ * Thanks:  Pablo Aguilar for discovering the Borland weirdness which is now
+ *          addressed with the calc_path_max_() method.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     151
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     152
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,7 +114,7 @@
 
 #ifdef STLSOFT_DEBUG
 # include <stlsoft/algorithms/pod.hpp>
-#endif
+#endif /* STLSOFT_DEBUG */
 
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
@@ -245,6 +245,7 @@ public:
         : m_buffer(1 + calc_path_max_internal_())
     {
 #ifdef STLSOFT_DEBUG
+
         STLSOFT_NS_QUAL(pod_fill_n)(&m_buffer[0], external_size_(), static_cast<char_type>('?'));
         m_buffer[external_size_() - 1] = '\0';
 
@@ -260,6 +261,7 @@ public:
         WINSTL_ASSERT(rhs.is_valid_());
 
 #ifdef STLSOFT_DEBUG
+
         set_eyecatcher_();
 #endif /* STLSOFT_DEBUG */
 
@@ -406,6 +408,7 @@ public:
 /// @{
 private:
 #ifdef STLSOFT_DEBUG
+
     static
     char_type const*
     get_eyecatcher_(
@@ -445,6 +448,7 @@ private:
     bool is_valid_() const
     {
 #ifdef STLSOFT_DEBUG
+
         {
             size_type               ecs;
             char_type const* const  ec  =   get_eyecatcher_(&ecs);
@@ -485,6 +489,7 @@ private:
         size_type n = calc_path_max_external_();
 
 #ifdef STLSOFT_DEBUG
+
         // add bytes for eye catcher
         n += get_eyecatcher_size_();
 #endif
@@ -504,6 +509,7 @@ private:
         size_type n = internal_size_();
 
 #ifdef STLSOFT_DEBUG
+
         // add bytes for eye catcher
         n -= get_eyecatcher_size_();
 #endif

@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_map class.
  *
  * Created: 14th November 2005
- * Updated: 5th November 2024
+ * Updated: 6th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       5
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    3
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        77
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -519,7 +519,6 @@ namespace stlsoft
 namespace platformstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
-
 #endif /* compiler */
 
 
@@ -533,28 +532,38 @@ namespace platformstl_project
 
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
 
-inline environment_map::const_iterator::const_iterator()
+inline
+environment_map::const_iterator::const_iterator()
     : m_it()
 {}
 
-inline environment_map::const_iterator::const_iterator(environment_map::snapshot::iterator it, environment_map::snapshot::ref_type snapshot)
+inline
+environment_map::const_iterator::const_iterator(
+    environment_map::snapshot::iterator it
+,   environment_map::snapshot::ref_type snapshot
+)
     : m_it(it)
     , m_snapshot(snapshot)
 {}
 
-inline environment_map::const_iterator::const_iterator(environment_map::const_iterator::class_type const& rhs)
+inline
+environment_map::const_iterator::const_iterator(environment_map::const_iterator::class_type const& rhs)
     : m_it(rhs.m_it)
     , m_snapshot(rhs.m_snapshot)
 {}
 
-inline environment_map::const_iterator::class_type& environment_map::const_iterator::operator ++()
+inline
+environment_map::const_iterator::class_type&
+environment_map::const_iterator::operator ++()
 {
     ++m_it;
 
     return *this;
 }
 
-inline environment_map::const_iterator::class_type environment_map::const_iterator::operator ++(int)
+inline
+environment_map::const_iterator::class_type
+environment_map::const_iterator::operator ++(int)
 {
     class_type  r(*this);
 
@@ -563,19 +572,25 @@ inline environment_map::const_iterator::class_type environment_map::const_iterat
     return r;
 }
 
-inline environment_map::const_reference environment_map::const_iterator::operator *() const
+inline
+environment_map::const_reference
+environment_map::const_iterator::operator *() const
 {
     return *m_it;
 }
 
-inline environment_map::const_iterator::class_type& environment_map::const_iterator::operator --()
+inline
+environment_map::const_iterator::class_type&
+environment_map::const_iterator::operator --()
 {
     --m_it;
 
     return *this;
 }
 
-inline environment_map::const_iterator::class_type environment_map::const_iterator::operator --(int)
+inline
+environment_map::const_iterator::class_type
+environment_map::const_iterator::operator --(int)
 {
     class_type  r(*this);
 
@@ -584,7 +599,9 @@ inline environment_map::const_iterator::class_type environment_map::const_iterat
     return r;
 }
 
-inline ss_bool_t environment_map::const_iterator::equal(environment_map::const_iterator::class_type const& rhs) const
+inline
+ss_bool_t
+environment_map::const_iterator::equal(environment_map::const_iterator::class_type const& rhs) const
 {
     return m_it == rhs.m_it;
 }
@@ -592,10 +609,13 @@ inline ss_bool_t environment_map::const_iterator::equal(environment_map::const_i
 
 // environment_map
 
-inline environment_map::environment_map()
+inline
+environment_map::environment_map()
 {}
 
-inline environment_map::second_type environment_map::operator [](char const* name) const
+inline
+environment_map::second_type
+environment_map::operator [](char const* name) const
 {
     char const  *value  =   traits_type::get_variable(name);
 
@@ -607,24 +627,38 @@ inline environment_map::second_type environment_map::operator [](char const* nam
     return value;
 }
 
-inline environment_map::second_type environment_map::operator [](environment_map::first_type const& name) const
+inline
+environment_map::second_type
+environment_map::operator [](environment_map::first_type const& name) const
 {
     return operator [](name.c_str());
 }
 
-inline ss_bool_t environment_map::lookup(char const* name, environment_map::second_type& value) const
+inline
+ss_bool_t
+environment_map::lookup(
+    char const*                     name
+,   environment_map::second_type&   value
+) const
 {
     char const  *value_ =   traits_type::get_variable(name);
 
     return (NULL == value_) ? false : (value = value_, true);
 }
 
-inline ss_bool_t environment_map::lookup(environment_map::first_type const& name, environment_map::second_type& value) const
+inline
+ss_bool_t
+environment_map::lookup(
+    environment_map::first_type const&  name
+,   environment_map::second_type&       value
+) const
 {
     return lookup(name.c_str(), value);
 }
 
-inline void environment_map::refresh()
+inline
+void
+environment_map::refresh()
 {
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
     m_snapshot.close();
@@ -633,7 +667,12 @@ inline void environment_map::refresh()
 
 #ifdef PLATFORMSTL_ENVVAR_SET_SUPPORTED
 
-inline void environment_map::insert(environment_map::first_type const& name, environment_map::second_type const& value)
+inline
+void
+environment_map::insert(
+    environment_map::first_type const&  name
+,   environment_map::second_type const& value
+)
 {
     // Preconditions
     STLSOFT_MESSAGE_ASSERT("Name may not be empty", !name.empty());
@@ -683,7 +722,12 @@ inline void environment_map::insert(environment_map::first_type const& name, env
     }
 }
 
-inline void environment_map::insert(char const* name, char const* value)
+inline
+void
+environment_map::insert(
+    char const* name
+,   char const* value
+)
 {
     // Preconditions
     STLSOFT_ASSERT(NULL != name);
@@ -695,10 +739,11 @@ inline void environment_map::insert(char const* name, char const* value)
     insert(first_type(name), second_type(value));
 }
 #endif /* PLATFORMSTL_ENVVAR_SET_SUPPORTED */
-
 #ifdef PLATFORMSTL_ENVVAR_ERASE_SUPPORTED
 
-inline environment_map::size_type environment_map::erase(environment_map::first_type const& name)
+inline
+environment_map::size_type
+environment_map::erase(environment_map::first_type const& name)
 {
     // Preconditions
     STLSOFT_MESSAGE_ASSERT("Name may not be empty", !name.empty());
@@ -738,7 +783,9 @@ inline environment_map::size_type environment_map::erase(environment_map::first_
     return b;
 }
 
-inline environment_map::size_type environment_map::erase(char const* name)
+inline
+environment_map::size_type
+environment_map::erase(char const* name)
 {
     // Preconditions
     STLSOFT_ASSERT(NULL != name);
@@ -748,7 +795,9 @@ inline environment_map::size_type environment_map::erase(char const* name)
     return erase(first_type(name));
 }
 
-inline void environment_map::erase(environment_map::const_iterator it)
+inline
+void
+environment_map::erase(environment_map::const_iterator it)
 {
     STLSOFT_MESSAGE_ASSERT("No snapshot assigned, so erase() is inappropriate; maybe premature call to clear()", 1 < m_snapshot.use_count());
 
@@ -778,33 +827,42 @@ inline void environment_map::erase(environment_map::const_iterator it)
     m_snapshot->erase(it.m_it);
 }
 #endif /* PLATFORMSTL_ENVVAR_ERASE_SUPPORTED */
-
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
 
-inline environment_map::const_iterator environment_map::begin() const
+inline
+environment_map::const_iterator
+environment_map::begin() const
 {
     return cbegin();
 }
 
-inline environment_map::const_iterator environment_map::cbegin() const
+inline
+environment_map::const_iterator
+environment_map::cbegin() const
 {
     check_refresh_snapshot_();
 
 #if 0
+
     snapshot::ref_type     snapshot =   m_snapshot;  // Avoid a const_cast
 
     return const_iterator(snapshot->begin(), m_snapshot);
 #else /* ? 0 */
+
     return const_iterator(m_snapshot->begin(), m_snapshot);
 #endif /* 0 */
 }
 
-inline environment_map::const_iterator environment_map::end() const
+inline
+environment_map::const_iterator
+environment_map::end() const
 {
     return cend();
 }
 
-inline environment_map::const_iterator environment_map::cend() const
+inline
+environment_map::const_iterator
+environment_map::cend() const
 {
     check_refresh_snapshot_();
 
@@ -820,31 +878,40 @@ inline environment_map::const_iterator environment_map::cend() const
 # if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT) && \
      !defined(STLSOFT_COMPILER_IS_BORLAND)
 
-inline environment_map::const_reverse_iterator environment_map::rbegin() const
+inline
+environment_map::const_reverse_iterator
+environment_map::rbegin() const
 {
     return crbegin();
 }
 
-inline environment_map::const_reverse_iterator environment_map::crbegin() const
+inline
+environment_map::const_reverse_iterator
+environment_map::crbegin() const
 {
     return const_reverse_iterator(end());
 }
 
-inline environment_map::const_reverse_iterator environment_map::rend() const
+inline
+environment_map::const_reverse_iterator
+environment_map::rend() const
 {
     return crend();
 }
 
-inline environment_map::const_reverse_iterator environment_map::crend() const
+inline
+environment_map::const_reverse_iterator
+environment_map::crend() const
 {
     return const_reverse_iterator(begin());
 }
 # endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #endif /* PLATFORMSTL_ENVVAR_HAS_ENVIRON */
-
 #ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
 
-inline void environment_map::check_refresh_snapshot_() const
+inline
+void
+environment_map::check_refresh_snapshot_() const
 {
     if (m_snapshot.use_count() < 2)
     {
@@ -857,7 +924,8 @@ inline void environment_map::check_refresh_snapshot_() const
 
 # ifdef PLATFORMSTL_ENVVAR_HAS_ENVIRON
 
-inline environment_map::snapshot::snapshot()
+inline
+environment_map::snapshot::snapshot()
 {
     first_type  name;
     second_type value;
@@ -873,17 +941,23 @@ inline environment_map::snapshot::snapshot()
     }}
 }
 
-inline environment_map::snapshot::iterator environment_map::snapshot::begin()
+inline
+environment_map::snapshot::iterator
+environment_map::snapshot::begin()
 {
     return m_variables.begin();
 }
 
-inline environment_map::snapshot::iterator environment_map::snapshot::end()
+inline
+environment_map::snapshot::iterator
+environment_map::snapshot::end()
 {
     return m_variables.end();
 }
 
-inline ss_bool_t environment_map::snapshot::erase(first_type const& name) STLSOFT_NOEXCEPT
+inline
+ss_bool_t
+environment_map::snapshot::erase(first_type const& name) STLSOFT_NOEXCEPT
 {
     variables_type_::iterator it  =   m_variables.find(name);
 
@@ -897,12 +971,19 @@ inline ss_bool_t environment_map::snapshot::erase(first_type const& name) STLSOF
     return false;
 }
 
-inline void environment_map::snapshot::erase(environment_map::snapshot::iterator it) STLSOFT_NOEXCEPT
+inline
+void
+environment_map::snapshot::erase(environment_map::snapshot::iterator it) STLSOFT_NOEXCEPT
 {
     m_variables.erase(it);
 }
 
-inline void environment_map::snapshot::insert(first_type const& name, second_type const& value)
+inline
+void
+environment_map::snapshot::insert(
+    first_type const&   name
+,   second_type const&  value
+)
 {
 #  if 0
     /// This is not strongly exception safe, ...
@@ -913,7 +994,12 @@ inline void environment_map::snapshot::insert(first_type const& name, second_typ
 #  endif /* 0 */
 }
 
-inline void environment_map::snapshot::set(first_type const& name, second_type const& value)
+inline
+void
+environment_map::snapshot::set(
+    first_type const&   name
+,   second_type const&  value
+)
 {
     variables_type_::iterator it  =   m_variables.find(name);
 
@@ -922,11 +1008,11 @@ inline void environment_map::snapshot::set(first_type const& name, second_type c
 
 #  ifdef STLSOFT_DEBUG
     try
-#  endif /* STLSOFT_DEBUG */
     {
+#  endif /* STLSOFT_DEBUG */
         (*it).second.assign(value);
-    }
 #  ifdef STLSOFT_DEBUG
+    }
     catch (...)
     {
         STLSOFT_MESSAGE_ASSERT("Should never happen", 0);
@@ -934,10 +1020,14 @@ inline void environment_map::snapshot::set(first_type const& name, second_type c
         throw; // Might as well pass on to precipitate unexpected()
     }
 #  endif /* STLSOFT_DEBUG */
-
 }
 
-inline ss_bool_t environment_map::snapshot::lookup(first_type const& name, second_type *&pvalue) STLSOFT_NOEXCEPT
+inline
+ss_bool_t
+environment_map::snapshot::lookup(
+    first_type const&   name
+,   second_type*&       pvalue
+) STLSOFT_NOEXCEPT
 {
     variables_type_::iterator it  =   m_variables.find(name);
 
@@ -952,10 +1042,9 @@ inline ss_bool_t environment_map::snapshot::lookup(first_type const& name, secon
         return true;
     }
 }
-
 # endif /* PLATFORMSTL_ENVVAR_HAS_ENVIRON */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
