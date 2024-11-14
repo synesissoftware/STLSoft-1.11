@@ -1,10 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    stlsoft/util/streams/string_insertion.hpp
  *
- * Purpose: Contains equivalents to contents of std's <utility>.
+ * Purpose: Utility functions to assist with the full and correct
+ *          implementation of idiomatic stream insertion for arbitrary types
+ *          that act, in some fashion, as strings.
  *
  * Created: 29th January 2024
- * Updated: 15th October 2024
+ * Updated: 14th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_REVISION 3
-# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     4
+# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
