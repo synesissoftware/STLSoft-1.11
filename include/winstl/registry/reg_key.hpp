@@ -5,7 +5,7 @@
  *          specialisations thereof.
  *
  * Created: 19th January 2002
- * Updated: 22nd October 2024
+ * Updated: 5th November 2024
  *
  * Thanks:  To Sam Fisher for spotting the defect in the set_value_()
  *          overload for REG_MULTI_SZ values (widestring only).
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       10
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    15
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        166
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    16
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        167
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,16 +121,16 @@
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
+# include <stlsoft/api/internal/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Registry
 # include <winstl/api/external/Registry.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Registry */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////

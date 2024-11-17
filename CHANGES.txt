@@ -18,6 +18,18 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha25 (18th November 2024)
+
+ * added MSVC MT support;
+ * added and applied macro `STLSOFT_IS_CONSTANT_EVALUATED()`, in particular to `stlsoft::auto_buffer<>`;
+ * include ordering (around api/internal / api/external helper headers);
+ * copy-paste typos;
+ * made consistent include ordering (around api/internal / api/external helper headers);
+
+
+============================================================================
+
+
 Changes for 1.11.1-alpha24 (4th November 2024)
 
  * `frequency_map` : ~ now default-specialised on `frequency_map_traits_unordered` when compiling with C++11+;

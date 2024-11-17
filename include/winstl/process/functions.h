@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/process/functions.h
+ * File:    winstl/process/functions.h
  *
- * Purpose:     Process functions.
+ * Purpose: Process functions.
  *
- * Created:     12th March 2006
- * Updated:     11th March 2024
+ * Created: 12th March 2006
+ * Updated: 5th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    1
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 6
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     33
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 7
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -76,13 +76,13 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
-# include <winstl/api/external/HandleAndObject.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
+# include <winstl/api/external/HandleAndObject.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
 
 
 /* /////////////////////////////////////////////////////////////////////////

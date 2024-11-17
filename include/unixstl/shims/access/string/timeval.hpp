@@ -4,7 +4,7 @@
  * Purpose: String shims for UNIX timeval structure.
  *
  * Created: 5th May 2014
- * Updated: 1st October 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_REVISION   6
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_EDIT       19
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_REVISION   7
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,10 +79,6 @@
 # include <stlsoft/string/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_time
-# include <stlsoft/api/internal/time.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_time */
-
 #ifndef STLSOFT_INCL_H_TIME
 # define STLSOFT_INCL_H_TIME
 # include <time.h>
@@ -91,6 +87,10 @@
 # define STLSOFT_INCL_SYS_H_TIME
 # include <sys/time.h>
 #endif /* !STLSOFT_INCL_SYS_H_TIME */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_time
+# include <stlsoft/api/internal/time.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_time */
 
 
 /* /////////////////////////////////////////////////////////////////////////

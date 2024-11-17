@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 15th October 2024
+ * Updated: 5th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,6 +19,7 @@
 
 #include <stlsoft/containers/frequency_map.hpp>
 
+
 /* ///////////////////////////////////////////////
  * general includes
  */
@@ -28,7 +29,6 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <platformstl/performance/performance_counter.hpp>
 
 /* Standard C++ header files */
 #if __cplusplus >= 201103L
@@ -151,7 +151,10 @@ namespace
 
 	using stlsoft::ss_uintptr_t;
 
-    typedef stlsoft::frequency_map<int>                     fm_ordered_int_t;
+    typedef stlsoft::frequency_map<
+        int
+    ,   stlsoft::frequency_map_traits_ordered<int>
+    >                                                       fm_ordered_int_t;
 #if __cplusplus >= 201103L
 
     typedef stlsoft::frequency_map<

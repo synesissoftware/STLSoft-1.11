@@ -4,6 +4,16 @@
 ----
 
 
+18th November 2024 - 1.11.1-alpha25 released
+--------------------------------------------
+
+ * added MSVC MT support;
+ * added and applied macro `STLSOFT_IS_CONSTANT_EVALUATED()`, in particular to `stlsoft::auto_buffer<>`;
+ * include ordering (around api/internal / api/external helper headers);
+ * copy-paste typos;
+ * made consistent include ordering (around api/internal / api/external helper headers);
+
+
 4th November 2024 - 1.11.1-alpha24 released
 -------------------------------------------
 

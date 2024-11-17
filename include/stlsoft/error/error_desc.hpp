@@ -4,7 +4,7 @@
  * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
  * Created: 18th July 2006
- * Updated: 10th October 2024
+ * Updated: 5th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      49
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  4
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -86,10 +86,6 @@
 # include <stlsoft/internal/safestr.h>
 #endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
-
 #ifndef STLSOFT_INCL_H_STDLIB
 # define STLSOFT_INCL_H_STDLIB
 # include <stdlib.h>                    // for mbstowcs()
@@ -104,6 +100,10 @@
 # define STLSOFT_INCL_H_STRING
 # include <string.h>
 #endif /* !STLSOFT_INCL_H_STRING */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////
