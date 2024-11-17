@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/file_path_buffer.hpp
+ * File:    unixstl/filesystem/file_path_buffer.hpp
  *
- * Purpose:     Contains the basic_file_path_buffer template class.
+ * Purpose: Contains the basic_file_path_buffer template class.
  *
- * Created:     24th May 2004
- * Updated:     11th March 2024
+ * Created: 24th May 2004
+ * Updated: 6th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   10
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       86
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,7 +96,7 @@
 
 #ifdef STLSOFT_DEBUG
 # include <stlsoft/algorithms/pod.hpp>
-#endif
+#endif /* STLSOFT_DEBUG */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -202,6 +202,7 @@ public:
         : m_buffer(1 + calc_path_max_())
     {
 #ifdef STLSOFT_DEBUG
+
         STLSOFT_NS_QUAL(pod_fill_n)(&m_buffer[0], m_buffer.size(), static_cast<char_type>('?'));
         m_buffer[m_buffer.size() - 1] = '\0';
 #endif /* STLSOFT_DEBUG */
