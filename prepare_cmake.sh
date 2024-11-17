@@ -85,12 +85,12 @@ Flags/options:
         necessary, for example, when installing on a system that does not
         (yet) have xTests - which itself depends on STLSOFT - installed
 
+    --mingw
+        uses explicitly the "MinGW Makefiles" generator
+
     --msvc-mt
         when using Visual C++ (MSVC), the static runtime library will be
         selected; the default is the dynamic runtime library
-
-    --mingw
-        uses explicitly the "MinGW Makefiles" generator
 
     -m
     --run-make
