@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/diagnostics/stopwatch.hpp (formerly unixstl::performance_counter, unixstl/performance/performance_counter.hpp)
+ * File:    unixstl/diagnostics/stopwatch.hpp (formerly unixstl::performance_counter, unixstl/performance/performance_counter.hpp)
  *
- * Purpose:     stopwatch class.
+ * Purpose: stopwatch class.
  *
- * Created:     16th January 2002
- * Updated:     11th March 2024
+ * Created: 16th January 2002
+ * Updated: 19th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR    5
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR    1
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     78
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,7 +109,7 @@ namespace unixstl_project
  */
 class stopwatch
 {
-public: // Types
+public: // types
     /// The epoch type
     ///
     /// The type of the epoch measurement, a 64-bit signed integer.
@@ -121,13 +121,15 @@ public: // Types
     /// The class type
     typedef stopwatch                                       class_type;
 
-public: // Construction
+
+public: // construction
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     stopwatch() // This is needed only to suppress compiler warnings about unused variables
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-public: // Operations
+
+public: // operations
     /// Starts measurement
     ///
     /// Begins the measurement period
@@ -139,10 +141,11 @@ public: // Operations
     /// Ends the current measurement period and start the next
     ///
     /// \remarks This is equivalent to an atomic invocation of stop() and
-    /// start()
+    ///  start()
     void    restart();
 
-public: // Attributes
+
+public: // attributes
     /// The current epoch
     static epoch_type       get_epoch();
 
@@ -157,52 +160,58 @@ public: // Attributes
 
     /// The elapsed count in the measurement period
     ///
-    /// This represents the extent, in arbitrary units, of the measurement period
+    /// This represents the extent, in arbitrary units, of the measurement
+    /// period
     interval_type   get_period_count() const;
     /// The number of whole seconds in the measurement period
     ///
-    /// This represents the extent, in whole seconds, of the measurement period
+    /// This represents the extent, in whole seconds, of the measurement
+    /// period
     interval_type   get_seconds() const;
     /// The number of whole milliseconds in the measurement period
     ///
-    /// This represents the extent, in whole milliseconds, of the measurement period
+    /// This represents the extent, in whole milliseconds, of the
+    /// measurement period
     interval_type   get_milliseconds() const;
     /// The number of whole microseconds in the measurement period
     ///
-    /// This represents the extent, in whole microseconds, of the measurement period
+    /// This represents the extent, in whole microseconds, of the
+    /// measurement period
     interval_type   get_microseconds() const;
     /// The number of whole nanoseconds in the measurement period
     ///
-    /// This represents the extent, in whole nanoseconds, of the measurement period
+    /// This represents the extent, in whole nanoseconds, of the
+    /// measurement period
     interval_type   get_nanoseconds() const;
 
-    /// Stops the current period, starts the next, and returns the
-    ///  period count for the prior period.
+    /// Stops the current period, starts the next, and returns the period
+    /// count for the prior period.
     interval_type   stop_get_period_count_and_restart();
 
-    /// Stops the current period, starts the next, and returns the
-    ///  interval, in seconds, for the prior period.
+    /// Stops the current period, starts the next, and returns the interval,
+    /// in seconds, for the prior period.
     interval_type   stop_get_seconds_and_restart();
 
-    /// Stops the current period, starts the next, and returns the
-    ///  interval, in milliseconds, for the prior period.
+    /// Stops the current period, starts the next, and returns the interval,
+    /// in milliseconds, for the prior period.
     interval_type   stop_get_milliseconds_and_restart();
 
-    /// Stops the current period, starts the next, and returns the
-    ///  interval, in microseconds, for the prior period.
+    /// Stops the current period, starts the next, and returns the interval,
+    /// in microseconds, for the prior period.
     interval_type   stop_get_microseconds_and_restart();
 
-    /// Stops the current period, starts the next, and returns the
-    ///  interval, in nanoseconds, for the prior period.
+    /// Stops the current period, starts the next, and returns the interval,
+    /// in nanoseconds, for the prior period.
     interval_type   stop_get_nanoseconds_and_restart();
 
-private: // Implementation
+
+private: // implementation
     static void measure_(epoch_type &epoch);
 
-private: // Fields
+
+private: // fields
     epoch_type  m_start;
     epoch_type  m_end;
-/// @}
 };
 
 
@@ -243,6 +252,7 @@ void
 stopwatch::restart()
 {
     measure_(m_start);
+
     m_end = m_start;
 }
 
@@ -381,7 +391,7 @@ stopwatch::stop_get_period_count_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_period_count();
+    interval_type interval = get_period_count();
 
     m_start = m_end;
 
@@ -394,7 +404,7 @@ stopwatch::stop_get_seconds_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_seconds();
+    interval_type interval = get_seconds();
 
     m_start = m_end;
 
@@ -407,7 +417,7 @@ stopwatch::stop_get_milliseconds_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_milliseconds();
+    interval_type interval = get_milliseconds();
 
     m_start = m_end;
 
@@ -420,7 +430,7 @@ stopwatch::stop_get_microseconds_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_microseconds();
+    interval_type interval = get_microseconds();
 
     m_start = m_end;
 
@@ -433,14 +443,14 @@ stopwatch::stop_get_nanoseconds_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_nanoseconds();
+    interval_type interval = get_nanoseconds();
 
     m_start = m_end;
 
     return interval;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

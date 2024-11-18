@@ -4,7 +4,7 @@
  * Purpose: C++ example program demonstrating use of the Performance library.
  *
  * Created: 22nd May 2006
- * Updated: 4th September 2024
+ * Updated: 19th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -55,6 +55,8 @@ int main()
     cout << "interval (ms): " << static_cast<unsigned>(sw.get_milliseconds()) << endl;
     // 7. Display the number of whole microseconds that have elapsed.
     cout << "interval (us): " << static_cast<unsigned>(sw.get_microseconds()) << endl;
+    // 8. Display the number of whole nanoseconds that have elapsed.
+    cout << "interval (ns): " << static_cast<unsigned>(sw.get_nanoseconds()) << endl;
 
     return EXIT_SUCCESS;
 }
