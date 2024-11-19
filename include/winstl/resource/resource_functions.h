@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/resource/resource_functions.h (originally in STLSoft+)
+ * File:    winstl/resource/resource_functions.h (originally in STLSoft+)
  *
- * Purpose:     Message functions.
+ * Purpose: Message functions.
  *
- * Created:     9th March 2010
- * Updated:     11th March 2024
+ * Created: 9th March 2010
+ * Updated: 19th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_REVISION 5
-# define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_EDIT     23
+# define WINSTL_VER_WINSTL_WINDOW_H_RESOURCE_FUNCTIONS_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -138,9 +138,9 @@ winstl_C_Resource_loadLockAndSizeResource_(
 /** Finds, loads, locks and returns the resource matching the given type and
  * name from the given module
  *
- * \pre NULL != hModule
- * \pre NULL != resourceName
- * \pre NULL != resourceType
+ * \pre nullptr != hModule
+ * \pre nullptr != resourceName
+ * \pre nullptr != resourceType
  *
  * \ingroup group__library__Windows_Resource
  */

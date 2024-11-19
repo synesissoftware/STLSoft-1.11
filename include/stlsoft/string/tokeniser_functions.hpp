@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/tokeniser_functions.hpp
+ * File:    stlsoft/string/tokeniser_functions.hpp
  *
- * Purpose:     Restartable tokenising functions.
+ * Purpose: Restartable tokenising functions.
  *
- * Created:     6th January 2001
- * Updated:     11th March 2024
+ * Created: 6th January 2001
+ * Updated: 19th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2001-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_REVISION   6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       35
+# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,9 +99,9 @@ namespace stlsoft
  *
  * \return p0
  *
- * \pre NULL != p0
- * \pre NULL != p1
- * \pre NULL != end
+ * \pre nullptr != p0
+ * \pre nullptr != p1
+ * \pre nullptr != end
  * \pre p0 <= p1
  * \pre p1 <= end
  */
@@ -170,8 +170,8 @@ find_next_token(
  *
  * \return p0
  *
- * \pre NULL != p0
- * \pre NULL != p1
+ * \pre nullptr != p0
+ * \pre nullptr != p1
  * \pre p0 <= p1
  */
 template <ss_typename_param_k C>
