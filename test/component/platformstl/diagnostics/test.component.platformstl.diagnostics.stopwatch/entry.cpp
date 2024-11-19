@@ -118,10 +118,20 @@ static void test_start_then_stop_immediately(void)
     XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1000, num_ms);
     XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1000000, num_us);
 
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
     // we _know_ that the implementation of `unixstl::stopwatch` has a
     // granularity of us, so ns will be an exact multiple
 
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(num_us * 1000, num_ns);
+    XTESTS_TEST_INTEGER_EQUAL(num_us * 1000, num_ns);
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    // we _know_ that the implementation of `winstl::stopwatch` has a
+    // granularity of 100ns
+
+    XTESTS_TEST_INTEGER_EQUAL(num_us, num_ns / 1000);
+#endif
 }
 
 static void test_get_epoch_twice(void)
@@ -142,10 +152,20 @@ static void test_get_epoch_twice(void)
     XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1000, num_ms);
     XTESTS_TEST_INTEGER_LESS_OR_EQUAL(1000000, num_us);
 
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
     // we _know_ that the implementation of `unixstl::stopwatch` has a
     // granularity of us, so ns will be an exact multiple
 
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(num_us * 1000, num_ns);
+    XTESTS_TEST_INTEGER_EQUAL(num_us * 1000, num_ns);
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    // we _know_ that the implementation of `winstl::stopwatch` has a
+    // granularity of 100ns
+
+    XTESTS_TEST_INTEGER_EQUAL(num_us, num_ns / 1000);
+#endif
 }
 
 } // anonymous namespace
