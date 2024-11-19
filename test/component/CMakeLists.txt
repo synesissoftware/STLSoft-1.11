@@ -1,4 +1,5 @@
 
+add_subdirectory(platformstl)
 add_subdirectory(stlsoft)
 if(UNIX)
 	add_subdirectory(unixstl)
