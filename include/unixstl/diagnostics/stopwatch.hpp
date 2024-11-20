@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR    5
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR    1
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR    2
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     80
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,6 +69,10 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
+#ifndef UNIXSTL_INCL_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS
+# include <unixstl/time/comparison_functions.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS */
 
 #ifndef STLSOFT_INCL_SYS_H_TIME
 # define STLSOFT_INCL_SYS_H_TIME
@@ -134,6 +138,12 @@ public: // operations
     ///
     /// Begins the measurement period
     void    start();
+    /// Pauses the measurement
+    ///
+    void    pause();
+    /// Unpauses the measurement
+    ///
+    void    unpause();
     /// Ends measurement
     ///
     /// Ends the measurement period
@@ -214,6 +224,22 @@ private: // implementation
     ,   epoch_type const& rhs
     );
 
+    // obtains seconds difference interval (as microseconds)
+    static
+    interval_type
+    difference_sec_(
+        epoch_type const& from
+    ,   epoch_type const& to
+    );
+
+    // obtains seconds difference interval (as microseconds)
+    static
+    interval_type
+    difference_usec_(
+        epoch_type const& from
+    ,   epoch_type const& to
+    );
+
     // converts an epoch instance into interval (as microseconds)
     static
     interval_type
@@ -221,7 +247,7 @@ private: // implementation
         epoch_type const& epoch
     );
 
-    // measure ;
+    // take a measurement into the given instance
     static
     void
     measure_(
@@ -230,8 +256,14 @@ private: // implementation
 
 
 private: // fields
-    epoch_type  m_start;
-    epoch_type  m_end;
+    /// Stores the start epoch
+    epoch_type      m_start;
+    /// Stores the end epoch
+    epoch_type      m_end;
+    /// Stores the pause epoch
+    epoch_type      m_pause;
+    /// Stores the (cumulate) pause time (in microseconds)
+    interval_type   m_paused_us;
 };
 
 
@@ -254,6 +286,29 @@ stopwatch::compare_(
 
     return lhs_us - rhs_us;
 }
+
+inline
+/* static */
+stopwatch::interval_type
+stopwatch::difference_sec_(
+    stopwatch::epoch_type const&    from
+,   stopwatch::epoch_type const&    to
+)
+{
+    return static_cast<interval_type>(to.tv_sec) - from.tv_sec;
+}
+
+inline
+/* static */
+stopwatch::interval_type
+stopwatch::difference_usec_(
+    stopwatch::epoch_type const&    from
+,   stopwatch::epoch_type const&    to
+)
+{
+    return static_cast<interval_type>(to.tv_usec) - from.tv_usec;
+}
+
 
 inline
 /* static */
@@ -282,6 +337,30 @@ stopwatch::start()
     measure_(m_start);
 
     m_end = m_start;
+    m_pause.tv_sec = 0;
+    m_pause.tv_usec = 0;
+    m_paused_us = 0;
+}
+
+inline
+void
+stopwatch::pause()
+{
+    measure_(m_pause);
+}
+
+inline
+void
+stopwatch::unpause()
+{
+    epoch_type now;
+
+    measure_(now);
+
+    interval_type const pause_time_us = interval_to_us_(m_pause);
+    interval_type const now_time_us = interval_to_us_(now);
+
+    m_paused_us += (now_time_us - pause_time_us);
 }
 
 inline
@@ -322,8 +401,8 @@ stopwatch::get_seconds(
 {
     UNIXSTL_MESSAGE_ASSERT("end before start", compare_(start, end) <= 0);
 
-    long    secs    =   end.tv_sec - start.tv_sec;
-    long    usecs   =   end.tv_usec - start.tv_usec;
+    interval_type    secs    =   difference_sec_(start, end);
+    interval_type    usecs   =   difference_usec_(start, end);
 
     UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
 
@@ -340,8 +419,8 @@ stopwatch::get_milliseconds(
 {
     UNIXSTL_MESSAGE_ASSERT("end before start", compare_(start, end) <= 0);
 
-    long    secs    =   end.tv_sec - start.tv_sec;
-    long    usecs   =   end.tv_usec - start.tv_usec;
+    interval_type    secs    =   difference_sec_(start, end);
+    interval_type    usecs   =   difference_usec_(start, end);
 
     UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
 
@@ -358,8 +437,8 @@ stopwatch::get_microseconds(
 {
     UNIXSTL_MESSAGE_ASSERT("end before start", compare_(start, end) <= 0);
 
-    long    secs    =   end.tv_sec - start.tv_sec;
-    long    usecs   =   end.tv_usec - start.tv_usec;
+    interval_type    secs    =   difference_sec_(start, end);
+    interval_type    usecs   =   difference_usec_(start, end);
 
     UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
 
@@ -376,8 +455,8 @@ stopwatch::get_nanoseconds(
 {
     UNIXSTL_MESSAGE_ASSERT("end before start", compare_(start, end) <= 0);
 
-    long    secs    =   end.tv_sec - start.tv_sec;
-    long    usecs   =   end.tv_usec - start.tv_usec;
+    interval_type    secs    =   difference_sec_(start, end);
+    interval_type    usecs   =   difference_usec_(start, end);
 
     UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
 
@@ -397,10 +476,12 @@ stopwatch::get_seconds() const
 {
     UNIXSTL_MESSAGE_ASSERT("end before start: stop() must be called after start()", m_start.tv_sec <= m_end.tv_sec);
 
-    long    secs    =   m_end.tv_sec - m_start.tv_sec;
-    long    usecs   =   m_end.tv_usec - m_start.tv_usec;
+    interval_type    secs    =   difference_sec_(m_start, m_end);
+    interval_type    usecs   =   difference_usec_(m_start, m_end);
 
     UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
+
+    usecs -= m_paused_us;
 
     return secs + usecs / (1000 * 1000);
 }
@@ -411,10 +492,12 @@ stopwatch::get_milliseconds() const
 {
     UNIXSTL_MESSAGE_ASSERT("end before start: stop() must be called after start()", m_start.tv_sec <= m_end.tv_sec);
 
-    long    secs    =   m_end.tv_sec - m_start.tv_sec;
-    long    usecs   =   m_end.tv_usec - m_start.tv_usec;
+    interval_type    secs    =   difference_sec_(m_start, m_end);
+    interval_type    usecs   =   difference_usec_(m_start, m_end);
 
     UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
+
+    usecs -= m_paused_us;
 
     return secs * 1000 + usecs / 1000;
 }
@@ -425,10 +508,12 @@ stopwatch::get_microseconds() const
 {
     UNIXSTL_MESSAGE_ASSERT("end before start: stop() must be called after start()", m_start.tv_sec <= m_end.tv_sec);
 
-    long    secs    =   m_end.tv_sec - m_start.tv_sec;
-    long    usecs   =   m_end.tv_usec - m_start.tv_usec;
+    interval_type    secs    =   difference_sec_(m_start, m_end);
+    interval_type    usecs   =   difference_usec_(m_start, m_end);
 
     UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
+
+    usecs -= m_paused_us;
 
     return secs * (1000 * 1000) + usecs;
 }
@@ -439,10 +524,12 @@ stopwatch::get_nanoseconds() const
 {
     UNIXSTL_MESSAGE_ASSERT("end before start: stop() must be called after start()", m_start.tv_sec <= m_end.tv_sec);
 
-    long    secs    =   m_end.tv_sec - m_start.tv_sec;
-    long    usecs   =   m_end.tv_usec - m_start.tv_usec;
+    interval_type    secs    =   difference_sec_(m_start, m_end);
+    interval_type    usecs   =   difference_usec_(m_start, m_end);
 
     UNIXSTL_ASSERT(usecs >= 0 || secs > 0);
+
+    usecs -= m_paused_us;
 
     return secs * (1000 * 1000 * 1000) + usecs * 1000;
 }

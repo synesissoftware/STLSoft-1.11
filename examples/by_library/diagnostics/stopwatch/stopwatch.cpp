@@ -4,13 +4,14 @@
  * Purpose: C++ example program demonstrating use of the Performance library.
  *
  * Created: 22nd May 2006
- * Updated: 19th November 2024
+ * Updated: 20th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* PlatformSTL header files */
 #include <platformstl/diagnostics/stopwatch.hpp>
+#include <platformstl/synch/sleep_functions.h>
 
 /* Standard C++ header files */
 #include <exception>
@@ -31,32 +32,108 @@ using std::endl;
 
 int main()
 {
-    // 1. Create an instance of the platformstl::stopwatch. (On
-    // UNIX this will resolve to unixstl::stopwatch; on Win32 it
-    // will resolve to winstl::stopwatch.)
-    platformstl::stopwatch    sw;
+    using platformstl::micro_sleep;
+    using platformstl::stopwatch;
+    using stlsoft::ss_sint64_t;
 
-    // 2. Begin the measurement
-    sw.start();
 
-    // 3. A loop that will consume some time.
-    { for (volatile size_t i = 0; i != 0x1fffffff; )
+    // simple interval
     {
-        size_t j = i;
-        i = ++j;
-    }}
+        cout << "simple interval:" << endl;
 
-    // 4. End the measurement
-    sw.stop();
+        // 1. Create an instance of the platformstl::stopwatch. (On
+        // UNIX this will resolve to unixstl::stopwatch; on Win32 it
+        // will resolve to winstl::stopwatch.)
+        stopwatch sw;
 
-    // 5. Display the number of whole seconds that have elapsed.
-    cout << "interval (s):  " << static_cast<unsigned>(sw.get_seconds()) << endl;
-    // 6. Display the number of whole milliseconds that have elapsed.
-    cout << "interval (ms): " << static_cast<unsigned>(sw.get_milliseconds()) << endl;
-    // 7. Display the number of whole microseconds that have elapsed.
-    cout << "interval (us): " << static_cast<unsigned>(sw.get_microseconds()) << endl;
-    // 8. Display the number of whole nanoseconds that have elapsed.
-    cout << "interval (ns): " << static_cast<unsigned>(sw.get_nanoseconds()) << endl;
+        // 2. Begin the measurement
+        sw.start();
+
+        // 3. A loop that will consume some time.
+        { for (volatile size_t i = 0; i != 0x1fffffff; )
+        {
+            size_t j = i;
+
+            if (0 == (j % 1000))
+            {
+                micro_sleep(1);
+            }
+
+            i = ++j;
+        }}
+
+        // 4. End the measurement
+        sw.stop();
+
+        // 5. Display the number of whole seconds that have elapsed.
+        cout << '\t' << "interval (s):  " << sw.get_seconds() << endl;
+        // 6. Display the number of whole milliseconds that have elapsed.
+        cout << '\t' << "interval (ms): " << sw.get_milliseconds() << endl;
+        // 7. Display the number of whole microseconds that have elapsed.
+        cout << '\t' << "interval (us): " << sw.get_microseconds() << endl;
+        // 8. Display the number of whole nanoseconds that have elapsed.
+        cout << '\t' << "interval (ns): " << sw.get_nanoseconds() << endl;
+    }
+
+
+    // manual sampling
+    {
+        cout << "manual sampling:" << endl;
+
+        stopwatch::epoch_type   e1;
+        stopwatch::epoch_type   e2;
+
+        e1 = stopwatch::get_epoch();
+
+        micro_sleep(12345);
+
+        e2 = stopwatch::get_epoch();
+
+        cout << '\t' << "interval (s):  " << stopwatch::get_seconds(e1, e2) << endl;
+        cout << '\t' << "interval (ms): " << stopwatch::get_milliseconds(e1, e2) << endl;
+        cout << '\t' << "interval (us): " << stopwatch::get_microseconds(e1, e2) << endl;
+        cout << '\t' << "interval (ns): " << stopwatch::get_nanoseconds(e1, e2) << endl;
+    }
+
+
+    // interspersed sampling
+    {
+        cout << "interspersed sampling:" << endl;
+
+        stopwatch sw;
+
+        // 2. Begin the measurement
+        sw.start();
+
+        // 3. A loop that will consume some time.
+        { for (volatile size_t i = 0; i != 0x1fffffff; )
+        {
+            size_t j = i;
+
+            if (0 == (j % 1000))
+            {
+                sw.pause();
+
+                micro_sleep(1);
+
+                sw.unpause();
+            }
+
+            i = ++j;
+        }}
+
+        // 4. End the measurement
+        sw.stop();
+
+        // 5. Display the number of whole seconds that have elapsed.
+        cout << '\t' << "interval (s):  " << sw.get_seconds() << endl;
+        // 6. Display the number of whole milliseconds that have elapsed.
+        cout << '\t' << "interval (ms): " << sw.get_milliseconds() << endl;
+        // 7. Display the number of whole microseconds that have elapsed.
+        cout << '\t' << "interval (us): " << sw.get_microseconds() << endl;
+        // 8. Display the number of whole nanoseconds that have elapsed.
+        cout << '\t' << "interval (ns): " << sw.get_nanoseconds() << endl;
+    }
 
     return EXIT_SUCCESS;
 }
