@@ -1,18 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/limits/integral_limits.hpp (formerly stlsoft/util/limit_traits.h; originally MLLimits.h; ::SynesisStd)
+ * File:    stlsoft/limits/integral_limits.hpp (formerly stlsoft/util/limit_traits.h; originally MLLimits.h; ::SynesisStd)
  *
- * Purpose:     integral_limits traits classes. Provides nothing that is
- *              not in std::integral_limits, but uses minimum() and
- *              maximum() rather than min() and max(), since some compilers
- *              are not well-behaved in making these functions rather than
- *              macros.
+ * Purpose: integral_limits traits classes. Provides nothing that is not in
+ *          std::integral_limits, but uses minimum() and maximum() rather
+ *          than min() and max(), since some compilers are not well-behaved
+ *          in making these functions rather than macros.
  *
- * Created:     16th January 2002
- * Updated:     11th March 2024
+ * Created: 16th January 2002
+ * Updated: 21st November 2024
  *
- * Thanks:      To Jonathan Wakely for help with Solaris compatibility.
+ * Thanks:  To Jonathan Wakely for help with Solaris compatibility.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -61,7 +60,7 @@
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_MAJOR       5
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_MINOR       0
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_REVISION    6
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_EDIT        73
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_EDIT        74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,6 +95,7 @@ namespace stlsoft
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 /** Traits for determining the minimum and maximum values of types
  *
  * \ingroup group__library__Utility
@@ -120,20 +120,19 @@ struct integral_limits
 {
 public:
     /** The value type */
-    typedef T   value_type;
+    typedef T                                               value_type;
 
 public:
     /** Returns the minimum value for the type */
-    static value_type       minimum();
+    static value_type minimum();
     /** Returns the maximum value for the type */
-    static value_type       maximum();
+    static value_type maximum();
 
 # ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
     static const value_type minimum_value = ???;
     static const value_type maximum_value = ???;
 # endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
-
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* struct integral_limits */
@@ -147,18 +146,17 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct integral_limits<ss_bool_t>
 {
 public:
-    typedef ss_bool_t  value_type;
+    typedef ss_bool_t                                       value_type;
 
 public:
-    static value_type       minimum() { return false; }
-    static value_type       maximum() { return true; }
+    static value_type minimum() { return false; }
+    static value_type maximum() { return true; }
 
 # ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
     static const value_type minimum_value = false;
     static const value_type maximum_value = true;
 # endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
-
 #endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
 
 STLSOFT_OPEN_WORKER_NS_(ximpl_stlsoft_integral_limits)
@@ -171,11 +169,11 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed<ss_sint8_t>
 {
 public:
-    typedef ss_sint8_t  value_type;
+    typedef ss_sint8_t                                      value_type;
 
 public:
-    static value_type       minimum() { return STLSOFT_INTEGRAL_LIMIT_SINT8_MIN; }
-    static value_type       maximum() { return STLSOFT_INTEGRAL_LIMIT_SINT8_MAX; }
+    static value_type minimum() { return STLSOFT_INTEGRAL_LIMIT_SINT8_MIN; }
+    static value_type maximum() { return STLSOFT_INTEGRAL_LIMIT_SINT8_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
     static const value_type minimum_value = STLSOFT_INTEGRAL_LIMIT_SINT8_MIN;
@@ -187,11 +185,11 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed<ss_uint8_t>
 {
 public:
-    typedef ss_uint8_t  value_type;
+    typedef ss_uint8_t                                      value_type;
 
 public:
-    static value_type   minimum() { return STLSOFT_INTEGRAL_LIMIT_UINT8_MIN; }
-    static value_type   maximum() { return STLSOFT_INTEGRAL_LIMIT_UINT8_MAX; }
+    static value_type minimum() { return STLSOFT_INTEGRAL_LIMIT_UINT8_MIN; }
+    static value_type maximum() { return STLSOFT_INTEGRAL_LIMIT_UINT8_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
     static const value_type minimum_value = STLSOFT_INTEGRAL_LIMIT_UINT8_MIN;
@@ -204,11 +202,11 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed<ss_sint16_t>
 {
 public:
-    typedef ss_sint16_t value_type;
+    typedef ss_sint16_t                                     value_type;
 
 public:
-    static value_type   minimum() { return STLSOFT_INTEGRAL_LIMIT_SINT16_MIN; }
-    static value_type   maximum() { return STLSOFT_INTEGRAL_LIMIT_SINT16_MAX; }
+    static value_type minimum() { return STLSOFT_INTEGRAL_LIMIT_SINT16_MIN; }
+    static value_type maximum() { return STLSOFT_INTEGRAL_LIMIT_SINT16_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
     static const value_type minimum_value = STLSOFT_INTEGRAL_LIMIT_SINT16_MIN;
@@ -220,11 +218,11 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed<ss_uint16_t>
 {
 public:
-    typedef ss_uint16_t value_type;
+    typedef ss_uint16_t                                     value_type;
 
 public:
-    static value_type   minimum() { return STLSOFT_INTEGRAL_LIMIT_UINT16_MIN; }
-    static value_type   maximum() { return STLSOFT_INTEGRAL_LIMIT_UINT16_MAX; }
+    static value_type minimum() { return STLSOFT_INTEGRAL_LIMIT_UINT16_MIN; }
+    static value_type maximum() { return STLSOFT_INTEGRAL_LIMIT_UINT16_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
     static const value_type minimum_value = STLSOFT_INTEGRAL_LIMIT_UINT16_MIN;
@@ -237,11 +235,11 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed<ss_sint32_t>
 {
 public:
-    typedef ss_sint32_t value_type;
+    typedef ss_sint32_t                                     value_type;
 
 public:
-    static value_type   minimum() { return STLSOFT_INTEGRAL_LIMIT_SINT32_MIN; }
-    static value_type   maximum() { return STLSOFT_INTEGRAL_LIMIT_SINT32_MAX; }
+    static value_type minimum() { return STLSOFT_INTEGRAL_LIMIT_SINT32_MIN; }
+    static value_type maximum() { return STLSOFT_INTEGRAL_LIMIT_SINT32_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
     static const value_type minimum_value = STLSOFT_INTEGRAL_LIMIT_SINT32_MIN;
@@ -253,18 +251,17 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed<ss_uint32_t>
 {
 public:
-    typedef ss_uint32_t value_type;
+    typedef ss_uint32_t                                     value_type;
 
 public:
-    static value_type   minimum() { return STLSOFT_INTEGRAL_LIMIT_UINT32_MIN; }
-    static value_type   maximum() { return STLSOFT_INTEGRAL_LIMIT_UINT32_MAX; }
+    static value_type minimum() { return STLSOFT_INTEGRAL_LIMIT_UINT32_MIN; }
+    static value_type maximum() { return STLSOFT_INTEGRAL_LIMIT_UINT32_MAX; }
 
 #  ifdef STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
     static const value_type minimum_value = STLSOFT_INTEGRAL_LIMIT_UINT32_MIN;
     static const value_type maximum_value = STLSOFT_INTEGRAL_LIMIT_UINT32_MAX;
 #  endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
-
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 
 /* s/uint64 */
@@ -272,11 +269,11 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed<ss_sint64_t>
 {
 public:
-    typedef ss_sint64_t value_type;
+    typedef ss_sint64_t                                     value_type;
 
 public:
-    static value_type   minimum() { return STLSOFT_INTEGRAL_LIMIT_SINT64_MIN; }
-    static value_type   maximum() { return STLSOFT_INTEGRAL_LIMIT_SINT64_MAX; }
+    static value_type minimum() { return STLSOFT_INTEGRAL_LIMIT_SINT64_MIN; }
+    static value_type maximum() { return STLSOFT_INTEGRAL_LIMIT_SINT64_MAX; }
 
 #  if defined(STLSOFT_CF_MEMBER_CONSTANT_SUPPORT) && \
       !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -289,11 +286,11 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed<ss_uint64_t>
 {
 public:
-    typedef ss_uint64_t value_type;
+    typedef ss_uint64_t                                     value_type;
 
 public:
-    static value_type   minimum() { return STLSOFT_INTEGRAL_LIMIT_UINT64_MIN; }
-    static value_type   maximum() { return STLSOFT_INTEGRAL_LIMIT_UINT64_MAX; }
+    static value_type minimum() { return STLSOFT_INTEGRAL_LIMIT_UINT64_MIN; }
+    static value_type maximum() { return STLSOFT_INTEGRAL_LIMIT_UINT64_MAX; }
 
 #  if defined(STLSOFT_CF_MEMBER_CONSTANT_SUPPORT) && \
       !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -313,45 +310,45 @@ struct limit_traits_fixed_selector;
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed_selector<1, true>
 {
-    typedef limit_traits_fixed<ss_sint8_t>  type;
+    typedef limit_traits_fixed<ss_sint8_t>                  type;
 };
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed_selector<1, false>
 {
-    typedef limit_traits_fixed<ss_uint8_t>  type;
+    typedef limit_traits_fixed<ss_uint8_t>                  type;
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed_selector<2, true>
 {
-    typedef limit_traits_fixed<ss_sint16_t> type;
+    typedef limit_traits_fixed<ss_sint16_t>                 type;
 };
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed_selector<2, false>
 {
-    typedef limit_traits_fixed<ss_uint16_t> type;
+    typedef limit_traits_fixed<ss_uint16_t>                 type;
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed_selector<4, true>
 {
-    typedef limit_traits_fixed<ss_sint32_t> type;
+    typedef limit_traits_fixed<ss_sint32_t>                 type;
 };
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed_selector<4, false>
 {
-    typedef limit_traits_fixed<ss_uint32_t> type;
+    typedef limit_traits_fixed<ss_uint32_t>                 type;
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed_selector<8, true>
 {
-    typedef limit_traits_fixed<ss_sint64_t> type;
+    typedef limit_traits_fixed<ss_sint64_t>                 type;
 };
 STLSOFT_TEMPLATE_SPECIALISATION
 struct limit_traits_fixed_selector<8, false>
 {
-    typedef limit_traits_fixed<ss_uint64_t> type;
+    typedef limit_traits_fixed<ss_uint64_t>                 type;
 };
 
 
@@ -462,10 +459,12 @@ struct integral_limits<unsigned long>
     : public STLSOFT_WORKER_NS_QUAL_(ximpl_stlsoft_integral_limits, limit_traits_fixed_selector)<sizeof(unsigned long), false>::type
 {};
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
