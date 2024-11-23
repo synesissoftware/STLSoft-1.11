@@ -5,7 +5,7 @@
  *          character points it contains.
  *
  * Created: 5th November 2024
- * Updated: 5th November 2024
+ * Updated: 23rd November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_EDIT      1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_REVISION  2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -392,7 +392,7 @@ unicode_point_map::const_iterator::operator *() const STLSOFT_NOEXCEPT
 
     if (m_vec_iter != m_collection->m_vec.end())
     {
-        return std::make_pair(std::distance(m_collection->m_vec.begin(), m_vec_iter), *m_vec_iter);
+        return std::make_pair(static_cast<unicode_point_type>(std::distance(m_collection->m_vec.begin(), m_vec_iter)), *m_vec_iter);
     }
     else
     {
