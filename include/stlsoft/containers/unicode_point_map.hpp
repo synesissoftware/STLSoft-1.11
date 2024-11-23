@@ -525,7 +525,7 @@ unicode_point_map::unicode_point_map(
 )
     : m_len(0)
     , m_total(0)
-    , m_vec(default_contiguous_ceiling)
+    , m_vec(default_contiguous_ceiling, 0)
     , m_map()
 {}
 
@@ -553,7 +553,7 @@ unicode_point_map::unicode_point_map(
 )
     : m_len(0)
     , m_total(0)
-    , m_vec(default_contiguous_ceiling)
+    , m_vec(default_contiguous_ceiling, 0)
     , m_map()
 {
     for (auto k : init_list)
