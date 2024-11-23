@@ -18,6 +18,17 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha26 (23rd November 2024)
+
+ * added `stlsoft::integral_traits<>` (**stlsoft/traits/integral_traits.hpp**);
+ * added **test.unit.stlsoft.limits.integral_limits**;
+ * added **test.unit.stlsoft.traits.integral_traits**;
+ * minor tidying to CMake facilities;
+
+
+============================================================================
+
+
 Changes for 1.11.1-alpha25 (18th November 2024)
 
  * added MSVC MT support;
