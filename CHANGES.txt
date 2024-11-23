@@ -18,6 +18,13 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha26 (23rd November 2024)
+
+
+
+============================================================================
+
+
 Changes for 1.11.1-alpha25 (18th November 2024)
 
  * added MSVC MT support;
