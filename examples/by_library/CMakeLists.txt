@@ -1,6 +1,7 @@
 if(WIN32)
 	add_subdirectory(com_utility)
 endif(WIN32)
+add_subdirectory(containers)
 add_subdirectory(conversion)
 add_subdirectory(diagnostics)
 add_subdirectory(memory)

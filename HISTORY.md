@@ -4,6 +4,16 @@
 ----
 
 
+23rd November 2024 - 1.11.1-alpha26 released
+--------------------------------------------
+
+ * added `stlsoft::integral_traits<>` (**stlsoft/traits/integral_traits.hpp**);
+ * added `stlsoft::unicode_point_map`;
+ * added **test.unit.stlsoft.limits.integral_limits**;
+ * added **test.unit.stlsoft.traits.integral_traits**;
+ * minor tidying to CMake facilities;
+
+
 18th November 2024 - 1.11.1-alpha25 released
 --------------------------------------------
 
