@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    10
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        219
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       7
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        220
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1462,6 +1462,26 @@ public: // iteration
         return m_buffer + m_cItems;
     }
 
+    /// Returns a non-mutating iterator representing the start of the
+    /// sequence
+    ss_constexpr_2017_k
+    const_iterator cbegin() const
+    {
+        return begin();
+    }
+    /// Returns a non-mutating iterator representing the end of the sequence
+    ///
+    /// \note In the case where memory allocation has failed in the context
+    /// where exceptions are not thrown for allocation failure, this method
+    /// will return the same value as cbegin(). Hence, operations on the
+    /// <i>empty</i> auto_buffer<> instance will be safe if made in respect
+    /// of the range defined by [cbegin(), cend()).
+    ss_constexpr_2017_k
+    const_iterator cend() const
+    {
+        return end();
+    }
+
     /// Returns a mutating iterator representing the start of the sequence
     ss_constexpr_2017_k
     iterator begin()
@@ -1484,8 +1504,8 @@ public: // iteration
 
         return m_buffer + m_cItems;
     }
-
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -1506,6 +1526,28 @@ public: // iteration
 
         return const_reverse_iterator(begin());
     }
+
+    /// Begins the reverse iteration
+    ///
+    /// \return An iterator representing the start of the reverse sequence
+    ss_constexpr_2017_k
+    const_reverse_iterator crbegin() const
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        return const_reverse_iterator(cend());
+    }
+    /// Ends the reverse iteration
+    ///
+    /// \return An iterator representing the end of the reverse sequence
+    ss_constexpr_2017_k
+    const_reverse_iterator crend() const
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        return const_reverse_iterator(cbegin());
+    }
+
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
