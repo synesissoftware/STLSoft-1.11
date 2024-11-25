@@ -152,7 +152,7 @@
 /* bool */
 #if defined(__cplusplus) && \
     defined(_BOOL)
-# define STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# define STLSOFT_CF_BUILTIN_bool_SUPPORT
 #endif /* __cplusplus */
 
 /* char (sign) */

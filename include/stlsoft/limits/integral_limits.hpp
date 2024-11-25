@@ -140,7 +140,7 @@ public:
 template <ss_typename_param_k T>
 struct integral_limits;
 
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct integral_limits<ss_bool_t>
@@ -157,7 +157,7 @@ public:
     static const value_type maximum_value = true;
 # endif /* STLSOFT_CF_MEMBER_CONSTANT_SUPPORT */
 };
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 
 STLSOFT_OPEN_WORKER_NS_(ximpl_stlsoft_integral_limits)
 

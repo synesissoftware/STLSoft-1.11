@@ -118,7 +118,7 @@
 
 /* bool */
 #if __option(bool)
-# define STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# define STLSOFT_CF_BUILTIN_bool_SUPPORT
 #else
   /* Not defined */
 #endif /* __option(bool) */

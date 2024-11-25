@@ -139,7 +139,7 @@
 
 /* bool */
 #ifdef _BOOL_DEFINED
-# define STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# define STLSOFT_CF_BUILTIN_bool_SUPPORT
 #else
  /* Not defined */
 #endif /* _BOOL_DEFINED */
