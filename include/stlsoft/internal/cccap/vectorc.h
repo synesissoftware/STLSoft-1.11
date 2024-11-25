@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/vectorc.h
+ * File:    stlsoft/internal/cccap/vectorc.h
  *
- * Purpose:     Compiler feature discrimination for CodePlay Vector C.
+ * Purpose: Compiler feature discrimination for CodePlay Vector C.
  *
- * Created:     3rd October 2003
- * Updated:     11th March 2024
+ * Created: 3rd October 2003
+ * Updated: 25th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -56,13 +56,14 @@
 # error This file cannot be included more than once in any compilation unit
 #endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_VECTORC */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MINOR      20
-# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       71
+# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,22 +120,12 @@
 
 /* char (sign) */
 #ifdef _CHAR_UNSIGNED
-# define STLSOFT_CF_CHAR_IS_UNSIGNED
+# define STLSOFT_CF_char_IS_UNSIGNED
 #endif /* _CHAR_UNSIGNED */
 
 /* wchar_t */
 /* # define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
 
 /* /////////////////////////////////////////////////////////////////////////
  * integral types
@@ -342,7 +333,7 @@
   */
 # define __STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_CF_ASSERT_SUPPORT
-# define STLSOFT_ASSERT(expr)                   _STLSOFT_CUSTOM_ASSERT(expr)
+# define STLSOFT_ASSERT(expr)                               _STLSOFT_CUSTOM_ASSERT(expr)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME                _STLSOFT_CUSTOM_ASSERT_INCLUDE
 # else
@@ -351,11 +342,11 @@
 #else /* ? _STLSOFT_CUSTOM_ASSERT */
 # ifndef _DEBUG
 /* #  define NDEBUG */
-# endif /* _DEBUG */ */
+# endif /* _DEBUG */
 # define __STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_CF_ASSERT_SUPPORT
 # define __STLSOFT_CF_ASSERT_INCLUDE_NAME                   <assert.h>
-# define STLSOFT_ASSERT(expr)                   assert(expr)
+# define STLSOFT_ASSERT(expr)                               assert(expr)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
 
@@ -390,6 +381,7 @@
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warning suppression
  */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

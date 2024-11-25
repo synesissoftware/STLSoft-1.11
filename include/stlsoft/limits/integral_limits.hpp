@@ -7,7 +7,7 @@
  *          in making these functions rather than macros.
  *
  * Created: 16th January 2002
- * Updated: 21st November 2024
+ * Updated: 25th November 2024
  *
  * Thanks:  To Jonathan Wakely for help with Solaris compatibility.
  *
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_MAJOR       5
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_MINOR       0
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_REVISION    6
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_EDIT        74
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_REVISION    7
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS_EDIT        75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -371,11 +371,11 @@ struct integral_limits<unsigned char>
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct integral_limits<char>
-#ifdef STLSOFT_CF_CHAR_IS_UNSIGNED
+#ifdef STLSOFT_CF_char_IS_UNSIGNED
     : public STLSOFT_WORKER_NS_QUAL_(ximpl_stlsoft_integral_limits, limit_traits_fixed_selector)<sizeof(char), true>::type
-#else /* ? STLSOFT_CF_CHAR_IS_UNSIGNED */
+#else /* ? STLSOFT_CF_char_IS_UNSIGNED */
     : public STLSOFT_WORKER_NS_QUAL_(ximpl_stlsoft_integral_limits, limit_traits_fixed_selector)<sizeof(char), false>::type
-#endif /* STLSOFT_CF_CHAR_IS_UNSIGNED */
+#endif /* STLSOFT_CF_char_IS_UNSIGNED */
 {};
 
 

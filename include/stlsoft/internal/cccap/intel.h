@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/intel.h
+ * File:    stlsoft/internal/cccap/intel.h
  *
- * Purpose:     Compiler feature discrimination for Intel C/C++.
+ * Purpose: Compiler feature discrimination for Intel C/C++.
  *
- * Created:     7th February 2003
- * Updated:     11th March 2024
+ * Created: 7th February 2003
+ * Updated: 25th November 2024
  *
- * Thanks:      To Derek Baikie for working on the
- *              Win64-compatibility.
+ * Thanks:  To Derek Baikie for working on the Win64-compatibility.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -63,14 +62,16 @@
 # error This file has been erroneously included for a compiler other than Intel C/C++
 #endif /* compiler */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       20
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    4
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        93
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    5
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Structure:
@@ -119,6 +120,7 @@
 # define STLSOFT_INCL_H_STLSOFT_CCCAP_INTEL_7_1
 #endif /* __INTEL_COMPILER == 700 && _MSC_VER == 1310 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * preprocessor features
  *
@@ -146,6 +148,7 @@
 /* TODO: check this
 # define STLSOFT_PPF_VARIADIC_MACROS_SUPPORT
 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Support for built-in types
@@ -183,6 +186,7 @@
 # define STLSOFT_CF_BUILTIN___int64_SUPPORT
 #endif /* _MSC_VER >= 1020 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Built-in type characteristics
  *
@@ -193,13 +197,14 @@
  */
 
 #ifdef _CHAR_UNSIGNED
-# define STLSOFT_CF_CHAR_IS_UNSIGNED
+# define STLSOFT_CF_char_IS_UNSIGNED
 #endif /* _CHAR_UNSIGNED */
 
 #if !defined(STLSOFT_CF_BUILTIN_wchar_t_SUPPORT) && \
     defined(_WCHAR_T_DEFINED)
 # define STLSOFT_CF_wchar_t_IS_SYNTHESISED
 #endif /* !STLSOFT_CF_BUILTIN_wchar_t_SUPPORT && _WCHAR_T_DEFINED */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Support for C/C++ language features
@@ -220,6 +225,7 @@
 
 #define STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * support for C language features
  *
@@ -231,6 +237,7 @@
 /* #define STLSOFT_CF_C99_INLINE_SUPPORT */
 
 #define STLSOFT_CUSTOM_C_INLINE                             __inline
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Support for C++ language features - 1
@@ -334,6 +341,7 @@
 # define STLSOFT_CF_REQUIRE_RETURN_ALWAYS
 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Support for C++ language features - 2
  *
@@ -417,6 +425,7 @@
  /* Inline assembler not supported for Intel C/C++ 64-bit compilers */
 #endif /* arch */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * calling convention
  *
@@ -483,6 +492,7 @@
 #else /* ? data model */
 # error Use of Intel C/C++ has not been verified on any operation system other than Win32. Please contact Synesis Software
 #endif /* data model */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Size-specific integer types
@@ -676,6 +686,7 @@
  */
 
 #include <stlsoft/internal/cccap/obsolete.h>
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
