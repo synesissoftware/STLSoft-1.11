@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/containers/util/array_policies.hpp
+ * File:    stlsoft/containers/util/array_policies.hpp
  *
- * Purpose:     Contains the construction policies for the array (fixed and
- *              frame) classes.
+ * Purpose: Contains the construction policies for the array (fixed and
+ *          frame) classes.
  *
- * Created:     1st September 2002
- * Updated:     11th March 2024
+ * Created: 1st September 2002
+ * Updated: 25th November 2024
  *
- * Thanks to:   Neal Becker for suggesting the uninitialised mode.
+ * Thanks:  Neal Becker for suggesting the uninitialised mode.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_MINOR       1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    9
-# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        152
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_REVISION    10
+# define STLSOFT_VER_STLSOFT_CONTAINERS_UTIL_HPP_ARRAY_POLICIES_EDIT        153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -202,11 +202,10 @@ struct do_construction<double>      { enum { value = false }; typedef two_type t
 STLSOFT_TEMPLATE_SPECIALISATION
 struct do_construction<long double> { enum { value = false }; typedef two_type type; };
 
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct do_construction<ss_bool_t>   { enum { value = false }; typedef two_type type; };
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
-
+#endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -440,8 +439,8 @@ public:
         do_destroy_1(ator, p, n, selector_type());
     }
 };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
