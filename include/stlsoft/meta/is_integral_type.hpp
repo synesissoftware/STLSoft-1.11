@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_integral_type.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/meta/is_integral_type.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     Tests whether a type is integral.
+ * Purpose: Tests whether a type is integral.
  *
- * Created:     19th November 1998
- * Updated:     11th March 2024
+ * Created: 19th November 1998
+ * Updated: 25th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MINOR    1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 5
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     139
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 6
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -138,9 +138,9 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, signed long, 1, yes
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, unsigned long, 1, yes_type)
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_bool_t, 1, yes_type)
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_char_a_t, 1, yes_type)
 #ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
 STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_char_w_t, 1, yes_type)

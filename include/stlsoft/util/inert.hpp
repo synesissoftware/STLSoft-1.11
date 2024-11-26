@@ -4,7 +4,7 @@
  * Purpose: Contains the inert class.
  *
  * Created: 16th January 2002
- * Updated: 10th October 2024
+ * Updated: 25th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_INERT
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MAJOR      4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MINOR      0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION   11
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT       57
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MAJOR       4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_MINOR       0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_REVISION    12
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INERT_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,9 +116,9 @@ private:
 #endif /* !new */
 
     int operator !() const;
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
     operator bool() const;
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
     operator void* () const;
     void* operator &() const;
 #if 0 || \
@@ -140,7 +140,10 @@ private:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
