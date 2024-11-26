@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MAJOR     1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MINOR     0
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  3
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      3
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_MINOR     1
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_REVISION  1
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_STD_CHRONO_HRC_STOPWATCH_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -128,6 +128,12 @@ public: // Operations
     ///
     /// Begins the measurement period
     void    start();
+    /// Pauses the measurement
+    ///
+    void    pause();
+    /// Unpauses the measurement
+    ///
+    void    unpause();
     /// Ends measurement
     ///
     /// Ends the measurement period
@@ -195,8 +201,14 @@ public: // attributes
 private: // implementation
 
 private: // fields
+    /// Stores the start epoch
     epoch_type      m_start;
+    /// Stores the end epoch
     epoch_type      m_end;
+    /// Stores the pause epoch
+    epoch_type      m_pause;
+    /// Stores the (cumulate) pause time (in nanoseconds)
+    interval_type   m_paused_ns;
 /// @}
 };
 
@@ -213,6 +225,23 @@ std_chrono_hrc_stopwatch::start()
     m_start = clock_type_::now();
 
     m_end = m_start;
+    m_paused_ns = 0;
+}
+
+inline
+void
+std_chrono_hrc_stopwatch::pause()
+{
+    m_pause = clock_type_::now();
+}
+
+inline
+void
+std_chrono_hrc_stopwatch::unpause()
+{
+    epoch_type now = clock_type_::now();
+
+    m_paused_ns += std::chrono::duration_cast<std::chrono::nanoseconds>(now - m_pause).count();
 }
 
 inline
@@ -302,7 +331,11 @@ std_chrono_hrc_stopwatch::get_seconds() const
 {
     STLSOFT_MESSAGE_ASSERT("end before start: stop() must be called after start()", m_start <= m_end);
 
-    return std::chrono::duration_cast<std::chrono::seconds>(m_end - m_start).count();
+    interval_type r = std::chrono::duration_cast<std::chrono::seconds>(m_end - m_start).count();
+
+    r -= m_paused_ns / (1000 * 1000 * 1000);
+
+    return r;
 }
 
 inline
@@ -311,7 +344,11 @@ std_chrono_hrc_stopwatch::get_milliseconds() const
 {
     STLSOFT_MESSAGE_ASSERT("end before start: stop() must be called after start()", m_start <= m_end);
 
-    return std::chrono::duration_cast<std::chrono::milliseconds>(m_end - m_start).count();
+    interval_type r = std::chrono::duration_cast<std::chrono::milliseconds>(m_end - m_start).count();
+
+    r -= m_paused_ns / (1000 * 1000);
+
+    return r;
 }
 
 inline
@@ -320,7 +357,11 @@ std_chrono_hrc_stopwatch::get_microseconds() const
 {
     STLSOFT_MESSAGE_ASSERT("end before start: stop() must be called after start()", m_start <= m_end);
 
-    return std::chrono::duration_cast<std::chrono::microseconds>(m_end - m_start).count();
+    interval_type r = std::chrono::duration_cast<std::chrono::microseconds>(m_end - m_start).count();
+
+    r -= m_paused_ns / 1000;
+
+    return r;
 }
 
 inline
@@ -329,7 +370,11 @@ std_chrono_hrc_stopwatch::get_nanoseconds() const
 {
     STLSOFT_MESSAGE_ASSERT("end before start: stop() must be called after start()", m_start <= m_end);
 
-    return std::chrono::duration_cast<std::chrono::nanoseconds>(m_end - m_start).count();
+    interval_type r = std::chrono::duration_cast<std::chrono::nanoseconds>(m_end - m_start).count();
+
+    r -= m_paused_ns;
+
+    return r;
 }
 
 inline
