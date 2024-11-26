@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/borland.h
+ * File:    stlsoft/internal/cccap/borland.h
  *
- * Purpose:     Compiler feature discrimination for Borland C/C++.
+ * Purpose: Compiler feature discrimination for Borland C/C++.
  *
- * Created:     7th February 2003
- * Updated:     11th March 2024
+ * Created: 7th February 2003
+ * Updated: 25th November 2024
  *
- * Thanks to:   markitus82 for pointing out overlooking of support for
- *              __FUNCTION__.
+ * Thanks:  markitus82 for pointing out overlooking of support for
+ *          __FUNCTION__.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -59,13 +59,14 @@
 # error This file cannot be included more than once in any compilation unit
 #endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_BORLAND */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_MINOR      23
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       98
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_BORLAND_EDIT       99
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,12 +140,12 @@
 
 /* bool */
 #ifdef __cplusplus
-# define STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# define STLSOFT_CF_BUILTIN_bool_SUPPORT
 #endif /* __cplusplus */
 
 /* char (sign) */
 #ifdef _CHAR_UNSIGNED
-# define STLSOFT_CF_CHAR_IS_UNSIGNED
+# define STLSOFT_CF_char_IS_UNSIGNED
 #endif /* _CHAR_UNSIGNED */
 
 /* wchar_t */
@@ -154,17 +155,6 @@
  /* Not defined */
 #endif /* _WCHAR_T_DEFINED */
 
-
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
 
 /* /////////////////////////////////////////////////////////////////////////
  * integral types
@@ -395,7 +385,7 @@
   */
 # define __STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_CF_ASSERT_SUPPORT
-# define STLSOFT_ASSERT(expr)                   _STLSOFT_CUSTOM_ASSERT(expr)
+# define STLSOFT_ASSERT(expr)                               _STLSOFT_CUSTOM_ASSERT(expr)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME                _STLSOFT_CUSTOM_ASSERT_INCLUDE
 # else
@@ -406,7 +396,7 @@
 # define STLSOFT_CF_ASSERT_SUPPORT
 /* #define   __STLSOFT_CF_USE_cassert */
 # define __STLSOFT_CF_ASSERT_INCLUDE_NAME                   <assert.h>
-# define STLSOFT_ASSERT(expr)                   assert(expr)
+# define STLSOFT_ASSERT(expr)                               assert(expr)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
 
@@ -476,8 +466,8 @@
 
  /* Borland: "Functions containing reserved words are not expanded inline" */
 # pragma warn -8027
-
 #endif /* compiler */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

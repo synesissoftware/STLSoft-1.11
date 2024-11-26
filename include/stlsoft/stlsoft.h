@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 23rd November 2024
+ * Updated: 25th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    56
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     577
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     578
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -374,12 +374,13 @@
 # define _STLSOFT_VER_1_11_1_A24    0x010b0158  /*!< Version 1.11.1 alpha 24 (4th November 2024) */
 # define _STLSOFT_VER_1_11_1_A25    0x010b0159  /*!< Version 1.11.1 alpha 25 (18th November 2024) */
 # define _STLSOFT_VER_1_11_1_A26    0x010b015a  /*!< Version 1.11.1 alpha 26 (23rd November 2024) */
+# define _STLSOFT_VER_1_11_1_A27    0x010b015b  /*!< Version 1.11.1 alpha 27 (25th November 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A26
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A27
 
 
 /* /////////////////////////////////////
@@ -2147,16 +2148,17 @@ namespace stlsoft
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
- /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+ /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 
 # if defined(__STLSOFT_CF_NATIVE_BOOL_SUPPORT) && \
-     !defined(STLSOFT_CF_NATIVE_BOOL_SUPPORT)
-#  error Configuration error: deprecated symbol __STLSOFT_CF_NATIVE_BOOL_SUPPORT is defined when STLSOFT_CF_NATIVE_BOOL_SUPPORT is not!
+     !defined(STLSOFT_CF_BUILTIN_bool_SUPPORT)
+
+#  error Configuration error: deprecated symbol __STLSOFT_CF_NATIVE_BOOL_SUPPORT is defined when STLSOFT_CF_BUILTIN_bool_SUPPORT is not!
 # else /* ? STLSOFT_CF_INT_DISTINCT_INT_TYPE */
-#  ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#  ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 #   define __STLSOFT_CF_NATIVE_BOOL_SUPPORT
-#  endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
-# endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#  endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
+# endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 
  /* STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
 
@@ -2310,11 +2312,11 @@ typedef long STLSOFT_WARN_64                                ss_long_t;          
 typedef unsigned long STLSOFT_WARN_64                       ss_ulong_t;         /*!< long integer               */
 typedef ss_uint8_t                                          ss_byte_t;          /*!< Byte                       */
 #if defined(__cplusplus)
-# ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 typedef bool                                                ss_bool_t;          /*!< Boolean type               */
-# else /* ? STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+# else /* ? STLSOFT_CF_BUILTIN_bool_SUPPORT */
 typedef unsigned int                                        ss_bool_t;
-# endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+# endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 #endif /* __cplusplus */
 typedef int                                                 ss_truthy_t;        /*!< Language-independent bool  */
 #ifndef _STLSOFT_NO_STD_INCLUDES
@@ -2638,15 +2640,15 @@ typedef ss_streamoff_t                                      streamoff_t;        
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 
 # define ss_true_v                                          (true)
 # define ss_false_v                                         (false)
-#else /* ? STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#else /* ? STLSOFT_CF_BUILTIN_bool_SUPPORT */
 
 # define ss_true_v                                          (1)
 # define ss_false_v                                         (0)
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

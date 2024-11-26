@@ -13,6 +13,7 @@
 * Anders F Björklund
 * Andrew Bond
 * Anton Sekeris
+* Austin Ziegler
 * Bart van der Velden
 * Bai Miao (ChrisCatCP)
 * Bjorn Karlsson
@@ -30,6 +31,7 @@
 * Dave Brooks
 * David Wang
 * denis-bz-py
+* Derek Baikie
 * Diego Chanoux
 * Dimitri Kaparis
 * Eduardo Bezerra
