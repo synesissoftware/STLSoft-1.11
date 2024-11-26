@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 5th November 2024
+ * Updated: 19th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      137
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      138
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -328,7 +328,7 @@ public:
     /// \param buffer The buffer in which to write the variable. If this is NULL, then the required length is returned
     /// \param cchBuffer The size of the buffer, in characters
     ///
-    /// \pre NULL != name
+    /// \pre nullptr != name
     /// \pre 0 == cchBuffer || nullptr != buffer
     static
     size_type
@@ -355,7 +355,7 @@ public:
 
     /// Expands environment strings in \c src into \c buffer, up to a maximum \c cchDest characters
     ///
-    /// \pre NULL != src
+    /// \pre nullptr != src
     /// \pre 0 == cchBuffer || nullptr != buffer
     static
     size_type
