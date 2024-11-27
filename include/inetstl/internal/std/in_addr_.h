@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/internal/std/in_addr_.h
+ * File:    inetstl/internal/std/in_addr_.h
  *
- * Purpose:     Discrimination of various operating-specific header files
- *              for Internet-related types.
+ * Purpose: Discrimination of various operating-specific header files for
+ *          Internet-related types.
  *
- * Created:     21st October 2006
- * Updated:     11th March 2024
+ * Created: 21st October 2006
+ * Updated: 27th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__MAJOR      2
 # define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__MINOR      0
-# define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__REVISION   2
-# define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__EDIT       16
+# define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__REVISION   3
+# define INETSTL_VER_INETSTL_INTERNAL_STD_H_IN_ADDR__EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -64,24 +64,24 @@
  * includes
  */
 
-#if defined(_WIN32)
+#if 0
+#elif defined(_WIN32)
 
 # if !defined(_WINSOCKAPI_) && \
      !defined(_WINSOCK2API_)
+
 #  include <winsock2.h>
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
 # endif /* !_WINSOCKAPI_ && !_WINSOCK2API_ */
-
 #else /* ? OS */
 
 # include <sys/types.h>
 # include <sys/socket.h>
 # include <netinet/in.h>
 # include <arpa/inet.h>
-
 #endif /* OS */
 
 

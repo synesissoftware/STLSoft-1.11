@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/sleep_functions.h
+ * File:    winstl/synch/sleep_functions.h
  *
- * Purpose:     WinSTL time functions.
+ * Purpose: WinSTL time functions.
  *
- * Created:     11th June 2006
- * Updated:     11th March 2024
+ * Created: 11th June 2006
+ * Updated: 27th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       30
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -167,8 +167,8 @@ namespace winstl
 /** [C++] Puts the calling thread to sleep for the given number of
  *   microseconds.
 \code
-winstl::micro_sleep(100000);  // Sleep for 0.1 seconds
-winstl::micro_sleep(100);     // Sleep for 0.1 milliseconds
+  winstl::micro_sleep(100000);  // Sleep for 0.1 approximately seconds
+  winstl::micro_sleep(100);     // Sleep for 0.1 approximately milliseconds
 \endcode
  *
  * \param microseconds The number of microseconds to wait
@@ -177,11 +177,14 @@ winstl::micro_sleep(100);     // Sleep for 0.1 milliseconds
  *   successful. If not, <code>::GetLastError()</code> will contain an error code
  *   representing the reason for failure.
  */
-inline ws_int_t micro_sleep(ws_uint_t microseconds)
+inline
+ws_int_t
+micro_sleep(
+    ws_uint_t microseconds
+)
 {
     return winstl_C_micro_sleep(microseconds);
 }
-
 #endif /* __cplusplus */
 
 
