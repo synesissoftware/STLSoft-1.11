@@ -4,7 +4,7 @@
  * Purpose: Number formatting functions.
  *
  * Created: 28th August 2005
- * Updated: 28th March 2024
+ * Updated: 29th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  12
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      31
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  13
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -257,7 +257,7 @@ format_thousands(
 {
     C               szRawNumber[21];    // 21 is large enough for any 64-bit number (signed or unsigned)
     ss_size_t       cchRawNumber;
-    C const* const  rawNumber = integer_to_decimal_string(szRawNumber, STLSOFT_NUM_ELEMENTS(szRawNumber), static_cast<unsigned int>(number), &cchRawNumber);
+    C const* const  rawNumber = integer_to_decimal_string(szRawNumber, STLSOFT_NUM_ELEMENTS(szRawNumber), number, &cchRawNumber);
 
     STLSOFT_STATIC_ASSERT(sizeof(C) <= 8);
 
