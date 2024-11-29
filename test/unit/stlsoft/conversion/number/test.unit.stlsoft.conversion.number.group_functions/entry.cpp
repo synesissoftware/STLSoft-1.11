@@ -1,7 +1,8 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test.unit.stlsoft.conversion.number.group_functions/entry.cpp
  *
- * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
+ * Purpose: Unit-tests for `stlsoft::format_thousands` and
+ *          `stlsoft::translate_thousands`.
  *
  * Created: 28th March 2024
  * Updated: 30th November 2024
@@ -217,7 +218,7 @@ static void TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS()
 static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATORS()
 {
     char                dest[101];
-    const ss_sint64_t   v  =  STLSOFT_GEN_UINT64_SUFFIX(-9223372036854775808);
+    const ss_sint64_t   v  =  STLSOFT_GEN_SINT64_SUFFIX(-9223372036854775807) - 1;
     size_t              n;
 
     n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "9", v);
