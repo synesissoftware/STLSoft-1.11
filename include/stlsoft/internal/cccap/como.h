@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/como.h
+ * File:    stlsoft/internal/cccap/como.h
  *
- * Purpose:     Compiler feature discrimination for Comeau C/C++.
+ * Purpose: Compiler feature discrimination for Comeau C/C++.
  *
- * Created:     7th February 2003
- * Updated:     11th March 2024
+ * Created: 7th February 2003
+ * Updated: 25th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -61,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MAJOR     3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     18
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      80
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,7 +131,7 @@
 
 /* bool */
 #ifdef _BOOL
-# define STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# define STLSOFT_CF_BUILTIN_bool_SUPPORT
 #else
  /* Not defined */
 #endif /* _BOOL_DEFINED */
@@ -143,16 +143,6 @@
  /* Not defined */
 #endif /* _WCHAR_T_DEFINED */
 
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
 
 /* /////////////////////////////////////////////////////////////////////////
  * integral types
@@ -365,7 +355,7 @@
   */
 # define __STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_CF_ASSERT_SUPPORT
-# define STLSOFT_ASSERT(expr)                   _STLSOFT_CUSTOM_ASSERT(expr)
+# define STLSOFT_ASSERT(expr)                               _STLSOFT_CUSTOM_ASSERT(expr)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME                _STLSOFT_CUSTOM_ASSERT_INCLUDE
 # else
@@ -374,7 +364,7 @@
 #else /* ? _STLSOFT_CUSTOM_ASSERT */
 # if defined(STLSOFT_CF_COMO_BACKEND_IS_BORLAND)
 #  define __STLSOFT_CF_ASSERT_INCLUDE_NAME                  <assert.h>
-#  define STLSOFT_ASSERT(expr)                  assert(expr)
+#  define STLSOFT_ASSERT(expr)                              assert(expr)
 # else /* compiler */
 #  define __STLSOFT_CF_ASSERT_SUPPORT
 #  define STLSOFT_CF_ASSERT_SUPPORT
@@ -471,7 +461,6 @@
 # else
 #  error Unrecognised compiler
 # endif /* ? compiler */
-
 #endif /* std C */
 
 
@@ -495,6 +484,7 @@
 /* /////////////////////////////////////////////////////////////////////////
  * compiler warning suppression
  */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.conversion.byte_format_functions.cpp
+ * File:    test.unit.stlsoft.conversion.number.group_functions/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 28th March 2024
- * Updated: 15th October 2024
+ * Updated: 29th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,6 +30,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
+#include <stlsoft/limits/integral_limits.h> // for suffix macros only
 
 /* Standard C++ header files */
 #include <string>
@@ -45,19 +46,11 @@
 namespace
 {
 
-    static void test_number_0(void);
-    static void test_number_987654321_with_default_separators(void);
-    static void test_number_987654321_with_custom_separators(void);
-#if 0
-    static void test_1_23(void);
-    static void test_1_24(void);
-    static void test_1_25(void);
-    static void test_1_26(void);
-    static void test_1_27(void);
-    static void test_1_28(void);
-    static void test_1_29(void);
-    static void test_1_30(void);
-#endif
+    static void TEST_format_thousands_SIMPLE(void);
+    static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS(void);
+    static void TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS(void);
+    static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATORS(void);
+    static void TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS(void);
 } // anonymous namespace
 
 
@@ -74,19 +67,11 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.number.grouping_functions", verbosity))
     {
-        XTESTS_RUN_CASE(test_number_0);
-        XTESTS_RUN_CASE(test_number_987654321_with_default_separators);
-        XTESTS_RUN_CASE(test_number_987654321_with_custom_separators);
-#if 0
-        XTESTS_RUN_CASE(test_1_23);
-        XTESTS_RUN_CASE(test_1_24);
-        XTESTS_RUN_CASE(test_1_25);
-        XTESTS_RUN_CASE(test_1_26);
-        XTESTS_RUN_CASE(test_1_27);
-        XTESTS_RUN_CASE(test_1_28);
-        XTESTS_RUN_CASE(test_1_29);
-        XTESTS_RUN_CASE(test_1_30);
-#endif
+        XTESTS_RUN_CASE(TEST_format_thousands_SIMPLE);
+        XTESTS_RUN_CASE(TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS);
+        XTESTS_RUN_CASE(TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS);
+        XTESTS_RUN_CASE(TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATORS);
+        XTESTS_RUN_CASE(TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -96,15 +81,19 @@ int main(int argc, char *argv[])
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
 namespace
 {
-  typedef std::string       string_a_t;
+    using stlsoft::ss_sint64_t;
+    using stlsoft::ss_uint64_t;
+    typedef std::string                                     string_a_t;
 
-static void test_number_0()
+
+static void TEST_format_thousands_SIMPLE()
 {
     char const* const pictures[] =
     {
@@ -133,7 +122,7 @@ static void test_number_0()
     }
 }
 
-static void test_number_987654321_with_default_separators()
+static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS()
 {
     char      dest[101];
     const int v  =  987654321;
@@ -165,7 +154,71 @@ static void test_number_987654321_with_default_separators()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987,654,321", string_a_t(dest, n - 1));
 }
 
-static void test_number_987654321_with_custom_separators()
+static void TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS()
+{
+    char                dest[101];
+    const ss_uint64_t   v  =  STLSOFT_GEN_UINT64_SUFFIX(18446744073709551615);
+    size_t              n;
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "9", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(21u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("18446744073,709551615", string_a_t(dest, n - 1));
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "1", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(21u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1844674407370955161,5", string_a_t(dest, n - 1));
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "2;1", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("18446744073709551,6,15", string_a_t(dest, n - 1));
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;1", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1844674407370955,1,615", string_a_t(dest, n - 1));
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;3", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("18446744073709,551,615", string_a_t(dest, n - 1));
+}
+
+static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATORS()
+{
+    char                dest[101];
+    const ss_sint64_t   v  =  STLSOFT_GEN_UINT64_SUFFIX(-9223372036854775808);
+    size_t              n;
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "9", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(21u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-9223372036,854775808", string_a_t(dest, n - 1));
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "1", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(21u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-922337203685477580,8", string_a_t(dest, n - 1));
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), "2;1", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-9223372036854775,8,08", string_a_t(dest, n - 1));
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;1", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-922337203685477,5,808", string_a_t(dest, n - 1));
+
+    n = stlsoft::format_thousands(&dest[0], STLSOFT_NUM_ELEMENTS(dest), ";3;3", v);
+
+    XTESTS_TEST_INTEGER_EQUAL(22u + 1, n);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-9223372036854,775,808", string_a_t(dest, n - 1));
+}
+
+static void TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS()
 {
     char      dest[101];
     const int v  =  987654321;

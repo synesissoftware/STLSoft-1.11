@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    unixstl/synch/sleep_functions.h
+ * File:    unixstl/time/comparison_functions.h
  *
- * Purpose: UNIXSTL time functions.
+ * Purpose: Comparison functions for UNIX time structures.
  *
- * Created: 2nd September 2005
+ * Created: 19th November 2024
  * Updated: 19th November 2024
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
- * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
+ * Copyright (c) 2024, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,20 +40,20 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file unixstl/synch/sleep_functions.h
+/** \file unixstl/time/comparison_functions.h
  *
- * \brief [C, C++] Various time functions
- *   (\ref group__library__Synch "Synchronisation" Library).
+ * \brief [C, C++] Comparison functions for UNIX time types
+ *   (\ref group__library__Time "Time" Library).
  */
 
-#ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS
-#define UNIXSTL_INCL_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS
+#ifndef UNIXSTL_INCL_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS
+#define UNIXSTL_INCL_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   7
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       35
+# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR      1
+# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR      0
+# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT       1
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,28 +68,14 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#if 0
-#elif defined(_WIN32) && \
-      defined(_STLSOFT_FORCE_ANY_COMPILER)
-# include <unixstl/synch/util/windows_api_.h>
-#endif
-
-#ifndef STLSOFT_INCL_SYS_H_SELECT
-# ifndef _WIN32
-#  define STLSOFT_INCL_SYS_H_SELECT
-#  include <sys/select.h>
-# endif /* !_WIN32 */
-#endif /* !STLSOFT_INCL_SYS_H_SELECT */
+#ifndef STLSOFT_INCL_H_STRING
+# define STLSOFT_INCL_H_STRING
+# include <string.h>
+#endif /* !STLSOFT_INCL_H_STRING */
 #ifndef STLSOFT_INCL_SYS_H_TIME
 # define STLSOFT_INCL_SYS_H_TIME
 # include <sys/time.h>
 #endif /* !STLSOFT_INCL_SYS_H_TIME */
-
-#ifdef _WIN32
-# ifndef WINSTL_INCL_WINSTL_API_external_h_ProcessAndThread
-#  include <winstl/api/external/ProcessAndThread.h>
-# endif /* !WINSTL_INCL_WINSTL_API_external_h_ProcessAndThread */
-#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,42 +99,47 @@ namespace unixstl_project
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * functions
+ * C functions
  */
 
-/** [C, C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
-\code
-  unixstl_C_micro_sleep(100000);  // Sleep for 0.1 seconds
-  unixstl_C_micro_sleep(100);     // Sleep for 0.1 milliseconds
-\endcode
+/** Compares two <code>struct timeval</code> instances
  *
- * \param microseconds The number of microseconds to wait
+ * \ingroup group__library__Time
  *
- * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>errno</code> will contain an error code
- *   representing the reason for failure.
- *
- * \see unixstl::micro_sleep
+ * \pre nullptr != lhs
+ * \pre nullptr != rhs
  */
 STLSOFT_INLINE
-us_int_t
-unixstl_C_micro_sleep(
-    us_uint_t microseconds
-) STLSOFT_NOEXCEPT
+us_sint_t
+unixstl_C_compare_timevals(
+    struct timeval const*   lhs
+,   struct timeval const*   rhs
+)
 {
-#ifdef _WIN32
+    UNIXSTL_ASSERT(NULL != lhs);
+    UNIXSTL_ASSERT(NULL != rhs);
 
-    return (WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(microseconds / 1000), us_true_v);
-#else /* ? _WIN32 */
+    if (0 == STLSOFT_NS_GLOBAL(memcmp(lhs, rhs, sizeof(struct timeval))))
+    {
+        return 0;
+    }
+    else
+    {
+        us_sint64_t const lhs_us = lhs->tv_sec * 1000 * 1000 + lhs->tv_usec;
+        us_sint64_t const rhs_us = rhs->tv_sec * 1000 * 1000 + rhs->tv_usec;
 
-    struct timeval  ts;
+        if (lhs_us < rhs_us)
+        {
+            return -1;
+        }
 
-    ts.tv_sec   =   stlsoft_static_cast(long, microseconds / 1000000);
-    ts.tv_usec  =   stlsoft_static_cast(long, microseconds % 1000000);
+        if (lhs_us > rhs_us)
+        {
+            return +1;
+        }
 
-    return -1 != STLSOFT_NS_GLOBAL(select)(0, NULL, NULL, NULL, &ts);
-#endif /* _WIN32 */
+        return 0;
+    }
 }
 
 
@@ -169,26 +159,36 @@ namespace unixstl
 
 #ifdef __cplusplus
 
-/** [C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
-\code
-  unixstl::micro_sleep(100000); // Sleep for 0.1 seconds
-  unixstl::micro_sleep(100);    // Sleep for 0.1 milliseconds
-\endcode
+/** Compares two <code>struct timeval</code> instances
  *
- * \param microseconds The number of microseconds to wait
+ * Implemented in terms of unixstl_C_compare_timevals()
  *
- * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>errno</code> will contain an error code
- *   representing the reason for failure.
+ * \ingroup group__library__Time
  */
 inline
-us_int_t
-micro_sleep(
-    us_uint_t microseconds
+us_sint_t
+compare(
+    struct timeval const&   lhs
+,   struct timeval const&   rhs
 )
 {
-    return unixstl_C_micro_sleep(microseconds);
+    return unixstl_C_compare_timevals(&lhs, &rhs);
+}
+
+/** Compares two <code>struct timeval</code> instances
+ *
+ * Implemented in terms of unixstl_C_compare_timevals()
+ *
+ * \ingroup group__library__Time
+ */
+inline
+us_sint_t
+compare(
+    struct timeval const*   lhs
+,   struct timeval const*   rhs
+)
+{
+    return unixstl_C_compare_timevals(lhs, rhs);
 }
 #endif /* __cplusplus */
 
@@ -216,7 +216,7 @@ micro_sleep(
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-#endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS */
+#endif /* !UNIXSTL_INCL_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
