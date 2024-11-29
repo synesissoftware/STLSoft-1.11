@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR    2
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     65
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -711,19 +711,39 @@ absolute_difference_in_seconds(
 
 #ifdef STLSOFT_OBSOLETE
 
-STLSOFT_INLINE ws_sint_t winstl__compare_FILETIMEs(FILETIME const* lhs, FILETIME const* rhs)
+STLSOFT_INLINE
+ws_sint_t
+winstl__compare_FILETIMEs(
+    FILETIME const* lhs
+,   FILETIME const* rhs
+)
 {
     return winstl_C_compare_FILETIMEs(lhs, rhs);
 }
-STLSOFT_INLINE ws_sint_t winstl__compare_FILETIME_with_SYSTEMTIME(FILETIME const* lhs, SYSTEMTIME const* rhs)
+STLSOFT_INLINE
+ws_sint_t
+winstl__compare_FILETIME_with_SYSTEMTIME(
+    FILETIME const*     lhs
+,   SYSTEMTIME const*   rhs
+)
 {
     return winstl_C_compare_FILETIME_with_SYSTEMTIME(lhs, rhs);
 }
-STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIME_with_FILETIME(SYSTEMTIME const* lhs, FILETIME const* rhs)
+STLSOFT_INLINE
+ws_sint_t
+winstl__compare_SYSTEMTIME_with_FILETIME(
+    SYSTEMTIME const*   lhs
+,   FILETIME const*     rhs
+)
 {
     return winstl_C_compare_SYSTEMTIME_with_FILETIME(lhs, rhs);
 }
-STLSOFT_INLINE ws_sint_t winstl__compare_SYSTEMTIMEs(SYSTEMTIME const* lhs, SYSTEMTIME const* rhs)
+STLSOFT_INLINE
+ws_sint_t
+winstl__compare_SYSTEMTIMEs(
+    SYSTEMTIME const*   lhs
+,   SYSTEMTIME const*   rhs
+)
 {
     return winstl_C_compare_SYSTEMTIMEs(lhs, rhs);
 }
