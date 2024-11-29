@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.conversion.byte_format_functions.cpp
+ * File:    test.unit.stlsoft.conversion.number.group_functions/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 28th March 2024
- * Updated: 15th October 2024
+ * Updated: 29th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,19 +45,9 @@
 namespace
 {
 
-    static void test_number_0(void);
-    static void test_number_987654321_with_default_separators(void);
-    static void test_number_987654321_with_custom_separators(void);
-#if 0
-    static void test_1_23(void);
-    static void test_1_24(void);
-    static void test_1_25(void);
-    static void test_1_26(void);
-    static void test_1_27(void);
-    static void test_1_28(void);
-    static void test_1_29(void);
-    static void test_1_30(void);
-#endif
+    static void TEST_format_thousands_SIMPLE(void);
+    static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS(void);
+    static void TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS(void);
 } // anonymous namespace
 
 
@@ -74,19 +64,9 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.number.grouping_functions", verbosity))
     {
-        XTESTS_RUN_CASE(test_number_0);
-        XTESTS_RUN_CASE(test_number_987654321_with_default_separators);
-        XTESTS_RUN_CASE(test_number_987654321_with_custom_separators);
-#if 0
-        XTESTS_RUN_CASE(test_1_23);
-        XTESTS_RUN_CASE(test_1_24);
-        XTESTS_RUN_CASE(test_1_25);
-        XTESTS_RUN_CASE(test_1_26);
-        XTESTS_RUN_CASE(test_1_27);
-        XTESTS_RUN_CASE(test_1_28);
-        XTESTS_RUN_CASE(test_1_29);
-        XTESTS_RUN_CASE(test_1_30);
-#endif
+        XTESTS_RUN_CASE(TEST_format_thousands_SIMPLE);
+        XTESTS_RUN_CASE(TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS);
+        XTESTS_RUN_CASE(TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -96,15 +76,17 @@ int main(int argc, char *argv[])
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
 namespace
 {
-  typedef std::string       string_a_t;
+    typedef std::string                                     string_a_t;
 
-static void test_number_0()
+
+static void TEST_format_thousands_SIMPLE()
 {
     char const* const pictures[] =
     {
@@ -133,7 +115,7 @@ static void test_number_0()
     }
 }
 
-static void test_number_987654321_with_default_separators()
+static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS()
 {
     char      dest[101];
     const int v  =  987654321;
@@ -165,7 +147,7 @@ static void test_number_987654321_with_default_separators()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("987,654,321", string_a_t(dest, n - 1));
 }
 
-static void test_number_987654321_with_custom_separators()
+static void TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS()
 {
     char      dest[101];
     const int v  =  987654321;
