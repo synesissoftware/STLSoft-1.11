@@ -31,7 +31,7 @@
  * `stlsoft::auto_buffer<>::copy_from()` should be template and work with other instances (with different `V_internalSize`)
  * GitHub README.md image features - version, build, etc;
  * hash specialisations for all possible key types (incl. `stlsoft::basic_simple_string<>`, etc.);
- * better documentation markup for `stlsoft::translate_thousands()`, `stlsoft::format_thousands()`, `stlsoft::integer_to_lc_string()`, `winstl::format_thousands()`, ...
+ * ~~better documentation markup for `stlsoft::translate_thousands()`, `stlsoft::format_thousands()`, `stlsoft::integer_to_lc_string()`, `winstl::format_thousands()`, ...~~
  * apply `stlsoft::string_insert()` to **WinSTL** time type shims;
  * fix Doxygen build;
 

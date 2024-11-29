@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  13
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      33
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -125,7 +125,8 @@ namespace stlsoft
  * \param outputSep The separator in the output;
  *
  * \return The number of characters required to store the result, including
- *   its terminating NUL character
+ *   its terminating NUL character. If this value is greater than \c cchDest
+ *   then nothing is written to \c dest
  */
 template <ss_typename_param_k C>
 inline
@@ -246,7 +247,8 @@ translate_thousands(
  * \param outputSep The separator in the output;
  *
  * \return The number of characters required to store the result, including
- *   its terminating NUL character
+ *   its terminating NUL character. If this value is greater than \c cchDest
+ *   then nothing is written to \c dest
  */
 template <ss_typename_param_k C>
 inline
@@ -267,8 +269,8 @@ translate_thousands(
     return translate_thousands(dest, cchDest, picture, rawNumber, cchRawNumber, fmtSep, outputSep);
 }
 
-/** Converts an integer value (\c number) into a decimal string with
- * grouping characters according to the given picture
+/** Converts the integer value \c number into a decimal string with grouping
+ * characters according to the given picture
  *
  * \ingroup group__library__Conversion
  *
@@ -291,13 +293,13 @@ translate_thousands(
  * \param picture Grouping picture. May not be NULL. Behaviour is undefined
  *   if empty, or contains any characters other than \c fmtSep and
  *   non-0 digits;
- * \param number The raw number form. May not be NULL. Behaviour is
- *   undefined contains any characters other than digits;
+ * \param number The number to be formatted;
  * \param fmtSep The separator in the format;
  * \param outputSep The separator in the output;
  *
  * \return The number of characters required to store the result, including
- *   its terminating NUL character
+ *   its terminating NUL character. If this value is greater than \c cchDest
+ *   then nothing is written to \c dest
  */
 template<
     ss_typename_param_k C
@@ -323,8 +325,8 @@ format_thousands(
     return translate_thousands(dest, cchDest, picture, rawNumber, cchRawNumber, fmtSep, outputSep);
 }
 
-/** Converts an integer value (\c number) into a decimal string with
- * grouping characters according to the given picture
+/** Converts the integer value \c number into a decimal string with grouping
+ * characters according to the given picture
  *
  * \ingroup group__library__Conversion
  *
@@ -344,11 +346,11 @@ format_thousands(
  * \param picture Grouping picture. May not be NULL. Behaviour is undefined
  *   if empty, or contains any characters other than <code>;</code> and
  *   non-0 digits;
- * \param number The raw number form. May not be NULL. Behaviour is undefined
- *   contains any characters other than digits;
+ * \param number The number to be formatted;
  *
  * \return The number of characters required to store the result, including
- *   its terminating NUL character
+ *   its terminating NUL character. If this value is greater than \c cchDest
+ *   then nothing is written to \c dest
  */
 template<
     ss_typename_param_k C
