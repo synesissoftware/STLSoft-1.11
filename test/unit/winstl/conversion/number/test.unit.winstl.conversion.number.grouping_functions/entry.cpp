@@ -168,9 +168,30 @@ hooked_GetLocaleInfoW(
 )
 {
     if (LOCALE_USER_DEFAULT == Locale &&
-        LOCALE_SGROUPING == LCType)
+        LOCALE_SGROUPING == LCType &&
+        NULL != s_picture_w)
     {
-        return 0;
+        int const len = static_cast<int>(stlsoft::c_str_len_w(s_picture_w));
+
+        if (NULL == lpLCData)
+        {
+            return len + 1;
+        }
+        else
+        {
+            if (cchData > len)
+            {
+                ::memcpy(lpLCData, s_picture_w, (1 + len) * sizeof(wchar_t));
+
+                return 0;
+            }
+            else
+            {
+                ::SetLastError(ERROR_INSUFFICIENT_BUFFER);
+
+                return 0;
+            }
+        }
     }
     else
     {
