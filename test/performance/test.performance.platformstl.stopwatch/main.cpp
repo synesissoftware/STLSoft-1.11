@@ -4,7 +4,7 @@
  * Purpose: Perf-test for stopwatch types.
  *
  * Created: 15th March 2024
- * Updated: 18th March 2024
+ * Updated: 1st December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,7 +41,7 @@
  */
 
 using stlsoft::ss_size_t;
-typedef platformstl::stopwatch::interval_type   interval_t;
+typedef platformstl::stopwatch::interval_type               interval_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -55,7 +55,7 @@ std::pair<
     interval_t  // total_time_ns
 ,   ss_size_t   // anchoring_value - this to incline the optimiser to not elide the whole thing
 >
-test_(
+test_start_stop_(
     ss_size_t   num_iterations
 )
 {
@@ -122,41 +122,46 @@ int main(int /* argc */, char* /* argv */[])
 {
     ss_size_t const NUM_ITERATIONS  =   1000000;
 
-#define DEFINE_TYPE_AND_NAME(t)             char const* const type_name = #t; typedef t sw_t
+#define DEFINE_TYPE_AND_NAME(t)                             char const* const type_name = #t; typedef t sw_t
 
+    // start-stop
     {
-        DEFINE_TYPE_AND_NAME(platformstl::stopwatch);
+        std::cout << "`start()` - `stop()` :" << std::endl;
 
-        std::pair<
-            interval_t  // total_time_ns
-        ,   ss_size_t   // anchoring_value
-        > const r = test_<sw_t>(NUM_ITERATIONS);
+        {
+            DEFINE_TYPE_AND_NAME(platformstl::stopwatch);
 
-        display_results(std::cout, NUM_ITERATIONS, type_name, r);
-    }
+            std::pair<
+                interval_t  // total_time_ns
+            ,   ss_size_t   // anchoring_value
+            > const r = test_start_stop_<sw_t>(NUM_ITERATIONS);
 
-
-    {
-        DEFINE_TYPE_AND_NAME(platformstl::processtimes_stopwatch);
-
-        std::pair<
-            interval_t  // total_time_ns
-        ,   ss_size_t   // anchoring_value
-        > const r = test_<sw_t>(NUM_ITERATIONS);
-
-        display_results(std::cout, NUM_ITERATIONS, type_name, r);
-    }
+            display_results(std::cout, NUM_ITERATIONS, type_name, r);
+        }
 
 
-    {
-        DEFINE_TYPE_AND_NAME(stlsoft::std_chrono_hrc_stopwatch);
+        {
+            DEFINE_TYPE_AND_NAME(platformstl::processtimes_stopwatch);
 
-        std::pair<
-            interval_t  // total_time_ns
-        ,   ss_size_t   // anchoring_value
-        > const r = test_<sw_t>(NUM_ITERATIONS);
+            std::pair<
+                interval_t  // total_time_ns
+            ,   ss_size_t   // anchoring_value
+            > const r = test_start_stop_<sw_t>(NUM_ITERATIONS);
 
-        display_results(std::cout, NUM_ITERATIONS, type_name, r);
+            display_results(std::cout, NUM_ITERATIONS, type_name, r);
+        }
+
+
+        {
+            DEFINE_TYPE_AND_NAME(stlsoft::std_chrono_hrc_stopwatch);
+
+            std::pair<
+                interval_t  // total_time_ns
+            ,   ss_size_t   // anchoring_value
+            > const r = test_start_stop_<sw_t>(NUM_ITERATIONS);
+
+            display_results(std::cout, NUM_ITERATIONS, type_name, r);
+        }
     }
 
 
