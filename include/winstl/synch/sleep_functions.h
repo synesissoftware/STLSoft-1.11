@@ -4,7 +4,7 @@
  * Purpose: WinSTL time functions.
  *
  * Created: 11th June 2006
- * Updated: 27th November 2024
+ * Updated: 1st December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       31
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   5
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,7 +120,7 @@ STLSOFT_INLINE
 ws_int_t
 winstl_C_micro_sleep(
     ws_uint_t   microseconds
-)
+) STLSOFT_NOEXCEPT
 {
     return (WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(microseconds / 1000), ws_true_v);
 }
@@ -181,7 +181,7 @@ inline
 ws_int_t
 micro_sleep(
     ws_uint_t microseconds
-)
+) STLSOFT_NOEXCEPT
 {
     return winstl_C_micro_sleep(microseconds);
 }
