@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::stopwatch`.
  *
  * Created: 19th November 2024
- * Updated: 19th November 2024
+ * Updated: 30th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,7 +24,6 @@
  */
 
 /* xTests header files */
-#include <xtests/xtests.h>
 #include <xtests/xtests.h>
 
 /* STLSoft header files */
