@@ -175,7 +175,7 @@ public: // accessors
 
 private: // implementation
     // Returns false if overflowed
-    bool try_add_ns_to_total_(integer_type time_in_ns);
+    bool try_add_ns_to_total_and_update_minmax_and_count_(integer_type time_in_ns);
 
 
 private: // fields
@@ -213,7 +213,7 @@ private: // fields
 
 inline
 bool
-doomgram::try_add_ns_to_total_(
+doomgram::try_add_ns_to_total_and_update_minmax_and_count_(
     integer_type time_in_ns
 )
 {
@@ -228,6 +228,18 @@ doomgram::try_add_ns_to_total_(
     else
     {
         m_total_event_time_ns = new_total_event_time_ns;
+
+        ++m_event_count;
+
+        if (time_in_ns < m_min_event_time_ns)
+        {
+            m_min_event_time_ns = time_in_ns;
+        }
+
+        if (time_in_ns > m_max_event_time_ns)
+        {
+            m_max_event_time_ns = time_in_ns;
+        }
 
         return true;
     }
@@ -258,108 +270,101 @@ doomgram::push_event_time_ns(
 {
     STLSOFT_MESSAGE_ASSERT("timing stack has overflowed and no further events may be pushed", !m_has_overflowed);
 
-    if (!try_add_ns_to_total_(time_in_ns))
+    if (!try_add_ns_to_total_and_update_minmax_and_count_(time_in_ns))
     {
         return false;
     }
-
-    ++m_event_count;
-
-    if (time_in_ns < m_min_event_time_ns)
-    {
-        m_min_event_time_ns = time_in_ns;
-    }
-
-    if (time_in_ns > m_max_event_time_ns)
-    {
-        m_max_event_time_ns = time_in_ns;
-    }
-
-    // Algorithm:
-    //
-    // We assume that most events will be down in the sub-1ms range, so
-    // branch accordingly.
-
-    if (time_in_ns >= 1000000)
-    {
-        // >= 1ms
-
-        if (time_in_ns >= 1000000000)
-        {
-            // >= 1s
-
-            if (time_in_ns >= 100000000000)
-            {
-                m_num_event_times_over_100s += 1;
-            }
-            else if (time_in_ns >= 10000000000)
-            {
-                m_num_event_times_over_10s += 1;
-            }
-            else
-            {
-                m_num_event_times_over_1s += 1;
-            }
-        }
-        else
-        {
-            // < 1s
-
-            if (time_in_ns >= 100000000)
-            {
-                m_num_event_times_over_100ms += 1;
-            }
-            else if (time_in_ns >= 10000000)
-            {
-                m_num_event_times_over_10ms += 1;
-            }
-            else
-            {
-                m_num_event_times_over_1ms += 1;
-            }
-        }
-    }
     else
     {
-        // < 1ms
+        // Algorithm:
+        //
+        // We assume that most events will be down in the sub-1ms range, so
+        // branch accordingly.
 
-        if (time_in_ns >= 1000)
+        if (time_in_ns >= 1000000)
         {
-            // >= 1µs
 
-            if (time_in_ns >= 100000)
+
+            // >= 1ms
+
+            if (time_in_ns >= 1000000000)
             {
-                m_num_event_times_over_100us += 1;
-            }
-            else if (time_in_ns >= 10000)
-            {
-                m_num_event_times_over_10us += 1;
+                // >= 1s
+
+                if (time_in_ns >= 100000000000)
+                {
+                    m_num_event_times_over_100s += 1;
+                }
+                else if (time_in_ns >= 10000000000)
+                {
+                    m_num_event_times_over_10s += 1;
+                }
+                else
+                {
+                    m_num_event_times_over_1s += 1;
+                }
             }
             else
             {
-                m_num_event_times_over_1us += 1;
+                // < 1s
+
+                if (time_in_ns >= 100000000)
+                {
+                    m_num_event_times_over_100ms += 1;
+                }
+                else if (time_in_ns >= 10000000)
+                {
+                    m_num_event_times_over_10ms += 1;
+                }
+                else
+                {
+                    m_num_event_times_over_1ms += 1;
+                }
             }
         }
         else
         {
-            // < 1µs
+            // < 1ms
 
-            if (time_in_ns >= 100)
+            if (time_in_ns >= 1000)
             {
-                m_num_event_times_over_100ns += 1;
+                // >= 1µs
+
+                if (time_in_ns >= 100000)
+                {
+                    m_num_event_times_over_100us += 1;
+                }
+                else if (time_in_ns >= 10000)
+                {
+                    m_num_event_times_over_10us += 1;
+                }
+                else
+                {
+                    m_num_event_times_over_1us += 1;
+                }
             }
-            else if (time_in_ns >= 10)
+            else
             {
-                m_num_event_times_over_10ns += 1;
-            }
-            else if (time_in_ns >= 1)
-            {
-                m_num_event_times_over_1ns += 1;
+
+                // < 1µs
+
+                if (time_in_ns >= 100)
+                {
+                    m_num_event_times_over_100ns += 1;
+                }
+                else if (time_in_ns >= 10)
+                {
+                    m_num_event_times_over_10ns += 1;
+                }
+                else if (time_in_ns >= 1)
+                {
+                    m_num_event_times_over_1ns += 1;
+                }
             }
         }
-    }
 
-    return true;
+        return true;
+    }
 }
 
 inline
