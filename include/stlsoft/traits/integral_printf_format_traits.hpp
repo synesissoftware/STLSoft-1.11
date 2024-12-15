@@ -4,7 +4,7 @@
  * Purpose: integral_printf_format_traits classes.
  *
  * Created: 16th January 2002
- * Updated: 20th October 2024
+ * Updated: 25th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_FORMAT_TRAITS_MAJOR       7
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_FORMAT_TRAITS_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_FORMAT_TRAITS_REVISION    2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_FORMAT_TRAITS_EDIT        84
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_FORMAT_TRAITS_REVISION    3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_PRINTF_FORMAT_TRAITS_EDIT        85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -315,13 +315,13 @@ struct integral_printf_format_traits_base<char>
     }
     static ss_char_a_t const* decimal_format_a()
     {
-#  ifdef STLSOFT_CF_CHAR_IS_UNSIGNED
+#  ifdef STLSOFT_CF_char_IS_UNSIGNED
 
         return  "%u";
-#  else /* ? STLSOFT_CF_CHAR_IS_UNSIGNED */
+#  else /* ? STLSOFT_CF_char_IS_UNSIGNED */
 
         return  "%d";
-#  endif /* STLSOFT_CF_CHAR_IS_UNSIGNED */
+#  endif /* STLSOFT_CF_char_IS_UNSIGNED */
     }
     STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(format_w, decimal_format_w)
     static ss_char_w_t const* format_w()
@@ -330,13 +330,13 @@ struct integral_printf_format_traits_base<char>
     }
     static ss_char_w_t const* decimal_format_w()
     {
-#  ifdef STLSOFT_CF_CHAR_IS_UNSIGNED
+#  ifdef STLSOFT_CF_char_IS_UNSIGNED
 
         return L"%u";
-#  else /* ? STLSOFT_CF_CHAR_IS_UNSIGNED */
+#  else /* ? STLSOFT_CF_char_IS_UNSIGNED */
 
         return L"%d";
-#  endif /* STLSOFT_CF_CHAR_IS_UNSIGNED */
+#  endif /* STLSOFT_CF_char_IS_UNSIGNED */
     }
 
     STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(hex_format_a, hexadecimal_format_a)
