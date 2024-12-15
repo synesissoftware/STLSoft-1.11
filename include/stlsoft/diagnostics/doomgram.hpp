@@ -4,7 +4,7 @@
  * Purpose: Definition of the doomgram class.
  *
  * Created: 13th May 2013
- * Updated: 15th December 2024
+ * Updated: 16th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MAJOR     1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MINOR     5
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_REVISION  1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      30
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_REVISION  2
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -352,7 +352,7 @@ doomgram::push_event_time_ns(
             {
                 m_num_event_times_over_10ns += 1;
             }
-            else
+            else if (time_in_ns >= 1)
             {
                 m_num_event_times_over_1ns += 1;
             }
@@ -390,7 +390,7 @@ doomgram::push_event_time_s(
     integer_type time_in_s
 )
 {
-    // TODO: implement separately, since already know ms
+    // TODO: implement separately, since already know s
 
     return push_event_time_ns(time_in_s * 1000000000);
 }
