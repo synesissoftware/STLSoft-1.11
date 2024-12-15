@@ -38,6 +38,7 @@
 
 /* Standard header files */
 
+#include <functional>
 #if __cplusplus >= 201103L
 # include <list>
 #endif
