@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR      5
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR      0
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION   3
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       50
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR      1
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION   1
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -212,6 +212,12 @@ public: // operations
     ///
     /// Begins the measurement period
     void    start();
+    /// Pauses the measurement
+    ///
+    void    pause();
+    /// Unpauses the measurement
+    ///
+    void    unpause();
     /// Ends measurement
     ///
     /// Ends the measurement period
@@ -287,8 +293,14 @@ private: // implementation
     static void             measure_(epoch_type &epoch);
 
 private: // fields
-    epoch_type  m_start;    // start of measurement period
-    epoch_type  m_end;      // End of measurement period
+    /// Stores the start epoch
+    epoch_type      m_start;
+    /// Stores the end epoch
+    epoch_type      m_end;
+    /// Stores the pause epoch
+    epoch_type      m_pause;
+    /// Stores the (cumulate) pause time (in nanoseconds)
+    interval_type   m_paused_ns;
 };
 
 
@@ -429,6 +441,27 @@ void
 stopwatch::start()
 {
     measure_(m_start);
+
+    m_end = m_start;
+    m_paused_ns = 0;
+}
+
+inline
+void
+stopwatch::pause()
+{
+    measure_(m_pause);
+}
+
+inline
+void
+stopwatch::unpause()
+{
+    epoch_type now;
+
+    measure_(now);
+
+    m_paused_ns += class_type::get_nanoseconds(m_pause, now);
 }
 
 inline
@@ -589,6 +622,8 @@ stopwatch::get_milliseconds() const
         result = (count / frequency_()) * interval_type(1000);
     }
 
+    result -= m_paused_ns / (1000 * 1000);
+
     return result;
 }
 
@@ -612,6 +647,8 @@ stopwatch::get_microseconds() const
         result = (count / frequency_()) * interval_type(1000000);
     }
 
+    result -= m_paused_ns / 1000;
+
     return result;
 }
 
@@ -634,6 +671,8 @@ stopwatch::get_nanoseconds() const
     {
         result = (count / frequency_()) * interval_type(100000000);
     }
+
+    result -= m_paused_ns;
 
     return result;
 }
