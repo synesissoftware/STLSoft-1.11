@@ -281,6 +281,11 @@ doomgram::push_event_time_ns(
         // We assume that most events will be down in the sub-1ms range, so
         // branch accordingly.
 
+        if (0 != (time_in_ns & ~0x3FFFFFFF))
+        {
+            goto gt_1073741823;
+        }
+
         if (time_in_ns >= 1000000)
         {
 
@@ -289,6 +294,8 @@ doomgram::push_event_time_ns(
 
             if (time_in_ns >= 1000000000)
             {
+gt_1073741823:
+
                 // >= 1s
 
                 if (time_in_ns >= 100000000000)
@@ -370,12 +377,91 @@ doomgram::push_event_time_ns(
 inline
 bool
 doomgram::push_event_time_us(
-    integer_type time_in_ms
+    integer_type time_in_us
 )
 {
     // TODO: implement separately, since already know µs
 
-    return push_event_time_ns(time_in_ms * 1000);
+    integer_type const time_in_ns = time_in_us * 1000;
+
+    if (!try_add_ns_to_total_and_update_minmax_and_count_(time_in_ns))
+    {
+        return false;
+    }
+    else
+    {
+        // possible slots:
+        //
+        // - 1µs
+        // - 10µs
+        // - 100µs
+        // - 1ms
+        // - 10ms
+        // - 100ms
+        // - 1s
+        // - 10s
+        // - 100s
+
+        if (0 != (time_in_us & ~0xfffff))
+        {
+            goto ge_fffff;
+        }
+
+        if (time_in_us < 1000000)
+        {
+            if (time_in_us < 1000)
+            {
+                if (time_in_us >= 100)
+                {
+                    m_num_event_times_over_100us += 1;
+                }
+                else if (time_in_us >= 10)
+                {
+                    m_num_event_times_over_10us += 1;
+                }
+                else if (time_in_us >= 1)
+                {
+                    m_num_event_times_over_1us += 1;
+                }
+            }
+            else
+            {
+                // 1s+
+
+                if (time_in_us >= 100000)
+                {
+                    m_num_event_times_over_100ms += 1;
+                }
+                else if (time_in_us >= 10000)
+                {
+                    m_num_event_times_over_10ms += 1;
+                }
+                else
+                {
+                    m_num_event_times_over_1ms += 1;
+                }
+            }
+        }
+        else
+        {
+ge_fffff:
+
+            if (time_in_us >= 100000000)
+            {
+                m_num_event_times_over_100s += 1;
+            }
+            else if (time_in_us >= 10000000)
+            {
+                m_num_event_times_over_10s += 1;
+            }
+            else // if (time_in_us != 0)
+            {
+                m_num_event_times_over_1s += 1;
+            }
+        }
+
+        return true;
+    }
 }
 
 inline
@@ -384,9 +470,65 @@ doomgram::push_event_time_ms(
     integer_type time_in_ms
 )
 {
-    // TODO: implement separately, since already know ms
+    integer_type const time_in_ns = time_in_ms * 1000000;
 
-    return push_event_time_ns(time_in_ms * 1000000);
+    if (!try_add_ns_to_total_and_update_minmax_and_count_(time_in_ns))
+    {
+        return false;
+    }
+    else
+    {
+        // possible slots:
+        //
+        // - 1ms
+        // - 10ms
+        // - 100ms
+        // - 1s
+        // - 10s
+        // - 100s
+
+        if (0 != (time_in_ms & ~0x1ffff))
+        {
+            goto ge_1ffff;
+        }
+
+        if (time_in_ms < 1000)
+        {
+            if (time_in_ms >= 100)
+            {
+                m_num_event_times_over_100ms += 1;
+            }
+            else if (time_in_ms >= 10)
+            {
+                m_num_event_times_over_10ms += 1;
+            }
+            else if (time_in_ms >= 1)
+            {
+                m_num_event_times_over_1ms += 1;
+            }
+        }
+        else
+        {
+            // 1s+
+
+            if (time_in_ms >= 100000)
+            {
+ge_1ffff:
+
+                m_num_event_times_over_100s += 1;
+            }
+            else if (time_in_ms >= 10000)
+            {
+                m_num_event_times_over_10s += 1;
+            }
+            else
+            {
+                m_num_event_times_over_1s += 1;
+            }
+        }
+
+        return true;
+    }
 }
 
 inline
@@ -395,9 +537,29 @@ doomgram::push_event_time_s(
     integer_type time_in_s
 )
 {
-    // TODO: implement separately, since already know s
+    integer_type const time_in_ns = time_in_s * 1000000000;
 
-    return push_event_time_ns(time_in_s * 1000000000);
+    if (!try_add_ns_to_total_and_update_minmax_and_count_(time_in_ns))
+    {
+        return false;
+    }
+    else
+    {
+        if (time_in_s >= 100)
+        {
+            m_num_event_times_over_100s += 1;
+        }
+        else if (time_in_s >= 10)
+        {
+            m_num_event_times_over_10s += 1;
+        }
+        else if (time_in_s >= 1)
+        {
+            m_num_event_times_over_1s += 1;
+        }
+
+        return true;
+    }
 }
 
 

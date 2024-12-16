@@ -53,6 +53,7 @@ namespace
     static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_1();
     static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_2();
     static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_3();
+    static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4();
     static void TEST_doomgram_SEVERAL_DISTINCT_TIMINGS();
     static void TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS();
     static void TEST_doomgram_OVERFLOW_BY_SECONDS();
@@ -81,6 +82,7 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(TEST_doomgram_UNIFORM_SPREAD_TIMINGS_1);
         XTESTS_RUN_CASE(TEST_doomgram_UNIFORM_SPREAD_TIMINGS_2);
         XTESTS_RUN_CASE(TEST_doomgram_UNIFORM_SPREAD_TIMINGS_3);
+        XTESTS_RUN_CASE(TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4);
         XTESTS_RUN_CASE(TEST_doomgram_SEVERAL_DISTINCT_TIMINGS);
         XTESTS_RUN_CASE(TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS);
         XTESTS_RUN_CASE(TEST_doomgram_OVERFLOW_BY_SECONDS);
@@ -330,6 +332,48 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_3()
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1ns());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ns());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100s());
+}
+
+static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4()
+{
+    stlsoft::doomgram       dg;
+    stlsoft::ss_uint64_t    total_event_time_ns;
+    stlsoft::ss_uint64_t    min_event_time_ns;
+    stlsoft::ss_uint64_t    max_event_time_ns;
+
+    dg.push_event_time_us(        6);
+    dg.push_event_time_us(       50);
+    dg.push_event_time_us(      400);
+    dg.push_event_time_us(     3000);
+    dg.push_event_time_us(    20000);
+    dg.push_event_time_us(   100000);
+    dg.push_event_time_us(  9000000);
+    dg.push_event_time_us( 80000000);
+    dg.push_event_time_us(700000000);
+
+    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+
+    XTESTS_TEST_INTEGER_EQUAL(9, dg.event_count());
+    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    XTESTS_TEST_INTEGER_EQUAL(789123456000, total_event_time_ns);
+    XTESTS_TEST_INTEGER_EQUAL(789123456000, dg.total_event_time_ns_raw());
+    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    XTESTS_TEST_INTEGER_EQUAL(6000, min_event_time_ns);
+    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    XTESTS_TEST_INTEGER_EQUAL(700000000000, max_event_time_ns);
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ns());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1us());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10us());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100us());
