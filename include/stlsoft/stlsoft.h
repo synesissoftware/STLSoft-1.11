@@ -55,7 +55,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    56
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 3
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 4
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     579
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
@@ -374,7 +374,7 @@
 # define _STLSOFT_VER_1_11_1_A24    0x010b0158  /*!< Version 1.11.1 alpha 24 (4th November 2024) */
 # define _STLSOFT_VER_1_11_1_A25    0x010b0159  /*!< Version 1.11.1 alpha 25 (18th November 2024) */
 # define _STLSOFT_VER_1_11_1_A26    0x010b015a  /*!< Version 1.11.1 alpha 26 (23rd November 2024) */
-# define _STLSOFT_VER_1_11_1_A27    0x010b015b  /*!< Version 1.11.1 alpha 27 (20th December 2024) */
+# define _STLSOFT_VER_1_11_1_A27    0x010b015b  /*!< Version 1.11.1 alpha 27 (25th November 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
@@ -1049,7 +1049,7 @@
 #  define STLSOFT_FALLTHROUGH()                             __attribute__ ((fallthrough))
 # else
 
-#  define STLSOFT_FALLTHROUGH()                             do {} while (stlsoft_C_always_false_())
+#  define STLSOFT_FALLTHROUGH()                             do {} while (STLSOFT_ALWAYS_FALSE())
 # endif
 
 
