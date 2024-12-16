@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MAJOR     1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MINOR     5
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_REVISION  2
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      31
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MAJOR     2
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MINOR     0
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_REVISION  1
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -145,29 +145,29 @@ public: // accessors
     /// \param value Pointer to variable to receive the value. May not be NULL
     bool try_get_max_event_time_ns(integer_type* value) const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [1ns, 10ns)
-    integer_type num_event_times_over_1ns() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_1ns() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [10ns, 100ns)
-    integer_type num_event_times_over_10ns() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_10ns() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [100ns, 1µs)
-    integer_type num_event_times_over_100ns() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_100ns() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [1µs, 10µs)
-    integer_type num_event_times_over_1us() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_1us() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [10µs, 100µs)
-    integer_type num_event_times_over_10us() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_10us() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [100µs, 1ms)
-    integer_type num_event_times_over_100us() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_100us() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [1ms, 10ms)
-    integer_type num_event_times_over_1ms() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_1ms() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [10ms, 100ms)
-    integer_type num_event_times_over_10ms() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_10ms() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [100ms, 1s)
-    integer_type num_event_times_over_100ms() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_100ms() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [1s, 10s)
-    integer_type num_event_times_over_1s() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_1s() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [10s, 100s)
-    integer_type num_event_times_over_10s() const STLSOFT_NOEXCEPT;
+    integer_type num_events_in_10s() const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [100s, ∞)
-    integer_type num_event_times_over_100s() const STLSOFT_NOEXCEPT;
+    integer_type num_events_ge_100s() const STLSOFT_NOEXCEPT;
 
     /// Indicates whether overflow has occurred
     bool has_overflowed() const STLSOFT_NOEXCEPT;
@@ -188,18 +188,18 @@ private: // fields
     integer_type    m_num_event_times[12]];
 #else
 
-    integer_type    m_num_event_times_over_1ns;
-    integer_type    m_num_event_times_over_10ns;
-    integer_type    m_num_event_times_over_100ns;
-    integer_type    m_num_event_times_over_1us;
-    integer_type    m_num_event_times_over_10us;
-    integer_type    m_num_event_times_over_100us;
-    integer_type    m_num_event_times_over_1ms;
-    integer_type    m_num_event_times_over_10ms;
-    integer_type    m_num_event_times_over_100ms;
-    integer_type    m_num_event_times_over_1s;
-    integer_type    m_num_event_times_over_10s;
-    integer_type    m_num_event_times_over_100s;
+    integer_type    m_num_events_in_1ns;
+    integer_type    m_num_events_in_10ns;
+    integer_type    m_num_events_in_100ns;
+    integer_type    m_num_events_in_1us;
+    integer_type    m_num_events_in_10us;
+    integer_type    m_num_events_in_100us;
+    integer_type    m_num_events_in_1ms;
+    integer_type    m_num_events_in_10ms;
+    integer_type    m_num_events_in_100ms;
+    integer_type    m_num_events_in_1s;
+    integer_type    m_num_events_in_10s;
+    integer_type    m_num_events_ge_100s;
 #endif
     bool            m_has_overflowed;
 };
@@ -300,15 +300,15 @@ gt_1073741823:
 
                 if (time_in_ns >= 100000000000)
                 {
-                    m_num_event_times_over_100s += 1;
+                    m_num_events_ge_100s += 1;
                 }
                 else if (time_in_ns >= 10000000000)
                 {
-                    m_num_event_times_over_10s += 1;
+                    m_num_events_in_10s += 1;
                 }
                 else
                 {
-                    m_num_event_times_over_1s += 1;
+                    m_num_events_in_1s += 1;
                 }
             }
             else
@@ -317,15 +317,15 @@ gt_1073741823:
 
                 if (time_in_ns >= 100000000)
                 {
-                    m_num_event_times_over_100ms += 1;
+                    m_num_events_in_100ms += 1;
                 }
                 else if (time_in_ns >= 10000000)
                 {
-                    m_num_event_times_over_10ms += 1;
+                    m_num_events_in_10ms += 1;
                 }
                 else
                 {
-                    m_num_event_times_over_1ms += 1;
+                    m_num_events_in_1ms += 1;
                 }
             }
         }
@@ -339,15 +339,15 @@ gt_1073741823:
 
                 if (time_in_ns >= 100000)
                 {
-                    m_num_event_times_over_100us += 1;
+                    m_num_events_in_100us += 1;
                 }
                 else if (time_in_ns >= 10000)
                 {
-                    m_num_event_times_over_10us += 1;
+                    m_num_events_in_10us += 1;
                 }
                 else
                 {
-                    m_num_event_times_over_1us += 1;
+                    m_num_events_in_1us += 1;
                 }
             }
             else
@@ -357,15 +357,15 @@ gt_1073741823:
 
                 if (time_in_ns >= 100)
                 {
-                    m_num_event_times_over_100ns += 1;
+                    m_num_events_in_100ns += 1;
                 }
                 else if (time_in_ns >= 10)
                 {
-                    m_num_event_times_over_10ns += 1;
+                    m_num_events_in_10ns += 1;
                 }
                 else if (time_in_ns >= 1)
                 {
-                    m_num_event_times_over_1ns += 1;
+                    m_num_events_in_1ns += 1;
                 }
             }
         }
@@ -413,15 +413,15 @@ doomgram::push_event_time_us(
             {
                 if (time_in_us >= 100)
                 {
-                    m_num_event_times_over_100us += 1;
+                    m_num_events_in_100us += 1;
                 }
                 else if (time_in_us >= 10)
                 {
-                    m_num_event_times_over_10us += 1;
+                    m_num_events_in_10us += 1;
                 }
                 else if (time_in_us >= 1)
                 {
-                    m_num_event_times_over_1us += 1;
+                    m_num_events_in_1us += 1;
                 }
             }
             else
@@ -430,15 +430,15 @@ doomgram::push_event_time_us(
 
                 if (time_in_us >= 100000)
                 {
-                    m_num_event_times_over_100ms += 1;
+                    m_num_events_in_100ms += 1;
                 }
                 else if (time_in_us >= 10000)
                 {
-                    m_num_event_times_over_10ms += 1;
+                    m_num_events_in_10ms += 1;
                 }
                 else
                 {
-                    m_num_event_times_over_1ms += 1;
+                    m_num_events_in_1ms += 1;
                 }
             }
         }
@@ -448,15 +448,15 @@ ge_fffff:
 
             if (time_in_us >= 100000000)
             {
-                m_num_event_times_over_100s += 1;
+                m_num_events_ge_100s += 1;
             }
             else if (time_in_us >= 10000000)
             {
-                m_num_event_times_over_10s += 1;
+                m_num_events_in_10s += 1;
             }
             else // if (time_in_us != 0)
             {
-                m_num_event_times_over_1s += 1;
+                m_num_events_in_1s += 1;
             }
         }
 
@@ -496,15 +496,15 @@ doomgram::push_event_time_ms(
         {
             if (time_in_ms >= 100)
             {
-                m_num_event_times_over_100ms += 1;
+                m_num_events_in_100ms += 1;
             }
             else if (time_in_ms >= 10)
             {
-                m_num_event_times_over_10ms += 1;
+                m_num_events_in_10ms += 1;
             }
             else if (time_in_ms >= 1)
             {
-                m_num_event_times_over_1ms += 1;
+                m_num_events_in_1ms += 1;
             }
         }
         else
@@ -515,15 +515,15 @@ doomgram::push_event_time_ms(
             {
 ge_1ffff:
 
-                m_num_event_times_over_100s += 1;
+                m_num_events_ge_100s += 1;
             }
             else if (time_in_ms >= 10000)
             {
-                m_num_event_times_over_10s += 1;
+                m_num_events_in_10s += 1;
             }
             else
             {
-                m_num_event_times_over_1s += 1;
+                m_num_events_in_1s += 1;
             }
         }
 
@@ -547,15 +547,15 @@ doomgram::push_event_time_s(
     {
         if (time_in_s >= 100)
         {
-            m_num_event_times_over_100s += 1;
+            m_num_events_ge_100s += 1;
         }
         else if (time_in_s >= 10)
         {
-            m_num_event_times_over_10s += 1;
+            m_num_events_in_10s += 1;
         }
         else if (time_in_s >= 1)
         {
-            m_num_event_times_over_1s += 1;
+            m_num_events_in_1s += 1;
         }
 
         return true;
@@ -639,86 +639,86 @@ doomgram::try_get_max_event_time_ns(
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_1ns() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_1ns() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_1ns;
+	return m_num_events_in_1ns;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_10ns() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_10ns() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_10ns;
+	return m_num_events_in_10ns;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_100ns() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_100ns() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_100ns;
+	return m_num_events_in_100ns;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_1us() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_1us() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_1us;
+	return m_num_events_in_1us;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_10us() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_10us() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_10us;
+	return m_num_events_in_10us;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_100us() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_100us() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_100us;
+	return m_num_events_in_100us;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_1ms() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_1ms() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_1ms;
+	return m_num_events_in_1ms;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_10ms() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_10ms() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_10ms;
+	return m_num_events_in_10ms;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_100ms() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_100ms() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_100ms;
+	return m_num_events_in_100ms;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_1s() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_1s() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_1s;
+	return m_num_events_in_1s;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_10s() const STLSOFT_NOEXCEPT
+doomgram::num_events_in_10s() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_10s;
+	return m_num_events_in_10s;
 }
 
 inline
 doomgram::integer_type
-doomgram::num_event_times_over_100s() const STLSOFT_NOEXCEPT
+doomgram::num_events_ge_100s() const STLSOFT_NOEXCEPT
 {
-	return m_num_event_times_over_100s;
+	return m_num_events_ge_100s;
 }
 
 inline

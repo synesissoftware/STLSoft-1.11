@@ -123,18 +123,18 @@ static void TEST_doomgram_DEFAULT_CONSTRUCT()
     XTESTS_TEST_INTEGER_EQUAL(0, dg.total_event_time_ns_raw());
     XTESTS_TEST_BOOLEAN_FALSE(dg.try_get_min_event_time_ns(&min_event_time_ns));
     XTESTS_TEST_BOOLEAN_FALSE(dg.try_get_max_event_time_ns(&max_event_time_ns));
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
 }
 
 static void TEST_doomgram_SINGLE_TIMING_EVENT()
@@ -157,18 +157,18 @@ static void TEST_doomgram_SINGLE_TIMING_EVENT()
     XTESTS_TEST_INTEGER_EQUAL(13000000, min_event_time_ns);
     XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
     XTESTS_TEST_INTEGER_EQUAL(13000000, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
 }
 
 static void TEST_doomgram_ZERO_TIME_EVENTS()
@@ -194,18 +194,18 @@ static void TEST_doomgram_ZERO_TIME_EVENTS()
     XTESTS_TEST_INTEGER_EQUAL(0, min_event_time_ns);
     XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
     XTESTS_TEST_INTEGER_EQUAL(0, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
 }
 
 static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_1()
@@ -239,18 +239,18 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_1()
     XTESTS_TEST_INTEGER_EQUAL(9, min_event_time_ns);
     XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
     XTESTS_TEST_INTEGER_EQUAL(700000000000, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
 }
 
 static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_2()
@@ -284,18 +284,18 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_2()
     XTESTS_TEST_INTEGER_EQUAL(9, min_event_time_ns);
     XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
     XTESTS_TEST_INTEGER_EQUAL(700000000000, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
 }
 
 static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_3()
@@ -329,18 +329,18 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_3()
     XTESTS_TEST_INTEGER_EQUAL(9, min_event_time_ns);
     XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
     XTESTS_TEST_INTEGER_EQUAL(700000000000, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
 }
 
 static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4()
@@ -371,18 +371,18 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4()
     XTESTS_TEST_INTEGER_EQUAL(6000, min_event_time_ns);
     XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
     XTESTS_TEST_INTEGER_EQUAL(700000000000, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
 }
 
 static void TEST_doomgram_SEVERAL_DISTINCT_TIMINGS()
@@ -412,18 +412,18 @@ static void TEST_doomgram_SEVERAL_DISTINCT_TIMINGS()
     XTESTS_TEST_INTEGER_EQUAL(10, min_event_time_ns);
     XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
     XTESTS_TEST_INTEGER_EQUAL(309000000000, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_event_times_over_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_event_times_over_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
 }
 
 static void TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS()
@@ -455,18 +455,18 @@ static void TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS()
     XTESTS_TEST_INTEGER_EQUAL(11, min_event_time_ns);
     XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
     XTESTS_TEST_INTEGER_EQUAL(309000000000, max_event_time_ns);
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ns());
-    XTESTS_TEST_INTEGER_EQUAL(3, dg.num_event_times_over_10ns());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100ns());
-    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_event_times_over_1us());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_10us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_100us());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_1ms());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10ms());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100ms());
-    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_event_times_over_1s());
-    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_event_times_over_10s());
-    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_event_times_over_100s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(3, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(2, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
 }
 
 static void TEST_doomgram_OVERFLOW_BY_SECONDS()
