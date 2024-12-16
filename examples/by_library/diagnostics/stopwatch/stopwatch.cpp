@@ -1,10 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    by_library/diagnostics/stopwatch.cpp
  *
- * Purpose: C++ example program demonstrating use of the Performance library.
+ * Purpose: C++ example program demonstrating use of the stopwatch type
+ *          `platformstl::stopwatch` from the Performance library.
  *
  * Created: 22nd May 2006
- * Updated: 27th November 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
