@@ -4,7 +4,7 @@
  * Purpose: WinSTL time functions.
  *
  * Created: 11th June 2006
- * Updated: 1st December 2024
+ * Updated: 16th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,10 +51,10 @@
 #define WINSTL_INCL_WINSTL_SYNCH_H_SLEEP_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   5
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       32
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR    2
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR    1
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION 5
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,8 +101,9 @@ namespace winstl_project
  * functions
  */
 
-/** [C, C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
+/** [C, C++] Puts the calling thread to sleep for (at least) the given
+ * number of microseconds.
+ *
 \code
 winstl_C_micro_sleep(100000);  // Sleep for 0.1 seconds
 winstl_C_micro_sleep(100);     // Sleep for 0.1 milliseconds
@@ -111,8 +112,8 @@ winstl_C_micro_sleep(100);     // Sleep for 0.1 milliseconds
  * \param microseconds The number of microseconds to wait
  *
  * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>::GetLastError()</code> will contain an error code
- *   representing the reason for failure.
+ *  successful. If not, <code>::GetLastError()</code> will contain a code
+ *  code representing the reason for failure.
  *
  * \see winstl::micro_sleep
  */
@@ -164,8 +165,9 @@ namespace winstl
 
 #ifdef __cplusplus
 
-/** [C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
+/** [C++] Puts the calling thread to sleep for (at least) the given
+ * number of microseconds.
+ *
 \code
   winstl::micro_sleep(100000);  // Sleep for 0.1 approximately seconds
   winstl::micro_sleep(100);     // Sleep for 0.1 approximately milliseconds
@@ -174,8 +176,8 @@ namespace winstl
  * \param microseconds The number of microseconds to wait
  *
  * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>::GetLastError()</code> will contain an error code
- *   representing the reason for failure.
+ *  successful. If not, <code>::GetLastError()</code> will contain a code
+ *  representing the reason for failure.
  */
 inline
 ws_int_t

@@ -5,7 +5,7 @@
  *          library's processtimes_stopwatch component.
  *
  * Created: 9th June 2006
- * Updated: 4th September 2024
+ * Updated: 16th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -69,25 +69,25 @@ int main()
     elapsedCounter.stop();
 
     // 5.a. Display the number of whole seconds of elapsed time
-    cout << "elapsed interval (s):  " << static_cast<unsigned>(elapsedCounter.get_seconds()) << endl;
+    cout << "elapsed interval (s):  " << elapsedCounter.get_seconds() << endl;
     // 6.a. Display the number of whole milliseconds of user time.
-    cout << "elapsed interval (ms): " << static_cast<unsigned>(elapsedCounter.get_milliseconds()) << endl;
+    cout << "elapsed interval (ms): " << elapsedCounter.get_milliseconds() << endl;
     // 7.a. Display the number of whole microseconds of user time.
-    cout << "elapsed interval (us): " << static_cast<unsigned>(elapsedCounter.get_microseconds()) << endl;
+    cout << "elapsed interval (us): " << elapsedCounter.get_microseconds() << endl;
 
     // 5.b. Display the number of whole seconds of user time.
-    cout << "user interval (s):     " << static_cast<unsigned>(usageCounter.get_user_seconds()) << endl;
+    cout << "user interval (s):     " << usageCounter.get_user_seconds() << endl;
     // 6.b. Display the number of whole milliseconds of user time.
-    cout << "user interval (ms):    " << static_cast<unsigned>(usageCounter.get_user_milliseconds()) << endl;
+    cout << "user interval (ms):    " << usageCounter.get_user_milliseconds() << endl;
     // 7.b. Display the number of whole microseconds of user time.
-    cout << "user interval (us):    " << static_cast<unsigned>(usageCounter.get_user_microseconds()) << endl;
+    cout << "user interval (us):    " << usageCounter.get_user_microseconds() << endl;
 
     // 5.c. Display the number of whole seconds of kernel time.
-    cout << "kernel interval (s):   " << static_cast<unsigned>(usageCounter.get_kernel_seconds()) << endl;
+    cout << "kernel interval (s):   " << usageCounter.get_kernel_seconds() << endl;
     // 6.c. Display the number of whole milliseconds of kernel time.
-    cout << "kernel interval (ms):  " << static_cast<unsigned>(usageCounter.get_kernel_milliseconds()) << endl;
+    cout << "kernel interval (ms):  " << usageCounter.get_kernel_milliseconds() << endl;
     // 7.c. Display the number of whole microseconds of kernel time.
-    cout << "kernel interval (us):  " << static_cast<unsigned>(usageCounter.get_kernel_microseconds()) << endl;
+    cout << "kernel interval (us):  " << usageCounter.get_kernel_microseconds() << endl;
 
     return EXIT_SUCCESS;
 }

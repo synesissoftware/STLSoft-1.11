@@ -6,7 +6,7 @@
  *          otherwise using the tick-count facilities.
  *
  * Created: 31st July 2002
- * Updated: 27th November 2024
+ * Updated: 16th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR      5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR      0
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION   3
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       49
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
