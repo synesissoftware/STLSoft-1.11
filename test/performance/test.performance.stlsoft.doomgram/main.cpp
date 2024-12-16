@@ -84,7 +84,7 @@ using stlsoft::doomgram;
 
 namespace {
 
-    ss_size_t const NUM_ITERATIONS = 500000000;
+    ss_size_t const NUM_ITERATIONS = 2000000000;
 } // anonymous namespace
 
 
@@ -163,7 +163,7 @@ display_results(
         << '\t'
         << std::setw(12) << std::setfill(' ') << std::right << std::fixed << std::setprecision(3) << (static_cast<double>(r.first) / num_iterations)
         << '\t'
-        << r.second
+        << std::setw(20) << std::right << r.second
         << std::endl;
 }
 
@@ -205,6 +205,46 @@ run_tests(
         names.push_back(TEST_NAME);
     }
 
+    // push (ns) (%100000)
+    {
+        char const* const   TEST_NAME   =   "push (ns) (%100000)";
+
+        std::pair<
+            interval_t  // total_time_ns
+        ,   ss_size_t   // anchoring_value
+        > const r = test_<T_hg>(
+            NUM_ITERATIONS
+        ,   nullptr
+        ,   [](ss_size_t iteration, T_hg& /*hg1*/, T_hg& /*hg2*/) {
+
+            T_hg dg;
+
+            dg.push_event_time_ns(iteration % 100000);
+
+            return iteration
+                    + dg.event_count()
+                    + dg.total_event_time_ns_raw()
+                    + dg.num_event_times_over_1ns()
+                    + dg.num_event_times_over_10ns()
+                    + dg.num_event_times_over_100ns()
+                    + dg.num_event_times_over_1us()
+                    + dg.num_event_times_over_10us()
+                    + dg.num_event_times_over_100us()
+                    + dg.num_event_times_over_1ms()
+                    + dg.num_event_times_over_10ms()
+                    + dg.num_event_times_over_100ms()
+                    + dg.num_event_times_over_1s()
+                    + dg.num_event_times_over_10s()
+                    + dg.num_event_times_over_100s()
+                    ;
+        });
+
+        display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
+
+        intervals.push_back(r.first);
+        names.push_back(TEST_NAME);
+    }
+
     // push (ns)
     {
         char const* const   TEST_NAME   =   "push (ns)";
@@ -221,7 +261,22 @@ run_tests(
 
             dg.push_event_time_ns(iteration);
 
-            return iteration;
+            return iteration
+                    + dg.event_count()
+                    + dg.total_event_time_ns_raw()
+                    + dg.num_event_times_over_1ns()
+                    + dg.num_event_times_over_10ns()
+                    + dg.num_event_times_over_100ns()
+                    + dg.num_event_times_over_1us()
+                    + dg.num_event_times_over_10us()
+                    + dg.num_event_times_over_100us()
+                    + dg.num_event_times_over_1ms()
+                    + dg.num_event_times_over_10ms()
+                    + dg.num_event_times_over_100ms()
+                    + dg.num_event_times_over_1s()
+                    + dg.num_event_times_over_10s()
+                    + dg.num_event_times_over_100s()
+                    ;
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
@@ -246,7 +301,22 @@ run_tests(
 
             dg.push_event_time_us(iteration);
 
-            return iteration;
+            return iteration
+                    + dg.event_count()
+                    + dg.total_event_time_ns_raw()
+                    + dg.num_event_times_over_1ns()
+                    + dg.num_event_times_over_10ns()
+                    + dg.num_event_times_over_100ns()
+                    + dg.num_event_times_over_1us()
+                    + dg.num_event_times_over_10us()
+                    + dg.num_event_times_over_100us()
+                    + dg.num_event_times_over_1ms()
+                    + dg.num_event_times_over_10ms()
+                    + dg.num_event_times_over_100ms()
+                    + dg.num_event_times_over_1s()
+                    + dg.num_event_times_over_10s()
+                    + dg.num_event_times_over_100s()
+                    ;
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
@@ -271,7 +341,22 @@ run_tests(
 
             dg.push_event_time_ms(iteration);
 
-            return iteration;
+            return iteration
+                    + dg.event_count()
+                    + dg.total_event_time_ns_raw()
+                    + dg.num_event_times_over_1ns()
+                    + dg.num_event_times_over_10ns()
+                    + dg.num_event_times_over_100ns()
+                    + dg.num_event_times_over_1us()
+                    + dg.num_event_times_over_10us()
+                    + dg.num_event_times_over_100us()
+                    + dg.num_event_times_over_1ms()
+                    + dg.num_event_times_over_10ms()
+                    + dg.num_event_times_over_100ms()
+                    + dg.num_event_times_over_1s()
+                    + dg.num_event_times_over_10s()
+                    + dg.num_event_times_over_100s()
+                    ;
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
@@ -296,7 +381,22 @@ run_tests(
 
             dg.push_event_time_s(iteration);
 
-            return iteration;
+            return iteration
+                    + dg.event_count()
+                    + dg.total_event_time_ns_raw()
+                    + dg.num_event_times_over_1ns()
+                    + dg.num_event_times_over_10ns()
+                    + dg.num_event_times_over_100ns()
+                    + dg.num_event_times_over_1us()
+                    + dg.num_event_times_over_10us()
+                    + dg.num_event_times_over_100us()
+                    + dg.num_event_times_over_1ms()
+                    + dg.num_event_times_over_10ms()
+                    + dg.num_event_times_over_100ms()
+                    + dg.num_event_times_over_1s()
+                    + dg.num_event_times_over_10s()
+                    + dg.num_event_times_over_100s()
+                    ;
         });
 
         display_results(std::cout, NUM_ITERATIONS, ordering_label, TEST_NAME, r);
