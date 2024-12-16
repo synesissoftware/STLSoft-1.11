@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/diagnostics/stopwatch.hpp (formerly winstl::performance_counter, winstl/performance/performance_counter.hpp)
+ * File:    winstl/diagnostics/stopwatch.hpp (formerly winstl::performance_counter, winstl/performance/performance_counter.hpp)
  *
- * Purpose:     WinSTL general stopwatch class. This class attempts to
- *              use the built-in high-performance hardware counter if available,
- *              otherwise using the tick-count facilities.
+ * Purpose: WinSTL general stopwatch class. This class attempts to use the
+ *          built-in high-performance hardware counter if available,
+ *          otherwise using the tick-count facilities.
  *
- * Created:     31st July 2002
- * Updated:     11th March 2024
+ * Created: 31st July 2002
+ * Updated: 16th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR      5
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR      0
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION   3
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       48
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR      1
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION   1
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,29 +117,29 @@ namespace winstl_project
  */
 
 // class winstl::stopwatch
-/** A stopwatch that uses the most accurate measurement
- *   APIs available on the host machine
+/** A stopwatch that uses the most accurate measurement APIs available on
+ * the host machine
  *
  * \ingroup group__library__Diagnostic
  *
- * The following example illustrates the use of the counter to measure an
+ * The following example illustrates the use of the stopwatch to measure an
  * interval:
 \code
-winstl::stopwatch   counter;
+winstl::stopwatch   sw;
 
-counter.start();
+sw.start();
 for (size_t volatile i = 0; i != 0x7fffffff; ++i)
 {}
-counter.stop();
+sw.stop();
 
-std::cout << "Number of seconds:      " << counter.get_seconds() << std::endl;
-std::cout << "Number of milliseconds: " << counter.get_milliseconds() << std::endl;
-std::cout << "Number of microseconds: " << counter.get_microseconds() << std::endl;
-std::cout << "Number of nanoseconds:  " << counter.get_nanoseconds() << std::endl;
+std::cout << "Number of seconds:      " << sw.get_seconds() << std::endl;
+std::cout << "Number of milliseconds: " << sw.get_milliseconds() << std::endl;
+std::cout << "Number of microseconds: " << sw.get_microseconds() << std::endl;
+std::cout << "Number of nanoseconds:  " << sw.get_nanoseconds() << std::endl;
 \endcode
  *
  * Note: Some standard libraries' IOStreams do not recognise the 64-bit
- * unsigned integer that is the counter class's <code>interval_type</code>
+ * unsigned integer that is the stopwatch class's <code>interval_type</code>
  * (and <code>epoch_type</code>), in which case you should use an
  * appropriate cast. The following code shows a cast to
  * <code>unsigned long</code>, but be aware that this may cause truncation
@@ -147,30 +147,28 @@ std::cout << "Number of nanoseconds:  " << counter.get_nanoseconds() << std::end
  * compiler is 32-bits and the value returned by a given
  * <code>get_???()</code> method is > 4294967295.
 \code
-winstl::stopwatch   counter;
+winstl::stopwatch   sw;
 
-counter.start();
+sw.start();
 for (size_t volatile i = 0; i != 0x7fffffff; ++i)
 {}
-counter.stop();
+sw.stop();
 
-std::cout << "Number of seconds:      " << static_cast<unsigned long>(counter.get_seconds()) << std::endl;
-std::cout << "Number of milliseconds: " << static_cast<unsigned long>(counter.get_milliseconds()) << std::endl;
-std::cout << "Number of microseconds: " << static_cast<unsigned long>(counter.get_microseconds()) << std::endl;
-std::cout << "Number of nanoseconds:  " << static_cast<unsigned long>(counter.get_nanoseconds()) << std::endl;
+std::cout << "Number of seconds:      " << static_cast<unsigned long>(sw.get_seconds()) << std::endl;
+std::cout << "Number of milliseconds: " << static_cast<unsigned long>(sw.get_milliseconds()) << std::endl;
+std::cout << "Number of microseconds: " << static_cast<unsigned long>(sw.get_microseconds()) << std::endl;
+std::cout << "Number of nanoseconds:  " << static_cast<unsigned long>(sw.get_nanoseconds()) << std::endl;
 \endcode
  *
  *
- * \remarks This class attempts to use the high performance hardware counter
- *  as its measurement resource, but failing that it defaults to less
- *  accurate resources in order to guarantee that meaningful measurements
- *  are always available to application code.
+ * \remarks This class attempts to use the high performance hardware
+ *  stopwatch as its measurement resource, but failing that it defaults to
+ *  less accurate resources in order to guarantee that meaningful
+ *  measurements are always available to application code.
  */
 class stopwatch
 {
-/// \name Member types
-/// @{
-public:
+public: // types
     /// The epoch type
     ///
     /// The type of the epoch measurement. This will be a 64-bit signed
@@ -193,15 +191,12 @@ public:
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     /// The class type
     typedef stopwatch                                       class_type;
-/// @}
 
-/// \name Construction
-/// @{
-public:
+public: // construction
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     static void class_init()
     {
-        class_type  instance;
+        class_type instance;
 
         instance.start();
     }
@@ -211,15 +206,18 @@ public:
     stopwatch() // This is needed only to suppress compiler warnings about unused variables
     {}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-/// @}
 
-/// \name Operations
-/// @{
-public:
+public: // operations
     /// Starts measurement
     ///
     /// Begins the measurement period
     void    start();
+    /// Pauses the measurement
+    ///
+    void    pause();
+    /// Unpauses the measurement
+    ///
+    void    unpause();
     /// Ends measurement
     ///
     /// Ends the measurement period
@@ -229,11 +227,8 @@ public:
     /// \remarks This is equivalent to an atomic invocation of stop() and
     /// start()
     void    restart();
-/// @}
 
-/// \name Attributes
-/// @{
-public:
+public: // attributes
     /// The current epoch
     static epoch_type       get_epoch();
 
@@ -286,11 +281,8 @@ public:
     /// Stops the current period, starts the next, and returns the
     ///  interval, in nanoseconds, for the prior period.
     interval_type   stop_get_nanoseconds_and_restart();
-/// @}
 
-/// \name Implementation
-/// @{
-private:
+private: // implementation
     typedef void (*measure_fn_type)(epoch_type&);
 
     static interval_type    frequency_();
@@ -299,23 +291,29 @@ private:
     static void             gtc_(epoch_type &epoch);
     static measure_fn_type  get_measure_fn_();
     static void             measure_(epoch_type &epoch);
-/// @}
 
-/// \name Members
-/// @{
-private:
-    epoch_type  m_start;    // start of measurement period
-    epoch_type  m_end;      // End of measurement period
-/// @}
+private: // fields
+    /// Stores the start epoch
+    epoch_type      m_start;
+    /// Stores the end epoch
+    epoch_type      m_end;
+    /// Stores the pause epoch
+    epoch_type      m_pause;
+    /// Stores the (cumulate) pause time (in nanoseconds)
+    interval_type   m_paused_ns;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # if !defined(STLSOFT_COMPILER_IS_DMC) && \
      (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
          _MSC_VER >= 1200)
-static STLSOFT_NS_QUAL(class_constructor)<stopwatch>  s_stopwatch_class_constructor(&stopwatch::class_init, NULL);
+
+static STLSOFT_NS_QUAL(class_constructor)<stopwatch>        s_stopwatch_class_constructor(&stopwatch::class_init, NULL);
 # endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -331,7 +329,7 @@ inline
 stopwatch::interval_type
 stopwatch::query_frequency_()
 {
-    interval_type   frequency;
+    interval_type frequency;
 
     // If no high-performance counter is available ...
     if (!WINSTL_API_EXTERNAL_Time_QueryPerformanceFrequency(sap_cast<LARGE_INTEGER*>(&frequency)) ||
@@ -427,7 +425,7 @@ stopwatch::measure_(
 # pragma warning(disable : 4640)
 #endif /* compiler */
 
-    static measure_fn_type  fn  =   get_measure_fn_();
+    static measure_fn_type fn = get_measure_fn_();
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1310
@@ -443,6 +441,27 @@ void
 stopwatch::start()
 {
     measure_(m_start);
+
+    m_end = m_start;
+    m_paused_ns = 0;
+}
+
+inline
+void
+stopwatch::pause()
+{
+    measure_(m_pause);
+}
+
+inline
+void
+stopwatch::unpause()
+{
+    epoch_type now;
+
+    measure_(now);
+
+    m_paused_ns += class_type::get_nanoseconds(m_pause, now);
 }
 
 inline
@@ -457,17 +476,18 @@ void
 stopwatch::restart()
 {
     measure_(m_start);
+
     m_end = m_start;
 }
 
-// Attributes
+// attributes
 
 inline
 /* static */
 stopwatch::epoch_type
 stopwatch::get_epoch()
 {
-    epoch_type  epoch;
+    epoch_type epoch;
 
     measure_(epoch);
 
@@ -482,7 +502,7 @@ stopwatch::get_seconds(
 ,   stopwatch::epoch_type   end
 )
 {
-    interval_type   period_count    =   static_cast<interval_type>(end - start);
+    interval_type period_count = static_cast<interval_type>(end - start);
 
     return period_count / frequency_();
 }
@@ -602,6 +622,8 @@ stopwatch::get_milliseconds() const
         result = (count / frequency_()) * interval_type(1000);
     }
 
+    result -= m_paused_ns / (1000 * 1000);
+
     return result;
 }
 
@@ -624,6 +646,8 @@ stopwatch::get_microseconds() const
     {
         result = (count / frequency_()) * interval_type(1000000);
     }
+
+    result -= m_paused_ns / 1000;
 
     return result;
 }
@@ -648,9 +672,10 @@ stopwatch::get_nanoseconds() const
         result = (count / frequency_()) * interval_type(100000000);
     }
 
+    result -= m_paused_ns;
+
     return result;
 }
-
 
 inline
 stopwatch::interval_type
@@ -658,7 +683,7 @@ stopwatch::stop_get_period_count_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_period_count();
+    interval_type interval = get_period_count();
 
     m_start = m_end;
 
@@ -671,7 +696,7 @@ stopwatch::stop_get_seconds_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_seconds();
+    interval_type interval = get_seconds();
 
     m_start = m_end;
 
@@ -684,7 +709,7 @@ stopwatch::stop_get_milliseconds_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_milliseconds();
+    interval_type interval = get_milliseconds();
 
     m_start = m_end;
 
@@ -697,7 +722,7 @@ stopwatch::stop_get_microseconds_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_microseconds();
+    interval_type interval = get_microseconds();
 
     m_start = m_end;
 
@@ -710,14 +735,14 @@ stopwatch::stop_get_nanoseconds_and_restart()
 {
     stop();
 
-    interval_type   interval    =   get_nanoseconds();
+    interval_type interval = get_nanoseconds();
 
     m_start = m_end;
 
     return interval;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

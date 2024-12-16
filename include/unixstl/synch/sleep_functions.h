@@ -4,7 +4,7 @@
  * Purpose: UNIXSTL time functions.
  *
  * Created: 2nd September 2005
- * Updated: 19th November 2024
+ * Updated: 16th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   7
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       35
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   8
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,8 +117,9 @@ namespace unixstl_project
  * functions
  */
 
-/** [C, C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
+/** [C, C++] Puts the calling thread to sleep for (at least) the given
+ * number of microseconds.
+ *
 \code
   unixstl_C_micro_sleep(100000);  // Sleep for 0.1 seconds
   unixstl_C_micro_sleep(100);     // Sleep for 0.1 milliseconds
@@ -127,8 +128,8 @@ namespace unixstl_project
  * \param microseconds The number of microseconds to wait
  *
  * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>errno</code> will contain an error code
- *   representing the reason for failure.
+ *  successful. If not, <code>errno</code> will contain a code representing
+ *  the reason for failure.
  *
  * \see unixstl::micro_sleep
  */
@@ -169,24 +170,25 @@ namespace unixstl
 
 #ifdef __cplusplus
 
-/** [C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
+/** [C++] Puts the calling thread to sleep for (at least) the given
+ * number of microseconds.
+ *
 \code
-  unixstl::micro_sleep(100000); // Sleep for 0.1 seconds
-  unixstl::micro_sleep(100);    // Sleep for 0.1 milliseconds
+  unixstl::micro_sleep(100000); // Sleep for approximately 0.1 seconds
+  unixstl::micro_sleep(100);    // Sleep for approximately 0.1 milliseconds
 \endcode
  *
  * \param microseconds The number of microseconds to wait
  *
  * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>errno</code> will contain an error code
- *   representing the reason for failure.
+ *  successful. If not, <code>errno</code> will contain a code representing
+ *  the reason for failure.
  */
 inline
 us_int_t
 micro_sleep(
     us_uint_t microseconds
-)
+) STLSOFT_NOEXCEPT
 {
     return unixstl_C_micro_sleep(microseconds);
 }

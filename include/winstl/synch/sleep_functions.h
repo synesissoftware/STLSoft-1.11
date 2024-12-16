@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/sleep_functions.h
+ * File:    winstl/synch/sleep_functions.h
  *
- * Purpose:     WinSTL time functions.
+ * Purpose: WinSTL time functions.
  *
- * Created:     11th June 2006
- * Updated:     11th March 2024
+ * Created: 11th June 2006
+ * Updated: 16th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define WINSTL_INCL_WINSTL_SYNCH_H_SLEEP_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       30
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR    2
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR    1
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION 5
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,8 +101,9 @@ namespace winstl_project
  * functions
  */
 
-/** [C, C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
+/** [C, C++] Puts the calling thread to sleep for (at least) the given
+ * number of microseconds.
+ *
 \code
 winstl_C_micro_sleep(100000);  // Sleep for 0.1 seconds
 winstl_C_micro_sleep(100);     // Sleep for 0.1 milliseconds
@@ -111,8 +112,8 @@ winstl_C_micro_sleep(100);     // Sleep for 0.1 milliseconds
  * \param microseconds The number of microseconds to wait
  *
  * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>::GetLastError()</code> will contain an error code
- *   representing the reason for failure.
+ *  successful. If not, <code>::GetLastError()</code> will contain a code
+ *  code representing the reason for failure.
  *
  * \see winstl::micro_sleep
  */
@@ -120,7 +121,7 @@ STLSOFT_INLINE
 ws_int_t
 winstl_C_micro_sleep(
     ws_uint_t   microseconds
-)
+) STLSOFT_NOEXCEPT
 {
     return (WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(microseconds / 1000), ws_true_v);
 }
@@ -164,24 +165,28 @@ namespace winstl
 
 #ifdef __cplusplus
 
-/** [C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
+/** [C++] Puts the calling thread to sleep for (at least) the given
+ * number of microseconds.
+ *
 \code
-winstl::micro_sleep(100000);  // Sleep for 0.1 seconds
-winstl::micro_sleep(100);     // Sleep for 0.1 milliseconds
+  winstl::micro_sleep(100000);  // Sleep for 0.1 approximately seconds
+  winstl::micro_sleep(100);     // Sleep for 0.1 approximately milliseconds
 \endcode
  *
  * \param microseconds The number of microseconds to wait
  *
  * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>::GetLastError()</code> will contain an error code
- *   representing the reason for failure.
+ *  successful. If not, <code>::GetLastError()</code> will contain a code
+ *  representing the reason for failure.
  */
-inline ws_int_t micro_sleep(ws_uint_t microseconds)
+inline
+ws_int_t
+micro_sleep(
+    ws_uint_t microseconds
+) STLSOFT_NOEXCEPT
 {
     return winstl_C_micro_sleep(microseconds);
 }
-
 #endif /* __cplusplus */
 
 
