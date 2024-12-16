@@ -4,7 +4,7 @@
  * Purpose: C++ example program demonstrating use of the Performance library.
  *
  * Created: 22nd May 2006
- * Updated: 20th November 2024
+ * Updated: 27th November 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,9 @@ int main()
     using platformstl::stopwatch;
     using stlsoft::ss_sint64_t;
 
+    const size_t            NUM_ITERATIONS      =   0x7fffffff;
+    const stlsoft::uint_t   REPEATED_SLEEP_us   =   4;
+
 
     // simple interval
     {
@@ -50,13 +53,13 @@ int main()
         sw.start();
 
         // 3. A loop that will consume some time.
-        { for (volatile size_t i = 0; i != 0x1fffffff; )
+        { for (volatile size_t i = 0; i != NUM_ITERATIONS; )
         {
             size_t j = i;
 
             if (0 == (j % 1000))
             {
-                micro_sleep(1);
+                micro_sleep(REPEATED_SLEEP_us);
             }
 
             i = ++j;
@@ -106,7 +109,7 @@ int main()
         sw.start();
 
         // 3. A loop that will consume some time.
-        { for (volatile size_t i = 0; i != 0x1fffffff; )
+        { for (volatile size_t i = 0; i != NUM_ITERATIONS; )
         {
             size_t j = i;
 
@@ -114,7 +117,7 @@ int main()
             {
                 sw.pause();
 
-                micro_sleep(1);
+                micro_sleep(REPEATED_SLEEP_us);
 
                 sw.unpause();
             }
