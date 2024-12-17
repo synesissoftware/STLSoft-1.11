@@ -4,7 +4,7 @@
  * Purpose: Definition of the doomgram class.
  *
  * Created: 13th May 2013
- * Updated: 16th December 2024
+ * Updated: 17th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MAJOR     2
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MINOR     0
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_REVISION  1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      32
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -113,13 +113,18 @@ private:
 
 
 public: // construction
+    /// Constructs an instance
     doomgram() STLSOFT_NOEXCEPT;
 
 
 public: // operations
+    /// Pushes an event with the given number of nanoseconds
     bool push_event_time_ns(integer_type time_in_ns);
+    /// Pushes an event with the given number of microseconds
     bool push_event_time_us(integer_type time_in_ms);
+    /// Pushes an event with the given number of milliseconds
     bool push_event_time_ms(integer_type time_in_ms);
+    /// Pushes an event with the given number of seconds
     bool push_event_time_s(integer_type time_in_ms);
 
 
