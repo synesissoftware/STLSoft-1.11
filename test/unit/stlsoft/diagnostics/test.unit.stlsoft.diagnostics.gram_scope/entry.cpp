@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.container.gram_scope.cpp
+ * File:    test.unit.stlsoft.container.gram_scope/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::gram_scope`.
  *
  * Created: 15th December 2024
- * Updated: 15th December 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.util.true_typedef.cpp
+ * File:    test.unit.stlsoft.util.true_typedef/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *
  * Created: 27th February 2024
- * Updated: 11th October 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
