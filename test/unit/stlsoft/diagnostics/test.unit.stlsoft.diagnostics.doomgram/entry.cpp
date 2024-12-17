@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.container.doomgram.cpp
+ * File:    test.unit.stlsoft.diagnostics.doomgram/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::doomgram`.
  *
  * Created: 13th May 2013
- * Updated: 16th December 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,6 +56,7 @@ namespace
     static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4();
     static void TEST_doomgram_SEVERAL_DISTINCT_TIMINGS();
     static void TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS();
+    static void TEST_doomgram_MANY_CUMULATIVE_TIMINGS();
     static void TEST_doomgram_OVERFLOW_BY_SECONDS();
     static void TEST_doomgram_OVERFLOW_BY_MICROSECONDS();
 
@@ -74,7 +75,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.container.doomgram", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.diagnostics.doomgram", verbosity))
     {
         XTESTS_RUN_CASE(TEST_doomgram_DEFAULT_CONSTRUCT);
         XTESTS_RUN_CASE(TEST_doomgram_SINGLE_TIMING_EVENT);
@@ -85,6 +86,7 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4);
         XTESTS_RUN_CASE(TEST_doomgram_SEVERAL_DISTINCT_TIMINGS);
         XTESTS_RUN_CASE(TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS);
+        XTESTS_RUN_CASE(TEST_doomgram_MANY_CUMULATIVE_TIMINGS);
         XTESTS_RUN_CASE(TEST_doomgram_OVERFLOW_BY_SECONDS);
         XTESTS_RUN_CASE(TEST_doomgram_OVERFLOW_BY_MICROSECONDS);
 
@@ -469,6 +471,58 @@ static void TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS()
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
 }
 
+static void TEST_doomgram_MANY_CUMULATIVE_TIMINGS()
+{
+    stlsoft::doomgram       dg;
+    stlsoft::ss_uint64_t    total_event_time_ns;
+    stlsoft::ss_uint64_t    min_event_time_ns;
+    stlsoft::ss_uint64_t    max_event_time_ns;
+
+    { for (int i = 0; 10000 != i; ++i)
+    {
+        dg.push_event_time_ns(1);
+    }}
+
+    { for (int i = 0; 1000 != i; ++i)
+    {
+        dg.push_event_time_us(1);
+    }}
+
+    { for (int i = 0; 100 != i; ++i)
+    {
+        dg.push_event_time_ms(1);
+    }}
+
+    { for (int i = 0; 10 != i; ++i)
+    {
+        dg.push_event_time_s(1);
+    }}
+
+    XTESTS_TEST_BOOLEAN_FALSE(dg.has_overflowed());
+
+    XTESTS_TEST_INTEGER_EQUAL(11110, dg.event_count());
+    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(ss_nullptr_k));
+    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_total_event_time_ns(&total_event_time_ns));
+    XTESTS_TEST_INTEGER_EQUAL(10101010000, total_event_time_ns);
+    XTESTS_TEST_INTEGER_EQUAL(10101010000, dg.total_event_time_ns_raw());
+    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_min_event_time_ns(&min_event_time_ns));
+    XTESTS_TEST_INTEGER_EQUAL(1, min_event_time_ns);
+    XTESTS_TEST_BOOLEAN_TRUE(dg.try_get_max_event_time_ns(&max_event_time_ns));
+    XTESTS_TEST_INTEGER_EQUAL(1000000000, max_event_time_ns);
+    XTESTS_TEST_INTEGER_EQUAL(10000, dg.num_events_in_1ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ns());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ns());
+    XTESTS_TEST_INTEGER_EQUAL(1000, dg.num_events_in_1us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10us());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100us());
+    XTESTS_TEST_INTEGER_EQUAL(100, dg.num_events_in_1ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10ms());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_100ms());
+    XTESTS_TEST_INTEGER_EQUAL(10, dg.num_events_in_1s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
+    XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
+}
+
 static void TEST_doomgram_OVERFLOW_BY_SECONDS()
 {
     stlsoft::doomgram   dg;
@@ -545,31 +599,6 @@ static void TEST_doomgram_OVERFLOW_BY_MICROSECONDS()
         XTESTS_TEST_BOOLEAN_FALSE(r);
     }
 }
-
-#if 0
-
-static void TEST_OomTimingsStack_OVERFLOWED()
-{
-    stlsoft::doomgram  dg;
-
-#if 0
-
-    // fill it
-    timing_stack.push_event_time_ns(u64::MAX);
-
-    assert_eq!(1u64, timing_stack.event_count());
-
-    // overflow it
-    timing_stack.push_event_time_ns(1);
-
-    assert_eq!(1u64, timing_stack.event_count());
-
-    // annoy it
-    timing_stack.push_event_time_ns(1);
-#endif
-}
-#endif
-
 
 static void TEST_UNSIGNED_OVERFLOW()
 {
