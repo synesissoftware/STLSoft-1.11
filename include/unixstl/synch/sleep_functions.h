@@ -4,7 +4,7 @@
  * Purpose: UNIXSTL time functions.
  *
  * Created: 2nd September 2005
- * Updated: 16th December 2024
+ * Updated: 17th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   8
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       38
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   9
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,9 +139,18 @@ unixstl_C_micro_sleep(
     us_uint_t microseconds
 ) STLSOFT_NOEXCEPT
 {
-#ifdef _WIN32
+#if 0
+#elif defined(_WIN32)
 
-    return (WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(microseconds / 1000), us_true_v);
+    DWORD milliseconds = microseconds / 1000;
+
+    if (0 == milliseconds &&
+        0 != microseconds)
+    {
+        milliseconds = 1;
+    }
+
+    return (WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(milliseconds), us_true_v);
 #else /* ? _WIN32 */
 
     struct timeval  ts;

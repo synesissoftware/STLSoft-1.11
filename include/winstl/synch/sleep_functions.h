@@ -4,7 +4,7 @@
  * Purpose: WinSTL time functions.
  *
  * Created: 11th June 2006
- * Updated: 16th December 2024
+ * Updated: 17th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR    1
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION 5
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT     33
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION 6
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,6 +116,11 @@ winstl_C_micro_sleep(100);     // Sleep for 0.1 milliseconds
  *  code representing the reason for failure.
  *
  * \see winstl::micro_sleep
+ *
+ * \note Because Windows provides sleep facilities (via Windows API function
+ *   <code>::Sleep(dwMilliseconds : DWORD)</code>) at millisecond
+ *   granularity, calling this function with values less than 1000 results
+ *   in the equivalent behaviour as if called with 1000.
  */
 STLSOFT_INLINE
 ws_int_t
@@ -123,8 +128,17 @@ winstl_C_micro_sleep(
     ws_uint_t   microseconds
 ) STLSOFT_NOEXCEPT
 {
-    return (WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(microseconds / 1000), ws_true_v);
+    DWORD milliseconds = microseconds / 1000;
+
+    if (0 == milliseconds &&
+        0 != microseconds)
+    {
+        milliseconds = 1;
+    }
+
+    return (WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(milliseconds), ws_true_v);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * obsolete symbols
