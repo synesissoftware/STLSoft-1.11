@@ -116,6 +116,17 @@ int main(int /*argc*/, char* /*argv*/[])
     ,   150000
     ,   175000
     ,   200000
+    ,   225000
+    ,   250000
+    ,   275000
+    ,   300000
+    ,   350000
+    ,   400000
+    ,   500000
+    ,   600000
+    ,   700000
+    ,   800000
+    ,   900000
     };
 
     winstl::stopwatch sw;
@@ -146,7 +157,7 @@ int main(int /*argc*/, char* /*argv*/[])
 
                 if (1 == W)
                 {
-                    winstl::stopwatch::interval_type const delta_us = std::llabs(duration_us - delay_us);
+                    winstl::stopwatch::interval_type const delta_us = duration_us - delay_us;
 
                     double const ratio = double(delta_us) / double(delay_us);
 
