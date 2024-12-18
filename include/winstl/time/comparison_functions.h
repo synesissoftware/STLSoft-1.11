@@ -4,7 +4,7 @@
  * Purpose: Comparison functions for Windows time structures.
  *
  * Created: 21st November 2003
- * Updated: 9th October 2024
+ * Updated: 17th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR    4
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR    2
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     66
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR    3
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION 1
+# define WINSTL_VER_WINSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT     67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -461,6 +461,57 @@ winstl_C_absolute_difference_in_seconds_SYSTEMTIMEs(
 )
 {
     return winstl_C_absolute_difference_in_milliseconds_SYSTEMTIMEs(t1, t2) / 1000;
+}
+
+
+STLSOFT_INLINE
+ss_sint64_t
+winstl_C_difference_in_microseconds_QPC(
+    LARGE_INTEGER const*    counter1
+,   LARGE_INTEGER const*    counter2
+,   LARGE_INTEGER const*    frequency
+)
+{
+    ss_sint64_t const   difference  =   counter1->QuadPart - counter2->QuadPart;
+
+    ss_sint64_t const   quotient    =   frequency->QuadPart / 1000000;
+    ss_sint64_t const   remainder   =   frequency->QuadPart % 1000000;
+
+    // STLSOFT_SUPPRESS_UNUSED(quotient);
+
+    if (0 != quotient &&
+        0 == remainder)
+    {
+        /* the frequency is a multiple of 1M, so we can simplify and reduce
+         * the likelihood of trucation
+         */
+
+        return difference / quotient;
+    }
+    else
+    {
+        return (difference * 1000 * 1000) / frequency->QuadPart;
+    }
+}
+
+STLSOFT_INLINE
+ss_uint64_t
+winstl_C_absolute_difference_in_microseconds_QPC(
+    LARGE_INTEGER const*    counter1
+,   LARGE_INTEGER const*    counter2
+,   LARGE_INTEGER const*    frequency
+)
+{
+    ss_sint64_t const   difference  =   winstl_C_difference_in_microseconds_QPC(counter1, counter2, frequency);
+
+    if (difference < 0)
+    {
+        return -difference;
+    }
+    else
+    {
+        return difference;
+    }
 }
 
 
