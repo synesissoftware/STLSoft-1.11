@@ -63,7 +63,7 @@ using stlsoft::ss_size_t;
 
 namespace {
 
-    ss_size_t const NUM_ITERATIONS = 1000000000;
+    ss_size_t const NUM_ITERATIONS = 20000000;
 } // anonymous namespace
 
 
@@ -139,11 +139,23 @@ int main(int /*argc*/, char* /*argv*/[])
         {
             stlsoft::uint64_t const v = i;
 
-            anchor_value += stlsoft::count_decimal_digits(v << (i & 0x1f));
+            anchor_value += stlsoft::count_decimal_digits(v);
         }
         sw.stop();
 
         interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            stlsoft::uint64_t const v = i;
+
+            anchor_value += stlsoft::count_decimal_digits(v << 32);
+        }
+        sw.stop();
+
+        interval_t const int_uint64_32 = sw.get_nanoseconds();
 
 
         if (1 == W)
@@ -159,6 +171,8 @@ int main(int /*argc*/, char* /*argv*/[])
                 << std::setw(16) << std::right << thousands(int_uint32)
                 << '\t'
                 << std::setw(16) << std::right << thousands(int_uint64)
+                << '\t'
+                << std::setw(16) << std::right << thousands(int_uint64_32)
                 << '\t'
                 << anchor_value
                 << std::endl;
@@ -215,11 +229,23 @@ int main(int /*argc*/, char* /*argv*/[])
         {
             stlsoft::uint64_t const v = i;
 
-            anchor_value += stlsoft::count_hexadecimal_digits(v << (i & 0x1f));
+            anchor_value += stlsoft::count_hexadecimal_digits(v);
         }
         sw.stop();
 
         interval_t const int_uint64 = sw.get_nanoseconds();
+
+
+        sw.start();
+        for (unsigned i = 0; NUM_ITERATIONS != i; ++i)
+        {
+            stlsoft::uint64_t const v = i;
+
+            anchor_value += stlsoft::count_hexadecimal_digits(v << 32);
+        }
+        sw.stop();
+
+        interval_t const int_uint64_32 = sw.get_nanoseconds();
 
 
         if (1 == W)
@@ -235,6 +261,8 @@ int main(int /*argc*/, char* /*argv*/[])
                 << std::setw(16) << std::right << thousands(int_uint32)
                 << '\t'
                 << std::setw(16) << std::right << thousands(int_uint64)
+                << '\t'
+                << std::setw(16) << std::right << thousands(int_uint64_32)
                 << '\t'
                 << anchor_value
                 << std::endl;

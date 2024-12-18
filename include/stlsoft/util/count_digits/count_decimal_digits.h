@@ -88,12 +88,73 @@ stlsoft_C_count_decimal_digits_uint32(
     }
     else
     {
-        int n = 0u;
+        // 4294967295
+        //  100000000
 
-        for (; 0 != i; i /= 10, ++n)
-        {}
-
-        return n;
+        if (i >= 100000000)
+        {
+            if (i >= 1000000000)
+            {
+                return 10;
+            }
+            else
+            {
+                return 9;
+            }
+        }
+        else
+        {
+            if (i >= 10000)
+            {
+                if (i >= 1000000)
+                {
+                    if (i >= 10000000)
+                    {
+                        return 8;
+                    }
+                    else
+                    {
+                        return 7;
+                    }
+                }
+                else
+                {
+                    if (i >= 100000)
+                    {
+                        return 6;
+                    }
+                    else
+                    {
+                        return 5;
+                    }
+                }
+            }
+            else
+            {
+                if (i >= 100)
+                {
+                    if (i >= 1000)
+                    {
+                        return 4;
+                    }
+                    else
+                    {
+                        return 3;
+                    }
+                }
+                else
+                {
+                    if (i >= 10)
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -109,12 +170,143 @@ stlsoft_C_count_decimal_digits_uint64(
     }
     else
     {
-        int n = 0u;
+        // 18446744073709551615
+        //    10000000000000000
 
-        for (; 0 != i; i /= 10, ++n)
-        {}
-
-        return n;
+        if (i >= 10000000000000000)
+        {
+            if (i >= 1000000000000000000)
+            {
+                if (i >= 10000000000000000000u)
+                {
+                    return 20;
+                }
+                else
+                {
+                    return 19;
+                }
+            }
+            else
+            {
+                if (i >= 100000000000000000)
+                {
+                    return 18;
+                }
+                else
+                {
+                    return 17;
+                }
+            }
+        }
+        else
+        {
+            if (i >= 100000000)
+            {
+                if (i >= 1000000000000)
+                {
+                    if (i >= 100000000000000)
+                    {
+                        if (i >= 1000000000000000)
+                        {
+                            return 16;
+                        }
+                        else
+                        {
+                            return 15;
+                        }
+                    }
+                    else
+                    {
+                        if (i >= 10000000000000)
+                        {
+                            return 14;
+                        }
+                        else
+                        {
+                            return 13;
+                        }
+                    }
+                }
+                else
+                {
+                    if (i >= 10000000000)
+                    {
+                        if (i >= 100000000000)
+                        {
+                            return 12;
+                        }
+                        else
+                        {
+                            return 11;
+                        }
+                    }
+                    else
+                    {
+                        if (i >= 1000000000)
+                        {
+                            return 10;
+                        }
+                        else
+                        {
+                            return 9;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (i >= 10000)
+                {
+                    if (i >= 1000000)
+                    {
+                        if (i >= 10000000)
+                        {
+                            return 8;
+                        }
+                        else
+                        {
+                            return 7;
+                        }
+                    }
+                    else
+                    {
+                        if (i >= 100000)
+                        {
+                            return 6;
+                        }
+                        else
+                        {
+                            return 5;
+                        }
+                    }
+                }
+                else
+                {
+                    if (i >= 100)
+                    {
+                        if (i >= 1000)
+                        {
+                            return 4;
+                        }
+                        else
+                        {
+                            return 3;
+                        }
+                    }
+                    else
+                    {
+                        if (i >= 10)
+                        {
+                            return 2;
+                        }
+                        else
+                        {
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
