@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::frequency_map<>`.
  *
  * Created: 5th October 2024
- * Updated: 4th November 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,11 +48,6 @@
 #include <vector>
 
 #include <stdlib.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
- */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -711,7 +706,7 @@ run_tests(
 
 int main(int /* argc */, char* /* argv */[])
 {
-    // pipe to expand: `test.performance.stlsoft.frequency_map | expand -t 8,64,80,96,112,128`
+    // pipe to expand: `test.performance.stlsoft.frequency_map | expand -t 8,64,80,96,112,128,160`
 
     std::cout << std::endl;
     intervals_t const intervals_o = run_tests<fm_ordered_int_t>("O").first;
