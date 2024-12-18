@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  13th October 2024
+; Updated:  19th December 2024
 
 ============================================================================
 
@@ -17,6 +17,33 @@ STLSoft - Changes
    **************************************
 
 
+
+Changes for 1.11.1-alpha27 (19th December 2024)
+
+ * added `stlsoft::doomgram` and `stlsoft::gram_scope` (from old research repo(s));
+ * added **include/stlsoft/diagnostics/gram_utils.hpp**, including `stlsoft::gram_to_strip()`;
+ * added `stlsoft::count_hexadecimal_digits()`, and refactored `stlsoft::count_digits()` into `stlsoft::count_decimal_digits()`;
+ * added **unixstl/time/comparison_functions.h**, including `unixstl_C_compare_timevals()` / `unixstl::compare()`;
+ * added `winstl_C_difference_in_microseconds_QPC()` and `winstl_C_absolute_difference_in_microseconds_QPC()`;
+ * `winstl::micro_sleep()` (and `winstl_C_micro_sleep()`) now implemented in terms of active methods for accurate behaviour in small durations (0 < delay_us <= 250000);
+ * added `#pause()` and `#unpause()` to stopwatch types (incl. `stlsoft::std_chrono_hrc_stopwatch`, `unixstl::stopwatch()`, `winstl::stopwatch()`);
+ * added `#get_kernel_nanoseconds()`, `#get_user_nanoseconds()`, `#get_nanoseconds()` to `unixstl::stopwatch()`;
+ * added `#cbegin()` / `#cend()` and `#crbegin()` / `#crend()` methods to `stlsoft::auto_buffer<>`;
+ * added **test.component.platformstl.diagnostics.stopwatch**;
+ * added **test.performance.stlsoft.count_digits**;
+ * added **test.performance.stlsoft.doomgram**;
+ * added **test.performance.stlsoft.gram_utils**;
+ * added **test.scratch.winstl.micro_sleep**;
+ * added **test.unit.stlsoft.diagnostics.doomgram**;
+ * added **test.unit.stlsoft.diagnostics.gram_scope**;
+ * added **test.unit.stlsoft.util.count_decimal_digits**;
+ * added **test.unit.stlsoft.util.count_hexadecimal_digits**;
+ * added **test.unit.winstl.conversion.number.grouping_functions**;
+ * **run_all_unit_tests.sh** now respects environment variables `XTESTS_VERBOSITY` and `TEST_VERBOSITY`;
+ * miscellaneous minor/trivial improvements;
+
+
+============================================================================
 
 Changes for 1.11.1-alpha26 (23rd November 2024)
 

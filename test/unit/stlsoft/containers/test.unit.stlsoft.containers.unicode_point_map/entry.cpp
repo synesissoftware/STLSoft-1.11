@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.container.unicode_point_map.cpp
+ * File:    test.unit.stlsoft.container.unicode_point_map/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::unicode_point_map`.
  *
  * Created: 5th November 2024
- * Updated: 5th November 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

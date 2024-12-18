@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.string.shim_string.cpp
+ * File:    test.unit.stlsoft.string.shim_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_shim_string`.
  *
  * Created: 9th November 2008
- * Updated: 15th October 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

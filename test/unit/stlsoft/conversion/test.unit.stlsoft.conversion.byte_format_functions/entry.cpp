@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.conversion.byte_format_functions.cpp
+ * File:    test.unit.stlsoft.conversion.byte_format_functions/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 12th September 2019
- * Updated: 11th October 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
