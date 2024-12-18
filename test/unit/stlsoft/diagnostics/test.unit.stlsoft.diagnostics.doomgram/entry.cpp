@@ -18,6 +18,7 @@
  */
 
 #include <stlsoft/diagnostics/doomgram.hpp>
+#include <stlsoft/diagnostics/gram_utils.hpp>
 
 /* ///////////////////////////////////////////////
  * general includes
@@ -60,6 +61,8 @@ namespace
     static void TEST_doomgram_OVERFLOW_BY_SECONDS();
     static void TEST_doomgram_OVERFLOW_BY_MICROSECONDS();
 
+    static void TEST_calc_doom_1();
+
     static void TEST_UNSIGNED_OVERFLOW();
 } // anonymous namespace
 
@@ -89,6 +92,8 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(TEST_doomgram_MANY_CUMULATIVE_TIMINGS);
         XTESTS_RUN_CASE(TEST_doomgram_OVERFLOW_BY_SECONDS);
         XTESTS_RUN_CASE(TEST_doomgram_OVERFLOW_BY_MICROSECONDS);
+
+        XTESTS_RUN_CASE(TEST_calc_doom_1);
 
         XTESTS_RUN_CASE(TEST_UNSIGNED_OVERFLOW);
 
@@ -137,6 +142,14 @@ static void TEST_doomgram_DEFAULT_CONSTRUCT()
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("____________", strip, 12);
+    }
 }
 
 static void TEST_doomgram_SINGLE_TIMING_EVENT()
@@ -171,6 +184,14 @@ static void TEST_doomgram_SINGLE_TIMING_EVENT()
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("_______a____", strip, 12);
+    }
 }
 
 static void TEST_doomgram_ZERO_TIME_EVENTS()
@@ -208,6 +229,14 @@ static void TEST_doomgram_ZERO_TIME_EVENTS()
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("____________", strip, 12);
+    }
 }
 
 static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_1()
@@ -253,6 +282,14 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_1()
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("aaaaaaaaaaaa", strip, 12);
+    }
 }
 
 static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_2()
@@ -298,6 +335,14 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_2()
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("aaaaaaaaaaaa", strip, 12);
+    }
 }
 
 static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_3()
@@ -343,6 +388,14 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_3()
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("aaaaaaaaaaaa", strip, 12);
+    }
 }
 
 static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4()
@@ -385,6 +438,14 @@ static void TEST_doomgram_UNIFORM_SPREAD_TIMINGS_4()
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("___aaaaaaaaa", strip, 12);
+    }
 }
 
 static void TEST_doomgram_SEVERAL_DISTINCT_TIMINGS()
@@ -426,6 +487,14 @@ static void TEST_doomgram_SEVERAL_DISTINCT_TIMINGS()
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("_a_aa___aa_a", strip, 12);
+    }
 }
 
 static void TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS()
@@ -469,6 +538,14 @@ static void TEST_doomgram_SEVERAL_INTERSECTING_TIMINGS()
     XTESTS_TEST_INTEGER_EQUAL(2, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(1, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("_a_aa___aa_a", strip, 12);
+    }
 }
 
 static void TEST_doomgram_MANY_CUMULATIVE_TIMINGS()
@@ -521,6 +598,14 @@ static void TEST_doomgram_MANY_CUMULATIVE_TIMINGS()
     XTESTS_TEST_INTEGER_EQUAL(10, dg.num_events_in_1s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_in_10s());
     XTESTS_TEST_INTEGER_EQUAL(0, dg.num_events_ge_100s());
+
+    {
+        char    strip[12];
+
+        stlsoft::gram_to_strip(dg, &strip);
+
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("e__d__c__b__", strip, 12);
+    }
 }
 
 static void TEST_doomgram_OVERFLOW_BY_SECONDS()
@@ -597,6 +682,69 @@ static void TEST_doomgram_OVERFLOW_BY_MICROSECONDS()
         bool r = dg.push_event_time_us(1);
 
         XTESTS_TEST_BOOLEAN_FALSE(r);
+    }
+}
+
+static void TEST_calc_doom_1()
+{
+    {
+        XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::calc_doom(0));
+    }
+
+    {
+        for (unsigned i = 1; i != 10; ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(1, stlsoft::calc_doom(i));
+        }
+    }
+
+    {
+        for (unsigned i = 10; i != 100; ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(2, stlsoft::calc_doom(i));
+        }
+    }
+
+    {
+        for (unsigned i = 100; i != 1000; ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(3, stlsoft::calc_doom(i));
+        }
+    }
+
+    {
+        XTESTS_TEST_INTEGER_EQUAL(4, stlsoft::calc_doom(1000));
+        XTESTS_TEST_INTEGER_EQUAL(4, stlsoft::calc_doom(9999));
+    }
+
+    {
+        XTESTS_TEST_INTEGER_EQUAL(5, stlsoft::calc_doom(10000));
+        XTESTS_TEST_INTEGER_EQUAL(5, stlsoft::calc_doom(99999));
+    }
+
+    {
+        XTESTS_TEST_INTEGER_EQUAL(6, stlsoft::calc_doom(100000));
+        XTESTS_TEST_INTEGER_EQUAL(6, stlsoft::calc_doom(999999));
+    }
+
+    {
+        XTESTS_TEST_INTEGER_EQUAL(7, stlsoft::calc_doom(1000000));
+        XTESTS_TEST_INTEGER_EQUAL(7, stlsoft::calc_doom(9999999));
+    }
+
+    {
+        XTESTS_TEST_INTEGER_EQUAL(8, stlsoft::calc_doom(10000000));
+        XTESTS_TEST_INTEGER_EQUAL(8, stlsoft::calc_doom(99999999));
+    }
+
+    {
+        XTESTS_TEST_INTEGER_EQUAL(9, stlsoft::calc_doom(100000000));
+        XTESTS_TEST_INTEGER_EQUAL(9, stlsoft::calc_doom(999999999));
+    }
+
+    {
+        XTESTS_TEST_INTEGER_EQUAL(10, stlsoft::calc_doom(1000000000));
+        XTESTS_TEST_INTEGER_EQUAL(10, stlsoft::calc_doom(9999999999));
     }
 }
 

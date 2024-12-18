@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    stlsoft/util/count_digits.hpp
+ * File:    stlsoft/util/count_digits/count_decimal_digits.h
  *
  * Purpose: Functions for efficient counting of decimal digits in integers
  *
  * Created: 7th June 2011
- * Updated: 18th December 2024
+ * Updated: 19th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file stlsoft/util/count_digits.hpp
+/** \file stlsoft/util/count_digits/count_decimal_digits.h
  *
  * \brief [C, C++] Functions for efficient counting of decimal digits
  *   in integers
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_EDIT     15
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_COUNT_DIGITS_H_COUNT_DECIMAL_DIGITS_EDIT     16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

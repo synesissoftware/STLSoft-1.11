@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::doomgram<>`.
  *
  * Created: 11th December 2024
- * Updated: 15th December 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -52,11 +52,6 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * includes
- */
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * types
  */
 
@@ -67,7 +62,6 @@ typedef stlsoft::std_chrono_hrc_stopwatch                   stopwatch_t;
 
 typedef platformstl::stopwatch                              stopwatch_t;
 #endif /* C++11+ */
-
 typedef stopwatch_t::interval_type                          interval_t;
 
 typedef std::vector<interval_t>                             intervals_t;
@@ -415,7 +409,7 @@ run_tests(
 
 int main(int /* argc */, char* /* argv */[])
 {
-    // pipe to expand: `test.performance.stlsoft.doomgram | expand -t 8,64,80,96,112,128`
+    // pipe to expand: `test.performance.stlsoft.doomgram | expand -t 8,64,80,96,112,128,160`
 
     std::cout << std::endl;
     intervals_t const intervals_o = run_tests<doomgram>().first;
