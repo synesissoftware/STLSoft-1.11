@@ -18,6 +18,21 @@ STLSoft - Changes
 
 
 
+
+Changes for 1.11.1-alpha28 (28th December 2024)
+
+TTTTTTTTT      BBBBBB          CCCCCCC
+   TTT         B     B        C       C
+   TTT         B     B        C
+   TTT         BBBBBB         C
+   TTT         B     B        C
+   TTT         B     B        C       C
+   TTT         BBBBBB          CCCCCCC
+
+
+============================================================================
+
+
 Changes for 1.11.1-alpha27 (19th December 2024)
 
  * added `stlsoft::doomgram` and `stlsoft::gram_scope` (from old research repo(s));
