@@ -4,7 +4,7 @@
  * Purpose: UNIXSTL process-time stopwatch class.
  *
  * Created: 9th June 2006
- * Updated: 9th July 2024
+ * Updated: 17th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MAJOR       2
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_REVISION    3
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        27
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MINOR       1
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_REVISION    4
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,6 +160,10 @@ public: // attributes
     ///
     /// This represents the extent, in whole microseconds, of the measurement period for kernel mode activity
     interval_type   get_kernel_microseconds() const;
+    /// The number of whole nanoseconds in the measurement period for kernel mode activity
+    ///
+    /// This represents the extent, in whole nanoseconds, of the measurement period for kernel mode activity
+    interval_type   get_kernel_nanoseconds() const;
 
     // User
 
@@ -179,6 +183,10 @@ public: // attributes
     ///
     /// This represents the extent, in whole microseconds, of the measurement period for user mode activity
     interval_type   get_user_microseconds() const;
+    /// The number of whole nanoseconds in the measurement period for user mode activity
+    ///
+    /// This represents the extent, in whole nanoseconds, of the measurement period for user mode activity
+    interval_type   get_user_nanoseconds() const;
 
     // Total
 
@@ -198,6 +206,10 @@ public: // attributes
     ///
     /// This represents the extent, in whole microseconds, of the measurement period
     interval_type   get_microseconds() const;
+    /// The number of whole nanoseconds in the measurement period
+    ///
+    /// This represents the extent, in whole nanoseconds, of the measurement period
+    interval_type   get_nanoseconds() const;
 
 private: // fields
     typedef struct timeval timeval_t;
@@ -235,7 +247,7 @@ inline
 void
 processtimes_stopwatch::start()
 {
-    struct rusage   r_usage;
+    struct rusage r_usage;
 
     ::getrusage(RUSAGE_SELF, &r_usage);
 
@@ -247,7 +259,7 @@ inline
 void
 processtimes_stopwatch::stop()
 {
-    struct rusage   r_usage;
+    struct rusage r_usage;
 
     ::getrusage(RUSAGE_SELF, &r_usage);
 
@@ -305,6 +317,13 @@ processtimes_stopwatch::get_kernel_microseconds() const
     return secs * (1000 * 1000) + usecs;
 }
 
+inline
+processtimes_stopwatch::interval_type
+processtimes_stopwatch::get_kernel_nanoseconds() const
+{
+    return 1000 * get_kernel_microseconds();
+}
+
 // User
 inline
 processtimes_stopwatch::interval_type
@@ -355,6 +374,13 @@ processtimes_stopwatch::get_user_microseconds() const
     return secs * (1000 * 1000) + usecs;
 }
 
+inline
+processtimes_stopwatch::interval_type
+processtimes_stopwatch::get_user_nanoseconds() const
+{
+    return 1000 * get_user_microseconds();
+}
+
 // Total
 inline
 processtimes_stopwatch::interval_type
@@ -382,6 +408,13 @@ processtimes_stopwatch::interval_type
 processtimes_stopwatch::get_microseconds() const
 {
     return get_period_count() / interval_type(10);
+}
+
+inline
+processtimes_stopwatch::interval_type
+processtimes_stopwatch::get_nanoseconds() const
+{
+    return 1000 * get_microseconds();
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

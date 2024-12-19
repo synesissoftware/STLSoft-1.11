@@ -1,17 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/must_init.hpp
+ * File:    stlsoft/util/must_init.hpp
  *
- * Purpose:     Simple class that wraps a fundamental type and forces its
- *              explicit initialisation.
+ * Purpose: Simple class that wraps a fundamental type and forces its
+ *          explicit initialisation.
  *
- * Thanks:      To Josh Kelley, whose blog prompted me to fix docs, and
- *              newsgroup request prompted me to put it under test and
- *              code coverage.
+ * Thanks:  To Josh Kelley, whose blog prompted me to fix docs, and
+ *          newsgroup request prompted me to put it under test and code
+ *          coverage.
  *
- * Created:     18th June 2006
- * Updated:     11th March 2024
+ * Created: 18th June 2006
+ * Updated: 25th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        30
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -306,9 +306,9 @@ public:
         }                                                   \
     }
 
-# ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 STLSOFT_UTIL_MUST_INIT_DEFINE_BUILTIN_(bool);
-# endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+# endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 STLSOFT_UTIL_MUST_INIT_DEFINE_BUILTIN_(char);
 # ifdef STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
 STLSOFT_UTIL_MUST_INIT_DEFINE_BUILTIN_(wchar_t);
