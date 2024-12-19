@@ -1,37 +1,22 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.stlsoft.util.bit_functions.cpp
+ * File:    test.unit.stlsoft.util.bit_functions/entry.cpp
  *
- * Purpose:     Implementation file for the test.unit.stlsoft.util.bit_functions project.
+ * Purpose: Unit-tests for `stlsoft::bit_functions`.
  *
- * Created:     19th March 2010
- * Updated:     6th September 2019
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2019, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 19th March 2010
+ * Updated: 18th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <stlsoft/util/bit_functions.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
-
-/* xCover header files */
-#ifdef STLSOFT_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* STLSOFT_USE_XCOVER */
 
 /* xTests header files */
 #include <xtests/xtests.h>
@@ -46,7 +31,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -54,17 +39,14 @@ namespace
 
     static void test_count_bits_Kernighan(void);
     static void test_count_bits_8bit_table(void);
-    static void test_1_2(void);
-    static void test_1_3(void);
     static void test_find_high_bit_32(void);
     static void test_find_high_bit_64(void);
-    static void test_1_6(void);
     static void test_calculate_xor_over_range_8_bit(void);
 
 } // anonymous namespace
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main
  */
 
 int main(int argc, char **argv)
@@ -74,20 +56,13 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.stlsoft.util.bit_functions", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.util.bit_functions", verbosity))
     {
         XTESTS_RUN_CASE(test_count_bits_Kernighan);
         XTESTS_RUN_CASE(test_count_bits_8bit_table);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
         XTESTS_RUN_CASE(test_find_high_bit_32);
         XTESTS_RUN_CASE(test_find_high_bit_64);
-        XTESTS_RUN_CASE(test_1_6);
         XTESTS_RUN_CASE(test_calculate_xor_over_range_8_bit);
-
-#ifdef STLSOFT_USE_XCOVER
-        XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/bit_functions.h", NULL);
-#endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
 
@@ -98,7 +73,7 @@ int main(int argc, char **argv)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 namespace
@@ -238,14 +213,6 @@ static void test_count_bits_8bit_table()
     fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(counter.get_nanoseconds()));
 }
 
-static void test_1_2()
-{
-}
-
-static void test_1_3()
-{
-}
-
 static void test_find_high_bit_32()
 {
     XTESTS_TEST_INTEGER_EQUAL(0u, stlsoft::find_highest_bit(uint32_t(0)));
@@ -297,10 +264,6 @@ static void test_find_high_bit_64()
 
     XTESTS_TEST_INTEGER_EQUAL(45u, stlsoft::find_highest_bit(uint64_t(STLSOFT_GEN_UINT64_SUFFIX(0x100000000000))));
     XTESTS_TEST_INTEGER_EQUAL(45u, stlsoft::find_highest_bit(uint64_t(STLSOFT_GEN_UINT64_SUFFIX(0x1c3c3c3c3c3c))));
-}
-
-static void test_1_6()
-{
 }
 
 static void test_calculate_xor_over_range_8_bit()
