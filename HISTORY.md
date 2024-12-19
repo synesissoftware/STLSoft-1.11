@@ -16,6 +16,7 @@
  * added `#pause()` and `#unpause()` to stopwatch types (incl. `stlsoft::std_chrono_hrc_stopwatch`, `unixstl::stopwatch()`, `winstl::stopwatch()`);
  * added `#get_kernel_nanoseconds()`, `#get_user_nanoseconds()`, `#get_nanoseconds()` to `unixstl::stopwatch()`;
  * added `#cbegin()` / `#cend()` and `#crbegin()` / `#crend()` methods to `stlsoft::auto_buffer<>`;
+ * separated Windows-specific `platformstl::readdir_sequence` into `winstl::readdir_sequence`;
  * added **test.component.platformstl.diagnostics.stopwatch**;
  * added **test.performance.stlsoft.count_digits**;
  * added **test.performance.stlsoft.doomgram**;
