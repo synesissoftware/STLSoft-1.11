@@ -1,31 +1,21 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.util.string_switch.cpp
+ * File:    test.unit.stlsoft.util.string_switch/entry.cpp
  *
- * Purpose:   Implementation file for the test.unit.stlsoft.util.string_switch project.
+ * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *
- * Created:   9th June 2010
- * Updated:   6th September 2019
- *
- * Status:    Wizard-generated
- *
- * License:   (Licensed under the Synesis Software Open License)
- *
- *        Copyright (c) 2010-2019, Synesis Software Pty Ltd.
- *        All rights reserved.
- *
- *        www:    http://www.synesis.com.au/software
+ * Created: 9th June 2010
+ * Updated: 18th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <stlsoft/util/string_switch.hpp>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 #if defined(__BORLANDC__)
@@ -33,13 +23,8 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
-
-/* xCover header files */
-#ifdef STLSOFT_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* STLSOFT_USE_XCOVER */
 
 /* xTests header files */
 #include <xtests/xtests.h>
@@ -52,7 +37,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -89,7 +74,7 @@ namespace
 } // anonymous namespace
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main
  */
 
 int main(int argc, char **argv)
@@ -129,10 +114,6 @@ int main(int argc, char **argv)
     XTESTS_RUN_CASE(test_3_10);
     XTESTS_RUN_CASE(test_3_11);
 
-#ifdef STLSOFT_USE_XCOVER
-    XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/string_switch.hpp", NULL);
-#endif /* STLSOFT_USE_XCOVER */
-
     XTESTS_PRINT_RESULTS();
 
     XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -142,7 +123,7 @@ int main(int argc, char **argv)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 namespace stlsoft
