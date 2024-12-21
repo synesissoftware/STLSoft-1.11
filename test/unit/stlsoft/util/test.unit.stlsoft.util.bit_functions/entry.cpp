@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::bit_functions`.
  *
  * Created: 19th March 2010
- * Updated: 18th October 2024
+ * Updated: 21st December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,7 +29,6 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <stlsoft/limits/integral_limits.h>
 #include <platformstl/performance/performance_counter.hpp>
 
 /* Standard C++ header files */

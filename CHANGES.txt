@@ -29,6 +29,19 @@ TTTTTTTTT      BBBBBB          CCCCCCC
    TTT         B     B        C       C
    TTT         BBBBBB          CCCCCCC
 
+General:
+========
+
+ * miscellaneous generalisation of code and dependencies;
+ * ;
+
+Changes:
+========
+
+Miscellaneous generalisation of code and dependencies:
+ * moved integer suffixes (such as `STLSOFT_GEN_UINT64_SUFFIX`) into stlsoft/stlsoft.h from stlsoft/limits/integral_limits.h;
+ * ;
+
 
 ============================================================================
 
