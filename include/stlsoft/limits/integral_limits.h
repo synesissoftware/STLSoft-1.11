@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/limits/integral_limits.h (formerly stlsoft/util/limit_traits.h; originally MLLimits.h; ::SynesisStd)
+ * File:    stlsoft/limits/integral_limits.h (formerly stlsoft/util/limit_traits.h; originally MLLimits.h; ::SynesisStd)
  *
- * Purpose:     Integral constants.
+ * Purpose: Integral constants.
  *
- * Created:     16th January 2002
- * Updated:     11th March 2024
+ * Created: 16th January 2002
+ * Updated: 21st December 2024
  *
- * Thanks:      To Jonathan Wakely for help with Solaris compatibility.
+ * Thanks:  To Jonathan Wakely for help with Solaris compatibility.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_MAJOR     5
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_MINOR     0
-# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_REVISION  6
-# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_EDIT      72
+# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_REVISION  7
+# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -85,98 +85,6 @@ namespace stlsoft
 /* /////////////////////////////////////////////////////////////////////////
  * Constants & definitions
  */
-
-/* 8-bit */
-
-/** \def STLSOFT_GEN_SINT8_SUFFIX(i)
- *
- * Applies appropriate suffix to raw signed 8-bit integer constant
- */
-
-/** \def STLSOFT_GEN_UINT8_SUFFIX(i)
- *
- * Applies appropriate suffix to raw unsigned 8-bit integer constant
- */
-
-#define STLSOFT_GEN_SINT8_SUFFIX(i)                         (i)
-#define STLSOFT_GEN_UINT8_SUFFIX(i)                         (i ## U)
-
-/* 16-bit */
-
-/** \def STLSOFT_GEN_SINT16_SUFFIX(i)
- *
- * Applies appropriate suffix to raw signed 16-bit integer constant
- */
-
-/** \def STLSOFT_GEN_UINT16_SUFFIX(i)
- *
- * Applies appropriate suffix to raw unsigned 16-bit integer constant
- */
-
-#define STLSOFT_GEN_SINT16_SUFFIX(i)                        (i)
-#define STLSOFT_GEN_UINT16_SUFFIX(i)                        (i ## U)
-
-/* 32-bit */
-
-/** \def STLSOFT_GEN_SINT32_SUFFIX(i)
- *
- * Applies appropriate suffix to raw signed 32-bit integer constant
- */
-
-/** \def STLSOFT_GEN_UINT32_SUFFIX(i)
- *
- * Applies appropriate suffix to raw unsigned 32-bit integer constant
- */
-
-#if _STLSOFT_SIZEOF_LONG == 4
-# define STLSOFT_GEN_SINT32_SUFFIX(i)                       (i ## L)
-# define STLSOFT_GEN_UINT32_SUFFIX(i)                       (i ## UL)
-#else /* ? _STLSOFT_SIZEOF_LONG */
-# define STLSOFT_GEN_SINT32_SUFFIX(i)                       (i)
-# define STLSOFT_GEN_UINT32_SUFFIX(i)                       (i ## U)
-#endif /* _STLSOFT_SIZEOF_LONG */
-
-/* 64-bit */
-
-/** \def STLSOFT_GEN_SINT64_SUFFIX(i)
- *
- * Applies appropriate suffix to raw signed 64-bit integer constant
- */
-
-/** \def STLSOFT_GEN_UINT64_SUFFIX(i)
- *
- * Applies appropriate suffix to raw unsigned 64-bit integer constant
- */
-
-#if 0
-#elif defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-
-# define STLSOFT_GEN_SINT64_SUFFIX(i)                       (i ## L)
-# define STLSOFT_GEN_UINT64_SUFFIX(i)                       (i ## UL)
-#elif ( (   defined(STLSOFT_COMPILER_IS_BORLAND) && \
-            __BORLANDC__ >= 0x0582) || \
-        defined(STLSOFT_COMPILER_IS_CLANG) || \
-        defined(STLSOFT_COMPILER_IS_COMO) || \
-        defined(STLSOFT_COMPILER_IS_DMC) || \
-        defined(STLSOFT_COMPILER_IS_GCC) || \
-        defined(STLSOFT_COMPILER_IS_MWERKS) || \
-        defined(STLSOFT_COMPILER_IS_SUNPRO))
-
-# define STLSOFT_GEN_SINT64_SUFFIX(i)                       (i ## LL)
-# define STLSOFT_GEN_UINT64_SUFFIX(i)                       (i ## ULL)
-#elif ( defined(STLSOFT_COMPILER_IS_BORLAND) || \
-        defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC) || \
-        defined(STLSOFT_COMPILER_IS_VECTORC) || \
-        defined(STLSOFT_COMPILER_IS_WATCOM))
-
-# define STLSOFT_GEN_SINT64_SUFFIX(i)                       (i ## L)
-# define STLSOFT_GEN_UINT64_SUFFIX(i)                       (i ## UL)
-#else
-
-# error Compiler not discriminated
-#endif /* compiler */
-
 
 /** \def STLSOFT_INTEGRAL_LIMIT_SINT8_MIN
  *
@@ -330,8 +238,8 @@ namespace stlsoft
 
 # define __STLSOFT_LIMIT_TRAITS__UINT64_MIN                 STLSOFT_LIMIT_TRAITS__UINT64_MIN
 # define __STLSOFT_LIMIT_TRAITS__UINT64_MAX                 STLSOFT_LIMIT_TRAITS__UINT64_MAX
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

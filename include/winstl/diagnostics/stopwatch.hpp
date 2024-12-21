@@ -6,7 +6,7 @@
  *          otherwise using the tick-count facilities.
  *
  * Created: 31st July 2002
- * Updated: 16th December 2024
+ * Updated: 21st December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR      5
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR      1
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION   1
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       51
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION   2
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,9 +72,6 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_STLSOFT_LIMITS_H_INTEGRAL_LIMITS
-# include <stlsoft/limits/integral_limits.h>
-#endif /* !STLSOFT_INCL_STLSOFT_LIMITS_H_INTEGRAL_LIMITS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STATIC_INITIALISERS
 # include <stlsoft/util/static_initialisers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STATIC_INITIALISERS */
