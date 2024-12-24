@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_session class.
  *
  * Created: 30th April 1999
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MAJOR      5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      1
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   14
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       83
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -156,8 +156,8 @@ public:
     ///
     /// \param pcszAgent The name of the user agent, e.g. "Acme Internet Browser"
     /// \param accessType The type of access required, e.g. INTERNET_OPEN_TYPE_DIRECT, INTERNET_OPEN_TYPE_PRECONFIG. Defaults to INTERNET_OPEN_TYPE_PRECONFIG
-    /// \param pcszProxyName The name of the proxy server to use. Defaults to NULL
-    /// \param pcszProxyBypass List of names not be routed by the proxy. Defaults to NULL
+    /// \param pcszProxyName The name of the proxy server to use. Defaults to \c nullptr
+    /// \param pcszProxyBypass List of names not be routed by the proxy. Defaults to \c nullptr
     /// \param flags Flags altering behaviour of the session initialisation.
     ///
     /// \note If the session fails to initialise, the exception_policy_type function-call operator is called. If the
@@ -183,8 +183,8 @@ public:
     ///
     /// \param pcszAgent The name of the user agent, e.g. "Acme Internet Browser"
     /// \param accessType The type of access required, e.g. INTERNET_OPEN_TYPE_DIRECT, INTERNET_OPEN_TYPE_PRECONFIG. Defaults to INTERNET_OPEN_TYPE_PRECONFIG
-    /// \param pcszProxyName The name of the proxy server to use. Defaults to NULL
-    /// \param pcszProxyBypass List of names not be routed by the proxy. Defaults to NULL
+    /// \param pcszProxyName The name of the proxy server to use. Defaults to \c nullptr
+    /// \param pcszProxyBypass List of names not be routed by the proxy. Defaults to \c nullptr
     /// \param flags Flags altering behaviour of the session initialisation.
     ///
     /// \note If the session fails to initialise, the exception_policy_type function-call operator is called. If the
@@ -442,7 +442,10 @@ get_handle(
     return s;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef INETSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

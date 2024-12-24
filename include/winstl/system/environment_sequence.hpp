@@ -4,7 +4,7 @@
  * Purpose: basic_environment_sequence class.
  *
  * Created: 31st December 2002
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 12
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     103
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -245,13 +245,13 @@ public:
 
     /// Searches for an entry holding the given name
     ///
-    /// \param name The name of the entry. Must not be NULL
+    /// \param name The name of the entry. Must not be \c nullptr
     const_iterator  find(char_type const* name) const;
 
     /// Searches for an entry holding the given name and value
     ///
-    /// \param name The name of the entry. Must not be NULL
-    /// \param value The value of the entry. Must not be NULL
+    /// \param name The name of the entry. Must not be \c nullptr
+    /// \param value The value of the entry. Must not be \c nullptr
     const_iterator  find(char_type const* name, char_type const* value) const;
 /// @}
 

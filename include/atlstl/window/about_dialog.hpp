@@ -205,7 +205,7 @@ protected:
                 // 3. Get text
                 //
                 // Note that this uses buffer.size(), so that it does not matter, if the buffer
-                // allocation fails, whether allocator throws exceptions or returns NULL.
+                // allocation fails, whether allocator throws exceptions or returns nullptr.
                 buffer_t    buffer(1 + ::GetWindowTextLength(hwndCtrl));
                 const int   len = ::GetWindowText(hwndCtrl, &buffer[0], buffer.size());
 

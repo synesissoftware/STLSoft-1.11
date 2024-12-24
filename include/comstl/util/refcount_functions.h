@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/refcount_functions.h
+ * File:    comstl/util/refcount_functions.h
  *
- * Purpose:     Reference-counting helper functions.
+ * Purpose: Reference-counting helper functions.
  *
- * Created:     25th June 2002
- * Updated:     11th March 2024
+ * Created: 25th June 2002
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MAJOR      4
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_MINOR      1
 # define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_REVISION   6
-# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       73
+# define COMSTL_VER_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS_EDIT       74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,7 +100,7 @@ namespace comstl_project
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  *
- * \pre \c punk must not be NULL.
+ * \pre \c punk must not be \c nullptr.
  */
 STLSOFT_INLINE void comstl__addref(LPUNKNOWN punk)
 {
@@ -171,9 +171,11 @@ namespace comstl
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  *
- * \pre \c punk must not be NULL.
+ * \pre \c punk must not be \c nullptr.
  */
-inline void addref(LPUNKNOWN punk)
+inline
+void
+addref(LPUNKNOWN punk)
 {
     comstl__addref(punk);
 }
@@ -184,7 +186,9 @@ inline void addref(LPUNKNOWN punk)
  *
  * \param punk The interface pointer on which to release the reference. Cannot be null
  */
-inline void release(LPUNKNOWN punk)
+inline
+void
+release(LPUNKNOWN punk)
 {
     comstl__release(punk);
 }
@@ -195,7 +199,9 @@ inline void release(LPUNKNOWN punk)
  *
  * \param punk The interface pointer on which to add the reference. Can be null
  */
-inline void safe_addref(LPUNKNOWN punk)
+inline
+void
+safe_addref(LPUNKNOWN punk)
 {
     comstl__safe_addref(punk);
 }
@@ -206,7 +212,9 @@ inline void safe_addref(LPUNKNOWN punk)
  *
  * \param punk The interface pointer on which to release the reference. Can be null
  */
-inline void safe_release(LPUNKNOWN punk)
+inline
+void
+safe_release(LPUNKNOWN punk)
 {
     comstl__safe_release(punk);
 }
@@ -218,7 +226,9 @@ inline void safe_release(LPUNKNOWN punk)
  * \param pt The interface pointer on which to release the reference. Can be null
  */
 template <ss_typename_param_k T>
-inline void release_set_null(T *&pt)
+inline
+void
+release_set_null(T*& pt)
 {
     if (NULL != pt)
     {
@@ -226,8 +236,8 @@ inline void release_set_null(T *&pt)
         pt = NULL;
     }
 }
-
 #endif /* __cplusplus */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/object_functions.h (originally MOComFns.h)
+ * File:    comstl/util/object_functions.h (originally MOComFns.h)
  *
- * Purpose:     Reference-counting helper functions.
+ * Purpose: Reference-counting helper functions.
  *
- * Created:     2nd March 1996
- * Updated:     11th March 2024
+ * Created: 2nd March 1996
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MAJOR    3
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_MINOR    2
 # define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     80
+# define COMSTL_VER_COMSTL_UTIL_H_OBJECT_FUNCTIONS_EDIT     81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -103,14 +103,16 @@ namespace comstl_project
  * \retval S_OK The pointers refer to the same object
  * \retval E_POINTER If p is null
  * \retval E_INVALIDARG If identity is null
- * \retval any-other-code Indicates an error from the call to QueryInterface()
+ * \retval any-other-code Indicates an error from the call to
+ *   QueryInterface()
  *
- * \pre \c p is a NULL pointer, or a valid pointer to a COM interface.
+ * \pre \c p is a \c nullptr pointer, or a valid pointer to a COM interface.
  *
- * \remarks If the function success, the caller must release the reference count
- *        associated with the interface pointer in \c *identity.
+ * \remarks If the function success, the caller must release the reference
+ *   count associated with the interface pointer in \c *identity.
  *
- * \note Intended for use in C-compilation units only. For C++, use comstl::get_object_identity().
+ * \note Intended for use in C-compilation units only. For C++, use
+ *   comstl::get_object_identity().
  */
 STLSOFT_INLINE
 HRESULT
@@ -139,14 +141,16 @@ comstl_C_get_object_identity(
 
 /** [C] Determines whether two interfaces refer to the same object
  *
- * \return A status code indicating whether the two pointers refer to the same
- *          object
+ * \return A status code indicating whether the two pointers refer to the
+ *   same object
  * \retval S_OK The pointers refer to the same object
  * \retval S_FALSE The pointers refer to different objects
  * \retval E_POINTER If either/both pointers are null
- * \retval any-other-code Indicates an error from one of the calls to QueryInterface()
+ * \retval any-other-code Indicates an error from one of the calls to
+ *   QueryInterface()
  *
- * \pre \c p1 and \c p2 are NULL pointers, or are valid pointers to COM interfaces.
+ * \pre \c p1 and \c p2 are \c nullptr pointers, or are valid pointers to
+ *   COM interfaces.
  */
 STLSOFT_INLINE
 HRESULT
@@ -196,14 +200,17 @@ comstl_C_is_same_object(
     return hr;
 }
 
-/** [C] Determines whether an object implements a given interface without adding a reference count
+/** [C] Determines whether an object implements a given interface without
+ * adding a reference count
  *
- * \return A status code indicating whether the given interface is implemented
+ * \return A status code indicating whether the given interface is
+ *   implemented
  * \retval S_OK The interface is implemented and accessible
  * \retval E_NOINTERFACE The interface is not implemented
- * \retval any-other-code Indicates an error from the call to QueryInterface()
+ * \retval any-other-code Indicates an error from the call to
+ *   QueryInterface()
  *
- * \pre \c p is a non-NULL pointer to a COM interface.
+ * \pre \c p is a non-\c nullptr pointer to a COM interface.
  */
 STLSOFT_INLINE
 HRESULT
@@ -266,7 +273,6 @@ comstl__is_interface_implemented(
 {
     return comstl_C_is_interface_implemented(p, riid);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -295,14 +301,16 @@ namespace comstl
  * \retval S_OK The pointers refer to the same object
  * \retval E_POINTER If p is null
  * \retval E_INVALIDARG If identity is null
- * \retval any-other-code Indicates an error from the call to QueryInterface()
+ * \retval any-other-code Indicates an error from the call to
+ *   QueryInterface()
  *
- * \pre \c p is a NULL pointer, or a valid pointer to a COM interface.
+ * \pre \c p is a \c nullptr pointer, or a valid pointer to a COM interface.
  *
- * \remarks If the function success, the caller must release the reference count
- *        associated with the interface pointer in \c *identity.
+ * \remarks If the function success, the caller must release the reference
+ *   count associated with the interface pointer in \c *identity.
  *
- * \note Implemented in terms of the C-compatible function comstl__get_object_identity().
+ * \note Implemented in terms of the C-compatible function
+ *   comstl__get_object_identity().
  */
 inline
 HRESULT
@@ -316,14 +324,16 @@ get_object_identity(
 
 /** Determines whether two interfaces refer to the same object
  *
- * \return A status code indicating whether the two pointers refer to the same
- *          object
+ * \return A status code indicating whether the two pointers refer to the
+ *   same object
  * \retval S_OK The pointers refer to the same object
  * \retval S_FALSE The pointers refer to different objects
- * \retval E_POINTER One or both pointers are NULL.
- * \retval any-other-code Indicates an error from one of the calls to QueryInterface()
+ * \retval E_POINTER One or both pointers are \c nullptr.
+ * \retval any-other-code Indicates an error from one of the calls to
+ *   QueryInterface()
  *
- * \pre \c p1 and \c p2 are NULL pointers, or are valid pointers to COM interfaces.
+ * \pre \c p1 and \c p2 are \c nullptr pointers, or are valid pointers to
+ *   COM interfaces.
  */
 inline
 HRESULT
@@ -335,14 +345,17 @@ is_same_object(
     return comstl_C_is_same_object(p1, p2);
 }
 
-/** Determines whether an object implements a given interface without adding a reference count
+/** Determines whether an object implements a given interface without adding
+ * a reference count
  *
- * \return A status code indicating whether the given interface is implemented
+ * \return A status code indicating whether the given interface is
+ *   implemented
  * \retval S_OK The interface is implemented and accessible
  * \retval E_NOINTERFACE The interface is not implemented
- * \retval any-other-code Indicates an error from the call to QueryInterface()
+ * \retval any-other-code Indicates an error from the call to
+ *   QueryInterface()
  *
- * \pre \c p is a non-NULL pointer to a COM interface.
+ * \pre \c p is a non-\c nullptr pointer to a COM interface.
  */
 inline
 HRESULT
@@ -353,8 +366,8 @@ is_interface_implemented(
 {
     return comstl_C_is_interface_implemented(p, riid);
 }
-
 #endif /* __cplusplus */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

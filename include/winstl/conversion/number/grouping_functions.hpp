@@ -4,7 +4,7 @@
  * Purpose: Number formatting functions.
  *
  * Created: 28th August 2005
- * Updated: 30th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION    10
-# define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT        28
+# define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -162,9 +162,23 @@ format_thousands_3_impl(
  *
  * \ingroup group__library__Conversion
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function
- *   returns required size;
- * \param cchDest Size of available buffer. Ignored if dest is NULL;
+\code
+  {
+    char    dest[21];
+    size_t  n = winstl::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), 123456789);
+
+    assert(n >= 11);
+    // NOTE: the actual format depends on the user/system grouping registry settings at the time of the call
+    // assert(0 == ::strcmp("123,456,789", dest));
+  }
+\endcode
+ *
+ * \tparam C Type of the character
+ * \tparam N Type of the integer
+ *
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
  * \param number The number to be formatted;
  *
  * \return The number of characters required to store the result, including

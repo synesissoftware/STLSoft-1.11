@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/filesystem/squeeze_functions.hpp (formerly unixstl/filesystem/path_functions.hpp)
+ * File:    unixstl/filesystem/squeeze_functions.hpp (formerly unixstl/filesystem/path_functions.hpp)
  *
- * Purpose:     Path squeeze functions
+ * Purpose: Path squeeze functions
  *
- * Created:     13th June 2006
- * Updated:     11th March 2024
+ * Created: 13th June 2006
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MAJOR     2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      29
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -294,7 +294,8 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_unixstl_squeeze_functions_)
  *
  * \param path The path
  * \param buffer Pointer to the buffer into which the sqeezed path will be
- *   written. If NULL, function returns required size (=== len(path) + 1)
+ *   written. If \c nullptr, function returns required
+ *   size (=== len(path) + 1)
  * \param cchBuffer The number of available characters inc buffer. This
  *   value in inclusive of the required <code>nul</code>-terminator
  *
@@ -327,7 +328,6 @@ path_squeeze(
 } /* namespace unixstl_project */
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
-
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
 

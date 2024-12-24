@@ -4,7 +4,7 @@
  * Purpose: Event handler class for custom event notifications.
  *
  * Created: 1st October 2004
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define ACESTL_INCL_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR     2
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR     1
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION  13
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT      44
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR       2
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR       1
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION    13
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -305,7 +305,7 @@ public:
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
     /// An opaque type that identifies pending event instances
     ///
-    /// The only well-known value is \c NULL, which indicates no-event.
+    /// The only well-known value is \c nullptr, which indicates no-event.
     typedef event_id_*              event_id;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
     /// Type of the callback function that may be passed to
@@ -345,7 +345,7 @@ public:
      * \param arg An optional event parameter, which will be passed back to the
      * handle_custom_event() callback
      *
-     * \return NULL on failure, the event id on success
+     * \return \c nullptr on failure, the event id on success
      *
      * \remarks The custom event can be cancelled via cancel_custom_event()
      *
@@ -363,7 +363,7 @@ public:
      * \param arg An optional event parameter, which will be passed back to the
      * handle_custom_event() callback
      *
-     * \return NULL on failure, the event id on success
+     * \return \c nullptr on failure, the event id on success
      *
      * \remarks The custom event can be cancelled via cancel_custom_event()
      *
@@ -943,7 +943,6 @@ inline int custom_event_handler::handle_callback_timeout(ACE_Time_Value const& c
 #  pragma warning(default : 4702)
 # endif /* _MSC_VER */
 #endif /* compiler */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/network/connection.hpp (originally MIntConn.h)
+ * File:    inetstl/network/connection.hpp (originally MIntConn.h)
  *
- * Purpose:     Contains the basic_connection class.
+ * Purpose: Contains the basic_connection class.
  *
- * Created:     30th April 1999
- * Updated:     11th March 2024
+ * Created: 30th April 1999
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MAJOR       5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_MINOR       1
 # define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_REVISION    12
-# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        87
+# define INETSTL_VER_INETSTL_NETWORK_HPP_CONNECTION_EDIT        88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -154,10 +154,10 @@ public:
     /// Create a connection with the given arguments
     ///
     /// \param hsess A WinInet handle to the current session, obtained via \c InternetOpen() or the basic_session class
-    /// \param server The name of the server to which to connect. May not be NULL
+    /// \param server The name of the server to which to connect. May not be \c nullptr
     /// \param port The number of the port to connect on
-    /// \param userName The username for the connection. May be NULL
-    /// \param password The password for the connection. May be NULL
+    /// \param userName The username for the connection. May be \c nullptr
+    /// \param password The password for the connection. May be \c nullptr
     /// \param service The service to access. Either INTERNET_SERVICE_FTP or INTERNET_SERVICE_HTTP
     /// \param flags Service specific flags, e.g. INTERNET_FLAG_PASSIVE
     /// \param context Context used for callback functions
@@ -184,10 +184,10 @@ public:
     /// Opens a connection with the given arguments
     ///
     /// \param hsess A WinInet handle to the current session, obtained via \c InternetOpen() or the basic_session class
-    /// \param server The name of the server to which to connect. May not be NULL
+    /// \param server The name of the server to which to connect. May not be \c nullptr
     /// \param port The number of the port to connect on
-    /// \param userName The username for the connection. May be NULL
-    /// \param password The password for the connection. May be NULL
+    /// \param userName The username for the connection. May be \c nullptr
+    /// \param password The password for the connection. May be \c nullptr
     /// \param service The service to access. Either INTERNET_SERVICE_FTP or INTERNET_SERVICE_HTTP
     /// \param flags Service specific flags, e.g. INTERNET_FLAG_PASSIVE
     /// \param context Context used for callback functions

@@ -4,7 +4,7 @@
  * Purpose: Error functions.
  *
  * Created: 7th May 2000
- * Updated: 23rd October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define WINSTL_INCL_WINSTL_ERROR_H_ERROR_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  7
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      90
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR    4
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR    5
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION 7
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT     91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -303,13 +303,15 @@ winstl_C_fmtmsg_elide_message_w_(
 
 /** [UNDOCUMENTED]
  *
- * \param flags. Automatically added to this are FORMAT_MESSAGE_ALLOCATE_BUFFER and, if source is NULL, FORMAT_MESSAGE_FROM_SYSTEM
+ * \param flags Automatically added to this are
+ *   FORMAT_MESSAGE_ALLOCATE_BUFFER and, if source is \c nullptr,
+ *   FORMAT_MESSAGE_FROM_SYSTEM
  * \param source
  *
  * \note The flags are altered in the following
  *   ways: \c FORMAT_MESSAGE_ALLOCATE_BUFFER is always
  *   added; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
- *   \c source is \c NULL.
+ *   \c source is \c \c nullptr.
  *
  * \ingroup group__library__error
  */
@@ -344,13 +346,15 @@ winstl_C_FormatMessageA_INVOKE_for_alloc_(
 
 /** [UNDOCUMENTED]
  *
- * \param flags. Automatically added to this are FORMAT_MESSAGE_ALLOCATE_BUFFER and, if source is NULL, FORMAT_MESSAGE_FROM_SYSTEM
+ * \param flags Automatically added to this are
+ *   FORMAT_MESSAGE_ALLOCATE_BUFFER and, if source is \c nullptr,
+ *   FORMAT_MESSAGE_FROM_SYSTEM
  * \param source
  *
  * \note The flags are altered in the following
  *   ways: \c FORMAT_MESSAGE_ALLOCATE_BUFFER is always
  *   added; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
- *   \c source is \c NULL.
+ *   \c source is \c \c nullptr.
  *
  * \ingroup group__library__error
  */
@@ -386,13 +390,15 @@ winstl_C_FormatMessageW_INVOKE_for_alloc_(
 
 /** [UNDOCUMENTED]
  *
- * \param flags. Automatically removed from this is FORMAT_MESSAGE_ALLOCATE_BUFFER and added to this, if source is NULL, is FORMAT_MESSAGE_FROM_SYSTEM
+ * \param flags Automatically removed from this is
+ *   FORMAT_MESSAGE_ALLOCATE_BUFFER and added to this, if source is
+ *   \c nullptr, is FORMAT_MESSAGE_FROM_SYSTEM
  * \param source
  *
  * \note The flags are altered in the following
  *   ways: \c FORMAT_MESSAGE_ALLOCATE_BUFFER is always
  *   removed; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
- *   \c source is \c NULL.
+ *   \c source is \c \c nullptr.
  *
  * \ingroup group__library__error
  */
@@ -427,13 +433,15 @@ winstl_C_FormatMessageA_INVOKE_in_buffer_(
 
 /** [UNDOCUMENTED]
  *
- * \param flags. Automatically removed from this is FORMAT_MESSAGE_ALLOCATE_BUFFER and added to this, if source is NULL, is FORMAT_MESSAGE_FROM_SYSTEM
+ * \param flags. Automatically removed from this is
+ *   FORMAT_MESSAGE_ALLOCATE_BUFFER and added to this, if source is
+ *   \c nullptr, is FORMAT_MESSAGE_FROM_SYSTEM
  * \param source
  *
  * \note The flags are altered in the following
  *   ways: \c FORMAT_MESSAGE_ALLOCATE_BUFFER is always
  *   removed; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
- *   \c source is \c NULL.
+ *   \c source is \c \c nullptr.
  *
  * \ingroup group__library__error
  */
@@ -942,7 +950,8 @@ STLSOFT_INLINE ws_dword_t winstl_C_format_message_alloc_w(
  *   (by <code>winstl_C_format_message_free_buff_a()</code>) to avoid
  *   a memory leak.
  *
- * \return Always a non-NULL pointer to a nul-terminated multibyte string.
+ * \return Always a non-\c nullptr pointer to a nul-terminated multibyte
+ *   string.
  *
  * \note The returned pointer must be released by a call
  *   to <code>winstl_C_format_message_free_buff_a()</code>
@@ -1483,8 +1492,8 @@ format_message_free_buff(
 {
     winstl_C_format_message_free_buff_w(buffer);
 }
-
 #endif /* __cplusplus */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

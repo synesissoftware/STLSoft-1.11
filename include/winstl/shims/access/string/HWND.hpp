@@ -4,7 +4,7 @@
  * Purpose: Contains classes and functions for dealing with Win32 strings.
  *
  * Created: 24th May 2002
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MAJOR       4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MINOR       1
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_REVISION    11
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        131
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -337,8 +337,8 @@ GetWindowText_W_(
 
 /* HWND */
 /** This class provides an intermediary object that may be returned by the
- * c_str_ptr_null() function, such that the window text of a given window may be
- * accessed as a null-terminated string.
+ * c_str_ptr_null() function, such that the window text of a given window
+ * may be accessed as a null-terminated string.
  *
  * \ingroup group__concept__Shim__string_access
  *
@@ -382,8 +382,8 @@ private:
 
 // Accessors
 public:
-    /// Returns a null-terminated string representing the window contents, or
-    /// the empty string "" if the window contains no text.
+    /// Returns a null-terminated string representing the window contents,
+    /// or the empty string "" if the window contains no text.
     operator char_type const* () const
     {
         if (NULL == m_block)
@@ -500,8 +500,8 @@ private:
 
 // Accessors
 public:
-    /// Returns a null-terminated string representing the window contents, or
-    /// the empty string "" if the window contains no text.
+    /// Returns a null-terminated string representing the window contents,
+    /// or the empty string "" if the window contains no text.
     operator char_type const* () const
     {
         return &m_block->data[0];
@@ -595,6 +595,7 @@ operator <<(
     return s;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
@@ -636,6 +637,7 @@ c_str_data(
     return c_str_ptr_HWND_proxy<TCHAR>(hwnd);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
  *
@@ -663,7 +665,6 @@ c_str_len_w(
 {
     return GetWindowTextLength_W_(hwnd);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_len for HWND
@@ -679,6 +680,7 @@ c_str_len(
 {
     return GetWindowTextLength_T_(hwnd);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
@@ -707,7 +709,6 @@ c_str_ptr_w(
 {
     return c_str_ptr_HWND_proxy<ws_char_w_t>(hwnd);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr for HWND
@@ -728,7 +729,7 @@ c_str_ptr(
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
+ * pointer to the character string or \c nullptr.
  */
 
 /* HWND */
@@ -768,7 +769,10 @@ c_str_ptr_null(
     return c_str_ptr_null_HWND_proxy<TCHAR>(hwnd);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -779,6 +783,7 @@ c_str_ptr_null(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

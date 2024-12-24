@@ -4,7 +4,7 @@
  * Purpose: String to integer conversions.
  *
  * Created: 18th November 2008
- * Updated: 23rd October 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  Chris Oldwood for righteous criticism of one of my hastily-
  *          written articles, which led to the creation of the
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_REVISION  2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      74
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -945,7 +945,7 @@ string_to_integer(
 
 /** Converts a decimal numeric string to an integer
  *
- * \note If the length is exhaused, *endptr will be NULL
+ * \note If the length is exhaused, *endptr will be \c nullptr
  */
 inline
 int
@@ -968,7 +968,7 @@ string_to_integer(
 }
 /** Converts a decimal numeric string to an integer
  *
- * \note If the length is exhaused, *endptr will be NULL
+ * \note If the length is exhaused, *endptr will be \c nullptr
  */
 inline
 int

@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 23rd November 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       7
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        220
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        221
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -344,8 +344,8 @@ int pantheios_log_n(
  * <a href = "http://shwild.org/">shwild</a>.
  *
  * \remarks auto_buffer works correctly whether the given allocator throws
- *   an exception on allocation failure, or returns <code>NULL</code>. In
- *   the latter case, construction failure to allocate is reflected by the
+ *   an exception on allocation failure, or returns \c nullptr. In the
+ *   latter case, construction failure to allocate is reflected by the
  *   size() method returning 0.
  *
  * \remarks The design of auto_buffer is described in Chapter 32 of
