@@ -4,7 +4,7 @@
  * Purpose: Window creation functions.
  *
  * Created: 7th May 2000
- * Updated: 24th December 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -334,18 +334,22 @@ CreateWindowExW(
 }
 
 /*
-inline HWND CreateWindowEx( DWORD       dwExStyle
-                        ,   LPCTSTR     lpClassName
-                        ,   LPCTSTR     lpWindowName
-                        ,   DWORD       dwStyle
-                        ,   int         X
-                        ,   int         Y
-                        ,   int         nWidth
-                        ,   int         nHeight
-                        ,   HWND        hWndParent
-                        ,   HMENU       hMenu
-                        ,   HINSTANCE   hInstance
-                        ,   LPVOID      lpParam)
+inline
+HWND
+CreateWindowEx(
+    DWORD       dwExStyle
+,   LPCTSTR     lpClassName
+,   LPCTSTR     lpWindowName
+,   DWORD       dwStyle
+,   int         X
+,   int         Y
+,   int         nWidth
+,   int         nHeight
+,   HWND        hWndParent
+,   HMENU       hMenu
+,   HINSTANCE   hInstance
+,   LPVOID      lpParam
+)
 {
     return winstl__CreateWindowEx(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 }

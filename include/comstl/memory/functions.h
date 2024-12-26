@@ -4,7 +4,7 @@
  * Purpose: COM memory functions.
  *
  * Created: 2nd March 1996
- * Updated: 24th December 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -226,7 +226,9 @@ namespace comstl
  * \param pv Pointer to the memory block
  * \return The size of the memory block (in bytes)
  */
-inline cs_size_t CoTaskMemGetSize(void* pv)
+inline
+cs_size_t
+CoTaskMemGetSize(void* pv)
 {
     return comstl__CoTaskMemGetSize(pv);
 }

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shell/memory/functions.h
+ * File:    winstl/shell/memory/functions.h
  *
- * Purpose:     Shell memory functions.
+ * Purpose: Shell memory functions.
  *
- * Created:     2nd March 1996
- * Updated:     11th March 2024
+ * Created: 2nd March 1996
+ * Updated: 26th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MAJOR       6
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_REVISION    10
-# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        69
+# define WINSTL_VER_WINSTL_SHELL_MEMORY_H_FUNCTIONS_EDIT        70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -405,7 +405,9 @@ namespace winstl
  * \return Pointer to the allocated memory block, or NULL if the request
  *   failed.
  */
-inline void* SHMemAlloc(ws_size_t cb)
+inline
+void*
+SHMemAlloc(ws_size_t cb)
 {
     return winstl__SHMemAlloc(cb);
 }
@@ -418,7 +420,9 @@ inline void* SHMemAlloc(ws_size_t cb)
  *
  * \param pv Pointer to the memory block to be deallocated
  */
-inline void SHMemFree(void* pv)
+inline
+void
+SHMemFree(void* pv)
 {
     winstl__SHMemFree(pv);
 }
@@ -437,7 +441,12 @@ inline void SHMemFree(void* pv)
  * \return Pointer to the allocated memory block, or NULL if the request
  *   failed or cb is 0 and pv is not NULL.
  */
-inline void* SHMemRealloc(void* pv, ws_size_t cb)
+inline
+void*
+SHMemRealloc(
+    void*       pv
+,   ws_size_t   cb
+)
 {
     return winstl__SHMemRealloc(pv, cb);
 }
@@ -451,7 +460,9 @@ inline void* SHMemRealloc(void* pv, ws_size_t cb)
  * \param pv Pointer to the memory block
  * \return The size of the memory block (in bytes)
  */
-inline ws_size_t SHMemGetSize(void* pv)
+inline
+ws_size_t
+SHMemGetSize(void* pv)
 {
     return winstl__SHMemGetSize(pv);
 }
@@ -468,7 +479,9 @@ inline ws_size_t SHMemGetSize(void* pv)
  * \retval 0 The memory block was <i>not</i> allocated by the task allocator
  * \retval -1 SHMemDidAlloc() cannot determine whether the memory block was allocated by the task allocator
  */
-inline ws_sint_t SHMemDidAlloc(void* pv)
+inline
+ws_sint_t
+SHMemDidAlloc(void* pv)
 {
     return winstl__SHMemDidAlloc(pv);
 }
@@ -479,7 +492,9 @@ inline ws_sint_t SHMemDidAlloc(void* pv)
  *
  * This function is a wrapper for winstl__SHMemHeapMinimise().
  */
-inline void SHMemHeapMinimise()
+inline
+void
+SHMemHeapMinimise()
 {
     winstl__SHMemHeapMinimise();
 }
@@ -490,14 +505,18 @@ inline void SHMemHeapMinimise()
  *
  * This function is a wrapper for winstl__SHMemHeapMinimise().
  */
-inline void SHMemHeapMinimize()
+inline
+void
+SHMemHeapMinimize()
 {
     winstl__SHMemHeapMinimise();
 }
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inline
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

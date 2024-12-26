@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/util/undocumented.hpp (originally MCPriv.h, ::SynesisDev)
+ * File:    winstl/util/undocumented.hpp (originally MCPriv.h, ::SynesisDev)
  *
- * Purpose:     Miscellaneous undocumented features.
+ * Purpose: Miscellaneous undocumented features.
  *
- * Created:     20th October 1994
- * Updated:     11th March 2024
+ * Created: 20th October 1994
+ * Updated: 26th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_MAJOR       4
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_MINOR       0
 #define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_REVISION    5
-#define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_EDIT        51
+#define WINSTL_VER_WINSTL_UTIL_HPP_UNDOCUMENTED_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,7 +116,8 @@ namespace winstl_project
         _MSC_VER >= 1300)
 
 template <int N>
-inline UINT get_undoc_clipboard_fmt__(LPCTSTR lpszFormat)
+inline
+UINTget_undoc_clipboard_fmt__(LPCTSTR lpszFormat)
 {
     static UINT fmt = ::RegisterClipboardFormat(lpszFormat);
 

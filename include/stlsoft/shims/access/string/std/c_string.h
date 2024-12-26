@@ -5,7 +5,7 @@
  *          c_str_size accessors.
  *
  * Created: 16th January 2002
- * Updated: 24th December 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -149,7 +149,9 @@ c_str_data_a(ss_char_a_t const* s)
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_data(ss_char_a_t const* s)
+inline
+ss_char_a_t const*
+c_str_data(ss_char_a_t const* s)
 {
     return c_str_data_a(s);
 }
@@ -180,7 +182,9 @@ c_str_data_w(ss_char_w_t const* s)
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_data(ss_char_w_t const* s)
+inline
+ss_char_w_t const*
+c_str_data(ss_char_w_t const* s)
 {
     return c_str_data_w(s);
 }
@@ -197,7 +201,9 @@ inline ss_char_w_t const* c_str_data(ss_char_w_t const* s)
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_data_a(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_data_a(ss_char_a_t *s)
 {
     return (NULL != s) ? s : "";
 }
@@ -210,7 +216,9 @@ inline ss_char_a_t const* c_str_data_a(ss_char_a_t *s)
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_data(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_data(ss_char_a_t *s)
 {
     return c_str_data_a(s);
 }
@@ -224,7 +232,9 @@ inline ss_char_a_t const* c_str_data(ss_char_a_t *s)
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_data_w(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_data_w(ss_char_w_t *s)
 {
     return (NULL != s) ? s : L"";
 }
@@ -237,7 +247,9 @@ inline ss_char_w_t const* c_str_data_w(ss_char_w_t *s)
  * \return None-NULL, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_data(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_data(ss_char_w_t *s)
 {
     return c_str_data_w(s);
 }
@@ -253,7 +265,9 @@ inline ss_char_w_t const* c_str_data(ss_char_w_t *s)
  *   string of <code>char</code>.
  */
 template <ss_typename_param_k S>
-inline ss_char_a_t const* c_str_data_a(S const& s)
+inline
+ss_char_a_t const*
+c_str_data_a(S const& s)
 {
     return STLSOFT_NS_QUAL(c_str_data_a)(static_cast<ss_char_a_t const*>(STLSOFT_NS_QUAL(c_str_ptr_a)(s))));
 }
@@ -266,7 +280,9 @@ inline ss_char_a_t const* c_str_data_a(S const& s)
  *   string of <code>wchar_t</code>.
  */
 template <ss_typename_param_k S>
-inline ss_char_w_t const* c_str_data_w(S const& s)
+inline
+ss_char_w_t const*
+c_str_data_w(S const& s)
 {
     return STLSOFT_NS_QUAL(c_str_data_w)(static_cast<ss_char_w_t const*>(STLSOFT_NS_QUAL(c_str_ptr_w)(s))));
 }
@@ -306,7 +322,9 @@ c_str_len_a(ss_char_a_t const* s)
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
  */
-inline ss_size_t c_str_len(ss_char_a_t const* s)
+inline
+ss_size_t
+c_str_len(ss_char_a_t const* s)
 {
     return c_str_len_a(s);
 }
@@ -337,7 +355,9 @@ c_str_len_w(ss_char_w_t const* s)
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
  */
-inline ss_size_t c_str_len(ss_char_w_t const* s)
+inline
+ss_size_t
+c_str_len(ss_char_w_t const* s)
 {
     return c_str_len_w(s);
 }
@@ -355,7 +375,9 @@ inline ss_size_t c_str_len(ss_char_w_t const* s)
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
  */
-inline ss_size_t c_str_len_a(ss_char_a_t *s)
+inline
+ss_size_t
+c_str_len_a(ss_char_a_t *s)
 {
     return c_str_len_a(static_cast<ss_char_a_t const*>(s));
 }
@@ -368,7 +390,9 @@ inline ss_size_t c_str_len_a(ss_char_a_t *s)
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
  */
-inline ss_size_t c_str_len(ss_char_a_t *s)
+inline
+ss_size_t
+c_str_len(ss_char_a_t *s)
 {
     return c_str_len_a(s);
 }
@@ -382,7 +406,9 @@ inline ss_size_t c_str_len(ss_char_a_t *s)
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
  */
-inline ss_size_t c_str_len_w(ss_char_w_t *s)
+inline
+ss_size_t
+c_str_len_w(ss_char_w_t *s)
 {
     return c_str_len_w(static_cast<ss_char_w_t const*>(s));
 }
@@ -395,7 +421,9 @@ inline ss_size_t c_str_len_w(ss_char_w_t *s)
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
  *   <code>s</code> is NULL.
  */
-inline ss_size_t c_str_len(ss_char_w_t *s)
+inline
+ss_size_t
+c_str_len(ss_char_w_t *s)
 {
     return c_str_len_w(s);
 }
@@ -435,7 +463,9 @@ c_str_ptr_a(ss_char_a_t const* s)
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_ptr(ss_char_a_t const* s)
+inline
+ss_char_a_t const*
+c_str_ptr(ss_char_a_t const* s)
 {
     return c_str_ptr_a(s);
 }
@@ -464,7 +494,9 @@ c_str_ptr_w(ss_char_w_t const* s)
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_ptr(ss_char_w_t const* s)
+inline
+ss_char_w_t const*
+c_str_ptr(ss_char_w_t const* s)
 {
     return c_str_ptr_w(s);
 }
@@ -479,7 +511,9 @@ inline ss_char_w_t const* c_str_ptr(ss_char_w_t const* s)
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_ptr_a(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_ptr_a(ss_char_a_t *s)
 {
     return (NULL != s) ? s : "";
 }
@@ -492,7 +526,9 @@ inline ss_char_a_t const* c_str_ptr_a(ss_char_a_t *s)
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_ptr(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_ptr(ss_char_a_t *s)
 {
     return c_str_ptr_a(s);
 }
@@ -506,7 +542,9 @@ inline ss_char_a_t const* c_str_ptr(ss_char_a_t *s)
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_ptr_w(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_ptr_w(ss_char_w_t *s)
 {
     return (NULL != s) ? s : L"";
 }
@@ -519,7 +557,9 @@ inline ss_char_w_t const* c_str_ptr_w(ss_char_w_t *s)
  * \return None-NULL, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_ptr(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_ptr(ss_char_w_t *s)
 {
     return c_str_ptr_w(s);
 }
@@ -561,7 +601,9 @@ c_str_ptr_null_a(ss_char_a_t const* s)
  *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
  *   length, NULL is returned.
  */
-inline ss_char_a_t const* c_str_ptr_null(ss_char_a_t const* s)
+inline
+ss_char_a_t const*
+c_str_ptr_null(ss_char_a_t const* s)
 {
     return c_str_ptr_null_a(s);
 }
@@ -594,7 +636,9 @@ c_str_ptr_null_w(ss_char_w_t const* s)
  *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
  *   length, NULL is returned.
  */
-inline ss_char_w_t const* c_str_ptr_null(ss_char_w_t const* s)
+inline
+ss_char_w_t const*
+c_str_ptr_null(ss_char_w_t const* s)
 {
     return c_str_ptr_null_w(s);
 }
@@ -613,7 +657,9 @@ inline ss_char_w_t const* c_str_ptr_null(ss_char_w_t const* s)
  *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
  *   length, NULL is returned.
  */
-inline ss_char_a_t const* c_str_ptr_null_a(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_ptr_null_a(ss_char_a_t *s)
 {
     return (NULL == s || '\0' == *s) ? NULL : s;
 }
@@ -627,7 +673,9 @@ inline ss_char_a_t const* c_str_ptr_null_a(ss_char_a_t *s)
  *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
  *   length, NULL is returned.
  */
-inline ss_char_a_t const* c_str_ptr_null(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_ptr_null(ss_char_a_t *s)
 {
     return c_str_ptr_null_a(s);
 }
@@ -642,7 +690,9 @@ inline ss_char_a_t const* c_str_ptr_null(ss_char_a_t *s)
  *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
  *   length, NULL is returned.
  */
-inline ss_char_w_t const* c_str_ptr_null_w(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_ptr_null_w(ss_char_w_t *s)
 {
     return (NULL == s || L'\0' == *s) ? NULL : s;
 }
@@ -656,7 +706,9 @@ inline ss_char_w_t const* c_str_ptr_null_w(ss_char_w_t *s)
  *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
  *   length, NULL is returned.
  */
-inline ss_char_w_t const* c_str_ptr_null(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_ptr_null(ss_char_w_t *s)
 {
     return c_str_ptr_null_w(s);
 }
@@ -673,7 +725,9 @@ inline ss_char_w_t const* c_str_ptr_null(ss_char_w_t *s)
  *   length, NULL is returned.
  */
 template <ss_typename_param_k S>
-inline ss_char_a_t const* c_str_ptr_null_a(S const& s)
+inline
+ss_char_a_t const*
+c_str_ptr_null_a(S const& s)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_a)(static_cast<ss_char_a_t const*>(STLSOFT_NS_QUAL(c_str_ptr_a)(s))));
 }
@@ -687,7 +741,9 @@ inline ss_char_a_t const* c_str_ptr_null_a(S const& s)
  *   length, NULL is returned.
  */
 template <ss_typename_param_k S>
-inline ss_char_w_t const* c_str_ptr_null_w(S const& s)
+inline
+ss_char_w_t const*
+c_str_ptr_null_w(S const& s)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_w)(static_cast<ss_char_w_t const*>(STLSOFT_NS_QUAL(c_str_ptr_w)(s))));
 }
@@ -730,7 +786,9 @@ c_str_size_a(ss_char_a_t const* s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size(ss_char_a_t const* s)
+inline
+ss_size_t
+c_str_size(ss_char_a_t const* s)
 {
     return c_str_size_a(s);
 }
@@ -763,7 +821,9 @@ c_str_size_w(ss_char_w_t const* s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size(ss_char_w_t const* s)
+inline
+ss_size_t
+c_str_size(ss_char_w_t const* s)
 {
     return c_str_size_w(s);
 }
@@ -782,7 +842,9 @@ inline ss_size_t c_str_size(ss_char_w_t const* s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size_a(ss_char_a_t *s)
+inline
+ss_size_t
+c_str_size_a(ss_char_a_t *s)
 {
     return c_str_len(s) * sizeof(ss_char_a_t);
 }
@@ -796,7 +858,9 @@ inline ss_size_t c_str_size_a(ss_char_a_t *s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size(ss_char_a_t *s)
+inline
+ss_size_t
+c_str_size(ss_char_a_t *s)
 {
     return c_str_size_a(s);
 }
@@ -811,7 +875,9 @@ inline ss_size_t c_str_size(ss_char_a_t *s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size_w(ss_char_w_t *s)
+inline
+ss_size_t
+c_str_size_w(ss_char_w_t *s)
 {
     return c_str_len(s) * sizeof(ss_char_w_t);
 }
@@ -825,7 +891,9 @@ inline ss_size_t c_str_size_w(ss_char_w_t *s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size(ss_char_w_t *s)
+inline
+ss_size_t
+c_str_size(ss_char_w_t *s)
 {
     return c_str_size_w(s);
 }
@@ -841,7 +909,9 @@ inline ss_size_t c_str_size(ss_char_w_t *s)
  *   nul-terminating character.
  */
 template <ss_typename_param_k S>
-inline ss_size_t c_str_size_a(S const& s)
+inline
+ss_size_t
+c_str_size_a(S const& s)
 {
     return sizeof(ss_char_a_t) * c_str_len_a(s);
 }
@@ -856,7 +926,9 @@ inline ss_size_t c_str_size_a(S const& s)
  *   nul-terminating character.
  */
 template <ss_typename_param_k S>
-inline ss_size_t c_str_size_w(S const& s)
+inline
+ss_size_t
+c_str_size_w(S const& s)
 {
     return sizeof(ss_char_w_t) * c_str_len_w(s);
 }
@@ -871,7 +943,9 @@ inline ss_size_t c_str_size_w(S const& s)
  *   nul-terminating character.
  */
 template <ss_typename_param_k S>
-inline ss_size_t c_str_size(S const& s)
+inline
+ss_size_t
+c_str_size(S const& s)
 {
     return sizeof(*c_str_ptr(s)) * c_str_len(s);
 }
@@ -885,7 +959,9 @@ inline ss_size_t c_str_size(S const& s)
  *   which serves to remind users, via compilation error message, that
  *   they're attempting something disallowed.
  */
-inline cannot_use_untyped_0_or_NULL_with_shims c_str_size(int deny_literal_NULL);
+inline
+cannot_use_untyped_0_or_NULL_with_shims
+c_str_size(int deny_literal_NULL);
 #endif /* __cplusplus */
 
 

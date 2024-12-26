@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/toolhelp/process_sequence.hpp
+ * File:    winstl/toolhelp/process_sequence.hpp
  *
- * Purpose:     TOOLHELP process sequence class.
+ * Purpose: TOOLHELP process sequence class.
  *
- * Created:     21st May 2005
- * Updated:     11th March 2024
+ * Created: 21st May 2005
+ * Updated: 26th December 2024
  *
- * Thanks:      To Pablo for contributing this great library.
+ * Thanks:  To Pablo for contributing this great library.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2007, Pablo Aguilar
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_MAJOR      1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_MINOR      1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_REVISION   4
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_EDIT       22
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -147,14 +147,18 @@ typedef th_sequence_base<PROCESSENTRY32>            process_sequence;
  *
  * \param pe The PROCESSENTRY32 instance
  */
-inline DWORD get_pid(PROCESSENTRY32 const& pe)
+inline
+DWORD
+get_pid(PROCESSENTRY32 const& pe)
 {
     return pe.th32ProcessID;
 }
-
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
