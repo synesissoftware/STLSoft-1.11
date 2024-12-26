@@ -120,10 +120,12 @@ namespace winstl_project
  * \note [C++] This function is wrapped by the winstl::SHMemAlloc()
  *   function.
  */
-STLSOFT_INLINE void* winstl__SHMemAlloc(ws_size_t cb)
+STLSOFT_INLINE
+void*
+winstl__SHMemAlloc(ws_size_t cb)
 {
     LPMALLOC    lpmalloc;
-    void        *pv;
+    void*       pv;
     HRESULT     hr  =   STLSOFT_NS_GLOBAL(SHGetMalloc)(&lpmalloc);
 
     if (SUCCEEDED(hr))
@@ -145,10 +147,10 @@ STLSOFT_INLINE void* winstl__SHMemAlloc(ws_size_t cb)
     return pv;
 }
 
-/** [C] Deallocates a block of shell memory previously allocated
- *    by a call to winstl__SHMemAlloc(), winstl__SHMemRealloc() or through
- *    the <code>IMalloc::Alloc()</code> or <code>IMalloc::Realloc()</code>
- *    methods on the shell allocator (obtained via <code>SHGetMalloc()</code>).
+/** [C] Deallocates a block of shell memory previously allocated by a call
+ * to winstl__SHMemAlloc(), winstl__SHMemRealloc() or through the
+ * <code>IMalloc::Alloc()</code> or <code>IMalloc::Realloc()</code> methods
+ * on the shell allocator (obtained via <code>SHGetMalloc()</code>).
  *
  * \ingroup group__library__Memory
  *
@@ -160,10 +162,11 @@ STLSOFT_INLINE void* winstl__SHMemAlloc(ws_size_t cb)
  *   which may be retrieved by the Win32 API function
  *   <code>::GetLastError()</code>
  *
- * \note [C++] This function is wrapped by the winstl::SHMemFree()
- *   function.
+ * \note [C++] This function is wrapped by the winstl::SHMemFree() function.
  */
-STLSOFT_INLINE void winstl__SHMemFree(void* pv)
+STLSOFT_INLINE
+void
+winstl__SHMemFree(void* pv)
 {
     LPMALLOC    lpmalloc;
     HRESULT     hr  =   STLSOFT_NS_GLOBAL(SHGetMalloc)(&lpmalloc);
@@ -232,7 +235,12 @@ DECLARE_INTERFACE_(IMallocGcc32,IUnknown)
  *   function.
  */
 
-STLSOFT_INLINE void* winstl__SHMemRealloc(void* pv, ws_size_t cb)
+STLSOFT_INLINE
+void*
+winstl__SHMemRealloc(
+    void*       pv
+,   ws_size_t   cb
+)
 {
 #if defined(STLSOFT_COMPILER_IS_GCC) && \
     __GNUC__ < 4 && \
@@ -279,7 +287,9 @@ STLSOFT_INLINE void* winstl__SHMemRealloc(void* pv, ws_size_t cb)
  * \note [C++] This function is wrapped by the winstl::SHMemGetSize()
  *   function.
  */
-STLSOFT_INLINE ws_size_t winstl__SHMemGetSize(void* pv)
+STLSOFT_INLINE
+ws_size_t
+winstl__SHMemGetSize(void* pv)
 {
     LPMALLOC    lpmalloc;
     ws_size_t   ulRet;
@@ -303,19 +313,23 @@ STLSOFT_INLINE ws_size_t winstl__SHMemGetSize(void* pv)
  *
  * \ingroup group__library__Memory
  *
- * This function returns a value indicating whether a memory block was allocated
- * by the COM task allocator, as per <code>IMalloc::DidAlloc()</code>
+ * This function returns a value indicating whether a memory block was
+ * allocated by the COM task allocator, as per
+ * <code>IMalloc::DidAlloc()</code>
  *
  * \param pv Pointer to the memory block
  * \return Result indicating ownership
  * \retval 1 The memory block was allocated by the task allocator
  * \retval 0 The memory block was <i>not</i> allocated by the task allocator
- * \retval -1 SHMemDidAlloc() cannot determine whether the memory block was allocated by the task allocator
+ * \retval -1 SHMemDidAlloc() cannot determine whether the memory block was
+ *   allocated by the task allocator
  *
  * \note [C++] This function is wrapped by the winstl::SHMemDidAlloc()
  *   function.
  */
-STLSOFT_INLINE ws_sint_t winstl__SHMemDidAlloc(void* pv)
+STLSOFT_INLINE
+ws_sint_t
+winstl__SHMemDidAlloc(void* pv)
 {
     LPMALLOC    lpmalloc;
     ws_sint_t   iRet;
@@ -346,7 +360,9 @@ STLSOFT_INLINE ws_sint_t winstl__SHMemDidAlloc(void* pv)
  * \note [C++] This function is wrapped by the winstl::SHMemHeapMinimise()
  *   function.
  */
-STLSOFT_INLINE void winstl__SHMemHeapMinimise(void)
+STLSOFT_INLINE
+void
+winstl__SHMemHeapMinimise(void)
 {
     LPMALLOC    lpmalloc;
     HRESULT     hr  =   STLSOFT_NS_GLOBAL(SHGetMalloc)(&lpmalloc);
