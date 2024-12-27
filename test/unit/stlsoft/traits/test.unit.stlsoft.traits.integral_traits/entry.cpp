@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_traits`.
  *
  * Created: 21st November 2024
- * Updated: 21st November 2024
+ * Updated: 21st December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -113,7 +113,7 @@ namespace stlsoft {
             return { value };
         }
     };
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 
 /* /////////////////////////////////////////////////////////////////////////
