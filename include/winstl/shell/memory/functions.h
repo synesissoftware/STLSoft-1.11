@@ -110,8 +110,8 @@ namespace winstl_project
  * This function uses the shell allocator to allocate a memory block.
  *
  * \param cb The size, in bytes, of the memory block to be allocated.
- * \return Pointer to the allocated memory block, or NULL if the request
- *   failed.
+ * \return Pointer to the allocated memory block, or \c nullptr if the
+ *   request failed.
  *
  * \remarks On failure, the function will set the thread error information,
  *   which may be retrieved by the Win32 API function
@@ -206,10 +206,7 @@ DECLARE_INTERFACE_(IMallocGcc32,IUnknown)
     STDMETHOD_(int,DidAlloc)(THIS_ void*) PURE;
     STDMETHOD_(void,HeapMinimize)(THIS) PURE;
 };
-
 #endif /* compiler */
-
-
 
 
 
@@ -219,13 +216,13 @@ DECLARE_INTERFACE_(IMallocGcc32,IUnknown)
  *
  * This function uses the shell allocator to allocate a memory block.
  *
- * \param pv Pointer to the memory block to be reallocated. Can be NULL, in
- *   which case the function acts like SHMemAlloc()
+ * \param pv Pointer to the memory block to be reallocated. Can be
+ *   \c nullptr, in which case the function acts like SHMemAlloc()
  * \param cb The size, in bytes, of the memory block to be reallocated. Can
  *   be 0, in which case the function acts like SHMemFree() (if pv is not
- *   NULL), or like SHMemAlloc() (if pv is NULL).
- * \return Pointer to the allocated memory block, or NULL if the request
- *   failed or cb is 0 and pv is not NULL.
+ *   \c nullptr), or like SHMemAlloc() (if pv is \c nullptr).
+ * \return Pointer to the allocated memory block, or \c nullptr if the
+ *   request failed or cb is 0 and pv is not \c nullptr.
  *
  * \remarks On failure, the function will set the thread error information,
  *   which may be retrieved by the Win32 API function
@@ -402,8 +399,8 @@ namespace winstl
  * This function is a wrapper for winstl__SHMemAlloc().
  *
  * \param cb The size, in bytes, of the memory block to be allocated.
- * \return Pointer to the allocated memory block, or NULL if the request
- *   failed.
+ * \return Pointer to the allocated memory block, or \c nullptr if the
+ *   request failed.
  */
 inline
 void*
@@ -433,13 +430,13 @@ SHMemFree(void* pv)
  *
  * This function is a wrapper for winstl__SHMemRelloc().
  *
- * \param pv Pointer to the memory block to be reallocated. Can be NULL, in
- *   which case the function acts like SHMemAlloc()
+ * \param pv Pointer to the memory block to be reallocated. Can be
+ *   \c nullptr, in which case the function acts like SHMemAlloc()
  * \param cb The size, in bytes, of the memory block to be reallocated. Can
  *   be 0, in which case the function acts like SHMemFree() (if pv is not
- *   NULL), or like SHMemAlloc() (if pv is NULL).
- * \return Pointer to the allocated memory block, or NULL if the request
- *   failed or cb is 0 and pv is not NULL.
+ *   \c nullptr), or like SHMemAlloc() (if pv is \c nullptr).
+ * \return Pointer to the allocated memory block, or \c nullptr if the
+ *   request failed or cb is 0 and pv is not \c nullptr.
  */
 inline
 void*
@@ -477,7 +474,8 @@ SHMemGetSize(void* pv)
  * \return Result indicating ownership
  * \retval 1 The memory block was allocated by the task allocator
  * \retval 0 The memory block was <i>not</i> allocated by the task allocator
- * \retval -1 SHMemDidAlloc() cannot determine whether the memory block was allocated by the task allocator
+ * \retval -1 SHMemDidAlloc() cannot determine whether the memory block was
+ *   allocated by the task allocator
  */
 inline
 ws_sint_t

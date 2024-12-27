@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/directory_functions.hpp (originally MLFlMan.h, ::SynesisStd)
+ * File:    winstl/filesystem/directory_functions.hpp (originally MLFlMan.h, ::SynesisStd)
  *
- * Purpose:     Functions for manipulating directories.
+ * Purpose: Functions for manipulating directories.
  *
- * Created:     7th February 2002
- * Updated:     11th March 2024
+ * Created: 7th February 2002
+ * Updated: 25th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR     1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      73
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -586,27 +586,27 @@ create_directory_recurse(
  * \li If the err param is ~0 (-1 on UNIX), then the \c dir param specifies
  *   the name of the current directory being traversed. All other params are
  *   unspecified (except \c param). The return value is ignored.
- * \li If the err param is 0 and the \c st param is NULL, then \c dir
+ * \li If the err param is 0 and the \c st param is \c nullptr, then \c dir
  *   specifies the name of a directory that has been successfully removed.
  *   All other params are unspecified (except \c param). The return value is
  *   ignored.
- * \li If the err param is 0 and the \c st param is not NULL, then \c dir
- *   specifies the name of the currently traversing directory, and \c st
- *   specifies the stat information for the entry to be deleted. Return true
- *   to enable removal of this entry, or false to prevent removal (and
- *   cancel the overall operation). All other params are unspecified (except
- *   \c param).
- * \li If the err param is any other value, and the \c st param is NULL,
- *   then the \c dir param specifies the name of a directory that could not
- *   be deleted and err specifies the errno value associated with the
- *   failure. All other params are unspecified (except \c param). The return
- *   value is ignored.
- * \li If the err param is any other value, and the \c st param is not NULL,
- *   then the \c dir param specifies the name of a directory within which an
- *   entry could not be deleted, \c st specifies the stat information of the
- *   entry that could not be deleted, and err specifies the errno value
- *   associated with the failure. All other params are unspecified (except
- *   \c param). The return value is ignored.
+ * \li If the err param is 0 and the \c st param is not \c nullptr, then
+ *   \c dir specifies the name of the currently traversing directory, and
+ *   \c st specifies the stat information for the entry to be deleted.
+ *   Return true to enable removal of this entry, or false to prevent
+ *   removal (and cancel the overall operation). All other params are
+ *   unspecified (except \c param).
+ * \li If the err param is any other value, and the \c st param is
+ *   \c nullptr, then the \c dir param specifies the name of a directory
+ *   that could not be deleted and err specifies the errno value associated
+ *   with the failure. All other params are unspecified (except \c param).
+ *   The return value is ignored.
+ * \li If the err param is any other value, and the \c st param is not
+ *   \c nullptr, then the \c dir param specifies the name of a directory
+ *   within which an entry could not be deleted, \c st specifies the stat
+ *   information of the entry that could not be deleted, and err specifies
+ *   the errno value associated with the failure. All other params are
+ *   unspecified (except \c param). The return value is ignored.
  */
 inline
 ws_bool_t

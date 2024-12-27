@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/VARIANT_functions.h
+ * File:    comstl/util/VARIANT_functions.h
  *
- * Purpose:     VARIANT helper functions.
+ * Purpose: VARIANT helper functions.
  *
- * Created:     23rd August 2008
- * Updated:     11th March 2024
+ * Created: 23rd August 2008
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_MINOR       2
 # define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_REVISION    2
-# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_EDIT        21
+# define COMSTL_VER_COMSTL_UTIL_H_VARIANT_FUNCTIONS_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,14 +115,14 @@ namespace comstl_project
  * \param rhs Pointer to the right-hand instances to compare
  * \param comparisonSucceeded Pointer to a result-code instance that will have
  *   an HRESULT value not equal to S_OK if the comparison cannot be made. May
- *   be NULL if the caller does not care
+ *   be \c nullptr if the caller does not care
  *
  * \return a value indicating whether the values are equal
  * \retval 0 The structures are not equal
  * \retval >0 The structures are equal
  *
- * \pre \c lhs must not be NULL.
- * \pre \c rhs must not be NULL.
+ * \pre \c lhs must not be \c nullptr.
+ * \pre \c rhs must not be \c nullptr.
  */
 STLSOFT_INLINE
 int
@@ -283,16 +283,16 @@ namespace comstl
  *
  * \param lhs Pointer to the left-hand instances to compare
  * \param rhs Pointer to the right-hand instances to compare
- * \param comparisonSucceeded Pointer to a result-code instance that will have
- *   an HRESULT value not equal to S_OK if the comparison cannot be made. May
- *   be NULL if the caller does not care
+ * \param comparisonSucceeded Pointer to a result-code instance that will
+ *   have an HRESULT value not equal to S_OK if the comparison cannot be
+ *   made. May be \c nullptr if the caller does not care
  *
  * \return a value indicating whether the values are equal
  * \retval 0 The structures are not equal
  * \retval >0 The structures are equal
  *
- * \pre \c lhs must not be NULL.
- * \pre \c rhs must not be NULL.
+ * \pre \c lhs must not be \c nullptr.
+ * \pre \c rhs must not be \c nullptr.
  */
 inline
 bool
@@ -311,9 +311,9 @@ VARIANT_equal(
  *
  * \param lhs Reference to the left-hand instances to compare
  * \param rhs Reference to the right-hand instances to compare
- * \param comparisonSucceeded Pointer to a result-code instance that will have
- *   an HRESULT value not equal to S_OK if the comparison cannot be made. May
- *   be NULL if the caller does not care
+ * \param comparisonSucceeded Pointer to a result-code instance that will
+ *   have an HRESULT value not equal to S_OK if the comparison cannot be
+ *   made. May be \c nullptr if the caller does not care
  *
  * \return a value indicating whether the values are equal
  * \retval 0 The structures are not equal
@@ -342,7 +342,6 @@ VARIANT_change_type(
 {
     return comstl_C_VARIANT_change_type(dest, src, lcid, flags, vt);
 }
-
 #endif /* __cplusplus */
 
 
@@ -363,8 +362,8 @@ comstl__VARIANT_equal(
 {
     return comstl_C_VARIANT_equal(lhs, rhs, comparisonSucceeded);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

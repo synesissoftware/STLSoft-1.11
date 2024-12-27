@@ -130,7 +130,7 @@ struct cannot_use_untyped_0_or_NULL_with_shims;
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
 STLSOFT_INLINE
@@ -146,7 +146,7 @@ c_str_data_a(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
 inline
@@ -163,7 +163,7 @@ c_str_data(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
 STLSOFT_INLINE
@@ -179,7 +179,7 @@ c_str_data_w(ss_char_w_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -198,7 +198,7 @@ c_str_data(ss_char_w_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
 inline
@@ -213,7 +213,7 @@ c_str_data_a(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
 inline
@@ -229,7 +229,7 @@ c_str_data(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -244,7 +244,7 @@ c_str_data_w(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -261,7 +261,7 @@ c_str_data(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
 template <ss_typename_param_k S>
@@ -276,7 +276,7 @@ c_str_data_a(S const& s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
 template <ss_typename_param_k S>
@@ -304,7 +304,7 @@ c_str_data_w(S const& s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
 STLSOFT_INLINE
 ss_size_t
@@ -320,7 +320,7 @@ c_str_len_a(ss_char_a_t const* s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
 inline
 ss_size_t
@@ -337,9 +337,9 @@ c_str_len(ss_char_a_t const* s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
-inline
+STLSOFT_INLINE
 ss_size_t
 c_str_len_w(ss_char_w_t const* s)
 {
@@ -353,7 +353,7 @@ c_str_len_w(ss_char_w_t const* s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
 inline
 ss_size_t
@@ -373,7 +373,7 @@ c_str_len(ss_char_w_t const* s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
 inline
 ss_size_t
@@ -388,7 +388,7 @@ c_str_len_a(ss_char_a_t *s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
 inline
 ss_size_t
@@ -404,7 +404,7 @@ c_str_len(ss_char_a_t *s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
 inline
 ss_size_t
@@ -419,7 +419,7 @@ c_str_len_w(ss_char_w_t *s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
 inline
 ss_size_t
@@ -444,7 +444,7 @@ c_str_len(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
 STLSOFT_INLINE
@@ -460,7 +460,7 @@ c_str_ptr_a(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
 inline
@@ -477,7 +477,7 @@ c_str_ptr(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
 STLSOFT_INLINE
@@ -491,7 +491,7 @@ c_str_ptr_w(ss_char_w_t const* s)
 /** \ref group__concept__Shim__string_access__c_str_ptr function
  *    for <code>wchar_t const*</code>.
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -508,7 +508,7 @@ c_str_ptr(ss_char_w_t const* s)
 /** \ref group__concept__Shim__string_access__c_str_ptr function
  *    for <code>char const*</code>.
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
 inline
@@ -523,7 +523,7 @@ c_str_ptr_a(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
 inline
@@ -539,7 +539,7 @@ c_str_ptr(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -554,7 +554,7 @@ c_str_ptr_w(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -571,7 +571,7 @@ c_str_ptr(ss_char_w_t *s)
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
+ * pointer to the character string or \c nullptr.
  */
 
 /* C-style ANSI string */
@@ -580,9 +580,9 @@ c_str_ptr(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 STLSOFT_INLINE
 ss_char_a_t const*
@@ -597,9 +597,9 @@ c_str_ptr_null_a(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 inline
 ss_char_a_t const*
@@ -615,9 +615,9 @@ c_str_ptr_null(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 STLSOFT_INLINE
 ss_char_w_t const*
@@ -632,9 +632,9 @@ c_str_ptr_null_w(ss_char_w_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 inline
 ss_char_w_t const*
@@ -653,9 +653,9 @@ c_str_ptr_null(ss_char_w_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 inline
 ss_char_a_t const*
@@ -669,9 +669,9 @@ c_str_ptr_null_a(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 inline
 ss_char_a_t const*
@@ -686,9 +686,9 @@ c_str_ptr_null(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 inline
 ss_char_w_t const*
@@ -702,9 +702,9 @@ c_str_ptr_null_w(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 inline
 ss_char_w_t const*
@@ -720,9 +720,9 @@ c_str_ptr_null(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 template <ss_typename_param_k S>
 inline
@@ -736,9 +736,9 @@ c_str_ptr_null_a(S const& s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 template <ss_typename_param_k S>
 inline
@@ -951,7 +951,7 @@ c_str_size(S const& s)
 }
 
 /** Implementation of \ref group__concept__Shim__string_access__c_str_size
- *    for trapping use of literal <code>0</code> or <code>NULL</code>.
+ *    for trapping use of literal <code>0</code> or \c nullptr.
  *
  * \ingroup group__concept__Shim__string_access
  *

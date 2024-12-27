@@ -114,14 +114,21 @@ namespace winstl_project
  * \ingroup group__library__System
  *
  * \param cmdLine the command-line to use
- * \param processAttributes security information to apply to the process; may be NULL
- * \param threadAttributes security information to apply to the thread; may be NULL
- * \param inheritsHandles determines whether the child process inherits the process handles
+ * \param processAttributes security information to apply to the process;
+ *   may be \c nullptr
+ * \param threadAttributes security information to apply to the thread; may
+ *   be \c nullptr
+ * \param inheritsHandles determines whether the child process inherits the
+ *   process handles
  * \param creationFlags XXXX
- * \param environment pointer to an environment block; may be NULL
- * \param currentDirectory a directory to use as a current directory; may be NULL
- * \param si Pointer to an instance of <code>STARTUPINFO</code>. May be NULL, in which case defaults are used
- * \param pi Pointer to an instance of <code>PROCESS_INFORMATION</code>, which will receive the handles and identifiers of the created process and thread. May be NULL, in which case the handles are closed
+ * \param environment pointer to an environment block; may be \c nullptr
+ * \param currentDirectory a directory to use as a current directory; may be
+ *   \c nullptr
+ * \param si Pointer to an instance of <code>STARTUPINFO</code>. May be
+ *   \c nullptr, in which case defaults are used
+ * \param pi Pointer to an instance of <code>PROCESS_INFORMATION</code>,
+ *   which will receive the handles and identifiers of the created process
+ *   and thread. May be \c nullptr, in which case the handles are closed
  */
 STLSOFT_INLINE
 BOOL
@@ -252,14 +259,21 @@ namespace winstl
  * \ingroup group__library__System
  *
  * \param cmdLine the command-line to use
- * \param processAttributes security information to apply to the process; may be NULL
- * \param threadAttributes security information to apply to the thread; may be NULL
- * \param inheritsHandles determines whether the child process inherits the process handles
+ * \param processAttributes security information to apply to the process;
+ *   may be \c nullptr
+ * \param threadAttributes security information to apply to the thread; may
+ *   be \c nullptr
+ * \param inheritsHandles determines whether the child process inherits the
+ *   process handles
  * \param creationFlags XXXX
- * \param environment pointer to an environment block; may be NULL
- * \param currentDirectory a directory to use as a current directory; may be NULL
- * \param si Pointer to an instance of <code>STARTUPINFO</code>. May be NULL, in which case defaults are used
- * \param pi Pointer to an instance of <code>PROCESS_INFORMATION</code>, which will receive the handles and identifiers of the created process and thread. May be NULL, in which case the handles are closed
+ * \param environment pointer to an environment block; may be \c nullptr
+ * \param currentDirectory a directory to use as a current directory; may be
+ *   \c nullptr
+ * \param si Pointer to an instance of <code>STARTUPINFO</code>. May be
+ *   \c nullptr, in which case defaults are used
+ * \param pi Pointer to an instance of <code>PROCESS_INFORMATION</code>,
+ *   which will receive the handles and identifiers of the created process
+ *   and thread. May be \c nullptr, in which case the handles are closed
  */
 inline
 BOOL

@@ -221,7 +221,7 @@ public: // construction
     ///
     /// \note If exception handling is not enabled and memory cannot be
     ///   acquired to hold the sharing resource the object represented
-    ///   by \c p will be deleted, and get() will return \c NULL
+    ///   by \c p will be deleted, and get() will return \c nullptr
     ///
     /// \exception std::bad_alloc If exception support is enabled,
     ///   an instance of <code>std::bad_alloc</code> will be thrown if

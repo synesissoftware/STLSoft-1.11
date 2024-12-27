@@ -14,7 +14,7 @@
  *          basic_reg_value_sequence).
  *
  * Created: 19th January 2002
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -65,7 +65,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    7
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 16
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     151
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     152
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -240,7 +240,7 @@ public:
     /// Creates an instance which provides access to the values of the named sub-key of \c hkey
     ///
     /// \param hkey A registry key handle representing the parent of \c subKeyName
-    /// \param subKeyName The name of the sub-key whose values will be enumerated. If subKeyName is NULL or the empty string, then
+    /// \param subKeyName The name of the sub-key whose values will be enumerated. If subKeyName is \c nullptr or the empty string, then
     /// the values of \c hkey will be enumerated
     /// \param accessMask The security access mask with which the key (hkey + subKeyName) will be opened. Defaults to KEY_READ.
     ///
@@ -252,7 +252,7 @@ public:
     /// Creates an instance which provides access to the values of the named sub-key of \c hkey
     ///
     /// \param hkey A registry key handle representing the parent of \c subKeyName
-    /// \param subKeyName The name of the sub-key whose values will be enumerated. If subKeyName is NULL or the empty string, then
+    /// \param subKeyName The name of the sub-key whose values will be enumerated. If subKeyName is \c nullptr or the empty string, then
     /// the values of \c hkey will be enumerated
     /// \param accessMask The security access mask with which the key (hkey + subKeyName) will be opened. Defaults to KEY_READ
     /// \param bMonitorExternalInvalidation If non-zero, the iterators will monitor for external iterator invalidation, throwing

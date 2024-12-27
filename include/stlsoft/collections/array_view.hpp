@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/collections/array_view.hpp (derived from array_proxy (stlsoft_array_proxy.h)
+ * File:    stlsoft/collections/array_view.hpp (derived from array_proxy (stlsoft_array_proxy.h)
  *
- * Purpose:     Definition of the array_view template, which provides managed
- *              access to arrays, and can be used to avoid polymorphic array
- *              problems.
+ * Purpose: Definition of the array_view template, which provides managed
+ *          access to arrays, and can be used to avoid polymorphic array
+ *          problems.
  *
- * Created:     11th November 2002
- * Updated:     11th March 2024
+ * Created: 11th November 2002
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       1
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    6
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        86
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -169,7 +169,7 @@ public:
 public:
     /// Default constructor, creating a view of 0 size
     ///
-    /// \note The base() method returns NULL
+    /// \note The base() method returns \c nullptr
     array_view()
         : m_size(0)
         , m_base(NULL)
@@ -435,8 +435,11 @@ private:
  */
 
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+
 template <ss_typename_param_k T, ss_size_t N>
-inline array_view<T> make_array_view(T (&t)[N])
+inline
+array_view<T>
+make_array_view(T (&t)[N])
 {
     return array_view<T>(&t[0], &t[N]);
 //    return array_view<T>(t); // This one not used, because CodeWarrior gets confused
@@ -444,32 +447,43 @@ inline array_view<T> make_array_view(T (&t)[N])
 #endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 template <ss_typename_param_k T>
-inline array_view<T> make_array_view(T *begin, T *end)
+inline
+array_view<T>
+make_array_view(T *begin, T *end)
 {
     return array_view<T>(begin, end);
 }
 
 template <ss_typename_param_k T>
-inline array_view<const T> make_array_view(T const* begin, T const* end)
+inline
+array_view<const T>
+make_array_view(T const* begin, T const* end)
 {
     return array_view<const T>(begin, end);
 }
 
 template <ss_typename_param_k T>
-inline array_view<T> make_array_view(T *p, ss_size_t n)
+inline
+array_view<T>
+make_array_view(T *p, ss_size_t n)
 {
     return array_view<T>(p, n);
 }
 
 #if 0
 template <ss_typename_param_k T>
-inline array_view<const T> make_array_view(T const* p, ss_size_t n)
+inline
+array_view<const T>
+make_array_view(T const* p, ss_size_t n)
 {
     return array_view<const T>(p, n);
 }
 #endif /* 0 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

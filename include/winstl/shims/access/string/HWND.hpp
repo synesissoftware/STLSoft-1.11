@@ -341,8 +341,8 @@ GetWindowText_W_(
 
 /* HWND */
 /** This class provides an intermediary object that may be returned by the
- * c_str_ptr_null() function, such that the window text of a given window may be
- * accessed as a null-terminated string.
+ * c_str_ptr_null() function, such that the window text of a given window
+ * may be accessed as a null-terminated string.
  *
  * \ingroup group__concept__Shim__string_access
  *
@@ -386,8 +386,8 @@ private:
 
 // Accessors
 public:
-    /// Returns a null-terminated string representing the window contents, or
-    /// the empty string "" if the window contains no text.
+    /// Returns a null-terminated string representing the window contents,
+    /// or the empty string "" if the window contains no text.
     operator char_type const* () const
     {
         if (NULL == m_block)
@@ -504,8 +504,8 @@ private:
 
 // Accessors
 public:
-    /// Returns a null-terminated string representing the window contents, or
-    /// the empty string "" if the window contains no text.
+    /// Returns a null-terminated string representing the window contents,
+    /// or the empty string "" if the window contains no text.
     operator char_type const* () const
     {
         return &m_block->data[0];
@@ -599,6 +599,7 @@ operator <<(
     return s;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
@@ -640,6 +641,7 @@ c_str_data(
     return c_str_ptr_HWND_proxy<TCHAR>(hwnd);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
  *
@@ -667,7 +669,6 @@ c_str_len_w(
 {
     return GetWindowTextLength_W_(hwnd);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_len for HWND
@@ -683,6 +684,7 @@ c_str_len(
 {
     return GetWindowTextLength_T_(hwnd);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
@@ -711,7 +713,6 @@ c_str_ptr_w(
 {
     return c_str_ptr_HWND_proxy<ws_char_w_t>(hwnd);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr for HWND
@@ -732,7 +733,7 @@ c_str_ptr(
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
+ * pointer to the character string or \c nullptr.
  */
 
 /* HWND */

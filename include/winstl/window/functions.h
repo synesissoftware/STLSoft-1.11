@@ -741,18 +741,16 @@ set_window_icon(
  * \param hwndParent The window whose children will be searched
  * \param id The dialog id to search for
  *
- * \return Either the window handle of the first child window (or
- * the parent itself) that matches the id, or NULL if no windows
- * match
+ * \return Either the window handle of the first child window (or the parent
+ *   itself) that matches the id, or \c nullptr if no windows match
  *
- * \note Because several levels of windows may be searched, it's
- * possible for more than one child window to have the given id.
- * This function will return only the first one found. Which one
- * is determined by the internals of the EnumChildWindows() API
- * function.
+ * \note Because several levels of windows may be searched, it's possible
+ *   for more than one child window to have the given id. This function will
+ *   return only the first one found. Which one is determined by the
+ *   internals of the EnumChildWindows() API function.
  *
  * \note \c hwndParent is included in the search, so if it has the
- * given id, it will be returned
+ *   given id, it will be returned
  */
 #  if defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1) || \
       defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2)
@@ -900,7 +898,6 @@ FindFirstChildById(
 {
     return FindFirstChildById_class/* <int> */::FindFirstChildById_N(hwndParent, id);
 }
-
 #  else /* ? WINSTL_FINDFIRSTCHILDBYID_SLF_FORM?? */
 #   error None of WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1, WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 or WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3 defined
 #  endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM?? */

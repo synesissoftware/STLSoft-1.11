@@ -323,7 +323,7 @@ GetConsoleWindow()
  * \ingroup group__library__System
  *
  * \warning This only works on Windows 2000, or later, operating systems. It
- *    will return NULL on other operating systems.
+ *    will return \c nullptr on other operating systems.
  */
 STLSOFT_INLINE
 HWND
@@ -451,7 +451,7 @@ get_console_width()
  * \ingroup group__library__System
  *
  * \warning This only works on Windows 2000, or later, operating systems. It
- *    will return NULL on other operating systems.
+ *    will return \c nullptr on other operating systems.
  */
 inline
 HWND

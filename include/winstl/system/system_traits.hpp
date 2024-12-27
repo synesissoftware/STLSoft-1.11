@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 19th November 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  Austin Ziegler for spotting the defective pre-condition
  *          enforcement of expand_environment_strings().
@@ -59,7 +59,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       6
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        168
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        169
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -210,9 +210,9 @@ public:
     /// path string character rules on the ambient operating system
     ///
     /// \param ps1 C-style string pointer to the first path. May not be
-    ///   \c null
+    ///   \c nullptr
     /// \param ps2 C-style string pointer to the first path. May not be
-    ///   \c null
+    ///   \c nullptr
     ///
     /// \note This function does <em>not</em> perform analysis such as
     ///   canonicalisation of dots directories
@@ -227,9 +227,9 @@ public:
     /// path string character rules on the ambient operating system
     ///
     /// \param ps1 C-style string pointer to the first path. May not be
-    ///   \c null
+    ///   \c nullptr
     /// \param ps2 C-style string pointer to the first path. May not be
-    ///   \c null
+    ///   \c nullptr
     /// \param cch Number of characters to compare
     ///
     /// \note This function does <em>not</em> perform analysis such as
@@ -471,7 +471,8 @@ public:
     /// Gets an environment variable into the given buffer
     ///
     /// \param name The name of the variable to find
-    /// \param buffer The buffer in which to write the variable. If this is NULL, then the required length is returned
+    /// \param buffer The buffer in which to write the variable. If this is
+    ///   \c nullptr, then the required length is returned
     /// \param cchBuffer The size of the buffer, in characters
     ///
     /// \pre nullptr != name
@@ -499,7 +500,8 @@ public:
     ,   T_resizeableBuffer& rb
     );
 
-    /// Expands environment strings in \c src into \c buffer, up to a maximum \c cchDest characters
+    /// Expands environment strings in \c src into \c buffer, up to a
+    /// maximum \c cchDest characters
     ///
     /// \pre nullptr != src
     /// \pre 0 == cchBuffer || nullptr != buffer
@@ -1574,10 +1576,12 @@ private:
 #endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 };
-
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

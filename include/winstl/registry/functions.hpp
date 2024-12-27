@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/functions.hpp
+ * File:    winstl/registry/functions.hpp
  *
- * Purpose:     Registry functions.
+ * Purpose: Registry functions.
  *
- * Created:     20th November 1995
- * Updated:     11th March 2024
+ * Created: 20th November 1995
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1995-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_MINOR     1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_REVISION  7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      63
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_FUNCTIONS_EDIT      64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,21 +105,31 @@ namespace winstl_project
  *    caller-supplied buffer.
  * \ingroup group__library__Windows_Registry
  *
- * \param hkey <code class="inout">[in]</code> Handle of the key whose values will be retrieved
- * \param name <code class="inout">[in]</code> The name of the value. May be <code>NULL</code> or the empty
- *   string to access the key's default value
- * \param buffer <code class="inout">[in]</code> Pointer to the caller-allocated buffer into which the
- *   value's string result will be written.
- * \param cchBuffer <code class="inout">[inout]</code> Specifies the size of the <code>buffer</code>
- *   parameter and receives the number of bytes required for the whole value (including the
- *   string's nul-terminating character).
+ * \param hkey <code class="inout">[in]</code> Handle of the key whose
+ *   values will be retrieved
+ * \param name <code class="inout">[in]</code> The name of the value. May be
+ *   \c nullptr or the empty string to access the key's default value
+ * \param buffer <code class="inout">[in]</code> Pointer to the
+ *   caller-allocated buffer into which the value's string result will be
+ *   written.
+ * \param cchBuffer <code class="inout">[inout]</code> Specifies the size of
+ *   the <code>buffer</code> parameter and receives the number of bytes
+ *   required for the whole value (including the string's nul-terminating
+ *   character).
  *
  * \return A Registry API status code indicating success or failure
  * \retval "ERROR_SUCCESS (==0)" The function completed successfully
  * \retval "any other value" The function failed, and the error code indicates why
  */
 template <ss_typename_param_k C>
-inline LONG reg_get_string_value(HKEY hkey, C const* name, C *buffer, ws_size_t &cchBuffer)
+inline
+LONG
+reg_get_string_value(
+    HKEY        hkey
+,   C const*    name
+,   C*          buffer
+,   ws_size_t&  cchBuffer
+)
 {
     DWORD       type;
     ws_size_t   cbData  =   sizeof(C) * cchBuffer;
@@ -137,19 +147,28 @@ inline LONG reg_get_string_value(HKEY hkey, C const* name, C *buffer, ws_size_t 
  *    caller-supplied variable.
  * \ingroup group__library__Windows_Registry
  *
- * \param hkey <code class="inout">[in]</code> Handle of the key whose values will be retrieved
- * \param name <code class="inout">[in]</code> The name of the value. May be <code>NULL</code> or the empty
- *   string to access the key's default value
+ * \param hkey <code class="inout">[in]</code> Handle of the key whose
+ *   values will be retrieved
+ * \param name <code class="inout">[in]</code> The name of the value. May be
+ *   \c nullptr or the empty string to access the key's default value
  * \param value <code class="inout">[out]</code> The value's value.
  *
  * \return A Registry API status code indicating success or failure
  * \retval "ERROR_SUCCESS (==0)" The function completed successfully
- * \retval "any other value" The function failed, and the error code indicates why
+ * \retval "any other value" The function failed, and the error code
+ *   indicates why
  *
- * \remarks If the function fails, the value of <code>value</code> is unchanged.
+ * \remarks If the function fails, the value of <code>value</code> is
+ *   unchanged.
  */
 template <ss_typename_param_k C>
-inline LONG reg_get_dword_value(HKEY hkey, C const* name, DWORD& value)
+inline
+LONG
+reg_get_dword_value(
+    HKEY        hkey
+,   C const*    name
+,   DWORD&      value
+)
 {
     DWORD       type;
     ws_size_t   cbData  =   sizeof(value);

@@ -5,7 +5,7 @@
  *          specialisations thereof.
  *
  * Created: 19th January 2002
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  To Sam Fisher for spotting the defect in the set_value_()
  *          overload for REG_MULTI_SZ values (widestring only).
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       10
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    16
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        167
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        168
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -241,7 +241,7 @@ public:
      *
      * \param hkeyParent A handle to the parent key, whose named subkey is
      *  to be opened.
-     * \param keyName The name of the subkey to open. If <code>NULL</code>
+     * \param keyName The name of the subkey to open. If \c nullptr
      *  or the empty string, then a copy of <code>hkeyParent</code> will be
      *  opened.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
@@ -250,7 +250,7 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     basic_reg_key(hkey_type hkeyParent, char_type const* keyName, REGSAM accessMask = KEY_ALL_ACCESS)
@@ -263,7 +263,7 @@ public:
      *
      * \param hkeyParent A handle to the parent key, whose named subkey is
      *  to be opened.
-     * \param keyName The name of the subkey to open. If <code>NULL</code>
+     * \param keyName The name of the subkey to open. If \c nullptr
      *  or the empty string, then a copy of <code>hkeyParent</code> will be
      *  opened.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
@@ -272,7 +272,7 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     template <ss_typename_param_k S>
@@ -286,7 +286,7 @@ public:
      *
      * \param keyParent A handle to the parent key, whose named subkey is
      *  to be opened.
-     * \param keyName The name of the subkey to open. If <code>NULL</code>
+     * \param keyName The name of the subkey to open. If \c nullptr
      *  or the empty string, then a copy of <code>keyParent</code> will be
      *  opened.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
@@ -295,7 +295,7 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     basic_reg_key(class_type const& keyParent, char_type const* keyName, REGSAM accessMask = KEY_ALL_ACCESS)
@@ -308,7 +308,7 @@ public:
      *
      * \param keyParent A handle to the parent key, whose named subkey is
      *  to be opened.
-     * \param keyName The name of the subkey to open. If <code>NULL</code>
+     * \param keyName The name of the subkey to open. If \c nullptr
      *  or the empty string, then a copy of <code>keyParent</code> will be
      *  opened.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
@@ -317,7 +317,7 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     template <ss_typename_param_k S>
@@ -337,7 +337,7 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     basic_reg_key(class_type const& rhs);
@@ -352,7 +352,7 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     basic_reg_key(class_type const& rhs, REGSAM accessMask);
@@ -402,7 +402,7 @@ public:
     /** The handle to the underlying Registry API key.
      *
      * \note If \ref page__exception_agnostic "exception handling is not enabled",
-     *  then this method will return <code>NULL</code> in the case where an
+     *  then this method will return \c nullptr in the case where an
      *  instance constructor failed to open the key with the requested permissions.
      */
     hkey_type               get_key_handle() const;
@@ -435,7 +435,7 @@ public:
 
     /** Creates a named sub-key of this key
      *
-     * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
+     * \param subKeyName Name of the subkey to created. If \c nullptr or the
      *  empty string, then the function returns a copy of the callee.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key. Defaults to KEY_ALL_ACCESS.
@@ -443,14 +443,14 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be created. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     class_type  create_sub_key(char_type const* subKeyName, REGSAM accessMask = KEY_ALL_ACCESS);
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /** Creates a named sub-key of this key
      *
-     * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
+     * \param subKeyName Name of the subkey to created. If \c nullptr or the
      *  empty string, then the function returns a copy of the callee.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key. Defaults to KEY_ALL_ACCESS.
@@ -458,7 +458,7 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be created. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     template <ss_typename_param_k S>
@@ -471,7 +471,7 @@ public:
     /** Creates a named sub-key of a given key
      *
      * \param hkey The parent registry key.
-     * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
+     * \param subKeyName Name of the subkey to created. If \c nullptr or the
      *  empty string, then the function returns a copy of the callee.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key. Defaults to KEY_ALL_ACCESS.
@@ -479,7 +479,7 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be created. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     static class_type create_key(HKEY hkey, char_type const* subKeyName, REGSAM accessMask = KEY_ALL_ACCESS);
@@ -487,7 +487,7 @@ public:
     /** Creates a named sub-key of this key
      *
      * \param key The parent registry key.
-     * \param subKeyName Name of the subkey to created. If <code>NULL</code> or the
+     * \param subKeyName Name of the subkey to created. If \c nullptr or the
      *  empty string, then the function returns a copy of the callee.
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key. Defaults to KEY_ALL_ACCESS.
@@ -495,7 +495,7 @@ public:
      * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be created. If not,
-     *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
+     *  then the instance constructed will be empty, as denoted by a \c nullptr
      *  value returned from the get_key_handle() method.
      */
     template <ss_typename_param_k H, ss_typename_param_k S>
@@ -876,7 +876,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline HKEY get_handle(basic_reg_key<C, T, A> const& key)
+inline
+HKEY
+get_handle(basic_reg_key<C, T, A> const& key)
 {
     return key.get_key_handle();
 }
@@ -896,7 +898,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline HKEY get_HKEY(basic_reg_key<C, T, A> const& key)
+inline
+HKEY
+get_HKEY(basic_reg_key<C, T, A> const& key)
 {
     return key.get_key_handle();
 }
@@ -915,9 +919,23 @@ template<   ss_typename_param_k C
 #if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1100) || \
     defined(STLSOFT_COMPILER_IS_VECTORC)
-inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::open_key_(hkey_type hkeyParent, char_type const* keyName, REGSAM accessMask)
+inline
+/* static */
+ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type
+basic_reg_key<C, T, A>::open_key_(
+    hkey_type           hkeyParent
+,   char_type const*    keyName
+,   REGSAM              accessMask
+)
 #else /* ? compiler */
-inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::open_key_(ss_typename_param_k basic_reg_key<C, T, A>::hkey_type hkeyParent, ss_typename_param_k basic_reg_key<C, T, A>::char_type const* keyName, REGSAM accessMask)
+inline
+/* static */
+ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type
+basic_reg_key<C, T, A>::open_key_(
+    ss_typename_param_k basic_reg_key<C, T, A>::hkey_type           hkeyParent
+,   ss_typename_param_k basic_reg_key<C, T, A>::char_type const*    keyName
+,   REGSAM                                                          accessMask
+)
 #endif /* compiler */
 {
     hkey_type   hkey;
@@ -949,8 +967,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::dup_key_(  ss_typename_type_k basic_reg_key<C, T, A>::hkey_type    hkey
-                                                                                                            ,   REGSAM                                                  accessMask /* = KEY_ALL_ACCESS */)
+inline
+/* static */
+ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type
+basic_reg_key<C, T, A>::dup_key_(
+    ss_typename_type_k basic_reg_key<C, T, A>::hkey_type    hkey
+,   REGSAM                                                  accessMask /* = KEY_ALL_ACCESS */
+)
 {
     if (NULL == hkey)
     {
@@ -986,35 +1009,47 @@ inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type bas
 
 // Construction
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_key<C, T, A>::basic_reg_key()
+inline
+basic_reg_key<C, T, A>::basic_reg_key()
     : m_name()
     , m_hkey(NULL)
     , m_accessMask(KEY_READ)
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_key<C, T, A>::basic_reg_key(ss_typename_type_k basic_reg_key<C, T, A>::hkey_type* hkey, ss_typename_type_k basic_reg_key<C, T, A>::string_type const& keyName, REGSAM accessMask)
+inline
+basic_reg_key<C, T, A>::basic_reg_key(
+    ss_typename_type_k basic_reg_key<C, T, A>::hkey_type*           hkey
+,   ss_typename_type_k basic_reg_key<C, T, A>::string_type const&   keyName
+,   REGSAM                                                          accessMask
+)
     : m_name(keyName)
     , m_hkey(*hkey)
     , m_accessMask(accessMask)
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_key<C, T, A>::basic_reg_key(class_type const& rhs)
+inline
+basic_reg_key<C, T, A>::basic_reg_key(class_type const& rhs)
     : m_name(rhs.m_name)
     , m_hkey(dup_key_(rhs.m_hkey, rhs.get_access_mask()))
     , m_accessMask(rhs.m_accessMask)
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_key<C, T, A>::basic_reg_key(class_type const& rhs, REGSAM accessMask)
+inline
+basic_reg_key<C, T, A>::basic_reg_key(
+    class_type const&   rhs
+,   REGSAM              accessMask
+)
     : m_name(rhs.m_name)
     , m_hkey(dup_key_(rhs.m_hkey, accessMask))
     , m_accessMask(accessMask)
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_key<C, T, A>::~basic_reg_key() STLSOFT_NOEXCEPT
+inline
+basic_reg_key<C, T, A>::~basic_reg_key() STLSOFT_NOEXCEPT
 {
     if (m_hkey != NULL)
     {
@@ -1023,7 +1058,9 @@ inline basic_reg_key<C, T, A>::~basic_reg_key() STLSOFT_NOEXCEPT
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline void basic_reg_key<C, T, A>::swap(ss_typename_type_k basic_reg_key<C, T, A>::class_type& rhs) STLSOFT_NOEXCEPT
+inline
+void
+basic_reg_key<C, T, A>::swap(ss_typename_type_k basic_reg_key<C, T, A>::class_type& rhs) STLSOFT_NOEXCEPT
 {
     std_swap(m_name,        rhs.m_name);
     std_swap(m_hkey,        rhs.m_hkey);
@@ -1031,7 +1068,9 @@ inline void basic_reg_key<C, T, A>::swap(ss_typename_type_k basic_reg_key<C, T, 
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type& basic_reg_key<C, T, A>::operator =(ss_typename_type_k basic_reg_key<C, T, A>::class_type const& rhs)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type&
+basic_reg_key<C, T, A>::operator =(ss_typename_type_k basic_reg_key<C, T, A>::class_type const& rhs)
 {
     class_type t(rhs);
 
@@ -1042,13 +1081,17 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type& basic_reg_key<
 
 // Attributes
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::string_type const& basic_reg_key<C, T, A>::name() const
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::string_type const&
+basic_reg_key<C, T, A>::name() const
 {
     return m_name;
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::string_type basic_reg_key<C, T, A>::reg_class() const
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::string_type
+basic_reg_key<C, T, A>::reg_class() const
 {
     size_type   cch_key_class   =   0;
     ws_long_t   res             =   traits_type::reg_query_info(m_hkey, NULL, &cch_key_class, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -1096,7 +1139,9 @@ query_fail:
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type basic_reg_key<C, T, A>::num_sub_keys() const
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type
+basic_reg_key<C, T, A>::num_sub_keys() const
 {
     ws_uint32_t c_sub_keys;
     ws_long_t   res         =   traits_type::reg_query_info(m_hkey, NULL, NULL, &c_sub_keys, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -1123,7 +1168,9 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type basic_reg_key<C,
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type basic_reg_key<C, T, A>::num_values() const
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type
+basic_reg_key<C, T, A>::num_values() const
 {
     ws_uint32_t c_values;
     ws_long_t   res         =   traits_type::reg_query_info(m_hkey, NULL, NULL, NULL, NULL, NULL, &c_values, NULL, NULL, NULL, NULL);
@@ -1150,50 +1197,81 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::size_type basic_reg_key<C,
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::get_key_handle() const
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type
+basic_reg_key<C, T, A>::get_key_handle() const
 {
     return m_hkey;
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::get() const
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type
+basic_reg_key<C, T, A>::get() const
 {
     return get_key_handle();
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline REGSAM basic_reg_key<C, T, A>::get_access_mask() const
+inline
+REGSAM
+basic_reg_key<C, T, A>::get_access_mask() const
 {
     return m_accessMask;
 }
 
 // Operations
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::open_sub_key(char_type const* subKeyName, REGSAM accessMask /* = KEY_ALL_ACCESS */)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type
+basic_reg_key<C, T, A>::open_sub_key(
+    char_type const*    subKeyName
+,   REGSAM              accessMask /* = KEY_ALL_ACCESS */
+)
 {
     return this->open_sub_key_(subKeyName, accessMask);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_sub_key(char_type const* subKeyName, REGSAM accessMask /* = KEY_ALL_ACCESS */)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type
+basic_reg_key<C, T, A>::create_sub_key(
+    char_type const*    subKeyName
+,   REGSAM              accessMask /* = KEY_ALL_ACCESS */
+)
 {
     return this->create_sub_key_(subKeyName, accessMask);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_key(HKEY hkey, char_type const* subKeyName, REGSAM accessMask /* = KEY_ALL_ACCESS */)
+inline
+/* static */
+ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type
+basic_reg_key<C, T, A>::create_key(
+    HKEY                hkey
+,   char_type const*    subKeyName
+,   REGSAM              accessMask /* = KEY_ALL_ACCESS */
+)
 {
     return create_key_(hkey, subKeyName, accessMask);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::open_sub_key_(char_type const* subKeyName, REGSAM accessMask /* = KEY_ALL_ACCESS */)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type
+basic_reg_key<C, T, A>::open_sub_key_(
+    char_type const*    subKeyName
+,   REGSAM              accessMask /* = KEY_ALL_ACCESS */
+)
 {
     return class_type(m_hkey, subKeyName, accessMask);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_key_(
+inline
+/* static */
+ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type
+basic_reg_key<C, T, A>::create_key_(
     HKEY                hkey
 ,   char_type const*    subKeyName
 ,   REGSAM              accessMask
@@ -1205,7 +1283,9 @@ inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type ba
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_sub_key_(
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type
+basic_reg_key<C, T, A>::create_sub_key_(
     char_type const*    subKeyName
 ,   REGSAM              accessMask
 )
@@ -1236,13 +1316,17 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::class_type basic_reg_key<C
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::delete_sub_key(char_type const* subKeyName)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::delete_sub_key(char_type const* subKeyName)
 {
     return this->delete_sub_key_(subKeyName);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::delete_sub_key_(char_type const* subKeyName)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::delete_sub_key_(char_type const* subKeyName)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     static const char message[] = "could not delete sub-key";
@@ -1276,7 +1360,12 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
 
 /* The handle returned from this method MUST be closed with RegCloseKey() */
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::dup_key_handle(REGSAM accessMask /* = KEY_ALL_ACCESS */, result_type *res /* = NULL */)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type
+basic_reg_key<C, T, A>::dup_key_handle(
+    REGSAM          accessMask /* = KEY_ALL_ACCESS */
+,   result_type*    res /* = NULL */
+)
 {
     return traits_type::key_dup(m_hkey, accessMask, res);
 }
@@ -1284,51 +1373,87 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C,
 // Values
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, DWORD value)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   DWORD                                                       value
+)
 {
     return set_value_(valueName, value);
 }
 
 #  ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, ws_uint64_t value)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   ws_uint64_t                                                 value
+)
 {
     return set_value_(valueName, value);
 }
 #  endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, int value)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   int                                                         value
+)
 {
     return set_value_(valueName, value);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, char_type const* value, ws_uint_t type /* = REG_SZ */)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   char_type const*                                            value
+,   ws_uint_t                                                   type /* = REG_SZ */
+)
 {
     return set_value_(valueName, value, type);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, ss_typename_type_k basic_reg_key<C, T, A>::char_type const* const* values, ss_typename_type_k basic_reg_key<C, T, A>::size_type numValues)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const*         valueName
+,   ss_typename_type_k basic_reg_key<C, T, A>::char_type const* const*  values
+,   ss_typename_type_k basic_reg_key<C, T, A>::size_type                numValues
+)
 {
     return set_value_(valueName, values, numValues);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, void const* value, size_type cbValue)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   void const*                                                 value
+,   size_type                                                   cbValue
+)
 {
     return set_value_(valueName, value, cbValue);
 }
 
-
-
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::result_type basic_reg_key<C, T, A>::set_value_(  ss_typename_type_k basic_reg_key<C, T, A>::hkey_type        hkey
-                                                                                                                ,   ss_typename_type_k basic_reg_key<C, T, A>::char_type const  *valueName
-                                                                                                                ,   ws_uint_t                                                   type
-                                                                                                                ,   void const                                                  *value
-                                                                                                                ,   ss_typename_type_k basic_reg_key<C, T, A>::size_type        cbValue)
+inline
+/* static */
+ss_typename_type_ret_k basic_reg_key<C, T, A>::result_type
+basic_reg_key<C, T, A>::set_value_(
+    ss_typename_type_k basic_reg_key<C, T, A>::hkey_type        hkey
+,   ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   ws_uint_t                                                   type
+,   void const*                                                 value
+,   ss_typename_type_k basic_reg_key<C, T, A>::size_type        cbValue
+)
 {
     result_type res = traits_type::reg_set_value(hkey, valueName, type, value, cbValue);
 
@@ -1352,14 +1477,24 @@ inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::result_type b
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, DWORD value)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value_(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   DWORD                                                       value
+)
 {
     return ERROR_SUCCESS == class_type::set_value_(m_hkey, valueName, REG_DWORD, &value, sizeof(value));
 }
 
 #  ifdef STLSOFT_CF_64BIT_INT_SUPPORT
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, ws_uint64_t value)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value_(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   ws_uint64_t                                                 value
+)
 {
 #ifndef REG_QWORD
     const DWORD REG_QWORD   =   11;
@@ -1370,7 +1505,13 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
 #  endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, char_type const* value, ws_uint_t type /* = REG_SZ */)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value_(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   char_type const*                                            value
+,   ws_uint_t                                                   type /* = REG_SZ */
+)
 {
     WINSTL_ASSERT(REG_SZ == type || REG_EXPAND_SZ == type || REG_MULTI_SZ == type);
 
@@ -1435,25 +1576,48 @@ basic_reg_key<C, T, A>::set_value_(
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, void const* value, size_type cbValue)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value_(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   void const*                                                 value
+,   size_type                                                   cbValue
+)
 {
     return ERROR_SUCCESS == class_type::set_value_(m_hkey, valueName, REG_BINARY, value, cbValue);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value_int_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, int value, STLSOFT_NS_QUAL(yes_type))
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value_int_(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   int                                                         value
+,   STLSOFT_NS_QUAL(yes_type)
+)
 {
     return this->set_value(valueName, static_cast<DWORD>(value));
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value_int_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, int value, STLSOFT_NS_QUAL(no_type))
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value_int_(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   int                                                         value
+,   STLSOFT_NS_QUAL(no_type)
+)
 {
     return this->set_value(valueName, static_cast<ws_uint64_t>(value));
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::set_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName, int value)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::set_value_(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+,   int                                                         value
+)
 {
     // Because Borland is quite dense, we must use two typedefs here,
     // rather than just one
@@ -1469,13 +1633,21 @@ inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C,
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::delete_value(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::delete_value(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+)
 {
     return this->delete_value_(valueName);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, A>::delete_value_(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName)
+inline
+ss_typename_type_ret_k basic_reg_key<C, T, A>::bool_type
+basic_reg_key<C, T, A>::delete_value_(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     static const char message[] = "could not delete value";
@@ -1547,7 +1719,11 @@ basic_reg_key<C, T, A>::has_value_(ss_typename_type_k basic_reg_key<C, T, A>::ch
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_value<C, T, A> basic_reg_key<C, T, A>::get_value(ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName) const
+inline
+basic_reg_value<C, T, A>
+basic_reg_key<C, T, A>::get_value(
+    ss_typename_type_k basic_reg_key<C, T, A>::char_type const* valueName
+) const
 {
     return basic_reg_value<C, T, A>(m_hkey, valueName);
 }
@@ -1559,10 +1735,12 @@ basic_reg_key<C, T, A>::get_value() const
 {
     return basic_reg_value<C, T, A>(m_hkey, NULL);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -1579,18 +1757,27 @@ basic_reg_key<C, T, A>::get_value() const
 namespace std
 {
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-    inline void swap(WINSTL_NS_QUAL(reg_key_a)& lhs, WINSTL_NS_QUAL(reg_key_a)& rhs)
+    inline
+    void
+    swap(
+        WINSTL_NS_QUAL(reg_key_a)&  lhs
+    ,   WINSTL_NS_QUAL(reg_key_a)&  rhs
+    )
     {
         lhs.swap(rhs);
     }
-    inline void swap(WINSTL_NS_QUAL(reg_key_w)& lhs, WINSTL_NS_QUAL(reg_key_w)& rhs)
+    inline
+    void
+    swap(
+        WINSTL_NS_QUAL(reg_key_w)&  lhs
+    ,   WINSTL_NS_QUAL(reg_key_w)&  rhs
+    )
     {
         lhs.swap(rhs);
     }
 #endif /* compiler */
 
 } // anonymous namespace
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 

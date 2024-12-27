@@ -4,7 +4,7 @@
  * Purpose: Number formatting functions.
  *
  * Created: 28th August 2005
- * Updated: 18th December 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  13
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      35
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -112,13 +112,13 @@ namespace stlsoft
  *
  * \tparam C Type of the character
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function
- *   returns required size;
- * \param cchDest Size of available buffer. Ignored if dest is NULL;
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined
- *   if empty, or contains any characters other than \c fmtSep
- *   and non-0 digits;
- * \param rawNumber The raw number form. May not be NULL. Behaviour is
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
+ * \param picture Grouping picture. May not be \c nullptr. Behaviour is
+ *   undefined if empty, or contains any characters other than \c fmtSep and
+ *   non-0 digits;
+ * \param rawNumber The raw number form. May not be \c nullptr. Behaviour is
  *   undefined contains any characters other than digits;
  * \param cchRawNumber The number of characters available in \c rawNumber
  * \param fmtSep The separator in the format;
@@ -235,13 +235,13 @@ translate_thousands(
  *
  * \tparam C Type of the character
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function
- *   returns required size;
- * \param cchDest Size of available buffer. Ignored if dest is NULL;
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined
- *   if empty, or contains any characters other than \c fmtSep
- *   and non-0 digits;
- * \param rawNumber The raw number form. May not be NULL. Behaviour is
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
+ * \param picture Grouping picture. May not be \c nullptr. Behaviour is
+ *   undefined if empty, or contains any characters other than \c fmtSep and
+ *   non-0 digits;
+ * \param rawNumber The raw number form. May not be \c nullptr. Behaviour is
  *   undefined contains any characters other than digits;
  * \param fmtSep The separator in the format;
  * \param outputSep The separator in the output;
@@ -288,11 +288,11 @@ translate_thousands(
  * \tparam C Type of the character
  * \tparam I Type of the number
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function
- *   returns required size;
- * \param cchDest Size of available buffer. Ignored if dest is NULL;
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined
- *   if empty, or contains any characters other than \c fmtSep and
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
+ * \param picture Grouping picture. May not be \c nullptr. Behaviour is
+ *   undefined if empty, or contains any characters other than \c fmtSep and
  *   non-0 digits;
  * \param number The number to be formatted;
  * \param fmtSep The separator in the format;
@@ -342,12 +342,12 @@ format_thousands(
   }
 \endcode
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function
- *   returns required size;
- * \param cchDest Size of available buffer. Ignored if dest is NULL;
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined
- *   if empty, or contains any characters other than <code>;</code> and
- *   non-0 digits;
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
+ * \param picture Grouping picture. May not be \c nullptr. Behaviour is
+ *   undefined if empty, or contains any characters other than
+ *   <code>;</code> and non-0 digits;
  * \param number The number to be formatted;
  *
  * \return The number of characters required to store the result, including

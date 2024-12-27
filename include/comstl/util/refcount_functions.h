@@ -100,7 +100,7 @@ namespace comstl_project
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  *
- * \pre \c punk must not be NULL.
+ * \pre \c punk must not be \c nullptr.
  */
 STLSOFT_INLINE
 void
@@ -179,7 +179,7 @@ namespace comstl
  *
  * \param punk The interface pointer on which to add the reference. Cannot be null
  *
- * \pre \c punk must not be NULL.
+ * \pre \c punk must not be \c nullptr.
  */
 inline
 void
@@ -236,7 +236,7 @@ safe_release(LPUNKNOWN punk)
 template <ss_typename_param_k T>
 inline
 void
-release_set_null(T *&pt)
+release_set_null(T*& pt)
 {
     if (NULL != pt)
     {
