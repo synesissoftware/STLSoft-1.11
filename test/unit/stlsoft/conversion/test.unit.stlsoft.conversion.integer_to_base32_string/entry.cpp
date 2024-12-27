@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.conversion.integer_to_base32_string.cpp
+ * File:    test.unit.stlsoft.conversion.integer_to_base32_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::integer_to_base32_string`.
  *
  * Created: 17th February 2024
- * Updated: 15th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,12 +56,12 @@
 namespace
 {
 
-    static void test_zero(void);
-    static void test_ones(void);
+    static void test_zero();
+    static void test_ones();
 #if __cplusplus >= 201103L
-    static void test_fibonacci(void);
+    static void test_fibonacci();
 #endif
-    static void test_limits(void);
+    static void test_limits();
 
 } // anonymous namespace
 

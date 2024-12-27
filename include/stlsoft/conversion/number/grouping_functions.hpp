@@ -4,7 +4,7 @@
  * Purpose: Number formatting functions.
  *
  * Created: 28th August 2005
- * Updated: 28th March 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  12
-# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      31
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION  13
+# define STLSOFT_VER_STLSOFT_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,22 +95,38 @@ namespace stlsoft
  * functions
  */
 
-/**
+/** Translates an existing number string into a form with units separators
+ * (which are customarily thousands, but can be any size)
  *
  * \ingroup group__library__Conversion
  *
+\code
+  {
+    char    dest[21];
+    size_t  n = stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3;3", "123456789", 9, ';', ',');
+
+    assert(11 + 1 == n);
+    assert(0 == ::strcmp("123,456,789", dest));
+  }
+\endcode
+ *
  * \tparam C Type of the character
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function
- *   returns required size;
- * \param cchDest Size of available buffer. Ignored if dest is NULL;
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined
- *   if empty, or contains any characters other than <code>fmtSep</code>
- *   and non-0 digits;
- * \param rawNumber The raw number form. May not be NULL. Behaviour is
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
+ * \param picture Grouping picture. May not be \c nullptr. Behaviour is
+ *   undefined if empty, or contains any characters other than \c fmtSep and
+ *   non-0 digits;
+ * \param rawNumber The raw number form. May not be \c nullptr. Behaviour is
  *   undefined contains any characters other than digits;
+ * \param cchRawNumber The number of characters available in \c rawNumber
  * \param fmtSep The separator in the format;
  * \param outputSep The separator in the output;
+ *
+ * \return The number of characters required to store the result, including
+ *   its terminating NUL character. If this value is greater than \c cchDest
+ *   then nothing is written to \c dest
  */
 template <ss_typename_param_k C>
 inline
@@ -125,7 +141,7 @@ translate_thousands(
 ,   C           outputSep
 )
 {
-    typedef char_traits<C>  traits_t;
+    typedef char_traits<C> traits_t;
 
     auto_buffer<C>  res(1 + 2 * cchRawNumber);
     C const*        pic_next;
@@ -202,6 +218,38 @@ translate_thousands(
     return cch;
 }
 
+/** Translates an existing number string into a form with units separators
+ * (which are customarily thousands, but can be any size)
+ *
+ * \ingroup group__library__Conversion
+ *
+\code
+  {
+    char    dest[21];
+    size_t  n = stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3;3", "123456789", ';', ',');
+
+    assert(11 + 1 == n);
+    assert(0 == ::strcmp("123,456,789", dest));
+  }
+\endcode
+ *
+ * \tparam C Type of the character
+ *
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
+ * \param picture Grouping picture. May not be \c nullptr. Behaviour is
+ *   undefined if empty, or contains any characters other than \c fmtSep and
+ *   non-0 digits;
+ * \param rawNumber The raw number form. May not be \c nullptr. Behaviour is
+ *   undefined contains any characters other than digits;
+ * \param fmtSep The separator in the format;
+ * \param outputSep The separator in the output;
+ *
+ * \return The number of characters required to store the result, including
+ *   its terminating NUL character. If this value is greater than \c cchDest
+ *   then nothing is written to \c dest
+ */
 template <ss_typename_param_k C>
 inline
 ss_size_t
@@ -214,31 +262,45 @@ translate_thousands(
 ,   C           outputSep
 )
 {
-    typedef char_traits<C>  traits_t;
+    typedef char_traits<C> traits_t;
 
     ss_size_t const cchRawNumber = traits_t::length(rawNumber);
 
     return translate_thousands(dest, cchDest, picture, rawNumber, cchRawNumber, fmtSep, outputSep);
 }
 
-/** Converts an integer value (\c number) into a string with grouping
+/** Converts the integer value \c number into a decimal string with grouping
  * characters according to the given picture
  *
  * \ingroup group__library__Conversion
  *
+\code
+  {
+    int     v = 987654321;
+    char    dest[41];
+    size_t  n = stlsoft::format_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3|2|1", v, '|', '.');
+
+    assert(12 + 1 == n);
+    assert(0 == ::strcmp("123.4.56.789", dest));
+  }
+\endcode
+ *
  * \tparam C Type of the character
  * \tparam I Type of the number
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function
- *   returns required size;
- * \param cchDest Size of available buffer. Ignored if dest is NULL;
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined
- *   if empty, or contains any characters other than <code>fmtSep</code> and
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
+ * \param picture Grouping picture. May not be \c nullptr. Behaviour is
+ *   undefined if empty, or contains any characters other than \c fmtSep and
  *   non-0 digits;
- * \param number The raw number form. May not be NULL. Behaviour is
- *   undefined contains any characters other than digits;
+ * \param number The number to be formatted;
  * \param fmtSep The separator in the format;
  * \param outputSep The separator in the output;
+ *
+ * \return The number of characters required to store the result, including
+ *   its terminating NUL character. If this value is greater than \c cchDest
+ *   then nothing is written to \c dest
  */
 template<
     ss_typename_param_k C
@@ -257,29 +319,40 @@ format_thousands(
 {
     C               szRawNumber[21];    // 21 is large enough for any 64-bit number (signed or unsigned)
     ss_size_t       cchRawNumber;
-    C const* const  rawNumber = integer_to_decimal_string(szRawNumber, STLSOFT_NUM_ELEMENTS(szRawNumber), static_cast<unsigned int>(number), &cchRawNumber);
+    C const* const  rawNumber = integer_to_decimal_string(szRawNumber, STLSOFT_NUM_ELEMENTS(szRawNumber), number, &cchRawNumber);
 
     STLSOFT_STATIC_ASSERT(sizeof(C) <= 8);
 
     return translate_thousands(dest, cchDest, picture, rawNumber, cchRawNumber, fmtSep, outputSep);
 }
 
-/** Converts an integer value (\c number) into a string with grouping
+/** Converts the integer value \c number into a decimal string with grouping
  * characters according to the given picture
  *
  * \ingroup group__library__Conversion
  *
- * \param dest Pointer to buffer to receive translation. If NULL, function
- *   returns required size;
- * \param cchDest Size of available buffer. Ignored if dest is NULL;
- * \param picture Grouping picture. May not be NULL. Behaviour is undefined
- *   if empty, or contains any characters other than <code>;</code> and
- *   non-0 digits;
- * \param number The raw number form. May not be NULL. Behaviour is undefined
- *   contains any characters other than digits;
+\code
+  {
+    int     v = 987654321;
+    char    dest[41];
+    size_t  n = stlsoft::format_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3;2;1", v);
+
+    assert(12 + 1 == n);
+    assert(0 == ::strcmp("123,4,56,789", dest));
+  }
+\endcode
  *
- * \return The number of characters written, including that of the
- *   nul-terminator
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
+ * \param picture Grouping picture. May not be \c nullptr. Behaviour is
+ *   undefined if empty, or contains any characters other than
+ *   <code>;</code> and non-0 digits;
+ * \param number The number to be formatted;
+ *
+ * \return The number of characters required to store the result, including
+ *   its terminating NUL character. If this value is greater than \c cchDest
+ *   then nothing is written to \c dest
  */
 template<
     ss_typename_param_k C

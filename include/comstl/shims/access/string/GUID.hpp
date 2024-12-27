@@ -4,7 +4,7 @@
  * Purpose: Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created: 24th May 2002
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MAJOR       5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_MINOR       1
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_REVISION    12
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        133
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_GUID_EDIT        134
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -406,8 +406,8 @@ c_str_ptr_o(
 {
     return c_str_data_o(guid);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /** Returns the corresponding C-string pointer of the GUID \c guid
  *
@@ -427,11 +427,12 @@ c_str_ptr(
 #endif /* UNICODE */
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
+ * pointer to the character string or \c nullptr.
  */
 
 /* GUID */
@@ -464,8 +465,8 @@ c_str_ptr_null_o(
 {
     return c_str_data_o(guid);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /** Returns the corresponding C-string pointer of the GUID \c guid
  *
@@ -499,6 +500,7 @@ c_str_ptr_null(
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

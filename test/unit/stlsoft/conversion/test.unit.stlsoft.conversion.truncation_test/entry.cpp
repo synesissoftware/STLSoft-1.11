@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.conversion.truncation_test.cpp
+ * File:    test.unit.stlsoft.conversion.truncation_test/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::truncation_test<>`.
  *
  * Created: 7th November 2008
- * Updated: 13th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,15 +44,15 @@
 
 namespace
 {
-    static void test_12(void);
-    static void test_zero(void);
-    static void test_sign(void);
-    static void test_range_signed(void);
-    static void test_range_unsigned(void);
-    static void test_edge_to_sint8(void);
-    static void test_to_sint8(void);
-    static void test_to_uint8(void);
-    static void test_to_sint16(void);
+    static void test_12();
+    static void test_zero();
+    static void test_sign();
+    static void test_range_signed();
+    static void test_range_unsigned();
+    static void test_edge_to_sint8();
+    static void test_to_sint8();
+    static void test_to_uint8();
+    static void test_to_sint16();
 } // anonymous namespace
 
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.stlsoft.conversion.truncation_test", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.truncation_test", verbosity))
     {
         XTESTS_RUN_CASE(test_12);
         XTESTS_RUN_CASE(test_zero);
@@ -331,7 +331,7 @@ static void test_to_sint8()
     {
         XTESTS_TEST_BOOLEAN_EQUAL(true, stlsoft::truncation_test<sint8_t>(from));
 
-        if(stlsoft::integral_limits<sint8_t>::maximum() == from)
+        if (stlsoft::integral_limits<sint8_t>::maximum() == from)
         {
             break;
         }
@@ -357,7 +357,7 @@ static void test_to_uint8()
     {
         XTESTS_TEST_BOOLEAN_EQUAL(true, stlsoft::truncation_test<uint8_t>(from));
 
-        if(stlsoft::integral_limits<uint8_t>::maximum() == from)
+        if (stlsoft::integral_limits<uint8_t>::maximum() == from)
         {
             break;
         }
@@ -383,7 +383,7 @@ static void test_to_sint16()
     {
         XTESTS_TEST_BOOLEAN_EQUAL(true, stlsoft::truncation_test<sint16_t>(from));
 
-        if(stlsoft::integral_limits<sint16_t>::maximum() == from)
+        if (stlsoft::integral_limits<sint16_t>::maximum() == from)
         {
             break;
         }

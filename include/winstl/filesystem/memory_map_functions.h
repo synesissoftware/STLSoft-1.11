@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/memory_map_functions.h (originally winstl/filesystem/memory_mapped_file.hpp, based on MMFile.h, ::SynesisWin)
+ * File:    winstl/filesystem/memory_map_functions.h (originally winstl/filesystem/memory_mapped_file.hpp, based on MMFile.h, ::SynesisWin)
  *
- * Purpose:     Windows memory mapping functions.
+ * Purpose: Windows memory mapping functions.
  *
- * Created:     15th December 1996
- * Updated:     11th March 2024
+ * Created: 15th December 1996
+ * Updated: 27th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MINOR      3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_REVISION   8
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT       125
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_REVISION   9
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT       126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -182,24 +182,24 @@ winstl_C_map_named_view_of_file_by_handle_v_(
  *   be <code>INVALID_HANDLE_VALUE</code>.
  * \param offset The offset into the file where the mapped region will
  *   begin. Must be a multiple of the system's allocation granularity.
- * \param requestSize The size of the mapped region. May be 0, in which
- *   case the whole file will be mapped.
+ * \param requestSize The size of the mapped region. May be 0, in which case
+ *   the whole file will be mapped.
  * \param viewSize Pointer to variable to receive the actual size of the
  *   mapping view. This will always be set, regardless of whether the
- *   function returns <code>NULL</code> or non-<code>NULL</code>.
+ *   function returns \c nullptr or non-\c nullptr.
  *
  * \return When mapping a file with non-zero length, then the return value
- *   is either a pointer to the mapping view, or <code>NULL</code> if the
- *   mapping could not be created or viewed. When mapping a zero length
- *   file, success is denoted by: (i) returning <code>NULL</code>; (ii)
- *   setting <code>*viewSize</code> to 0; (iii)
- *   <code>::GetLastError()</code> returns <code>ERROR_SUCCESS</code>.
- *   Any other combination indicates failure.
+ *   is either a pointer to the mapping view, or \c nullptr if the mapping
+ *   could not be created or viewed. When mapping a zero length file,
+ *   success is denoted by: (i) returning \c nullptr; (ii) setting
+ *   <code>*viewSize</code> to 0; (iii) <code>::GetLastError()</code>
+ *   returns <code>ERROR_SUCCESS</code>. Any other combination indicates
+ *   failure.
  *
  * \note If a zero-length file is mapped, <code>*viewSize</code> will be
- *   0, and an unreferenceable non-NULL pointer will be returned.
+ *   0, and an unreferenceable non-\c nullptr pointer will be returned.
  *
- * \note When <code>NULL</code> is returned, this function *always* changes
+ * \note When \c nullptr is returned, this function *always* changes
  *   the calling thread's last-error code, even if successful (when it will
  *   set it to <code>ERROR_SUCCESS</code>).
  *
@@ -459,12 +459,14 @@ winstl_C_map_named_view_of_file_by_handle_w_(
     );
 }
 
+#if !defined(STLSOFT_COMPILER_IS_GCC)
 
 void*
 winstl_C_map_view_and_close_mapping_(
     HANDLE          hmap
 ,   ws_uintptr_t    requestSize
 );
+#endif
 
 STLSOFT_INLINE
 void*
@@ -576,9 +578,9 @@ winstl_C_map_named_view_on_pagefile_w(
  * \param length The number of bytes to unmap. This parameter is usused
  *
  * \note Because winstl_C_map_readonly_view_of_file_by_handle() allows
- *   mapping of zero-length files, by returning <code>NULL</code>,
+ *   mapping of zero-length files, by returning \c nullptr,
  *   winstl_C_unmap_view_of_file() is tolerant of being passed a
- *   <code>NULL</code> view, even though the underlying operating system API
+ *   \c nullptr view, even though the underlying operating system API
  *   function, <code>UnmapViewOfFile()</code>, is not.
  */
 STLSOFT_INLINE

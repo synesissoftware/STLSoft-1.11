@@ -5,7 +5,7 @@
  *          frame) classes.
  *
  * Created: 1st September 2002
- * Updated: 26th September 2024
+ * Updated: 25th November 2024
  *
  * Thanks:  Neal Becker for suggesting the uninitialised mode.
  *
@@ -202,11 +202,10 @@ struct do_construction<double>      { enum { value = false }; typedef two_type t
 STLSOFT_TEMPLATE_SPECIALISATION
 struct do_construction<long double> { enum { value = false }; typedef two_type type; };
 
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+#ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct do_construction<ss_bool_t>   { enum { value = false }; typedef two_type type; };
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
-
+#endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -442,8 +441,8 @@ public:
         do_destroy_1(ator, p, n, selector_type());
     }
 };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

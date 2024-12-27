@@ -98,16 +98,16 @@
 # include <errno.h>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
-# include <stlsoft/api/external/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////

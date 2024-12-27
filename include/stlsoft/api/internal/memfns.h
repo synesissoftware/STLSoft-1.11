@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for memXXX() functions.
  *
  * Created: 2nd January 2021
- * Updated: 25th September 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -68,12 +68,12 @@
  * memory functions
  */
 
-/* The C standard function memcpy() requires that its pointer parameters are
- * non-NULL even in the case where the copy byte-count is 0. GCC warns about
- * this and appears to be really aggressive in its analysis (in later
- * versions, anyway), so this adaptation function is required to ensure that
- * passing NULL when count is 0 - WHICH IS THE SENSIBLE SEMANTIC - are
- * available throughout the STLSoft libs.
+/** The C standard function memcpy() requires that its pointer parameters
+ * are non-\c nullptr even in the case where the copy byte-count is 0. GCC
+ * warns about this and appears to be really aggressive in its analysis (in
+ * later versions, anyway), so this adaptation function is required to
+ * ensure that passing \c nullptr when count is 0 - WHICH IS THE SENSIBLE
+ * SEMANTIC - are available throughout the STLSoft libs.
  */
 STLSOFT_INLINE
 void*

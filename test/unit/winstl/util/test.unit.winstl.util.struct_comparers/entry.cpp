@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_comparers`.
  *
  * Created: 9th October 2024
- * Updated: 12th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,8 +33,8 @@
 
 namespace
 {
-    static void test_FILETIME(void);
-    static void test_SYSTEMTIME(void);
+    static void test_FILETIME();
+    static void test_SYSTEMTIME();
 } // anonymous namespace
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -48,24 +48,14 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
     if (XTESTS_START_RUNNER("test.component.winstl.dl.struct_comparers", verbosity))
     {
-        // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
         XTESTS_RUN_CASE(test_FILETIME);
         XTESTS_RUN_CASE(test_SYSTEMTIME);
 
-        // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
         XTESTS_PRINT_RESULTS();
 
-        // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-
-        // fprintf(stderr, "%s:%d:%s\n", __STLSOFT_FILE_LINE_FUNCTION__);
     }
 
     return retCode;
@@ -79,7 +69,7 @@ namespace
 {
     using stlsoft::ss_size_t;
 
-static void test_FILETIME(void)
+static void test_FILETIME()
 {
     {
         FILETIME ft1 = {0, 0};
@@ -96,7 +86,7 @@ static void test_FILETIME(void)
     }
 }
 
-static void test_SYSTEMTIME(void)
+static void test_SYSTEMTIME()
 {
     {
         SYSTEMTIME st1;

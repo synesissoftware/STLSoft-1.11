@@ -4,7 +4,7 @@
  * Purpose: variant class.
  *
  * Created: 12th December 1996
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,10 +51,10 @@
 #define COMSTL_INCL_COMSTL_UTIL_HPP_COMSTL_VARIANT
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      3
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   15
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       178
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR       2
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR       3
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION    15
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT        179
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -90,13 +90,13 @@
 # include <stlsoft/util/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 
-#ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
-# include <winstl/api/external/Debugging.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_Debugging */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
+# include <winstl/api/external/Debugging.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_Debugging */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,10 +127,10 @@ namespace comstl_project
  *
  * \ingroup group__library__COM_Utility
  *
- * \remarks comstl::variant publicly derives from \c VARIANT as a measure
- *   of expedience, rather than as an act of design sophistication. Any
- *   manual manipulation of the instances, or their member variables, is
- *   at the user's risk. Notwithstanding, this is helped by the fact that
+ * \remarks comstl::variant publicly derives from \c VARIANT as a measure of
+ *   expedience, rather than as an act of design sophistication. Any manual
+ *   manipulation of the instances, or their member variables, is at the
+ *   user's risk. Notwithstanding, this is helped by the fact that
  *   comstl::variant declares no member variables and no virtual member
  *   functions - for most compilers this means that the Empty Derived
  *   Optimisation (see Section 12.4 of Imperfect C++) will apply.
@@ -412,8 +412,8 @@ public:
     HRESULT     try_convert(VARTYPE vType);
     class_type& convert(VARTYPE vType);
 
-    /** Returns a pointer to a specified interface on an object to which
-     * a client currently holds an interface pointer.
+    /** Returns a pointer to a specified interface on an object to which a
+     * client currently holds an interface pointer.
      *
      * \return An <code>HRESULT</code> code indicating the success of the
      *   operation.
@@ -422,12 +422,12 @@ public:
      * \retval <code>E_INTERFACE</code> The interface is not supported: the
      *   value of <code>*ppv</code> is undefined.
      *
-     * \pre <code>NULL != ppv</code>
+     * \pre <code>nullptr != ppv</code>
      */
     HRESULT     QueryInterface(REFIID riid, void** ppv) const;
 
-    /** Returns a pointer to a specified interface on an object to which
-     * a client currently holds an interface pointer.
+    /** Returns a pointer to a specified interface on an object to which a
+     * client currently holds an interface pointer.
      *
      * \return An <code>HRESULT</code> code indicating the success of the
      *   operation.
@@ -436,7 +436,7 @@ public:
      * \retval <code>E_INTERFACE</code> The interface is not supported: the
      *   value of <code>*ppi</code> is undefined.
      *
-     * \pre <code>NULL != ppi</code>
+     * \pre <code>nullptr != ppi</code>
      */
     template <ss_typename_param_k I>
     HRESULT QueryInterfaceValue(I** ppi)

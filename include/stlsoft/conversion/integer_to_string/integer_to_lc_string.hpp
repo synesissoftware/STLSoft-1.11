@@ -5,7 +5,7 @@
  *          for decimal representation.
  *
  * Created: 1st November 2011
- * Updated: 29th March 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_REVISION 13
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_EDIT     21
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_LC_STRING_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -108,9 +108,9 @@ namespace stlsoft
  *   groups, a la `lconv#grouping`, e.g. "\3\2";
  * \param thousands_sep The character used to separate groups of digits
  *   before the decimal point, a la `lconv#thousands_sep`, e.g. ',';
- * \param dest Pointer to buffer to receive translation. If NULL, function
- *   returns required size;
- * \param cchDest Size of available buffer. Ignored if dest is NULL;
+ * \param dest Pointer to buffer to receive translation. If \c nullptr,
+ *   function returns required size;
+ * \param cchDest Size of available buffer. Ignored if dest is \c nullptr;
  * \param value The number to be converted;
  * \param numWritten Pointer to a variable to receive the number of
  *   characters written (excluding nul-terminator)

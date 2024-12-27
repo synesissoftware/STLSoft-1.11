@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 9th July 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    10
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 3
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     572
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 4
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     573
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -179,7 +179,7 @@
 
 # ifndef STLSOFT_INCL_H_WINDOWS
 #  define STLSOFT_INCL_H_WINDOWS
-#  include <windows.h>
+#  include <windows.h>   /* Windows base header */
 # endif /* !STLSOFT_INCL_H_WINDOWS */
 # ifndef STLSOFT_INCL_H_WININET
 #  define STLSOFT_INCL_H_WININET
@@ -283,9 +283,10 @@
 #   pragma message("Compiler is unknown to InetSTL")
 #  endif /* STLSOFT_COMPILE_VERBOSE */
 # else /* ? _STLSOFT_FORCE_ANY_COMPILER */
-#  error Currently only Borland C++, CLang, Digital Mars C/C++, GCC, Intel C/C++, Metrowerks CodeWarrior and Visual C++ compilers are supported by the InetSTL libraries
+#  error Currently only Borland C++, Clang, Digital Mars C/C++, GCC, Intel C/C++, Metrowerks CodeWarrior and Visual C++ compilers are supported by the InetSTL libraries
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * contract enforcement
@@ -299,7 +300,7 @@
  *
  * \param expr Must be non-zero, or an assertion will be fired
  */
-#define INETSTL_ASSERT(expr)                STLSOFT_ASSERT(expr)
+#define INETSTL_ASSERT(expr)                                    STLSOFT_ASSERT(expr)
 
 /** Defines a runtime assertion, with message
  *
@@ -308,7 +309,7 @@
  * \param expr Must be non-zero, or an assertion will be fired
  * \param msg The literal character string message to be included in the assertion
  */
-#define INETSTL_MESSAGE_ASSERT(msg, expr)   STLSOFT_MESSAGE_ASSERT(msg, expr)
+#define INETSTL_MESSAGE_ASSERT(msg, expr)                   STLSOFT_MESSAGE_ASSERT(msg, expr)
 
 /** Defines a compile-time assertion
  *
@@ -316,15 +317,15 @@
  *
  * \param expr Must be non-zero, or compilation will fail
  */
-#define INETSTL_STATIC_ASSERT(expr)         STLSOFT_STATIC_ASSERT(expr)
-
+#define INETSTL_STATIC_ASSERT(expr)                         STLSOFT_STATIC_ASSERT(expr)
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define inetstl_assert(expr)               INETSTL_ASSERT(expr)
-# define inetstl_message_assert(msg, expr)  INETSTL_MESSAGE_ASSERT(msg, expr)
-# define inetstl_static_assert(expr)        INETSTL_STATIC_ASSERT(expr)
+# define inetstl_assert(expr)                               INETSTL_ASSERT(expr)
+# define inetstl_message_assert(msg, expr)                  INETSTL_MESSAGE_ASSERT(msg, expr)
+# define inetstl_static_assert(expr)                        INETSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -481,10 +482,10 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  */
 
 #ifndef INETSTL_NO_NAMESPACE
-# define INETSTL_NS_QUAL(x)          ::inetstl::x
-# define INETSTL_NS_USING(x)         using ::inetstl::x;
+# define INETSTL_NS_QUAL(x)                                 ::inetstl::x
+# define INETSTL_NS_USING(x)                                using ::inetstl::x;
 #else /* ? INETSTL_NO_NAMESPACE */
-# define INETSTL_NS_QUAL(x)          x
+# define INETSTL_NS_QUAL(x)                                 x
 # define INETSTL_NS_USING(x)
 #endif /* !INETSTL_NO_NAMESPACE */
 
@@ -497,6 +498,7 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
 # define inetstl_ns_qual_std(x)                             STLSOFT_NS_QUAL_STD(x)
 # define inetstl_ns_using_std(x)                            STLSOFT_NS_USING_STD(x)
 #endif /* !STLSOFT_NO_PRE_1_10_BAGGAGE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -537,7 +539,6 @@ typedef STLSOFT_NS_QUAL(ss_size_t)          is_size_t;      /*!< size */
 typedef STLSOFT_NS_QUAL(ss_ptrdiff_t)       is_ptrdiff_t;   /*!< ptr diff */
 typedef STLSOFT_NS_QUAL(ss_streampos_t)     is_streampos_t; /*!< streampos */
 typedef STLSOFT_NS_QUAL(ss_streamoff_t)     is_streamoff_t; /*!< streamoff */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef INETSTL_NO_NAMESPACE
@@ -593,9 +594,10 @@ typedef is_streamoff_t      streamoff_t;        /*!< streamoff */
 # elif defined(_MAX_PATH)
 
 #  define INETSTL_CONST_MAX_PATH                            _MAX_PATH
-# elif defined(__CYGWIN__) || \
-       defined(__MINGW32__) || \
-       defined(__MINGW64__)
+# elif 0 ||\
+       defined(__CYGWIN__) ||\
+       defined(STLSOFT_MINGW) ||\
+       0
 
 #  define INETSTL_CONST_MAX_PATH                            (260)
 # else
@@ -608,9 +610,9 @@ typedef is_streamoff_t      streamoff_t;        /*!< streamoff */
 /** C++ constant equivalent to \ref INETSTL_CONST_MAX_PATH.
  */
 const is_size_t CONST_MAX_PATH          =   INETSTL_CONST_MAX_PATH;
-
 # endif /* __cplusplus */
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * values
@@ -624,7 +626,6 @@ const is_size_t CONST_MAX_PATH          =   INETSTL_CONST_MAX_PATH;
 
 #define is_true_v                                           ss_true_v
 #define is_false_v                                          ss_false_v
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -634,33 +635,33 @@ const is_size_t CONST_MAX_PATH          =   INETSTL_CONST_MAX_PATH;
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /* Exception signatures. */
-# define inetstl_throw_0()                               stlsoft_throw_0()
-# define inetstl_throw_1(x1)                             stlsoft_throw_1(x1)
-# define inetstl_throw_2(x1, x2)                         stlsoft_throw_2(x1, x2)
-# define inetstl_throw_3(x1, x2, x3)                     stlsoft_throw_3(x1, x2, x3)
-# define inetstl_throw_4(x1, x2, x3, x4)                 stlsoft_throw_4(x1, x2, x3, x4)
-# define inetstl_throw_5(x1, x2, x3, x4, x5)             stlsoft_throw_5(x1, x2, x3, x4, x5)
-# define inetstl_throw_6(x1, x2, x3, x4, x5, x6)         stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
-# define inetstl_throw_7(x1, x2, x3, x4, x5, x6, x7)     stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
-# define inetstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
+# define inetstl_throw_0()                                  stlsoft_throw_0()
+# define inetstl_throw_1(x1)                                stlsoft_throw_1(x1)
+# define inetstl_throw_2(x1, x2)                            stlsoft_throw_2(x1, x2)
+# define inetstl_throw_3(x1, x2, x3)                        stlsoft_throw_3(x1, x2, x3)
+# define inetstl_throw_4(x1, x2, x3, x4)                    stlsoft_throw_4(x1, x2, x3, x4)
+# define inetstl_throw_5(x1, x2, x3, x4, x5)                stlsoft_throw_5(x1, x2, x3, x4, x5)
+# define inetstl_throw_6(x1, x2, x3, x4, x5, x6)            stlsoft_throw_6(x1, x2, x3, x4, x5, x6)
+# define inetstl_throw_7(x1, x2, x3, x4, x5, x6, x7)        stlsoft_throw_7(x1, x2, x3, x4, x5, x6, x7)
+# define inetstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)    stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define INETSTL_NUM_ELEMENTS(ar)                        STLSOFT_NUM_ELEMENTS(ar)
-# define inetstl_num_elements(ar)                        INETSTL_NUM_ELEMENTS(ar)
+# define INETSTL_NUM_ELEMENTS(ar)                           STLSOFT_NUM_ELEMENTS(ar)
+# define inetstl_num_elements(ar)                           INETSTL_NUM_ELEMENTS(ar)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** [DEPRECATED] Destroys the given instance \c p of the given type (\c t and \c type)
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_DESTROY_INSTANCE().
  */
-#define inetstl_destroy_instance(t, type, p)             STLSOFT_DESTROY_INSTANCE(t, type, p)
+#define inetstl_destroy_instance(t, type, p)                STLSOFT_DESTROY_INSTANCE(t, type, p)
 
 /** [DEPRECATED] Generates an opaque type with the name \c _htype
  *
  * \deprecated This is <b>heavily</b> deprecated in favour of \ref STLSOFT_GEN_OPAQUE().
  */
-#define inetstl_gen_opaque(htype)                        STLSOFT_GEN_OPAQUE(htype)
+#define inetstl_gen_opaque(htype)                           STLSOFT_GEN_OPAQUE(htype)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -686,8 +687,6 @@ namespace inetstl = ::stlsoft::inetstl_project;
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
 

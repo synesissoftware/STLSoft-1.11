@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 13th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,20 +48,20 @@ namespace
 {
 
     // 0 parameters
-    static void test_Kernel32_GetTickCount(void);
-    static void test_Kernel32_GetTickCount64(void);
+    static void test_Kernel32_GetTickCount();
+    static void test_Kernel32_GetTickCount64();
 
     // 1 parameter
-    static void test_Kernel32_GetSystemInfo(void);
+    static void test_Kernel32_GetSystemInfo();
 
     // 2 parameters
-    static void test_Kernel32_GetSystemDirectory(void);
+    static void test_Kernel32_GetSystemDirectory();
 
     // 3 parameters
-    static void test_GetSystemTimeAdjustmentPrecise(void);
+    static void test_GetSystemTimeAdjustmentPrecise();
 
     // 4 parameters
-    static void test_SystemParametersInfo(void);
+    static void test_SystemParametersInfo();
 } // anonymous namespace
 
 
@@ -104,7 +104,8 @@ int main(int argc, char* argv[])
 
 namespace
 {
-    inline void
+    inline
+    void
     full_fence()
     {
 #if __cplusplus >= 201103L
@@ -124,7 +125,7 @@ namespace
 #endif
     }
 
-static void test_Kernel32_GetTickCount(void)
+static void test_Kernel32_GetTickCount()
 {
     try
     {
@@ -147,7 +148,7 @@ static void test_Kernel32_GetTickCount(void)
     }
 }
 
-static void test_Kernel32_GetTickCount64(void)
+static void test_Kernel32_GetTickCount64()
 {
     try
     {
@@ -170,7 +171,7 @@ static void test_Kernel32_GetTickCount64(void)
     }
 }
 
-static void test_Kernel32_GetSystemInfo(void)
+static void test_Kernel32_GetSystemInfo()
 {
     try
     {
@@ -189,7 +190,7 @@ static void test_Kernel32_GetSystemInfo(void)
     }
 }
 
-static void test_Kernel32_GetSystemDirectory(void)
+static void test_Kernel32_GetSystemDirectory()
 {
     try
     {
@@ -211,7 +212,7 @@ static void test_Kernel32_GetSystemDirectory(void)
     }
 }
 
-static void test_GetSystemTimeAdjustmentPrecise(void)
+static void test_GetSystemTimeAdjustmentPrecise()
 {
     try
     {
@@ -237,7 +238,7 @@ static void test_GetSystemTimeAdjustmentPrecise(void)
     {}
 }
 
-static void test_SystemParametersInfo(void)
+static void test_SystemParametersInfo()
 {
     try
     {

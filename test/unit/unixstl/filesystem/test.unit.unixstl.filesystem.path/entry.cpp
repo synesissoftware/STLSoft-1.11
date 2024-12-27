@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.unixstl.filesystem.path.cpp
+ * File:    test.unit.unixstl.filesystem.path/entry.cpp
  *
  * Purpose: Unit-tests for `unixstl::basic_path`.
  *
  * Created: 16th February 2024
- * Updated: 11th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,9 +48,9 @@
 namespace
 {
 
-    static void test_construct_default(void);
-    static void test_construct_filename(void);
-    static void test_construct_relative_directory_and_file(void);
+    static void test_construct_default();
+    static void test_construct_filename();
+    static void test_construct_relative_directory_and_file();
 
 
 } // anonymous namespace

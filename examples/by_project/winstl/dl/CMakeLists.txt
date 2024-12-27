@@ -1,2 +1,2 @@
-# SIS:AUTO_GENERATED: Do not edit!
-add_subdirectory(dl_call)
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+(dl_call)

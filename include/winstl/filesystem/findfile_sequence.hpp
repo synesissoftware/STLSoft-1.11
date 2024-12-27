@@ -144,16 +144,16 @@
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_FileManagement
 # include <winstl/api/external/FileManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_FileManagement */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
-# include <stlsoft/api/external/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>

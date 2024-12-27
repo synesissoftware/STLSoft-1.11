@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/cccap/watcom.h
+ * File:    stlsoft/internal/cccap/watcom.h
  *
- * Purpose:     Compiler feature discrimination for Watcom C/C++.
+ * Purpose: Compiler feature discrimination for Watcom C/C++.
  *
- * Created:     7th February 2003
- * Updated:     11th March 2024
+ * Created: 7th February 2003
+ * Updated: 25th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
@@ -56,13 +56,14 @@
 # error This file cannot be included more than once in any compilation unit
 #endif /* STLSOFT_INCL_H_STLSOFT_CCCAP_WATCOM */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       20
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        90
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,12 +117,12 @@
 
 /* bool */
 #ifdef __cplusplus
-# define STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# define STLSOFT_CF_BUILTIN_bool_SUPPORT
 #endif /* __cplusplus */
 
 /* char (sign) */
 #ifndef __CHAR_SIGNED__
-# define STLSOFT_CF_CHAR_IS_UNSIGNED
+# define STLSOFT_CF_char_IS_UNSIGNED
 #endif /* !__CHAR_SIGNED__ */
 
 /* wchar_t */
@@ -129,16 +130,6 @@
 # define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
 #endif /* __WATCOMC__ */
 
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
 
 /* /////////////////////////////////////////////////////////////////////////
  * integral types
@@ -371,7 +362,7 @@
   */
 # define __STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_CF_ASSERT_SUPPORT
-# define STLSOFT_ASSERT(expr)                   _STLSOFT_CUSTOM_ASSERT(expr)
+# define STLSOFT_ASSERT(expr)                               _STLSOFT_CUSTOM_ASSERT(expr)
 # if defined(_STLSOFT_CUSTOM_ASSERT_INCLUDE)
 #  define   __STLSOFT_CF_ASSERT_INCLUDE_NAME                _STLSOFT_CUSTOM_ASSERT_INCLUDE
 # else
@@ -381,7 +372,7 @@
 # define __STLSOFT_CF_ASSERT_SUPPORT
 # define STLSOFT_CF_ASSERT_SUPPORT
 # define __STLSOFT_CF_ASSERT_INCLUDE_NAME                   <assert.h>
-# define STLSOFT_ASSERT(expr)                   assert(expr)
+# define STLSOFT_ASSERT(expr)                               assert(expr)
 #endif /* _STLSOFT_CUSTOM_ASSERT */
 
 
@@ -425,6 +416,7 @@
 #pragma warning 555 10 /* Suppresses "Warning! W555: expression for 'while' is always false" */
 #pragma warning 594 10 /* Suppresses "Warning! W594: construct resolved as a declaration/type" */
 #pragma warning 604 10 /* Suppresses "Warning! W604: must look ahead to determine whether construct is a declaration/type or an expression" */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       6
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    9
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        217
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       7
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        221
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -339,10 +339,10 @@ int pantheios_log_n(
  * and
  * <a href = "http://shwild.org/">shwild</a>.
  *
- * \remarks auto_buffer works correctly whether the given allocator throws an
- *   exception on allocation failure, or returns <code>NULL</code>. In the
- *   latter case, construction failure to allocate is reflected by the size()
- *   method returning 0.
+ * \remarks auto_buffer works correctly whether the given allocator throws
+ *   an exception on allocation failure, or returns \c nullptr. In the
+ *   latter case, construction failure to allocate is reflected by the
+ *   size() method returning 0.
  *
  * \remarks The design of auto_buffer is described in Chapter 32 of
  *   <a href = "http://imperfectcplusplus.com">Imperfect C++</a>, and its
@@ -351,9 +351,10 @@ int pantheios_log_n(
  *
  * \note With version 1.9 of STLSoft, the order of the space and allocator
  *   arguments were reversed. Further, the allocator default changed from
- *   stlsoft::new_allocator to <code>std::allocator</code> for translators that support
- *   the standard library. If you need the old characteristics, you can
- *   <code>\#define</code> the symbol <b>STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS</b>.
+ *   stlsoft::new_allocator to <code>std::allocator</code> for translators
+ *   that support the standard library. If you need the old characteristics,
+ *   you can <code>\#define</code> the symbol
+ *   <b>STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS</b>.
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -760,25 +761,16 @@ public: // construction
         , m_bExternal(space < cItems)
     {
         // initialise `m_internal` iff we are being used constexpr
-#if 0 ||\
-    __cplusplus >= 202002L ||\
-    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-        __cplusplus >= 201702L &&\
-        _MSC_VER >= 1935) ||\
-    0
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-# if __cplusplus < 202002L
-        if (std::_Is_constant_evaluated())
-# else
-        if (std::is_constant_evaluated())
-# endif
+        if (STLSOFT_IS_CONSTANT_EVALUATED())
         {
             for (auto& i : m_internal)
             {
                 i = value_type();
             }
         }
-#endif
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
 
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be
@@ -790,19 +782,20 @@ public: // construction
         // m_cItems. The runtime assert is included for those compilers that
         // do not implement compile-time asserts.
 #ifdef STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT
+
         STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_buffer) < STLSOFT_RAW_OFFSETOF(class_type, m_cItems));
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-#if 0 ||\
-    __cplusplus < 201702L ||\
-    !defined(_MSC_VER) ||\
-    _MSC_VER < 1935 ||\
-    0
-        STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
-#endif
+        if (!STLSOFT_IS_CONSTANT_EVALUATED())
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
 
+            STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
+        }
 
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
+
         // Use the must_be_pod constraint to ensure that
         // no type is managed in auto_buffer which would result in
         // dangerous mismanagement of the lifetime of its instances.
@@ -816,10 +809,10 @@ public: // construction
         STLSOFT_ASSERT(is_valid());
     }
 
-    /// Constructs an instance with the given number of initialised
+    /// Constructs an instance with the given number of **initialised**
     /// elements
     ///
-    /// Constructs an instance with the given number of initialised
+    /// Constructs an instance with the given number of **initialised**
     /// elements. If the allocation fails by throwing an exception, that
     /// exception is passed through to the caller. If allocation fails by
     /// returning a null pointer the auto_buffer instance is correctly
@@ -838,6 +831,18 @@ public: // construction
         , m_cItems((NULL != m_buffer) ? cItems : 0)
         , m_bExternal(space < cItems)
     {
+        // initialise `m_internal` iff we are being used constexpr
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
+
+        if (STLSOFT_IS_CONSTANT_EVALUATED())
+        {
+            for (auto& i : m_internal)
+            {
+                i = value_type();
+            }
+        }
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be
         // so
@@ -851,8 +856,14 @@ public: // construction
 
         STLSOFT_STATIC_ASSERT(STLSOFT_RAW_OFFSETOF(class_type, m_buffer) < STLSOFT_RAW_OFFSETOF(class_type, m_cItems));
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-        STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
+        if (!STLSOFT_IS_CONSTANT_EVALUATED())
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
+
+            STLSOFT_MESSAGE_ASSERT("m_buffer must be before m_cItems in the auto_buffer definition", stlsoft_reinterpret_cast(ss_byte_t*, &m_buffer) < stlsoft_reinterpret_cast(ss_byte_t*, &m_cItems));
+        }
 
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
 
@@ -866,11 +877,20 @@ public: // construction
         stlsoft_constraint_must_be_pod(value_type);
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD */
 
-        block_set(&m_buffer[0], m_cItems, v);
+#ifdef STLSOFT_IS_CONSTANT_EVALUATED
+
+        if (STLSOFT_IS_CONSTANT_EVALUATED())
+        {
+            std::fill_n(&m_buffer[0], m_cItems, v);
+        }
+        else
+#endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
+            block_set(&m_buffer[0], m_cItems, v);
+        }
 
         STLSOFT_ASSERT(is_valid());
     }
-
 #if __cplusplus >= 201702L
 
     /// Range constructor
@@ -1222,9 +1242,9 @@ public:
 
     /// Swaps contents with the given buffer
     ///
-    /// \note This method is only constant time when the memory for two buffers
-    /// has been acquired via the allocator. Otherwise, it will depend on the
-    /// costs of exchanging the memory
+    /// \note This method is only constant time when the memory for two
+    /// buffers has been acquired via the allocator. Otherwise, it will
+    /// depend on the costs of exchanging the memory
     ///
     /// \note Exception-safety: Provides the no-throw guarantee
     void swap(class_type& rhs) STLSOFT_NOEXCEPT
@@ -1301,7 +1321,8 @@ public: // operators
     // suppressable. The warnings must, alas, simply be ignored.
 
 #ifdef _STLSOFT_AUTO_BUFFER_ALLOW_NON_CONST_CONVERSION_OPERATOR
-    /// An implicit conversion to a pointer to the start of the element array
+    /// An implicit conversion to a pointer to the start of the element
+    /// array
     ///
     /// \deprecate This is deprecated
     operator pointer ()
@@ -1333,7 +1354,8 @@ public: // operators
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_NON_CONST_CONVERSION_OPERATOR */
 
 #ifdef _STLSOFT_AUTO_BUFFER_ALLOW_CONST_CONVERSION_OPERATOR
-    /// An implicit conversion to a pointer-to-const to the start of the element array
+    /// An implicit conversion to a pointer-to-const to the start of the
+    /// element array
     operator const_pointer () const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1412,7 +1434,8 @@ public: // accessors
     }
 
 public: // iteration
-    /// Returns a non-mutating iterator representing the start of the sequence
+    /// Returns a non-mutating iterator representing the start of the
+    /// sequence
     ss_constexpr_2017_k
     const_iterator begin() const
     {
@@ -1423,16 +1446,36 @@ public: // iteration
     /// Returns a non-mutating iterator representing the end of the sequence
     ///
     /// \note In the case where memory allocation has failed in the context
-    /// where exceptions are not thrown for allocation failure, this method will
-    /// return the same value as begin(). Hence, operations on the <i>empty</i>
-    /// auto_buffer<> instance will be safe if made in respect of the range
-    /// defined by [begin(), end()).
+    /// where exceptions are not thrown for allocation failure, this method
+    /// will return the same value as begin(). Hence, operations on the
+    /// <i>empty</i> auto_buffer<> instance will be safe if made in respect
+    /// of the range defined by [begin(), end()).
     ss_constexpr_2017_k
     const_iterator end() const
     {
         STLSOFT_ASSERT(is_valid());
 
         return m_buffer + m_cItems;
+    }
+
+    /// Returns a non-mutating iterator representing the start of the
+    /// sequence
+    ss_constexpr_2017_k
+    const_iterator cbegin() const
+    {
+        return begin();
+    }
+    /// Returns a non-mutating iterator representing the end of the sequence
+    ///
+    /// \note In the case where memory allocation has failed in the context
+    /// where exceptions are not thrown for allocation failure, this method
+    /// will return the same value as cbegin(). Hence, operations on the
+    /// <i>empty</i> auto_buffer<> instance will be safe if made in respect
+    /// of the range defined by [cbegin(), cend()).
+    ss_constexpr_2017_k
+    const_iterator cend() const
+    {
+        return end();
     }
 
     /// Returns a mutating iterator representing the start of the sequence
@@ -1446,10 +1489,10 @@ public: // iteration
     /// Returns a mutating iterator representing the end of the sequence
     ///
     /// \note In the case where memory allocation has failed in the context
-    /// where exceptions are not thrown for allocation failure, this method will
-    /// return the same value as begin(). Hence, operations on the <i>empty</i>
-    /// auto_buffer<> instance will be safe if made in respect of the range
-    /// defined by [begin(), end()).
+    /// where exceptions are not thrown for allocation failure, this method
+    /// will return the same value as begin(). Hence, operations on the
+    /// <i>empty</i> auto_buffer<> instance will be safe if made in respect
+    /// of the range defined by [begin(), end()).
     ss_constexpr_2017_k
     iterator end()
     {
@@ -1457,8 +1500,8 @@ public: // iteration
 
         return m_buffer + m_cItems;
     }
-
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -1479,6 +1522,28 @@ public: // iteration
 
         return const_reverse_iterator(begin());
     }
+
+    /// Begins the reverse iteration
+    ///
+    /// \return An iterator representing the start of the reverse sequence
+    ss_constexpr_2017_k
+    const_reverse_iterator crbegin() const
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        return const_reverse_iterator(cend());
+    }
+    /// Ends the reverse iteration
+    ///
+    /// \return An iterator representing the end of the reverse sequence
+    ss_constexpr_2017_k
+    const_reverse_iterator crend() const
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        return const_reverse_iterator(cbegin());
+    }
+
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -1507,8 +1572,8 @@ public: // attributes
     /// \note In the case where memory allocation has failed in the context
     /// where exceptions are not thrown for allocation failure in the
     /// constructor, this method will return 0. Hence, operations on the
-    /// <i>empty</i> auto_buffer<> instance will be safe if made in respect of
-    /// the value returned by this method.
+    /// <i>empty</i> auto_buffer<> instance will be safe if made in respect
+    /// of the value returned by this method.
     ss_constexpr_2017_k
     size_type size() const
     {
@@ -1536,7 +1601,7 @@ public: // attributes
 #if defined(STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVEx)
     /// Returns an instance of the allocator used to specialise the
     ///  instance.
-    static allocator_type &get_allocator()
+    static allocator_type& get_allocator()
     {
 # if !defined(STLSOFT_STRICT) && \
      defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -1557,7 +1622,7 @@ public: // attributes
     }
 #else /* ? STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE */
     /// Returns an instance of the allocator used to specialise the
-    ///  instance.
+    /// instance.
     allocator_type get_allocator() const
     {
 # if defined(STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE)
@@ -1653,34 +1718,42 @@ private: // types
         T_value
     ,   T_allocator
     ,   V_space
-    >                                                                       parent_class_type;
+    >                                                       parent_class_type;
 # else /* ? STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
     typedef auto_buffer<
         T_value
     ,   V_space
     ,   T_allocator
-    >                                                                       parent_class_type;
+    >                                                       parent_class_type;
 # endif /* STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
     typedef auto_buffer_old<
         T_value
     ,   T_allocator
     ,   V_space
-    >                                                                       class_type;
+    >                                                       class_type;
 
 public:
-    typedef ss_typename_type_k parent_class_type::value_type                value_type;
-    typedef ss_typename_type_k parent_class_type::allocator_type            allocator_type;
-    typedef ss_typename_type_k parent_class_type::reference                 reference;
-    typedef ss_typename_type_k parent_class_type::const_reference           const_reference;
-    typedef ss_typename_type_k parent_class_type::pointer                   pointer;
-    typedef ss_typename_type_k parent_class_type::const_pointer             const_pointer;
-    typedef ss_typename_type_k parent_class_type::size_type                 size_type;
-    typedef ss_typename_type_k parent_class_type::difference_type           difference_type;
-    typedef ss_typename_type_k parent_class_type::iterator                  iterator;
-    typedef ss_typename_type_k parent_class_type::const_iterator            const_iterator;
+    typedef ss_typename_type_k parent_class_type::value_type
+                                                            value_type;
+    typedef ss_typename_type_k parent_class_type::allocator_type
+                                                            allocator_type;
+    typedef ss_typename_type_k parent_class_type::reference reference;
+    typedef ss_typename_type_k parent_class_type::const_reference
+                                                            const_reference;
+    typedef ss_typename_type_k parent_class_type::pointer   pointer;
+    typedef ss_typename_type_k parent_class_type::const_pointer
+                                                            const_pointer;
+    typedef ss_typename_type_k parent_class_type::size_type size_type;
+    typedef ss_typename_type_k parent_class_type::difference_type
+                                                            difference_type;
+    typedef ss_typename_type_k parent_class_type::iterator  iterator;
+    typedef ss_typename_type_k parent_class_type::const_iterator
+                                                            const_iterator;
 # if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    typedef ss_typename_type_k parent_class_type::reverse_iterator          reverse_iterator;
-    typedef ss_typename_type_k parent_class_type::const_reverse_iterator    const_reverse_iterator;
+    typedef ss_typename_type_k parent_class_type::reverse_iterator
+                                                            reverse_iterator;
+    typedef ss_typename_type_k parent_class_type::const_reverse_iterator
+                                                            const_reverse_iterator;
 # endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 public: // construction
@@ -1695,7 +1768,6 @@ private:
     auto_buffer_old(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

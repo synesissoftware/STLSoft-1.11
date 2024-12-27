@@ -4,7 +4,7 @@
  * Purpose: Definition of the string access shims for the VARIANT type.
  *
  * Created: 24th May 2002
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_MINOR    4
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_REVISION 11
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     154
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT_EDIT     155
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1263,7 +1263,7 @@ c_str_ptr(
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
+ * pointer to the character string or \c nullptr.
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -1417,7 +1417,6 @@ operator <<(
 {
     return stm << static_cast<wchar_t const*>(v);
 }
-
 #endif /* library */
 
 

@@ -4,7 +4,7 @@
  * Purpose: Contains the module class.
  *
  * Created: 30th October 1997
- * Updated: 13th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    7
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     242
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     243
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -194,7 +194,7 @@ public:
     ///
     /// \note If exception-handling is being used, then this throws a
     ///  \link unixstl::unixstl_exception unixstl_exception\endlink
-    ///  if the handle is NULL.
+    ///  if the handle is \c nullptr.
     ss_explicit_k
     dl_module(module_handle_type hmodule);
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
@@ -225,7 +225,7 @@ public:
     /// \param moduleName The file name of the executable module to be loaded.
     /// \param mode The loading mode (as used by ::<code>dlopen()</code>).
     ///
-    /// \return The module handle, or NULL if no matching module found.
+    /// \return The module handle, or \c nullptr if no matching module found.
     static module_handle_type   load(us_char_a_t const* moduleName, int mode = RTLD_NOW);
     /// Loads the named module, returning its handle, which the
     ///   caller must close with unload().
@@ -233,7 +233,7 @@ public:
     /// \param moduleName The file name of the executable module to be loaded.
     /// \param mode The loading mode (as used by ::<code>dlopen()</code>).
     ///
-    /// \return The module handle, or NULL if no matching module found.
+    /// \return The module handle, or \c nullptr if no matching module found.
     static module_handle_type   load(us_char_w_t const* moduleName, int mode = RTLD_NOW);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
 
@@ -246,7 +246,7 @@ public:
     ///   stlsoft::c_str_ptr is defined.
     /// \param mode The loading mode (as used by ::<code>dlopen()</code>).
     ///
-    /// \return The module handle, or NULL if no matching module found.
+    /// \return The module handle, or \c nullptr if no matching module found.
     template <ss_typename_param_k S>
     static module_handle_type   load(S const& moduleName, int mode = RTLD_NOW)
     {
@@ -257,13 +257,13 @@ public:
     static void                 unload(module_handle_type hmodule) STLSOFT_NOEXCEPT;
     /// Looks up the named symbol from the given module
     ///
-    /// \return A pointer to the named symbol, or NULL if not found
+    /// \return A pointer to the named symbol, or \c nullptr if not found
     static proc_pointer_type    get_symbol(module_handle_type hmodule, us_char_a_t const* symbolName);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
 
     /// Looks up a named symbol from the given module into a typed function pointer variable.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     template <ss_typename_param_k F>
     static proc_pointer_type    get_symbol(module_handle_type hmodule, us_char_a_t const* symbolName, F& f)
     {
@@ -291,13 +291,13 @@ public:
 public:
     /// Looks up the named symbol.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found
+    /// \return A pointer to the named symbol, or \c nullptr if not found
     proc_pointer_type   get_symbol(us_char_a_t const* symbolName);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
 
     /// Looks up a named symbol into a typed function pointer variable.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     template <ss_typename_param_k F>
     proc_pointer_type   get_symbol(us_char_a_t const* symbolName, F& f)
     {

@@ -91,16 +91,16 @@
 # include <tlhelp32.h>
 #endif /* !STLSOFT_INCL_H_TLHELP32 */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
 # include <winstl/api/external/HandleAndObject.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
-# include <stlsoft/api/external/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////

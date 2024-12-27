@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/api/external/FileManagement.h
+ * File:    winstl/api/external/FileManagement.h
  *
- * Purpose:     External preprocessor aliases for external Windows' File
- *              Management Functions API.
+ * Purpose: External preprocessor aliases for external Windows' File
+ *          Management Functions API.
  *
- * Created:     20th August 2017
- * Updated:     9th January 2021
+ * Created: 20th August 2017
+ * Updated: 27th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -61,9 +61,15 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_H_WINDOWS
+# define STLSOFT_INCL_H_WINDOWS
+# include <windows.h>   /* Windows base header */
+#endif /* !STLSOFT_INCL_H_WINDOWS */
+
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * findvolume API declarations
@@ -84,10 +90,13 @@
 #   error winstl_win32_winnt_.h is in error
 #  endif
 
-#  if (  0 != WINSTL_WIN32_WINNT && \
-         WINSTL_WIN32_WINNT < 0x0500) || \
-      !defined(FindFirstVolume) || \
-      !defined(FindNextVolume)
+#  if 0
+#  elif 0 ||\
+        (   0 != WINSTL_WIN32_WINNT &&\
+            WINSTL_WIN32_WINNT < 0x0500) ||\
+        !defined(FindFirstVolume) ||\
+        !defined(FindNextVolume) ||\
+        0
 
 #   define WINSTL_FINDVOLUME_API_NOT_DECLARED
 

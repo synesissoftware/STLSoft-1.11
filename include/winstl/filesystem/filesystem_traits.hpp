@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       21
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        190
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        191
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -790,12 +790,12 @@ public:
     static bool_type    fstat(file_handle_type fd, fstat_data_type* fstat_data);
     /// Gets the file attributes for the given path
     ///
-    /// \pre (NULL != path);
-    /// \pre (NULL != attr);
+    /// \pre (nullptr != path);
+    /// \pre (nullptr != attr);
     static bool_type    get_file_attributes(char_type const* path, file_attributes_type* attr);
     /// Sets the file attributes for the given path
     ///
-    /// \pre (NULL != path);
+    /// \pre (nullptr != path);
     /// \pre (INVALID_FILE_ATTRIBUTES != attr);
     static bool_type    set_file_attributes(char_type const* path, file_attributes_type const attr);
 
@@ -855,7 +855,7 @@ public:
     static large_size_type  get_file_size(stat_data_type const& sd);
     /// Gets the size of the file
     ///
-    /// \pre (NULL != psd)
+    /// \pre (nullptr != psd)
     static large_size_type  get_file_size(stat_data_type const* psd);
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
@@ -2248,7 +2248,7 @@ public:
     }
 
 #if 0
-    /// \pre (NULL != path);
+    /// \pre (nullptr != path);
     /// \pre (INVALID_FILE_ATTRIBUTES != attr);
 #endif
 
@@ -3816,10 +3816,12 @@ private:
 #endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 };
-
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

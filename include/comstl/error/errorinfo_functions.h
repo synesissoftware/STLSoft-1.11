@@ -4,7 +4,7 @@
  * Purpose: Error info functions.
  *
  * Created: 5th February 2004
- * Updated: 26th September 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MINOR    2
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 11
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     61
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 12
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,6 +84,7 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
+
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -115,11 +116,15 @@ namespace comstl_project
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-STLSOFT_INLINE HRESULT comstl__set_error_info_w_(   cs_char_w_t const*  description
-                                                ,   cs_char_w_t const*  source
-                                                ,   GUID const*         guid
-                                                ,   cs_char_w_t const*  helpFile
-                                                ,   cs_dword_t const*   helpContext)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_w_(
+    cs_char_w_t const*  description
+,   cs_char_w_t const*  source
+,   GUID const*         guid
+,   cs_char_w_t const*  helpFile
+,   cs_dword_t const*   helpContext
+)
 {
     ICreateErrorInfo    *pCEI;
     HRESULT             hr;
@@ -176,7 +181,12 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_w_(   cs_char_w_t const*  descript
     return hr;
 }
 
-STLSOFT_INLINE HRESULT comstl__set_error_info_a_helper_(cs_char_a_t const* s_a, cs_char_w_t **ps_w)
+STLSOFT_STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_a_helper_(
+    cs_char_a_t const*  s_a
+,   cs_char_w_t**       ps_w
+)
 {
     COMSTL_ASSERT(NULL != ps_w);
 
@@ -213,11 +223,15 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_a_helper_(cs_char_a_t const* s_a, 
     }
 }
 
-STLSOFT_INLINE HRESULT comstl__set_error_info_a_(   cs_char_a_t const*  description
-                                                ,   cs_char_a_t const*  source
-                                                ,   GUID const*         guid
-                                                ,   cs_char_a_t const*  helpFile
-                                                ,   cs_dword_t const*   helpContext)
+STLSOFT_STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_a_(
+    cs_char_a_t const*  description
+,   cs_char_a_t const*  source
+,   GUID const*         guid
+,   cs_char_a_t const*  helpFile
+,   cs_dword_t const*   helpContext
+)
 {
     HRESULT         hr              =   S_OK;
     cs_char_w_t     *description_w  =   NULL;
@@ -248,7 +262,6 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_a_(   cs_char_a_t const*  descript
 
     return hr;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** [C] Sets the description of the current error object to the given Unicode string
@@ -257,7 +270,9 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_a_(   cs_char_a_t const*  descript
  *
  * \see comstl::set_error_info_description
  */
-STLSOFT_INLINE HRESULT comstl__set_error_info_description_w(cs_char_w_t const* description)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_description_w(cs_char_w_t const* description)
 {
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
 
@@ -270,7 +285,9 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_description_w(cs_char_w_t const* d
  *
  * \see comstl::set_error_info_description
  */
-STLSOFT_INLINE HRESULT comstl__set_error_info_description_a(cs_char_a_t const* description)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_description_a(cs_char_a_t const* description)
 {
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
 
@@ -283,7 +300,12 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_description_a(cs_char_a_t const* d
  *
  * \see comstl::set_error_info_description_and_source
  */
-STLSOFT_INLINE HRESULT comstl__set_error_info_description_and_source_w(cs_char_w_t const* description, cs_char_w_t const* source)
+STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_description_and_source_w(
+    cs_char_w_t const*  description
+,   cs_char_w_t const*  source
+)
 {
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
     COMSTL_MESSAGE_ASSERT("error info source string cannot be NULL", NULL != source);
@@ -297,7 +319,12 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_description_and_source_w(cs_char_w
  *
  * \see comstl::set_error_info_description_and_source
  */
-STLSOFT_INLINE HRESULT comstl__set_error_info_description_and_source_a(cs_char_a_t const* description, cs_char_a_t const* source)
+STLSOFT_STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_description_and_source_a(
+    cs_char_a_t const*  description
+,   cs_char_a_t const*  source
+)
 {
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
     COMSTL_MESSAGE_ASSERT("error info source string cannot be NULL", NULL != source);
@@ -311,11 +338,15 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_description_and_source_a(cs_char_a
  *
  * \see comstl::set_error_info
  */
-STLSOFT_INLINE HRESULT comstl__set_error_info_w(cs_char_w_t const*  description
-                                            ,   cs_char_w_t const*  source
-                                            ,   REFGUID             guid
-                                            ,   cs_char_w_t const*  helpFile
-                                            ,   cs_dword_t          helpContext)
+STLSOFT_STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_w(
+    cs_char_w_t const*  description
+,   cs_char_w_t const*  source
+,   REFGUID             guid
+,   cs_char_w_t const*  helpFile
+,   cs_dword_t          helpContext
+)
 {
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
     COMSTL_MESSAGE_ASSERT("error info source string cannot be NULL", NULL != source);
@@ -330,11 +361,15 @@ STLSOFT_INLINE HRESULT comstl__set_error_info_w(cs_char_w_t const*  description
  *
  * \see comstl::set_error_info
  */
-STLSOFT_INLINE HRESULT comstl__set_error_info_a(cs_char_a_t const*  description
-                                            ,   cs_char_a_t const*  source
-                                            ,   REFGUID             guid
-                                            ,   cs_char_a_t const*  helpFile
-                                            ,   cs_dword_t          helpContext)
+STLSOFT_STLSOFT_INLINE
+HRESULT
+comstl__set_error_info_a(
+    cs_char_a_t const*  description
+,   cs_char_a_t const*  source
+,   REFGUID             guid
+,   cs_char_a_t const*  helpFile
+,   cs_dword_t          helpContext
+)
 {
     COMSTL_MESSAGE_ASSERT("error info description string cannot be NULL", NULL != description);
     COMSTL_MESSAGE_ASSERT("error info source string cannot be NULL", NULL != source);
@@ -364,7 +399,9 @@ namespace comstl
  *
  * \ingroup group__library__error
  */
-inline HRESULT set_error_info(cs_char_a_t const* description)
+inline
+HRESULT
+set_error_info(cs_char_a_t const* description)
 {
     return comstl__set_error_info_description_a(description);
 }
@@ -375,7 +412,9 @@ inline HRESULT set_error_info(cs_char_a_t const* description)
  *
  * \param description The error description
  */
-inline HRESULT set_error_info(cs_char_w_t const* description)
+inline
+HRESULT
+set_error_info(cs_char_w_t const* description)
 {
     return comstl__set_error_info_description_w(description);
 }
@@ -387,7 +426,12 @@ inline HRESULT set_error_info(cs_char_w_t const* description)
  * \param description The error description
  * \param source The error source
  */
-inline HRESULT set_error_info(cs_char_a_t const* description, cs_char_a_t const* source)
+inline
+HRESULT
+set_error_info(
+    cs_char_a_t const*  description
+,   cs_char_a_t const*  source
+)
 {
     return comstl__set_error_info_description_and_source_a(description, source);
 }
@@ -399,7 +443,12 @@ inline HRESULT set_error_info(cs_char_a_t const* description, cs_char_a_t const*
  * \param description The error description
  * \param source The error source
  */
-inline HRESULT set_error_info(cs_char_w_t const* description, cs_char_w_t const* source)
+inline
+HRESULT
+set_error_info(
+    cs_char_w_t const*  description
+,   cs_char_w_t const*  source
+)
 {
     return comstl__set_error_info_description_and_source_w(description, source);
 }
@@ -412,7 +461,13 @@ inline HRESULT set_error_info(cs_char_w_t const* description, cs_char_w_t const*
  * \param source The error source
  * \param guid The GUID of the interface in error
  */
-inline HRESULT set_error_info(cs_char_a_t const* description, cs_char_a_t const* source, REFGUID guid)
+inline
+HRESULT
+set_error_info(
+    cs_char_a_t const*  description
+,   cs_char_a_t const*  source
+,   REFGUID             guid
+)
 {
     return comstl__set_error_info_a_(description, source, &guid, NULL, NULL);
 }
@@ -425,14 +480,22 @@ inline HRESULT set_error_info(cs_char_a_t const* description, cs_char_a_t const*
  * \param source The error source
  * \param guid The GUID of the interface in error
  */
-inline HRESULT set_error_info(cs_char_w_t const* description, cs_char_w_t const* source, REFGUID guid)
+inline
+HRESULT
+set_error_info(
+    cs_char_w_t const*  description
+,   cs_char_w_t const*  source
+,   REFGUID             guid
+)
 {
     return comstl__set_error_info_w_(description, source, &guid, NULL, NULL);
 }
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

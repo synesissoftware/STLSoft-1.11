@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `mfcstl::afx_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 25th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,10 +31,6 @@
 #include <stlsoft/stlsoft.h>
 
 /* Standard C++ header files */
-// #include <algorithm>
-// #include <list>
-// #include <numeric>
-// #include <vector>
 
 /* Standard C header files */
 #include <assert.h>
@@ -48,14 +44,14 @@
 namespace
 {
 
-    static void test_alloc_0(void);
-    static void test_alloc_small(void);
-    static void test_alloc_medium(void);
-    static void test_alloc_large(void);
-    static void test_alloc_toolarge(void);
+    static void test_alloc_0();
+    static void test_alloc_small();
+    static void test_alloc_medium();
+    static void test_alloc_large();
+    static void test_alloc_toolarge();
 
-    static void test_specialise_list(void);
-    static void test_specialise_vector(void);
+    static void test_specialise_list();
+    static void test_specialise_vector();
 } // anonymous namespace
 
 
@@ -70,7 +66,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.memory.auto_buffer", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.mfcstl.memory.afx_allocator", verbosity))
     {
         XTESTS_RUN_CASE(test_alloc_0);
         XTESTS_RUN_CASE(test_alloc_small);
@@ -97,37 +93,37 @@ int main(int argc, char *argv[])
 namespace
 {
 
-static void test_alloc_0(void)
+static void test_alloc_0()
 {
 
 }
 
-static void test_alloc_small(void)
+static void test_alloc_small()
 {
 
 }
 
-static void test_alloc_medium(void)
+static void test_alloc_medium()
 {
 
 }
 
-static void test_alloc_large(void)
+static void test_alloc_large()
 {
 
 }
 
-static void test_alloc_toolarge(void)
+static void test_alloc_toolarge()
 {
 
 }
 
-static void test_specialise_list(void)
+static void test_specialise_list()
 {
 
 }
 
-static void test_specialise_vector(void)
+static void test_specialise_vector()
 {
 
 }

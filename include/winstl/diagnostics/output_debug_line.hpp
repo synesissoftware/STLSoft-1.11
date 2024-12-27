@@ -89,15 +89,15 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 #ifdef STLSOFT_CF_VARIADIC_TEMPLATE_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
 #  include <winstl/api/external/Debugging.h>
 # endif /* !WINSTL_INCL_WINSTL_API_external_h_Debugging */
 #endif /* STLSOFT_CF_VARIADIC_TEMPLATE_SUPPORT */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
-# include <stlsoft/api/external/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////

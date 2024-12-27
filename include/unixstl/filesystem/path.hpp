@@ -4,7 +4,7 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 23rd October 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which doesn't
  *          work for wide-string builds).
@@ -57,7 +57,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      7
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   8
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       279
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       281
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -124,7 +124,7 @@
 
 #ifdef STLSOFT_DEBUG
 # include <stlsoft/algorithms/pod.hpp>
-#endif
+#endif /* STLSOFT_DEBUG */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -445,7 +445,7 @@ public:
     /// Copies the contents into a caller supplied buffer
     ///
     /// \param buffer Pointer to character buffer to receive the contents.
-    ///  May be NULL, in which case the method returns size().
+    ///  May be \c nullptr, in which case the method returns size().
     /// \param cchBuffer Number of characters of available space in \c buffer.
     size_type
     copy(
@@ -2033,6 +2033,7 @@ basic_path<C, T, A>::canonicalise(
     // 3. Write out all the parts back into the new path instance
     {
 #ifdef STLSOFT_DEBUG
+
         STLSOFT_NS_QUAL(pod_fill_n)(dest, newPath.m_buffer.size() - (dest - &newPath.m_buffer[0]), static_cast<char_type>('~'));
 #endif /* STLSOFT_DEBUG */
 

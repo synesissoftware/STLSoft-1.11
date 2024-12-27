@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::reg_value_sequence`.
  *
  * Created: 22nd October 2024
- * Updated: 23rd October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,7 +44,7 @@
 namespace
 {
 
-    static void test_1_12(void);
+    static void test_1_12();
 } // anonymous namespace
 
 

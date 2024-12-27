@@ -89,13 +89,13 @@
 # include <string.h>
 #endif /* !STLSOFT_INCL_H_STRING */
 
-#ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
-# include <winstl/api/external/Debugging.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_Debugging */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
 # include <stlsoft/api/external/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
+# include <winstl/api/external/Debugging.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_Debugging */
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/gdi_functions.h (originally MWGdi.h / MWWinCmn, ::SynesisWin)
+ * File:    winstl/window/gdi_functions.h (originally MWGdi.h / MWWinCmn, ::SynesisWin)
  *
- * Purpose:     Error functions.
+ * Purpose: Error functions.
  *
- * Created:     20th October 1994
- * Updated:     11th March 2024
+ * Created: 20th October 1994
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define WINSTL_INCL_WINSTL_WINDOW_H_GDI_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MAJOR    4
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_REVISION 6
-# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT     148
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MAJOR     4
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_MINOR     0
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_REVISION  6
+# define WINSTL_VER_WINSTL_WINDOW_H_GDI_FUNCTIONS_EDIT      149
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,32 +98,62 @@ namespace winstl_project
  * C functions
  */
 
-STLSOFT_INLINE ws_size_t winstl__get_BITMAP(HBITMAP hbmp, BITMAP *pbmp)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_BITMAP(
+    HBITMAP hbmp
+,   BITMAP* pbmp
+)
 {
     return stlsoft_static_cast(ws_size_t, WINSTL_API_EXTERNAL_DeviceContext_GetObject(hbmp, sizeof(BITMAP), pbmp));
 }
 
-STLSOFT_INLINE ws_size_t winstl__get_DIBSECTION(HBITMAP hbmp, DIBSECTION *pds)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_DIBSECTION(
+    HBITMAP     hbmp
+,   DIBSECTION* pds
+)
 {
     return stlsoft_static_cast(ws_size_t, WINSTL_API_EXTERNAL_DeviceContext_GetObject(hbmp, sizeof(DIBSECTION), pds));
 }
 
-STLSOFT_INLINE ws_size_t winstl__get_LOGPEN(HPEN hpen, LOGPEN *plp)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_LOGPEN(
+    HPEN    hpen
+,   LOGPEN* plp
+)
 {
     return stlsoft_static_cast(ws_size_t, WINSTL_API_EXTERNAL_DeviceContext_GetObject(hpen, sizeof(LOGPEN), plp));
 }
 
-STLSOFT_INLINE ws_size_t winstl__get_EXTLOGPEN(HPEN hpen, EXTLOGPEN *pxlp)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_EXTLOGPEN(
+    HPEN        hpen
+,   EXTLOGPEN*  pxlp
+)
 {
     return stlsoft_static_cast(ws_size_t, WINSTL_API_EXTERNAL_DeviceContext_GetObject(hpen, sizeof(EXTLOGPEN), pxlp));
 }
 
-STLSOFT_INLINE ws_size_t winstl__get_LOGBRUSH(HBRUSH hpal, LOGBRUSH *pbr)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_LOGBRUSH(
+    HBRUSH      hpal
+,   LOGBRUSH*   pbr
+)
 {
     return stlsoft_static_cast(ws_size_t, WINSTL_API_EXTERNAL_DeviceContext_GetObject(hpal, sizeof(LOGBRUSH), pbr));
 }
 
-STLSOFT_INLINE ws_size_t winstl__get_LOGFONT(HFONT hpal, LOGFONT *pfnt)
+STLSOFT_INLINE
+ws_size_t
+winstl__get_LOGFONT(
+    HFONT       hpal
+,   LOGFONT*    pfnt
+)
 {
     return stlsoft_static_cast(ws_size_t, WINSTL_API_EXTERNAL_DeviceContext_GetObject(hpal, sizeof(LOGFONT), pfnt));
 }
@@ -145,32 +175,62 @@ namespace winstl
 
 #if defined(__cplusplus)
 
-inline ws_size_t get_object(HBITMAP h, BITMAP &desc)
+inline
+ws_size_t
+get_object(
+    HBITMAP h
+,   BITMAP& desc
+)
 {
     return winstl__get_BITMAP(h, &desc);
 }
 
-inline ws_size_t get_object(HBITMAP h, DIBSECTION &desc)
+inline
+ws_size_t
+get_object(
+    HBITMAP     h
+,   DIBSECTION& desc
+)
 {
     return winstl__get_DIBSECTION(h, &desc);
 }
 
-inline ws_size_t get_object(HPEN h, EXTLOGPEN &desc)
+inline
+ws_size_t
+get_object(
+    HPEN        h
+,   EXTLOGPEN&  desc
+)
 {
     return winstl__get_EXTLOGPEN(h, &desc);
 }
 
-inline ws_size_t get_object(HPEN h, LOGPEN &desc)
+inline
+ws_size_t
+get_object(
+    HPEN    h
+,   LOGPEN& desc
+)
 {
     return winstl__get_LOGPEN(h, &desc);
 }
 
-inline ws_size_t get_object(HBRUSH h, LOGBRUSH &desc)
+inline
+ws_size_t
+get_object(
+    HBRUSH      h
+,   LOGBRUSH&   desc
+)
 {
     return winstl__get_LOGBRUSH(h, &desc);
 }
 
-inline ws_size_t get_object(HFONT h, LOGFONT &desc)
+inline
+ws_size_t
+get_object(
+    HFONT       h
+,   LOGFONT&    desc
+)
 {
     return winstl__get_LOGFONT(h, &desc);
 }
@@ -178,46 +238,62 @@ inline ws_size_t get_object(HFONT h, LOGFONT &desc)
 template<   ss_typename_param_k D
         ,   ss_typename_param_k H
         >
-inline D get_object_helper(H h)
+inline
+D
+get_object_helper(H h)
 {
     D   d;
 
     return get_object(h, d) ? d : D();
 }
 
-inline BITMAP get_BITMAP(HBITMAP h)
+inline
+BITMAP
+get_BITMAP(HBITMAP h)
 {
     return get_object_helper<BITMAP>(h);
 }
 
-inline DIBSECTION get_DIBSECTION(HBITMAP h)
+inline
+DIBSECTION
+get_DIBSECTION(HBITMAP h)
 {
     return get_object_helper<DIBSECTION>(h);
 }
 
-inline EXTLOGPEN get_EXTLOGPEN(HPEN h)
+inline
+EXTLOGPEN
+get_EXTLOGPEN(HPEN h)
 {
     return get_object_helper<EXTLOGPEN>(h);
 }
 
-inline LOGPEN get_LOGPEN(HPEN h)
+inline
+LOGPEN
+get_LOGPEN(HPEN h)
 {
     return get_object_helper<LOGPEN>(h);
 }
 
-inline LOGBRUSH get_LOGBRUSH(HBRUSH h)
+inline
+LOGBRUSH
+get_LOGBRUSH(HBRUSH h)
 {
     return get_object_helper<LOGBRUSH>(h);
 }
 
-inline LOGFONT get_LOGFONT(HFONT h)
+inline
+LOGFONT
+get_LOGFONT(HFONT h)
 {
     return get_object_helper<LOGFONT>(h);
 }
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

@@ -4,7 +4,7 @@
  * Purpose: String shims for UNIX timeval structure.
  *
  * Created: 5th May 2014
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_REVISION   7
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_EDIT       20
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_TIMEVAL_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -124,8 +124,8 @@ namespace unixstl_project
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
- *   string of <code>char</code>.
+ * \return None-\c nullptr, non-mutating pointer to a C-style string of
+ *   <code>char</code>.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -185,7 +185,7 @@ c_str_data_a(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style string.
+ * \return None-\c nullptr, non-mutating pointer to a C-style string.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -260,8 +260,8 @@ c_str_len(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, nul-terminated, non-mutating pointer to a C-style
- *   string of <code>char</code>.
+ * \return None-\c nullptr, nul-terminated, non-mutating pointer to a
+ *   C-style string of <code>char</code>.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -277,8 +277,8 @@ c_str_ptr_a(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, nul-terminated, non-mutating pointer to a C-style
- *   string.
+ * \return None-\c nullptr, nul-terminated, non-mutating pointer to a
+ *   C-style string.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -296,8 +296,8 @@ c_str_ptr(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, nul-terminated, non-mutating pointer to a C-style
- *   string of <code>char</code>.
+ * \return Possibly \c nullptr, nul-terminated, non-mutating pointer to a
+ *   C-style string of <code>char</code>.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -313,8 +313,8 @@ c_str_ptr_null_a(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, nul-terminated, non-mutating pointer to a C-style
- *   string.
+ * \return Possibly \c nullptr, nul-terminated, non-mutating pointer to a
+ *   C-style string.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -335,8 +335,8 @@ c_str_ptr_null(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
- *   string of <code>char</code>.
+ * \return None-\c nullptr, non-mutating pointer to a C-style string of
+ *   <code>char</code>.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -352,7 +352,7 @@ c_str_data(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style string.
+ * \return None-\c nullptr, non-mutating pointer to a C-style string.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -402,8 +402,8 @@ c_str_len(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, nul-terminated, non-mutating pointer to a C-style
- *   string of <code>char</code>.
+ * \return None-\c nullptr, nul-terminated, non-mutating pointer to a
+ *   C-style string of <code>char</code>.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -418,8 +418,8 @@ c_str_ptr_a(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, nul-terminated, non-mutating pointer to a C-style
- *   string.
+ * \return None-\c nullptr, nul-terminated, non-mutating pointer to a
+ *   C-style string.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -436,8 +436,8 @@ c_str_ptr(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, nul-terminated, non-mutating pointer to a C-style
- *   string of <code>char</code>.
+ * \return Possibly \c nullptr, nul-terminated, non-mutating pointer to a
+ *   C-style string of <code>char</code>.
  */
 inline
 basic_shim_string<ss_char_a_t>
@@ -452,8 +452,8 @@ c_str_ptr_null_a(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, nul-terminated, non-mutating pointer to a C-style
- *   string.
+ * \return Possibly \c nullptr, nul-terminated, non-mutating pointer to a
+ *   C-style string.
  */
 inline
 basic_shim_string<ss_char_a_t>

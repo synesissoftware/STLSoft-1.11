@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/smartptr/ref_ptr.hpp (originally MLRelItf.h, ::SynesisStd)
+ * File:    stlsoft/smartptr/ref_ptr.hpp (originally MLRelItf.h, ::SynesisStd)
  *
- * Purpose:     Contains the ref_ptr template class.
+ * Purpose: Contains the ref_ptr template class.
  *
- * Created:     2nd November 1994
- * Updated:     11th March 2024
+ * Created: 2nd November 1994
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR      5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR      5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT       514
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR     5
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR     5
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION  1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT      515
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -90,11 +90,11 @@ namespace stlsoft
  *
  * \ingroup group__library__SmartPointer
  *
- * \note The generic shim expects the RCI to have a method named AddRef(), which
- * has either no parameters, or has all default parameters
+ * \note The generic shim expects the RCI to have a method named AddRef(),
+ *   which has either no parameters, or has all default parameters
  *
  * \note The behaviour of the ref_ptr is undefined if this method throws an
- * exception
+ *   exception
  */
 template<ss_typename_param_k I>
 inline void add_reference(I* pi)
@@ -109,11 +109,11 @@ inline void add_reference(I* pi)
  *
  * \ingroup group__library__SmartPointer
  *
- * \note The generic shim expects the RCI to have a method named Release(), which
- * has either no parameters, or has all default parameters
+ * \note The generic shim expects the RCI to have a method named Release(),
+ *   which has either no parameters, or has all default parameters
  *
  * \note The behaviour of the ref_ptr is undefined if this method throws an
- * exception
+ *   exception
  */
 template<ss_typename_param_k I>
 inline void release_reference(I* pi)
@@ -157,10 +157,10 @@ inline void own_reference(I* pi)
  * classes
  */
 
-/** This class provides RAII-safe handling of reference-counted
- *    interfaces (RCIs). Its notable feature is that it supports forward
- *    declaration of the leaf interface so long as the base counting
- *    interface is visible in the scope of the template specialisation.
+/** This class provides RAII-safe handling of reference-counted interfaces
+ * (RCIs). Its notable feature is that it supports forward declaration of
+ * the leaf interface so long as the base counting interface is visible in
+ * the scope of the template specialisation.
  *
  * \ingroup group__library__SmartPointer
  *
@@ -178,11 +178,14 @@ class ref_ptr
 public: // types
     /// The Boolean type
     typedef bool_t              bool_type;
-    /// The interface type: the type of the RCI (Reference-Counted Interface)
+    /// The interface type: the type of the RCI (Reference-Counted
+    /// Interface)
     typedef I                   interface_type;
-    /// The counted type: the concrete type of the objects whose instances will be managed
+    /// The counted type: the concrete type of the objects whose instances
+    /// will be managed
     typedef T                   counted_type;
-    /// The up-cast type: the type used to disambiguate upcasts between T and I
+    /// The up-cast type: the type used to disambiguate upcasts between T
+    /// and I
     typedef U                   upcast_type;
     /// The current instantiation of the type
     typedef ref_ptr<T, I, U>    class_type;
@@ -194,12 +197,14 @@ public: // types
     typedef counted_type const* const_resource_type;
 
 private: // implementation
-    /// Helper function to effect downcast from interface type to counted type
+    /// Helper function to effect downcast from interface type to counted
+    /// type
     static counted_type* c_from_i(interface_type* i)
     {
         return static_cast<counted_type*>(static_cast<upcast_type*>(i));
     }
-    /// Helper function to effect downcast from interface type to counted type
+    /// Helper function to effect downcast from interface type to counted
+    /// type
     static counted_type const* c_from_i(interface_type const* i)
     {
         return static_cast<counted_type const*>(static_cast<upcast_type const*>(i));
@@ -213,7 +218,8 @@ private: // implementation
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1300
 
-    /// Helper function to effect upcast from const counted type to interface type
+    /// Helper function to effect upcast from const counted type to
+    /// interface type
     static interface_type* i_from_const_c(counted_type const* cc)
     {
         counted_type* c = const_cast<counted_type*>(cc);
@@ -232,18 +238,18 @@ public: // construction
     /// Construct from a raw pointer to the counted type, and a boolean that
     /// indicates whether a reference should be taken on the instance.
     ///
-    /// \param c Pointer to a counted_type. May be NULL
+    /// \param c Pointer to a counted_type. May be \c nullptr
     /// \param bAddRef parameter that determines whether reference will be
     ///   <i>consumed</i> (<code>false</code>) or <i>borrowed</i>
     ///   (<code>true</code>).
     ///
-    /// \note It is usual that ref_ptr is used to "sink" an instance, i.e. to take
-    /// ownership of it. In such a case, \c false should be specified as the second
-    /// parameter. If, however, a reference is being "borrowed", then \c true should
-    /// be specified.
+    /// \note It is usual that ref_ptr is used to "sink" an instance, i.e.
+    /// to take ownership of it. In such a case, \c false should be
+    /// specified as the second parameter. If, however, a reference is being
+    /// "borrowed", then \c true should be specified.
     ///
-    /// \deprecated This is now deprecated in favour of the borrow() and own()
-    /// creation methods, for the reasons described in
+    /// \deprecated This is now deprecated in favour of the borrow() and
+    /// own() creation methods, for the reasons described in
     /// <a href="https://accu.org/index.php/journals/2183" /> and
     /// <a href="https://martinfowler.com/bliki/FlagArgument.html" />.
     ref_ptr(counted_type* c, bool_type bAddRef)
@@ -322,8 +328,8 @@ public: // construction
 
     /// Destructor
     ///
-    /// If the ref_ptr instance is still holding a pointer to a managed instance,
-    /// it will be released.
+    /// If the ref_ptr instance is still holding a pointer to a managed
+    /// instance, it will be released.
     ~ref_ptr() STLSOFT_NOEXCEPT
     {
         if (NULL != m_pi)
@@ -334,9 +340,10 @@ public: // construction
 
     /// Copy assignment from a ref_ptr instance of the same type
     ///
-    /// \note It is strongly exception-safe, as long as the implementations of the
-    /// add-ref and release functions - as utilised in the \c add_reference() and
-    /// \c release_reference() control shims - do not throw (which they must not).
+    /// \note It is strongly exception-safe, as long as the implementations
+    ///   of the add-ref and release functions - as utilised in the
+    ///   \c add_reference() and \c release_reference() control shims - do
+    ///   not throw (which they must not).
     class_type& operator =(class_type const& rhs)
     {
         class_type  t(rhs);
@@ -350,15 +357,16 @@ public: // construction
     (   _MSC_VER > 1100 && \
         _MSC_VER != 1300)
 
-    /// Copy assignment from an instance of ref_ptr with a different counted_type (but
-    /// the same interface type).
+    /// Copy assignment from an instance of ref_ptr with a different
+    /// counted_type (but the same interface type).
     ///
-    /// \note This function template uses the copy constructor template, and has the same
-    /// instantiation restrictions
+    /// \note This function template uses the copy constructor template, and
+    ///   has the same instantiation restrictions
     ///
-    /// \note It is strongly exception-safe, as long as the implementations of the
-    /// add-ref and release functions - as utilised in the \c add_reference() and
-    /// \c release_reference() control shims - do not throw (which they must not).
+    /// \note It is strongly exception-safe, as long as the implementations
+    ///   of the add-ref and release functions - as utilised in the
+    ///   \c add_reference() and \c release_reference() control shims - do
+    ///   not throw (which they must not).
     template<
         ss_typename_param_k T2
     ,   ss_typename_param_k U2
@@ -441,7 +449,7 @@ public:
 
     /// Assigns a reference-counted type to the smart pointer.
     ///
-    /// \param c Pointer to a counted_type. May be NULL
+    /// \param c Pointer to a counted_type. May be \c nullptr
     /// \param bAddRef parameter that determines whether reference will be
     ///   <i>consumed</i> (<code>false</code>) or <i>borrowed</i>
     ///   (<code>true</code>).
