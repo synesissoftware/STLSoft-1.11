@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *
  * Created: ... mid 2010s ...
- * Updated: 5th November 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -291,7 +291,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -317,7 +317,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -343,7 +343,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
         }
@@ -418,7 +418,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -447,7 +447,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -476,7 +476,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
         }
@@ -553,7 +553,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -584,7 +584,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -615,7 +615,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
         }
@@ -690,7 +690,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -719,7 +719,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -748,7 +748,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
         }
@@ -823,7 +823,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -852,7 +852,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -881,7 +881,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
         }
@@ -957,7 +957,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -986,7 +986,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -1015,7 +1015,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
         }
@@ -1106,7 +1106,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -1142,7 +1142,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
 
@@ -1178,7 +1178,7 @@ int main(int argc, char* argv[])
 
                 if (1 == WARMUPS)
                 {
-                    fprintf(stdout, "\t%s: %lu %.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
         }
