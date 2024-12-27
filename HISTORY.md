@@ -7,14 +7,13 @@
 28th December 2024 - 1.11.1-alpha28 released
 --------------------------------------------
 
-TTTTTTTTT      BBBBBB          CCCCCCC
-   TTT         B     B        C       C
-   TTT         B     B        C
-   TTT         BBBBBB         C
-   TTT         B     B        C
-   TTT         B     B        C       C
-   TTT         BBBBBB          CCCCCCC
-
+ * added `stlsoft::doomgram` - Decimal Order-Of-Magnitude histoGRAM - specialised latency capture component;
+ * added `stlsoft::unicode_point_map` specialised frequency map;
+ * added `stlsoft::count_hexadecimal_digits()`, and refactored associated code;
+ * added `unixstl_C_compare_timevals()`;
+ * substantial reworking of abstraction of memory functions, resulting in performance improvements across numerous components;
+ * miscellaneous generalisation of code and dependencies;
+ * added more test programs;
 
 
 19th December 2024 - 1.11.1-alpha27 released

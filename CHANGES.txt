@@ -21,26 +21,46 @@ STLSoft - Changes
 
 Changes for 1.11.1-alpha28 (28th December 2024)
 
-TTTTTTTTT      BBBBBB          CCCCCCC
-   TTT         B     B        C       C
-   TTT         B     B        C
-   TTT         BBBBBB         C
-   TTT         B     B        C
-   TTT         B     B        C       C
-   TTT         BBBBBB          CCCCCCC
-
 General:
 ========
 
+ * added `stlsoft::doomgram` - Decimal Order-Of-Magnitude histoGRAM - specialised latency capture component;
+ * added `stlsoft::unicode_point_map` specialised frequency map;
+ * added `stlsoft::count_hexadecimal_digits()`, and refactored associated code;
+ * added `unixstl_C_compare_timevals()`;
+ * substantial reworking of abstraction of memory functions, resulting in performance improvements across numerous components;
  * miscellaneous generalisation of code and dependencies;
- * ;
+ * added more test programs;
 
 Changes:
 ========
 
+Added `stlsoft::doomgram` - Decimal Order-Of-Magnitude histoGRAM - specialised latency capture component:
+ * added `stlsoft::doomgram` and `stlsoft::gram_scope` (from old research repo(s));
+ * added **test.performance.stlsoft.doomgram**;
+ * added **test.unit.stlsoft.diagnostics.doomgram**;
+
+Added `stlsoft::unicode_point_map` specialised frequency map:
+ * added `stlsoft::unicode_point_map`;
+ * added **examples/by_library/containers/unicode_point_map**;
+
+Added `stlsoft::count_hexadecimal_digits()`, and refactored associated code:
+ * added `stlsoft::count_hexadecimal_digits()`, and refactored `stlsoft::count_digits()` into `stlsoft::count_decimal_digits()`;
+ * added **test.performance.stlsoft.count_digits**;
+
+Added `unixstl_C_compare_timevals()`:
+ * added `unixstl_C_compare_timevals()` **include/unixstl/time/comparison_functions.h**;
+
+Substantial reworking of abstraction of memory functions, resulting in performance improvements across numerous components:
+ * added **include/stlsoft/api/external/memfns.h**;
+ * almost all uses of `STLSOFT_API_INTERNAL_memfns_memcpy()` replaced with `STLSOFT_API_EXTERNAL_memfns_memcpy()`;
+
 Miscellaneous generalisation of code and dependencies:
  * moved integer suffixes (such as `STLSOFT_GEN_UINT64_SUFFIX`) into stlsoft/stlsoft.h from stlsoft/limits/integral_limits.h;
- * ;
+
+Added more test programs:
+ * added **examples/by_project/platformstl/filesystem/readdir_sequence**;
+ * added **examples/by_project/winstl/filesystem/readdir_sequence**;
 
 
 ============================================================================
