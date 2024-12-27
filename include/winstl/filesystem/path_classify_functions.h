@@ -4,7 +4,7 @@
  * Purpose: Path classification functions
  *
  * Created: 28th November 2020
- * Updated: 20th October 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        13
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_REVISION    4
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -341,10 +341,10 @@ winstl_C_path_is_rooted(
     case WinSTL_C_PathType_UncRooted:
     case WinSTL_C_PathType_HomeRooted:
 
-        return true;
+        return ws_true_v;
     default:
 
-        return false;
+        return ws_false_v;
     }
 }
 
@@ -360,10 +360,10 @@ winstl_C_path_is_absolute(
     case WinSTL_C_PathType_UncRooted:
     case WinSTL_C_PathType_HomeRooted:
 
-        return true;
+        return ws_true_v;
     default:
 
-        return false;
+        return ws_false_v;
     }
 }
 

@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_variable_traits class.
  *
  * Created: 9th December 2005
- * Updated: 5th November 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MINOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_REVISION 11
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     41
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_REVISION 12
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -229,8 +229,7 @@ extern char **environ;
 # endif /* compiler */
 
 # if 0
-# elif defined(__MINGW32__) || \
-       defined(__MINGW64__)
+# elif defined(STLSOFT_MINGW)
 
 extern char **_environ;
 

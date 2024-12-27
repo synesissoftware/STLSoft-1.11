@@ -4,7 +4,7 @@
  * Purpose: WinSTL atomic functions.
  *
  * Created: 23rd October 1997
- * Updated: 26th December 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -328,7 +328,7 @@ WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_write_up(atomic_int_t volatile* pl,
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_read_up(atomic_int_t volatile const* pl);
 
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postadd_up(atomic_int_t volatile* pl, atomic_int_t n);
-atomic_int_t atomic_preadd_up(atomic_int_t volatile* pl, atomic_int_t n);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_preadd_up(atomic_int_t volatile* pl, atomic_int_t n);
 
 
 /* SMP variants */
@@ -336,8 +336,8 @@ WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_preincrement_smp(atomic_int_t volat
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_predecrement_smp(atomic_int_t volatile* pl);
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postincrement_smp(atomic_int_t volatile* pl);
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postdecrement_smp(atomic_int_t volatile* pl);
-void atomic_increment_smp(atomic_int_t volatile* pl);
-void atomic_decrement_smp(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(void) atomic_increment_smp(atomic_int_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(void) atomic_decrement_smp(atomic_int_t volatile* pl);
 
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_exchange_smp(atomic_int_t volatile* pl, atomic_int_t n);
 
@@ -345,7 +345,7 @@ WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_write_smp(atomic_int_t volatile* pl
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_read_smp(atomic_int_t volatile const* pl);
 
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postadd_smp(atomic_int_t volatile* pl, atomic_int_t n);
-atomic_int_t atomic_preadd_smp(atomic_int_t volatile* pl, atomic_int_t n);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_preadd_smp(atomic_int_t volatile* pl, atomic_int_t n);
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -363,7 +363,7 @@ atomic_preincrement(atomic_int_t volatile* pl);
  *
  * \ingroup group__library__Synch
  */
-atomic_int32_t atomic_preincrement32(atomic_int32_t volatile* pv);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int32_t) atomic_preincrement32(atomic_int32_t volatile* pv);
 
 /** Decrements the variable atomically, and returns the result of the
  * operation
@@ -377,7 +377,7 @@ atomic_predecrement(atomic_int_t volatile* pl);
  *
  * \ingroup group__library__Synch
  */
-atomic_int32_t atomic_predecrement32(atomic_int32_t volatile* pv);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int32_t) atomic_predecrement32(atomic_int32_t volatile* pv);
 
 /** Increments the variable atomically, and returns the value prior to the
  * operation
@@ -391,7 +391,7 @@ atomic_postincrement(atomic_int_t volatile* pl);
  *
  * \ingroup group__library__Synch
  */
-atomic_int32_t atomic_postincrement32(atomic_int32_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int32_t) atomic_postincrement32(atomic_int32_t volatile* pl);
 
 /** Decrements the variable atomically, and returns the value prior to the
  * operation
@@ -405,7 +405,7 @@ atomic_postdecrement(atomic_int_t volatile* pl);
  *
  * \ingroup group__library__Synch
  */
-atomic_int32_t atomic_postdecrement32(atomic_int32_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(atomic_int32_t) atomic_postdecrement32(atomic_int32_t volatile* pl);
 
 /** Increments the variable atomically
  *
@@ -417,7 +417,7 @@ atomic_increment(atomic_int_t volatile* pl);
  *
  * \ingroup group__library__Synch
  */
-void atomic_increment32(atomic_int32_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(void) atomic_increment32(atomic_int32_t volatile* pl);
 
 /** Decrements the variable atomically
  *
@@ -429,7 +429,7 @@ atomic_decrement(atomic_int_t volatile* pl);
  *
  * \ingroup group__library__Synch
  */
-void atomic_decrement32(atomic_int32_t volatile* pl);
+WINSTL_ATOMIC_FNS_DECL_(void) atomic_decrement32(atomic_int32_t volatile* pl);
 
 /** Exchanges atomically a value with the variable
  *
@@ -473,7 +473,8 @@ atomic_postadd(
  *
  * \ingroup group__library__Synch
  */
-atomic_int_t atomic_preadd(
+WINSTL_ATOMIC_FNS_DECL_(atomic_int_t)
+atomic_preadd(
     atomic_int_t volatile*  pl
 ,   atomic_int_t            n
 );

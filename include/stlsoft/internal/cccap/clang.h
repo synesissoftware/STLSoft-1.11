@@ -4,7 +4,7 @@
  * Purpose: Compiler feature discrimination for Clang C/C++.
  *
  * Created: 14th March 2015
- * Updated: 15th December 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 
 /** \file stlsoft/internal/cccap/clang.h
  *
- * Compiler feature discrimination for CLang C/C++
+ * Compiler feature discrimination for Clang C/C++
  */
 
 #ifdef STLSOFT_INCL_H_STLSOFT_CCCAP_CLANG
@@ -61,7 +61,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MAJOR    1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MINOR    10
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     29
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -411,7 +411,7 @@
  * calling convention
  *
  * As far as is currently known, there is only a single calling convention
- * for CLang - cdecl. If that's not so, update in a similar vein to that
+ * for Clang - cdecl. If that's not so, update in a similar vein to that
  * shown in stlsoft/internal/cccap/msvc.h
  */
 
