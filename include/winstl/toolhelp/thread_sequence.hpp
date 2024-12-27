@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/toolhelp/thread_sequence.hpp
+ * File:    winstl/toolhelp/thread_sequence.hpp
  *
- * Purpose:     TOOLHELP thread sequence class.
+ * Purpose: TOOLHELP thread sequence class.
  *
- * Created:     21st May 2005
- * Updated:     11th March 2024
+ * Created: 21st May 2005
+ * Updated: 26th December 2024
  *
- * Thanks:      To Pablo for contributing this great library.
+ * Thanks:  To Pablo for contributing this great library.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2007, Pablo Aguilar
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_MAJOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_MINOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_REVISION    4
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_EDIT        23
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_EDIT        24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -126,12 +126,17 @@ typedef th_sequence_base<THREADENTRY32>             thread_sequence;
  *
  * \param te The THREADENTRY32 instance
  */
-inline DWORD get_pid(THREADENTRY32 const& te)
+inline
+DWORD
+get_pid(THREADENTRY32 const& te)
 {
     return te.th32OwnerProcessID;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

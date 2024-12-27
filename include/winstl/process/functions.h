@@ -4,7 +4,7 @@
  * Purpose: Process functions.
  *
  * Created: 12th March 2006
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 7
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     34
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,7 +123,9 @@ namespace winstl_project
  * \param si Pointer to an instance of <code>STARTUPINFO</code>. May be NULL, in which case defaults are used
  * \param pi Pointer to an instance of <code>PROCESS_INFORMATION</code>, which will receive the handles and identifiers of the created process and thread. May be NULL, in which case the handles are closed
  */
-STLSOFT_INLINE BOOL winstl_C_CreateProcess9_a(
+STLSOFT_INLINE
+BOOL
+winstl_C_CreateProcess9_a(
     ws_char_a_t const*      cmdLine
 ,   LPSECURITY_ATTRIBUTES   processAttributes
 ,   LPSECURITY_ATTRIBUTES   threadAttributes
@@ -167,7 +169,13 @@ STLSOFT_INLINE BOOL winstl_C_CreateProcess9_a(
  *
  * \ingroup group__library__System
  */
-STLSOFT_INLINE BOOL winstl_C_CreateProcessFEA_a(ws_char_a_t const* cmdLine, DWORD flags, ws_char_a_t const* envBlock)
+STLSOFT_INLINE
+BOOL
+winstl_C_CreateProcessFEA_a(
+    ws_char_a_t const*  cmdLine
+,   DWORD               flags
+,   ws_char_a_t const*  envBlock
+)
 {
     STARTUPINFO         si;
     PROCESS_INFORMATION pi;
@@ -190,7 +198,12 @@ STLSOFT_INLINE BOOL winstl_C_CreateProcessFEA_a(ws_char_a_t const* cmdLine, DWOR
  *
  * \ingroup group__library__System
  */
-STLSOFT_INLINE BOOL winstl_C_CreateProcessEA(ws_char_a_t const* cmdLine, ws_char_a_t const* envBlock)
+STLSOFT_INLINE
+BOOL
+winstl_C_CreateProcessEA(
+    ws_char_a_t const*  cmdLine
+,   ws_char_a_t const*  envBlock
+)
 {
     return winstl_C_CreateProcessFEA_a(cmdLine, 0, envBlock);
 }
@@ -199,7 +212,11 @@ STLSOFT_INLINE BOOL winstl_C_CreateProcessEA(ws_char_a_t const* cmdLine, ws_char
  *
  * \ingroup group__library__System
  */
-STLSOFT_INLINE BOOL winstl_C_CreateProcess0A(ws_char_a_t const* cmdLine)
+STLSOFT_INLINE
+BOOL
+winstl_C_CreateProcess0A(
+    ws_char_a_t const* cmdLine
+)
 {
     return winstl_C_CreateProcessEA(cmdLine, NULL);
 }
@@ -244,7 +261,9 @@ namespace winstl
  * \param si Pointer to an instance of <code>STARTUPINFO</code>. May be NULL, in which case defaults are used
  * \param pi Pointer to an instance of <code>PROCESS_INFORMATION</code>, which will receive the handles and identifiers of the created process and thread. May be NULL, in which case the handles are closed
  */
-inline BOOL create_process(
+inline
+BOOL
+create_process(
     ws_char_a_t const*      cmdLine
 ,   LPSECURITY_ATTRIBUTES   processAttributes
 ,   LPSECURITY_ATTRIBUTES   threadAttributes
@@ -265,7 +284,13 @@ inline BOOL create_process(
  *
  * \deprecated This is deprecated in favour of winstl::create_process()
  */
-inline BOOL create_process(ws_char_a_t const* cmdLine, DWORD flags, ws_char_a_t const* envBlock)
+inline
+BOOL
+create_process(
+    ws_char_a_t const*  cmdLine
+,   DWORD               flags
+,   ws_char_a_t const*  envBlock
+)
 {
     return winstl_C_CreateProcessFEA_a(cmdLine, flags, envBlock);
 }
@@ -276,7 +301,12 @@ inline BOOL create_process(ws_char_a_t const* cmdLine, DWORD flags, ws_char_a_t 
  *
  * \deprecated This is deprecated in favour of winstl::create_process()
  */
-inline BOOL create_process(ws_char_a_t const* cmdLine, ws_char_a_t const* envBlock)
+inline
+BOOL
+create_process(
+    ws_char_a_t const*  cmdLine
+,   ws_char_a_t const*  envBlock
+)
 {
     return winstl_C_CreateProcessEA(cmdLine, envBlock);
 }
@@ -287,7 +317,11 @@ inline BOOL create_process(ws_char_a_t const* cmdLine, ws_char_a_t const* envBlo
  *
  * \deprecated This is deprecated in favour of winstl::create_process()
  */
-inline BOOL create_process(ws_char_a_t const* cmdLine)
+inline
+BOOL
+create_process(
+    ws_char_a_t const* cmdLine
+)
 {
     return winstl_C_CreateProcess0A(cmdLine);
 }
@@ -301,7 +335,13 @@ inline BOOL create_process(ws_char_a_t const* cmdLine)
  *
  * \deprecated This is deprecated in favour of winstl::create_process()
  */
-inline BOOL CreateProcess(ws_char_a_t const* cmdLine, DWORD flags, ws_char_a_t const* envBlock)
+inline
+BOOL
+CreateProcess(
+    ws_char_a_t const*  cmdLine
+,   DWORD               flags
+,   ws_char_a_t const*  envBlock
+)
 {
     return winstl_C_CreateProcessFEA_a(cmdLine, flags, envBlock);
 }
@@ -312,7 +352,12 @@ inline BOOL CreateProcess(ws_char_a_t const* cmdLine, DWORD flags, ws_char_a_t c
  *
  * \deprecated This is deprecated in favour of winstl::create_process()
  */
-inline BOOL CreateProcess(ws_char_a_t const* cmdLine, ws_char_a_t const* envBlock)
+inline
+BOOL
+CreateProcess(
+    ws_char_a_t const*  cmdLine
+,   ws_char_a_t const*  envBlock
+)
 {
     return winstl_C_CreateProcessEA(cmdLine, envBlock);
 }
@@ -323,11 +368,14 @@ inline BOOL CreateProcess(ws_char_a_t const* cmdLine, ws_char_a_t const* envBloc
  *
  * \deprecated This is deprecated in favour of winstl::create_process()
  */
-inline BOOL CreateProcess(ws_char_a_t const* cmdLine)
+inline
+BOOL
+CreateProcess(
+    ws_char_a_t const* cmdLine
+)
 {
     return winstl_C_CreateProcess0A(cmdLine);
 }
-
 #endif /* __cplusplus */
 
 

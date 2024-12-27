@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/message_functions.h (originally MWBase.h, ::SynesisWin)
+ * File:    winstl/window/message_functions.h (originally MWBase.h, ::SynesisWin)
  *
- * Purpose:     Message functions.
+ * Purpose: Message functions.
  *
- * Created:     7th May 2000
- * Updated:     11th March 2024
+ * Created: 7th May 2000
+ * Updated: 25th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define WINSTL_INCL_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MAJOR    4
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_REVISION 6
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_EDIT     51
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MAJOR     4
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MINOR     0
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_REVISION  6
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_EDIT      52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -94,26 +94,38 @@ namespace winstl_project
  * C functions
  */
 
-STLSOFT_INLINE LRESULT winstl__SendMessageA(HWND    hwnd
-                                        ,   UINT    uMsg
-                                        ,   WPARAM  wParam
-                                        ,   LPARAM  lParam)
+STLSOFT_INLINE
+LRESULT
+winstl__SendMessageA(
+    HWND    hwnd
+,   UINT    uMsg
+,   WPARAM  wParam
+,   LPARAM  lParam
+)
 {
     return STLSOFT_NS_GLOBAL(SendMessageA)(hwnd, uMsg, wParam, lParam);
 }
 
-STLSOFT_INLINE LRESULT winstl__SendMessageW(HWND    hwnd
-                                        ,   UINT    uMsg
-                                        ,   WPARAM  wParam
-                                        ,   LPARAM  lParam)
+STLSOFT_INLINE
+LRESULT
+winstl__SendMessageW(
+    HWND    hwnd
+,   UINT    uMsg
+,   WPARAM  wParam
+,   LPARAM  lParam
+)
 {
     return STLSOFT_NS_GLOBAL(SendMessageW)(hwnd, uMsg, wParam, lParam);
 }
 
-STLSOFT_INLINE LRESULT winstl__SendMessage( HWND    hwnd
-                                        ,   UINT    uMsg
-                                        ,   WPARAM  wParam
-                                        ,   LPARAM  lParam)
+STLSOFT_INLINE
+LRESULT
+winstl__SendMessage(
+    HWND    hwnd
+,   UINT    uMsg
+,   WPARAM  wParam
+,   LPARAM  lParam
+)
 {
     return STLSOFT_NS_GLOBAL(SendMessage)(hwnd, uMsg, wParam, lParam);
 }
@@ -125,25 +137,36 @@ STLSOFT_INLINE LRESULT winstl__SendMessage( HWND    hwnd
 
 #if !defined(WINSTL_NO_NAMESPACE) &&\
     !defined(STLSOFT_COMPILER_IS_BORLAND)
-inline LRESULT SendMessageA(HWND    hwnd
-                        ,   UINT    uMsg
-                        ,   WPARAM  wParam
-                        ,   LPARAM  lParam)
+
+inline
+LRESULT
+SendMessageA(
+    HWND    hwnd
+,   UINT    uMsg
+,   WPARAM  wParam
+,   LPARAM  lParam
+)
 {
     return winstl__SendMessageA(hwnd, uMsg, wParam, lParam);
 }
 
-inline LRESULT SendMessageW(HWND    hwnd
-                        ,   UINT    uMsg
-                        ,   WPARAM  wParam
-                        ,   LPARAM  lParam)
+inline
+LRESULT
+SendMessageW(
+    HWND    hwnd
+,   UINT    uMsg
+,   WPARAM  wParam
+,   LPARAM  lParam
+)
 {
     return winstl__SendMessageW(hwnd, uMsg, wParam, lParam);
 }
-
 #endif /* !WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
