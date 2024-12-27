@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/api/external/HandleAndObject.h
+ * File:    winstl/api/external/HandleAndObject.h
  *
- * Purpose:     External preprocessor aliases for external Windows' Handle
- *              and Object Functions API.
+ * Purpose: External preprocessor aliases for external Windows' Handle and
+ *          Object Functions API.
  *
- * Created:     20th August 2017
- * Updated:     26th December 2020
+ * Created: 20th August 2017
+ * Updated: 27th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -61,6 +61,11 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_H_WINDOWS
+# define STLSOFT_INCL_H_WINDOWS
+# include <windows.h>   /* Windows base header */
+#endif /* !STLSOFT_INCL_H_WINDOWS */
+
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
@@ -71,23 +76,23 @@
  */
 
 #ifndef WINSTL_API_EXTERNAL_HandleAndObject_CloseHandle
-# define WINSTL_API_EXTERNAL_HandleAndObject_CloseHandle    STLSOFT_NS_GLOBAL_(CloseHandle)
+# define WINSTL_API_EXTERNAL_HandleAndObject_CloseHandle            STLSOFT_NS_GLOBAL_(CloseHandle)
 #endif /* !WINSTL_API_EXTERNAL_HandleAndObject_CloseHandle */
 
 #ifndef WINSTL_API_EXTERNAL_HandleAndObject_CompareObjectHandles
-# define WINSTL_API_EXTERNAL_HandleAndObject_CompareObjectHandles               STLSOFT_NS_GLOBAL_(CompareObjectHandles)
+# define WINSTL_API_EXTERNAL_HandleAndObject_CompareObjectHandles   STLSOFT_NS_GLOBAL_(CompareObjectHandles)
 #endif /* !WINSTL_API_EXTERNAL_HandleAndObject_CompareObjectHandles */
 
 #ifndef WINSTL_API_EXTERNAL_HandleAndObject_DuplicateHandle
-# define WINSTL_API_EXTERNAL_HandleAndObject_DuplicateHandle                    STLSOFT_NS_GLOBAL_(DuplicateHandle)
+# define WINSTL_API_EXTERNAL_HandleAndObject_DuplicateHandle        STLSOFT_NS_GLOBAL_(DuplicateHandle)
 #endif /* !WINSTL_API_EXTERNAL_HandleAndObject_DuplicateHandle */
 
 #ifndef WINSTL_API_EXTERNAL_HandleAndObject_GetHandleInformation
-# define WINSTL_API_EXTERNAL_HandleAndObject_GetHandleInformation               STLSOFT_NS_GLOBAL_(GetHandleInformation)
+# define WINSTL_API_EXTERNAL_HandleAndObject_GetHandleInformation   STLSOFT_NS_GLOBAL_(GetHandleInformation)
 #endif /* !WINSTL_API_EXTERNAL_HandleAndObject_GetHandleInformation */
 
 #ifndef WINSTL_API_EXTERNAL_HandleAndObject_SetHandleInformation
-# define WINSTL_API_EXTERNAL_HandleAndObject_SetHandleInformation               STLSOFT_NS_GLOBAL_(SetHandleInformation)
+# define WINSTL_API_EXTERNAL_HandleAndObject_SetHandleInformation   STLSOFT_NS_GLOBAL_(SetHandleInformation)
 #endif /* !WINSTL_API_EXTERNAL_HandleAndObject_SetHandleInformation */
 
 
