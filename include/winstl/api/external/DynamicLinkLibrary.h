@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/api/external/DynamicLinkLibrary.h
+ * File:    winstl/api/external/DynamicLinkLibrary.h
  *
- * Purpose:     External preprocessor aliases for external Windows' Dynamic
- *              Link Library Functions API.
+ * Purpose: External preprocessor aliases for external Windows' Dynamic Link
+ *          Library Functions API.
  *
- * Created:     20th August 2017
- * Updated:     30th November 2020
+ * Created: 20th August 2017
+ * Updated: 27th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -61,6 +61,11 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_H_WINDOWS
+# define STLSOFT_INCL_H_WINDOWS
+# include <windows.h>   /* Windows base header */
+#endif /* !STLSOFT_INCL_H_WINDOWS */
+
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
@@ -71,32 +76,32 @@
  */
 
 #ifndef WINSTL_API_EXTERNAL_DynamicLinkLibrary_FreeLibrary
-# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_FreeLibrary STLSOFT_NS_GLOBAL_(FreeLibrary)
+# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_FreeLibrary         STLSOFT_NS_GLOBAL_(FreeLibrary)
 #endif /* !WINSTL_API_EXTERNAL_DynamicLinkLibrary_FreeLibrary */
 
 #ifndef WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA
-# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA              STLSOFT_NS_GLOBAL_(GetModuleFileNameA)
+# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA  STLSOFT_NS_GLOBAL_(GetModuleFileNameA)
 #endif /* !WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA */
 #ifndef WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameW
-# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameW              STLSOFT_NS_GLOBAL_(GetModuleFileNameW)
+# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameW  STLSOFT_NS_GLOBAL_(GetModuleFileNameW)
 #endif /* !WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameW */
 
 #ifndef WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetProcAddress
-# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetProcAddress                  STLSOFT_NS_GLOBAL_(GetProcAddress)
+# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetProcAddress      STLSOFT_NS_GLOBAL_(GetProcAddress)
 #endif /* !WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetProcAddress */
 
 #ifndef WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryA
-# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryA                    STLSOFT_NS_GLOBAL_(LoadLibraryA)
+# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryA        STLSOFT_NS_GLOBAL_(LoadLibraryA)
 #endif /* !WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryA */
 #ifndef WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryW
-# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryW                    STLSOFT_NS_GLOBAL_(LoadLibraryW)
+# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryW        STLSOFT_NS_GLOBAL_(LoadLibraryW)
 #endif /* !WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryW */
 
 #ifndef WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExA
-# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExA                  STLSOFT_NS_GLOBAL_(LoadLibraryExA)
+# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExA      STLSOFT_NS_GLOBAL_(LoadLibraryExA)
 #endif /* !WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExA */
 #ifndef WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExW
-# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExW                  STLSOFT_NS_GLOBAL_(LoadLibraryExW)
+# define WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExW      STLSOFT_NS_GLOBAL_(LoadLibraryExW)
 #endif /* !WINSTL_API_EXTERNAL_DynamicLinkLibrary_LoadLibraryExW */
 
 

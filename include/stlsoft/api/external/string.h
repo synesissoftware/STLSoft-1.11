@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/api/external/string.h
+ * File:    stlsoft/api/external/string.h
  *
- * Purpose:     External preprocessor aliases for string functions.
+ * Purpose: External preprocessor aliases for string functions.
  *
- * Created:     15th November 2002
- * Updated:     9th July 2024
+ * Created: 15th November 2002
+ * Updated: 27th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -70,8 +70,7 @@
         defined(_WIN32) &&\
         (\
             0 ||\
-            defined(__MINGW32__)||\
-            defined(__MINGW64__)||\
+            defined(STLSOFT_MINGW)||\
             0\
         )\
     ) ||\
@@ -156,8 +155,10 @@
 
 #  if 0
 #  elif !defined(__STDC__)
+
 #   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(stricmp)
 #  elif !defined(__MFC_COMPAT__)
+
 #   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(_stricmp)
 #  endif
 
@@ -171,7 +172,11 @@
 
 #  if 0
 #  elif !defined(__STRICT_ANSI__)
+#  elif defined(STLSOFT_MINGW)
+
+#   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(_stricmp)
 #  elif defined(STLSOFT_INCL_H_STRINGS)
+
 #   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(strcasecmp)
 #  endif
 
@@ -181,8 +186,10 @@
 
 #  if 0
 #  elif !defined(__STDC__)
+
 #   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(stricmp)
 #  else
+
 #   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(_stricmp)
 #  endif
 
@@ -191,8 +198,10 @@
 
 #  if 0
 #  elif !defined(STLSOFT_API_EXTERNAL_string_USE_MSVC_COMPILER_EXTENSION_FORMS_)
+
 #   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(stricmp)
 #  else
+
 #   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(_stricmp)
 #  endif
 
@@ -227,10 +236,13 @@
 
 #  if 0
 #  elif (0x0620 == (__BORLANDC__ & 0xfff0))
+
 #   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL(_wcsicmp)
 #  elif !defined(__STDC__)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(wcsicmp)
 #  elif !defined(__MFC_COMPAT__)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(_wcsicmp)
 #  endif
 
@@ -244,7 +256,11 @@
 
 #  if 0
 #  elif !defined(__STRICT_ANSI__)
+#  elif defined(STLSOFT_MINGW)
+
+#   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(_wcsicmp)
 #  elif defined(STLSOFT_INCL_H_STRINGS)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(wcscasecmp)
 #  endif
 
@@ -254,8 +270,10 @@
 
 #  if 0
 #  elif !defined(__STDC__)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(wcsicmp)
 #  else
+
 #   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(_wcsicmp)
 #  endif
 
@@ -264,8 +282,10 @@
 
 #  if 0
 #  elif !defined(STLSOFT_API_EXTERNAL_string_USE_MSVC_COMPILER_EXTENSION_FORMS_)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(wcsicmp)
 #  else
+
 #   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(_wcsicmp)
 #  endif
 
@@ -282,6 +302,7 @@
 #endif /* !STLSOFT_API_EXTERNAL_string_wcsicmp */
 
 #ifndef STLSOFT_API_EXTERNAL_string_wcsicmp
+
 # ifdef _WIN32
 #  define STLSOFT_API_EXTERNAL_string_wcsicmp               STLSOFT_NS_GLOBAL_(lstrcmpiW)
 # endif
@@ -300,8 +321,10 @@
 
 #  if 0
 #  elif !defined(__STDC__)
+
 #   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(strnicmp)
 #  elif !defined(__MFC_COMPAT__)
+
 #   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(_strnicmp)
 #  endif
 
@@ -315,7 +338,11 @@
 
 #  if 0
 #  elif !defined(__STRICT_ANSI__)
+#  elif defined(STLSOFT_MINGW)
+
+#   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(_strnicmp)
 #  elif defined(STLSOFT_INCL_H_STRINGS)
+
 #   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(strncasecmp)
 #  endif
 
@@ -325,8 +352,10 @@
 
 #  if 0
 #  elif !defined(__STDC__)
+
 #   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(strnicmp)
 #  else
+
 #   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(_strnicmp)
 #  endif
 
@@ -335,8 +364,10 @@
 
 #  if 0
 #  elif !defined(STLSOFT_API_EXTERNAL_string_USE_MSVC_COMPILER_EXTENSION_FORMS_)
+
 #   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(strnicmp)
 #  else
+
 #   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(_strnicmp)
 #  endif
 
@@ -365,10 +396,13 @@
 
 #  if 0
 #  elif (0x0620 == (__BORLANDC__ & 0xfff0))
+
 #   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL(_wcsnicmp)
 #  elif !defined(__STDC__)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(wcsnicmp)
 #  elif !defined(__MFC_COMPAT__)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(_wcsnicmp)
 #  endif
 
@@ -382,7 +416,11 @@
 
 #  if 0
 #  elif !defined(__STRICT_ANSI__)
+#  elif defined(STLSOFT_MINGW)
+
+#   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(_wcsnicmp)
 #  elif defined(STLSOFT_INCL_H_STRINGS)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(wcsncasecmp)
 #  endif
 
@@ -392,8 +430,10 @@
 
 #  if 0
 #  elif !defined(__STDC__)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(wcsnicmp)
 #  else
+
 #   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(_wcsnicmp)
 #  endif
 
@@ -402,8 +442,10 @@
 
 #  if 0
 #  elif !defined(STLSOFT_API_EXTERNAL_string_USE_MSVC_COMPILER_EXTENSION_FORMS_)
+
 #   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(wcsnicmp)
 #  else
+
 #   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(_wcsnicmp)
 #  endif
 
