@@ -4,7 +4,7 @@
  * Purpose: Window functions.
  *
  * Created: 7th May 2000
- * Updated: 24th December 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  16
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  17
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -78,6 +78,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages
+# include <winstl/api/external/WindowsAndMessages.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -669,12 +673,6 @@ set_window_icon(
 {
     WINSTL_ASSERT(ICON_BIG == iconType || ICON_SMALL == iconType);
 
-# if defined(STLSOFT_COMPILER_IS_BORLAND) && \
-     __BORLANDC__ < 0x0564
-    /* This is needed here to prevent the Borland compiler from confusing it with the winstl one! */
-    using ::SendMessage;
-# endif /* compiler */
-
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      defined(_Wp64) && \
      !defined(_WIN64)
@@ -682,7 +680,7 @@ set_window_icon(
 #  pragma warning(disable : 4244)
 # endif /* VC++ + Win32 + _Wp32 */
 
-    return LRESULT2HICON(::SendMessage(hwnd, WM_SETICON, static_cast<WPARAM>(iconType), HICON2LPARAM(hicon)));
+    return LRESULT2HICON(WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, WM_SETICON, static_cast<WPARAM>(iconType), HICON2LPARAM(hicon)));
 
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      defined(_Wp64) && \
@@ -907,7 +905,9 @@ FindFirstChildById(
 #endif /* __cplusplus */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

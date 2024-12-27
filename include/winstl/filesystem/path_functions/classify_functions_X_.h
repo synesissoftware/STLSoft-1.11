@@ -4,7 +4,7 @@
  * Purpose: Path classification functions char-X implementation
  *
  * Created: 28th November 2020
- * Updated: 23rd October 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -39,6 +39,8 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* STLSOFT:FILE_EXCEPTED */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_H_PATH_CLASSIFY_FUNCTIONS
 # error This file must be included from winstl/filesystem/path_classify_functions.h
@@ -142,7 +144,7 @@ winstl_C_path_classify_find_UNC_server_and_share_X_(
     //int             last  = -1;
     int             last;
 
-#ifdef __MINGW32__
+#ifdef STLSOFT_MINGW
 
     last = -1;
 

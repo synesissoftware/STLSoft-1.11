@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/textmetrics_functions.h (originally MWGdi.h, ::SynesisWin)
+ * File:    winstl/window/textmetrics_functions.h (originally MWGdi.h, ::SynesisWin)
  *
- * Purpose:     TEXTMETRICS functions.
+ * Purpose: TEXTMETRICS functions.
  *
- * Created:     20th October 1994
- * Updated:     11th March 2024
+ * Created: 20th October 1994
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define WINSTL_INCL_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MAJOR    3
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_REVISION 4
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_EDIT     49
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MAJOR     3
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_MINOR     0
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_REVISION  4
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXTMETRICS_FUNCTIONS_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,7 +100,9 @@ namespace winstl_project
  * C functions
  */
 
-STLSOFT_INLINE TEXTMETRICA winstl__get_textmetrics_a(HDC hdc)
+STLSOFT_INLINE
+TEXTMETRICA
+winstl__get_textmetrics_a(HDC hdc)
 {
     static TEXTMETRICA  s_tm;
     TEXTMETRICA         tm;
@@ -108,7 +110,9 @@ STLSOFT_INLINE TEXTMETRICA winstl__get_textmetrics_a(HDC hdc)
     return STLSOFT_NS_GLOBAL(GetTextMetricsA)(hdc, &tm) ? tm : s_tm;
 }
 
-STLSOFT_INLINE TEXTMETRICW winstl__get_textmetrics_w(HDC hdc)
+STLSOFT_INLINE
+TEXTMETRICW
+winstl__get_textmetrics_w(HDC hdc)
 {
     static TEXTMETRICW  s_tm;
     TEXTMETRICW         tm;
@@ -116,7 +120,9 @@ STLSOFT_INLINE TEXTMETRICW winstl__get_textmetrics_w(HDC hdc)
     return STLSOFT_NS_GLOBAL(GetTextMetricsW)(hdc, &tm) ? tm : s_tm;
 }
 
-STLSOFT_INLINE TEXTMETRIC winstl__get_textmetrics(HDC hdc)
+STLSOFT_INLINE
+TEXTMETRIC
+winstl__get_textmetrics(HDC hdc)
 {
 # ifdef UNICODE
     return winstl__get_textmetrics_w(hdc);
@@ -132,36 +138,48 @@ STLSOFT_INLINE TEXTMETRIC winstl__get_textmetrics(HDC hdc)
 
 #ifdef __cplusplus
 
-inline TEXTMETRICA get_textmetrics_a(HDC hdc)
+inline
+TEXTMETRICA
+get_textmetrics_a(HDC hdc)
 {
     return winstl__get_textmetrics_a(hdc);
 }
 
-inline TEXTMETRICW get_textmetrics_w(HDC hdc)
+inline
+TEXTMETRICW
+get_textmetrics_w(HDC hdc)
 {
     return winstl__get_textmetrics_w(hdc);
 }
 
-inline TEXTMETRIC get_textmetrics(HDC hdc)
+inline
+TEXTMETRIC
+get_textmetrics(HDC hdc)
 {
     return winstl__get_textmetrics(hdc);
 }
 
-inline TEXTMETRICA get_window_textmetrics_a(HWND hwnd)
+inline
+TEXTMETRICA
+get_window_textmetrics_a(HWND hwnd)
 {
     HDC_scope   hdc(::GetWindowDC(hwnd), hwnd);
 
     return winstl__get_textmetrics_a(hdc.get_hdc());
 }
 
-inline TEXTMETRICW get_window_textmetrics_w(HWND hwnd)
+inline
+TEXTMETRICW
+get_window_textmetrics_w(HWND hwnd)
 {
     HDC_scope   hdc(::GetWindowDC(hwnd), hwnd);
 
     return winstl__get_textmetrics_w(hdc.get_hdc());
 }
 
-inline TEXTMETRIC get_window_textmetrics(HWND hwnd)
+inline
+TEXTMETRIC
+get_window_textmetrics(HWND hwnd)
 {
 # ifdef UNICODE
     return get_window_textmetrics_w(hwnd);
@@ -170,21 +188,27 @@ inline TEXTMETRIC get_window_textmetrics(HWND hwnd)
 # endif /* UNICODE */
 }
 
-inline TEXTMETRICA get_client_textmetrics_a(HWND hwnd)
+inline
+TEXTMETRICA
+get_client_textmetrics_a(HWND hwnd)
 {
     HDC_scope   hdc(::GetDC(hwnd), hwnd);
 
     return winstl__get_textmetrics_a(hdc.get_hdc());
 }
 
-inline TEXTMETRICW get_client_textmetrics_w(HWND hwnd)
+inline
+TEXTMETRICW
+get_client_textmetrics_w(HWND hwnd)
 {
     HDC_scope   hdc(::GetDC(hwnd), hwnd);
 
     return winstl__get_textmetrics_w(hdc.get_hdc());
 }
 
-inline TEXTMETRIC get_client_textmetrics(HWND hwnd)
+inline
+TEXTMETRIC
+get_client_textmetrics(HWND hwnd)
 {
 # ifdef UNICODE
     return get_client_textmetrics_w(hwnd);
@@ -192,10 +216,12 @@ inline TEXTMETRIC get_client_textmetrics(HWND hwnd)
     return get_client_textmetrics_a(hwnd);
 # endif /* UNICODE */
 }
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 
 #ifndef WINSTL_NO_NAMESPACE

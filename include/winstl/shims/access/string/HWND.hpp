@@ -4,7 +4,7 @@
  * Purpose: Contains classes and functions for dealing with Win32 strings.
  *
  * Created: 24th May 2002
- * Updated: 24th December 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MAJOR       4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MINOR       1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_REVISION    11
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_REVISION    12
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        132
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -82,6 +82,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER
 # include <stlsoft/string/cstring_maker.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_MAKER */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages
+# include <winstl/api/external/WindowsAndMessages.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -136,9 +140,9 @@ GetWindowTextLength_T_(
     WindowIdent const   ident       =   GetWindowIdent(hwnd);
     int                 sel;
 # ifndef NOWINSTYLES
-    const long          lbsStyle    =   LBS_MULTIPLESEL | LBS_EXTENDEDSEL;
+    long const          lbsStyle    =   LBS_MULTIPLESEL | LBS_EXTENDEDSEL;
 # else /* ? NOWINSTYLES */
-    const long          lbsStyle    =   0x0008L | 0x0800L;
+    long const          lbsStyle    =   0x0008L | 0x0800L;
 # endif /* NOWINSTYLES */
 
     switch (ident)
@@ -146,11 +150,11 @@ GetWindowTextLength_T_(
         case    WindowIdent_ListBox:
             if (0 == (GetStyle(hwnd) & lbsStyle))
             {
-                sel = static_cast<int>(::SendMessage(hwnd, LB_GETCURSEL, 0, 0l));
+                sel = static_cast<int>(WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, LB_GETCURSEL, 0, 0l));
 
                 if (LB_ERR != sel)
                 {
-                    return static_cast<ws_size_t>(::SendMessage(hwnd, LB_GETTEXTLEN, static_cast<WPARAM>(sel), 0L));
+                    return static_cast<ws_size_t>(WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, LB_GETTEXTLEN, static_cast<WPARAM>(sel), 0L));
                 }
                 else
                 {
@@ -249,11 +253,11 @@ GetWindowText_A_(
         case    WindowIdent_ListBox:
             if (0 == (GetStyle(hwnd) & (LBS_MULTIPLESEL | LBS_EXTENDEDSEL)))
             {
-                sel = static_cast<int>(::SendMessage(hwnd, LB_GETCURSEL, 0, 0l));
+                sel = static_cast<int>(WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, LB_GETCURSEL, 0, 0l));
 
                 if (LB_ERR != sel)
                 {
-                    cch =   static_cast<ws_size_t>(::SendMessage(hwnd, LB_GETTEXT, static_cast<WPARAM>(sel), reinterpret_cast<LPARAM>(buffer)));
+                    cch =   static_cast<ws_size_t>(WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, LB_GETTEXT, static_cast<WPARAM>(sel), reinterpret_cast<LPARAM>(buffer)));
 
                     // Some programs using list-boxes do not null-terminate - Visual
                     // SourceSafe Explorer, anyone? - so we must do so here.
@@ -301,11 +305,11 @@ GetWindowText_W_(
             {
                 ws_size_t  cch;
 
-                sel = static_cast<int>(::SendMessage(hwnd, LB_GETCURSEL, 0, 0l));
+                sel = static_cast<int>(WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, LB_GETCURSEL, 0, 0l));
 
                 if (LB_ERR != sel)
                 {
-                    cch =   static_cast<ws_size_t>(::SendMessage(hwnd, LB_GETTEXT, static_cast<WPARAM>(sel), reinterpret_cast<LPARAM>(buffer)));
+                    cch =   static_cast<ws_size_t>(WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, LB_GETTEXT, static_cast<WPARAM>(sel), reinterpret_cast<LPARAM>(buffer)));
                 }
                 else
                 {

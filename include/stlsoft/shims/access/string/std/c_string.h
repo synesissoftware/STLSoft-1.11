@@ -5,7 +5,7 @@
  *          c_str_size accessors.
  *
  * Created: 16th January 2002
- * Updated: 24th December 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -287,8 +287,8 @@ c_str_data_w(S const& s)
     return STLSOFT_NS_QUAL(c_str_data_w)(static_cast<ss_char_w_t const*>(STLSOFT_NS_QUAL(c_str_ptr_w)(s))));
 }
 # endif /* 0 */
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
@@ -428,8 +428,8 @@ c_str_len(ss_char_w_t *s)
     return c_str_len_w(s);
 }
 # endif /* _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST */
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
@@ -565,6 +565,7 @@ c_str_ptr(ss_char_w_t *s)
 }
 # endif /* _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST */
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
@@ -747,8 +748,8 @@ c_str_ptr_null_w(S const& s)
     return STLSOFT_NS_QUAL(c_str_ptr_null_w)(static_cast<ss_char_w_t const*>(STLSOFT_NS_QUAL(c_str_ptr_w)(s))));
 }
 # endif /* 0 */
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_size
@@ -964,7 +965,9 @@ c_str_size(int deny_literal_NULL);
 #endif /* __cplusplus */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

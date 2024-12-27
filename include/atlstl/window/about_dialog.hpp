@@ -4,7 +4,7 @@
  * Purpose: Simple 'about' dialog, that shell-executes hyperlinks.
  *
  * Created: 30th January 2000
- * Updated: 27th September 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,10 +53,10 @@
 #define ATLSTL_INCL_ATLSTL_WINDOW_HPP_ABOUT_DIALOG
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MAJOR      4
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MINOR      0
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION   8
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT       70
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MAJOR    4
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MINOR    0
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION 9
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT     71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -86,6 +86,10 @@
 # define STLSOFT_INCL_SYS_H_ATLWIN
 # include <atlwin.h>                         // for CDialogImplBase
 #endif /* !STLSOFT_INCL_SYS_H_ATLWIN */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages
+# include <winstl/api/external/WindowsAndMessages.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -192,7 +196,7 @@ protected:
         if (NULL != hwndCtrl)
         {
             //  2. Must be a button
-            LRESULT ctrlCode = ::SendMessage(hwndCtrl, WM_GETDLGCODE, 0, 0L);
+            LRESULT ctrlCode = WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwndCtrl, WM_GETDLGCODE, 0, 0L);
 
             if (DLGC_BUTTON & ctrlCode)
             {

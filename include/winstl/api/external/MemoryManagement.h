@@ -5,7 +5,7 @@
  *          Management Functions API.
  *
  * Created: 18th July 2014
- * Updated: 15th October 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -60,6 +60,11 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
+#ifndef STLSOFT_INCL_H_WINDOWS
+# define STLSOFT_INCL_H_WINDOWS
+# include <windows.h>   /* Windows base header */
+#endif /* !STLSOFT_INCL_H_WINDOWS */
 
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>

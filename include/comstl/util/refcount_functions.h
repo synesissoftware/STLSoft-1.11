@@ -102,7 +102,9 @@ namespace comstl_project
  *
  * \pre \c punk must not be \c nullptr.
  */
-STLSOFT_INLINE void comstl__addref(LPUNKNOWN punk)
+STLSOFT_INLINE
+void
+comstl__addref(LPUNKNOWN punk)
 {
     COMSTL_MESSAGE_ASSERT("Cannot call AddRef() on NULL interface pointer", NULL != punk);
 
@@ -115,7 +117,9 @@ STLSOFT_INLINE void comstl__addref(LPUNKNOWN punk)
  *
  * \param punk The interface pointer on which to release the reference. Cannot be null
  */
-STLSOFT_INLINE void comstl__release(LPUNKNOWN punk)
+STLSOFT_INLINE
+void
+comstl__release(LPUNKNOWN punk)
 {
     COMSTL_ITF_CALL(punk)->Release(COMSTL_ITF_THIS0(punk));
 }
@@ -126,7 +130,9 @@ STLSOFT_INLINE void comstl__release(LPUNKNOWN punk)
  *
  * \param punk The interface pointer on which to add the reference. Can be null
  */
-STLSOFT_INLINE void comstl__safe_addref(LPUNKNOWN punk)
+STLSOFT_INLINE
+void
+comstl__safe_addref(LPUNKNOWN punk)
 {
     if (NULL != punk)
     {
@@ -140,7 +146,9 @@ STLSOFT_INLINE void comstl__safe_addref(LPUNKNOWN punk)
  *
  * \param punk The interface pointer on which to release the reference. Can be null
  */
-STLSOFT_INLINE void comstl__safe_release(LPUNKNOWN punk)
+STLSOFT_INLINE
+void
+comstl__safe_release(LPUNKNOWN punk)
 {
     if (NULL != punk)
     {
@@ -239,7 +247,9 @@ release_set_null(T*& pt)
 #endif /* __cplusplus */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

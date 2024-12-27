@@ -4,7 +4,7 @@
  * Purpose: Windows memory mapping functions.
  *
  * Created: 15th December 1996
- * Updated: 24th December 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MINOR      3
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_REVISION   8
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_REVISION   9
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT       126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -459,12 +459,14 @@ winstl_C_map_named_view_of_file_by_handle_w_(
     );
 }
 
+#if !defined(STLSOFT_COMPILER_IS_GCC)
 
 void*
 winstl_C_map_view_and_close_mapping_(
     HANDLE          hmap
 ,   ws_uintptr_t    requestSize
 );
+#endif
 
 STLSOFT_INLINE
 void*
