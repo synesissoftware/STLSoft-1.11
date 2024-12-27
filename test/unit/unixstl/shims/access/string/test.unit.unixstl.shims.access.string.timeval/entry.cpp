@@ -113,7 +113,7 @@ namespace
         tv.tv_sec   =   ::timegm(&tm);
         tv.tv_usec  =   13987;
 
-        // (()&s1);
+        // ((void)&s1);
         STLSOFT_SUPPRESS_UNUSED(s1);
 
         return tv;
