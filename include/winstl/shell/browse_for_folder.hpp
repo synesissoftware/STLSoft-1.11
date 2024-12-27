@@ -4,7 +4,7 @@
  * Purpose: Shell browsing functions.
  *
  * Created: 2nd March 2002
- * Updated: 30th September 2024
+ * Updated: 26th December 2024
  *
  * Thanks:  To Pablo Aguilar for default folder enhancements.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    2
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 11
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     80
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 12
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -82,6 +82,10 @@
 # define STLSOFT_INCL_H_SHLOBJ
 # include <shlobj.h>                     // for SHBrowseForFolderA(), ...
 #endif /* !STLSOFT_INCL_H_SHLOBJ */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages
+# include <winstl/api/external/WindowsAndMessages.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -185,13 +189,12 @@ struct shell_browse_callback_holder
         {
             C const* path = reinterpret_cast<C const*>(lpData);
 
-            ::SendMessage(hwnd, BFFM_SETSELECTION, TRUE, reinterpret_cast<LPARAM>(path));
+            WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, BFFM_SETSELECTION, TRUE, reinterpret_cast<LPARAM>(path));
         }
 
         return 0;
     }
 };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -200,13 +203,18 @@ struct shell_browse_callback_holder
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template <ss_typename_param_k C>
-inline ws_bool_t shell_browse_impl( C const*        title
-                                ,   C*              displayName
-                                ,   UINT            flags
-                                ,   HWND            hwndOwner
-                                ,   LPCITEMIDLIST   pidlRoot
-                                ,   C const*        defaultFolder)
+inline
+ws_bool_t
+shell_browse_impl(
+    C const*        title
+,   C*              displayName
+,   UINT            flags
+,   HWND            hwndOwner
+,   LPCITEMIDLIST   pidlRoot
+,   C const*        defaultFolder
+)
 {
     typedef shell_browse_traits<C>                  traits_type;
     ss_typename_type_k traits_type::browseinfo_t    browseinfo;
@@ -264,10 +272,19 @@ inline ws_bool_t shell_browse_impl( C const*        title
  * \param hwndOwner The parent of the browse dialog. May be null
  * \param pidlRoot Pointer to an ITEMIDLIST structure (PIDL) specifying the location of the root folder from which to start browsing. May be null
  */
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        >
-inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags, HWND hwndOwner, LPCITEMIDLIST pidlRoot)
+template<
+    ss_typename_param_k S
+,   ss_typename_param_k C
+>
+inline
+ws_bool_t
+browse_for_folder(
+    S const&        title
+,   C*              displayName
+,   UINT            flags
+,   HWND            hwndOwner
+,   LPCITEMIDLIST   pidlRoot
+)
 {
     return shell_browse_impl(STLSOFT_NS_QUAL(c_str_ptr)(title), displayName, flags, hwndOwner, pidlRoot, static_cast<C const*>(NULL));
 }
@@ -283,11 +300,21 @@ inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags, H
  * \param pidlRoot Pointer to an ITEMIDLIST structure (PIDL) specifying the location of the root folder from which to start browsing. May be null
  * \param defaultFolder The default folder to select when the browse window opens
  */
-template<   ss_typename_param_k S0
-        ,   ss_typename_param_k C
-        ,   ss_typename_param_k S1
-        >
-inline ws_bool_t browse_for_folder(S0 const& title, C* displayName, UINT flags, HWND hwndOwner, LPCITEMIDLIST pidlRoot, S1 const& defaultFolder)
+template<
+    ss_typename_param_k S0
+,   ss_typename_param_k C
+,   ss_typename_param_k S1
+>
+inline
+ws_bool_t
+browse_for_folder(
+    S0 const&       title
+,   C*              displayName
+,   UINT            flags
+,   HWND            hwndOwner
+,   LPCITEMIDLIST   pidlRoot
+,   S1 const&       defaultFolder
+)
 {
     return shell_browse_impl(STLSOFT_NS_QUAL(c_str_ptr)(title), displayName, flags, hwndOwner, pidlRoot, STLSOFT_NS_QUAL(c_str_ptr)(defaultFolder));
 }
@@ -301,10 +328,18 @@ inline ws_bool_t browse_for_folder(S0 const& title, C* displayName, UINT flags, 
  * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
  * \param hwndOwner The parent of the browse dialog. May be null
  */
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        >
-inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags, HWND hwndOwner)
+template<
+    ss_typename_param_k S
+,   ss_typename_param_k C
+>
+inline
+ws_bool_t
+browse_for_folder(
+    S const&    title
+,   C*          displayName
+,   UINT        flags
+,   HWND        hwndOwner
+)
 {
     return browse_for_folder(title, displayName, flags, hwndOwner, static_cast<LPCITEMIDLIST>(0));
 }
@@ -318,10 +353,18 @@ inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags, H
  * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
  * \param pidlRoot Pointer to an ITEMIDLIST structure (PIDL) specifying the location of the root folder from which to start browsing. May be null
  */
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        >
-inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags, LPCITEMIDLIST pidlRoot)
+template<
+    ss_typename_param_k S
+,   ss_typename_param_k C
+>
+inline
+ws_bool_t
+browse_for_folder(
+    S const&        title
+,   C*              displayName
+,   UINT            flags
+,   LPCITEMIDLIST   pidlRoot
+)
 {
     return browse_for_folder(title, displayName, flags, 0, pidlRoot);
 }
@@ -334,10 +377,17 @@ inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags, L
  * \param displayName Buffer to receive the display name
  * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
  */
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        >
-inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags)
+template<
+    ss_typename_param_k S
+,   ss_typename_param_k C
+>
+inline
+ws_bool_t
+browse_for_folder(
+    S const&        title
+,   C*              displayName
+,   UINT            flags
+)
 {
     return browse_for_folder(title, displayName, flags, 0, 0);
 }
@@ -346,6 +396,7 @@ inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags)
     !defined(STLSOFT_COMPILER_IS_MWERKS) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER != 1300)
+
 /** Browses the shell namespace according to the given parameters
  *
  * \ingroup group__library__Windows_Shell
@@ -355,34 +406,46 @@ inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags)
  * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
  * \param defaultFolder The default folder to select when the browse window opens
  */
-template<   ss_typename_param_k S0
-        ,   ss_typename_param_k C
-        ,   ss_typename_param_k S1
-        >
-inline ws_bool_t browse_for_folder( S0 const    &title
-                                ,   C           *displayName
-                                ,   UINT        flags
-                                ,   S1 const    &defaultFolder
-                                )
+template<
+    ss_typename_param_k S0
+,   ss_typename_param_k C
+,   ss_typename_param_k S1
+>
+inline
+ws_bool_t
+browse_for_folder(
+    S0 const    &title
+,   C           *displayName
+,   UINT        flags
+,   S1 const    &defaultFolder
+)
 {
     return browse_for_folder(title, displayName, flags, 0, 0, defaultFolder);
 }
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 // Disambiguates between the two four parameter overloads
 //  browse_for_folder(S const& , C *, UINT , LPCITEMIDLIST )
 // and
 // template < . . . >
 //  browse_for_folder(S0 const&, C*, UINT, S1 const&)
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        >
-inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags, LPITEMIDLIST pidlRoot)
+template<
+    ss_typename_param_k S
+,   ss_typename_param_k C
+>
+inline
+ws_bool_t
+browse_for_folder(
+    S const&        title
+,   C*              displayName
+,   UINT            flags
+,   LPITEMIDLIST    pidlRoot
+)
 {
     return browse_for_folder(title, displayName, flags, const_cast<LPCITEMIDLIST>(pidlRoot));
 }
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 #endif /* compiler */
 
 /** Browses the shell namespace according to the given parameters
@@ -392,15 +455,24 @@ inline ws_bool_t browse_for_folder(S const& title, C* displayName, UINT flags, L
  * \param title The title for the browse dialog
  * \param displayName Buffer to receive the display name
  */
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        >
-inline ws_bool_t browse_for_folder(S const& title, C* displayName)
+template<
+    ss_typename_param_k S
+,   ss_typename_param_k C
+>
+inline
+ws_bool_t
+browse_for_folder(
+    S const&    title
+,   C*          displayName
+)
 {
     return browse_for_folder(title, displayName, 0, 0, 0);
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

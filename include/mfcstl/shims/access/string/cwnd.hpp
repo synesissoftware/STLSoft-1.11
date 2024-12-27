@@ -4,7 +4,7 @@
  * Purpose: String access shims for CWnd
  *
  * Created: 24th May 2002
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    16
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        110
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -287,8 +287,8 @@ private:
 
 // Accessors
 public:
-    /// Returns a null-terminated string representing the window contents, or
-    /// NULL if the window contains no text.
+    /// Returns a null-terminated string representing the window contents,
+    /// or \c nullptr if the window contains no text.
     operator LPCTSTR () const
     {
         if (NULL == m_block)
@@ -456,7 +456,7 @@ inline S& operator <<(S& s, c_str_ptr_CWnd_proxy const& shim)
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
+ * pointer to the character string or \c nullptr.
  */
 
 /* CWnd */

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/controls/commctrl_functions.h
+ * File:    winstl/controls/commctrl_functions.h
  *
- * Purpose:     Various Windows common control functions.
+ * Purpose: Various Windows common control functions.
  *
- * Created:     13th November 2002
- * Updated:     11th March 2024
+ * Created: 13th November 2002
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_REVISION   7
-# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       57
+# define WINSTL_VER_WINSTL_CONTROLS_H_COMMCTRL_FUNCTIONS_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,7 +111,13 @@ namespace winstl_project
  * \param hitem The tree view item
  * \param flag One of the <b>TVGN_*</b> search flags
  */
-STLSOFT_INLINE HTREEITEM winstl__treeview_getnextitem(HWND hwnd, HTREEITEM hitem, UINT flag)
+STLSOFT_INLINE
+HTREEITEM
+winstl__treeview_getnextitem(
+    HWND        hwnd
+,   HTREEITEM   hitem
+,   UINT        flag
+)
 {
     return stlsoft_reinterpret_cast(HTREEITEM, winstl__SendMessage(hwnd, TVM_GETNEXTITEM, stlsoft_static_cast(WPARAM, flag), stlsoft_reinterpret_cast(LPARAM, hitem)));
 }
@@ -123,7 +129,12 @@ STLSOFT_INLINE HTREEITEM winstl__treeview_getnextitem(HWND hwnd, HTREEITEM hitem
  * \param hwnd The tree view window handle
  * \param hitem The tree view item whose child is to be retrieved
  */
-STLSOFT_INLINE HTREEITEM winstl__treeview_getchilditem(HWND hwnd, HTREEITEM hitem)
+STLSOFT_INLINE
+HTREEITEM
+winstl__treeview_getchilditem(
+    HWND        hwnd
+,   HTREEITEM   hitem
+)
 {
     return winstl__treeview_getnextitem(hwnd, hitem, TVGN_CHILD);
 }
@@ -134,7 +145,9 @@ STLSOFT_INLINE HTREEITEM winstl__treeview_getchilditem(HWND hwnd, HTREEITEM hite
  *
  * \param hwnd The tree view window handle
  */
-STLSOFT_INLINE HTREEITEM winstl__treeview_getrootitem(HWND hwnd)
+STLSOFT_INLINE
+HTREEITEM
+winstl__treeview_getrootitem(HWND hwnd)
 {
     return winstl__treeview_getnextitem(hwnd, 0, TVGN_ROOT);
 }
@@ -145,7 +158,9 @@ STLSOFT_INLINE HTREEITEM winstl__treeview_getrootitem(HWND hwnd)
  *
  * \param hwnd The tree view window handle
  */
-STLSOFT_INLINE HTREEITEM winstl__treeview_getcaretitem(HWND hwnd)
+STLSOFT_INLINE
+HTREEITEM
+winstl__treeview_getcaretitem(HWND hwnd)
 {
     return winstl__treeview_getnextitem(hwnd, 0, TVGN_CARET);
 }
@@ -175,7 +190,13 @@ namespace winstl
  * \param hitem The tree view item
  * \param flag One of the <b>TVGN_*</b> search flags
  */
-inline HTREEITEM treeview_getnextitem(HWND hwnd, HTREEITEM hitem, UINT flag)
+inline
+HTREEITEM
+treeview_getnextitem(
+    HWND        hwnd
+,   HTREEITEM   hitem
+,   UINT        flag
+)
 {
     return winstl__treeview_getnextitem(hwnd, hitem, flag);
 }
@@ -187,7 +208,12 @@ inline HTREEITEM treeview_getnextitem(HWND hwnd, HTREEITEM hitem, UINT flag)
  * \param hwnd The tree view window handle
  * \param hitem The tree view item whose child is to be retrieved
  */
-inline HTREEITEM treeview_getchilditem(HWND hwnd, HTREEITEM hitem)
+inline
+HTREEITEM
+treeview_getchilditem(
+    HWND        hwnd
+,   HTREEITEM   hitem
+)
 {
     return winstl__treeview_getnextitem(hwnd, hitem, TVGN_CHILD);
 }
@@ -198,7 +224,9 @@ inline HTREEITEM treeview_getchilditem(HWND hwnd, HTREEITEM hitem)
  *
  * \param hwnd The tree view window handle
  */
-inline HTREEITEM treeview_getrootitem(HWND hwnd)
+inline
+HTREEITEM
+treeview_getrootitem(HWND hwnd)
 {
     return winstl__treeview_getnextitem(hwnd, 0, TVGN_ROOT);
 }
@@ -209,13 +237,18 @@ inline HTREEITEM treeview_getrootitem(HWND hwnd)
  *
  * \param hwnd The tree view window handle
  */
-inline HTREEITEM treeview_getcaretitem(HWND hwnd)
+inline
+HTREEITEM
+treeview_getcaretitem(HWND hwnd)
 {
     return winstl__treeview_getnextitem(hwnd, 0, TVGN_CARET);
 }
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

@@ -5,7 +5,7 @@
  *          `stlsoft::translate_thousands`.
  *
  * Created: 28th March 2024
- * Updated: 30th November 2024
+ * Updated: 21st December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,7 +31,6 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <stlsoft/limits/integral_limits.h> // for suffix macros only
 
 /* Standard C++ header files */
 #include <string>

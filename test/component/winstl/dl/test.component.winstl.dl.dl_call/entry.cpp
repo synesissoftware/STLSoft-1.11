@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 13th October 2024
+ * Updated: 26th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -104,7 +104,8 @@ int main(int argc, char* argv[])
 
 namespace
 {
-    inline void
+    inline
+    void
     full_fence()
     {
 #if __cplusplus >= 201103L

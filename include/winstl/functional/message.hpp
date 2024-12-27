@@ -4,7 +4,7 @@
  * Purpose: Window messaging function classes and predicates.
  *
  * Created: 19th January 2001
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MAJOR     4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MINOR     1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  8
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      55
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  9
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,6 +77,10 @@
 #else /* ? _WINSTL_WINDOW_FUNCTIONALS_NO_STD */
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_WINDOW_FUNCTIONALS_NO_STD */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages
+# include <winstl/api/external/WindowsAndMessages.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -149,7 +153,7 @@ public:
 private:
     void send_(HWND hwnd) const
     {
-        ::SendMessage(hwnd, m_msg, m_wparam, m_lparam);
+        WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, m_msg, m_wparam, m_lparam);
     }
 
 private:

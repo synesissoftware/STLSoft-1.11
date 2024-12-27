@@ -4,7 +4,7 @@
  * Purpose: Safe interface casting functions.
  *
  * Created: 25th June 2002
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -64,7 +64,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   16
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       140
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       141
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -699,7 +699,8 @@ private:
  *
  * \ingroup group__library__Conversion
  *
- * \param src The object whose capabilities will be tested. May be NULL
+ * \param src The object whose capabilities will be tested. May be
+ *   \c nullptr
  *
 \code
 IStream* stm = . . .
@@ -1065,8 +1066,8 @@ is_empty(
 {
     return NULL != get_ptr(p);
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

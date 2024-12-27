@@ -4,7 +4,7 @@
  * Purpose: GUID helper functions.
  *
  * Created: 12th May 2010
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MAJOR      1
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_MINOR      4
 # define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_REVISION   8
-# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_EDIT       29
+# define COMSTL_VER_COMSTL_UTIL_H_GUID_FUNCTIONS_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -156,7 +156,7 @@ comstl_C_GUID_to_string_w(
  * \param rhs Pointer to the right-hand instances to compare
  * \param comparisonSucceeded Pointer to a result-code instance that will
  *   have an HRESULT value not equal to S_OK if the comparison cannot be
- *   made. May be NULL if the caller does not care.
+ *   made. May be \c nullptr if the caller does not care.
  *
  * \return a value indicating the relative ordering of the two GUIDs
  * \retval <0 \c lhs is less than \c rhs
@@ -469,16 +469,18 @@ namespace comstl
  * \param rhs Pointer to the right-hand instances to compare
  * \param comparisonSucceeded Pointer to a result-code instance that will
  *   have an HRESULT value not equal to S_OK if the comparison cannot be
- *   made. May be NULL if the caller does not care, in which case failures
- *   will result in an instance of comstl::comstl_exception being thrown.
+ *   made. May be \c nullptr if the caller does not care, in which case
+ *   failures will result in an instance of comstl::comstl_exception being
+ *   thrown.
  *
  * \return a value indicating the relative ordering of the two GUIDs
  * \retval <0 \c lhs is less than \c rhs
  * \retval 0 \c lhs is equal to \c rhs
  * \retval >0 \c lhs is greater than \c rhs
  *
- * \exception comstl::comstl_exception Thrown if <code>comparisonSucceeded</code>
- *   is <code>NULL</code> and the comparison fails.
+ * \exception comstl::comstl_exception Thrown if
+ *   <code>comparisonSucceeded</code> is \c nullptr and the comparison
+ *   fails.
  */
 inline
 int
@@ -541,7 +543,7 @@ GUID_binary_compare(
  * \param rhs Reference to the right-hand instances to compare
  * \param comparisonSucceeded Pointer to a result-code instance that will have
  *   an HRESULT value not equal to S_OK if the comparison cannot be made. May
- *   be NULL if the caller does not care
+ *   be \c nullptr if the caller does not care
  *
  * \return a value indicating the relative ordering of the two GUIDs
  * \retval <0 \c lhs is less than \c rhs
@@ -641,6 +643,7 @@ GUID_to_string(
     return comstl_C_GUID_to_string_a(guid, buff);
 }
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

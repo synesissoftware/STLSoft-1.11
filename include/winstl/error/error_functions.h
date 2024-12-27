@@ -4,7 +4,7 @@
  * Purpose: Error functions.
  *
  * Created: 7th May 2000
- * Updated: 23rd October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define WINSTL_INCL_WINSTL_ERROR_H_ERROR_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  7
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      90
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR    4
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR    5
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION 7
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT     91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -303,13 +303,15 @@ winstl_C_fmtmsg_elide_message_w_(
 
 /** [UNDOCUMENTED]
  *
- * \param flags. Automatically added to this are FORMAT_MESSAGE_ALLOCATE_BUFFER and, if source is NULL, FORMAT_MESSAGE_FROM_SYSTEM
+ * \param flags Automatically added to this are
+ *   FORMAT_MESSAGE_ALLOCATE_BUFFER and, if source is \c nullptr,
+ *   FORMAT_MESSAGE_FROM_SYSTEM
  * \param source
  *
  * \note The flags are altered in the following
  *   ways: \c FORMAT_MESSAGE_ALLOCATE_BUFFER is always
  *   added; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
- *   \c source is \c NULL.
+ *   \c source is \c \c nullptr.
  *
  * \ingroup group__library__error
  */
@@ -344,13 +346,15 @@ winstl_C_FormatMessageA_INVOKE_for_alloc_(
 
 /** [UNDOCUMENTED]
  *
- * \param flags. Automatically added to this are FORMAT_MESSAGE_ALLOCATE_BUFFER and, if source is NULL, FORMAT_MESSAGE_FROM_SYSTEM
+ * \param flags Automatically added to this are
+ *   FORMAT_MESSAGE_ALLOCATE_BUFFER and, if source is \c nullptr,
+ *   FORMAT_MESSAGE_FROM_SYSTEM
  * \param source
  *
  * \note The flags are altered in the following
  *   ways: \c FORMAT_MESSAGE_ALLOCATE_BUFFER is always
  *   added; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
- *   \c source is \c NULL.
+ *   \c source is \c \c nullptr.
  *
  * \ingroup group__library__error
  */
@@ -386,13 +390,15 @@ winstl_C_FormatMessageW_INVOKE_for_alloc_(
 
 /** [UNDOCUMENTED]
  *
- * \param flags. Automatically removed from this is FORMAT_MESSAGE_ALLOCATE_BUFFER and added to this, if source is NULL, is FORMAT_MESSAGE_FROM_SYSTEM
+ * \param flags Automatically removed from this is
+ *   FORMAT_MESSAGE_ALLOCATE_BUFFER and added to this, if source is
+ *   \c nullptr, is FORMAT_MESSAGE_FROM_SYSTEM
  * \param source
  *
  * \note The flags are altered in the following
  *   ways: \c FORMAT_MESSAGE_ALLOCATE_BUFFER is always
  *   removed; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
- *   \c source is \c NULL.
+ *   \c source is \c \c nullptr.
  *
  * \ingroup group__library__error
  */
@@ -427,13 +433,15 @@ winstl_C_FormatMessageA_INVOKE_in_buffer_(
 
 /** [UNDOCUMENTED]
  *
- * \param flags. Automatically removed from this is FORMAT_MESSAGE_ALLOCATE_BUFFER and added to this, if source is NULL, is FORMAT_MESSAGE_FROM_SYSTEM
+ * \param flags. Automatically removed from this is
+ *   FORMAT_MESSAGE_ALLOCATE_BUFFER and added to this, if source is
+ *   \c nullptr, is FORMAT_MESSAGE_FROM_SYSTEM
  * \param source
  *
  * \note The flags are altered in the following
  *   ways: \c FORMAT_MESSAGE_ALLOCATE_BUFFER is always
  *   removed; \c FORMAT_MESSAGE_FROM_SYSTEM is added if
- *   \c source is \c NULL.
+ *   \c source is \c \c nullptr.
  *
  * \ingroup group__library__error
  */
@@ -773,7 +781,9 @@ winstl_C_format_message_from_module_to_allocated_buffer_w(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_buff_inst_a)
 #endif
-STLSOFT_INLINE ws_dword_t winstl_C_format_message_buff_inst_a(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_buff_inst_a(
     DWORD           error
 ,   HINSTANCE       hinst
 ,   ws_char_a_t*    buffer
@@ -807,7 +817,9 @@ STLSOFT_INLINE ws_dword_t winstl_C_format_message_buff_inst_a(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_buff_inst_w)
 #endif
-STLSOFT_INLINE ws_dword_t winstl_C_format_message_buff_inst_w(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_buff_inst_w(
     DWORD           error
 ,   HINSTANCE       hinst
 ,   ws_char_w_t*    buffer
@@ -841,7 +853,9 @@ STLSOFT_INLINE ws_dword_t winstl_C_format_message_buff_inst_w(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_buff_a)
 #endif
-STLSOFT_INLINE ws_dword_t winstl_C_format_message_buff_a(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_buff_a(
     DWORD           error
 ,   ws_char_a_t*    buffer
 ,   ws_uint_t       cchBuffer
@@ -861,7 +875,9 @@ STLSOFT_INLINE ws_dword_t winstl_C_format_message_buff_a(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_buff_w)
 #endif
-STLSOFT_INLINE ws_dword_t winstl_C_format_message_buff_w(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_buff_w(
     DWORD           error
 ,   ws_char_w_t*    buffer
 ,   ws_uint_t       cchBuffer
@@ -881,7 +897,9 @@ STLSOFT_INLINE ws_dword_t winstl_C_format_message_buff_w(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_alloc_a)
 #endif
-STLSOFT_INLINE ws_dword_t winstl_C_format_message_alloc_a(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_alloc_a(
     DWORD           error
 ,   HINSTANCE       hinst
 ,   ws_char_a_t**   buffer
@@ -912,7 +930,9 @@ STLSOFT_INLINE ws_dword_t winstl_C_format_message_alloc_a(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_alloc_w)
 #endif
-STLSOFT_INLINE ws_dword_t winstl_C_format_message_alloc_w(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_alloc_w(
     DWORD           error
 ,   HINSTANCE       hinst
 ,   ws_char_w_t**   buffer
@@ -942,7 +962,8 @@ STLSOFT_INLINE ws_dword_t winstl_C_format_message_alloc_w(
  *   (by <code>winstl_C_format_message_free_buff_a()</code>) to avoid
  *   a memory leak.
  *
- * \return Always a non-NULL pointer to a nul-terminated multibyte string.
+ * \return Always a non-\c nullptr pointer to a nul-terminated multibyte
+ *   string.
  *
  * \note The returned pointer must be released by a call
  *   to <code>winstl_C_format_message_free_buff_a()</code>
@@ -1091,7 +1112,9 @@ winstl_C_format_message_from_module_to_allocated_buffer(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_buff_inst)
 #endif
-inline ws_dword_t winstl_C_format_message_buff_inst(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_buff_inst(
     DWORD           error
 ,   HINSTANCE       hinst
 ,   ws_char_a_t*    buffer
@@ -1110,7 +1133,9 @@ inline ws_dword_t winstl_C_format_message_buff_inst(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_buff_inst)
 #endif
-inline ws_dword_t winstl_C_format_message_buff_inst(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_buff_inst(
     DWORD           error
 ,   HINSTANCE       hinst
 ,   ws_char_w_t*    buffer
@@ -1129,7 +1154,9 @@ inline ws_dword_t winstl_C_format_message_buff_inst(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_buff)
 #endif
-inline ws_dword_t winstl_C_format_message_buff(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_buff(
     DWORD           error
 ,   ws_char_a_t*    buffer
 ,   ws_uint_t       cchBuffer
@@ -1147,7 +1174,9 @@ inline ws_dword_t winstl_C_format_message_buff(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_buff)
 #endif
-inline ws_dword_t winstl_C_format_message_buff(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_buff(
     DWORD           error
 ,   ws_char_w_t*    buffer
 ,   ws_uint_t       cchBuffer
@@ -1165,7 +1194,9 @@ inline ws_dword_t winstl_C_format_message_buff(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_alloc)
 #endif
-inline ws_dword_t winstl_C_format_message_alloc(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_alloc(
     DWORD           error
 ,   HINSTANCE       hinst
 ,   ws_char_a_t**   buffer
@@ -1183,7 +1214,9 @@ inline ws_dword_t winstl_C_format_message_alloc(
 #if _STLSOFT_VER >= 0x010a0000
 STLSOFT_DECLARE_FUNCTION_DEPRECATION(winstl_C_format_message_alloc)
 #endif
-inline ws_dword_t winstl_C_format_message_alloc(
+STLSOFT_INLINE
+ws_dword_t
+winstl_C_format_message_alloc(
     DWORD           error
 ,   HINSTANCE       hinst
 ,   ws_char_w_t**   buffer
@@ -1194,12 +1227,16 @@ inline ws_dword_t winstl_C_format_message_alloc(
 #include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
-inline void winstl_C_format_message_free_buff(ws_char_a_t* buffer)
+inline
+void
+winstl_C_format_message_free_buff(ws_char_a_t* buffer)
 {
     winstl_C_format_message_free_buff_a(buffer);
 }
 
-inline void winstl_C_format_message_free_buff(ws_char_w_t* buffer)
+inline
+void
+winstl_C_format_message_free_buff(ws_char_w_t* buffer)
 {
     winstl_C_format_message_free_buff_w(buffer);
 }
@@ -1483,8 +1520,8 @@ format_message_free_buff(
 {
     winstl_C_format_message_free_buff_w(buffer);
 }
-
 #endif /* __cplusplus */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

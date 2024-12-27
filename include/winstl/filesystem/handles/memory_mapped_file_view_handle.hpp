@@ -5,7 +5,7 @@
  *          memory mapped file view handles.
  *
  * Created: 30th August 2010
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MINOR      0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_REVISION   9
-# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT       17
+# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,7 +119,7 @@ public: // types
     typedef memory_mapped_file_view_state_t                 class_type;
 
 public: // fields
-    /// Pointer to the base of the view, or NULL if not mapped
+    /// Pointer to the base of the view, or \c nullptr if not mapped
     void* const         memory;
     /// Size of the view
     ws_uintptr_t const  size;
