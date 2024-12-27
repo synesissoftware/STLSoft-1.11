@@ -4,7 +4,7 @@
  * Purpose: Message functions.
  *
  * Created: 7th May 2000
- * Updated: 25th December 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_REVISION  6
-# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_EDIT      52
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_REVISION  7
+# define WINSTL_VER_WINSTL_WINDOW_H_MESSAGE_FUNCTIONS_EDIT      53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -68,6 +68,10 @@
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages
+# include <winstl/api/external/WindowsAndMessages.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,7 +107,7 @@ winstl__SendMessageA(
 ,   LPARAM  lParam
 )
 {
-    return STLSOFT_NS_GLOBAL(SendMessageA)(hwnd, uMsg, wParam, lParam);
+    return WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessageA(hwnd, uMsg, wParam, lParam);
 }
 
 STLSOFT_INLINE
@@ -115,7 +119,7 @@ winstl__SendMessageW(
 ,   LPARAM  lParam
 )
 {
-    return STLSOFT_NS_GLOBAL(SendMessageW)(hwnd, uMsg, wParam, lParam);
+    return WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessageW(hwnd, uMsg, wParam, lParam);
 }
 
 STLSOFT_INLINE
@@ -127,7 +131,7 @@ winstl__SendMessage(
 ,   LPARAM  lParam
 )
 {
-    return STLSOFT_NS_GLOBAL(SendMessage)(hwnd, uMsg, wParam, lParam);
+    return WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, uMsg, wParam, lParam);
 }
 
 
