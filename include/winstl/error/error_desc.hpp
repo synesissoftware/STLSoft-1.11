@@ -4,7 +4,7 @@
  * Purpose: Converts a Win32 error code to a printable string.
  *
  * Created: 13th July 2003
- * Updated: 10th October 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       6
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    14
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        111
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       7
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    1
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -777,7 +777,7 @@ template<
 STLSOFT_DECLARE_DEPRECATION()
 inline
 C const*
-get_ptr(WINSTL_NS_QUAL(basic_error_desc)<C, T> const& e)
+get_ptr(WINSTL_NS_QUAL(basic_error_desc)<C, T> const& e) STLSOFT_NOEXCEPT
 {
     return e;
 }

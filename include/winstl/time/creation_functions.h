@@ -4,7 +4,7 @@
  * Purpose: Creation functions for Windows time structures.
  *
  * Created: 25th February 2017
- * Updated: 19th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_EDIT       6
+# define WINSTL_VER_WINSTL_TIME_H_CREATION_FUNCTIONS_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -152,7 +152,7 @@ winstl_C_create_SYSTEMTIME_ms(
  * values
  *
  * \param ft Pointer to FILETIME instance to be initialised. May not be
- *   NULL
+ *   \c nullptr
  * \param year The year unit value
  * \param month The month unit value
  * \param day The day unit value

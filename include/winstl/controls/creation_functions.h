@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/controls/creation_functions.h
+ * File:    winstl/controls/creation_functions.h
  *
- * Purpose:     Control creation functions.
+ * Purpose: Control creation functions.
  *
- * Created:     7th May 2000
- * Updated:     11th March 2024
+ * Created: 7th May 2000
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_REVISION    10
-# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        35
+# define WINSTL_VER_WINSTL_CONTROL_H_CREATION_FUNCTIONS_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -134,7 +134,12 @@ winstl_C_control_creation_functions_Id2HMENU_(
  *
  * \ingroup group__library__Windows_Control
  */
-STLSOFT_INLINE void winstl__setchildfont_(HWND hwnd, HWND hwndParent)
+STLSOFT_INLINE
+void
+winstl__setchildfont_(
+    HWND    hwnd
+,   HWND    hwndParent
+)
 {
     STLSOFT_SUPPRESS_UNUSED(hwnd);
     STLSOFT_SUPPRESS_UNUSED(hwndParent);
@@ -146,9 +151,19 @@ STLSOFT_INLINE void winstl__setchildfont_(HWND hwnd, HWND hwndParent)
  *
  * \ingroup group__library__Windows_Control
  */
-STLSOFT_INLINE HWND winstl__CreateStaticA(HWND hwndParent, ws_char_a_t const* name, int x, int y, int cx, int cy, int id)
+STLSOFT_INLINE
+HWND
+winstl__CreateStaticA(
+    HWND                hwndParent
+,   ws_char_a_t const*  name
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
-    HWND    hwnd    =   winstl__CreateWindowA("STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    HWND hwnd = winstl__CreateWindowA("STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 
     winstl__setchildfont_(hwnd, hwndParent);
 
@@ -159,9 +174,19 @@ STLSOFT_INLINE HWND winstl__CreateStaticA(HWND hwndParent, ws_char_a_t const* na
  *
  * \ingroup group__library__Windows_Control
  */
-STLSOFT_INLINE HWND winstl__CreateStaticW(HWND hwndParent, ws_char_w_t const* name, int x, int y, int cx, int cy, int id)
+STLSOFT_INLINE
+HWND
+winstl__CreateStaticW(
+    HWND                hwndParent
+,   ws_char_w_t const*  name
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
-    HWND    hwnd    =   winstl__CreateWindowW(L"STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
+    HWND hwnd = winstl__CreateWindowW(L"STATIC", name, WS_CHILD | WS_VISIBLE, x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 
     winstl__setchildfont_(hwnd, hwndParent);
 
@@ -172,9 +197,19 @@ STLSOFT_INLINE HWND winstl__CreateStaticW(HWND hwndParent, ws_char_w_t const* na
  *
  * \ingroup group__library__Windows_Control
  */
-STLSOFT_INLINE HWND winstl__CreateStaticFrame(HWND hwndParent, DWORD frameStyle, int x, int y, int cx, int cy, int id)
+STLSOFT_INLINE
+HWND
+winstl__CreateStaticFrame(
+    HWND    hwndParent
+,   DWORD   frameStyle
+,   int     x
+,   int     y
+,   int     cx
+,   int     cy
+,   int     id
+)
 {
-    HWND    hwnd;
+    HWND hwnd;
 
     WINSTL_ASSERT(SS_BLACKFRAME == frameStyle || SS_GRAYFRAME == frameStyle || SS_WHITEFRAME == frameStyle || SS_ETCHEDFRAME == frameStyle);
 
@@ -189,7 +224,18 @@ STLSOFT_INLINE HWND winstl__CreateStaticFrame(HWND hwndParent, DWORD frameStyle,
  *
  * \ingroup group__library__Windows_Control
  */
-STLSOFT_INLINE HWND winstl__CreateEditA(HWND hwndParent, ws_char_a_t const* text, DWORD editStyle, int x, int y, int cx, int cy, int id)
+STLSOFT_INLINE
+HWND
+winstl__CreateEditA(
+    HWND                hwndParent
+,   ws_char_a_t const*  text
+,   DWORD               editStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateWindowA("EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
@@ -198,7 +244,18 @@ STLSOFT_INLINE HWND winstl__CreateEditA(HWND hwndParent, ws_char_a_t const* text
  *
  * \ingroup group__library__Windows_Control
  */
-STLSOFT_INLINE HWND winstl__CreateEditW(HWND hwndParent, ws_char_w_t const* text, DWORD editStyle, int x, int y, int cx, int cy, int id)
+STLSOFT_INLINE
+HWND
+winstl__CreateEditW(
+    HWND                hwndParent
+,   ws_char_w_t const*  text
+,   DWORD               editStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateWindowW(L"EDIT", text, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & editStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
@@ -207,7 +264,18 @@ STLSOFT_INLINE HWND winstl__CreateEditW(HWND hwndParent, ws_char_w_t const* text
  *
  * \ingroup group__library__Windows_Control
  */
-STLSOFT_INLINE HWND winstl__CreateCheckboxA(HWND hwndParent, ws_char_a_t const* name, DWORD buttonStyle, int x, int y, int cx, int cy, int id)
+STLSOFT_INLINE
+HWND
+winstl__CreateCheckboxA(
+    HWND                hwndParent
+,   ws_char_a_t const*  name
+,   DWORD               buttonStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateWindowA("BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
@@ -216,7 +284,18 @@ STLSOFT_INLINE HWND winstl__CreateCheckboxA(HWND hwndParent, ws_char_a_t const* 
  *
  * \ingroup group__library__Windows_Control
  */
-STLSOFT_INLINE HWND winstl__CreateCheckboxW(HWND hwndParent, ws_char_w_t const* name, DWORD buttonStyle, int x, int y, int cx, int cy, int id)
+STLSOFT_INLINE
+HWND
+winstl__CreateCheckboxW(
+    HWND                hwndParent
+,   ws_char_w_t const*  name
+,   DWORD               buttonStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateWindowW(L"BUTTON", name, WS_CHILD | WS_VISIBLE | WS_TABSTOP | (0xFFFF & buttonStyle), x, y, cx, cy, hwndParent, winstl_C_control_creation_functions_Id2HMENU_(id), NULL, NULL);
 }
@@ -242,7 +321,17 @@ namespace winstl
  *
  * \ingroup group__library__Windows_Control
  */
-inline HWND winstl__CreateStatic(HWND hwndParent, ws_char_a_t const* name, int x, int y, int cx, int cy, int id)
+inline
+HWND
+winstl__CreateStatic(
+    HWND                hwndParent
+,   ws_char_a_t const*  name
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateStaticA(hwndParent, name, x, y, cx, cy, id);
 }
@@ -251,7 +340,17 @@ inline HWND winstl__CreateStatic(HWND hwndParent, ws_char_a_t const* name, int x
  *
  * \ingroup group__library__Windows_Control
  */
-inline HWND winstl__CreateStatic(HWND hwndParent, ws_char_w_t const* name, int x, int y, int cx, int cy, int id)
+inline
+HWND
+winstl__CreateStatic(
+    HWND                hwndParent
+,   ws_char_w_t const*  name
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateStaticW(hwndParent, name, x, y, cx, cy, id);
 }
@@ -261,7 +360,18 @@ inline HWND winstl__CreateStatic(HWND hwndParent, ws_char_w_t const* name, int x
  *
  * \ingroup group__library__Windows_Control
  */
-inline HWND winstl__CreateEdit(HWND hwndParent, ws_char_a_t const* text, DWORD editStyle, int x, int y, int cx, int cy, int id)
+inline
+HWND
+winstl__CreateEdit(
+    HWND                hwndParent
+,   ws_char_a_t const*  text
+,   DWORD               editStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateEditA(hwndParent, text, editStyle, x, y, cx, cy, id);
 }
@@ -270,7 +380,18 @@ inline HWND winstl__CreateEdit(HWND hwndParent, ws_char_a_t const* text, DWORD e
  *
  * \ingroup group__library__Windows_Control
  */
-inline HWND winstl__CreateEdit(HWND hwndParent, ws_char_w_t const* text, DWORD editStyle, int x, int y, int cx, int cy, int id)
+inline
+HWND
+winstl__CreateEdit(
+    HWND                hwndParent
+,   ws_char_w_t const*  text
+,   DWORD               editStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateEditW(hwndParent, text, editStyle, x, y, cx, cy, id);
 }
@@ -280,7 +401,18 @@ inline HWND winstl__CreateEdit(HWND hwndParent, ws_char_w_t const* text, DWORD e
  *
  * \ingroup group__library__Windows_Control
  */
-inline HWND winstl__CreateCheckbox(HWND hwndParent, ws_char_a_t const* name, DWORD buttonStyle, int x, int y, int cx, int cy, int id)
+inline
+HWND
+winstl__CreateCheckbox(
+    HWND                hwndParent
+,   ws_char_a_t const*  name
+,   DWORD               buttonStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateCheckboxA(hwndParent, name, buttonStyle, x, y, cx, cy, id);
 }
@@ -289,7 +421,18 @@ inline HWND winstl__CreateCheckbox(HWND hwndParent, ws_char_a_t const* name, DWO
  *
  * \ingroup group__library__Windows_Control
  */
-inline HWND winstl__CreateCheckbox(HWND hwndParent, ws_char_w_t const* name, DWORD buttonStyle, int x, int y, int cx, int cy, int id)
+inline
+HWND
+winstl__CreateCheckbox(
+    HWND                hwndParent
+,   ws_char_w_t const*  name
+,   DWORD               buttonStyle
+,   int                 x
+,   int                 y
+,   int                 cx
+,   int                 cy
+,   int                 id
+)
 {
     return winstl__CreateCheckboxW(hwndParent, name, buttonStyle, x, y, cx, cy, id);
 }
@@ -300,7 +443,17 @@ inline HWND winstl__CreateCheckbox(HWND hwndParent, ws_char_w_t const* name, DWO
  * \ingroup group__library__Windows_Control
  */
 template <ss_typename_param_k S>
-inline HWND CreateStatic(HWND hwndParent, S const& name, int x, int y, int cx, int cy, int id)
+inline
+HWND
+CreateStatic(
+    HWND        hwndParent
+,   S const&    name
+,   int         x
+,   int         y
+,   int         cx
+,   int         cy
+,   int         id
+)
 {
     return winstl__CreateStatic(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), x, y, cx, cy, id);
 }
@@ -310,7 +463,14 @@ inline HWND CreateStatic(HWND hwndParent, S const& name, int x, int y, int cx, i
  * \ingroup group__library__Windows_Control
  */
 template <ss_typename_param_k S>
-inline HWND CreateStatic(HWND hwndParent, S const& name, RECT const& rc, int id)
+inline
+HWND
+CreateStatic(
+    HWND        hwndParent
+,   S const&    name
+,   RECT const& rc
+,   int         id
+)
 {
     return winstl__CreateStatic(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
 }
@@ -321,7 +481,18 @@ inline HWND CreateStatic(HWND hwndParent, S const& name, RECT const& rc, int id)
  * \ingroup group__library__Windows_Control
  */
 template <ss_typename_param_k S>
-inline HWND CreateEdit(HWND hwndParent, S const& text, DWORD editStyle, int x, int y, int cx, int cy, int id)
+inline
+HWND
+CreateEdit
+    HWND        hwndParent
+,   S const&    text
+,   DWORD       editStyle
+,   int         x
+,   int         y
+,   int         cx
+,   int         cy
+,   int         id
+)
 {
     return winstl__CreateEdit(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(text), editStyle, x, y, cx, cy, id);
 }
@@ -331,7 +502,15 @@ inline HWND CreateEdit(HWND hwndParent, S const& text, DWORD editStyle, int x, i
  * \ingroup group__library__Windows_Control
  */
 template <ss_typename_param_k S>
-inline HWND CreateEdit(HWND hwndParent, S const& text, DWORD editStyle, RECT const& rc, int id)
+inline
+HWND
+CreateEdit(
+    HWND        hwndParent
+,   S const&    text
+,   DWORD       editStyle
+,   RECT const& rc
+,   int         id
+)
 {
     return winstl__CreateEdit(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(text), editStyle, rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
 }
@@ -341,7 +520,17 @@ inline HWND CreateEdit(HWND hwndParent, S const& text, DWORD editStyle, RECT con
  *
  * \ingroup group__library__Windows_Control
  */
-inline HWND CreateStaticFrame(HWND hwndParent, DWORD frameStyle, int x, int y, int cx, int cy, int id = -1)
+inline
+HWND
+CreateStaticFrame(
+    HWND    hwndParent
+,   DWORD   frameStyle
+,   int     x
+,   int     y
+,   int     cx
+,   int     cy
+,   int     id = -1
+)
 {
     return winstl__CreateStaticFrame(hwndParent, frameStyle, x, y, cx, cy, id);
 }
@@ -350,7 +539,14 @@ inline HWND CreateStaticFrame(HWND hwndParent, DWORD frameStyle, int x, int y, i
  *
  * \ingroup group__library__Windows_Control
  */
-inline HWND CreateStaticFrame(HWND hwndParent, DWORD frameStyle, RECT const& rc, int id = -1)
+inline
+HWND
+CreateStaticFrame(
+    HWND        hwndParent
+,   DWORD       frameStyle
+,   RECT const& rc
+,   int         id = -1
+)
 {
     return CreateStaticFrame(hwndParent, frameStyle, rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
 }
@@ -360,7 +556,18 @@ inline HWND CreateStaticFrame(HWND hwndParent, DWORD frameStyle, RECT const& rc,
  * \ingroup group__library__Windows_Control
  */
 template <ss_typename_param_k S>
-inline HWND CreateCheckbox(HWND hwndParent, S const& name, DWORD buttonStyle, int x, int y, int cx, int cy, int id)
+inline
+HWND
+CreateCheckbox(
+    HWND        hwndParent
+,   S const&    name
+,   DWORD       buttonStyle
+,   int         x
+,   int         y
+,   int         cx
+,   int         cy
+,   int         id
+)
 {
     return winstl__CreateCheckbox(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), buttonStyle, x, y, cx, cy, id);
 }
@@ -370,11 +577,18 @@ inline HWND CreateCheckbox(HWND hwndParent, S const& name, DWORD buttonStyle, in
  * \ingroup group__library__Windows_Control
  */
 template <ss_typename_param_k S>
-inline HWND CreateCheckbox(HWND hwndParent, S const& name, DWORD buttonStyle, RECT const& rc, int id)
+inline
+HWND
+CreateCheckbox(
+    HWND        hwndParent
+,   S const&    name
+,   DWORD       buttonStyle
+,   RECT const& rc
+,   int         id
+)
 {
     return winstl__CreateCheckbox(hwndParent, STLSOFT_NS_QUAL(c_str_ptr)(name), buttonStyle, rc.left, rc.top, (rc.right - rc.left), (rc.bottom - rc.top), id);
 }
-
 #endif /* __cplusplus */
 
 

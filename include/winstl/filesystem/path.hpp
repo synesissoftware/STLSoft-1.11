@@ -4,7 +4,7 @@
  * Purpose: Simple class that represents a path.
  *
  * Created: 1st May 1993
- * Updated: 6th November 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  Pablo Aguilar for reporting defect in push_ext() (which
  *          doesn't work for wide-string builds).
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    7
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 11
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     327
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     328
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -492,7 +492,7 @@ public:
     /// Copies the contents into a caller supplied buffer
     ///
     /// \param buffer Pointer to character buffer to receive the contents.
-    ///  May be NULL, in which case the method returns size().
+    ///  May be \c nullptr, in which case the method returns size().
     /// \param cchBuffer Number of characters of available space in \c buffer.
     size_type
     copy(

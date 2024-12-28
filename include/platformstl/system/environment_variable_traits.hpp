@@ -316,8 +316,8 @@ public:
     static void release_environ(char_type const** env) STLSOFT_NOEXCEPT;
 #endif /* PLATFORMSTL_ENVVAR_HAS_ENVIRON */
 
-    /// Returns a pointer to the value of the given variable, or NULL if
-    /// the variable does not exist
+    /// Returns a pointer to the value of the given variable, or \c nullptr
+    /// if the variable does not exist
     ///
     /// \param name The name of the variable whose value will be retrieved
     static char_type const* get_variable(char_type const* name) STLSOFT_NOEXCEPT;
@@ -497,10 +497,12 @@ inline /* static */ int environment_variable_traits::call_putenv_(environment_va
     }
 }
 #endif /* putenv ? */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

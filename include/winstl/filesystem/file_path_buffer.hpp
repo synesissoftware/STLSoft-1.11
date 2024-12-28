@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 7th February 2002
- * Updated: 6th November 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  Pablo Aguilar for discovering the Borland weirdness which is now
  *          addressed with the calc_path_max_() method.
@@ -59,7 +59,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     152
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -384,7 +384,7 @@ public:
     /// Copies the contents into a caller supplied buffer
     ///
     /// \param buffer Pointer to character buffer to receive the contents.
-    ///  May be NULL, in which case the method returns size().
+    ///  May be \c nullptr, in which case the method returns size().
     /// \param cchBuffer Number of characters of available space in \c buffer.
     size_type copy(char_type *buffer, size_type cchBuffer) const
     {
@@ -759,6 +759,7 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

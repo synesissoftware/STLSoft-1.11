@@ -4,7 +4,7 @@
  * Purpose: cstring_concatenator_iterator class template.
  *
  * Created: 20th June 2005
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MINOR      1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   10
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       46
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -124,23 +124,27 @@ private:
 /// \name Construction
 /// @{
 public:
-    /// Creates an instance of the cstring_concatenator_iterator from the given
-    /// c-string pointer
+    /// Creates an instance of the cstring_concatenator_iterator from the
+    /// given c-string pointer
     ///
-    /// \param dest The C-string which in which will be written the results of the
-    /// application of the iterator's dereference. May not be NULL
-    /// \param pNumWritten An optional paramter to receive a count of how many
-    /// bytes were written by the iterator. <b>Note</b>: the variable pointed to
-    /// by this parameter is <i>not</i> set to 0 by the concatenator class. It
-    /// must be initialised by the caller.
-    /// \param pNumWritten Pointer to an unsigned integer that receives the number
-    /// of characters written by the iterator, or NULL if not required
-    ss_explicit_k cstring_concatenator_iterator(char_type *dest, size_type *pNumWritten = NULL)
+    /// \param dest The C-string which in which will be written the results
+    ///  of the application of the iterator's dereference. May not be
+    ///  \c nullptr
+    /// \param pNumWritten An optional paramter to receive a count of how
+    ///   many bytes were written by the iterator. <b>Note</b>: the variable
+    ///   pointed to by this parameter is <i>not</i> set to 0 by the
+    ///   concatenator class. It must be initialised by the caller.
+    /// \param pNumWritten Pointer to an unsigned integer that receives the
+    ///   number of characters written by the iterator, or \c nullptr if not
+    ///   required
+    ss_explicit_k
+    cstring_concatenator_iterator(
+        char_type*  dest
+    ,   size_type*  pNumWritten = NULL
+    )
         : m_dest(dest)
         , m_numWritten((NULL != pNumWritten) ? pNumWritten : dummy_())
     {
-//      *m_numWritten = 0;
-
         STLSOFT_ASSERT(NULL != m_dest);
     }
 /// @}
@@ -233,7 +237,7 @@ private:
  * \ingroup group__library__Iterator
  *
  * \param s The C-string which in which will be written the results of the
- * application of the iterator's dereference. May not be NULL
+ *  application of the iterator's dereference. May not be \c nullptr
  * \param numWritten An optional paramter to receive a count of how many
  * bytes were written by the iterator. <b>Note</b>: the variable pointed to
  * by this parameter is <i>not</i> set to 0 by the concatenator class. It
@@ -251,7 +255,7 @@ inline cstring_concatenator_iterator<C> cstring_concatenator(C *s, ss_size_t &nu
  * \ingroup group__library__Iterator
  *
  * \param s The C-string which in which will be written the results of the
- * application of the iterator's dereference. May not be NULL
+ * application of the iterator's dereference. May not be \c nullptr
  */
 template <ss_typename_param_k C>
 inline cstring_concatenator_iterator<C> cstring_concatenator(C *s)
@@ -282,7 +286,7 @@ inline cstring_concatenator_iterator<C> make_cstring_concatenator_iterator(C *s,
  * \ingroup group__library__Iterator
  *
  * \param s The C-string which in which will be written the results of the
- * application of the iterator's dereference. May not be NULL
+ * application of the iterator's dereference. May not be \c nullptr
  * \param pNumWritten An optional paramter to receive a count of how many
  * bytes were written by the iterator. <b>Note</b>: the variable pointed to
  * by this parameter is <i>not</i> set to 0 by the concatenator class. It
@@ -295,8 +299,8 @@ inline cstring_concatenator_iterator<C> cstring_concatenator(C *s, ss_size_t *pN
 {
     return make_cstring_concatenator_iterator(s, pNumWritten);
 }
-
 #endif /* 0 */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

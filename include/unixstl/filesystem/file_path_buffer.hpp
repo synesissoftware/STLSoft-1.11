@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_file_path_buffer template class.
  *
  * Created: 24th May 2004
- * Updated: 6th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   10
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       87
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -130,13 +130,14 @@ namespace unixstl_project
  *
  * \ingroup group__library__FileSystem
  *
- * This class is a non-template class primarily so that separate instantiations
- * are not created for each instantiation of the basic_file_path_buffer.
+ * This class is a non-template class primarily so that separate
+ * instantiations are not created for each instantiation of the
+ * basic_file_path_buffer.
  *
- * This class provides a simple function, which is to provide the maximum path
- * length for the host. This information is then cached due to the static nature
- * of the get_drivesvar_() method, although it can be reset by calling the
- * refresh() method on the buffer class.
+ * This class provides a simple function, which is to provide the maximum
+ * path length for the host. This information is then cached due to the
+ * static nature of the get_drivesvar_() method, although it can be reset by
+ * calling the refresh() method on the buffer class.
  *
  * \param C The character type
  * \param A The allocator type
@@ -229,12 +230,12 @@ public:
     /// Swaps the contents with those of another instance
     ///
     /// \param rhs The instance whose contents will be swapped with the
-    ///  callee
+    ///   callee
     ///
-    /// \note The complexity of this operation is not guaranteed
-    ///  to be constant-time. See the documentation for
-    ///  \link stlsoft::auto_buffer auto_buffer\endlink for
-    ///  further details.
+    /// \note The complexity of this operation is not guaranteed to be
+    ///   constant-time. See the documentation for
+    ///   \link stlsoft::auto_buffer auto_buffer\endlink for
+    ///   further details.
     void swap(class_type& rhs) STLSOFT_NOEXCEPT
     {
         m_buffer.swap(rhs.m_buffer);
@@ -304,8 +305,9 @@ public:
     /// Copies the contents into a caller supplied buffer
     ///
     /// \param buffer Pointer to character buffer to receive the contents.
-    ///  May be NULL, in which case the method returns size().
-    /// \param cchBuffer Number of characters of available space in \c buffer.
+    ///   May be \c nullptr, in which case the method returns size().
+    /// \param cchBuffer Number of characters of available space in
+    ///   \c buffer.
     size_type copy(char_type* buffer, size_type cchBuffer) const
     {
         return STLSOFT_NS_QUAL(copy_contents)(buffer, cchBuffer, m_buffer.data(), m_buffer.size());
@@ -354,21 +356,25 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/** Specialisation of the basic_file_path_buffer template for the ANSI character type \c char
+/** Specialisation of the basic_file_path_buffer template for the ANSI
+ * character type \c char
  *
  * \ingroup group__library__FileSystem
  */
 typedef basic_file_path_buffer<us_char_a_t, STLSOFT_NS_QUAL(allocator_selector)<us_char_a_t>::allocator_type>   file_path_buffer_a;
-/** Specialisation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
+/** Specialisation of the basic_file_path_buffer template for the Unicode
+ * character type \c wchar_t
  *
  * \ingroup group__library__FileSystem
  */
 typedef basic_file_path_buffer<us_char_w_t, STLSOFT_NS_QUAL(allocator_selector)<us_char_w_t>::allocator_type>   file_path_buffer_w;
-/** Specialisation of the basic_file_path_buffer template for the ANSI character type \c char
+/** Specialisation of the basic_file_path_buffer template for the ANSI
+ * character type \c char
  *
  * \ingroup group__library__FileSystem
  */
 typedef basic_file_path_buffer<us_char_a_t, STLSOFT_NS_QUAL(allocator_selector)<us_char_a_t>::allocator_type>   file_path_buffer;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Support for PlatformSTL redefinition by inheritance+namespace, for confused
@@ -396,7 +402,6 @@ typedef basic_file_path_buffer<us_char_a_t, STLSOFT_NS_QUAL(allocator_selector)<
         typedef ss_typename_type_k parent_class_type::const_reference   const_reference;
         typedef ss_typename_type_k parent_class_type::size_type         size_type;
     };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -553,6 +558,7 @@ inline S& operator <<(S& s, UNIXSTL_NS_QUAL(basic_file_path_buffer)<C, A> const&
     return s;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef UNIXSTL_NO_NAMESPACE
@@ -584,6 +590,7 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

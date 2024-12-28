@@ -4,7 +4,7 @@
  * Purpose: Contains classes and functions for dealing with BSTR strings.
  *
  * Created: 24th June 2002
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 9
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     107
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -291,8 +291,8 @@ comstl_C_BSTR_dup(
  *
  * \ingroup group__library__String
  *
- * \param s1 The first BSTR to compare. May be NULL
- * \param s2 The second BSTR to compare. May be NULL
+ * \param s1 The first BSTR to compare. May be \c nullptr
+ * \param s2 The second BSTR to compare. May be \c nullptr
  *
  * \return An integer value representing the relationship between the strings
  * \retval <0 s1 is lexicographically less than s2
@@ -543,8 +543,8 @@ BSTR_dup(
  *
  * \ingroup group__library__String
  *
- * \param s1 The first BSTR to compare. May be NULL
- * \param s2 The second BSTR to compare. May be NULL
+ * \param s1 The first BSTR to compare. May be \c nullptr
+ * \param s2 The second BSTR to compare. May be \c nullptr
  *
  * \return An integer value representing the relationship between the strings
  * \retval <0 s1 is lexicographically less than s2

@@ -101,8 +101,8 @@
  * See the discrimination of API functions in stlsoft/api/external/time.h
  * for more information.
  *
- * \param tm Pointer to calendar time structure. May not be NULL
- * \param t Pointer to the time since epoch. May not be NULL
+ * \param tm Pointer to calendar time structure. May not be \c nullptr
+ * \param t Pointer to the time since epoch. May not be \c nullptr
  *
  * \retval 0 if the operation succeeded;
  * \retval an "errno" value if the operation failed;
@@ -196,8 +196,8 @@ STLSOFT_API_INTERNAL_Time_gmtime(
  * See the discrimination of API functions in stlsoft/api/external/time.h
  * for more information.
  *
- * \param tm Pointer to calendar time structure. May not be NULL
- * \param t Pointer to the time since epoch. May not be NULL
+ * \param tm Pointer to calendar time structure. May not be \c nullptr
+ * \param t Pointer to the time since epoch. May not be \c nullptr
  *
  * \retval 0 if the operation succeeded;
  * \retval an "errno" value if the operation failed;

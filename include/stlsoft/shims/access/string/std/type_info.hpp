@@ -4,7 +4,7 @@
  * Purpose: Contains the string access shims for std::type_info.
  *
  * Created: 19th December 2011
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_MINOR       3
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_REVISION    4
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_EDIT        56
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TYPE_INFO_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -229,6 +229,7 @@ public:
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
@@ -241,7 +242,7 @@ public:
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
 inline
@@ -258,7 +259,7 @@ c_str_data_a(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -303,7 +304,7 @@ c_str_data_w(STLSOFT_NS_QUAL_STD(type_info) const& ti)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style string.
+ * \return None-\c nullptr, non-mutating pointer to a C-style string.
  */
 inline
 ss_char_a_t const*
@@ -313,6 +314,7 @@ c_str_data(
 {
     return c_str_data_a(ti);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
@@ -377,6 +379,7 @@ c_str_len(
     return c_str_len_a(ti);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
  *
@@ -389,7 +392,7 @@ c_str_len(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
 inline
@@ -406,7 +409,7 @@ c_str_ptr_a(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -421,7 +424,7 @@ c_str_ptr_w(STLSOFT_NS_QUAL_STD(type_info) const& ti)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string.
  */
 inline
@@ -433,11 +436,12 @@ c_str_ptr(
     return c_str_ptr_a(ti);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
+ * pointer to the character string or \c nullptr.
  */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr_null function
@@ -445,8 +449,8 @@ c_str_ptr(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated
+ *   C-style string of <code>char</code>.
  */
 inline
 ss_char_a_t const*
@@ -462,7 +466,7 @@ c_str_ptr_null_a(
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -507,7 +511,7 @@ c_str_ptr_null_w(STLSOFT_NS_QUAL_STD(type_info) const& ti)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string.
  */
 inline
