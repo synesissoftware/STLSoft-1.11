@@ -4,7 +4,7 @@
  * Purpose: Basic functionals.
  *
  * Created: 8th June 2002
- * Updated: 10th October 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MAJOR        4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MINOR        0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_REVISION     7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT         58
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MAJOR     4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MINOR     0
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_REVISION  8
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -186,7 +186,7 @@ public:
         , m_monitorFn(rhs.m_monitorFn)
         , m_bUsed(rhs.m_bUsed)
     {
-        rhs.m_bUsed = false;
+        const_cast<class_type&>(rhs)->m_bUsed = false;
     }
     /// Destructor
     ///
@@ -224,7 +224,9 @@ private: // fields
 };
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
