@@ -996,9 +996,7 @@ c_str_ptr_null(WINSTL_NS_QUAL(basic_findfile_sequence_value_type)<C, T> const& v
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline
 ws_bool_t
-is_empty(
-    basic_findfile_sequence<C, T> const& s
-)
+is_empty(basic_findfile_sequence<C, T> const& s) STLSOFT_NOEXCEPT
 {
     return s.empty();
 }

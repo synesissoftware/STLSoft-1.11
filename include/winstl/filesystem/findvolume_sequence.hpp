@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 15th January 2002
- * Updated: 10th October 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  17
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      140
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      141
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,7 +141,6 @@ class basic_findvolume_sequence_value_type;
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
 class basic_findvolume_sequence_const_iterator;
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -424,7 +423,6 @@ inline ws_char_w_t const* c_str_data_w(WINSTL_NS_QUAL(basic_findvolume_sequence_
 {
     return v;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_data for winstl::basic_findvolume_sequence_value_type
@@ -480,7 +478,6 @@ inline ws_char_w_t const* c_str_ptr_w(WINSTL_NS_QUAL(basic_findvolume_sequence_v
 {
     return v;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr for winstl::basic_findvolume_sequence_value_type
@@ -508,7 +505,6 @@ inline ws_char_w_t const* c_str_ptr_null_w(WINSTL_NS_QUAL(basic_findvolume_seque
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_w(v));
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr_null for winstl::basic_findvolume_sequence_value_type
@@ -529,7 +525,9 @@ inline C const* c_str_ptr_null(WINSTL_NS_QUAL(basic_findvolume_sequence_value_ty
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C, ss_typename_param_k T>
-inline ws_bool_t is_empty(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v)
+inline
+ws_bool_t
+is_empty(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v) STLSOFT_NOEXCEPT
 {
     return '\0' == v[0];
 }

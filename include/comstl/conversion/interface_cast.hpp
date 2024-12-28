@@ -62,9 +62,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      3
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      4
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   1
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       143
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       144
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1061,7 +1061,7 @@ inline
 cs_bool_t
 is_empty(
     COMSTL_NS_QUAL(interface_cast_noaddref)<I, X> const& p
-)
+) STLSOFT_NOEXCEPT
 {
     return NULL != get_ptr(p);
 }
@@ -1076,7 +1076,7 @@ inline
 cs_bool_t
 is_empty(
     COMSTL_NS_QUAL(interface_cast_addref)<I, X> const& p
-)
+) STLSOFT_NOEXCEPT
 {
     return NULL != get_ptr(p);
 }
