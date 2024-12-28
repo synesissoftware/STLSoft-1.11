@@ -4,7 +4,7 @@
  * Purpose: Clipboard scoping and facade class.
  *
  * Created: 26th May 2005
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  To Martin Moene for reporting the problem with the data type in
  *          set_data_or_deallocate_and_throw_(), and for calling for
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      1
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   4
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       58
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -192,8 +192,8 @@ private:
  * clipboard.
  *
  * \note All the methods throw an instance of
- *  \link winstl::clipboard_scope_exception clipboard_scope_exception\endlink
- *  if they fail.
+ *   \link winstl::clipboard_scope_exception clipboard_scope_exception\endlink
+ *   if they fail.
  */
 class clipboard_scope
 #if defined(STLSOFT_COMPILER_IS_DMC)
@@ -217,7 +217,8 @@ public:
     /// Takes ownership of the clipboard
     ///
     /// \param hwndOwner Window to be associated as owner of the clipboard.
-    ///  May be NULL, in which case the current thread owns the clipboard.
+    ///   May be \c nullptr, in which case the current thread owns the
+    ///   clipboard.
     ss_explicit_k clipboard_scope(HWND hwndOwner = NULL) stlsoft_throw_1(clipboard_scope_exception);
     /// Gives up ownership of the clipboard.
     ~clipboard_scope() STLSOFT_NOEXCEPT;
@@ -604,7 +605,6 @@ inline void clipboard_scope::get_data(HPALETTE& hPal) const stlsoft_throw_1(clip
     get_palette_data(hPal);
 }
 #endif
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

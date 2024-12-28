@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/api/external/UnicodeAndCharacterSet.h
+ * File:    winstl/api/external/UnicodeAndCharacterSet.h
  *
- * Purpose:     External preprocessor aliases for external Windows' Unicode
- *              and Character Set Functions API.
+ * Purpose: External preprocessor aliases for external Windows' Unicode and
+ *          Character Set Functions API.
  *
- * Created:     20th August 2017
- * Updated:     26th December 2020
+ * Created: 20th August 2017
+ * Updated: 27th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -61,6 +61,11 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_H_WINDOWS
+# define STLSOFT_INCL_H_WINDOWS
+# include <windows.h>   /* Windows base header */
+#endif /* !STLSOFT_INCL_H_WINDOWS */
+
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
 #endif /* !WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_ */
@@ -91,7 +96,7 @@ IsTextUnicode
  */
 
 #ifndef WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_MultiByteToWideChar
-# define WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_MultiByteToWideChar         STLSOFT_NS_GLOBAL_(MultiByteToWideChar)
+# define WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_MultiByteToWideChar     STLSOFT_NS_GLOBAL_(MultiByteToWideChar)
 #endif /* !WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_MultiByteToWideChar */
 
 /*
@@ -99,7 +104,7 @@ TranslateCharsetInfo
  */
 
 #ifndef WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_WideCharToMultiByte
-# define WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_WideCharToMultiByte         STLSOFT_NS_GLOBAL_(WideCharToMultiByte)
+# define WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_WideCharToMultiByte     STLSOFT_NS_GLOBAL_(WideCharToMultiByte)
 #endif /* !WINSTL_API_EXTERNAL_UnicodeAndCharacterSet_WideCharToMultiByte */
 
 

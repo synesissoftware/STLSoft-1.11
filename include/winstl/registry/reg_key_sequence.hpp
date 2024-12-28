@@ -13,7 +13,7 @@
  *          basic_reg_key_sequence class interface.
  *
  * Created: 19th January 2002
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -64,7 +64,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      9
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   15
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       159
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       160
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -253,7 +253,7 @@ public:
     /// Creates an instance which provides access to the sub-keys of the named sub-key of \c hkey
     ///
     /// \param hkey A registry key handle representing the parent of \c sub_key_name
-    /// \param sub_key_name The name of the sub-key whose sub-keys will be enumerated. If sub_key_name is NULL or the empty string, then
+    /// \param sub_key_name The name of the sub-key whose sub-keys will be enumerated. If sub_key_name is \c nullptr or the empty string, then
     /// the sub-keys of \c hkey will be enumerated
     /// \param accessMask The security access mask with which the key (hkey + sub_key_name) will be opened. Defaults to KEY_READ.
     ///
@@ -267,7 +267,7 @@ public:
     /// Creates an instance which provides access to the sub-keys of the named sub-key of \c hkey
     ///
     /// \param hkey A registry key handle representing the parent of \c sub_key_name
-    /// \param sub_key_name The name of the sub-key whose sub-keys will be enumerated. If sub_key_name is NULL or the empty string, then
+    /// \param sub_key_name The name of the sub-key whose sub-keys will be enumerated. If sub_key_name is \c nullptr or the empty string, then
     /// the sub-keys of \c hkey will be enumerated
     /// \param accessMask The security access mask with which the key (hkey + sub_key_name) will be opened. Defaults to KEY_READ
     /// \param bMonitorExternalInvalidation If non-zero, the iterators will monitor for external iterator invalidation, throwing

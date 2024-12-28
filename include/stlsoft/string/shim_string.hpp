@@ -4,7 +4,7 @@
  * Purpose: Contains the basic_shim_string template class.
  *
  * Created: 9th July 2004
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  Dimitri Kaparis, for spotting a typo in the string access shims.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       7
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        72
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -149,7 +149,8 @@ namespace
  * \param C The character type
  * \param N The number of characters in the internal auto_buffer
  * \param U The nUll indicator. If true, the implicit conversion operator
- *   returns NULL for an empty string, otherwise it returns the empty string
+ *   returns \c nullptr for an empty string, otherwise it returns the empty
+ *   string
  * \param A The allocator
  * \param T The char traits type
  *
@@ -623,7 +624,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline C const* c_str_data(basic_shim_string<C, N, U, A, T> const& ss)
+inline
+C const*
+c_str_data(basic_shim_string<C, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -637,7 +640,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline ss_size_t c_str_len(basic_shim_string<C, N, U, A, T> const& ss)
+inline
+ss_size_t
+c_str_len(basic_shim_string<C, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -651,7 +656,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline C const* c_str_ptr(basic_shim_string<C, N, U, A, T> const& ss)
+inline
+C const*
+c_str_ptr(basic_shim_string<C, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -665,7 +672,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline C const* c_str_ptr_null(basic_shim_string<C, N, U, A, T> const& ss)
+inline
+C const*
+c_str_ptr_null(basic_shim_string<C, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -680,7 +689,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline ss_char_a_t const* c_str_data_a(basic_shim_string<ss_char_a_t, N, U, A, T> const& ss)
+inline
+ss_char_a_t const*
+c_str_data_a(basic_shim_string<ss_char_a_t, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -693,7 +704,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline ss_size_t c_str_len_a(basic_shim_string<ss_char_a_t, N, U, A, T> const& ss)
+inline
+ss_size_t
+c_str_len_a(basic_shim_string<ss_char_a_t, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -706,7 +719,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline ss_char_a_t const* c_str_ptr_a(basic_shim_string<ss_char_a_t, N, U, A, T> const& ss)
+inline
+ss_char_a_t const*
+c_str_ptr_a(basic_shim_string<ss_char_a_t, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -719,7 +734,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline ss_char_a_t const* c_str_ptr_null_a(basic_shim_string<ss_char_a_t, N, U, A, T> const& ss)
+inline
+ss_char_a_t const*
+c_str_ptr_null_a(basic_shim_string<ss_char_a_t, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -734,7 +751,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline ss_char_w_t const* c_str_data_w(basic_shim_string<ss_char_w_t, N, U, A, T> const& ss)
+inline
+ss_char_w_t const*
+c_str_data_w(basic_shim_string<ss_char_w_t, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -747,7 +766,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline ss_size_t c_str_len_w(basic_shim_string<ss_char_w_t, N, U, A, T> const& ss)
+inline
+ss_size_t
+c_str_len_w(basic_shim_string<ss_char_w_t, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -760,7 +781,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline ss_char_w_t const* c_str_ptr_w(basic_shim_string<ss_char_w_t, N, U, A, T> const& ss)
+inline
+ss_char_w_t const*
+c_str_ptr_w(basic_shim_string<ss_char_w_t, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -773,7 +796,9 @@ template <
 ,   ss_typename_param_k A
 ,   ss_typename_param_k T
 >
-inline ss_char_w_t const* c_str_ptr_null_w(basic_shim_string<ss_char_w_t, N, U, A, T> const& ss)
+inline
+ss_char_w_t const*
+c_str_ptr_null_w(basic_shim_string<ss_char_w_t, N, U, A, T> const& ss)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -806,6 +831,7 @@ operator <<(
 }
 #endif /* compiler */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
@@ -821,7 +847,12 @@ template <
 ,   ss_typename_param_k         A
 ,   ss_typename_param_k         T
 >
-inline std::basic_ostream<C>& operator <<(std::basic_ostream<C> &s, stlsoft::basic_shim_string<C, N, U, A, T> const& ss)
+inline
+std::basic_ostream<C>&
+operator <<(
+    std::basic_ostream<C>&                              s
+,   stlsoft::basic_shim_string<C, N, U, A, T> const&    ss
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -829,10 +860,9 @@ inline std::basic_ostream<C>& operator <<(std::basic_ostream<C> &s, stlsoft::bas
 
     return s;
 }
-
 # endif /* compiler */
-
 #endif /* STLSOFT_NO_NAMESPACE */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

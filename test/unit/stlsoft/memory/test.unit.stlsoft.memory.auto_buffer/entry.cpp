@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.memory.auto_buffer.cpp
+ * File:    test.unit.stlsoft.memory.auto_buffer/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 6th November 2024
+ * Updated: 17th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -450,6 +450,7 @@ static void test_ctor_n_v_4()
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
 
     XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff.begin(), buff.end(), 0));
+    XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff.cbegin(), buff.cend(), 0));
 }
 
 #if __cplusplus >= 201103L
@@ -979,6 +980,7 @@ static void test_copy_from()
     XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
     XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.begin(), cbuff.end(), 0));
+    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.cbegin(), cbuff.cend(), 0));
 
 
     ab_int_8_t  buff2(0);
@@ -986,6 +988,7 @@ static void test_copy_from()
     XTESTS_TEST_BOOLEAN_TRUE(buff2.empty());
     XTESTS_TEST_INTEGER_EQUAL(0u, buff2.size());
     XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff2.rbegin(), buff2.rend(), 0));
+    XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff2.crbegin(), buff2.crend(), 0));
 
     buff2.copy_from(cbuff);
 
@@ -1375,6 +1378,11 @@ static void test_rbegin_and_rend()
     XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.rbegin() + 0, cbuff.rend() + 0, 0));
     XTESTS_TEST_INTEGER_EQUAL(4, std::accumulate(cbuff.rbegin() + 0, cbuff.rend() - 2, 0));
     XTESTS_TEST_INTEGER_EQUAL(-9, std::accumulate(cbuff.rbegin() + 1, cbuff.rend() - 0, 0));
+
+    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.crbegin(), cbuff.crend(), 0));
+    XTESTS_TEST_INTEGER_EQUAL(-5, std::accumulate(cbuff.crbegin() + 0, cbuff.crend() + 0, 0));
+    XTESTS_TEST_INTEGER_EQUAL(4, std::accumulate(cbuff.crbegin() + 0, cbuff.crend() - 2, 0));
+    XTESTS_TEST_INTEGER_EQUAL(-9, std::accumulate(cbuff.crbegin() + 1, cbuff.crend() - 0, 0));
 }
 } // anonymous namespace
 

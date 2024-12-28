@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/obsolete/meta.hpp (originally MTBase.h, ::SynesisStl)
+ * File:    stlsoft/obsolete/meta.hpp (originally MTBase.h, ::SynesisStl)
  *
- * Purpose:     Meta programming primitives.
+ * Purpose: Meta programming primitives.
  *
- * Created:     19th November 1998
- * Updated:     11th March 2024
+ * Created: 19th November 1998
+ * Updated: 25th November 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MAJOR    4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_MINOR    0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_REVISION 6
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     144
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_REVISION 7
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_META_EDIT     145
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -243,14 +243,14 @@ struct convertible_index<unsigned>
 {
     typedef size_type<3>    type;
 };
+#ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 
-#ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
 STLSOFT_TEMPLATE_SPECIALISATION
 struct convertible_index<bool>
 {
     typedef size_type<4>    type;
 };
-#endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+#endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct convertible_index<void*>
@@ -276,9 +276,9 @@ convertible_index<int>::type            convertible_index_function(unsigned long
 convertible_index<long double>::type    convertible_index_function(double );
 convertible_index<long double>::type    convertible_index_function(long double );
 # endif /* compiler */
-# ifdef STLSOFT_CF_NATIVE_BOOL_SUPPORT
+# ifdef STLSOFT_CF_BUILTIN_bool_SUPPORT
 convertible_index<bool>::type           convertible_index_function(bool );
-# endif /* STLSOFT_CF_NATIVE_BOOL_SUPPORT */
+# endif /* STLSOFT_CF_BUILTIN_bool_SUPPORT */
 convertible_index<void*>::type          convertible_index_function(void const volatile* );
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -345,6 +345,7 @@ struct is_void
 {
     enum { value = is_void_type<T>::value };
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

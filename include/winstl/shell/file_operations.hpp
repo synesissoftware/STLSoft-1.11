@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shell/file_operations.hpp
+ * File:    winstl/shell/file_operations.hpp
  *
- * Purpose:     Shell file operations.
+ * Purpose: Shell file operations.
  *
- * Created:     12th December 1996
- * Updated:     11th March 2024
+ * Created: 12th December 1996
+ * Updated: 24th December 2024
  *
- * Thanks:      To Pablo Aguilar for default folder enhancements.
+ * Thanks:  To Pablo Aguilar for default folder enhancements.
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MINOR      1
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_REVISION   9
-# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       104
+# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -355,7 +355,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -385,7 +385,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -416,7 +416,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -448,7 +448,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -600,7 +600,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -632,7 +632,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -665,7 +665,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -699,7 +699,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -845,7 +845,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -875,7 +875,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -906,7 +906,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -938,7 +938,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -1090,7 +1090,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -1122,7 +1122,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -1155,7 +1155,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *
@@ -1189,7 +1189,7 @@ shell_delete(
  *
  * \note Throws std::bad_alloc on allocation failure on translators that support it
  *
- * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-\c nullptr
  *
  * \return A status code indicating the success of the operation
  *

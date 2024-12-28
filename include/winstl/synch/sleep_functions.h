@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/sleep_functions.h
+ * File:    winstl/synch/sleep_functions.h
  *
- * Purpose:     WinSTL time functions.
+ * Purpose: WinSTL time functions.
  *
- * Created:     11th June 2006
- * Updated:     11th March 2024
+ * Created: 11th June 2006
+ * Updated: 17th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define WINSTL_INCL_WINSTL_SYNCH_H_SLEEP_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      1
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       30
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR    2
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR    2
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,12 +69,22 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef WINSTL_INCL_WINSTL_TIME_H_COMPARISON_FUNCTIONS
+# include <winstl/time/comparison_functions.h>
+#endif /* !WINSTL_INCL_WINSTL_TIME_H_COMPARISON_FUNCTIONS */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ProcessAndThread
 # include <winstl/api/external/ProcessAndThread.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ProcessAndThread */
+#ifndef WINSTL_INCL_WINSTL_API_external_h_Synchronization
+# include <winstl/api/external/Synchronization.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_Synchronization */
+#ifndef WINSTL_INCL_WINSTL_API_external_h_Time
+# include <winstl/api/external/Time.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_Time */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,8 +111,9 @@ namespace winstl_project
  * functions
  */
 
-/** [C, C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
+/** [C, C++] Puts the calling thread to sleep for (at least) the given
+ * number of microseconds.
+ *
 \code
 winstl_C_micro_sleep(100000);  // Sleep for 0.1 seconds
 winstl_C_micro_sleep(100);     // Sleep for 0.1 milliseconds
@@ -111,19 +122,128 @@ winstl_C_micro_sleep(100);     // Sleep for 0.1 milliseconds
  * \param microseconds The number of microseconds to wait
  *
  * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>::GetLastError()</code> will contain an error code
- *   representing the reason for failure.
+ *  successful. If not, <code>::GetLastError()</code> will contain a code
+ *  code representing the reason for failure.
  *
  * \see winstl::micro_sleep
+ *
+ * \note Because Windows provides sleep facilities (via Windows API function
+ *   <code>::Sleep(dwMilliseconds : DWORD)</code>) at millisecond
+ *   granularity, calling this function with values less than 1000 results
+ *   in the equivalent behaviour as if called with 1000.
  */
 STLSOFT_INLINE
 ws_int_t
 winstl_C_micro_sleep(
     ws_uint_t   microseconds
-)
+) STLSOFT_NOEXCEPT
 {
-    return (WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(microseconds / 1000), ws_true_v);
+    LARGE_INTEGER   liFrequency;
+    LARGE_INTEGER   liCountStart;
+    LARGE_INTEGER   liCountCurrent;
+
+    /* NOTE: compiler should be able to generate good code for adjacent
+     * division&modulo (aka `std::div()`)
+     */
+    DWORD milliseconds      =   microseconds / 1000;
+    DWORD microseconds_rem  =   microseconds % 1000;
+
+    /* Algorithm:
+     *
+     * 1 - if milliseconds >= 225, then we do a straight `::Sleep()`;
+     * 2 - if microseconds == 0, then we do a straight `::Sleep()`;
+     * 3 - if microseconds < 25000, then we do a busy
+     *     wait (via `::Sleep(0)` and `::QueryPerformanceCounter()`);
+     * 4 - use (`::CreateWaitableTimer()`);
+     */
+
+    /* 1 ? */
+    if (microseconds >= 225000)
+    {
+        goto us_simple_sleep_by_milliseconds;
+    }
+
+    /* 2 ? */
+    if (0 == milliseconds &&
+        0 == microseconds_rem)
+    {
+        goto us_simple_sleep_by_milliseconds;
+    }
+
+    /* 3 and 4 : we collect the QPC frequency and initial count */
+
+    if (!WINSTL_API_EXTERNAL_Time_QueryPerformanceFrequency(&liFrequency))
+    {
+        goto us_simple_sleep_by_milliseconds;
+    }
+
+    if (!WINSTL_API_EXTERNAL_Time_QueryPerformanceCounter(&liCountStart))
+    {
+        goto us_simple_sleep_by_milliseconds;
+    }
+
+    /* 3 ? */
+    if (microseconds < 25000)
+    {
+us_qpc_check:
+
+        for (int i = 0; ; ++i)
+        {
+            WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(0);
+
+            if (!WINSTL_API_EXTERNAL_Time_QueryPerformanceCounter(&liCountCurrent))
+            {
+                goto us_simple_sleep_by_milliseconds;
+            }
+            else
+            {
+                LONGLONG const d = winstl_C_difference_in_microseconds_QPC(&liCountCurrent, &liCountStart, &liFrequency);
+
+                if (d >= microseconds)
+                {
+                    return ws_true_v;
+                }
+            }
+        }
+    }
+
+    /* 4 */
+    {
+        HANDLE hTimer;
+
+        if (NULL == (hTimer = STLSOFT_NS_GLOBAL(CreateWaitableTimer)(NULL, TRUE, NULL)))
+        {
+            goto us_simple_sleep_by_milliseconds;
+        }
+        else
+        {
+            LARGE_INTEGER ft;
+
+            ft.QuadPart = -((10 * (LONGLONG)microseconds) / 1);
+
+            if (!STLSOFT_NS_GLOBAL(SetWaitableTimer)(hTimer, &ft, 0, NULL, NULL, 0))
+            {
+                STLSOFT_NS_GLOBAL(CloseHandle)(hTimer);
+
+                goto us_simple_sleep_by_milliseconds;
+            }
+            else
+            {
+                WINSTL_API_EXTERNAL_Synchronization_WaitForSingleObject(hTimer, INFINITE);
+
+                STLSOFT_NS_GLOBAL(CloseHandle)(hTimer);
+
+                goto us_qpc_check;
+            }
+        }
+    }
+
+
+us_simple_sleep_by_milliseconds:
+
+    return (WINSTL_API_EXTERNAL_ProcessAndThread_Sleep(milliseconds), ws_true_v);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * obsolete symbols
@@ -164,24 +284,28 @@ namespace winstl
 
 #ifdef __cplusplus
 
-/** [C++] Puts the calling thread to sleep for the given number of
- *   microseconds.
+/** [C++] Puts the calling thread to sleep for (at least) the given
+ * number of microseconds.
+ *
 \code
-winstl::micro_sleep(100000);  // Sleep for 0.1 seconds
-winstl::micro_sleep(100);     // Sleep for 0.1 milliseconds
+  winstl::micro_sleep(100000);  // Sleep for 0.1 approximately seconds
+  winstl::micro_sleep(100);     // Sleep for 0.1 approximately milliseconds
 \endcode
  *
  * \param microseconds The number of microseconds to wait
  *
  * \return A boolean value indicating whether the operation was
- *   successful. If not, <code>::GetLastError()</code> will contain an error code
- *   representing the reason for failure.
+ *  successful. If not, <code>::GetLastError()</code> will contain a code
+ *  representing the reason for failure.
  */
-inline ws_int_t micro_sleep(ws_uint_t microseconds)
+inline
+ws_int_t
+micro_sleep(
+    ws_uint_t microseconds
+) STLSOFT_NOEXCEPT
 {
     return winstl_C_micro_sleep(microseconds);
 }
-
 #endif /* __cplusplus */
 
 

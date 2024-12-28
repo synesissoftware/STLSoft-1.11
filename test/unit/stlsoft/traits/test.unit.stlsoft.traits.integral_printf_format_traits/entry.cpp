@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_printf_format_traits`.
  *
  * Created: 20th October 2024
- * Updated: 23rd October 2024
+ * Updated: 15th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -108,21 +108,37 @@ static void test_char(void)
         int_t
     >                                                       ipft_t;
 
+#ifdef STLSOFT_CF_char_IS_UNSIGNED
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::decimal_format_a());
+#else /* ? STLSOFT_CF_char_IS_UNSIGNED */
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::decimal_format_a());
+#endif /* STLSOFT_CF_char_IS_UNSIGNED */
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hexadecimal_format_a(false));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%X", ipft_t::hexadecimal_format_a(true));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%o", ipft_t::octal_format_a());
 
+#ifdef STLSOFT_CF_char_IS_UNSIGNED
+    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::decimal_format_w());
+#else /* ? STLSOFT_CF_char_IS_UNSIGNED */
     XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::decimal_format_w());
+#endif /* STLSOFT_CF_char_IS_UNSIGNED */
     XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hexadecimal_format_w(false));
     XTESTS_TEST_WIDE_STRING_EQUAL(L"%X", ipft_t::hexadecimal_format_w(true));
     XTESTS_TEST_WIDE_STRING_EQUAL(L"%o", ipft_t::octal_format_w());
 
 # include <stlsoft/internal/warnings/push/suppress_deprecation_.h>
+#ifdef STLSOFT_CF_char_IS_UNSIGNED
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%u", ipft_t::format_a());
+#else /* ? STLSOFT_CF_char_IS_UNSIGNED */
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%d", ipft_t::format_a());
+#endif /* STLSOFT_CF_char_IS_UNSIGNED */
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("%x", ipft_t::hex_format_a());
 
+#ifdef STLSOFT_CF_char_IS_UNSIGNED
+    XTESTS_TEST_WIDE_STRING_EQUAL(L"%u", ipft_t::format_w());
+#else /* ? STLSOFT_CF_char_IS_UNSIGNED */
     XTESTS_TEST_WIDE_STRING_EQUAL(L"%d", ipft_t::format_w());
+#endif /* STLSOFT_CF_char_IS_UNSIGNED */
     XTESTS_TEST_WIDE_STRING_EQUAL(L"%x", ipft_t::hex_format_w());
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 
