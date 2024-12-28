@@ -6,7 +6,7 @@
 # Purpose:  Finds and compiles (individually) headers in the libraries.
 #
 # Created:  14th February 2024
-# Updated:  27th October 2024
+# Updated:  28th October 2024
 #
 # Home:     http://stlsoft.org/
 #
@@ -187,7 +187,7 @@ Flags/options:
     --verbose-mode
         announces each include file as it is compiled
 
-    -c
+    -x
     --cxx-compiler
         specifies the name of the C++-compiler, which otherwise defaults
         to c++
@@ -413,9 +413,12 @@ do
 
                     ((NumFilesCompiled++))
 
-                    echo "#include <$f>" | $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
+                    echo "#include <$srp>" | $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
 
                     [ $? -eq 0 ] || ((NumFilesFailed++))
+                else
+
+                    echo "#include <$srp>" \| $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
                 fi
             done
         fi
@@ -428,9 +431,12 @@ do
 
                 ((NumFilesCompiled++))
 
-                echo "#include <$f>" | $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
+                echo "#include <$srp>" | $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
 
                 [ $? -eq 0 ] || ((NumFilesFailed++))
+            else
+
+                echo "#include <$srp>" \| $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
             fi
         fi
     done
