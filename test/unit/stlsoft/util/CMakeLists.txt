@@ -2,5 +2,6 @@
 add_subdirectory(test.unit.stlsoft.util.bit_functions)
 add_subdirectory(test.unit.stlsoft.util.count_decimal_digits)
 add_subdirectory(test.unit.stlsoft.util.count_hexadecimal_digits)
+add_subdirectory(test.unit.stlsoft.util.string_insertion)
 add_subdirectory(test.unit.stlsoft.util.string_switch)
 add_subdirectory(test.unit.stlsoft.util.true_typedef)

@@ -1,10 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    stlsoft/util/streams/string_insertion.hpp
  *
- * Purpose: Contains equivalents to contents of std's <utility>.
+ * Purpose: Utility functions to assist with the full and correct
+ *          implementation of idiomatic stream insertion for arbitrary types
+ *          that act, in some fashion, as strings.
  *
  * Created: 29th January 2024
- * Updated: 15th October 2024
+ * Updated: 14th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_REVISION 3
-# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     4
+# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -307,7 +309,8 @@ string_insert_4_(
  * functions
  */
 
-/** T.B.C.
+/** Inserts efficiently the given range of characters into the given stream,
+ * respecting standard flags (for standard streams)
  *
  * \tparam T_stream The stream type
  * \tparam T_character The character type
@@ -338,7 +341,8 @@ string_insert(
     );
 }
 
-/** T.B.C.
+/** Inserts efficiently the given range of characters into the given stream,
+ * respecting standard flags (for standard streams)
  *
  * \tparam T_stream The stream type
  *
@@ -367,7 +371,8 @@ string_insert_m(
     );
 }
 
-/** T.B.C.
+/** Inserts efficiently the given range of characters into the given stream,
+ * respecting standard flags (for standard streams)
  *
  * \tparam T_stream The stream type
  *
