@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/logical/is_empty/std/container.hpp
+ * File:    stlsoft/shims/logical/is_empty/std/container.hpp
  *
- * Purpose:     Generic adapted case of is_empty shim for standard(-like)
- *              collections.
+ * Purpose: Generic adapted case of is_empty shim for standard(-like)
+ *          collections.
  *
- * Created:     18th December 2006
- * Updated:     11th March 2024
+ * Created: 18th December 2006
+ * Updated: 28th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_MAJOR     2
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_MINOR     0
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_REVISION  7
-# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_EDIT      29
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_MINOR     1
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_REVISION  1
+# define STLSOFT_VER_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -97,19 +97,20 @@ STLSOFT_OPEN_WORKER_NS_(is_empty_ns)
     // This overload of is_empty_helper_assistant() denotes the
     // assumption that, by default, a type is able to indicate its
     // emptiness by a non-mutating method empty().
-    yes_type is_empty_helper_assistant(...)
+    yes_type
+    is_empty_helper_assistant(...)
     {
         return yes_type();
     }
 
     template <ss_typename_param_k C>
-    inline ss_bool_t is_empty_helper(C const& c, yes_type)
+    inline
+    ss_bool_t
+    is_empty_helper(C const& c, yes_type) STLSOFT_NOEXCEPT
     {
         return c.empty();
     }
-
 STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
-
 #endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 
 /** Indicates whether the collection is empty
@@ -118,16 +119,16 @@ STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
  *
  */
 template <ss_typename_param_k C>
-inline ss_bool_t is_empty(C const& c)
+inline
+ss_bool_t
+is_empty(C const& c) STLSOFT_NOEXCEPT
 {
 #ifdef STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP
 
     return STLSOFT_WORKER_NS_QUAL_(is_empty_ns, is_empty_helper)(c, STLSOFT_WORKER_NS_QUAL_(is_empty_ns, is_empty_helper_assistant)(&c, &c));
-
 #else /* ? STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 
     return c.empty();
-
 #endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 }
 
@@ -148,8 +149,6 @@ inline ss_bool_t is_empty(C const& c)
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_LOGICAL_IS_EMPTY_STD_HPP_CONTAINER */
 

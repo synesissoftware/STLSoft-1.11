@@ -4,7 +4,7 @@
  * Purpose: Contains the get_ptr attribute shim.
  *
  * Created: 10th September 2019
- * Updated: 26th March 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_MAJOR       1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_MINOR       0
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_REVISION    2
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_EDIT        4
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_MINOR       1
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_REVISION    1
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_SHARED_PTR_EDIT        1
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,12 +101,15 @@ inline
 T*
 get_ptr(
     STLSOFT_NS_QUAL_STD(shared_ptr)<T> const& p
-)
+) STLSOFT_NOEXCEPT
 {
     return p.get();
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

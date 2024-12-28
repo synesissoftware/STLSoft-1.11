@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/functional/type_functionals.hpp
+ * File:    comstl/functional/type_functionals.hpp
  *
- * Purpose:     Type-specific predicates and functions.
+ * Purpose: Type-specific predicates and functions.
  *
- * Created:     14th June 2002
- * Updated:     8th March 2024
+ * Created: 14th June 2002
+ * Updated: 28th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MAJOR    4
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MINOR    0
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_REVISION 9
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     78
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_REVISION 10
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -191,8 +191,8 @@ public:
 // [[synesis:class:unary-functor: VARIANT_close]]
 struct VARIANT_close
 #if __cplusplus < 201103L
-#endif
     : public STLSOFT_NS_QUAL_STD(unary_function)<VARIANT&, void>
+#endif
 {
 public:
     typedef VARIANT&                                        argument_type;

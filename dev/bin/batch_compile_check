@@ -6,7 +6,7 @@
 # Purpose:  Finds and compiles (individually) headers in the libraries.
 #
 # Created:  14th February 2024
-# Updated:  27th October 2024
+# Updated:  28th October 2024
 #
 # Home:     http://stlsoft.org/
 #
@@ -50,6 +50,30 @@ SUPPORTED_LANGUAGE_VERSIONS_Cxx=(98 03 11 14 17 20 23)
 COMMON_SKIP_SEQUENCES=(STLSOFT:FILE_DEPRECATED STLSOFT:FILE_EXCEPTED STLSOFT:FILE_NOT_SELF_SUFFICIENT)
 
 UNIX_SKIP_SEQUENCES=(STLSOFT:Windows:FILE_EXCEPTED)
+
+
+# ##########################################################
+# operating environment detection
+
+OsName="$(uname -s)"
+IsWindows=0
+IsWindowsX64=0
+case "${OsName}" in
+    CYGWIN*|MINGW*|MSYS_NT*)
+
+        IsWindows=1
+
+        if [[ $(uname -m) == *"x86_64"* ]]; then
+
+            IsWindowsX64=1
+        fi
+
+        SUBPROJECTS_DEFAULT=(stlsoft comstl inetstl platformstl winstl)
+        ;;
+    *)
+
+        ;;
+esac
 
 
 # ##########################################################
@@ -187,7 +211,7 @@ Flags/options:
     --verbose-mode
         announces each include file as it is compiled
 
-    -c
+    -x
     --cxx-compiler
         specifies the name of the C++-compiler, which otherwise defaults
         to c++
@@ -227,12 +251,26 @@ else
     FilePattern='*.h*'
 fi
 
-[ $VerboseMode -eq 0 ] || echo "searching for files matchin '$FilePattern'"
+[ $VerboseMode -eq 0 ] || echo "searching for files matching '$FilePattern'"
 
 
 if [ -z "$Defines" ]; then
 
-    Defines+=(_REENTRANT UNIX)
+    if [ $IsWindows -eq 1 ]; then
+
+        if [ $IsWindowsX64 -eq 1 ]; then
+
+            Defines+=(WIN64)
+        else
+
+            Defines+=(WIN32)
+        fi
+    else
+
+        Defines+=(_REENTRANT)
+        Defines+=(UNIX)
+    fi
+
 fi
 
 if [ $DebugConfiguration -eq 1 ]; then
@@ -409,13 +447,24 @@ do
 
                 [ $VerboseMode -eq 0 ] || echo "            ($l)"
 
+                if [ "$p" == "winstl" ]; then
+
+                    contents="#include <windows.h>\n#include <ntsecapi.h>\n#include <$srp>"
+                else
+
+                    contents="#include <$srp>"
+                fi
+
                 if [ "$DryRun" != "true" ]; then
 
                     ((NumFilesCompiled++))
 
-                    echo "#include <$f>" | $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
+                    echo -e $contents | $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
 
                     [ $? -eq 0 ] || ((NumFilesFailed++))
+                else
+
+                    echo $contents \| $COMPILER_COMMAND_Cxx -c -std=$l -x $INPUT_FILE_LANGUAGE_Cxx ${Defines[@]} -I "$IncludeDir" -
                 fi
             done
         fi
@@ -428,9 +477,12 @@ do
 
                 ((NumFilesCompiled++))
 
-                echo "#include <$f>" | $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
+                echo "#include <$srp>" | $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
 
                 [ $? -eq 0 ] || ((NumFilesFailed++))
+            else
+
+                echo "#include <$srp>" \| $COMPILER_COMMAND_C -c -std=$LANGUAGE_STD_DEFAULT_VERSION_C -x $INPUT_FILE_LANGUAGE_C ${Defines[@]} -I "$IncludeDir" -
             fi
         fi
     done

@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_variable_traits class.
  *
  * Created: 9th December 2005
- * Updated: 27th December 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_MINOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_REVISION 12
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     42
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_REVISION 13
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_TRAITS_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -237,7 +237,12 @@ extern char **_environ;
 #   define PLATFORMSTL_ENVVAR_ENVIRON_HAS_UNDERSCORE
 #  endif
 
-extern int _putenv(char const*);
+#  ifdef _CRTIMP
+_CRTIMP
+#  else
+extern
+#  endif
+int __cdecl _putenv(char const*);
 
 #  ifndef PLATFORMSTL_ENVVAR_PUTENV_HAS_UNDERSCORE
 #   define PLATFORMSTL_ENVVAR_PUTENV_HAS_UNDERSCORE

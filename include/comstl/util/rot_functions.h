@@ -4,7 +4,7 @@
  * Purpose: COM ROT (Running Object Table) functions.
  *
  * Created: 21st October 1998
- * Updated: 24th December 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MINOR       1
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    8
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        81
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    9
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,7 +139,7 @@ comstl_C_Rot_Register(
  * \param dwRegister Value identifying registration to be revoked
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl_C_Rot_Revoke(DWORD dwRegister)
 {
@@ -167,7 +167,7 @@ comstl_C_Rot_Revoke(DWORD dwRegister)
  * \param pmkObjectName Pointer to the moniker of the object whose status is desired
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl_C_Rot_IsRunning(LPMONIKER pmkObjectName)
 {
@@ -197,7 +197,7 @@ comstl_C_Rot_IsRunning(LPMONIKER pmkObjectName)
  * \param ppunkObject Address of output variable that receives the IUnknown interface pointer
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl_C_Rot_GetObject(
     LPMONIKER   pmkObjectName
@@ -229,7 +229,7 @@ comstl_C_Rot_GetObject(
  * \param lpfiletime Pointer to structure containing object's last change time
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl_C_Rot_NoteChangeTime(
     DWORD       dwRegister
@@ -261,7 +261,7 @@ comstl_C_Rot_NoteChangeTime(
  * \param lpfiletime Pointer to structure containing object's last change time
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl_C_Rot_GetTimeOfLastChange(
     LPMONIKER   pmkObjectName
@@ -291,7 +291,7 @@ comstl_C_Rot_GetTimeOfLastChange(
  * \param ppenumMoniker Address of output variable that receives the IEnumMoniker interface pointer
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl_C_Rot_EnumRunning(IEnumMoniker** ppenumMoniker)
 {
