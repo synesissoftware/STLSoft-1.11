@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/attribute/get_ptr/std/fundamental.hpp
+ * File:    stlsoft/shims/attribute/get_ptr/std/fundamental.hpp
  *
- * Purpose:     Contains the get_ptr attribute shim.
+ * Purpose: Contains the get_ptr attribute shim.
  *
- * Created:     10th January 2002
- * Updated:     11th March 2024
+ * Created: 10th January 2002
+ * Updated: 28th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -127,7 +127,9 @@ inline T* get_ptr(T* p)
     return p;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

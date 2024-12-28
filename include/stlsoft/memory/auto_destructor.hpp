@@ -456,14 +456,14 @@ class return_value_destructor
 /// @{
 public:
     /// The value type
-    typedef T                                           value_type;
+    typedef T                                               value_type;
     /// The current specialisation of the type
-    typedef return_value_destructor<T>                  class_type;
+    typedef return_value_destructor<T>                      class_type;
     /// The auto type
-    typedef auto_destructor<T>                          auto_type;
+    typedef auto_destructor<T>                              auto_type;
 private:
     /// The proxy type
-    typedef move_proxy<T, class_type>                   proxy_type;
+    typedef move_proxy<T, class_type>                       proxy_type;
 /// @}
 
 /// \name Construction
@@ -684,7 +684,10 @@ inline T* get_ptr(return_value_array_destructor<T> const& ad)
     return ad.get();
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

@@ -4,7 +4,7 @@
  * Purpose: Contains the get_ptr attribute shim.
  *
  * Created: 10th September 2019
- * Updated: 26th March 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -106,7 +106,10 @@ get_ptr(
     return p.get();
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
