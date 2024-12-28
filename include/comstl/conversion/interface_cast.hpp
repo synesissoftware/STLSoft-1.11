@@ -62,9 +62,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   16
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       142
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      3
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   1
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       143
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -980,7 +980,7 @@ inline
 I
 get_ptr(
     COMSTL_NS_QUAL(interface_cast_noaddref)<I, X>& p
-)
+) STLSOFT_NOEXCEPT
 {
     return p.operator -> ();
 }
@@ -1000,7 +1000,7 @@ inline
 I
 get_ptr(
     COMSTL_NS_QUAL(interface_cast_noaddref)<I, X> const& p
-)
+) STLSOFT_NOEXCEPT
 {
     return p.operator -> ();
 }
@@ -1020,7 +1020,7 @@ inline
 I
 get_ptr(
     COMSTL_NS_QUAL(interface_cast_addref)<I, X> &p
-)
+) STLSOFT_NOEXCEPT
 {
     return p;
 }
@@ -1038,8 +1038,8 @@ template<
 inline
 I const
 get_ptr(
-COMSTL_NS_QUAL(interface_cast_addref)<I, X> const& p
-)
+    COMSTL_NS_QUAL(interface_cast_addref)<I, X> const& p
+) STLSOFT_NOEXCEPT
 {
     return p;
 }

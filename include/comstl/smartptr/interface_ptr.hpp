@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR     7
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR     2
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION  9
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT      514
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR     3
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION  1
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT      515
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -211,7 +211,9 @@ inline cs_bool_t is_empty(interface_ptr<T> const& p)
  * \ingroup group__concept__Shim__Attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T* get_ptr(interface_ptr<T> const& p)
+inline
+T*
+get_ptr(interface_ptr<T> const& p) STLSOFT_NOEXCEPT
 {
     return p.get_interface_ptr();
 }
