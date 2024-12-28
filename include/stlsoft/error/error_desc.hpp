@@ -4,7 +4,7 @@
  * Purpose: Converts a standard rerror code (errno) to a printable string.
  *
  * Created: 18th July 2006
- * Updated: 5th November 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MAJOR     1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  4
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      50
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_MINOR     4
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_REVISION  1
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ERROR_DESC_EDIT      51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -220,7 +220,7 @@ struct error_desc_traits<ss_char_w_t>
 {
     static basic_shim_string<ss_char_w_t, 64> invoke_strerror_(int code, ss_char_w_t const*)
     {
-        typedef basic_shim_string<ss_char_w_t, 64>  return_t;
+        typedef basic_shim_string<ss_char_w_t, 64>          return_t;
 
         std::string const   s(::strerror(code));
         return_t            ss(s.size());
@@ -653,7 +653,7 @@ template <ss_typename_param_k C>
 inline
 C const* get_ptr(
     STLSOFT_NS_QUAL(basic_error_desc)<C> const& e
-)
+) STLSOFT_NOEXCEPT
 {
     return e;
 }
