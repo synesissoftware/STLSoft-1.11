@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     5
+# define STLSOFT_VER_STLSOFT_UTIL_STREAMS_HPP_STRING_INSERTION_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -309,7 +309,8 @@ string_insert_4_(
  * functions
  */
 
-/** T.B.C.
+/** Inserts efficiently the given range of characters into the given stream,
+ * respecting standard flags (for standard streams)
  *
  * \tparam T_stream The stream type
  * \tparam T_character The character type
@@ -340,7 +341,8 @@ string_insert(
     );
 }
 
-/** T.B.C.
+/** Inserts efficiently the given range of characters into the given stream,
+ * respecting standard flags (for standard streams)
  *
  * \tparam T_stream The stream type
  *
@@ -369,7 +371,8 @@ string_insert_m(
     );
 }
 
-/** T.B.C.
+/** Inserts efficiently the given range of characters into the given stream,
+ * respecting standard flags (for standard streams)
  *
  * \tparam T_stream The stream type
  *
