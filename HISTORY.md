@@ -7,8 +7,8 @@
 28th December 2024 - 1.11.1-alpha28 released
 --------------------------------------------
 
+ * substantial reworking of abstraction of memory functions, resulting in performance improvements across numerous components, `stlsoft::auto_buffer<>` in particular;
  * MinGW compatibility;
- * substantial reworking of abstraction of memory functions, resulting in performance improvements across numerous components;
  * miscellaneous generalisation of code and dependencies;
  * added more test programs;
 
