@@ -4,7 +4,7 @@
  * Purpose: Type conversions for Windows.
  *
  * Created: 31st May 2003
- * Updated: 5th November 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 14
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     118
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 15
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -143,7 +143,7 @@ template <
     ws_size_t V_internalSize
 >
 class multibyte2wide
-    : private auto_buffer<ws_char_w_t, V_internalSize, processheap_allocator<ws_char_w_t>>
+    : private auto_buffer<ws_char_w_t, V_internalSize, processheap_allocator<ws_char_w_t> >
 {
 /// \name Member Types
 /// @{
@@ -301,7 +301,7 @@ private:
  */
 template <ws_size_t V_internalSize>
 class wide2multibyte
-    : private auto_buffer<ws_char_a_t, V_internalSize, processheap_allocator<ws_char_a_t>>
+    : private auto_buffer<ws_char_a_t, V_internalSize, processheap_allocator<ws_char_a_t> >
 {
 /// \name Member Types
 /// @{
