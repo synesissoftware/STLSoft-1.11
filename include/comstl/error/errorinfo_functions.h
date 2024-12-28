@@ -4,7 +4,7 @@
  * Purpose: Error info functions.
  *
  * Created: 5th February 2004
- * Updated: 24th December 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_MINOR    2
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 12
-# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     63
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_REVISION 13
+# define COMSTL_VER_COMSTL_ERROR_H_ERRORINFO_FUNCTIONS_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -181,7 +181,7 @@ comstl__set_error_info_w_(
     return hr;
 }
 
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl__set_error_info_a_helper_(
     cs_char_a_t const*  s_a
@@ -223,7 +223,7 @@ comstl__set_error_info_a_helper_(
     }
 }
 
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl__set_error_info_a_(
     cs_char_a_t const*  description
@@ -319,7 +319,7 @@ comstl__set_error_info_description_and_source_w(
  *
  * \see comstl::set_error_info_description_and_source
  */
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl__set_error_info_description_and_source_a(
     cs_char_a_t const*  description
@@ -338,7 +338,7 @@ comstl__set_error_info_description_and_source_a(
  *
  * \see comstl::set_error_info
  */
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl__set_error_info_w(
     cs_char_w_t const*  description
@@ -361,7 +361,7 @@ comstl__set_error_info_w(
  *
  * \see comstl::set_error_info
  */
-STLSOFT_STLSOFT_INLINE
+STLSOFT_INLINE
 HRESULT
 comstl__set_error_info_a(
     cs_char_a_t const*  description
