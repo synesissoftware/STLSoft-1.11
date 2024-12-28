@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/shims/logical/is_empty/string_base.hpp
+ * File:    acestl/shims/logical/is_empty/string_base.hpp
  *
- * Purpose:     Helper functions for ACE_String_Base class.
+ * Purpose: Helper functions for ACE_String_Base class.
  *
- * Created:     16th December 2004
- * Updated:     11th March 2024
+ * Created: 16th December 2004
+ * Updated: 28th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MAJOR     2
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MINOR     0
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_REVISION  7
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_EDIT      24
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MINOR     1
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_REVISION  1
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_EDIT      25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,29 +95,35 @@ namespace stlsoft
 
 STLSOFT_OPEN_WORKER_NS_(is_empty_ns)
 
-    no_type is_empty_helper_assistant(ACE_String_Base<ss_char_a_t> const*, ACE_String_Base<ss_char_a_t> const*)
+    no_type
+    is_empty_helper_assistant(
+        ACE_String_Base<ss_char_a_t> const*
+    ,   ACE_String_Base<ss_char_a_t> const*
+    ) STLSOFT_NOEXCEPT
     {
         return no_type();
     }
 
-    inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_a_t> const& s, no_type)
+    inline
+    ss_bool_t
+    is_empty_helper(ACE_String_Base<ss_char_a_t> const& s, no_type) STLSOFT_NOEXCEPT
     {
         return 0 != s.length();
     }
 
-
-    no_type is_empty_helper_assistant(ACE_String_Base<ss_char_w_t> const*, ACE_String_Base<ss_char_w_t> const*)
+    no_type
+    is_empty_helper_assistant(ACE_String_Base<ss_char_w_t> const*, ACE_String_Base<ss_char_w_t> const*) STLSOFT_NOEXCEPT
     {
         return no_type();
     }
 
-    inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_w_t> const& s, no_type)
+    inline
+    ss_bool_t
+    is_empty_helper(ACE_String_Base<ss_char_w_t> const& s, no_type) STLSOFT_NOEXCEPT
     {
         return 0 != s.length();
     }
-
 STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
-
 #else /* ? STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 
 /** Indicates whether the string is empty
@@ -125,7 +131,9 @@ STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
  * \ingroup group__concept__Shim__Logical__is_empty
  *
  */
-inline int is_empty(ACE_String_Base<ss_char_a_t> const& s)
+inline
+int
+is_empty(ACE_String_Base<ss_char_a_t> const& s) STLSOFT_NOEXCEPT
 {
     return 0 != s.length();
 }
@@ -135,14 +143,18 @@ inline int is_empty(ACE_String_Base<ss_char_a_t> const& s)
  * \ingroup group__concept__Shim__Logical__is_empty
  *
  */
-inline int is_empty(ACE_String_Base<ss_char_w_t> const& s)
+inline
+int
+is_empty(ACE_String_Base<ss_char_w_t> const& s) STLSOFT_NOEXCEPT
 {
     return 0 != s.length();
 }
-
 #endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

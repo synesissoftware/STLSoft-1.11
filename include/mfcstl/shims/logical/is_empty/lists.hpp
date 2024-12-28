@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/logical/is_empty/lists.hpp
+ * File:    mfcstl/shims/logical/is_empty/lists.hpp
  *
- * Purpose:     Helper functions for MFC list classes.
+ * Purpose: Helper functions for MFC list classes.
  *
- * Created:     18th December 2006
- * Updated:     11th March 2024
+ * Created: 18th December 2006
+ * Updated: 28th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_LISTS_MAJOR       2
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_LISTS_MINOR       0
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_LISTS_REVISION    5
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_LISTS_EDIT        19
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_LISTS_MINOR       1
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_LISTS_REVISION    1
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_LISTS_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,7 +105,9 @@ namespace mfcstl_project
  * \ingroup group__concept__Shim__Logical__is_empty
  *
  */
-inline int is_empty(CPtrList const& l)
+inline
+int
+is_empty(CPtrList const& l) STLSOFT_NOEXCEPT
 {
     return 0 == l.GetCount();
 }
@@ -115,12 +117,17 @@ inline int is_empty(CPtrList const& l)
  * \ingroup group__concept__Shim__Logical__is_empty
  *
  */
-inline int is_empty(CObList const& l)
+inline
+int
+is_empty(CObList const& l) STLSOFT_NOEXCEPT
 {
     return 0 == l.GetCount();
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef _MFCSTL_NO_NAMESPMFC
 # if defined(_STLSOFT_NO_NAMESPMFC) || \
@@ -135,9 +142,7 @@ namespace stlsoft
 {
 
     using ::mfcstl::is_empty;
-
 } /* namespace stlsoft */
-
 #endif /* !_MFCSTL_NO_NAMESPMFC */
 
 

@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR     7
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR     3
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR     4
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION  1
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT      515
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT      516
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -196,7 +196,9 @@ inline void swap(interface_ptr<T>& lhs, interface_ptr<T>& rhs)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline cs_bool_t is_empty(interface_ptr<T> const& p)
+inline
+cs_bool_t
+is_empty(interface_ptr<T> const& p) STLSOFT_NOEXCEPT
 {
     return NULL == p.get_interface_ptr();
 }
