@@ -118,7 +118,7 @@ namespace stlsoft
 
 /** @brief Base-traits for stlsoft::frequency_map
  *
- * @tparam T_value The value type of the  specialisation of
+ * @tparam T_value The value type of the specialisation of
  *   stlsoft::frequency_map
  */
 template <
@@ -150,9 +150,9 @@ struct frequency_map_traits;
 
 /** @brief Ordered traits for stlsoft::frequency_map
  *
- * @tparam T_value The value type of the  specialisation of
+ * @tparam T_value The value type of the specialisation of
  *   stlsoft::frequency_map
- * @tparam T_count The count type of the  specialisation of
+ * @tparam T_count The count type of the specialisation of
  *   stlsoft::frequency_map
  */
 template <
@@ -182,9 +182,9 @@ struct frequency_map_traits_ordered
 
 /** @brief Unordered traits for stlsoft::frequency_map
  *
- * @tparam T_value The value type of the  specialisation of
+ * @tparam T_value The value type of the specialisation of
  *   stlsoft::frequency_map
- * @tparam T_count The count type of the  specialisation of
+ * @tparam T_count The count type of the specialisation of
  *   stlsoft::frequency_map
  */
 template <

@@ -4,7 +4,7 @@
  * Purpose: STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created: 17th September 1998
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  To Eduardo Bezerra and Vivi Orunitia for reporting
  *          incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -59,7 +59,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 15
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     278
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     279
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -299,7 +299,7 @@ public:
         //
         // At this point, m_enumerator will be non-NULL, and
         // can be used in all invocations of begin(), or it
-        // will be NULL, in which case the 2nd or subsequent
+        // will be \c nullptr, in which case the 2nd or subsequent
         // invocations of begin() must be directed to throw.
         m_enumerator = cloning_policy_type::get_working_instance(m_root);
 

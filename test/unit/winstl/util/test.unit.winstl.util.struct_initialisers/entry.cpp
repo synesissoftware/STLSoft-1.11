@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_initialisers`.
  *
  * Created: 9th October 2024
- * Updated: 15th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,37 +37,37 @@
 namespace
 {
     // no_init_member_type
-    static void test_FILETIME(void);
-    static void test_SYSTEM_INFO(void);
-    static void test_SYSTEMTIME(void);
+    static void test_FILETIME();
+    static void test_SYSTEM_INFO();
+    static void test_SYSTEMTIME();
 
     // cbSize_member_type
-    static void test_CONSOLE_SCREEN_BUFFER_INFOEX(void);
+    static void test_CONSOLE_SCREEN_BUFFER_INFOEX();
 
     // cb_member_type
-    static void test_STARTUPINFOW(void);
+    static void test_STARTUPINFOW();
 
     // cBytes_member_type
-    static void test_OFSTRUCT(void);
+    static void test_OFSTRUCT();
 
     // dwLength_member_type
-    static void test_MEMORYSTATUS(void);
+    static void test_MEMORYSTATUS();
 
     // dwOSVersionInfoSize_member_type
-    static void test_OSVERSIONINFOA(void);
-    static void test_OSVERSIONINFOEXA(void);
+    static void test_OSVERSIONINFOA();
+    static void test_OSVERSIONINFOEXA();
 
     // dwSize_member_type
-    static void test_COMMCONFIG(void);
+    static void test_COMMCONFIG();
 
     // nLength_member_type
-    static void test_SECURITY_ATTRIBUTES(void);
+    static void test_SECURITY_ATTRIBUTES();
 
     // uSize_member_type
-    static void test_DRAGINFOA(void);
+    static void test_DRAGINFOA();
 
     // DCBlength
-    static void test_DCB(void);
+    static void test_DCB();
 } // anonymous namespace
 
 
@@ -137,7 +137,7 @@ namespace
 
 // no_init_member_type
 
-static void test_FILETIME(void)
+static void test_FILETIME()
 {
     FILETIME ft;
 
@@ -147,7 +147,7 @@ static void test_FILETIME(void)
     XTESTS_TEST_INTEGER_EQUAL(0u, ft.dwHighDateTime);
 }
 
-static void test_SYSTEMTIME(void)
+static void test_SYSTEMTIME()
 {
     SYSTEMTIME st;
 
@@ -163,7 +163,7 @@ static void test_SYSTEMTIME(void)
     XTESTS_TEST_INTEGER_EQUAL(0u, st.wMilliseconds);
 }
 
-static void test_SYSTEM_INFO(void)
+static void test_SYSTEM_INFO()
 {
     SYSTEM_INFO si;
 
@@ -185,7 +185,7 @@ static void test_SYSTEM_INFO(void)
 
 // cbSize_member_type
 
-static void test_CONSOLE_SCREEN_BUFFER_INFOEX(void)
+static void test_CONSOLE_SCREEN_BUFFER_INFOEX()
 {
     CONSOLE_SCREEN_BUFFER_INFOEX csbix;
 
@@ -210,7 +210,7 @@ static void test_CONSOLE_SCREEN_BUFFER_INFOEX(void)
 
 // cb_member_type
 
-static void test_STARTUPINFOW(void)
+static void test_STARTUPINFOW()
 {
     STARTUPINFOW si;
 
@@ -239,7 +239,7 @@ static void test_STARTUPINFOW(void)
 
 // cBytes_member_type
 
-static void test_OFSTRUCT(void)
+static void test_OFSTRUCT()
 {
     OFSTRUCT ofs;
 
@@ -258,7 +258,7 @@ static void test_OFSTRUCT(void)
 
 // dwLength_member_type
 
-static void test_MEMORYSTATUS(void)
+static void test_MEMORYSTATUS()
 {
     MEMORYSTATUS ms;
 
@@ -277,7 +277,7 @@ static void test_MEMORYSTATUS(void)
 
 // dwOSVersionInfoSize_member_type
 
-static void test_OSVERSIONINFOA(void)
+static void test_OSVERSIONINFOA()
 {
     OSVERSIONINFOA osvi;
 
@@ -293,7 +293,7 @@ static void test_OSVERSIONINFOA(void)
 #endif
 }
 
-static void test_OSVERSIONINFOEXA(void)
+static void test_OSVERSIONINFOEXA()
 {
     OSVERSIONINFOEXA osvix;
 
@@ -317,7 +317,7 @@ static void test_OSVERSIONINFOEXA(void)
 
 // dwSize_member_type
 
-static void test_COMMCONFIG(void)
+static void test_COMMCONFIG()
 {
     // NOTE: this specialisation is questionnable, since COMMCONFIG is a
     // variable-length structure
@@ -343,7 +343,7 @@ static void test_COMMCONFIG(void)
 
 // nLength_member_type
 
-static void test_SECURITY_ATTRIBUTES(void)
+static void test_SECURITY_ATTRIBUTES()
 {
     SECURITY_ATTRIBUTES sa;
 
@@ -357,7 +357,7 @@ static void test_SECURITY_ATTRIBUTES(void)
 
 // uSize_member_type
 
-static void test_DRAGINFOA(void)
+static void test_DRAGINFOA()
 {
     DRAGINFOA da;
 
@@ -375,7 +375,7 @@ static void test_DRAGINFOA(void)
 
 // DCBlength
 
-static void test_DCB(void)
+static void test_DCB()
 {
     DCB dcb;
 

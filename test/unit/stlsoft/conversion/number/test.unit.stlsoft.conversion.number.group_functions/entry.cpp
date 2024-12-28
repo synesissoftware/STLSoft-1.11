@@ -5,7 +5,7 @@
  *          `stlsoft::translate_thousands`.
  *
  * Created: 28th March 2024
- * Updated: 30th November 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,7 +31,6 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <stlsoft/limits/integral_limits.h> // for suffix macros only
 
 /* Standard C++ header files */
 #include <string>
@@ -47,11 +46,11 @@
 namespace
 {
 
-    static void TEST_format_thousands_SIMPLE(void);
-    static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS(void);
-    static void TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS(void);
-    static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATORS(void);
-    static void TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS(void);
+    static void TEST_format_thousands_SIMPLE();
+    static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS();
+    static void TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS();
+    static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATORS();
+    static void TEST_format_thousands_987654321_WITH_CUSTOM_SEPARATORS();
 
     static void TEST_translate_thousands_MULTIBYTE();
     static void TEST_translate_thousands_WIDE();

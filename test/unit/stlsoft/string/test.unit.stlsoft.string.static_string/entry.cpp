@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_static_string`.
  *
  * Created: 4th November 2008
- * Updated: 17th December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,100 +53,100 @@ namespace
 
     // construction
 
-    static void test_ctor_default(void);
-    static void test_ctor_copy(void);
-    static void test_ctor_s_pos(void);
-    static void test_ctor_s_pos_n(void);
-    static void test_ctor_ccs(void);
-    static void test_ctor_ccs_too_large(void);
-    static void test_ctor_ccs_n(void);
-    static void test_ctor_ccs_n_too_large(void);
-    static void test_ctor_n_ch(void);
-    static void test_ctor_n_ch_too_large(void);
-    static void test_ctor_range(void);
-    static void test_ctor_range_too_large(void);
+    static void test_ctor_default();
+    static void test_ctor_copy();
+    static void test_ctor_s_pos();
+    static void test_ctor_s_pos_n();
+    static void test_ctor_ccs();
+    static void test_ctor_ccs_too_large();
+    static void test_ctor_ccs_n();
+    static void test_ctor_ccs_n_too_large();
+    static void test_ctor_n_ch();
+    static void test_ctor_n_ch_too_large();
+    static void test_ctor_range();
+    static void test_ctor_range_too_large();
 
     // `assign()`
 
-    static void test_assign_ccs(void);
-    static void test_assign_ccs_too_large(void);
-    static void test_assign_ccs_n(void);
-    static void test_assign_ccs_n_too_large(void);
-    static void test_assign_s(void);
-    static void test_assign_s_pos_n(void);
-    static void test_assign_s_pos_n_outofrange(void);
-    static void test_assign_n_ch(void);
-    static void test_assign_n_ch_too_large(void);
-    static void test_assign_range(void);
-    static void test_assign_range_too_large(void);
-    static void test_opassign_ccs(void);
-    static void test_opassign_ccs_too_large(void);
-    static void test_opassign_s(void);
-    static void test_opassign_ch(void);
+    static void test_assign_ccs();
+    static void test_assign_ccs_too_large();
+    static void test_assign_ccs_n();
+    static void test_assign_ccs_n_too_large();
+    static void test_assign_s();
+    static void test_assign_s_pos_n();
+    static void test_assign_s_pos_n_outofrange();
+    static void test_assign_n_ch();
+    static void test_assign_n_ch_too_large();
+    static void test_assign_range();
+    static void test_assign_range_too_large();
+    static void test_opassign_ccs();
+    static void test_opassign_ccs_too_large();
+    static void test_opassign_s();
+    static void test_opassign_ch();
 
     // `append()`
 
-    static void test_append_ccs(void);
-    static void test_append_ccs_too_large(void);
-    static void test_append_ccs_n(void);
-    static void test_append_ccs_n_too_large(void);
-    static void test_append_s(void);
-    static void test_append_s_too_large(void);
-    static void test_append_s_pos_n(void);
-    static void test_append_s_pos_n_too_large(void);
-    static void test_append_n_ch(void);
-    static void test_append_n_ch_too_large(void);
-    static void test_append_range(void);
-    static void test_append_range_too_large(void);
-    static void test_opaddassign_ccs(void);
-    static void test_opaddassign_ccs_too_large(void);
-    static void test_opaddassign_s(void);
-    static void test_opaddassign_s_too_large(void);
-    static void test_opaddassign_ch(void);
-    static void test_opaddassign_ch_too_large(void);
-    static void test_push_back(void);
-    static void test_push_back_too_large(void);
-    static void test_pop_back(void);
+    static void test_append_ccs();
+    static void test_append_ccs_too_large();
+    static void test_append_ccs_n();
+    static void test_append_ccs_n_too_large();
+    static void test_append_s();
+    static void test_append_s_too_large();
+    static void test_append_s_pos_n();
+    static void test_append_s_pos_n_too_large();
+    static void test_append_n_ch();
+    static void test_append_n_ch_too_large();
+    static void test_append_range();
+    static void test_append_range_too_large();
+    static void test_opaddassign_ccs();
+    static void test_opaddassign_ccs_too_large();
+    static void test_opaddassign_s();
+    static void test_opaddassign_s_too_large();
+    static void test_opaddassign_ch();
+    static void test_opaddassign_ch_too_large();
+    static void test_push_back();
+    static void test_push_back_too_large();
+    static void test_pop_back();
 
     // modifiers
 
-    static void test_reserve(void);
-    static void test_reserve_too_large(void);
-    static void test_swap_1(void);
-    static void test_swap_2(void);
-    static void test_swap_3(void);
-    static void test_resize(void);
-    static void test_resize_too_large(void);
-    static void test_clear(void);
+    static void test_reserve();
+    static void test_reserve_too_large();
+    static void test_swap_1();
+    static void test_swap_2();
+    static void test_swap_3();
+    static void test_resize();
+    static void test_resize_too_large();
+    static void test_clear();
 
     // attributes
 
-    static void test_size(void);
-    static void test_max_size(void);
-    static void test_length(void);
-    static void test_capacity(void);
-    static void test_empty(void);
+    static void test_size();
+    static void test_max_size();
+    static void test_length();
+    static void test_capacity();
+    static void test_empty();
 
 
     // comparison
 
-    static void test_contains_1(void);
-    static void test_contains_2(void);
-    static void test_contains_3(void);
-    static void test_starts_with_1(void);
-    static void test_starts_with_2(void);
-    static void test_ends_with_1(void);
-    static void test_ends_with_2(void);
+    static void test_contains_1();
+    static void test_contains_2();
+    static void test_contains_3();
+    static void test_starts_with_1();
+    static void test_starts_with_2();
+    static void test_ends_with_1();
+    static void test_ends_with_2();
 
 
     // accessors
 
-    static void test_at(void);
-    static void test_at_out_of_range_1(void);
-    static void test_at_out_of_range_2(void);
-    static void test_copy(void);
-    static void test_substr(void);
-    static void test_substr_throw(void);
+    static void test_at();
+    static void test_at_out_of_range_1();
+    static void test_at_out_of_range_2();
+    static void test_copy();
+    static void test_substr();
+    static void test_substr_throw();
 
 
 
@@ -158,15 +158,15 @@ namespace
 
     // operators : insertion
 
-    static void test_insertion_1(void);
-    static void test_insertion_2(void);
-    static void test_insertion_3(void);
-    static void test_insertion_4(void);
+    static void test_insertion_1();
+    static void test_insertion_2();
+    static void test_insertion_3();
+    static void test_insertion_4();
 
 
     // shims : sas
 
-    static void test_string_access_shims(void);
+    static void test_string_access_shims();
 
 
 } // anonymous namespace

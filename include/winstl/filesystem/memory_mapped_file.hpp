@@ -106,11 +106,6 @@
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
-#ifndef STLSOFT_INCL_H_STRING
-# define STLSOFT_INCL_H_STRING
-# include <string.h>    // for memcmp()
-#endif /* !STLSOFT_INCL_H_STRING */
-
 #ifndef WINSTL_INCL_WINSTL_API_internal_h_MemoryManagement
 # include <winstl/api/internal/MemoryManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_internal_h_MemoryManagement */
@@ -127,6 +122,10 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_MemoryManagement
 # include <winstl/api/external/MemoryManagement.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_MemoryManagement */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -663,10 +662,12 @@ public:
         {
             return false;
         }
-        if (0 != ::memcmp(lhs.memory(), rhs.memory(), lhs.size()))
+
+        if (0 != STLSOFT_API_EXTERNAL_memfns_memcmp(lhs.memory(), rhs.memory(), lhs.size()))
         {
             return false;
         }
+
         return true;
     }
 /// @}
@@ -690,12 +691,16 @@ private:
         switch (scode)
         {
         case ERROR_FILE_NOT_FOUND:
+
             STLSOFT_THROW_X(file_not_found_exception(message, scode));
         case ERROR_PATH_NOT_FOUND:
+
             STLSOFT_THROW_X(entry_not_found_exception(message, scode));
         case ERROR_ACCESS_DENIED:
+
             STLSOFT_THROW_X(access_exception(message, scode));
         default:
+
             STLSOFT_THROW_X(filesystem_exception(message, scode));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */

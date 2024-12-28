@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/squeeze_functions.hpp (formerly winstl/filesystem/path_functions.hpp)
+ * File:    winstl/filesystem/squeeze_functions.hpp (formerly winstl/filesystem/path_functions.hpp)
  *
- * Purpose:     Path squeeze functions
+ * Purpose: Path squeeze functions
  *
- * Created:     6th June 2006
- * Updated:     11th March 2024
+ * Created: 6th June 2006
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT        36
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -288,13 +288,14 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_winstl_squeeze_functions_)
  *
  * \param path The path
  * \param buffer Pointer to the buffer into which the sqeezed path will be
- *   written. If NULL, function returns required size (=== len(path) + 1)
+ *   written. If \c nullptr, function returns required
+ *   size (=== len(path) + 1)
  * \param cchBuffer The number of available characters inc buffer. This
  *   value in inclusive of the required <code>NUL</code>-terminator
  *
- * \return The number of characters required (if buffer is NULL), or the
- *   number of characters written (if buffer is non-NULL). In both cases, it
- *   includes the one required for the <code>NUL</code>-terminator
+ * \return The number of characters required (if buffer is \c nullptr), or
+ *   the number of characters written (if buffer is non-\c nullptr). In both
+ *   cases, it includes the one required for the <code>NUL</code>-terminator
  *
  * \remarks The squeeze algorithm is as follows. The path is split into
  *   volume+directory and file+ext. If the buffer is too small to fit the
@@ -331,7 +332,6 @@ path_squeeze(
 } /* namespace winstl_project */
 } /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
-
 #endif /* !WINSTL_NO_NAMESPACE */
 
 

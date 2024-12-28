@@ -18,6 +18,42 @@ STLSoft - Changes
 
 
 
+
+Changes for 1.11.1-alpha28 (28th December 2024)
+
+General:
+========
+
+ * substantial reworking of abstraction of memory functions, resulting in performance improvements across numerous components, `stlsoft::auto_buffer<>` in particular;
+ * MinGW compatibility;
+ * miscellaneous generalisation of code and dependencies;
+ * added more test programs;
+
+Changes:
+========
+
+Substantial reworking of abstraction of memory functions, resulting in performance improvements across numerous components, `stlsoft::auto_buffer<>` in particular:
+ * added **include/stlsoft/api/external/memfns.h**;
+ * almost all uses of `STLSOFT_API_INTERNAL_memfns_memcpy()` replaced with `STLSOFT_API_EXTERNAL_memfns_memcpy()`;
+
+MinGW compatibility:
+ * introduction of `STLSOFT_MINGW` preprocessor object-like macro;
+ * various fixes and warnings;
+ * making (almost) all .h files self-sufficient;
+
+Miscellaneous generalisation of code and dependencies:
+ * moved integer suffixes (such as `STLSOFT_GEN_UINT64_SUFFIX`) into stlsoft/stlsoft.h from stlsoft/limits/integral_limits.h;
+ * inline consistency;
+ * documentation markup consistency around use of terms `NULL` / `nullptr';
+
+Added more test programs:
+ * porting over old **test.unit.stlsoft.util.bit_functions**;
+ * porting over old **test.unit.stlsoft.util.string_switch**;
+
+
+============================================================================
+
+
 Changes for 1.11.1-alpha27 (19th December 2024)
 
  * added `stlsoft::doomgram` and `stlsoft::gram_scope` (from old research repo(s));

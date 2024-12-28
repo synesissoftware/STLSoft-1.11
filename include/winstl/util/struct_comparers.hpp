@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_MAJOR      1
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_MINOR      0
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_REVISION   3
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_EDIT       3
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_REVISION   4
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,6 +80,10 @@
 # define STLSOFT_INCL_H_STRING
 # include <string.h>
 #endif /* !STLSOFT_INCL_H_STRING */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -158,7 +162,7 @@ do_equal_struct(
 ,   struct_is::comparable_by_bytes
 )
 {
-    return 0 == STLSOFT_NS_GLOBAL(memcmp)(lhs, rhs, sizeof(T));
+    return 0 == STLSOFT_API_EXTERNAL_memfns_memcmp(lhs, rhs, sizeof(T));
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -240,7 +244,7 @@ equal_struct(
 ,   DCB const&  rhs
 )
 {
-    if (0 == STLSOFT_NS_GLOBAL(memcmp)(&lhs, &rhs, sizeof(DCB)))
+    if (0 == STLSOFT_API_EXTERNAL_memfns_memcmp(&lhs, &rhs, sizeof(DCB)))
     {
         return true;
     }
@@ -259,7 +263,7 @@ equal_struct(
     rhs_.wReserved = 0;
     rhs_.wReserved1 = 0;
 
-    return 0 == STLSOFT_NS_GLOBAL(memcmp)(&lhs_, &rhs_, sizeof(DCB));
+    return 0 == STLSOFT_API_EXTERNAL_memfns_memcmp(&lhs_, &rhs_, sizeof(DCB));
 }
 WINSTL_THE_COMPARABLE_STRUCTURE_(EVENTLOG_FULL_INFORMATION, is::comparable_by_bytes);
 #if WINSTL_WIN32_WINNT >= WINSTL_WIN32_WINNT_WIN8
@@ -364,7 +368,7 @@ equal_struct(
 ,   SYSTEMTIME const&    rhs
 )
 {
-    if (0 == STLSOFT_NS_GLOBAL(memcmp)(&lhs, &rhs, sizeof(SYSTEMTIME)))
+    if (0 == STLSOFT_API_EXTERNAL_memfns_memcmp(&lhs, &rhs, sizeof(SYSTEMTIME)))
     {
         return true;
     }
@@ -380,7 +384,7 @@ equal_struct(
     lhs_.wDayOfWeek = 0;
     rhs_.wDayOfWeek = 0;
 
-    return 0 == STLSOFT_NS_GLOBAL(memcmp)(&lhs_, &rhs_, sizeof(SYSTEMTIME));
+    return 0 == STLSOFT_API_EXTERNAL_memfns_memcmp(&lhs_, &rhs_, sizeof(SYSTEMTIME));
 }
 WINSTL_THE_COMPARABLE_STRUCTURE_(UNLOAD_DLL_DEBUG_INFO, is::comparable_by_bytes);
 // WINSTL_THE_COMPARABLE_STRUCTURE_(WIN32_FIND_DATAA, is::not_comparable_by_bytes);

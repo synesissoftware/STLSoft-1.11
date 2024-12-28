@@ -4,7 +4,7 @@
  * Purpose: Compiler feature discrimination for GNU C/C++.
  *
  * Created: 7th February 2003
- * Updated: 8th October 2024
+ * Updated: 27th December 2024
  *
  * Thanks:  To Sergey Nikulov, for PowerPC (BSD) compatibility fixes;
  *          wiluite for MinGW 64-bit compatibility.
@@ -62,9 +62,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      33
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      34
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       117
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,6 +119,17 @@
     +                                                       \
         (STLSOFT_INTERNAL_GCC_PATCHLEVEL_   * 1)            \
     )
+
+
+#if 0
+#elif 0 ||\
+      defined(__MINGW32__) ||\
+      defined(__MINGW64__) ||\
+      defined(__MINGW__) ||\
+      0
+
+# define STLSOFT_MINGW
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -455,8 +466,7 @@
 #endif /* compiler */
 
 #if 0
-#elif defined(__MINGW32__) || \
-      defined(__MINGW64__)
+#elif defined(STLSOFT_MINGW)
 
 # define STLSOFT_CF_TEMPLATE_COPY_CONSTRUCTOR_TEMPLATE_OVERLOAD_DISCRIMINATED_AGAINST_NON_TEMPLATE_COPY_CONSTRUCTOR
 #else

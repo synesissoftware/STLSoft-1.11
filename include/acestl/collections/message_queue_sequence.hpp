@@ -110,14 +110,15 @@
 # define STLSOFT_INCL_ACE_H_MESSAGE_QUEUE_T
 # include <ace/Message_Queue_T.h>
 #endif /* !STLSOFT_INCL_ACE_H_MESSAGE_QUEUE_T */
+
 #ifndef STLSOFT_INCL_ALGORITHM
 # define STLSOFT_INCL_ALGORITHM
 # include <algorithm>                // for std::copy
 #endif /* !STLSOFT_INCL_ALGORITHM */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -338,7 +339,7 @@ public:
                     {
                         // Terminal case
 
-                        STLSOFT_API_INTERNAL_memfns_memcpy(&m_entryIndex[m_entry->rd_ptr()], f, n);
+                        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_entryIndex[m_entry->rd_ptr()], f, n);
 
                         ACESTL_ASSERT(n <= m_entryLength - m_entryIndex);
 
@@ -350,7 +351,7 @@ public:
                     {
                         // Recursive case
 
-                        STLSOFT_API_INTERNAL_memfns_memcpy(&m_entryIndex[m_entry->rd_ptr()], f, n1);
+                        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_entryIndex[m_entry->rd_ptr()], f, n1);
                         f += n1;
 
                         m_entry = nextEntry();
@@ -373,13 +374,13 @@ public:
                 {
                     // Terminal case
 
-                    STLSOFT_API_INTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
                 }
                 else
                 {
                     // Recursive case
 
-                    STLSOFT_API_INTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
                     o += n1;
 
                     m_entry = nextEntry();
@@ -406,7 +407,7 @@ public:
                     //
                     // This is the terminating case.
 
-                    STLSOFT_API_INTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n);
 
                     ACESTL_ASSERT(n <= m_entryLength - m_entryIndex);
 
@@ -416,7 +417,7 @@ public:
                 }
                 else
                 {
-                    STLSOFT_API_INTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(o, &m_entryIndex[m_entry->rd_ptr()], n1);
                     o += n1;
 
                     m_entry = nextEntry();

@@ -4,7 +4,7 @@
  * Purpose: Window redraw-state scoping class.
  *
  * Created: 5th January 1996
- * Updated: 10th October 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,10 +51,10 @@
 #define WINSTL_INCL_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_MAJOR      5
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_MINOR      1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_REVISION   8
-# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_EDIT       94
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_MAJOR     5
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_MINOR     1
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_REVISION  9
+# define WINSTL_VER_WINSTL_WINDOW_HPP_WINDOW_REDRAW_SCOPE_EDIT      95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,6 +72,10 @@
 #ifndef WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
 # include <winstl/shims/attribute/get_HWND.hpp>
 #endif /* !WINSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages
+# include <winstl/api/external/WindowsAndMessages.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,7 +114,7 @@ class window_redraw_scope
 {
 public:
     /// This type
-    typedef window_redraw_scope class_type;
+    typedef window_redraw_scope                             class_type;
 
 // Construction
 public:
@@ -131,13 +135,13 @@ public:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
         , m_bInvalidateOnUnlock(bInvalidateOnUnlock)
     {
-        ::SendMessage(m_hwnd, WM_SETREDRAW, false, 0L);
+        WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(m_hwnd, WM_SETREDRAW, false, 0L);
     }
 
     /// Resets the redraw status, and invalidates the window, if requested in the constructor
     ~window_redraw_scope() STLSOFT_NOEXCEPT
     {
-        ::SendMessage(m_hwnd, WM_SETREDRAW, true, 0L);
+        WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(m_hwnd, WM_SETREDRAW, true, 0L);
 
         if (m_bInvalidateOnUnlock)
         {
@@ -154,7 +158,10 @@ private:
     ws_bool_t   m_bInvalidateOnUnlock;
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/attribute/get_top/std/vector.hpp
+ * File:    stlsoft/shims/attribute/get_top/std/vector.hpp
  *
- * Purpose:     Contains the get_top attribute shim.
+ * Purpose: Contains the get_top attribute shim.
  *
- * Created:     10th September 2019
- * Updated:     11th March 2024
+ * Created: 10th September 2019
+ * Updated: 28th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_VECTOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_VECTOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_VECTOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_VECTOR_EDIT        4
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_TOP_STD_HPP_VECTOR_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -86,7 +86,7 @@ namespace stlsoft
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * get_ptr functions
+ * get_top functions
  */
 
 /* std::vector */
@@ -111,7 +111,10 @@ get_top(
     return l.front();
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

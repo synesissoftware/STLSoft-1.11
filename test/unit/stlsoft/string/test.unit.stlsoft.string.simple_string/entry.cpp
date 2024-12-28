@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 4th November 2008
- * Updated: 17th December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -65,159 +65,159 @@ namespace
 
     // construction
 
-    static void test_ctor_default(void);
-    static void test_ctor_copy(void);
-    static void test_ctor_s_pos(void);
-    static void test_ctor_s_pos_n(void);
-    static void test_ctor_ccs(void);
-    static void test_ctor_ccs_n(void);
-    static void test_ctor_n_ch(void);
-    static void test_ctor_range(void);
+    static void test_ctor_default();
+    static void test_ctor_copy();
+    static void test_ctor_s_pos();
+    static void test_ctor_s_pos_n();
+    static void test_ctor_ccs();
+    static void test_ctor_ccs_n();
+    static void test_ctor_n_ch();
+    static void test_ctor_range();
 #ifndef USE_std_string
-    static void test_ctor_range_2(void);
+    static void test_ctor_range_2();
 #endif /* !USE_std_string */
 
 
     // `assign()`
 
-    static void test_assign_1(void);
-    static void test_assign_2(void);
-    static void test_assign_3(void);
+    static void test_assign_1();
+    static void test_assign_2();
+    static void test_assign_3();
 #ifndef USE_std_string
-    static void test_assign_4(void);
+    static void test_assign_4();
 #endif /* !USE_std_string */
 
 
     // `append()`
 
-    static void test_append_1(void);
-    static void test_append_2(void);
-    static void test_append_3(void);
+    static void test_append_1();
+    static void test_append_2();
+    static void test_append_3();
 #ifndef USE_std_string
-    static void test_push_back(void);
+    static void test_push_back();
 #endif /* !USE_std_string */
-    static void test_pop_back(void);
+    static void test_pop_back();
 
 
     // modifiers
 
-    static void test_reserve(void);
-    static void test_swap_1(void);
-    static void test_swap_2(void);
-    static void test_swap_3(void);
-    static void test_resize(void);
+    static void test_reserve();
+    static void test_swap_1();
+    static void test_swap_2();
+    static void test_swap_3();
+    static void test_resize();
 #ifndef USE_std_string
-    static void test_clear(void);
+    static void test_clear();
 #endif /* !USE_std_string */
 #ifdef USE_std_string
-    static void test_erase_0_param(void);
-    static void test_erase_1_pos(void);
-    static void test_erase_pos_and_cch(void);
+    static void test_erase_0_param();
+    static void test_erase_1_pos();
+    static void test_erase_pos_and_cch();
 #endif
 
     // attributes
 
-    static void test_size(void);
-    static void test_max_size(void);
-    static void test_length(void);
-    static void test_capacity(void);
-    static void test_empty(void);
+    static void test_size();
+    static void test_max_size();
+    static void test_length();
+    static void test_capacity();
+    static void test_empty();
 
 
     // comparison
 
-    static void test_compare_1(void);
-    static void test_compare_2(void);
-    static void test_compare_3(void);
-    static void test_compare_4(void);
-    static void test_equality_operators_1(void);
+    static void test_compare_1();
+    static void test_compare_2();
+    static void test_compare_3();
+    static void test_compare_4();
+    static void test_equality_operators_1();
 #ifndef USE_std_string
-    static void test_equal_p_n_ccs_n(void);
-    static void test_equal_p_n_ccs(void);
-    static void test_equal_ccs(void);
-    static void test_equal_p_n_scr_p_n(void);
-    static void test_equal_p_n_scr(void);
-    static void test_equal_scr(void);
+    static void test_equal_p_n_ccs_n();
+    static void test_equal_p_n_ccs();
+    static void test_equal_ccs();
+    static void test_equal_p_n_scr_p_n();
+    static void test_equal_p_n_scr();
+    static void test_equal_scr();
 #endif /* !USE_std_string */
 #if !defined(USE_std_string) || \
     __cplusplus >= 202002L
-    static void test_starts_with_1(void);
-    static void test_starts_with_2(void);
-    static void test_contains_1(void);
-    static void test_contains_2(void);
-    static void test_contains_3(void);
-    static void test_ends_with_1(void);
-    static void test_ends_with_2(void);
+    static void test_starts_with_1();
+    static void test_starts_with_2();
+    static void test_contains_1();
+    static void test_contains_2();
+    static void test_contains_3();
+    static void test_ends_with_1();
+    static void test_ends_with_2();
 #endif
 
 
     // accessors
 
-    static void test_at_1(void);
-    static void test_at_2(void);
-    static void test_at_3(void);
-    static void test_at_4(void);
-    static void test_index_1(void);
-    static void test_index_2(void);
-    static void test_copy(void);
-    static void test_substr(void);
-    static void test_substr_throw(void);
+    static void test_at_1();
+    static void test_at_2();
+    static void test_at_3();
+    static void test_at_4();
+    static void test_index_1();
+    static void test_index_2();
+    static void test_copy();
+    static void test_substr();
+    static void test_substr_throw();
 
 
     // search
 
 #ifdef USE_std_string
-    static void test_find_char(void);
-    static void test_find_c_string(void);
-    static void test_find_string(void);
-    static void test_rfind_char(void);
-    static void test_rfind_c_string(void);
-    static void test_rfind_string(void);
-    static void test_find_first_of_char(void);
-    static void test_find_first_of_c_string(void);
-    static void test_find_first_of_string(void);
-    static void test_find_last_of_char(void);
-    static void test_find_last_of_c_string(void);
-    static void test_find_last_of_string(void);
-    static void test_find_first_not_of_char(void);
-    static void test_find_first_not_of_c_string(void);
-    static void test_find_first_not_of_string(void);
-    static void test_find_last_not_of_char(void);
-    static void test_find_last_not_of_c_string(void);
-    static void test_find_last_not_of_string(void);
+    static void test_find_char();
+    static void test_find_c_string();
+    static void test_find_string();
+    static void test_rfind_char();
+    static void test_rfind_c_string();
+    static void test_rfind_string();
+    static void test_find_first_of_char();
+    static void test_find_first_of_c_string();
+    static void test_find_first_of_string();
+    static void test_find_last_of_char();
+    static void test_find_last_of_c_string();
+    static void test_find_last_of_string();
+    static void test_find_first_not_of_char();
+    static void test_find_first_not_of_c_string();
+    static void test_find_first_not_of_string();
+    static void test_find_last_not_of_char();
+    static void test_find_last_not_of_c_string();
+    static void test_find_last_not_of_string();
 #endif
 
 
     // traits
 
-    static void test_stlsoft_char_traits(void);
+    static void test_stlsoft_char_traits();
 
-    static void test_string_traits(void);
+    static void test_string_traits();
 
 
     // operators : concatenation
 
-    static void test_concatenation_1(void);
-    static void test_concatenation_2(void);
+    static void test_concatenation_1();
+    static void test_concatenation_2();
 #ifdef USE_std_string
-    static void test_concatenation_3(void);
-    static void test_concatenation_4(void);
-    static void test_concatenation_5(void);
+    static void test_concatenation_3();
+    static void test_concatenation_4();
+    static void test_concatenation_5();
 #endif
-    static void test_concatenation_6(void);
+    static void test_concatenation_6();
 
 
     // operators : insertion
 
-    static void test_insertion_1(void);
-    static void test_insertion_2(void);
-    static void test_insertion_3(void);
-    static void test_insertion_4(void);
+    static void test_insertion_1();
+    static void test_insertion_2();
+    static void test_insertion_3();
+    static void test_insertion_4();
 
 
     // shims : sas
 
-    static void test_string_access_shims(void);
+    static void test_string_access_shims();
 
 
 

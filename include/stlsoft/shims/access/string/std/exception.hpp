@@ -4,7 +4,7 @@
  * Purpose: Contains the string access shims for std::exception.
  *
  * Created: 2nd May 2003
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MINOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    15
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        59
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -250,10 +250,12 @@ public:
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_data_a(STLSOFT_NS_QUAL_STD(exception) const& x)
+inline
+ss_char_a_t const*
+c_str_data_a(STLSOFT_NS_QUAL_STD(exception) const& x)
 {
     return c_str_data_a(x.what());
 }
@@ -263,7 +265,7 @@ inline ss_char_a_t const* c_str_data_a(STLSOFT_NS_QUAL_STD(exception) const& x)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -320,9 +322,11 @@ c_str_data_w(STLSOFT_NS_QUAL_STD(exception) const& x)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style string.
+ * \return None-\c nullptr, non-mutating pointer to a C-style string.
  */
-inline ss_char_a_t const* c_str_data(STLSOFT_NS_QUAL_STD(exception) const& x)
+inline
+ss_char_a_t const*
+c_str_data(STLSOFT_NS_QUAL_STD(exception) const& x)
 {
     return c_str_data_a(x);
 }
@@ -330,8 +334,8 @@ inline ss_char_a_t const* c_str_data(STLSOFT_NS_QUAL_STD(exception) const& x)
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
  *
- * This can be applied to an expression, and the return value is the number of
- * characters in the character string in the expression.
+ * This can be applied to an expression, and the return value is the number
+ * of characters in the character string in the expression.
  */
 
 /** \ref group__concept__Shim__string_access__c_str_len function
@@ -341,7 +345,9 @@ inline ss_char_a_t const* c_str_data(STLSOFT_NS_QUAL_STD(exception) const& x)
  *
  * \return Length (in bytes) of the string <code>s</code>.
  */
-inline ss_size_t c_str_len_a(STLSOFT_NS_QUAL_STD(exception) const& x)
+inline
+ss_size_t
+c_str_len_a(STLSOFT_NS_QUAL_STD(exception) const& x)
 {
     return c_str_len_a(x.what());
 }
@@ -377,7 +383,9 @@ c_str_len_w(STLSOFT_NS_QUAL_STD(exception) const& x)
  *
  * \return Length of the string <code>s</code>.
  */
-inline ss_size_t c_str_len(STLSOFT_NS_QUAL_STD(exception) const& x)
+inline
+ss_size_t
+c_str_len(STLSOFT_NS_QUAL_STD(exception) const& x)
 {
     return c_str_len_a(x);
 }
@@ -394,10 +402,12 @@ inline ss_size_t c_str_len(STLSOFT_NS_QUAL_STD(exception) const& x)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_ptr_a(STLSOFT_NS_QUAL_STD(exception) const& x)
+inline
+ss_char_a_t const*
+c_str_ptr_a(STLSOFT_NS_QUAL_STD(exception) const& x)
 {
     return c_str_ptr_a(x.what());
 }
@@ -407,7 +417,7 @@ inline ss_char_a_t const* c_str_ptr_a(STLSOFT_NS_QUAL_STD(exception) const& x)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
 inline
@@ -422,10 +432,12 @@ c_str_ptr_w(STLSOFT_NS_QUAL_STD(exception) const& x)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string.
  */
-inline ss_char_a_t const* c_str_ptr(STLSOFT_NS_QUAL_STD(exception) const& x)
+inline
+ss_char_a_t const*
+c_str_ptr(STLSOFT_NS_QUAL_STD(exception) const& x)
 {
     return c_str_ptr_a(x);
 }
@@ -434,7 +446,7 @@ inline ss_char_a_t const* c_str_ptr(STLSOFT_NS_QUAL_STD(exception) const& x)
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
+ * pointer to the character string or \c nullptr.
  */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr_null function
@@ -442,10 +454,12 @@ inline ss_char_a_t const* c_str_ptr(STLSOFT_NS_QUAL_STD(exception) const& x)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated
+ *   C-style string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_ptr_null_a(STLSOFT_NS_QUAL_STD(exception) const& x)
+inline
+ss_char_a_t const*
+c_str_ptr_null_a(STLSOFT_NS_QUAL_STD(exception) const& x)
 {
     return c_str_ptr_null_a(x.what());
 }
@@ -455,8 +469,8 @@ inline ss_char_a_t const* c_str_ptr_null_a(STLSOFT_NS_QUAL_STD(exception) const&
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated
+ *   C-style string of <code>wchar_t</code>.
  */
 inline
 basic_shim_string<ss_char_w_t, 100, true>
@@ -512,10 +526,12 @@ c_str_ptr_null_w(STLSOFT_NS_QUAL_STD(exception) const& x)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated
+ *   C-style string.
  */
-inline ss_char_a_t const* c_str_ptr_null(STLSOFT_NS_QUAL_STD(exception) const& x)
+inline
+ss_char_a_t const*
+c_str_ptr_null(STLSOFT_NS_QUAL_STD(exception) const& x)
 {
     return c_str_ptr_null_a(x);
 }

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/rot_functions.h (originally MORotFns.h, ::SynesisCom)
+ * File:    comstl/util/rot_functions.h (originally MORotFns.h, ::SynesisCom)
  *
- * Purpose:     COM ROT (Running Object Table) functions.
+ * Purpose: COM ROT (Running Object Table) functions.
  *
- * Created:     21st October 1998
- * Updated:     11th March 2024
+ * Created: 21st October 1998
+ * Updated: 28th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MINOR       1
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    8
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        80
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    9
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -107,7 +107,9 @@ namespace comstl_project
  * \param pdwRegister Pointer to the value identifying the registration
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_INLINE HRESULT comstl_C_Rot_Register(
+STLSOFT_INLINE
+HRESULT
+comstl_C_Rot_Register(
     DWORD       grfFlags
 ,   LPUNKNOWN   punkObject
 ,   LPMONIKER   pmkObjectName
@@ -137,7 +139,9 @@ STLSOFT_INLINE HRESULT comstl_C_Rot_Register(
  * \param dwRegister Value identifying registration to be revoked
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_INLINE HRESULT comstl_C_Rot_Revoke(DWORD dwRegister)
+STLSOFT_INLINE
+HRESULT
+comstl_C_Rot_Revoke(DWORD dwRegister)
 {
     LPRUNNINGOBJECTTABLE    prot;
     HRESULT                 hr = STLSOFT_NS_GLOBAL(GetRunningObjectTable)(0, &prot);
@@ -163,7 +167,9 @@ STLSOFT_INLINE HRESULT comstl_C_Rot_Revoke(DWORD dwRegister)
  * \param pmkObjectName Pointer to the moniker of the object whose status is desired
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_INLINE HRESULT comstl_C_Rot_IsRunning(LPMONIKER pmkObjectName)
+STLSOFT_INLINE
+HRESULT
+comstl_C_Rot_IsRunning(LPMONIKER pmkObjectName)
 {
     LPRUNNINGOBJECTTABLE    prot;
     HRESULT                 hr = STLSOFT_NS_GLOBAL(GetRunningObjectTable)(0, &prot);
@@ -191,7 +197,9 @@ STLSOFT_INLINE HRESULT comstl_C_Rot_IsRunning(LPMONIKER pmkObjectName)
  * \param ppunkObject Address of output variable that receives the IUnknown interface pointer
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_INLINE HRESULT comstl_C_Rot_GetObject(
+STLSOFT_INLINE
+HRESULT
+comstl_C_Rot_GetObject(
     LPMONIKER   pmkObjectName
 ,   LPUNKNOWN*  ppunkObject
 )
@@ -221,7 +229,9 @@ STLSOFT_INLINE HRESULT comstl_C_Rot_GetObject(
  * \param lpfiletime Pointer to structure containing object's last change time
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_INLINE HRESULT comstl_C_Rot_NoteChangeTime(
+STLSOFT_INLINE
+HRESULT
+comstl_C_Rot_NoteChangeTime(
     DWORD       dwRegister
 ,   FILETIME*   lpfiletime
 )
@@ -251,7 +261,9 @@ STLSOFT_INLINE HRESULT comstl_C_Rot_NoteChangeTime(
  * \param lpfiletime Pointer to structure containing object's last change time
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_INLINE HRESULT comstl_C_Rot_GetTimeOfLastChange(
+STLSOFT_INLINE
+HRESULT
+comstl_C_Rot_GetTimeOfLastChange(
     LPMONIKER   pmkObjectName
 ,   FILETIME*   lpfiletime
 )
@@ -279,7 +291,9 @@ STLSOFT_INLINE HRESULT comstl_C_Rot_GetTimeOfLastChange(
  * \param ppenumMoniker Address of output variable that receives the IEnumMoniker interface pointer
  * \return An HRESULT indicating success or failure
  */
-STLSOFT_INLINE HRESULT comstl_C_Rot_EnumRunning(IEnumMoniker** ppenumMoniker)
+STLSOFT_INLINE
+HRESULT
+comstl_C_Rot_EnumRunning(IEnumMoniker** ppenumMoniker)
 {
     LPRUNNINGOBJECTTABLE    prot;
     HRESULT                 hr = STLSOFT_NS_GLOBAL(GetRunningObjectTable)(0, &prot);
@@ -375,7 +389,9 @@ namespace comstl
  * \param pdwRegister Pointer to the value identifying the registration
  * \return An HRESULT indicating success or failure
  */
-inline HRESULT Rot_Register(
+inline
+HRESULT
+Rot_Register(
     DWORD       grfFlags
 ,   LPUNKNOWN   punkObject
 ,   LPMONIKER   pmkObjectName
@@ -395,7 +411,9 @@ inline HRESULT Rot_Register(
  * \param dwRegister Value identifying registration to be revoked
  * \return An HRESULT indicating success or failure
  */
-inline HRESULT Rot_Revoke(DWORD dwRegister)
+inline
+HRESULT
+Rot_Revoke(DWORD dwRegister)
 {
     return comstl_C_Rot_Revoke(dwRegister);
 }
@@ -411,7 +429,9 @@ inline HRESULT Rot_Revoke(DWORD dwRegister)
  * \param pmkObjectName Pointer to the moniker of the object whose status is desired
  * \return An HRESULT indicating success or failure
  */
-inline HRESULT Rot_IsRunning(LPMONIKER pmkObjectName)
+inline
+HRESULT
+Rot_IsRunning(LPMONIKER pmkObjectName)
 {
     return comstl_C_Rot_IsRunning(pmkObjectName);
 }
@@ -429,7 +449,9 @@ inline HRESULT Rot_IsRunning(LPMONIKER pmkObjectName)
  * \param ppunkObject Address of output variable that receives the IUnknown interface pointer
  * \return An HRESULT indicating success or failure
  */
-inline HRESULT Rot_GetObject(
+inline
+HRESULT
+Rot_GetObject(
     LPMONIKER   pmkObjectName
 ,   LPUNKNOWN*  ppunkObject
 )
@@ -449,7 +471,9 @@ inline HRESULT Rot_GetObject(
  * \param lpfiletime Pointer to structure containing object's last change time
  * \return An HRESULT indicating success or failure
  */
-inline HRESULT Rot_NoteChangeTime(
+inline
+HRESULT
+Rot_NoteChangeTime(
     DWORD       dwRegister
 ,   FILETIME*   lpfiletime
 )
@@ -469,7 +493,9 @@ inline HRESULT Rot_NoteChangeTime(
  * \param lpfiletime Pointer to structure containing object's last change time
  * \return An HRESULT indicating success or failure
  */
-inline HRESULT Rot_GetTimeOfLastChange(
+inline
+HRESULT
+Rot_GetTimeOfLastChange(
     LPMONIKER   pmkObjectName
 ,   FILETIME*   lpfiletime
 )
@@ -487,14 +513,18 @@ inline HRESULT Rot_GetTimeOfLastChange(
  * \param ppenumMoniker Address of output variable that receives the IEnumMoniker interface pointer
  * \return An HRESULT indicating success or failure
  */
-inline HRESULT Rot_EnumRunning(IEnumMoniker** ppenumMoniker)
+inline
+HRESULT
+Rot_EnumRunning(IEnumMoniker** ppenumMoniker)
 {
     return comstl_C_Rot_EnumRunning(ppenumMoniker);
 }
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

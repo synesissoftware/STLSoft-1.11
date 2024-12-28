@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/filesystem/filesystem_traits.hpp (originally MInetEnm.h)
+ * File:    inetstl/filesystem/filesystem_traits.hpp (originally MInetEnm.h)
  *
- * Purpose:     Contains the filesystem_traits template class, and ANSI and
- *              Unicode specialisations thereof.
+ * Purpose: Contains the filesystem_traits template class, and ANSI and
+ *          Unicode specialisations thereof.
  *
- * Created:     30th April 1999
- * Updated:     11th March 2024
+ * Created: 30th April 1999
+ * Updated: 26th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
@@ -56,7 +56,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    5
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     96
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,6 +84,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST
 # include <stlsoft/conversion/any_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST */
+
 #ifndef STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR
 # include <stlsoft/internal/safestr.h>
 #endif /* !STLSOFT_INCL_STLSOFT_INTERNAL_H_SAFESTR */

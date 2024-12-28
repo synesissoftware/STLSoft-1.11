@@ -4,7 +4,7 @@
  * Purpose: Definition of the doomgram class.
  *
  * Created: 13th May 2013
- * Updated: 17th December 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MAJOR     2
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MINOR     0
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_REVISION  1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      33
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -73,9 +73,9 @@
 # include <stlsoft/limits/integral_limits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,8 @@ public: // accessors
     integer_type event_count() const STLSOFT_NOEXCEPT;
     /// Attempts to obtain the total event time (in nanoseconds)
     ///
-    /// \param value Pointer to variable to receive the value. May be NULL
+    /// \param value Pointer to variable to receive the value. May be
+    ///  \c nullptr
     ///
     /// \retval true No overflow has occurred
     /// \retval false Overflow has occurred
@@ -143,11 +144,13 @@ public: // accessors
     integer_type total_event_time_ns_raw() const STLSOFT_NOEXCEPT;
     /// Attempts to obtain the minimum event time (in nanoseconds)
     ///
-    /// \param value Pointer to variable to receive the value. May not be NULL
+    /// \param value Pointer to variable to receive the value. May not be
+    ///  \c nullptr
     bool try_get_min_event_time_ns(integer_type* value) const STLSOFT_NOEXCEPT;
     /// Attempts to obtain the maximum event time (in nanoseconds)
     ///
-    /// \param value Pointer to variable to receive the value. May not be NULL
+    /// \param value Pointer to variable to receive the value. May not be
+    ///  \c nullptr
     bool try_get_max_event_time_ns(integer_type* value) const STLSOFT_NOEXCEPT;
     /// Number of events counted in the interval [1ns, 10ns)
     integer_type num_events_in_1ns() const STLSOFT_NOEXCEPT;
@@ -258,7 +261,7 @@ doomgram::doomgram() STLSOFT_NOEXCEPT
     // : // no MILs because using `memset()` (see ctor body)
 {
     // TODO: replace with `STLSOFT_API_EXTERNAL_memfns_memset()` when available
-    STLSOFT_API_INTERNAL_memfns_memset(this, 0, sizeof(*this));
+    STLSOFT_API_EXTERNAL_memfns_memset(this, 0, sizeof(*this));
 
     m_min_event_time_ns = integral_limits_type::maximum();
     m_max_event_time_ns = integral_limits_type::minimum();

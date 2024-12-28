@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/diagnostics/failure_handling.h
+ * File:    winstl/synch/diagnostics/failure_handling.h
  *
- * Purpose:     WinSTL Synchronisation library diagnostics facilities.
+ * Purpose: WinSTL Synchronisation library diagnostics facilities.
  *
- * Created:     18th December 2016
- * Updated:     11th March 2024
+ * Created: 18th December 2016
+ * Updated: 27th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_MAJOR       1
 # define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_MINOR       0
 # define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_REVISION    3
-# define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_EDIT        8
+# define WINSTL_VER_WINSTL_SYNCH_DIAGNOSTICS_H_FAILURE_HANDLING_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -86,9 +86,9 @@
 
 #  define WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_USE_pantheios_onBailOut
 #  if 0
-#  define WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_USE_pantheios_exitProcess
+#   define WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_USE_pantheios_exitProcess
 #  else
-#  define WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_USE_exit
+#   define WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_USE_exit
 #  endif
 # else
 
@@ -127,15 +127,18 @@
 #if 0 || \
     defined(WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_USE_fprintf) || \
     1
+
 # ifndef STLSOFT_INCL_H_STDIO
 #  define STLSOFT_INCL_H_STDIO
 #  include <stdio.h>
 # endif /* !STLSOFT_INCL_H_STDIO */
 #endif /* WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_USE_fprintf */
+
 #if 0 || \
     defined(WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_USE_abort) || \
     defined(WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_USE_pantheios_exitProcess) || \
     0
+
 # ifndef STLSOFT_INCL_H_STDLIB
 #  define STLSOFT_INCL_H_STDLIB
 #  include <stdlib.h>
@@ -230,7 +233,6 @@
 # endif
 
 
-
 # define WINSTL_SYNCH_OPERATION_FAILED_IN_NOX(syncSC, winSC)                \
                                                                             \
     do                                                                      \
@@ -239,7 +241,6 @@
                                                                             \
         WINSTL_SYNCH_OPERATION_FAILED_IN_NOX_RESPONSE_();                   \
     } while (STLSOFT_ALWAYS_FALSE())
-
 #endif /* !WINSTL_SYNCH_OPERATION_FAILED_IN_NOX */
 
 
@@ -264,11 +265,8 @@ namespace winstl_project
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * .
+ * namespace
  */
-
-
-/* /////////////////////////////////////////////////////////////////////////
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

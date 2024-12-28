@@ -89,9 +89,9 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifdef STLSOFT_CF_VARIADIC_TEMPLATE_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
@@ -171,7 +171,7 @@ output_debug_line_append_(
         buff.resize(requested);
     }
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(&buff[0] + *pcchBuff, s, sizeof(buffer_t::value_type) * n);
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&buff[0] + *pcchBuff, s, sizeof(buffer_t::value_type) * n);
 
     *pcchBuff += n;
 }

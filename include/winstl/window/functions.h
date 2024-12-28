@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/functions.h (originally MWBase.h, ::SynesisWin)
+ * File:    winstl/window/functions.h (originally MWBase.h, ::SynesisWin)
  *
- * Purpose:     Window functions.
+ * Purpose: Window functions.
  *
- * Created:     7th May 2000
- * Updated:     11th March 2024
+ * Created: 7th May 2000
+ * Updated: 26th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  16
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      83
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  17
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -78,6 +78,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages
+# include <winstl/api/external/WindowsAndMessages.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -669,12 +673,6 @@ set_window_icon(
 {
     WINSTL_ASSERT(ICON_BIG == iconType || ICON_SMALL == iconType);
 
-# if defined(STLSOFT_COMPILER_IS_BORLAND) && \
-     __BORLANDC__ < 0x0564
-    /* This is needed here to prevent the Borland compiler from confusing it with the winstl one! */
-    using ::SendMessage;
-# endif /* compiler */
-
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      defined(_Wp64) && \
      !defined(_WIN64)
@@ -682,7 +680,7 @@ set_window_icon(
 #  pragma warning(disable : 4244)
 # endif /* VC++ + Win32 + _Wp32 */
 
-    return LRESULT2HICON(::SendMessage(hwnd, WM_SETICON, static_cast<WPARAM>(iconType), HICON2LPARAM(hicon)));
+    return LRESULT2HICON(WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, WM_SETICON, static_cast<WPARAM>(iconType), HICON2LPARAM(hicon)));
 
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      defined(_Wp64) && \
@@ -743,18 +741,16 @@ set_window_icon(
  * \param hwndParent The window whose children will be searched
  * \param id The dialog id to search for
  *
- * \return Either the window handle of the first child window (or
- * the parent itself) that matches the id, or NULL if no windows
- * match
+ * \return Either the window handle of the first child window (or the parent
+ *   itself) that matches the id, or \c nullptr if no windows match
  *
- * \note Because several levels of windows may be searched, it's
- * possible for more than one child window to have the given id.
- * This function will return only the first one found. Which one
- * is determined by the internals of the EnumChildWindows() API
- * function.
+ * \note Because several levels of windows may be searched, it's possible
+ *   for more than one child window to have the given id. This function will
+ *   return only the first one found. Which one is determined by the
+ *   internals of the EnumChildWindows() API function.
  *
  * \note \c hwndParent is included in the search, so if it has the
- * given id, it will be returned
+ *   given id, it will be returned
  */
 #  if defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1) || \
       defined(WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2)
@@ -902,16 +898,16 @@ FindFirstChildById(
 {
     return FindFirstChildById_class/* <int> */::FindFirstChildById_N(hwndParent, id);
 }
-
 #  else /* ? WINSTL_FINDFIRSTCHILDBYID_SLF_FORM?? */
 #   error None of WINSTL_FINDFIRSTCHILDBYID_SLF_FORM1, WINSTL_FINDFIRSTCHILDBYID_SLF_FORM2 or WINSTL_FINDFIRSTCHILDBYID_SLF_FORM3 defined
 #  endif /* WINSTL_FINDFIRSTCHILDBYID_SLF_FORM?? */
-
 # endif /* !NOCTLMGR */
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

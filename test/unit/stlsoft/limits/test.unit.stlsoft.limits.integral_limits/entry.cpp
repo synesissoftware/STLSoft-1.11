@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_limits`.
  *
  * Created: 21st November 2024
- * Updated: 21st November 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,7 +46,7 @@
 namespace
 {
 
-    static void test_min_max(void);
+    static void test_min_max();
 } // anonymous namespace
 
 
@@ -104,10 +104,7 @@ namespace stlsoft {
             return { INT_MAX };
         }
     };
-} /* namespace stlsoft */
-
-
-
+} // namespace stlsoft
 
 
 /* /////////////////////////////////////////////////////////////////////////

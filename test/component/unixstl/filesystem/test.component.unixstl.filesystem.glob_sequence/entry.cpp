@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::glob_sequence`.
  *
  * Created: 24th January 2009
- * Updated: 11th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,41 +43,41 @@
 namespace
 {
 
-    static void test_empty_directory(void);
+    static void test_empty_directory();
 
-    static void test_dot(void);
-    static void test_dot_and_includeDots(void);
-    static void test_dotdot(void);
-    static void test_dotdot_and_includeDots(void);
-    static void test_dot_and_absolutePath(void);
-    static void test_dot_and_absolutePath_includeDots(void);
-    static void test_dotdot_and_absolutePath(void);
-    static void test_dotdot_and_absolutePath_includeDots(void);
-    static void test_dotslashstardotstar_and_files(void);
-    static void test_dotslashstardotstar_and_directories(void);
-    static void test_dotslashstardotstar_and_files_absolutePath(void);
-    static void test_dotslashstardotstar_and_directories_absolutePath(void);
-    static void test_dotdotslashstardotstar_and_files_absolutePath(void);
-    static void test_dotdotslashstardotstar_and_directories_absolutePath(void);
-    static void test_dotstar(void);
-    static void test_dotstar_and_includeDots(void);
-    static void test_dotstar_and_matchPeriod(void);
-    static void test_dotstar_and_includeDots_matchPeriod(void);
+    static void test_dot();
+    static void test_dot_and_includeDots();
+    static void test_dotdot();
+    static void test_dotdot_and_includeDots();
+    static void test_dot_and_absolutePath();
+    static void test_dot_and_absolutePath_includeDots();
+    static void test_dotdot_and_absolutePath();
+    static void test_dotdot_and_absolutePath_includeDots();
+    static void test_dotslashstardotstar_and_files();
+    static void test_dotslashstardotstar_and_directories();
+    static void test_dotslashstardotstar_and_files_absolutePath();
+    static void test_dotslashstardotstar_and_directories_absolutePath();
+    static void test_dotdotslashstardotstar_and_files_absolutePath();
+    static void test_dotdotslashstardotstar_and_directories_absolutePath();
+    static void test_dotstar();
+    static void test_dotstar_and_includeDots();
+    static void test_dotstar_and_matchPeriod();
+    static void test_dotstar_and_includeDots_matchPeriod();
 
-    static void test_dot_and_dot(void);
-    static void test_dot_and_dot_and_includeDots(void);
-    static void test_dot_and_dotdot(void);
-    static void test_dot_and_dotdot_and_includeDots(void);
-    static void test_dot_and_dot_and_absolutePath(void);
-    static void test_dot_and_dot_and_absolutePath_includeDots(void);
-    static void test_dot_and_dotdot_and_absolutePath(void);
-    static void test_dot_and_dotdot_and_absolutePath_includeDots(void);
-    static void test_dot_and_stardotstar_and_files(void);
-    static void test_dot_and_stardotstar_and_directories(void);
-    static void test_dot_and_stardotstar_and_files_absolutePath(void);
-    static void test_dot_and_stardotstar_and_directories_absolutePath(void);
-    static void test_dotdot_and_stardotstar_and_files_absolutePath(void);
-    static void test_dotdot_and_stardotstar_and_directories_absolutePath(void);
+    static void test_dot_and_dot();
+    static void test_dot_and_dot_and_includeDots();
+    static void test_dot_and_dotdot();
+    static void test_dot_and_dotdot_and_includeDots();
+    static void test_dot_and_dot_and_absolutePath();
+    static void test_dot_and_dot_and_absolutePath_includeDots();
+    static void test_dot_and_dotdot_and_absolutePath();
+    static void test_dot_and_dotdot_and_absolutePath_includeDots();
+    static void test_dot_and_stardotstar_and_files();
+    static void test_dot_and_stardotstar_and_directories();
+    static void test_dot_and_stardotstar_and_files_absolutePath();
+    static void test_dot_and_stardotstar_and_directories_absolutePath();
+    static void test_dotdot_and_stardotstar_and_files_absolutePath();
+    static void test_dotdot_and_stardotstar_and_directories_absolutePath();
 } // anonymous namespace
 
 
@@ -152,7 +152,7 @@ namespace
     using ::xtests::cpp::util::temp_directory;
 
 
-static void test_empty_directory(void)
+static void test_empty_directory()
 {
     temp_directory temp_dir(temp_directory::EmptyOnClose | temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 

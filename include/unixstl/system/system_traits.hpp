@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 19th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     2
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      138
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      139
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -81,6 +81,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS
 # include <stlsoft/util/resizeable_buffer_helpers.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 #if defined(_WIN32) || \
     defined(_WIN64)
@@ -211,9 +215,9 @@ public:
     /// path string character rules on the ambient operating system
     ///
     /// \param ps1 C-style string pointer to the first path. May not be
-    ///   \c null
+    ///   \c nullptr
     /// \param ps2 C-style string pointer to the first path. May not be
-    ///   \c null
+    ///   \c nullptr
     ///
     /// \note This function does <em>not</em> perform analysis such as
     ///   canonicalisation of dots directories
@@ -228,9 +232,9 @@ public:
     /// path string character rules on the ambient operating system
     ///
     /// \param ps1 C-style string pointer to the first path. May not be
-    ///   \c null
+    ///   \c nullptr
     /// \param ps2 C-style string pointer to the first path. May not be
-    ///   \c null
+    ///   \c nullptr
     /// \param cch Number of characters to compare
     ///
     /// \note This function does <em>not</em> perform analysis such as
@@ -325,7 +329,8 @@ public:
     /// Gets an environment variable into the given buffer
     ///
     /// \param name The name of the variable to find
-    /// \param buffer The buffer in which to write the variable. If this is NULL, then the required length is returned
+    /// \param buffer The buffer in which to write the variable. If this is
+    ///   \c nullptr, then the required length is returned
     /// \param cchBuffer The size of the buffer, in characters
     ///
     /// \pre nullptr != name
@@ -353,7 +358,8 @@ public:
     ,   T_resizeableBuffer& rb
     );
 
-    /// Expands environment strings in \c src into \c buffer, up to a maximum \c cchDest characters
+    /// Expands environment strings in \c src into \c buffer, up to a
+    /// maximum \c cchDest characters
     ///
     /// \pre nullptr != src
     /// \pre 0 == cchBuffer || nullptr != buffer
@@ -857,8 +863,8 @@ public:
     )
     ;
 };
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

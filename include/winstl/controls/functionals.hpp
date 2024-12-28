@@ -4,7 +4,7 @@
  * Purpose: Functionals for application to controls.
  *
  * Created: 8th October 2002
- * Updated: 5th November 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    2
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 14
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     100
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 15
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,13 +106,16 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_CONTROL_FUNCTIONALS_NO_STD */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
+#ifndef WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages
+# include <winstl/api/external/WindowsAndMessages.h>
+#endif /* !WINSTL_INCL_WINSTL_API_external_h_WindowsAndMessages */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -186,7 +189,7 @@ public:
 private:
     static void check_(HWND hwnd, int nCheck)
     {
-        ::SendMessage(hwnd, BM_SETCHECK, static_cast<WPARAM>(nCheck), 0L);
+        WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, BM_SETCHECK, static_cast<WPARAM>(nCheck), 0L);
     }
 
 private:
@@ -235,7 +238,7 @@ public:
 private:
     BOOL is_checked_(HWND hwnd) const
     {
-        int nCheck  =   static_cast<int>(::SendMessage(hwnd, BM_GETCHECK, 0, 0L));
+        int nCheck  =   static_cast<int>(WINSTL_API_EXTERNAL_WindowsAndMessages_SendMessage(hwnd, BM_GETCHECK, 0, 0L));
 
         if (-1 == m_nCheckType)
         {
@@ -281,7 +284,7 @@ public:
 
         WINSTL_ASSERT(cchClass < STLSOFT_NUM_ELEMENTS(m_name.sza));
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(&m_name.sza[0], windowClass, cchClass);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_name.sza[0], windowClass, cchClass);
         m_name.sza[cchClass] = '\0';
     }
     ss_explicit_k
@@ -296,7 +299,7 @@ public:
 
         WINSTL_ASSERT(cchClass < STLSOFT_NUM_ELEMENTS(m_name.szw));
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(&m_name.szw[0], windowClass, cchClass);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_name.szw[0], windowClass, cchClass);
         m_name.szw[cchClass] = '\0';
     }
 private:

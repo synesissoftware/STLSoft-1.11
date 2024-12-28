@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/time/modification_functions.h
+ * File:    winstl/time/modification_functions.h
  *
- * Purpose:     Modification functions for Windows time structures.
+ * Purpose: Modification functions for Windows time structures.
  *
- * Created:     2nd February 2011
- * Updated:     11th March 2024
+ * Created: 2nd February 2011
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
@@ -51,10 +51,10 @@
 #define WINSTL_INCL_WINSTL_TIME_H_MODIFICATION_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MAJOR    2
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT     13
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MAJOR      2
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_MINOR      0
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_REVISION   1
+# define WINSTL_VER_WINSTL_TIME_H_MODIFICATION_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -188,7 +188,7 @@ winstl_C_increment_FILETIME_us(
  *   in which case a subtraction is effected.
  *
  * \return The function does not return a value. The pointers must not be
- *   <code>NULL</code>, and no validity checking is performed on the offset
+ *   \c nullptr, and no validity checking is performed on the offset
  *   parameter values.
  *
  * \pre (NULL != result)
@@ -348,7 +348,6 @@ increment_SYSTEMTIME(
     ,   milliseconds
     );
 }
-
 #endif /* __cplusplus */
 
 
@@ -383,8 +382,6 @@ increment_SYSTEMTIME(
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_TIME_H_MODIFICATION_FUNCTIONS */
 

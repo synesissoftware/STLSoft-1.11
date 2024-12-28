@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::reg_value`.
  *
  * Created: 23rd February 2009
- * Updated: 23rd October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,16 +46,16 @@ namespace
 {
 
 #if 0
-    static void test_missing_value(void);
+    static void test_missing_value();
 #endif /* 0 */
-    static void test_none_value(void);
-    static void test_0_dword(void);
-    static void test_empty_string(void);
-    static void test_many_dwords(void);
-    static void test_many_strings(void);
-    static void test_empty_multistring(void);
-    static void test_multistring_multibyte(void);
-    static void test_multistring_wide(void);
+    static void test_none_value();
+    static void test_0_dword();
+    static void test_empty_string();
+    static void test_many_dwords();
+    static void test_many_strings();
+    static void test_empty_multistring();
+    static void test_multistring_multibyte();
+    static void test_multistring_wide();
 } // anonymous namespace
 
 

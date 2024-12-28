@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::stopwatch`.
  *
  * Created: 19th November 2024
- * Updated: 30th November 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,9 +43,9 @@
 namespace
 {
 
-    static void test_default_ctor(void);
-    static void test_start_then_stop_immediately(void);
-    static void test_get_epoch_twice(void);
+    static void test_default_ctor();
+    static void test_start_then_stop_immediately();
+    static void test_get_epoch_twice();
 } // anonymous namespace
 
 
@@ -92,12 +92,12 @@ namespace {
 namespace
 {
 
-static void test_default_ctor(void)
+static void test_default_ctor()
 {
     stopwatch sw;
 }
 
-static void test_start_then_stop_immediately(void)
+static void test_start_then_stop_immediately()
 {
     stopwatch sw;
 
@@ -133,7 +133,7 @@ static void test_start_then_stop_immediately(void)
 #endif
 }
 
-static void test_get_epoch_twice(void)
+static void test_get_epoch_twice()
 {
     stopwatch::epoch_type e1 = stopwatch::get_epoch();
     stopwatch::epoch_type e2 = stopwatch::get_epoch();

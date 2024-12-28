@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 7th February 2002
- * Updated: 6th November 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  Pablo Aguilar for discovering the Borland weirdness which is now
  *          addressed with the calc_path_max_() method.
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     152
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 16
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,9 +116,9 @@
 # include <stlsoft/algorithms/pod.hpp>
 #endif /* STLSOFT_DEBUG */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -384,7 +384,7 @@ public:
     /// Copies the contents into a caller supplied buffer
     ///
     /// \param buffer Pointer to character buffer to receive the contents.
-    ///  May be NULL, in which case the method returns size().
+    ///  May be \c nullptr, in which case the method returns size().
     /// \param cchBuffer Number of characters of available space in \c buffer.
     size_type copy(char_type *buffer, size_type cchBuffer) const
     {
@@ -430,7 +430,7 @@ private:
         size_type const         n   =   m_buffer.size() - ecs;
         char_type *             p   =   &m_buffer[0] + n;
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, ec, sizeof(char_type) * ecs);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, ec, sizeof(char_type) * ecs);
     }
 
     static
@@ -455,7 +455,7 @@ private:
             size_type const         n   =   m_buffer.size() - ecs;
             char_type const*        p   =   &m_buffer[0] + n;
 
-            if (0 != ::memcmp(p, ec, sizeof(char_type) * ecs))
+            if (0 != STLSOFT_API_EXTERNAL_memfns_memcmp(p, ec, sizeof(char_type) * ecs))
             {
                 return false;
             }
@@ -759,6 +759,7 @@ namespace std
 } /* namespace std */
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

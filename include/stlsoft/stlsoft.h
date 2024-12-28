@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 19th December 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    56
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 4
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     580
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     581
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -375,12 +375,13 @@
 # define _STLSOFT_VER_1_11_1_A25    0x010b0159  /*!< Version 1.11.1 alpha 25 (18th November 2024) */
 # define _STLSOFT_VER_1_11_1_A26    0x010b015a  /*!< Version 1.11.1 alpha 26 (23rd November 2024) */
 # define _STLSOFT_VER_1_11_1_A27    0x010b015b  /*!< Version 1.11.1 alpha 27 (19th December 2024) */
+# define _STLSOFT_VER_1_11_1_A28    0x010b015c  /*!< Version 1.11.1 alpha 28 (28th December 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A27
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A28
 
 
 /* /////////////////////////////////////
@@ -2366,6 +2367,109 @@ typedef ss_streampos_t                                      streampos_t;        
 typedef ss_streamoff_t                                      streamoff_t;        /*!< streamoff                  */
 # endif /* compiler */
 #endif /* !STLSOFT_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * integer suffixes
+ *
+ * formerly in stlsoft/limits/integral_limits.h
+ */
+
+/* 8-bit */
+
+/** \def STLSOFT_GEN_SINT8_SUFFIX(i)
+ *
+ * Applies appropriate suffix to raw signed 8-bit integer constant
+ */
+
+/** \def STLSOFT_GEN_UINT8_SUFFIX(i)
+ *
+ * Applies appropriate suffix to raw unsigned 8-bit integer constant
+ */
+
+#define STLSOFT_GEN_SINT8_SUFFIX(i)                         (i)
+#define STLSOFT_GEN_UINT8_SUFFIX(i)                         (i ## U)
+
+/* 16-bit */
+
+/** \def STLSOFT_GEN_SINT16_SUFFIX(i)
+ *
+ * Applies appropriate suffix to raw signed 16-bit integer constant
+ */
+
+/** \def STLSOFT_GEN_UINT16_SUFFIX(i)
+ *
+ * Applies appropriate suffix to raw unsigned 16-bit integer constant
+ */
+
+#define STLSOFT_GEN_SINT16_SUFFIX(i)                        (i)
+#define STLSOFT_GEN_UINT16_SUFFIX(i)                        (i ## U)
+
+/* 32-bit */
+
+/** \def STLSOFT_GEN_SINT32_SUFFIX(i)
+ *
+ * Applies appropriate suffix to raw signed 32-bit integer constant
+ */
+
+/** \def STLSOFT_GEN_UINT32_SUFFIX(i)
+ *
+ * Applies appropriate suffix to raw unsigned 32-bit integer constant
+ */
+
+#if 0
+#elif _STLSOFT_SIZEOF_LONG == 4
+# define STLSOFT_GEN_SINT32_SUFFIX(i)                       (i ## L)
+# define STLSOFT_GEN_UINT32_SUFFIX(i)                       (i ## UL)
+#else /* ? _STLSOFT_SIZEOF_LONG */
+# define STLSOFT_GEN_SINT32_SUFFIX(i)                       (i)
+# define STLSOFT_GEN_UINT32_SUFFIX(i)                       (i ## U)
+#endif /* _STLSOFT_SIZEOF_LONG */
+
+/* 64-bit */
+
+/** \def STLSOFT_GEN_SINT64_SUFFIX(i)
+ *
+ * Applies appropriate suffix to raw signed 64-bit integer constant
+ */
+
+/** \def STLSOFT_GEN_UINT64_SUFFIX(i)
+ *
+ * Applies appropriate suffix to raw unsigned 64-bit integer constant
+ */
+
+#if 0
+#elif defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+# define STLSOFT_GEN_SINT64_SUFFIX(i)                       (i ## L)
+# define STLSOFT_GEN_UINT64_SUFFIX(i)                       (i ## UL)
+#elif 0 ||\
+      (   defined(STLSOFT_COMPILER_IS_BORLAND) &&\
+          __BORLANDC__ >= 0x0582) ||\
+      defined(STLSOFT_COMPILER_IS_CLANG) ||\
+      defined(STLSOFT_COMPILER_IS_COMO) ||\
+      defined(STLSOFT_COMPILER_IS_DMC) ||\
+      defined(STLSOFT_COMPILER_IS_GCC) ||\
+      defined(STLSOFT_COMPILER_IS_MWERKS) ||\
+      defined(STLSOFT_COMPILER_IS_SUNPRO) ||\
+      0
+
+# define STLSOFT_GEN_SINT64_SUFFIX(i)                       (i ## LL)
+# define STLSOFT_GEN_UINT64_SUFFIX(i)                       (i ## ULL)
+#elif 0 ||\
+      defined(STLSOFT_COMPILER_IS_BORLAND) ||\
+      defined(STLSOFT_COMPILER_IS_INTEL) ||\
+      defined(STLSOFT_COMPILER_IS_MSVC) ||\
+      defined(STLSOFT_COMPILER_IS_VECTORC) ||\
+      defined(STLSOFT_COMPILER_IS_WATCOM) ||\
+      0
+
+# define STLSOFT_GEN_SINT64_SUFFIX(i)                       (i ## L)
+# define STLSOFT_GEN_UINT64_SUFFIX(i)                       (i ## UL)
+#else
+
+# error Compiler not discriminated
+#endif /* compiler */
 
 
 /* /////////////////////////////////////////////////////////////////////////

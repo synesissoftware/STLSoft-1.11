@@ -4,7 +4,7 @@
  * Purpose: Platform header for the filesystem_traits components.
  *
  * Created: 16th July 2006
- * Updated: 11th March 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MAJOR     2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MINOR     1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  10
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      40
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MINOR     2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  1
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -152,11 +152,11 @@ public:
 
 public:
     /// Indicates whether the stack is empty
-    bool_type           empty() const;
+    bool_type           empty() const STLSOFT_NOEXCEPT;
     /// [DEPRECATED] Indicates whether the stack is empty
     ///
     /// \deprecated Use empty() instead
-    bool_type           is_empty() const;
+    bool_type           is_empty() const STLSOFT_NOEXCEPT;
     /// Indicates the number of directories in the stack
     size_type           size() const;
 
@@ -230,7 +230,7 @@ basic_cwd_stack<C, XP>::size() const
 template <typename C, typename XP>
 inline
 ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type
-basic_cwd_stack<C, XP>::empty() const
+basic_cwd_stack<C, XP>::empty() const STLSOFT_NOEXCEPT
 {
     return 0 == size();
 }
@@ -238,7 +238,7 @@ basic_cwd_stack<C, XP>::empty() const
 template <typename C, typename XP>
 inline
 ss_typename_type_ret_k basic_cwd_stack<C, XP>::bool_type
-basic_cwd_stack<C, XP>::is_empty() const
+basic_cwd_stack<C, XP>::is_empty() const STLSOFT_NOEXCEPT
 {
     return empty();
 }

@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_MAJOR      1
 # define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT       1
+# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_TIME_H_COMPARISON_FUNCTIONS_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -76,6 +76,10 @@
 # define STLSOFT_INCL_SYS_H_TIME
 # include <sys/time.h>
 #endif /* !STLSOFT_INCL_SYS_H_TIME */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,7 +123,7 @@ unixstl_C_compare_timevals(
     UNIXSTL_ASSERT(NULL != lhs);
     UNIXSTL_ASSERT(NULL != rhs);
 
-    if (0 == STLSOFT_NS_GLOBAL(memcmp(lhs, rhs, sizeof(struct timeval))))
+    if (0 == STLSOFT_API_EXTERNAL_memfns_memcmp(lhs, rhs, sizeof(struct timeval)))
     {
         return 0;
     }

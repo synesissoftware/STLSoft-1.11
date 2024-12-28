@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/functionals.hpp
+ * File:    winstl/filesystem/functionals.hpp
  *
- * Purpose:     File-system related functions and predicates.
+ * Purpose: File-system related functions and predicates.
  *
- * Created:     19th January 2002
- * Updated:     8th March 2024
+ * Created: 19th January 2002
+ * Updated: 27th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR     2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      105
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  7
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -317,7 +317,7 @@ public: // types
     /// The second argument type
     typedef A2                                              second_argument_type;
     /// The result type
-    typedef is_bool_t                                       result_type;
+    typedef ws_bool_t                                       result_type;
     /// The current specialisation of the type
     typedef path_compare_env<
         T_character

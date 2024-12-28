@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *
  * Created: 27th February 2024
- * Updated: 17th December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,10 +46,10 @@
 namespace
 {
 
-    static void test_int_spec(void);
-    static void test_Integer_spec(void);
-    static void test_double_spec(void);
-    static void test_stdstring_spec(void);
+    static void test_int_spec();
+    static void test_Integer_spec();
+    static void test_double_spec();
+    static void test_stdstring_spec();
 
 } // anonymous namespace
 

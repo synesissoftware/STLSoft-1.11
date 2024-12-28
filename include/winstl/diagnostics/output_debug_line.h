@@ -89,9 +89,9 @@
 # include <string.h>
 #endif /* !STLSOFT_INCL_H_STRING */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
 # include <winstl/api/external/Debugging.h>
@@ -168,7 +168,7 @@ stlsoft_C_concatenate_N_m(
                 ss_char_a_t const*  s   =   va_arg(args, ss_char_a_t const*);
                 ss_size_t           len =   STLSOFT_NS_QUAL(c_str_len_a)(s);
 
-                STLSOFT_API_INTERNAL_memfns_memcpy(dest, s, sizeof(ss_char_a_t) * len);
+                STLSOFT_API_EXTERNAL_memfns_memcpy(dest, s, sizeof(ss_char_a_t) * len);
                 dest += len;
             }
             *dest = '\0';

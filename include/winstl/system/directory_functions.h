@@ -69,13 +69,13 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
 #ifndef WINSTL_INCL_WINSTL_API_external_h_SystemInformation
 # include <winstl/api/external/SystemInformation.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_SystemInformation */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,8 +133,8 @@ winstl_C_get_home_directory_a(
         return 1 + cchTotal;
     }
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_a_t) * cchDrive);
-    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_a_t) * cchDirectory);
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_a_t) * cchDrive);
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_a_t) * cchDirectory);
     buffer[cchDrive + cchDirectory] = '\0';
 
     return cchTotal;
@@ -171,8 +171,8 @@ winstl_C_get_home_directory_w(
         return 1 + cchTotal;
     }
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_w_t) * cchDrive);
-    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_w_t) * cchDirectory);
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_w_t) * cchDrive);
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_w_t) * cchDirectory);
     buffer[cchDrive + cchDirectory] = '\0';
 
     return cchTotal;
