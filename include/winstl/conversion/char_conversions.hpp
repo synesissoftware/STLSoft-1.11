@@ -98,9 +98,9 @@
 # include <errno.h>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
@@ -187,9 +187,9 @@ public:
     multibyte2wide(class_type const& s)
         : parent_class_type(s.size() + 1)
     {
-        char_type* p = &static_cast<parent_class_type&>(*this)[0];
+        char_type* const p = &static_cast<parent_class_type&>(*this)[0];
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
         STLSOFT_ASSERT('\0' == (*this)[s.size()]);
     }
 # endif /* compiler */
@@ -345,9 +345,9 @@ public:
     wide2multibyte(class_type const& s)
         : parent_class_type(s.size() + 1)
     {
-        char_type* p = &static_cast<parent_class_type&>(*this)[0];
+        char_type* const p = &static_cast<parent_class_type&>(*this)[0];
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
         STLSOFT_ASSERT('\0' == (*this)[s.size()]);
     }
 # endif /* compiler */

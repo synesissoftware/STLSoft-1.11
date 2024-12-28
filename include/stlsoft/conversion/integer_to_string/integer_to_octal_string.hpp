@@ -97,10 +97,9 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -311,7 +310,7 @@ i2s_handle_signed_minimum_in_octal_2_(
     C* end  =   buf + cchBuf;
     C* r    =   end - STLSOFT_NUM_ELEMENTS(s_minimum);
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(r, s_minimum, sizeof(C) * STLSOFT_NUM_ELEMENTS(s_minimum));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(r, s_minimum, sizeof(C) * STLSOFT_NUM_ELEMENTS(s_minimum));
 
     STLSOFT_COVER_MARK_LINE();
 
@@ -339,7 +338,7 @@ i2s_handle_signed_minimum_in_octal_2_(
     C* end  =   buf + cchBuf;
     C* r    =   end - STLSOFT_NUM_ELEMENTS(s_minimum);
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(r, s_minimum, sizeof(C) * STLSOFT_NUM_ELEMENTS(s_minimum));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(r, s_minimum, sizeof(C) * STLSOFT_NUM_ELEMENTS(s_minimum));
 
     STLSOFT_COVER_MARK_LINE();
 
@@ -367,7 +366,7 @@ i2s_handle_signed_minimum_in_octal_2_(
     C* end  =   buf + cchBuf;
     C* r    =   end - STLSOFT_NUM_ELEMENTS(s_minimum);
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(r, s_minimum, sizeof(C) * STLSOFT_NUM_ELEMENTS(s_minimum));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(r, s_minimum, sizeof(C) * STLSOFT_NUM_ELEMENTS(s_minimum));
 
     STLSOFT_COVER_MARK_LINE();
 
@@ -395,7 +394,7 @@ i2s_handle_signed_minimum_in_octal_2_(
     C* end  =   buf + cchBuf;
     C* r    =   end - STLSOFT_NUM_ELEMENTS(s_minimum);
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(r, s_minimum, sizeof(C) * STLSOFT_NUM_ELEMENTS(s_minimum));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(r, s_minimum, sizeof(C) * STLSOFT_NUM_ELEMENTS(s_minimum));
 
     STLSOFT_COVER_MARK_LINE();
 

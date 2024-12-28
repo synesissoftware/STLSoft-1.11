@@ -77,7 +77,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
 # include <stlsoft/conversion/sap_cast.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
-
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF
 # include <stlsoft/util/string/snprintf.h>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STRING_H_SNPRINTF */
@@ -86,6 +85,9 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -313,8 +315,8 @@ format_bytes(
 
                 if (cb < byteGrouping)
                 {
-                    STLSOFT_API_INTERNAL_memfns_memcpy(&remaining[0], py, cb);
-                    STLSOFT_API_INTERNAL_memfns_memset(&remaining[0] + cb, 0x00, STLSOFT_NUM_ELEMENTS(remaining) - cb);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(&remaining[0], py, cb);
+                    STLSOFT_API_EXTERNAL_memfns_memset(&remaining[0] + cb, 0x00, STLSOFT_NUM_ELEMENTS(remaining) - cb);
 
                     py = &remaining[0];
                     cb = byteGrouping;  // Cause iteration to complete cleanly after this round
@@ -452,7 +454,7 @@ format_bytes(
                 {
                     if (++lineIndex < numLines)
                     {
-                        STLSOFT_API_INTERNAL_memfns_memcpy(buff, lineSeparator, cchLineSeparator * sizeof(char));
+                        STLSOFT_API_EXTERNAL_memfns_memcpy(buff, lineSeparator, cchLineSeparator * sizeof(char));
 
                         buff += cchLineSeparator;
                     }
@@ -461,7 +463,7 @@ format_bytes(
                 }
                 else if (0 != cb)
                 {
-                    STLSOFT_API_INTERNAL_memfns_memcpy(buff, groupSeparator, cchSeparator * sizeof(char));
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(buff, groupSeparator, cchSeparator * sizeof(char));
 
                     buff += cchSeparator;
                 }

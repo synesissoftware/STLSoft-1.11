@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 27th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,28 +50,28 @@ size_t const NUM_ITERATIONS	=	1000000u;
 namespace
 {
 
-    static void test_default_instance(void);
-    static void test_ctor_1(void);
-    static void test_ctor_2(void);
-    static void test_ctor_3(void);
+    static void test_default_instance();
+    static void test_ctor_1();
+    static void test_ctor_2();
+    static void test_ctor_3();
 
-    static void test_default_ctor_and_length(void);
-    static void test_default_ctor_and_size(void);
-    static void test_c_string_ctor_1(void);
-    static void test_c_string_ctor_2(void);
-    static void test_copy_ctor_1(void);
-    static void test_copy_ctor_2(void);
-    static void test_slice_ctor_1(void);
-    static void test_slice_ctor_2(void);
+    static void test_default_ctor_and_length();
+    static void test_default_ctor_and_size();
+    static void test_c_string_ctor_1();
+    static void test_c_string_ctor_2();
+    static void test_copy_ctor_1();
+    static void test_copy_ctor_2();
+    static void test_slice_ctor_1();
+    static void test_slice_ctor_2();
 
-    static void test_string_concatenation_1(void);
-    static void test_string_concatenation_2(void);
+    static void test_string_concatenation_1();
+    static void test_string_concatenation_2();
 #if _STLSOFT_VER >= 0x010c0000
 
-    static void test_swap_1(void);
-    static void test_swap_2(void);
-    static void test_swap_3(void);
-    static void test_ctor_16(void);
+    static void test_swap_1();
+    static void test_swap_2();
+    static void test_swap_3();
+    static void test_ctor_16();
 #endif
 } // anonymous namespace
 

@@ -90,12 +90,21 @@
 # include <wchar.h>              /* for wcscmp() */
 #endif /* !STLSOFT_INCL_H_WCHAR */
 
+#ifndef STLSOFT_INCL_H_WCHAR
+# define STLSOFT_INCL_H_WCHAR
+# include <wchar.h>              /* for wcscmp() */
+#endif /* !STLSOFT_INCL_H_WCHAR */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #ifndef WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -259,7 +268,7 @@ comstl_C_GUID_binary_compare(
         }
         else
         {
-            return STLSOFT_NS_GLOBAL(memcmp)(lhs, rhs, sizeof(GUID));
+            return STLSOFT_API_EXTERNAL_memfns_memcmp(lhs, rhs, sizeof(GUID));
         }
     }
 }

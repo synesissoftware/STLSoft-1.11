@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *
  * Created: 18th October 2024
- * Updated: 18th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,9 +42,9 @@
 namespace
 {
 
-    static void TEST_count_hexadecimal_digits_WITH_uint16(void);
-    static void TEST_count_hexadecimal_digits_WITH_uint32(void);
-    static void TEST_count_hexadecimal_digits_WITH_uint64(void);
+    static void TEST_count_hexadecimal_digits_WITH_uint16();
+    static void TEST_count_hexadecimal_digits_WITH_uint32();
+    static void TEST_count_hexadecimal_digits_WITH_uint64();
 } // anonymous namespace
 
 

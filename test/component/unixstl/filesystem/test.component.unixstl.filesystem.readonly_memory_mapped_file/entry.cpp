@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readonly_memory_mapped_file`.
  *
  * Created: sometime in 2010s
- * Updated: 11th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,17 +39,17 @@
 namespace
 {
 
-    static void test_types_exist(void);
+    static void test_types_exist();
 
     namespace single_threaded {
 
-        static void test_nonexisting_file(void);
-        static void test_a_new_file_with_fixed_content(void);
+        static void test_nonexisting_file();
+        static void test_a_new_file_with_fixed_content();
     } /* namespace single_threaded */
     namespace multi_threaded {
 
-        static void test_nonexisting_file(void);
-        static void test_a_new_file_with_fixed_content(void);
+        static void test_nonexisting_file();
+        static void test_a_new_file_with_fixed_content();
     } /* namespace multi_threaded */
 } // anonymous namespace
 
@@ -94,7 +94,7 @@ namespace
     using ::xtests::cpp::util::temp_file;
 
 
-static void test_types_exist(void)
+static void test_types_exist()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(unixstl::readonly_memory_mapped_file_base<stlsoft::refcount_policy_single_threaded>));
     STLSOFT_SUPPRESS_UNUSED(typeid(unixstl::readonly_memory_mapped_file_base<platformstl::refcount_policy_multi_threaded>));
@@ -105,7 +105,7 @@ namespace single_threaded {
     typedef unixstl::readonly_memory_mapped_file_base<stlsoft::refcount_policy_single_threaded> rommf_t;
 
 
-    static void test_nonexisting_file(void)
+    static void test_nonexisting_file()
     {
         temp_file f(temp_file::DeleteOnOpen | temp_file::DeleteOnClose);
 
@@ -116,7 +116,7 @@ namespace single_threaded {
         STLSOFT_SUPPRESS_UNUSED(mmf);
     }
 
-    static void test_a_new_file_with_fixed_content(void)
+    static void test_a_new_file_with_fixed_content()
     {
         stlsoft::byte_t bytes[4 * 1024];
 
@@ -135,7 +135,7 @@ namespace multi_threaded {
     typedef unixstl::readonly_memory_mapped_file_base<platformstl::refcount_policy_multi_threaded> rommf_t;
 
 
-    static void test_nonexisting_file(void)
+    static void test_nonexisting_file()
     {
         temp_file f(temp_file::DeleteOnOpen | temp_file::DeleteOnClose);
 
@@ -146,7 +146,7 @@ namespace multi_threaded {
         STLSOFT_SUPPRESS_UNUSED(mmf);
     }
 
-    static void test_a_new_file_with_fixed_content(void)
+    static void test_a_new_file_with_fixed_content()
     {
         stlsoft::byte_t bytes[4 * 1024];
 

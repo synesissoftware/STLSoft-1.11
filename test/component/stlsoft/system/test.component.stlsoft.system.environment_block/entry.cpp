@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::environment_block`.
  *
  * Created: 11th August 2010
- * Updated: 15th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,10 +39,10 @@
 namespace
 {
 
-    static void test_empty(void);
-    static void test_1_element(void);
-    static void test_2_elements(void);
-    static void test_clear(void);
+    static void test_empty();
+    static void test_1_element();
+    static void test_2_elements();
+    static void test_clear();
 
 
 } // anonymous namespace
@@ -82,14 +82,14 @@ int main(int argc, char *argv[])
 namespace
 {
 
-static void test_empty(void)
+static void test_empty()
 {
     stlsoft::environment_block_a block;
 
     XTESTS_TEST_INTEGER_EQUAL(0u, block.size());
 }
 
-static void test_1_element(void)
+static void test_1_element()
 {
     stlsoft::environment_block_a block;
 
@@ -99,7 +99,7 @@ static void test_1_element(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("key-1=value-1", block.base()[0]);
 }
 
-static void test_2_elements(void)
+static void test_2_elements()
 {
     stlsoft::environment_block_a block;
 
@@ -111,7 +111,7 @@ static void test_2_elements(void)
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("key-0=value-0", block.base()[1]);
 }
 
-static void test_clear(void)
+static void test_clear()
 {
     stlsoft::environment_block_a block;
 

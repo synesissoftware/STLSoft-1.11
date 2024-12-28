@@ -73,9 +73,9 @@
 # include <stlsoft/limits/integral_limits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -261,7 +261,7 @@ doomgram::doomgram() STLSOFT_NOEXCEPT
     // : // no MILs because using `memset()` (see ctor body)
 {
     // TODO: replace with `STLSOFT_API_EXTERNAL_memfns_memset()` when available
-    STLSOFT_API_INTERNAL_memfns_memset(this, 0, sizeof(*this));
+    STLSOFT_API_EXTERNAL_memfns_memset(this, 0, sizeof(*this));
 
     m_min_event_time_ns = integral_limits_type::maximum();
     m_max_event_time_ns = integral_limits_type::minimum();

@@ -330,7 +330,6 @@ WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_read_up(atomic_int_t volatile const
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_postadd_up(atomic_int_t volatile* pl, atomic_int_t n);
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_preadd_up(atomic_int_t volatile* pl, atomic_int_t n);
 
-
 /* SMP variants */
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_preincrement_smp(atomic_int_t volatile* pl);
 WINSTL_ATOMIC_FNS_DECL_(atomic_int_t) atomic_predecrement_smp(atomic_int_t volatile* pl);

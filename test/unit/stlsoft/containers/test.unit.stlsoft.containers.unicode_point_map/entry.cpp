@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::unicode_point_map`.
  *
  * Created: 5th November 2024
- * Updated: 17th December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,25 +51,25 @@
 namespace
 {
 
-    static void test_ctor_default_1(void);
-    static void test_ctor_default_2(void);
+    static void test_ctor_default_1();
+    static void test_ctor_default_2();
 #if __cplusplus >= 201103L
 
-    static void test_ctor_initializer_list_1(void);
-    static void test_ctor_initializer_list_2(void);
+    static void test_ctor_initializer_list_1();
+    static void test_ctor_initializer_list_2();
 #endif
-    static void test_push_1(void);
-    static void test_push_2(void);
-    static void test_push_n_1(void);
-    static void test_push_n_2(void);
-    static void test_clear(void);
-//     static void test_merge(void);
-//     static void test_op_addassign(void);
-//     static void test_op_add(void);
-    static void test_swap(void);
-    static void test_swap_std(void);
-    static void test_iteration_1(void);
-//     static void test_iteration_order_1(void);
+    static void test_push_1();
+    static void test_push_2();
+    static void test_push_n_1();
+    static void test_push_n_2();
+    static void test_clear();
+//     static void test_merge();
+//     static void test_op_addassign();
+//     static void test_op_add();
+    static void test_swap();
+    static void test_swap_std();
+    static void test_iteration_1();
+//     static void test_iteration_order_1();
 
 } // anonymous namespace
 
@@ -164,7 +164,7 @@ static void test_ctor_default_2()
 
 #if __cplusplus >= 201103L
 
-static void test_ctor_initializer_list_1(void)
+static void test_ctor_initializer_list_1()
 {
     unicode_point_map upm = { 'a', 'b', 'c', 'd', 'd', 'd', 'a' };
 
@@ -178,7 +178,7 @@ static void test_ctor_initializer_list_1(void)
     XTESTS_TEST_INTEGER_EQUAL(0, upm['f']);
 }
 
-static void test_ctor_initializer_list_2(void)
+static void test_ctor_initializer_list_2()
 {
     unicode_point_map upm(0x64, { 'a', 'b', 'c', 'd', 'd', 'd', 'a' });
 
@@ -333,7 +333,7 @@ static void test_clear()
     XTESTS_TEST_INTEGER_EQUAL(0, upm['f']);
 }
 
-static void test_swap(void)
+static void test_swap()
 {
     {
         unicode_point_map upm1;
@@ -645,7 +645,7 @@ static void test_swap(void)
     }
 }
 
-static void test_swap_std(void)
+static void test_swap_std()
 {
     {
         unicode_point_map upm1;
@@ -957,7 +957,7 @@ static void test_swap_std(void)
     }
 }
 
-static void test_iteration_1(void)
+static void test_iteration_1()
 {
     {
         unicode_point_map const upm;

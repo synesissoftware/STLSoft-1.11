@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::environment_variable`.
  *
  * Created: 11th August 2010
- * Updated: 11th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,7 +38,7 @@
 namespace
 {
 
-    static void test_1_00(void);
+    static void test_1_00();
 
 
 } // anonymous namespace
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 namespace
 {
 
-static void test_1_00(void)
+static void test_1_00()
 {
     char const* const PATH = ::getenv("PATH");
 

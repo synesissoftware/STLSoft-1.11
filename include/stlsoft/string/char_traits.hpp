@@ -127,6 +127,9 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -955,7 +958,7 @@ stlsoft_char_traits<char>::compare(
 ,   ss_size_t   cch
 ) STLSOFT_NOEXCEPT
 {
-    return STLSOFT_NS_GLOBAL(memcmp)(s1, s2, cch);
+    return STLSOFT_API_EXTERNAL_memfns_memcmp(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -1052,7 +1055,7 @@ stlsoft_char_traits<wchar_t>::compare(
 ,   ss_size_t       cch
 ) STLSOFT_NOEXCEPT
 {
-    return STLSOFT_NS_GLOBAL(wmemcmp)(s1, s2, cch);
+    return STLSOFT_API_EXTERNAL_memfns_wmemcmp(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION

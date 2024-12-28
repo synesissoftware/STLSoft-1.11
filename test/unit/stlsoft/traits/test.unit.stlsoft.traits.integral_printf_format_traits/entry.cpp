@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_printf_format_traits`.
  *
  * Created: 20th October 2024
- * Updated: 15th December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,18 +42,18 @@
 namespace
 {
 
-    static void test_char(void);
-    static void test_char_signed(void);
-    static void test_char_unsigned(void);
-    static void test_short_signed(void);
-    static void test_short_unsigned(void);
-    static void test_int_signed(void);
-    static void test_int_unsigned(void);
-    static void test_long_signed(void);
-    static void test_long_unsigned(void);
+    static void test_char();
+    static void test_char_signed();
+    static void test_char_unsigned();
+    static void test_short_signed();
+    static void test_short_unsigned();
+    static void test_int_signed();
+    static void test_int_unsigned();
+    static void test_long_signed();
+    static void test_long_unsigned();
 #ifdef STLSOFT_CF_BUILTIN_long_long_SUPPORT
-    static void test_long_long_signed(void);
-    static void test_long_long_unsigned(void);
+    static void test_long_long_signed();
+    static void test_long_long_unsigned();
 #endif /* STLSOFT_CF_BUILTIN_long_long_SUPPORT */
 } // anonymous namespace
 
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 namespace
 {
 
-static void test_char(void)
+static void test_char()
 {
     typedef char                                            int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -171,7 +171,7 @@ static void test_char(void)
     }
 }
 
-static void test_char_signed(void)
+static void test_char_signed()
 {
     typedef char signed                                     int_t;
     typedef stlsoft::integral_printf_format_traits<
@@ -197,7 +197,7 @@ static void test_char_signed(void)
 # include <stlsoft/internal/warnings/pop/suppress_deprecation_.h>
 }
 
-static void test_char_unsigned(void)
+static void test_char_unsigned()
 {
     typedef char unsigned                                   int_t;
     typedef stlsoft::integral_printf_format_traits<

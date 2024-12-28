@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 17th December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,60 +53,60 @@
 namespace
 {
 
-    static void test_types_exist(void);
-    static void test_type_sizes(void);
-    static void test_ctor_default(void);
-    static void test_ctor_copy(void);
-    static void test_ctor_range_1(void);
-    static void test_ctor_range_2(void);
-    static void test_ctor_range_3(void);
-    static void test_1_9(void);
-    static void test_swap_1(void);
-    static void test_swap_2(void);
-    static void test_swap_3(void);
-    static void test_clear(void);
-    static void test_1_10(void);
-    static void test_get_allocator(void);
-    static void test_1_14(void);
-    static void test_front(void);
-    static void test_back(void);
-    static void test_1_19(void);
-    static void test_refresh(void);
-    static void test_1_22(void);
-    static void test_reverse_iterators(void);
-    static void test_1_23(void);
-    static void test_copy(void);
+    static void test_types_exist();
+    static void test_type_sizes();
+    static void test_ctor_default();
+    static void test_ctor_copy();
+    static void test_ctor_range_1();
+    static void test_ctor_range_2();
+    static void test_ctor_range_3();
+    static void test_1_9();
+    static void test_swap_1();
+    static void test_swap_2();
+    static void test_swap_3();
+    static void test_clear();
+    static void test_1_10();
+    static void test_get_allocator();
+    static void test_1_14();
+    static void test_front();
+    static void test_back();
+    static void test_1_19();
+    static void test_refresh();
+    static void test_1_22();
+    static void test_reverse_iterators();
+    static void test_1_23();
+    static void test_copy();
 #if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
     (   STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR == 3 && \
         STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR >= 4)
-    static void test_substr(void);
-    static void test_substr_2(void);
-    static void test_substr_throw(void);
-    static void test_substr_throw_2(void);
+    static void test_substr();
+    static void test_substr_2();
+    static void test_substr_throw();
+    static void test_substr_throw_2();
 #endif /* 3.4+ */
-    static void test_1_24(void);
-    static void test_1_25(void);
-    static void test_compare_1(void);
-    static void test_compare_2(void);
-    static void test_compare_3(void);
-    static void test_compare_4(void);
-    static void test_1_26(void);
-    static void test_at_1(void);
-    static void test_at_2(void);
-    static void test_at_3(void);
-    static void test_at_4(void);
-    static void test_1_27(void);
-    static void test_index_1(void);
-    static void test_index_2(void);
-    static void test_1_28(void);
-    static void test_string_access_shims(void);
-    static void test_1_29(void);
-    static void test_insertion_1(void);
-    static void test_insertion_2(void);
-    static void test_insertion_3(void);
-    static void test_insertion_4(void);
-    static void test_1_30(void);
-    static void test_string_traits(void);
+    static void test_1_24();
+    static void test_1_25();
+    static void test_compare_1();
+    static void test_compare_2();
+    static void test_compare_3();
+    static void test_compare_4();
+    static void test_1_26();
+    static void test_at_1();
+    static void test_at_2();
+    static void test_at_3();
+    static void test_at_4();
+    static void test_1_27();
+    static void test_index_1();
+    static void test_index_2();
+    static void test_1_28();
+    static void test_string_access_shims();
+    static void test_1_29();
+    static void test_insertion_1();
+    static void test_insertion_2();
+    static void test_insertion_3();
+    static void test_insertion_4();
+    static void test_1_30();
+    static void test_string_traits();
 } // anonymous namespace
 
 
@@ -245,7 +245,7 @@ namespace
 #endif
 
 
-static void test_types_exist(void)
+static void test_types_exist()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::basic_string_view<char>));
     STLSOFT_SUPPRESS_UNUSED(typeid(stlsoft::basic_string_view<wchar_t>));
@@ -263,7 +263,7 @@ static void test_types_exist(void)
     >                                       string_v_null_t;
 
 
-static void test_type_sizes(void)
+static void test_type_sizes()
 {
     STLSOFT_STATIC_ASSERT(sizeof(stlsoft::string_view) >= 3 * sizeof(void*));
     STLSOFT_STATIC_ASSERT(sizeof(stlsoft::wstring_view) >= 3 * sizeof(void*));
@@ -532,11 +532,11 @@ static void test_back()
     }
 }
 
-static void test_1_19(void)
+static void test_1_19()
 {
 }
 
-static void test_refresh(void)
+static void test_refresh()
 {
     {
         string_v_t          s1("abcdefghijklmnopqrstuvwxyz");
@@ -557,11 +557,11 @@ static void test_refresh(void)
     }
 }
 
-static void test_1_22(void)
+static void test_1_22()
 {
 }
 
-static void test_reverse_iterators(void)
+static void test_reverse_iterators()
 {
     {
         string_v_t s("abcd");
@@ -588,11 +588,11 @@ static void test_reverse_iterators(void)
     }
 }
 
-static void test_1_23(void)
+static void test_1_23()
 {
 }
 
-static void test_copy(void)
+static void test_copy()
 {
     {
         string_v_t  s;
@@ -676,15 +676,15 @@ static void test_substr_throw_2()
 }
 #endif /* 3.4+ */
 
-static void test_1_24(void)
+static void test_1_24()
 {
 }
 
-static void test_1_25(void)
+static void test_1_25()
 {
 }
 
-static void test_compare_1(void)
+static void test_compare_1()
 {
     string_v_t  s1("abc");
     string_v_t  s2("def");
@@ -712,7 +712,7 @@ static void test_compare_1(void)
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() == s1);
 }
 
-static void test_compare_2(void)
+static void test_compare_2()
 {
     string_v_t  s1("abc");
     string_v_t  s2("def");
@@ -730,7 +730,7 @@ static void test_compare_2(void)
     XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(2u, 2u, s3));
 }
 
-static void test_compare_3(void)
+static void test_compare_3()
 {
     string_v_t  s1("def");
 
@@ -789,7 +789,7 @@ static void test_compare_3(void)
     XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 3u, "fed", 3u, 3u));
 }
 
-static void test_compare_4(void)
+static void test_compare_4()
 {
     {
         string_v_t  s1("mno");
@@ -802,11 +802,11 @@ static void test_compare_4(void)
 }
 
 
-static void test_1_26(void)
+static void test_1_26()
 {
 }
 
-static void test_at_1(void)
+static void test_at_1()
 {
     string_v_t  s("abc");
 
@@ -815,7 +815,7 @@ static void test_at_1(void)
     XTESTS_TEST_CHARACTER_EQUAL('c', s.at(2u));
 }
 
-static void test_at_2(void)
+static void test_at_2()
 {
     string_v_t const    s("abc");
 
@@ -824,14 +824,14 @@ static void test_at_2(void)
     XTESTS_TEST_CHARACTER_EQUAL('c', s.at(2u));
 }
 
-static void test_at_3(void)
+static void test_at_3()
 {
     string_v_t  s;
 
     s.at(0u);
 }
 
-static void test_at_4(void)
+static void test_at_4()
 {
     string_v_t const    s("abc");
 
@@ -839,11 +839,11 @@ static void test_at_4(void)
 }
 
 
-static void test_1_27(void)
+static void test_1_27()
 {
 }
 
-static void test_index_1(void)
+static void test_index_1()
 {
     string_v_t  s("abc");
 
@@ -852,7 +852,7 @@ static void test_index_1(void)
     XTESTS_TEST_CHARACTER_EQUAL('c', s[2u]);
 }
 
-static void test_index_2(void)
+static void test_index_2()
 {
     string_v_t const    s("abc");
 
@@ -863,11 +863,11 @@ static void test_index_2(void)
 }
 
 
-static void test_1_28(void)
+static void test_1_28()
 {
 }
 
-static void test_string_access_shims(void)
+static void test_string_access_shims()
 {
     {
         string_v_t  s;
@@ -917,11 +917,11 @@ static void test_string_access_shims(void)
 
 }
 
-static void test_1_29(void)
+static void test_1_29()
 {
 }
 
-static void test_insertion_1(void)
+static void test_insertion_1()
 {
     string_v_t  s1;
     string_v_t  s2("abc");
@@ -954,7 +954,7 @@ static void test_insertion_1(void)
     }
 }
 
-static void test_insertion_2(void)
+static void test_insertion_2()
 {
     string_v_t  s2("abc");
     string_v_t  s3("def");
@@ -974,7 +974,7 @@ static void test_insertion_2(void)
     }
 }
 
-static void test_insertion_3(void)
+static void test_insertion_3()
 {
     string_v_t  s1;
     string_v_t  s2("abc");
@@ -998,7 +998,7 @@ static void test_insertion_3(void)
 }
 
 
-static void test_insertion_4(void)
+static void test_insertion_4()
 {
     const std::size_t FIELD_WIDTH = 2000;
 #if defined(_MSC_VER) &&\
@@ -1068,11 +1068,11 @@ static void test_insertion_4(void)
 #endif
 }
 
-static void test_1_30(void)
+static void test_1_30()
 {
 }
 
-static void test_string_traits(void)
+static void test_string_traits()
 {
     {
         string_v_t  s = stlsoft::string_traits<string_v_t>::empty_string();

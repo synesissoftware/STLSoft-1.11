@@ -76,9 +76,9 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
 # include <winstl/api/external/HandleAndObject.h>
@@ -150,7 +150,7 @@ winstl_C_CreateProcess9_a(
 
     if (NULL == si)
     {
-        STLSOFT_API_INTERNAL_memfns_memset(&si_, 0, sizeof(si_));
+        STLSOFT_API_EXTERNAL_memfns_memset(&si_, 0, sizeof(si_));
         si = &si_;
     }
     if (NULL == pi)
@@ -188,7 +188,7 @@ winstl_C_CreateProcessFEA_a(
     PROCESS_INFORMATION pi;
     BOOL                b;
 
-    STLSOFT_API_INTERNAL_memfns_memset(&si, 0, sizeof(si));
+    STLSOFT_API_EXTERNAL_memfns_memset(&si, 0, sizeof(si));
 
     b = STLSOFT_NS_GLOBAL(CreateProcessA)(NULL, stlsoft_const_cast(ws_char_a_t*, cmdLine), NULL, NULL, FALSE, flags, stlsoft_const_cast(ws_char_a_t*, envBlock), NULL, &si, &pi);
 

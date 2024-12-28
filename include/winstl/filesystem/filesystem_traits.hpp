@@ -119,10 +119,6 @@
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
@@ -136,6 +132,9 @@
 # include <winstl/internal/windows_version_.h>
 #endif /* !WINSTL_INCL_WINSTL_INTERNAL_H_WINDOWS_VERSION_ */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -1720,7 +1719,7 @@ private:
                         r2 = cchBuffer;
                     }
 
-                    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0], &buffer_[0], sizeof(char_type) * r2);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0], &buffer_[0], sizeof(char_type) * r2);
                     if (NULL != pFile2 &&
                         r2 == (r - 1) &&
                         static_cast<size_type>(pFile2 - &buffer_[0]) < r2)
@@ -1785,7 +1784,7 @@ private:
                 fileName_[len] = '\0';
 
                 return get_full_path_name_impl(
-                    static_cast<char_type*>(STLSOFT_API_INTERNAL_memfns_memcpy(&fileName_[0], fileName, sizeof(char_type) * len))
+                    static_cast<char_type*>(STLSOFT_API_EXTERNAL_memfns_memcpy(&fileName_[0], fileName, sizeof(char_type) * len))
                 ,   len
                 ,   buffer
                 ,   cchBuffer
@@ -2212,7 +2211,7 @@ public:
             {
                 WINSTL_ASSERT(len > 0);
 
-                STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
+                STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
 
                 buffer[len - 1] = '\0';
 
@@ -3530,7 +3529,7 @@ public:
             {
                 WINSTL_ASSERT(len > 0);
 
-                STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
+                STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
 
                 buffer[len - 1] = L'\0';
 

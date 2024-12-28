@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::bit_functions`.
  *
  * Created: 19th March 2010
- * Updated: 21st December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,11 +45,11 @@
 namespace
 {
 
-    static void test_count_bits_Kernighan(void);
-    static void test_count_bits_8bit_table(void);
-    static void test_find_high_bit_32(void);
-    static void test_find_high_bit_64(void);
-    static void test_calculate_xor_over_range_8_bit(void);
+    static void test_count_bits_Kernighan();
+    static void test_count_bits_8bit_table();
+    static void test_find_high_bit_32();
+    static void test_find_high_bit_64();
+    static void test_calculate_xor_over_range_8_bit();
 } // anonymous namespace
 
 /* /////////////////////////////////////////////////////////////////////////

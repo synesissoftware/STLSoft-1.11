@@ -5,7 +5,7 @@
  *          representation.
  *
  * Created: 14th February 2024
- * Updated: 18th February 2024
+ * Updated: 26th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_MAJOR    1
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_EDIT     1
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_REVISION 2
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_BASE36_STRING_EDIT     2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,9 +96,9 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -364,7 +364,7 @@ i2s_handle_signed_minimum_in_base36_2_(
     T_character* const  end =   buf + cchBuf;
     T_character* const  r   =   end - STLSOFT_NUM_ELEMENTS(s_minimum);
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(r, s_minimum, sizeof(T_character) * STLSOFT_NUM_ELEMENTS(s_minimum));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(r, s_minimum, sizeof(T_character) * STLSOFT_NUM_ELEMENTS(s_minimum));
 
     STLSOFT_COVER_MARK_LINE();
 
@@ -392,7 +392,7 @@ i2s_handle_signed_minimum_in_base36_2_(
     T_character* const  end =   buf + cchBuf;
     T_character* const  r   =   end - STLSOFT_NUM_ELEMENTS(s_minimum);
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(r, s_minimum, sizeof(T_character) * STLSOFT_NUM_ELEMENTS(s_minimum));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(r, s_minimum, sizeof(T_character) * STLSOFT_NUM_ELEMENTS(s_minimum));
 
     STLSOFT_COVER_MARK_LINE();
 
@@ -420,7 +420,7 @@ i2s_handle_signed_minimum_in_base36_2_(
     T_character* const  end =   buf + cchBuf;
     T_character* const  r   =   end - STLSOFT_NUM_ELEMENTS(s_minimum);
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(r, s_minimum, sizeof(T_character) * STLSOFT_NUM_ELEMENTS(s_minimum));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(r, s_minimum, sizeof(T_character) * STLSOFT_NUM_ELEMENTS(s_minimum));
 
     STLSOFT_COVER_MARK_LINE();
 
@@ -448,7 +448,7 @@ i2s_handle_signed_minimum_in_base36_2_(
     T_character* const  end =   buf + cchBuf;
     T_character* const  r   =   end - STLSOFT_NUM_ELEMENTS(s_minimum);
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(r, s_minimum, sizeof(T_character) * STLSOFT_NUM_ELEMENTS(s_minimum));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(r, s_minimum, sizeof(T_character) * STLSOFT_NUM_ELEMENTS(s_minimum));
 
     STLSOFT_COVER_MARK_LINE();
 

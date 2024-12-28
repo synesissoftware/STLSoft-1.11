@@ -104,6 +104,10 @@
 # include <stdexcept>                            // for std::out_of_range
 #endif /* !STLSOFT_INCL_STDEXCEPT */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -311,7 +315,7 @@ operator ==(
 
         return true;
 #else /* ? 0 */
-        return 0 == memcmp(&lhs[0], &rhs[0], sizeof(ss_typename_type_k pod_vector<T_value, T_allocator, V_internalSize>::size_type) * lhs.size());
+        return 0 == STLSOFT_API_EXTERNAL_memfns_memcmp(&lhs[0], &rhs[0], sizeof(ss_typename_type_k pod_vector<T_value, T_allocator, V_internalSize>::size_type) * lhs.size());
 #endif /* 0 */
     }
 }

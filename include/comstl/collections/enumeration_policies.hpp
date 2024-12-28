@@ -78,9 +78,9 @@
 # endif /* !COMSTL_INCL_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -520,7 +520,7 @@ public:
             UINT        argErrIndex;
             VARIANT     result;
 
-            STLSOFT_API_INTERNAL_memfns_memset(&params, 0, sizeof(params));
+            STLSOFT_API_EXTERNAL_memfns_memset(&params, 0, sizeof(params));
             ::VariantInit(&result);
 
             hr = pdisp->Invoke( DISPID_NEWENUM

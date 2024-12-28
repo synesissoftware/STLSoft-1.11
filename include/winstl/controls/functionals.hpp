@@ -106,10 +106,9 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_CONTROL_FUNCTIONALS_NO_STD */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -285,7 +284,7 @@ public:
 
         WINSTL_ASSERT(cchClass < STLSOFT_NUM_ELEMENTS(m_name.sza));
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(&m_name.sza[0], windowClass, cchClass);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_name.sza[0], windowClass, cchClass);
         m_name.sza[cchClass] = '\0';
     }
     ss_explicit_k
@@ -300,7 +299,7 @@ public:
 
         WINSTL_ASSERT(cchClass < STLSOFT_NUM_ELEMENTS(m_name.szw));
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(&m_name.szw[0], windowClass, cchClass);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_name.szw[0], windowClass, cchClass);
         m_name.szw[cchClass] = '\0';
     }
 private:

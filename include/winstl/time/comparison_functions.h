@@ -85,6 +85,10 @@
 # include <winstl/api/external/Time.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_Time */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -229,7 +233,7 @@ winstl_C_compare_SYSTEMTIMEs(
     WINSTL_ASSERT(NULL != lhs);
     WINSTL_ASSERT(NULL != rhs);
 
-    if (0 == STLSOFT_NS_GLOBAL(memcmp(lhs, rhs, sizeof(SYSTEMTIME))))
+    if (0 == STLSOFT_API_EXTERNAL_memfns_memcmp(lhs, rhs, sizeof(SYSTEMTIME)))
     {
         return 0;
     }
@@ -360,7 +364,7 @@ winstl_C_absolute_difference_in_microseconds_SYSTEMTIMEs(
     WINSTL_ASSERT(NULL != t1);
     WINSTL_ASSERT(NULL != t2);
 
-    if (0 == STLSOFT_NS_GLOBAL(memcmp(t1, t2, sizeof(SYSTEMTIME))))
+    if (0 == STLSOFT_API_EXTERNAL_memfns_memcmp(t1, t2, sizeof(SYSTEMTIME)))
     {
         return 0;
     }

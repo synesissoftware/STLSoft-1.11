@@ -117,10 +117,6 @@
 # include <utility>
 #endif /* !STLSOFT_INCL_UTILITY */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
