@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/system/commandline_parser.hpp (originally MLCmdArg.h, ::SynesisStd)
+ * File:    stlsoft/system/commandline_parser.hpp (originally MLCmdArg.h, ::SynesisStd)
  *
- * Purpose:     commandline_parser class.
+ * Purpose: commandline_parser class.
  *
- * Created:     20th May 2000
- * Updated:     11th March 2024
+ * Created: 20th May 2000
+ * Updated: 29th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    1
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 9
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     52
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -138,36 +138,41 @@ class basic_commandline_parser
 /// @{
 public:
     /// The character type
-    typedef C                                                                       char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                                                       traits_type;
+    typedef T                                               traits_type;
     /// The traits type
-    typedef A                                                                       allocator_type;
+    typedef A                                               allocator_type;
     /// The current instantiation of the type
-    typedef basic_commandline_parser<C, T, A>                                       class_type;
+    typedef basic_commandline_parser<C, T, A>               class_type;
 private:
-    typedef char_type*                                                              pointer_type;
+    typedef char_type*                                      pointer_type;
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
-    typedef ss_typename_type_k A::ss_template_qual_k rebind<pointer_type>::other    pointers_allocator_type;
+    typedef ss_typename_type_k A::ss_template_qual_k rebind<
+        pointer_type
+    >::other                                                pointers_allocator_type;
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-    typedef ss_typename_type_k allocator_selector<pointer_type>::allocator_type     pointers_allocator_type;
+    typedef ss_typename_type_k allocator_selector<
+        pointer_type
+    >::allocator_type                                       pointers_allocator_type;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     typedef STLSOFT_NS_QUAL(auto_buffer)<   char_type
                                         ,   256
                                         ,   allocator_type
-                                        >                                           buffer_type;
+                                        >                   buffer_type;
     typedef STLSOFT_NS_QUAL(auto_buffer)<   pointer_type
                                         ,   20
                                         ,   pointers_allocator_type
-                                        >                                           pointers_type;
-    typedef ss_typename_type_k buffer_type::iterator                                iterator;
+                                        >                   pointers_type;
+    typedef ss_typename_type_k buffer_type::iterator        iterator;
 public:
     /// The value type
-    typedef ss_typename_type_k pointers_type::value_type                            value_type;
+    typedef ss_typename_type_k pointers_type::value_type    value_type;
     /// The non-mutating (const) iterator type
-    typedef ss_typename_type_k pointers_type::const_iterator                        const_iterator;
+    typedef ss_typename_type_k pointers_type::const_iterator
+                                                            const_iterator;
     /// The size type
-    typedef ss_size_t                                                               size_type;
+    typedef ss_size_t                                       size_type;
 /// @}
 
 /// \name Construction
@@ -176,7 +181,8 @@ public:
     /** Parses the given command-line and creates an internal array
      *   of pointers to the arguments.
      */
-    ss_explicit_k basic_commandline_parser(char_type const* cmdLine)
+    ss_explicit_k
+    basic_commandline_parser(char_type const* cmdLine)
         : m_buffer(1 + STLSOFT_NS_QUAL(c_str_len)(cmdLine))
         , m_pointers(0)
     {
@@ -272,7 +278,7 @@ public:
 /// @{
 public:
     /// The number of arguments
-    size_type           size() const
+    size_type size() const
     {
         return m_pointers.size();
     }
@@ -341,14 +347,17 @@ private:
  *
  * \ingroup group__library__System
  */
-typedef basic_commandline_parser<ss_char_a_t>   commandline_parser_a;
+typedef basic_commandline_parser<ss_char_a_t>               commandline_parser_a;
 /** Specialisation of the basic_commandline_parser template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__System
  */
-typedef basic_commandline_parser<ss_char_w_t>   commandline_parser_w;
+typedef basic_commandline_parser<ss_char_w_t>               commandline_parser_w;
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

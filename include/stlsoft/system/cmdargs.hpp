@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/system/cmdargs.hpp
+ * File:    stlsoft/system/cmdargs.hpp
  *
- * Purpose:     Command-line sequences class.
+ * Purpose: Command-line sequences class.
  *
- * Created:     25th June 2005
- * Updated:     11th March 2024
+ * Created: 25th June 2005
+ * Updated: 29th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    8
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        46
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,11 +123,13 @@ class cmdargs
 {
 public:
 #ifdef STLSOFT_SYSTEM_CMDARGS_USE_STD_STRING
-    typedef std::string             string_type;
+    typedef std::string                                     string_type;
 #else /* ? STLSOFT_SYSTEM_CMDARGS_USE_STD_STRING */
-    typedef simple_string           string_type;
+    typedef simple_string                                   string_type;
 #endif /* STLSOFT_SYSTEM_CMDARGS_USE_STD_STRING */
-    typedef basic_string_view<char> string_view_type;
+    typedef basic_string_view<
+        char
+    >                                                       string_view_type;
 
     enum
     {
@@ -311,13 +313,14 @@ cmdargs::cmdargs(int argc, char /*const*/ **argv)
 {
     for (int i = 1; i < argc; ++i)
     {
-        char const  *arg    =   argv[i];
+        char const* arg = argv[i];
 
         if ('-' == arg[0])
         {
             ++arg;
 
-            const int   type = ('-' != arg[0]) ? singleDash : (++arg, doubleDash);
+            int const type = ('-' != arg[0]) ? singleDash : (++arg, doubleDash);
+
             string_type s0;
             string_type s1;
 
@@ -491,7 +494,7 @@ operator <<(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * implementation
+ * namespace
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
