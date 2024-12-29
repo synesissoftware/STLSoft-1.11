@@ -346,7 +346,6 @@ cmdargs::cmdargs(
         {
             char const* arg = argv[i];
 
-
             if ('-' == arg[0])
             {
                 ++arg;

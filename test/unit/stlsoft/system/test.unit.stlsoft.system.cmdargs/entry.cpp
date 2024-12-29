@@ -51,6 +51,8 @@ namespace
     static void TEST_2_VALUES();
     static void TEST_3_VALUES();
     static void TEST_1_OPTION();
+    static void TEST_1_OPTION_WITH_VALUE();
+    static void TEST_1_OPTION_WITH_VALUE_AND_1_VALUE();
 } // anonymous namespace
 
 
@@ -95,6 +97,8 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_2_VALUES);
         XTESTS_RUN_CASE(TEST_3_VALUES);
         XTESTS_RUN_CASE(TEST_1_OPTION);
+        XTESTS_RUN_CASE(TEST_1_OPTION_WITH_VALUE);
+        XTESTS_RUN_CASE(TEST_1_OPTION_WITH_VALUE_AND_1_VALUE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -228,7 +232,7 @@ static void TEST_1_OPTION()
     char* argv[] =
     {
         "my-program",
-        "--abc",
+        "-abc",
         ss_nullptr_k
     };
 
@@ -240,7 +244,49 @@ static void TEST_1_OPTION()
     XTESTS_TEST_INTEGER_EQUAL(0, ca.values_size());
     XTESTS_TEST_INTEGER_EQUAL(1, ca.options().size());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.values().size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--abc", streamable_to_string(ca.options()[0]));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-abc", streamable_to_string(ca.options()[0]));
+}
+
+static void TEST_1_OPTION_WITH_VALUE()
+{
+    char* argv[] =
+    {
+        "my-program",
+        "--abc=d e f",
+        ss_nullptr_k
+    };
+
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.options_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.options().size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.values().size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--abc=d e f", streamable_to_string(ca.options()[0]));
+}
+
+static void TEST_1_OPTION_WITH_VALUE_AND_1_VALUE()
+{
+    char* argv[] =
+    {
+        "my-program",
+        "--abc=d e f",
+        "v",
+        ss_nullptr_k
+    };
+
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
+    XTESTS_TEST_INTEGER_EQUAL(2, ca.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.options_size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.options().size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.values().size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--abc=d e f", streamable_to_string(ca.options()[0]));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("v", streamable_to_string(ca.values()[0]));
 }
 
 } // anonymous namespace
