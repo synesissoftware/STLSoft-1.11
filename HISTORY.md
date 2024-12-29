@@ -7,8 +7,9 @@
 30th December 2024 - 1.11.1-alpha29 released
 --------------------------------------------
 
-* VC++ version (1942) compatible;
-* VC++ compatibility (general);
+ * VC++ version (1942) compatible;
+ * VC++ compatibility (general);
+ * miscellaneous backwards-compatibility fixes;
 
 T.B.C.
 
