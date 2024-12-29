@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *
  * Created: ... mid 2010s ...
- * Updated: 28th December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -1241,7 +1241,7 @@ create_integers_arrays(
 
         for (std::size_t j = 0; j != num_integers; ++j)
         {
-            row.push_back(dist_num_integers(mt));
+            row.push_back(static_cast<int>(dist_num_integers(mt)));
         }
 
         v.push_back(row);
