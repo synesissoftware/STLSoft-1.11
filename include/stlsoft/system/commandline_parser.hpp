@@ -178,8 +178,8 @@ public:
 /// \name Construction
 /// @{
 public:
-    /** Parses the given command-line and creates an internal array
-     *   of pointers to the arguments.
+    /** Parses the given command-line and creates an internal array of
+     * pointers to the arguments.
      */
     ss_explicit_k
     basic_commandline_parser(char_type const* cmdLine)
@@ -217,7 +217,7 @@ public:
             {
                 if (quotedArgumentStart == state)
                 {
-                    state   =   space;
+                    state = space;
                 }
                 else if (quotedArgument == state)
                 {
@@ -226,7 +226,7 @@ public:
                 }
                 else if (space == state)
                 {
-                    state   =   quotedArgumentStart;
+                    state = quotedArgumentStart;
                 }
                 else
                 {
@@ -236,7 +236,7 @@ public:
             {
                 if (quotedArgumentStart == state)
                 {
-                    state   =   quotedArgument;
+                    state = quotedArgument;
 
                     add_pointer(&*b);
                 }
@@ -259,13 +259,13 @@ public:
             {
                 if (quotedArgumentStart == state)
                 {
-                    state   =   quotedArgument;
+                    state = quotedArgument;
 
                     add_pointer(&*b);
                 }
                 else if (space == state)
                 {
-                    state   =   argument;
+                    state = argument;
 
                     add_pointer(&*b);
                 }
@@ -291,7 +291,7 @@ public:
      * \note The behaviour is undefined if <code>index</code> is not less
      *  than <code>size()</code>.
      */
-    value_type const&   operator [](size_type index) const
+    value_type const& operator [](size_type index) const
     {
         STLSOFT_ASSERT(index < size());
 
@@ -317,7 +317,8 @@ public:
 /// \name Implementation
 /// @{
 private:
-    ss_bool_t   add_pointer(pointer_type p)
+    ss_bool_t
+    add_pointer(pointer_type p)
     {
         if (!m_pointers.resize(1 + m_pointers.size()))
         {

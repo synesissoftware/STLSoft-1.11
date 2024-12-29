@@ -107,10 +107,10 @@ namespace stlsoft
  * classes
  */
 
-/** Facade class that presents argc+argv command line parameters as
- *    two separate sequences of options (those arguments with - or --
- *    prefixes and, optionally, separated from an option value by a =) and
- *    values (those without any leading hyphens)
+/** Facade class that presents argc+argv command line parameters as two
+ * separate sequences of options (those arguments with - or -- prefixes and,
+ * optionally, separated from an option value by a =) and values (those
+ * without any leading hyphens)
  *
  * \ingroup group__library__System
  *
@@ -289,8 +289,10 @@ public:
 /// \name Implementation
 /// @{
 private:
-    values_type::const_iterator has_value_(char const* valueName) const;
-    options_type::const_iterator has_option_(char const* optionName, int type) const;
+    values_type::const_iterator
+    has_value_(char const* valueName) const;
+    options_type::const_iterator
+    has_option_(char const* optionName, int type) const;
 /// @}
 
 /// \name Members
@@ -451,6 +453,11 @@ cmdargs::has_option_(char const* optionName, int type) const
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * operators
+ */
+
 template <ss_typename_param_k S>
 inline
 S&
@@ -459,13 +466,13 @@ operator <<(
 ,   cmdargs::option const&  option
 )
 {
-    static const char   s_dashes[] =
+    static const char s_dashes[] =
     {
             '-'
         ,   '-'
         ,   '\0'
     };
-    char const      *dashes =   &s_dashes[(option.type == cmdargs::singleDash)];
+    char const* const dashes = &s_dashes[(option.type == cmdargs::singleDash)];
 
     if (option.value.empty())
     {
