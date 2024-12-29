@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR      2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   7
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       53
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   8
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,12 +139,20 @@ public: // types
     typedef C                                               char_type;
     /// The traits type
     typedef T                                               traits_type;
-    /// The current instantiation of the type
-    typedef basic_commandline_parser<C, T>                  class_type;
 private:
-    typedef char_type*                                      pointer_type_;
     typedef processheap_allocator<char_type>                allocator_type_;
-    typedef processheap_allocator<pointer_type_>            pointers_allocator_type_;
+public:
+    /// The current instantiation of the type
+    typedef basic_commandline_parser<
+        char_type
+    ,   traits_type
+    >                                                       class_type;
+private:
+    typedef ws_bool_t                                       bool_type_;
+    typedef char_type*                                      pointer_type_;
+    typedef processheap_allocator<
+        pointer_type_
+    >                                                       pointers_allocator_type_;
     typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
     ,   256
@@ -280,7 +288,7 @@ private:
 
 public: // accessors
     /// The number of arguments
-    size_type           size() const
+    size_type size() const
     {
         return m_pointers.size();
     }
@@ -296,7 +304,7 @@ public: // accessors
      *  other than to take its address (which is the address of the
      *  <a href="http://www.extendedstl.com/glossary.html#end-element">"end-element"</a>).
      */
-    value_type const&   operator [](size_type index) const
+    value_type const& operator [](size_type index) const
     {
         WINSTL_ASSERT(index <= size());
 
@@ -316,7 +324,7 @@ public: // iteration
     }
 
 private: // implementation
-    ws_bool_t
+    bool_type_
     add_pointer(pointer_type_ p)
     {
         if (!m_pointers.resize(1 + m_pointers.size()))
