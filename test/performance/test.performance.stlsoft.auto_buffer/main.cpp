@@ -231,7 +231,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -355,7 +355,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -488,7 +488,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -627,7 +627,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -760,7 +760,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -897,7 +897,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -1032,7 +1032,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
