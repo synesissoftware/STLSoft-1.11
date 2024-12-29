@@ -115,7 +115,7 @@ namespace stlsoft
  * their access.
  *
 \code
-stlsoft::commandline_parser_a  cp("abc \"d e f\" ghi);
+stlsoft::commandline_parser_a  cp("abc \"d e f\" ghi");
 
 assert(3 == cp.size());
 assert(0 == ::strcmp("abc",   cp[0]));
@@ -161,7 +161,7 @@ private:
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     typedef ss_typename_type_k allocator_selector<
         pointer_type_
-    >::allocator_type_                                      pointers_allocator_type_;
+    >::allocator_type                                       pointers_allocator_type_;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
