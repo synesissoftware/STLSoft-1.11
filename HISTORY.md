@@ -13,7 +13,13 @@
  * command-line handling components minor improvements and unit-testing;
 
 
-T.B.C.
+TTTTTTTTT      BBBBBB          CCCCCCC
+   TTT         B     B        C       C
+   TTT         B     B        C
+   TTT         BBBBBB         C
+   TTT         B     B        C
+   TTT         B     B        C       C
+   TTT         BBBBBB          CCCCCCC
 
 
 

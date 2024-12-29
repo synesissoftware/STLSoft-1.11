@@ -30,6 +30,14 @@ General:
  * command-line handling components minor improvements and unit-testing;
  * ...
 
+TTTTTTTTT      BBBBBB          CCCCCCC
+   TTT         B     B        C       C
+   TTT         B     B        C
+   TTT         BBBBBB         C
+   TTT         B     B        C
+   TTT         B     B        C       C
+   TTT         BBBBBB          CCCCCCC
+
 Changes:
 ========
 

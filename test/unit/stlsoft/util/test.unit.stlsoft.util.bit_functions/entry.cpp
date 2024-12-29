@@ -97,9 +97,9 @@ namespace
 
 static void test_count_bits_Kernighan()
 {
-    stopwatch counter;
+    stopwatch sw;
 
-    counter.start();
+    sw.start();
 
     XTESTS_TEST_INTEGER_EQUAL(0u,  stlsoft::count_bits_by_Kernighan_method(uint32_t(0)));
     XTESTS_TEST_INTEGER_EQUAL(0u,  stlsoft::count_bits_by_Kernighan_method(uint32_t(0x00000000)));
@@ -152,16 +152,16 @@ static void test_count_bits_Kernighan()
     XTESTS_TEST_INTEGER_EQUAL(2u,  stlsoft::count_bits_by_Kernighan_method(uint32_t(0x01001000)));
     XTESTS_TEST_INTEGER_EQUAL(2u,  stlsoft::count_bits_by_Kernighan_method(uint32_t(0x10001000)));
 
-    counter.stop();
+    sw.stop();
 
-    fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(counter.get_nanoseconds()));
+    fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(sw.get_nanoseconds()));
 }
 
 static void test_count_bits_8bit_table()
 {
-    stopwatch counter;
+    stopwatch sw;
 
-    counter.start();
+    sw.start();
 
     XTESTS_TEST_INTEGER_EQUAL(0u,  stlsoft::count_bits_by_8bit_table(uint32_t(0)));
     XTESTS_TEST_INTEGER_EQUAL(0u,  stlsoft::count_bits_by_8bit_table(uint32_t(0x00000000)));
@@ -214,9 +214,9 @@ static void test_count_bits_8bit_table()
     XTESTS_TEST_INTEGER_EQUAL(2u,  stlsoft::count_bits_by_8bit_table(uint32_t(0x01001000)));
     XTESTS_TEST_INTEGER_EQUAL(2u,  stlsoft::count_bits_by_8bit_table(uint32_t(0x10001000)));
 
-    counter.stop();
+    sw.stop();
 
-    fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(counter.get_nanoseconds()));
+    fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(sw.get_nanoseconds()));
 }
 
 static void test_find_high_bit_32()

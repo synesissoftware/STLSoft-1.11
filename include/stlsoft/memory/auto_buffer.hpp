@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 28th December 2024
+ * Updated: 29th December 2024
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       8
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        222
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        223
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -760,6 +760,11 @@ public: // construction
         , m_cItems((NULL != m_buffer) ? cItems : 0)
         , m_bExternal(space < cItems)
     {
+# ifdef STLSOFT_COMPILER_IS_GCC
+
+        m_internal[0] = value_type();
+# endif
+
         // initialise `m_internal` iff we are being used constexpr
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
@@ -770,6 +775,12 @@ public: // construction
                 i = value_type();
             }
         }
+#else /* ? STLSOFT_IS_CONSTANT_EVALUATED */
+
+# ifdef STLSOFT_COMPILER_IS_GCC
+
+        m_internal[0] = value_type();
+# endif
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
 
         // Can't create one with an empty buffer. Though such is not legal
@@ -831,6 +842,11 @@ public: // construction
         , m_cItems((NULL != m_buffer) ? cItems : 0)
         , m_bExternal(space < cItems)
     {
+# ifdef STLSOFT_COMPILER_IS_GCC
+
+        m_internal[0] = value_type();
+# endif
+
         // initialise `m_internal` iff we are being used constexpr
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
@@ -841,6 +857,12 @@ public: // construction
                 i = value_type();
             }
         }
+#else /* ? STLSOFT_IS_CONSTANT_EVALUATED */
+
+# ifdef STLSOFT_COMPILER_IS_GCC
+
+        m_internal[0] = value_type();
+# endif
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
 
         // Can't create one with an empty buffer. Though such is not legal
@@ -903,6 +925,11 @@ public: // construction
         , m_cItems()
         , m_bExternal()
     {
+# ifdef STLSOFT_COMPILER_IS_GCC
+
+        m_internal[0] = value_type();
+# endif
+
         enum { argument_is_of_integral_type = is_integral_type<I2>::value };
 
         // NOTE: if this static assertion fires, you may be passing a signed
