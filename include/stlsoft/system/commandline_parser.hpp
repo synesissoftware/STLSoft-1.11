@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    1
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 9
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     53
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,8 +111,8 @@ namespace stlsoft
  * classes
  */
 
-/** Parses a command line into parts, and provides sequence semantics
- *   for their access.
+/** Parses a command line into parts, and provides sequence semantics for
+ * their access.
  *
 \code
 stlsoft::commandline_parser_a  cp("abc \"d e f\" ghi);
@@ -128,15 +128,14 @@ std::copy(cp.begin(), cp.end()
  *
  * \ingroup group__library__System
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T = STLSOFT_NS_QUAL(stlsoft_char_traits)<C>
-        ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<C>::allocator_type
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T = STLSOFT_NS_QUAL(stlsoft_char_traits)<C>
+,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<C>::allocator_type
+>
 class basic_commandline_parser
 {
-/// \name Member Types
-/// @{
-public:
+public: // types
     /// The character type
     typedef C                                               char_type;
     /// The traits type
@@ -144,7 +143,11 @@ public:
     /// The traits type
     typedef A                                               allocator_type;
     /// The current instantiation of the type
-    typedef basic_commandline_parser<C, T, A>               class_type;
+    typedef basic_commandline_parser<
+        char_type
+    ,   traits_type
+    ,   allocator_type
+    >                                                       class_type;
 private:
     typedef char_type*                                      pointer_type;
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
@@ -156,14 +159,16 @@ private:
         pointer_type
     >::allocator_type                                       pointers_allocator_type;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-    typedef STLSOFT_NS_QUAL(auto_buffer)<   char_type
-                                        ,   256
-                                        ,   allocator_type
-                                        >                   buffer_type;
-    typedef STLSOFT_NS_QUAL(auto_buffer)<   pointer_type
-                                        ,   20
-                                        ,   pointers_allocator_type
-                                        >                   pointers_type;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        char_type
+    ,   256
+    ,   allocator_type
+    >                                                       buffer_type;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        pointer_type
+    ,   20
+    ,   pointers_allocator_type
+        >                                                       pointers_type;
     typedef ss_typename_type_k buffer_type::iterator        iterator;
 public:
     /// The value type
@@ -173,11 +178,8 @@ public:
                                                             const_iterator;
     /// The size type
     typedef ss_size_t                                       size_type;
-/// @}
 
-/// \name Construction
-/// @{
-public:
+public: // construction
     /** Parses the given command-line and creates an internal array of
      * pointers to the arguments.
      */
@@ -209,7 +211,7 @@ public:
 
         for (; b != e; ++b)
         {
-            const char_type ch  =   *b;
+            char_type const ch = *b;
 
             STLSOFT_ASSERT('\0' != ch);
 
@@ -272,11 +274,8 @@ public:
             }
         }
     }
-/// @}
 
-/// \name Accessors
-/// @{
-public:
+public: // accessors
     /// The number of arguments
     size_type size() const
     {
@@ -297,11 +296,8 @@ public:
 
         return m_pointers[index];
     }
-/// @}
 
-/// \name Iteration
-/// @{
-public:
+public: // iteration
     /// An iterator representing the start of the sequence
     const_iterator  begin() const
     {
@@ -312,11 +308,8 @@ public:
     {
         return m_pointers.end();
     }
-/// @}
 
-/// \name Implementation
-/// @{
-private:
+private: // implementation
     ss_bool_t
     add_pointer(pointer_type p)
     {
@@ -329,14 +322,10 @@ private:
 
         return true;
     }
-/// @}
 
-/// \name Members
-/// @{
-private:
+private: // fields
     buffer_type     m_buffer;
     pointers_type   m_pointers;
-/// @}
 };
 
 
