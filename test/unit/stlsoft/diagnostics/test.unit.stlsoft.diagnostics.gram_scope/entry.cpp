@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::gram_scope`.
  *
  * Created: 15th December 2024
- * Updated: 17th December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -88,12 +88,15 @@ static void TEST_gram_scope_CONSTRUCT_FROM_INSTANCES()
     stlsoft::doomgram       gram;
 
     {
-        stlsoft::gram_scope scope(gram, sw);
+        stlsoft::gram_scope<
+            stlsoft::doomgram
+        ,   platformstl::stopwatch
+        >   scope(gram, sw);
 
         platformstl::micro_sleep(10000);
     }
 
-    auto const total_time_ns = gram.total_event_time_ns_raw();
+    platformstl::stopwatch::interval_type const total_time_ns = gram.total_event_time_ns_raw();
 
     XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10000000, total_time_ns);
     XTESTS_TEST_INTEGER_LESS_OR_EQUAL(20000000, total_time_ns);

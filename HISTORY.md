@@ -4,6 +4,19 @@
 ----
 
 
+30th December 2024 - 1.11.1-alpha29 released
+--------------------------------------------
+
+ * Visual C++ compatibility (including _MSC_VER 1942);
+ * MinGW compatibility;
+ * miscellaneous backwards-compatibility fixes;
+ * command-line handling components minor improvements and unit-testing;
+
+
+T.B.C.
+
+
+
 28th December 2024 - 1.11.1-alpha28 released
 --------------------------------------------
 

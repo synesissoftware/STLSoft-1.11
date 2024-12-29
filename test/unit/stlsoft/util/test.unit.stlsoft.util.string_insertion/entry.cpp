@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::string_insert`.
  *
  * Created: 14th November 2024
- * Updated: 14th November 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -102,6 +102,10 @@ namespace
 
         switch (base)
         {
+        default:
+
+            s = &sz[0];
+            n = 0;
         case 8:
 
             s = stlsoft::integer_to_octal_string(sz, STLSOFT_NUM_ELEMENTS(sz), ct.v, &n);
@@ -163,79 +167,51 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.util.string_insertion", verbosity))
     {
-        // // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
         XTESTS_RUN_CASE_WITH_NAME_AND_DESC("`CustomNumericType` (default)", "", [] {
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             CustomNumericType ct = { 1234 };
 
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
             std::stringstream stm;
-
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             stm
                 << ct;
-
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1234", stm.str());
         });
 
         XTESTS_RUN_CASE_WITH_NAME_AND_DESC("`CustomNumericType` (std::dec | std::showbase)", "", [] {
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             CustomNumericType ct = { 1234 };
 
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
             std::stringstream stm;
-
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             stm
                 << std::dec
                 << std::showbase
                 << ct;
 
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1234", stm.str());
         });
 
         XTESTS_RUN_CASE_WITH_NAME_AND_DESC("`CustomNumericType` (std::hex | std::showbase)", "", [] {
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             CustomNumericType ct = { 1234 };
 
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
             std::stringstream stm;
-
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             stm
                 << std::hex
                 << std::showbase
                 << ct;
 
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0x4d2", stm.str());
         });
 
         XTESTS_RUN_CASE_WITH_NAME_AND_DESC("`CustomNumericType` (std::hex | std::showbase | std::showpos)", "", [] {
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             CustomNumericType ct = { 1234 };
 
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
             std::stringstream stm;
-
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             stm
                 << std::hex
@@ -243,21 +219,14 @@ int main(int argc, char *argv[])
                 << std::showpos
                 << ct;
 
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL("+0x4d2", stm.str());
         });
 
         XTESTS_RUN_CASE_WITH_NAME_AND_DESC("`CustomNumericType` (std::oct | std::showbase | std::showpos)", "", [] {
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             CustomNumericType ct = { 1234 };
 
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
             std::stringstream stm;
-
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
             stm
                 << std::oct
@@ -265,12 +234,8 @@ int main(int argc, char *argv[])
                 << std::showpos
                 << ct;
 
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
-
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL("+02322", stm.str());
         });
-
-            // fprintf(stderr, "%s:%d:%s:\n", __STLSOFT_FILE_LINE_FUNCTION__);
 
 
         XTESTS_PRINT_RESULTS();

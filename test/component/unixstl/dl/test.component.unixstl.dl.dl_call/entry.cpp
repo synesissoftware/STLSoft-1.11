@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 28th December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -200,15 +200,23 @@ int main(int argc, char* argv[])
         {
             h_example_so = unixstl::get_module_handle(*module);
 
+#if __cplusplus >= 201103L
+
             stlsoft::scoped_lambda scoper2([] {
 
                 h_example_so = NULL;
             });
+#endif
 
             XTESTS_RUN_CASE(test_example_so_abs1);
             XTESTS_RUN_CASE(test_example_so_add2);
             XTESTS_RUN_CASE(test_example_so_add3);
             XTESTS_RUN_CASE(test_example_so_add10);
+
+#if __cplusplus < 201103L
+
+            h_example_so = NULL;
+#endif
         }
 
         XTESTS_PRINT_RESULTS();

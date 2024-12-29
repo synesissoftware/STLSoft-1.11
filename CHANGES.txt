@@ -19,6 +19,40 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha29 (30th December 2024)
+
+General:
+========
+
+ * Visual C++ compatibility (including _MSC_VER 1942);
+ * MinGW compatibility;
+ * miscellaneous backwards-compatibility fixes;
+ * command-line handling components minor improvements and unit-testing;
+ * ...
+
+Changes:
+========
+
+
+ * VC++ version (1942) compatible;
+ * VC++ compatibility (general);
+ * miscellaneous backwards-compatibility fixes;
+ * command-line handling components minor improvements and unit-tested;
+
+
+Miscellaneous backwards-compatibility fixes:
+ * ensuring C++98 and C++03 compatibility;
+
+Command-line handling components minor improvements and unit-testing:
+ * added **test.component.platformstl.commandline_parser**;
+
+
+T.B.C.
+
+
+============================================================================
+
+
 Changes for 1.11.1-alpha28 (28th December 2024)
 
 General:

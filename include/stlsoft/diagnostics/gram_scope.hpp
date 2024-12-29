@@ -4,7 +4,7 @@
  * Purpose: Definition of the LibraryIdentifier enumeration.
  *
  * Created: 13th May 2013
- * Updated: 15th December 2024
+ * Updated: 29th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_SCOPE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_SCOPE_MINOR       0
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_SCOPE_REVISION    1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_SCOPE_EDIT        1
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_SCOPE_REVISION    2
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_GRAM_SCOPE_EDIT        2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -83,13 +83,15 @@ namespace stlsoft
  * classes
  */
 
-/** Scoping class for T.B.C.
+/** Scoping class for histogram timings
  *
  * \ingroup group__library__Diagnostic
  *
  * \tparam T_gram
  * \tparam T_stopwatch
  *
+ * \see doomgram
+ * \see std_chrono_hrc_stopwatch
  */
 template<
     ss_typename_param_k T_gram
@@ -98,16 +100,18 @@ template<
 class gram_scope
 {
 public: // types
-    /// T.B.C.
+    /// The histogram type
     typedef T_gram                                          gram_type;
-    /// T.B.C.
+    /// The stopwatch type
     typedef T_stopwatch                                     stopwatch_type;
-    /// T.B.C.
+    /// This type
     typedef gram_scope<
         gram_type
     ,   stopwatch_type
     >                                                       class_type;
-
+private:
+    typedef ss_typename_type_k stopwatch_type::interval_type
+                                                            interval_type_;
 
 public: // construction
     gram_scope(
@@ -121,7 +125,7 @@ public: // construction
     }
     ~gram_scope()
     {
-        auto const d_ns = (m_sw.stop(), m_sw.get_nanoseconds());
+        interval_type_ const d_ns = (m_sw.stop(), m_sw.get_nanoseconds());
 
         m_gram.push_event_time_ns(d_ns);
     }

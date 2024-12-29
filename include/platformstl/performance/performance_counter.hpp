@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/performance/performance_counter.hpp
+ * File:    platformstl/performance/performance_counter.hpp
  *
- * Purpose:     Platform header for the performance_counter components.
+ * Purpose: Platform header for the performance_counter components.
  *
- * Created:     20th March 2005
- * Updated:     11th March 2024
+ * Created: 20th March 2005
+ * Updated: 29th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   4
-# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       27
+# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/performance/performance_counter.hpp
@@ -108,7 +108,8 @@ namespace platformstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if 0
+#elif defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
     /** A performance counter class
      *
@@ -133,7 +134,6 @@ namespace platformstl_project
 # else /* ? UNIXSTL_NO_NAMESPACE */
     using ::unixstl::performance_counter;
 # endif /* UNIXSTL_NO_NAMESPACE */
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # ifdef WINSTL_NO_NAMESPACE
@@ -141,12 +141,15 @@ namespace platformstl_project
 # else /* ? WINSTL_NO_NAMESPACE */
     using ::winstl::performance_counter;
 # endif /* WINSTL_NO_NAMESPACE */
-
 #else /* ? operating system */
+
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
