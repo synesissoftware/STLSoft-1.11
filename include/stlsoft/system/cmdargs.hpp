@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    8
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        50
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    9
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -250,7 +250,7 @@ public: // attributes
     ,   int         type = -1
     ) const
     {
-        return m_options.end() != has_option_(c_str_ptr(optionName));
+        return m_options.end() != has_option_(c_str_ptr(optionName), type);
     }
     /// Determines whether the options collection contains an option of
     ///  the given name, and copies the found option's details into a
