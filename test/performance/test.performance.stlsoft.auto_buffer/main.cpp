@@ -887,8 +887,9 @@ int main(int argc, char* argv[])
         }
     }
 
-    // range construction (or as close as can be)
 #if __cplusplus >= 201703L
+
+    // range construction (or as close as can be)
     {
         char const* const grpname = "range construction (from input-iterator)";
 
