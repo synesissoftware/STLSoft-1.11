@@ -5,7 +5,7 @@
  *          character points it contains.
  *
  * Created: 5th November 2024
- * Updated: 23rd November 2024
+ * Updated: 29th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_MINOR     0
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_REVISION  2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_EDIT      2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_REVISION  4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,9 +84,20 @@
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
 #if __cplusplus >= 201103L
-# include <initializer_list>
+# ifndef STLSOFT_INCL_INITIALIZER_LIST
+#  define STLSOFT_INCL_INITIALIZER_LIST
+#  include <initializer_list>
+# endif /* !STLSOFT_INCL_INITIALIZER_LIST */
+# ifndef STLSOFT_INCL_UNORDERED_MAP
+#  define STLSOFT_INCL_UNORDERED_MAP
+#  include <unordered_map>
+# endif /* !STLSOFT_INCL_UNORDERED_MAP */
+#else
+# ifndef STLSOFT_INCL_MAP
+#  define STLSOFT_INCL_MAP
+#  include <map>
+# endif /* !STLSOFT_INCL_MAP */
 #endif
-#include <unordered_map>
 #include <utility>
 
 
@@ -137,10 +148,17 @@ private:
     typedef auto_buffer<
         count_type
     >                                                       vec_type_;
+#if __cplusplus >= 201103L
     typedef std::unordered_map<
         unicode_point_type
     ,   count_type
     >                                                       map_type_;
+#else
+    typedef std::map<
+        unicode_point_type
+    ,   count_type
+    >                                                       map_type_;
+#endif
 public:
     /// The iterator type
     class const_iterator;
@@ -173,7 +191,11 @@ public:
     private:
         template <ss_typename_param_k T_unacceptable>
         ss_explicit_k
-        key_type(T_unacceptable const&) = delete;
+        key_type(T_unacceptable const&)
+# if __cplusplus >= 201103L
+         = delete
+# endif
+        ;
 
     public: // fields
         unicode_point_type  key;
