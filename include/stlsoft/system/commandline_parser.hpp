@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/system/commandline_parser.hpp (originally MLCmdArg.h, ::SynesisStd)
+ * File:    stlsoft/system/commandline_parser.hpp (originally MLCmdArg.h, ::SynesisStd)
  *
- * Purpose:     commandline_parser class.
+ * Purpose: commandline_parser class.
  *
- * Created:     20th May 2000
- * Updated:     11th March 2024
+ * Created: 20th May 2000
+ * Updated: 29th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 9
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     52
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 10
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,11 +111,11 @@ namespace stlsoft
  * classes
  */
 
-/** Parses a command line into parts, and provides sequence semantics
- *   for their access.
+/** Parses a command line into parts, and provides sequence semantics for
+ * their access.
  *
 \code
-stlsoft::commandline_parser_a  cp("abc \"d e f\" ghi);
+stlsoft::commandline_parser_a  cp("abc \"d e f\" ghi");
 
 assert(3 == cp.size());
 assert(0 == ::strcmp("abc",   cp[0]));
@@ -128,55 +128,67 @@ std::copy(cp.begin(), cp.end()
  *
  * \ingroup group__library__System
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T = STLSOFT_NS_QUAL(stlsoft_char_traits)<C>
-        ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<C>::allocator_type
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T = STLSOFT_NS_QUAL(stlsoft_char_traits)<C>
+,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<C>::allocator_type
+>
 class basic_commandline_parser
 {
-/// \name Member Types
-/// @{
-public:
+public: // types
     /// The character type
-    typedef C                                                                       char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                                                       traits_type;
+    typedef T                                               traits_type;
     /// The traits type
-    typedef A                                                                       allocator_type;
-    /// The current instantiation of the type
-    typedef basic_commandline_parser<C, T, A>                                       class_type;
+    typedef A                                               allocator_type;
 private:
-    typedef char_type*                                                              pointer_type;
+    typedef A                                               allocator_type_;
+public:
+    /// The current instantiation of the type
+    typedef basic_commandline_parser<
+        char_type
+    ,   traits_type
+    ,   allocator_type_
+    >                                                       class_type;
+private:
+    typedef ss_bool_t                                       bool_type_;
+    typedef char_type*                                      pointer_type_;
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
-    typedef ss_typename_type_k A::ss_template_qual_k rebind<pointer_type>::other    pointers_allocator_type;
+    typedef ss_typename_type_k A::ss_template_qual_k rebind<
+        pointer_type_
+    >::other                                                pointers_allocator_type_;
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-    typedef ss_typename_type_k allocator_selector<pointer_type>::allocator_type     pointers_allocator_type;
+    typedef ss_typename_type_k allocator_selector<
+        pointer_type_
+    >::allocator_type                                       pointers_allocator_type_;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-    typedef STLSOFT_NS_QUAL(auto_buffer)<   char_type
-                                        ,   256
-                                        ,   allocator_type
-                                        >                                           buffer_type;
-    typedef STLSOFT_NS_QUAL(auto_buffer)<   pointer_type
-                                        ,   20
-                                        ,   pointers_allocator_type
-                                        >                                           pointers_type;
-    typedef ss_typename_type_k buffer_type::iterator                                iterator;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        char_type
+    ,   256
+    ,   allocator_type_
+    >                                                       buffer_type_;
+    typedef STLSOFT_NS_QUAL(auto_buffer)<
+        pointer_type_
+    ,   20
+    ,   pointers_allocator_type_
+    >                                                       pointers_type_;
+    typedef ss_typename_type_k buffer_type_::iterator       iterator;
 public:
     /// The value type
-    typedef ss_typename_type_k pointers_type::value_type                            value_type;
+    typedef ss_typename_type_k pointers_type_::value_type   value_type;
     /// The non-mutating (const) iterator type
-    typedef ss_typename_type_k pointers_type::const_iterator                        const_iterator;
+    typedef ss_typename_type_k pointers_type_::const_iterator
+                                                            const_iterator;
     /// The size type
-    typedef ss_size_t                                                               size_type;
-/// @}
+    typedef ss_size_t                                       size_type;
 
-/// \name Construction
-/// @{
-public:
-    /** Parses the given command-line and creates an internal array
-     *   of pointers to the arguments.
+public: // construction
+    /** Parses the given command-line and creates an internal array of
+     * pointers to the arguments.
      */
-    ss_explicit_k basic_commandline_parser(char_type const* cmdLine)
+    ss_explicit_k
+    basic_commandline_parser(char_type const* cmdLine)
         : m_buffer(1 + STLSOFT_NS_QUAL(c_str_len)(cmdLine))
         , m_pointers(0)
     {
@@ -203,7 +215,7 @@ public:
 
         for (; b != e; ++b)
         {
-            const char_type ch  =   *b;
+            char_type const ch = *b;
 
             STLSOFT_ASSERT('\0' != ch);
 
@@ -211,7 +223,7 @@ public:
             {
                 if (quotedArgumentStart == state)
                 {
-                    state   =   space;
+                    state = space;
                 }
                 else if (quotedArgument == state)
                 {
@@ -220,7 +232,7 @@ public:
                 }
                 else if (space == state)
                 {
-                    state   =   quotedArgumentStart;
+                    state = quotedArgumentStart;
                 }
                 else
                 {
@@ -230,7 +242,7 @@ public:
             {
                 if (quotedArgumentStart == state)
                 {
-                    state   =   quotedArgument;
+                    state = quotedArgument;
 
                     add_pointer(&*b);
                 }
@@ -253,26 +265,23 @@ public:
             {
                 if (quotedArgumentStart == state)
                 {
-                    state   =   quotedArgument;
+                    state = quotedArgument;
 
                     add_pointer(&*b);
                 }
                 else if (space == state)
                 {
-                    state   =   argument;
+                    state = argument;
 
                     add_pointer(&*b);
                 }
             }
         }
     }
-/// @}
 
-/// \name Accessors
-/// @{
-public:
+public: // accessors
     /// The number of arguments
-    size_type           size() const
+    size_type size() const
     {
         return m_pointers.size();
     }
@@ -285,17 +294,14 @@ public:
      * \note The behaviour is undefined if <code>index</code> is not less
      *  than <code>size()</code>.
      */
-    value_type const&   operator [](size_type index) const
+    value_type const& operator [](size_type index) const
     {
         STLSOFT_ASSERT(index < size());
 
         return m_pointers[index];
     }
-/// @}
 
-/// \name Iteration
-/// @{
-public:
+public: // iteration
     /// An iterator representing the start of the sequence
     const_iterator  begin() const
     {
@@ -306,12 +312,10 @@ public:
     {
         return m_pointers.end();
     }
-/// @}
 
-/// \name Implementation
-/// @{
-private:
-    ss_bool_t   add_pointer(pointer_type p)
+private: // implementation
+    bool_type_
+    add_pointer(pointer_type_ p)
     {
         if (!m_pointers.resize(1 + m_pointers.size()))
         {
@@ -322,14 +326,10 @@ private:
 
         return true;
     }
-/// @}
 
-/// \name Members
-/// @{
-private:
-    buffer_type     m_buffer;
-    pointers_type   m_pointers;
-/// @}
+private: // fields
+    buffer_type_    m_buffer;
+    pointers_type_  m_pointers;
 };
 
 
@@ -341,14 +341,17 @@ private:
  *
  * \ingroup group__library__System
  */
-typedef basic_commandline_parser<ss_char_a_t>   commandline_parser_a;
+typedef basic_commandline_parser<ss_char_a_t>               commandline_parser_a;
 /** Specialisation of the basic_commandline_parser template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__System
  */
-typedef basic_commandline_parser<ss_char_w_t>   commandline_parser_w;
+typedef basic_commandline_parser<ss_char_w_t>               commandline_parser_w;
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
