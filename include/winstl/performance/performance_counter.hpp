@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/performance/performance_counter.hpp
+ * File:    winstl/performance/performance_counter.hpp
  *
- * Purpose:     WinSTL general performance counter class. This class attempts to
- *              use the built-in high-performance hardware counter if available,
- *              otherwise using the tick-count facilities.
+ * Purpose: WinSTL general performance counter class. This class attempts to
+ *          use the built-in high-performance hardware counter if available,
+ *          otherwise using the tick-count facilities.
  *
- * Created:     31st July 2002
- * Updated:     11th March 2024
+ * Created: 31st July 2002
+ * Updated: 29th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR    5
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR    0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     44
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,9 +101,12 @@ namespace winstl_project
  * typedefs
  */
 
-typedef stopwatch                               performance_counter;
+typedef stopwatch                                           performance_counter;
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -123,8 +126,6 @@ typedef stopwatch                               performance_counter;
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER */
 
