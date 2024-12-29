@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 10
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     56
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 11
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -203,10 +203,10 @@ public: // construction
 
         enum state_t
         {
-                argument
+                space
+            ,   argument
             ,   quotedArgumentStart
             ,   quotedArgument
-            ,   space
         };
 
         state_t         state   =   space;
@@ -221,59 +221,74 @@ public: // construction
 
             if ('"' == ch)
             {
-                if (quotedArgumentStart == state)
+                switch (state)
                 {
+                case space:
+
+                    state = quotedArgumentStart;
+                    break;
+                case argument:
+
+                    break;
+                case quotedArgumentStart:
+
                     state = space;
-                }
-                else if (quotedArgument == state)
-                {
+                    break;
+                case quotedArgument:
+
                     *b      =   '\0';
                     state   =   space;
-                }
-                else if (space == state)
-                {
-                    state = quotedArgumentStart;
-                }
-                else
-                {
+                    break;
                 }
             }
             else if (isspace(ch))
             {
-                if (quotedArgumentStart == state)
+                switch (state)
                 {
-                    state = quotedArgument;
+                case space:
 
-                    add_pointer(&*b);
-                }
-                else if (quotedArgument == state)
-                {
-                }
-                else if (space == state)
-                {
-                }
-                else
-                {
+                    break;
+                case argument:
+
                     STLSOFT_ASSERT(argument == state);
 
                     *b = '\0';
 
                     state = space;
+                    break;
+                case quotedArgumentStart:
+
+                    state = quotedArgument;
+
+                    add_pointer(&*b);
+                    break;
+                case quotedArgument:
+
+                    break;
                 }
             }
             else
             {
-                if (quotedArgumentStart == state)
+                switch (state)
                 {
-                    state = quotedArgument;
+                case space:
 
-                    add_pointer(&*b);
-                }
-                else if (space == state)
-                {
                     state = argument;
 
                     add_pointer(&*b);
+                    break;
+                case argument:
+
+                    break;
+                case quotedArgumentStart:
+
+                    state = quotedArgument;
+
+                    add_pointer(&*b);
+                    break;
+                case quotedArgument:
+
+                    break;
                 }
             }
         }
