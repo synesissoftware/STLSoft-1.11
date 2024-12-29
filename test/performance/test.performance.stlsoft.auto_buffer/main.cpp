@@ -887,7 +887,9 @@ int main(int argc, char* argv[])
         }
     }
 
-#if __cplusplus >= 201703L
+#if __cplusplus >= 201703L &&\
+    !defined(STLSOFT_COMPILER_IS_MSVC) &&\
+    1
 
     // range construction (or as close as can be)
     {
