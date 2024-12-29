@@ -160,6 +160,17 @@ public:
             , index(-1)
             , original()
         {}
+        ss_explicit_k
+        option(
+            int t
+        ,   int i
+        )
+            : name()
+            , value()
+            , type(t)
+            , index(i)
+            , original()
+        {}
         option(
             string_type const&      n
         ,   string_type const&      v
@@ -350,14 +361,21 @@ cmdargs::cmdargs(
             {
                 ++arg;
 
-                int const type = ('-' != arg[0]) ? singleDash : (++arg, doubleDash);
+                if ('\0' == arg[1])
+                {
+                    m_options.push_back(option(singleDash, i));
+                }
+                else
+                {
+                    int const type = ('-' != arg[0]) ? singleDash : (++arg, doubleDash);
 
-                string_type s0;
-                string_type s1;
+                    string_type s0;
+                    string_type s1;
 
-                split(arg, '=', s0, s1);
+                    split(arg, '=', s0, s1);
 
-                m_options.push_back(option(s0, s1, type, i, argv[i]));
+                    m_options.push_back(option(s0, s1, type, i, argv[i]));
+                }
             }
             else
             {
