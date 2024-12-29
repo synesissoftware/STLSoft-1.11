@@ -240,7 +240,7 @@ public: // construction
                         state = argument;
                     }
 
-                    add_pointer(&*b);
+                    add_pointer_(&*b);
                 }
                 break;
             case argument:
@@ -303,7 +303,7 @@ public: // accessors
      */
     value_type const& operator [](size_type index) const
     {
-        STLSOFT_ASSERT(index < size());
+        STLSOFT_ASSERT(index <= size());
 
         return m_pointers[index];
     }
@@ -322,7 +322,7 @@ public: // iteration
 
 private: // implementation
     bool_type_
-    add_pointer(pointer_type_ p)
+    add_pointer_(pointer_type_ p)
     {
         if (!m_pointers.resize(1 + m_pointers.size()))
         {
