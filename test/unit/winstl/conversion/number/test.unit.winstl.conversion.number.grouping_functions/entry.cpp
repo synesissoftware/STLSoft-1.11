@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::format_thousands`.
  *
  * Created: 30th November 2024
- * Updated: 21st December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -75,10 +75,10 @@ hooked_GetLocaleInfoW(
 namespace
 {
 
-    static void TEST_format_thousands_SIMPLE(void);
-    static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS(void);
-    static void TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS(void);
-    static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATORS(void);
+    static void TEST_format_thousands_SIMPLE();
+    static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS();
+    static void TEST_format_thousands_18446744073709551615_WITH_DEFAULT_SEPARATORS();
+    static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATORS();
 } // anonymous namespace
 
 

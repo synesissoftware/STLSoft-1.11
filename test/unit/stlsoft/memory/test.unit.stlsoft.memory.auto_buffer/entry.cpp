@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 17th December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -77,9 +77,7 @@ public: // construction
         rhs.m_pi = NULL;
     }
 private:
-#if __cplusplus >= 201103L
-    void operator =(class_type const&) = delete;
-#endif
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // operators
     class_type& operator ++()
@@ -130,9 +128,7 @@ public: // construction
         : m_pi(rhs.m_pi)
     {}
 private:
-#if __cplusplus >= 201103L
-    void operator =(class_type const&) = delete;
-#endif
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // operators
     class_type& operator ++()
@@ -170,83 +166,83 @@ private:
 namespace
 {
     // auto_buffer(size_t)
-    static void test_ctor_n_1(void);
-    static void test_ctor_n_2(void);
-    static void test_ctor_n_3(void);
+    static void test_ctor_n_1();
+    static void test_ctor_n_2();
+    static void test_ctor_n_3();
     // auto_buffer(size_t)
-    static void test_ctor_n_v_1(void);
-    static void test_ctor_n_v_2(void);
-    static void test_ctor_n_v_3(void);
-    static void test_ctor_n_v_4(void);
+    static void test_ctor_n_v_1();
+    static void test_ctor_n_v_2();
+    static void test_ctor_n_v_3();
+    static void test_ctor_n_v_4();
 #if __cplusplus >= 201103L
 
-    static void test_ctor_initlist_1(void);
-    static void test_ctor_initlist_2(void);
-    static void test_ctor_initlist_3(void);
+    static void test_ctor_initlist_1();
+    static void test_ctor_initlist_2();
+    static void test_ctor_initlist_3();
 #endif
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-    static void test_ctor_move_1(void);
-    static void test_ctor_move_2(void);
-    static void test_ctor_move_3(void);
-    static void test_ctor_move_4(void);
+    static void test_ctor_move_1();
+    static void test_ctor_move_2();
+    static void test_ctor_move_3();
+    static void test_ctor_move_4();
 #endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
-    static void test_ctor_range_pointers_1(void);
-    static void test_ctor_range_pointers_2(void);
-    static void test_ctor_range_pointers_3(void);
+    static void test_ctor_range_pointers_1();
+    static void test_ctor_range_pointers_2();
+    static void test_ctor_range_pointers_3();
 #if __cplusplus >= 201702L
 
-    static void test_ctor_range_vec_iters_1(void);
-    static void test_ctor_range_vec_iters_2(void);
-    static void test_ctor_range_vec_iters_3(void);
-    static void test_ctor_range_list_iters_1(void);
-    static void test_ctor_range_list_iters_2(void);
-    static void test_ctor_range_list_iters_3(void);
-    static void test_ctor_range_input_iters_1(void);
-    static void test_ctor_range_input_iters_2(void);
-    static void test_ctor_range_input_iters_3(void);
-    static void test_ctor_range_fwd_iters_1(void);
-    static void test_ctor_range_fwd_iters_2(void);
-    static void test_ctor_range_fwd_iters_3(void);
+    static void test_ctor_range_vec_iters_1();
+    static void test_ctor_range_vec_iters_2();
+    static void test_ctor_range_vec_iters_3();
+    static void test_ctor_range_list_iters_1();
+    static void test_ctor_range_list_iters_2();
+    static void test_ctor_range_list_iters_3();
+    static void test_ctor_range_input_iters_1();
+    static void test_ctor_range_input_iters_2();
+    static void test_ctor_range_input_iters_3();
+    static void test_ctor_range_fwd_iters_1();
+    static void test_ctor_range_fwd_iters_2();
+    static void test_ctor_range_fwd_iters_3();
 #endif
 
     // resize(size_t)
-    static void test_resize(void);
+    static void test_resize();
     // resize(size_t, value)
-    static void test_resize_n_v_1(void);
-    static void test_resize_n_v_2(void);
-    static void test_resize_n_v_3(void);
+    static void test_resize_n_v_1();
+    static void test_resize_n_v_2();
+    static void test_resize_n_v_3();
 
-    static void test_allocator_null(void);
+    static void test_allocator_null();
 #ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
 
-    static void test_allocator_to_exhaustion(void);
+    static void test_allocator_to_exhaustion();
 #endif
 
     // copy_from(class_type const&)
-    static void test_copy_from(void);
+    static void test_copy_from();
 
     // swap(class_type&&)
-    static void test_swap_1(void);
-    static void test_swap_2(void);
-    static void test_swap_3(void);
+    static void test_swap_1();
+    static void test_swap_2();
+    static void test_swap_3();
 
     // operator [](size_t) {const}
-    static void test_subscript(void);
+    static void test_subscript();
 
     // data() {const}
-    static void test_data(void);
+    static void test_data();
 
     // front() {const}
     // back() {const}
-    static void test_front_and_back(void);
+    static void test_front_and_back();
 
     // begin() {const}
     // end() {const}
-    static void test_begin_and_end(void);
+    static void test_begin_and_end();
     // rbegin() {const}
     // rend() {const}
-    static void test_rbegin_and_rend(void);
+    static void test_rbegin_and_rend();
 } // anonymous namespace
 
 
@@ -455,7 +451,7 @@ static void test_ctor_n_v_4()
 
 #if __cplusplus >= 201103L
 
-static void test_ctor_initlist_1(void)
+static void test_ctor_initlist_1()
 {
     stlsoft::auto_buffer<int, 10> buff = {};
 
@@ -463,18 +459,20 @@ static void test_ctor_initlist_1(void)
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
 }
 
-static void test_ctor_initlist_2(void)
+
+static void test_ctor_initlist_2()
 {
     stlsoft::auto_buffer<int, 10> buff = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
 
     XTESTS_TEST_INTEGER_EQUAL(0, buff[0]);
     XTESTS_TEST_INTEGER_EQUAL(9, buff[9]);
 }
 
-static void test_ctor_initlist_3(void)
+static void test_ctor_initlist_3()
 {
     stlsoft::auto_buffer<int, 10> buff = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -864,7 +862,7 @@ static void test_resize_n_v_3()
     XTESTS_TEST_INTEGER_EQUAL(0, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-static void test_allocator_null(void)
+static void test_allocator_null()
 {
     typedef stlsoft::null_allocator<char>                   ator_t;
     typedef stlsoft::auto_buffer<char, 10, ator_t>          buff_10_t;
@@ -912,7 +910,7 @@ static void test_allocator_null(void)
 }
 #ifdef ATTEMPT_ALLOCATOR_EXHAUSTION
 
-static void test_allocator_to_exhaustion(void)
+static void test_allocator_to_exhaustion()
 {
     stlsoft::auto_buffer<char, 10>::allocator_type  ator;
     stlsoft::auto_buffer<char, 10>                  buff(0);
@@ -1276,7 +1274,7 @@ static void test_swap_3()
     }
 }
 
-static void test_subscript(void)
+static void test_subscript()
 {
     typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
 
@@ -1298,7 +1296,7 @@ static void test_subscript(void)
     }
 }
 
-static void test_data(void)
+static void test_data()
 {
     typedef stlsoft::auto_buffer<int, 8> ab_int_8_t;
 

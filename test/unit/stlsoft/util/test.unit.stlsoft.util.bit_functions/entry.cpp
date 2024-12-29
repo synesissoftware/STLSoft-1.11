@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::bit_functions`.
  *
  * Created: 19th March 2010
- * Updated: 21st December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,8 +28,7 @@
 #include <xtests/xtests.h>
 
 /* STLSoft header files */
-#include <stlsoft/stlsoft.h>
-#include <platformstl/performance/performance_counter.hpp>
+#include <platformstl/diagnostics/stopwatch.hpp>
 
 /* Standard C++ header files */
 
@@ -45,11 +44,11 @@
 namespace
 {
 
-    static void test_count_bits_Kernighan(void);
-    static void test_count_bits_8bit_table(void);
-    static void test_find_high_bit_32(void);
-    static void test_find_high_bit_64(void);
-    static void test_calculate_xor_over_range_8_bit(void);
+    static void test_count_bits_Kernighan();
+    static void test_count_bits_8bit_table();
+    static void test_find_high_bit_32();
+    static void test_find_high_bit_64();
+    static void test_calculate_xor_over_range_8_bit();
 } // anonymous namespace
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,13 +93,13 @@ namespace
     using stlsoft::sint64_t;
     using stlsoft::uint64_t;
 
-    using platformstl::performance_counter;
+    using platformstl::stopwatch;
 
 static void test_count_bits_Kernighan()
 {
-    performance_counter counter;
+    stopwatch sw;
 
-    counter.start();
+    sw.start();
 
     XTESTS_TEST_INTEGER_EQUAL(0u,  stlsoft::count_bits_by_Kernighan_method(uint32_t(0)));
     XTESTS_TEST_INTEGER_EQUAL(0u,  stlsoft::count_bits_by_Kernighan_method(uint32_t(0x00000000)));
@@ -153,16 +152,16 @@ static void test_count_bits_Kernighan()
     XTESTS_TEST_INTEGER_EQUAL(2u,  stlsoft::count_bits_by_Kernighan_method(uint32_t(0x01001000)));
     XTESTS_TEST_INTEGER_EQUAL(2u,  stlsoft::count_bits_by_Kernighan_method(uint32_t(0x10001000)));
 
-    counter.stop();
+    sw.stop();
 
-    fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(counter.get_nanoseconds()));
+    fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(sw.get_nanoseconds()));
 }
 
 static void test_count_bits_8bit_table()
 {
-    performance_counter counter;
+    stopwatch sw;
 
-    counter.start();
+    sw.start();
 
     XTESTS_TEST_INTEGER_EQUAL(0u,  stlsoft::count_bits_by_8bit_table(uint32_t(0)));
     XTESTS_TEST_INTEGER_EQUAL(0u,  stlsoft::count_bits_by_8bit_table(uint32_t(0x00000000)));
@@ -215,9 +214,9 @@ static void test_count_bits_8bit_table()
     XTESTS_TEST_INTEGER_EQUAL(2u,  stlsoft::count_bits_by_8bit_table(uint32_t(0x01001000)));
     XTESTS_TEST_INTEGER_EQUAL(2u,  stlsoft::count_bits_by_8bit_table(uint32_t(0x10001000)));
 
-    counter.stop();
+    sw.stop();
 
-    fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(counter.get_nanoseconds()));
+    fprintf(stdout, "t: %luns\n", static_cast<unsigned long>(sw.get_nanoseconds()));
 }
 
 static void test_find_high_bit_32()

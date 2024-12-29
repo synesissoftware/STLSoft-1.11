@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/system/cmdargs.hpp
+ * File:    stlsoft/system/cmdargs.hpp
  *
- * Purpose:     Command-line sequences class.
+ * Purpose: Command-line sequences class.
  *
- * Created:     25th June 2005
- * Updated:     11th March 2024
+ * Created: 25th June 2005
+ * Updated: 29th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    8
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        46
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -107,10 +107,10 @@ namespace stlsoft
  * classes
  */
 
-/** Facade class that presents argc+argv command line parameters as
- *    two separate sequences of options (those arguments with - or --
- *    prefixes and, optionally, separated from an option value by a =) and
- *    values (those without any leading hyphens)
+/** Facade class that presents argc+argv command line parameters as two
+ * separate sequences of options (those arguments with - or -- prefixes and,
+ * optionally, separated from an option value by a =) and values (those
+ * without any leading hyphens)
  *
  * \ingroup group__library__System
  *
@@ -122,12 +122,16 @@ namespace stlsoft
 class cmdargs
 {
 public:
+    /// The string type
 #ifdef STLSOFT_SYSTEM_CMDARGS_USE_STD_STRING
-    typedef std::string             string_type;
+    typedef std::string                                     string_type;
 #else /* ? STLSOFT_SYSTEM_CMDARGS_USE_STD_STRING */
-    typedef simple_string           string_type;
+    typedef simple_string                                   string_type;
 #endif /* STLSOFT_SYSTEM_CMDARGS_USE_STD_STRING */
-    typedef basic_string_view<char> string_view_type;
+    /// The string view type
+    typedef basic_string_view<
+        char
+    >                                                       string_view_type;
 
     enum
     {
@@ -156,7 +160,13 @@ public:
             , index(-1)
             , original()
         {}
-        option(string_type const& n, string_type const& v, int t, int i, string_view_type const& o)
+        option(
+            string_type const&      n
+        ,   string_type const&      v
+        ,   int                     t
+        ,   int                     i
+        ,   string_view_type const& o
+        )
             : name(n)
             , value(v)
             , type(t)
@@ -179,7 +189,10 @@ public:
             : name()
             , index(-1)
         {}
-        value(string_view_type const& v, int i)
+        value(
+            string_view_type const& v
+        ,   int                     i
+        )
             : name(v)
             , index(i)
         {}
@@ -197,18 +210,13 @@ public:
     typedef ss_size_t                                       size_type;
     typedef ss_bool_t                                       bool_type;
 
-/// \name Construction
-/// @{
-public:
+public: // construction
     /// Constructs from argc/argv
     cmdargs(int argc, char /*const*/ ** argv);
     /// Releases any resources
     ~cmdargs() STLSOFT_NOEXCEPT;
-/// @}
 
-/// \name Attributes
-/// @{
-public:
+public: // attributes
     /// non-mutating reference to the options
     options_type const&     options() const;
     /// non-mutating reference to the values
@@ -236,7 +244,11 @@ public:
     /// \param type The type of the option (i.e the number of hyphens). It
     ///    defaults to -1, which indicates that the caller does not care.
     template <ss_typename_param_k S>
-    bool_type   has_option(S const& optionName, int type = -1) const
+    bool_type
+    has_option(
+        S const&    optionName
+    ,   int         type = -1
+    ) const
     {
         return m_options.end() != has_option_(c_str_ptr(optionName));
     }
@@ -249,7 +261,12 @@ public:
     ///    caller can specify -1 to indicate that it does not care.
     /// \param opt The instance into which the
     template <ss_typename_param_k S>
-    bool_type   has_option(S const& optionName, int type, option& opt) const
+    bool_type
+    has_option(
+        S const&    optionName
+    ,   int         type
+    ,   option&     opt
+    ) const
     {
         options_type::const_iterator it = has_option_(c_str_ptr(optionName), type);
 
@@ -264,12 +281,17 @@ public:
     }
 
     template <ss_typename_param_k S>
-    bool_type   has_value(S const& valueName) const
+    bool_type
+    has_value(S const& valueName) const
     {
         return m_values.end() != has_value_(c_str_ptr(valueName));
     }
     template <ss_typename_param_k S>
-    bool_type   has_value(S const& valueName, value& val) const
+    bool_type
+    has_value(
+        S const&    valueName
+    ,   value&      val
+    ) const
     {
         values_type::const_iterator it = has_value_(c_str_ptr(valueName));
 
@@ -282,21 +304,16 @@ public:
 
         return false;
     }
-/// @}
 
-/// \name Implementation
-/// @{
-private:
-    values_type::const_iterator has_value_(char const* valueName) const;
-    options_type::const_iterator has_option_(char const* optionName, int type) const;
-/// @}
+private: // implementation
+    values_type::const_iterator
+    has_value_(char const* valueName) const;
+    options_type::const_iterator
+    has_option_(char const* optionName, int type) const;
 
-/// \name Members
-/// @{
-private:
+private: // fields
     options_type    m_options;
     values_type     m_values;
-/// @}
 };
 
 
@@ -311,13 +328,14 @@ cmdargs::cmdargs(int argc, char /*const*/ **argv)
 {
     for (int i = 1; i < argc; ++i)
     {
-        char const  *arg    =   argv[i];
+        char const* arg = argv[i];
 
         if ('-' == arg[0])
         {
             ++arg;
 
-            const int   type = ('-' != arg[0]) ? singleDash : (++arg, doubleDash);
+            int const type = ('-' != arg[0]) ? singleDash : (++arg, doubleDash);
+
             string_type s0;
             string_type s1;
 
@@ -448,6 +466,11 @@ cmdargs::has_option_(char const* optionName, int type) const
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * operators
+ */
+
 template <ss_typename_param_k S>
 inline
 S&
@@ -456,13 +479,13 @@ operator <<(
 ,   cmdargs::option const&  option
 )
 {
-    static const char   s_dashes[] =
+    static const char s_dashes[] =
     {
             '-'
         ,   '-'
         ,   '\0'
     };
-    char const      *dashes =   &s_dashes[(option.type == cmdargs::singleDash)];
+    char const* const dashes = &s_dashes[(option.type == cmdargs::singleDash)];
 
     if (option.value.empty())
     {
@@ -491,7 +514,7 @@ operator <<(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * implementation
+ * namespace
  */
 
 #ifndef STLSOFT_NO_NAMESPACE

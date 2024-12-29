@@ -95,9 +95,9 @@ class fast_string_concatenator;
 # include <algorithm>
 #endif /* !STLSOFT_INCL_ALGORITHM */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -336,8 +336,10 @@ private:
 
                 len = ref.cstring.len;
 #if defined(STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE)
-                STLSOFT_API_INTERNAL_memfns_memcpy(s, ref.cstring.s, sizeof(C) * (len));
+
+                STLSOFT_API_EXTERNAL_memfns_memcpy(s, ref.cstring.s, sizeof(C) * (len));
 #else /* ? STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE */
+
                 std::copy(&ref.cstring.s[0], &ref.cstring.s[0] + len, s);
 #endif /* STLSOFT_FAST_STRING_CONCATENATION_ASSUME_CONTIGUOUS_STORAGE */
                 s += len;

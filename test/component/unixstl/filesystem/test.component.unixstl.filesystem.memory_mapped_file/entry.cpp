@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::memory_mapped_file`.
  *
  * Created: sometime in 2010s
- * Updated: 11th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,8 +38,8 @@
 namespace
 {
 
-    static void test_nonexisting_file(void);
-    static void test_existing_file_with_known_contents(void);
+    static void test_nonexisting_file();
+    static void test_existing_file_with_known_contents();
 } // anonymous namespace
 
 
@@ -78,7 +78,7 @@ namespace
     using ::xtests::cpp::util::temp_file;
 
 
-static void test_nonexisting_file(void)
+static void test_nonexisting_file()
 {
     temp_file f(temp_file::DeleteOnOpen | temp_file::DeleteOnClose);
 
@@ -89,7 +89,7 @@ static void test_nonexisting_file(void)
     STLSOFT_SUPPRESS_UNUSED(mmf);
 }
 
-static void test_existing_file_with_known_contents(void)
+static void test_existing_file_with_known_contents()
 {
     stlsoft::byte_t bytes[4 * 1024];
 

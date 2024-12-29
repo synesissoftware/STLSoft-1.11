@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 12th September 2019
- * Updated: 17th December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,28 +50,28 @@
 namespace
 {
 
-    static void test_format_bytes_1_byte_1_grouping(void);
-    static void test_format_bytes_1_byte_2_grouping(void);
-    static void test_format_bytes_1_byte_4_grouping(void);
-    static void test_format_bytes_1_byte_8_grouping(void);
-    static void test_format_bytes_1_byte_16_grouping(void);
+    static void test_format_bytes_1_byte_1_grouping();
+    static void test_format_bytes_1_byte_2_grouping();
+    static void test_format_bytes_1_byte_4_grouping();
+    static void test_format_bytes_1_byte_8_grouping();
+    static void test_format_bytes_1_byte_16_grouping();
 
-    static void test_format_bytes_5_byte_1_grouping(void);
-    static void test_format_bytes_5_byte_2_grouping(void);
-    static void test_format_bytes_5_byte_4_grouping(void);
-    static void test_format_bytes_5_byte_8_grouping(void);
-    static void test_format_bytes_5_byte_16_grouping(void);
+    static void test_format_bytes_5_byte_1_grouping();
+    static void test_format_bytes_5_byte_2_grouping();
+    static void test_format_bytes_5_byte_4_grouping();
+    static void test_format_bytes_5_byte_8_grouping();
+    static void test_format_bytes_5_byte_16_grouping();
 
-    static void test_1_21(void);
-    static void test_1_22(void);
-    static void test_1_23(void);
-    static void test_1_24(void);
-    static void test_1_25(void);
-    static void test_1_26(void);
-    static void test_1_27(void);
-    static void test_1_28(void);
-    static void test_1_29(void);
-    static void test_1_30(void);
+    static void test_1_21();
+    static void test_1_22();
+    static void test_1_23();
+    static void test_1_24();
+    static void test_1_25();
+    static void test_1_26();
+    static void test_1_27();
+    static void test_1_28();
+    static void test_1_29();
+    static void test_1_30();
 
 } // anonymous namespace
 
@@ -285,39 +285,39 @@ static void test_1_21()
 {
 }
 
-static void test_1_22(void)
+static void test_1_22()
 {
 }
 
-static void test_1_23(void)
+static void test_1_23()
 {
 }
 
-static void test_1_24(void)
+static void test_1_24()
 {
 }
 
-static void test_1_25(void)
+static void test_1_25()
 {
 }
 
-static void test_1_26(void)
+static void test_1_26()
 {
 }
 
-static void test_1_27(void)
+static void test_1_27()
 {
 }
 
-static void test_1_28(void)
+static void test_1_28()
 {
 }
 
-static void test_1_29(void)
+static void test_1_29()
 {
 }
 
-static void test_1_30(void)
+static void test_1_30()
 {
 }
 

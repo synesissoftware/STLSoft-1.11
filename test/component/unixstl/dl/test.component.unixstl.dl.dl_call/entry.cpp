@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 13th October 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,11 +56,11 @@ namespace
 namespace
 {
 
-    static void test_1_00(void);
-    static void test_example_so_abs1(void);
-    static void test_example_so_add2(void);
-    static void test_example_so_add3(void);
-    static void test_example_so_add10(void);
+    static void test_1_00();
+    static void test_example_so_abs1();
+    static void test_example_so_add2();
+    static void test_example_so_add3();
+    static void test_example_so_add10();
 
     static char*        s_cwd;
     static h_module_t   h_example_so;
@@ -200,15 +200,23 @@ int main(int argc, char* argv[])
         {
             h_example_so = unixstl::get_module_handle(*module);
 
+#if __cplusplus >= 201103L
+
             stlsoft::scoped_lambda scoper2([] {
 
                 h_example_so = NULL;
             });
+#endif
 
             XTESTS_RUN_CASE(test_example_so_abs1);
             XTESTS_RUN_CASE(test_example_so_add2);
             XTESTS_RUN_CASE(test_example_so_add3);
             XTESTS_RUN_CASE(test_example_so_add10);
+
+#if __cplusplus < 201103L
+
+            h_example_so = NULL;
+#endif
         }
 
         XTESTS_PRINT_RESULTS();
@@ -227,11 +235,11 @@ int main(int argc, char* argv[])
 namespace
 {
 
-static void test_1_00(void)
+static void test_1_00()
 {
 }
 
-static void test_example_so_abs1(void)
+static void test_example_so_abs1()
 {
     try
     {
@@ -247,7 +255,7 @@ static void test_example_so_abs1(void)
     }
 }
 
-static void test_example_so_add2(void)
+static void test_example_so_add2()
 {
     try
     {
@@ -263,7 +271,7 @@ static void test_example_so_add2(void)
     }
 }
 
-static void test_example_so_add3(void)
+static void test_example_so_add3()
 {
     try
     {
@@ -279,7 +287,7 @@ static void test_example_so_add3(void)
     }
 }
 
-static void test_example_so_add10(void)
+static void test_example_so_add10()
 {
     try
     {

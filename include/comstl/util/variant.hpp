@@ -90,9 +90,9 @@
 # include <stlsoft/util/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_Debugging
 # include <winstl/api/external/Debugging.h>
@@ -535,9 +535,9 @@ inline /* static */ void variant::swap_(VARIANT& lhs, VARIANT& rhs)
 {
     VARIANT t;
 
-    STLSOFT_API_INTERNAL_memfns_memcpy(&t, &lhs, sizeof(VARIANT));
-    STLSOFT_API_INTERNAL_memfns_memcpy(&lhs, &rhs, sizeof(VARIANT));
-    STLSOFT_API_INTERNAL_memfns_memcpy(&rhs, &t, sizeof(VARIANT));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&t, &lhs, sizeof(VARIANT));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&lhs, &rhs, sizeof(VARIANT));
+    STLSOFT_API_EXTERNAL_memfns_memcpy(&rhs, &t, sizeof(VARIANT));
 }
 
 

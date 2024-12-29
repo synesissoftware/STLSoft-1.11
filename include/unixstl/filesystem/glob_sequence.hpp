@@ -125,10 +125,9 @@
 # include <stdexcept>                        // for std::runtime_error
 #endif /* !STLSOFT_INCL_STDEXCEPT */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -1331,7 +1330,7 @@ glob_sequence::init_glob_3_(
 
             UNIXSTL_ASSERT(m_buffer.size() == cItems);
 
-            base = static_cast<char_type**>(STLSOFT_API_INTERNAL_memfns_memcpy(&m_buffer[0], base, m_buffer.size() * sizeof(char_type*)));
+            base = static_cast<char_type**>(STLSOFT_API_EXTERNAL_memfns_memcpy(&m_buffer[0], base, m_buffer.size() * sizeof(char_type*)));
         }
 
         // This section elides dots directories.

@@ -4,8 +4,14 @@
 ----
 
 
-28th December 2024 - 1.11.1-alpha28 released
+30th December 2024 - 1.11.1-alpha29 released
 --------------------------------------------
+
+ * Visual C++ compatibility (including _MSC_VER 1942);
+ * MinGW compatibility;
+ * miscellaneous backwards-compatibility fixes;
+ * command-line handling components minor improvements and unit-testing;
+
 
 TTTTTTTTT      BBBBBB          CCCCCCC
    TTT         B     B        C       C
@@ -15,6 +21,15 @@ TTTTTTTTT      BBBBBB          CCCCCCC
    TTT         B     B        C       C
    TTT         BBBBBB          CCCCCCC
 
+
+
+28th December 2024 - 1.11.1-alpha28 released
+--------------------------------------------
+
+ * substantial reworking of abstraction of memory functions, resulting in performance improvements across numerous components, `stlsoft::auto_buffer<>` in particular;
+ * MinGW compatibility;
+ * miscellaneous generalisation of code and dependencies;
+ * added more test programs;
 
 
 19th December 2024 - 1.11.1-alpha27 released

@@ -121,9 +121,9 @@
 # include <functional>
 #endif /* !STLSOFT_INCL_FUNCTIONAL */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
@@ -1565,7 +1565,7 @@ basic_reg_key<C, T, A>::set_value_(
         char_type const* const  s   =   values[i];
         const size_type         len =   traits_type::str_len(s);
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, s, sizeof(char_type) * len);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, s, sizeof(char_type) * len);
         p += len;
         *p++ = '\0';
     }}

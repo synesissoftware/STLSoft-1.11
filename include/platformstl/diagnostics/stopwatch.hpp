@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/diagnostics/stopwatch.hpp (formerly platformstl::performance_counter, platformstl/performance/performance_counter.hpp)
+ * File:    platformstl/diagnostics/stopwatch.hpp (formerly platformstl::performance_counter, platformstl/performance/performance_counter.hpp)
  *
- * Purpose:     Platform header for the stopwatch components.
+ * Purpose: Platform header for the stopwatch components.
  *
- * Created:     20th March 2005
- * Updated:     11th March 2024
+ * Created: 20th March 2005
+ * Updated: 29th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -49,7 +49,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR    3
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     27
+# define PLATFORMSTL_VER_PLATFORMSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/diagnostics/stopwatch.hpp
@@ -106,9 +106,11 @@ namespace platformstl_project
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+#if 0
+#elif defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
     /** A stopwatch class
      *
@@ -133,7 +135,6 @@ namespace platformstl_project
 # else /* ? UNIXSTL_NO_NAMESPACE */
     using ::unixstl::stopwatch;
 # endif /* UNIXSTL_NO_NAMESPACE */
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # ifdef WINSTL_NO_NAMESPACE
@@ -141,12 +142,15 @@ namespace platformstl_project
 # else /* ? WINSTL_NO_NAMESPACE */
     using ::winstl::stopwatch;
 # endif /* WINSTL_NO_NAMESPACE */
-
 #else /* ? operating system */
+
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

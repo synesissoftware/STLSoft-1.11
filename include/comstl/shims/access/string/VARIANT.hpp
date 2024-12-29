@@ -87,10 +87,6 @@
 # include <new>
 #endif /* STLSOFT_CF_THROW_BAD_ALLOC */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
@@ -98,6 +94,9 @@
 # include <winstl/api/external/UnicodeAndCharacterSet.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_UnicodeAndCharacterSet */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -219,11 +218,11 @@ public:
             }
             else
             {
-                STLSOFT_API_INTERNAL_memfns_memcpy(result + 0, code, cchCode * sizeof(WCHAR));
+                STLSOFT_API_EXTERNAL_memfns_memcpy(result + 0, code, cchCode * sizeof(WCHAR));
                 if (0 != cchMsg)
                 {
-                    STLSOFT_API_INTERNAL_memfns_memcpy(result + cchCode, L", ", 2 * sizeof(WCHAR));
-                    STLSOFT_API_INTERNAL_memfns_memcpy(result + cchCode + 2, msg, cchMsg * sizeof(WCHAR));
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(result + cchCode, L", ", 2 * sizeof(WCHAR));
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(result + cchCode + 2, msg, cchMsg * sizeof(WCHAR));
                 }
             }
 

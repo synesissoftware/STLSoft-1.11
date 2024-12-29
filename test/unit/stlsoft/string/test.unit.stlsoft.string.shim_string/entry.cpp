@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_shim_string`.
  *
  * Created: 9th November 2008
- * Updated: 17th December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,31 +53,31 @@
 namespace
 {
 
-    static void test_sizes(void);
-    static void test_construction(void);
-    static void test_method_calls(void);
-    static void test_constructor_c_string(void);
-    static void test_constructor_range_string(void);
-    static void test_constructor_length(void);
-    static void test_write(void);
-    static void test_truncate(void);
-    static void test_swap(void);
-    static void test_1_8(void);
-    static void test_1_9(void);
-    static void test_append_c_string(void);
-    static void test_append_c_string_after_truncate(void);
-    static void test_1_12(void);
-    static void test_null_string(void);
-    static void test_reserve(void);
-    static void test_resize(void);
-    static void test_1_16(void);
-    static void test_1_17(void);
-    static void test_1_18(void);
-    static void test_1_19(void);
-    static void test_insertion_1(void);
-    static void test_insertion_2(void);
-    static void test_insertion_3(void);
-    static void test_insertion_4(void);
+    static void test_sizes();
+    static void test_construction();
+    static void test_method_calls();
+    static void test_constructor_c_string();
+    static void test_constructor_range_string();
+    static void test_constructor_length();
+    static void test_write();
+    static void test_truncate();
+    static void test_swap();
+    static void test_1_8();
+    static void test_1_9();
+    static void test_append_c_string();
+    static void test_append_c_string_after_truncate();
+    static void test_1_12();
+    static void test_null_string();
+    static void test_reserve();
+    static void test_resize();
+    static void test_1_16();
+    static void test_1_17();
+    static void test_1_18();
+    static void test_1_19();
+    static void test_insertion_1();
+    static void test_insertion_2();
+    static void test_insertion_3();
+    static void test_insertion_4();
 
 } // anonymous namespace
 
@@ -550,7 +550,7 @@ static void test_1_19()
 {
 }
 
-static void test_insertion_1(void)
+static void test_insertion_1()
 {
     // char const* (for reference)
 
@@ -655,7 +655,7 @@ static void test_insertion_1(void)
     }
 }
 
-static void test_insertion_2(void)
+static void test_insertion_2()
 {
     // char const* (for reference)
 
@@ -763,7 +763,7 @@ static void test_insertion_2(void)
     }
 }
 
-static void test_insertion_3(void)
+static void test_insertion_3()
 {
     // char const* (for reference)
 
@@ -858,7 +858,7 @@ static void test_insertion_3(void)
 }
 
 
-static void test_insertion_4(void)
+static void test_insertion_4()
 {
     const std::size_t FIELD_WIDTH = 2000;
 #if defined(_MSC_VER) &&\

@@ -4,7 +4,7 @@
  * Purpose: Component test for WinSTL atomic_functions.
  *
  * Created: sometime in 2015
- * Updated: 15th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -55,99 +55,99 @@ namespace
 {
     namespace atomic_decrement {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_decrement */
 
     namespace atomic_increment {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_increment */
 
     namespace atomic_postadd {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_postadd */
 
     namespace atomic_postdecrement {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_postdecrement */
 
     namespace atomic_postincrement {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_postincrement */
 
     namespace atomic_preadd {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_preadd */
 
     namespace atomic_predecrement {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_predecrement */
 
     namespace atomic_preincrement {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_preincrement */
 
 
     namespace atomic_decrement32 {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_decrement32 */
 
     namespace atomic_increment32 {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_increment32 */
 
     namespace atomic_postadd32 {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_postadd32 */
 
     namespace atomic_postdecrement32 {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_postdecrement32 */
 
     namespace atomic_postincrement32 {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_postincrement32 */
 
     namespace atomic_preadd32 {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_preadd32 */
 
     namespace atomic_predecrement32 {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_predecrement32 */
 
     namespace atomic_preincrement32 {
 
-        static void test_check_semantics(void);
-        static void test_a_large_number(void);
+        static void test_check_semantics();
+        static void test_a_large_number();
     } /* namespace atomic_preincrement32 */
 } /* anonymous namespace */
 
@@ -252,7 +252,7 @@ namespace {
 
     namespace atomic_decrement {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int_t    v = 0;
 
@@ -261,7 +261,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(-1, v);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   InitialValue    =   10000000;
             const int   NumThreads      =   10;
@@ -296,7 +296,7 @@ namespace {
 
     namespace atomic_increment {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int_t    v = 0;
 
@@ -305,7 +305,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(+1, v);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   FinalValue  =   10000000;
             const int   NumThreads  =   10;
@@ -340,7 +340,7 @@ namespace {
 
     namespace atomic_postadd {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_postadd(&v, 7);
@@ -349,7 +349,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(0, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int           FinalValue  =   10000000;
             const int           NumThreads  =   10;
@@ -386,7 +386,7 @@ namespace {
 
     namespace atomic_postdecrement {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_postdecrement(&v);
@@ -395,7 +395,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(0, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   InitialValue    =   10000000;
             const int   NumThreads      =   10;
@@ -430,7 +430,7 @@ namespace {
 
     namespace atomic_postincrement {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_postincrement(&v);
@@ -439,7 +439,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(0, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   FinalValue  =   10000000;
             const int   NumThreads  =   10;
@@ -474,7 +474,7 @@ namespace {
 
     namespace atomic_preadd {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_preadd(&v, 7);
@@ -483,7 +483,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(7, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int           FinalValue  =   10000000;
             const int           NumThreads  =   10;
@@ -519,7 +519,7 @@ namespace {
 
     namespace atomic_predecrement {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_predecrement(&v);
@@ -528,7 +528,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(-1, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   InitialValue    =   10000000;
             const int   NumThreads      =   10;
@@ -563,7 +563,7 @@ namespace {
 
     namespace atomic_preincrement {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int_t    v = 0;
             atomic_int_t    r = winstl::atomic_preincrement(&v);
@@ -572,7 +572,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(+1, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   FinalValue  =   10000000;
             const int   NumThreads  =   10;
@@ -609,7 +609,7 @@ namespace {
 
     namespace atomic_decrement32 {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int32_t  v = 0;
 
@@ -618,7 +618,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(-1, v);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   InitialValue    =   10000000;
             const int   NumThreads      =   10;
@@ -653,7 +653,7 @@ namespace {
 
     namespace atomic_increment32 {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int32_t    v = 0;
 
@@ -662,7 +662,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(+1, v);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   FinalValue  =   10000000;
             const int   NumThreads  =   10;
@@ -697,7 +697,7 @@ namespace {
 
     namespace atomic_postadd32 {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_postadd32(&v, 7);
@@ -706,7 +706,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(0, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int               FinalValue  =   10000000;
             const int               NumThreads  =   10;
@@ -742,7 +742,7 @@ namespace {
 
     namespace atomic_postdecrement32 {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_postdecrement32(&v);
@@ -751,7 +751,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(0, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   InitialValue    =   10000000;
             const int   NumThreads      =   10;
@@ -786,7 +786,7 @@ namespace {
 
     namespace atomic_postincrement32 {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_postincrement32(&v);
@@ -795,7 +795,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(0, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   FinalValue  =   10000000;
             const int   NumThreads  =   10;
@@ -830,7 +830,7 @@ namespace {
 
     namespace atomic_preadd32 {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_preadd32(&v, 7);
@@ -839,7 +839,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(7, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int           FinalValue  =   10000000;
             const int           NumThreads  =   10;
@@ -875,7 +875,7 @@ namespace {
 
     namespace atomic_predecrement32 {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_predecrement32(&v);
@@ -884,7 +884,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(-1, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   InitialValue    =   10000000;
             const int   NumThreads      =   10;
@@ -919,7 +919,7 @@ namespace {
 
     namespace atomic_preincrement32 {
 
-        static void test_check_semantics(void)
+        static void test_check_semantics()
         {
             atomic_int32_t  v = 0;
             atomic_int32_t  r = winstl::atomic_preincrement32(&v);
@@ -928,7 +928,7 @@ namespace {
             XTESTS_TEST_INTEGER_EQUAL(+1, r);
         }
 
-        static void test_a_large_number(void)
+        static void test_a_large_number()
         {
             const int   FinalValue  =   10000000;
             const int   NumThreads  =   10;

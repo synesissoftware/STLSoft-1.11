@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 15
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     153
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION 16
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT     154
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,9 +116,9 @@
 # include <stlsoft/algorithms/pod.hpp>
 #endif /* STLSOFT_DEBUG */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -430,7 +430,7 @@ private:
         size_type const         n   =   m_buffer.size() - ecs;
         char_type *             p   =   &m_buffer[0] + n;
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, ec, sizeof(char_type) * ecs);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, ec, sizeof(char_type) * ecs);
     }
 
     static
@@ -455,7 +455,7 @@ private:
             size_type const         n   =   m_buffer.size() - ecs;
             char_type const*        p   =   &m_buffer[0] + n;
 
-            if (0 != ::memcmp(p, ec, sizeof(char_type) * ecs))
+            if (0 != STLSOFT_API_EXTERNAL_memfns_memcmp(p, ec, sizeof(char_type) * ecs))
             {
                 return false;
             }

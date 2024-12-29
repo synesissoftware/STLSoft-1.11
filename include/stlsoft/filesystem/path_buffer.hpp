@@ -85,9 +85,9 @@
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -539,7 +539,7 @@ private: // implementation
 
         if (0 != n)
         {
-            STLSOFT_API_INTERNAL_memfns_memcpy(dest.data() + offset, src, n * sizeof(char_type));
+            STLSOFT_API_EXTERNAL_memfns_memcpy(dest.data() + offset, src, n * sizeof(char_type));
         }
     }
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *
  * Created: 9th June 2010
- * Updated: 21st December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,33 +41,33 @@
 namespace
 {
 
-    static void test_1_1(void);
-    static void test_1_2(void);
-    static void test_1_3(void);
-    static void test_1_4(void);
-    static void test_1_5(void);
-    static void test_1_6(void);
-    static void test_1_7(void);
-    static void test_1_8(void);
-    static void test_1_9(void);
-    static void test_1_10(void);
+    static void test_1_1();
+    static void test_1_2();
+    static void test_1_3();
+    static void test_1_4();
+    static void test_1_5();
+    static void test_1_6();
+    static void test_1_7();
+    static void test_1_8();
+    static void test_1_9();
+    static void test_1_10();
 
-    static void test_1_11(void);
+    static void test_1_11();
 
-    static void test_2_1(void);
-    static void test_2_2(void);
+    static void test_2_1();
+    static void test_2_2();
 
-    static void test_3_1(void);
-    static void test_3_2(void);
-    static void test_3_3(void);
-    static void test_3_4(void);
-    static void test_3_5(void);
-    static void test_3_6(void);
-    static void test_3_7(void);
-    static void test_3_8(void);
-    static void test_3_9(void);
-    static void test_3_10(void);
-    static void test_3_11(void);
+    static void test_3_1();
+    static void test_3_2();
+    static void test_3_3();
+    static void test_3_4();
+    static void test_3_5();
+    static void test_3_6();
+    static void test_3_7();
+    static void test_3_8();
+    static void test_3_9();
+    static void test_3_10();
+    static void test_3_11();
 } // anonymous namespace
 
 
@@ -497,7 +497,7 @@ static void test_1_11()
  * 2_x
  */
 
-static void test_2_1(void)
+static void test_2_1()
 {
     char const  VAR[] = "B";
     int         var       =   0x00;
@@ -531,7 +531,7 @@ static void test_2_1(void)
     XTESTS_TEST_INTEGER_EQUAL(0x02, var);
 }
 
-static void test_2_2(void)
+static void test_2_2()
 {
     char const  VAR[] = "B";
     int         var       =   0x10;

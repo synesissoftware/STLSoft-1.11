@@ -101,10 +101,9 @@
 # include <stlsoft/synch/lock_scope.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_LOCK_SCOPE */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -191,7 +190,7 @@ public:
         : m_len(rhs.m_len)
         , m_buffer(rhs.m_len + 1)
     {
-        STLSOFT_API_INTERNAL_memfns_memcpy(&m_buffer[0], &rhs.m_buffer[0], sizeof(char_type) * (1u + m_len));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(&m_buffer[0], &rhs.m_buffer[0], sizeof(char_type) * (1u + m_len));
     }
 #endif /* compiler */
 

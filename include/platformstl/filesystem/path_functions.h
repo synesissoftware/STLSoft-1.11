@@ -4,7 +4,7 @@
  * Purpose: Path manipulation functions.
  *
  * Created: 3rd February 2011
- * Updated: 9th July 2024
+ * Updated: 26th September 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_MINOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_REVISION 9
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_EDIT     30
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_H_PATH_FUNCTIONS_EDIT     31
 #endif /* !PLATFORMSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -73,16 +73,16 @@
 # include <stlsoft/string/string_slice.h>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
+# include <stlsoft/api/external/string.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT
 # include <stlsoft/quality/contract.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT */
 #ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_COVER
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
-
-#ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
-# include <stlsoft/api/external/string.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
 
 /* /////////////////////////////////////////////////////////////////////////

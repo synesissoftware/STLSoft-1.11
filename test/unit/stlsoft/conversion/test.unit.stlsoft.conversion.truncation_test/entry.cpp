@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::truncation_test<>`.
  *
  * Created: 7th November 2008
- * Updated: 21st December 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,15 +44,15 @@
 
 namespace
 {
-    static void test_12(void);
-    static void test_zero(void);
-    static void test_sign(void);
-    static void test_range_signed(void);
-    static void test_range_unsigned(void);
-    static void test_edge_to_sint8(void);
-    static void test_to_sint8(void);
-    static void test_to_uint8(void);
-    static void test_to_sint16(void);
+    static void test_12();
+    static void test_zero();
+    static void test_sign();
+    static void test_range_signed();
+    static void test_range_unsigned();
+    static void test_edge_to_sint8();
+    static void test_to_sint8();
+    static void test_to_uint8();
+    static void test_to_sint16();
 } // anonymous namespace
 
 

@@ -164,10 +164,9 @@
 # endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
 #endif /* _WIN32 */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -1820,7 +1819,7 @@ private:
                 return 0;
             }
 
-            STLSOFT_API_INTERNAL_memfns_memcpy(&cwd[0] + n2, fileName, sizeof(char_type) * len);
+            STLSOFT_API_EXTERNAL_memfns_memcpy(&cwd[0] + n2, fileName, sizeof(char_type) * len);
             cwd[n2 + len] = '\0';
 
             return get_full_path_name_impl2(cwd.data(), n2 + len, buffer, cchBuffer);

@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *
  * Created: ... mid 2010s ...
- * Updated: 28th December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -187,6 +187,7 @@ int main(int argc, char* argv[])
     stlsoft::frequency_map<std::size_t> fm_lengths;
 
     platformstl::stopwatch sw;
+    platformstl::stopwatch sw_skip;
 
     char const* casename;
 
@@ -216,9 +217,11 @@ int main(int argc, char* argv[])
 #ifdef NDEBUG
     const std::size_t NUM_ITERATIONS = 10000;
     const std::size_t NUM_LIST_ITERATIONS = 100;
+    const std::size_t NUM_MOVECTOR_ITERATIONS = 1000;
 #else
     const std::size_t NUM_ITERATIONS = 10;
     const std::size_t NUM_LIST_ITERATIONS = 2;
+    const std::size_t NUM_MOVECTOR_ITERATIONS = 4;
 #endif
 
 
@@ -228,7 +231,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -352,7 +355,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -485,7 +488,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -500,7 +503,6 @@ int main(int argc, char* argv[])
                 {
                     for (auto const& row : arrays_of_integers)
                     {
-                        // std::vector<int> row_copy(row.begin(), row.end());
                         std::vector<int> row_copy{row};
 
                         r += static_cast<int>(row_copy.size());
@@ -535,7 +537,6 @@ int main(int argc, char* argv[])
                 {
                     for (auto const& row : arrays_of_integers)
                     {
-                        // std::vector<int> row_copy(row.begin(), row.end());
                         stlsoft::auto_buffer<int, 10> row_copy(row.size());
 
                         std::memcpy(&row_copy[0], &row[0], sizeof(int) * row.size());
@@ -567,7 +568,6 @@ int main(int argc, char* argv[])
                 {
                     for (auto const& row : arrays_of_integers)
                     {
-                        // std::vector<int> row_copy(row.begin(), row.end());
                         stlsoft::auto_buffer<int, 100> row_copy(row.size());
 
                         std::memcpy(&row_copy[0], &row[0], sizeof(int) * row.size());
@@ -599,7 +599,6 @@ int main(int argc, char* argv[])
                 {
                     for (auto const& row : arrays_of_integers)
                     {
-                        // std::vector<int> row_copy(row.begin(), row.end());
                         stlsoft::auto_buffer<int, 1000> row_copy(row.size());
 
                         std::memcpy(&row_copy[0], &row[0], sizeof(int) * row.size());
@@ -628,7 +627,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -761,7 +760,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -888,14 +887,17 @@ int main(int argc, char* argv[])
         }
     }
 
+#if __cplusplus >= 201703L &&\
+    !defined(STLSOFT_COMPILER_IS_MSVC) &&\
+    1
+
     // range construction (or as close as can be)
-#if __cplusplus >= 201703L
     {
         char const* const grpname = "range construction (from input-iterator)";
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -1023,6 +1025,168 @@ int main(int argc, char* argv[])
     }
 #endif /* C++ version */
 
+
+    // move ctor
+    {
+        char const* const grpname = "move ctor";
+
+        fprintf(stdout, "%s:\n", grpname);
+
+        platformstl::stopwatch::interval_type   tm_vec = 0;
+
+        // std::vector::vector :
+        {
+            { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+            {
+                casename = "std::vector::vector(class_type&&)";
+
+                int r = 0;
+
+                platformstl::stopwatch::interval_type tm_skip = 0;
+
+                sw.start();
+                { for (std::size_t i = 0; i != NUM_MOVECTOR_ITERATIONS; ++i)
+                {
+                    for (auto const& row : arrays_of_integers)
+                    {
+                        sw_skip.start();
+                        std::vector<int> row_copy(row);
+                        sw_skip.stop();
+                        std::vector<int> row_copy2(std::move(row_copy));
+
+                        r += static_cast<int>(row_copy2.size());
+
+                        r += row_copy2.front();
+                        r += row_copy2.back();
+
+                        tm_skip += sw_skip.get_microseconds();
+                    }
+                }}
+                sw.stop();
+
+                auto const duration = sw.get_microseconds() - tm_skip;
+
+                if (1 == WARMUPS)
+                {
+                    fprintf(stdout, "\t%s: %lu (%d)\n", casename, static_cast<unsigned long>(duration), r);
+
+                    tm_vec = duration;
+                }
+            }}
+        }
+
+        // stlsoft::auto_buffer<...>::auto_buffer :
+        {
+            { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+            {
+                casename = "stlsoft::auto_buffer<  10>::auto_buffer(class_type&&)";
+
+                int r = 0;
+
+                platformstl::stopwatch::interval_type tm_skip = 0;
+
+                sw.start();
+                { for (std::size_t i = 0; i != NUM_MOVECTOR_ITERATIONS; ++i)
+                {
+                    for (auto const& row : arrays_of_integers)
+                    {
+                        sw_skip.stop();
+                        stlsoft::auto_buffer<int, 10> row_copy(row.begin(), row.end());
+                        sw_skip.start();
+                        stlsoft::auto_buffer<int, 10> row_copy2(std::move(row_copy));
+
+                        r += static_cast<int>(row_copy2.size());
+
+                        r += row_copy2.front();
+                        r += row_copy2.back();
+
+                        tm_skip += sw_skip.get_microseconds();
+                    }
+                }}
+                sw.stop();
+
+                auto const duration = sw.get_microseconds() - tm_skip;
+
+                if (1 == WARMUPS)
+                {
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                }
+            }}
+
+            { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+            {
+                casename = "stlsoft::auto_buffer< 100>::auto_buffer(class_type&&)";
+
+                int r = 0;
+
+                platformstl::stopwatch::interval_type tm_skip = 0;
+
+                sw.start();
+                { for (std::size_t i = 0; i != NUM_MOVECTOR_ITERATIONS; ++i)
+                {
+                    for (auto const& row : arrays_of_integers)
+                    {
+                        sw_skip.stop();
+                        stlsoft::auto_buffer<int, 100> row_copy(row.begin(), row.end());
+                        sw_skip.start();
+                        stlsoft::auto_buffer<int, 100> row_copy2(std::move(row_copy));
+
+                        r += static_cast<int>(row_copy2.size());
+
+                        r += row_copy2.front();
+                        r += row_copy2.back();
+
+                        tm_skip += sw_skip.get_microseconds();
+                    }
+                }}
+                sw.stop();
+
+                auto const duration = sw.get_microseconds() - tm_skip;
+
+                if (1 == WARMUPS)
+                {
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                }
+            }}
+
+            { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+            {
+                casename = "stlsoft::auto_buffer<1000>::auto_buffer(class_type&&)";
+
+                int r = 0;
+
+                platformstl::stopwatch::interval_type tm_skip = 0;
+
+                sw.start();
+                { for (std::size_t i = 0; i != NUM_MOVECTOR_ITERATIONS; ++i)
+                {
+                    for (auto const& row : arrays_of_integers)
+                    {
+                        sw_skip.stop();
+                        stlsoft::auto_buffer<int, 1000> row_copy(row.begin(), row.end());
+                        sw_skip.start();
+                        stlsoft::auto_buffer<int, 1000> row_copy2(std::move(row_copy));
+
+                        r += static_cast<int>(row_copy2.size());
+
+                        r += row_copy2.front();
+                        r += row_copy2.back();
+
+                        tm_skip += sw_skip.get_microseconds();
+                    }
+                }}
+                sw.stop();
+
+                auto const duration = sw.get_microseconds() - tm_skip;
+
+                if (1 == WARMUPS)
+                {
+                    fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
+                }
+            }}
+        }
+    }
+
 #if 0
 
     fprintf(stdout, "data length frequencies:\n");
@@ -1080,7 +1244,7 @@ create_integers_arrays(
 
         for (std::size_t j = 0; j != num_integers; ++j)
         {
-            row.push_back(dist_num_integers(mt));
+            row.push_back(static_cast<int>(dist_num_integers(mt)));
         }
 
         v.push_back(row);

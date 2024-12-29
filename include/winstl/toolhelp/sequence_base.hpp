@@ -91,9 +91,9 @@
 # include <tlhelp32.h>
 #endif /* !STLSOFT_INCL_H_TLHELP32 */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
@@ -184,7 +184,7 @@ public:
     {
         WINSTL_ASSERT(m_snapshot != traits_type::invalid_handle());
 
-        STLSOFT_API_INTERNAL_memfns_memset(&m_value, 0, sizeof(m_value));
+        STLSOFT_API_EXTERNAL_memfns_memset(&m_value, 0, sizeof(m_value));
         m_value.dwSize = sizeof(m_value);
 
         bool ok = traits_type::first(m_snapshot, m_value);

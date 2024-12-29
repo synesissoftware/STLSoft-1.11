@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/algorithms/std/alt.hpp
+ * File:    stlsoft/algorithms/std/alt.hpp
  *
- * Purpose:     Standard-equivalent algorithms for use with implementations that
- *              do or do not have a standard library.
+ * Purpose: Standard-equivalent algorithms for use with implementations that
+ *          do or do not have a standard library.
  *
- * Created:     17th January 2002
- * Updated:     11th March 2024
+ * Created: 17th January 2002
+ * Updated: 25th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MINOR       5
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    5
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        93
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -181,7 +181,6 @@ void std_advance(I &i, ss_ptrdiff_t n)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     STLSOFT_NS_QUAL_STD(advance)(i, n);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
 # ifdef STLSOFT_CF_NAMESPACE_SUPPORT
@@ -196,7 +195,6 @@ void std_advance(I &i, ss_ptrdiff_t n)
 # else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
     std_advance_impl(i, n, is_ptr_(i, &i));
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -214,7 +212,6 @@ inline O std_copy(I first, I last, O dest)
     !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
     return STLSOFT_NS_QUAL_STD(copy)(first, last, dest);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     for (; first != last; ++first, ++dest)
@@ -223,7 +220,6 @@ inline O std_copy(I first, I last, O dest)
     }
 
     return dest;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -240,7 +236,6 @@ inline ss_size_t std_count_if(I first, I last, UP pred)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     return STLSOFT_NS_QUAL_STD(count_if)(first, last, pred);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     ss_size_t r;
@@ -254,7 +249,6 @@ inline ss_size_t std_count_if(I first, I last, UP pred)
     }
 
     return r;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -271,14 +265,12 @@ inline void std_fill(O first, O last, V const& value)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     STLSOFT_NS_QUAL_STD(fill)(first, last, value);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     for (; first != last; ++first)
     {
         *first = value;
     }
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -296,14 +288,12 @@ inline void std_fill_n(O dest, ss_size_t n, V const& value)
     !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
     STLSOFT_NS_QUAL_STD(fill_n)(dest, n, value);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     for (; 0 != n; ++dest, --n)
     {
         *dest = value;
     }
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -320,7 +310,6 @@ inline I std_find(I first, I last, V const& value)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     return STLSOFT_NS_QUAL_STD(find)(first, last, value);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     for (; first != last; ++first)
@@ -332,7 +321,6 @@ inline I std_find(I first, I last, V const& value)
     }
 
     return first;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -349,7 +337,6 @@ inline I std_find_if(I first, I last, UP pred)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     return STLSOFT_NS_QUAL_STD(find_if)(first, last, pred);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     for (; first != last; ++first)
@@ -361,7 +348,6 @@ inline I std_find_if(I first, I last, UP pred)
     }
 
     return first;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -378,7 +364,6 @@ inline UF std_for_each(I first, I last, UF func)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     return STLSOFT_NS_QUAL_STD(for_each)(first, last, func);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     for (; first != last; ++first)
@@ -387,7 +372,6 @@ inline UF std_for_each(I first, I last, UF func)
     }
 
     return func;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -464,7 +448,6 @@ inline O std_transform(I first, I last, O dest, UF func)
     !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
 
     return STLSOFT_NS_QUAL_STD(transform)(first, last, dest, func);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     for (; first != last; ++first, ++dest)
@@ -473,7 +456,6 @@ inline O std_transform(I first, I last, O dest, UF func)
     }
 
     return dest;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -494,7 +476,6 @@ inline FI std_unique(FI first, FI last, BP pred)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     return STLSOFT_NS_QUAL_STD(unique)(first, last, pred);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     if (first != last)
@@ -524,7 +505,6 @@ inline FI std_unique(FI first, FI last, BP pred)
     }
 
     return first;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -543,7 +523,6 @@ inline FI std_unique(FI first, FI last)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     return STLSOFT_NS_QUAL_STD(unique)(first, last);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     if (first != last)
@@ -573,7 +552,6 @@ inline FI std_unique(FI first, FI last)
     }
 
     return first;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -594,7 +572,6 @@ inline OI std_unique_copy(FI first, FI last, OI dest)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     return STLSOFT_NS_QUAL_STD(unique_copy)(first, last, dest);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     if (first != last)
@@ -622,7 +599,6 @@ inline OI std_unique_copy(FI first, FI last, OI dest)
     }
 
     return dest;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -644,7 +620,6 @@ inline OI std_unique_copy(FI first, FI last, OI dest, BP pred)
 #ifdef STLSOFT_CF_std_NAMESPACE
 
     return STLSOFT_NS_QUAL_STD(unique_copy)(first, last, dest, pred);
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
     if (first != last)
@@ -672,7 +647,6 @@ inline OI std_unique_copy(FI first, FI last, OI dest, BP pred)
     }
 
     return dest;
-
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
@@ -680,7 +654,10 @@ inline OI std_unique_copy(FI first, FI last, OI dest, BP pred)
 
 /// @} // end of group algorithms_std_alt
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

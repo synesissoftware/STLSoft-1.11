@@ -117,6 +117,7 @@ namespace stlsoft
  */
 struct cannot_use_untyped_0_or_NULL_with_shims;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
