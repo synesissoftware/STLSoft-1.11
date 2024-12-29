@@ -126,6 +126,8 @@ static void TEST_EMPTY_STRING()
 
     XTESTS_TEST_INTEGER_EQUAL(0, clp.size());
     XTESTS_TEST_INTEGER_EQUAL(0, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[0]);
 }
 
 static void TEST_WHITESPACE_ONLY_STRING()
@@ -134,6 +136,8 @@ static void TEST_WHITESPACE_ONLY_STRING()
 
     XTESTS_TEST_INTEGER_EQUAL(0, clp.size());
     XTESTS_TEST_INTEGER_EQUAL(0, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[0]);
 }
 
 static void TEST_ONE_VALUE()
@@ -144,6 +148,7 @@ static void TEST_ONE_VALUE()
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 static void TEST_TWO_VALUES()
@@ -155,6 +160,7 @@ static void TEST_TWO_VALUES()
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", clp[1]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[2]);
 }
 
 static void TEST_ONE_FLAG()
@@ -165,6 +171,7 @@ static void TEST_ONE_FLAG()
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--flag1", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 static void TEST_TWO_FLAGS()
@@ -176,6 +183,7 @@ static void TEST_TWO_FLAGS()
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--flag1", clp[0]);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-f2", clp[1]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[2]);
 }
 
 static void TEST_ONE_OPTION()
@@ -186,6 +194,7 @@ static void TEST_ONE_OPTION()
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=abc", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 static void TEST_DOC_EXAMPLE()
@@ -196,6 +205,9 @@ static void TEST_DOC_EXAMPLE()
     XTESTS_TEST_INTEGER_EQUAL(3, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("d e f", clp[1]);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ghi", clp[2]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[3]);
 }
 
 static void TEST_ONE_OPTION_WITH_SPACES_1()
@@ -206,6 +218,7 @@ static void TEST_ONE_OPTION_WITH_SPACES_1()
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 static void TEST_ONE_OPTION_WITH_SPACES_2()
@@ -216,6 +229,7 @@ static void TEST_ONE_OPTION_WITH_SPACES_2()
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS()
@@ -226,6 +240,7 @@ static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS()
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 } // anonymous namespace

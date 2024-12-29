@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    2
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     58
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -284,13 +284,15 @@ public: // construction
                 }
             }
         }
+
+        add_pointer_(NULL);
     }
 
 public: // accessors
     /// The number of arguments
     size_type size() const
     {
-        return m_pointers.size();
+        return m_pointers.size() - 1;
     }
 
     /** Returns a non-mutating (const) pointer to each argument
@@ -317,7 +319,7 @@ public: // iteration
     /// An iterator representing the end of the sequence
     const_iterator  end() const
     {
-        return m_pointers.end();
+        return m_pointers.end() - 1;
     }
 
 private: // implementation
