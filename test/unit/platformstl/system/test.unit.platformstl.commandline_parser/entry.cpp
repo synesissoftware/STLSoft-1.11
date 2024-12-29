@@ -58,6 +58,9 @@ namespace
     static void TEST_TWO_FLAGS();
     static void TEST_ONE_OPTION();
     static void TEST_DOC_EXAMPLE();
+    static void TEST_ONE_OPTION_WITH_SPACES_1();
+    static void TEST_ONE_OPTION_WITH_SPACES_2();
+    static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS();
 } // anonymous namespace
 
 
@@ -82,6 +85,9 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_TWO_FLAGS);
         XTESTS_RUN_CASE(TEST_ONE_OPTION);
         XTESTS_RUN_CASE(TEST_DOC_EXAMPLE);
+        XTESTS_RUN_CASE(TEST_ONE_OPTION_WITH_SPACES_1);
+        XTESTS_RUN_CASE(TEST_ONE_OPTION_WITH_SPACES_2);
+        XTESTS_RUN_CASE(TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -190,6 +196,36 @@ static void TEST_DOC_EXAMPLE()
     XTESTS_TEST_INTEGER_EQUAL(3, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
+}
+
+static void TEST_ONE_OPTION_WITH_SPACES_1()
+{
+    commandline_parser_a const clp("--option1=\"a b c\"");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
+}
+
+static void TEST_ONE_OPTION_WITH_SPACES_2()
+{
+    commandline_parser_a const clp("--option1=\"a b \"c");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
+}
+
+static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS()
+{
+    commandline_parser_a const clp("--option1=\"\"\"a \"\"b \"c");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
 }
 
 } // anonymous namespace

@@ -198,20 +198,20 @@ public: // construction
 
         // Here's the algorithm:
         //
-        // Walk the string, mindful of quotes, remembering the start of an
-        // argument, and writing the nul-character into spaces.
+        // Walk the string, mindful of quotes, remembering whether in
+        // string-escaped section, and writing the nul-character into the
+        // spaces before arguments so can present pointers
 
         enum state_t
         {
                 space
             ,   argument
-            ,   quotedArgumentStart
             ,   quotedArgument
         };
 
-        state_t         state   =   space;
-        iterator        b       =   m_buffer.begin();
-        iterator const  e       =   m_buffer.end() - 1;
+        state_t     state   =   space;
+        iterator    b       =   m_buffer.begin();
+        iterator    e       =   m_buffer.end() - 1;
 
         for (; b != e; ++b)
         {
@@ -219,76 +219,66 @@ public: // construction
 
             STLSOFT_ASSERT('\0' != ch);
 
-            if ('"' == ch)
+            bool remove_ch = false;
+
+            switch (state)
             {
-                switch (state)
+            case space:
+
+                if (!isspace(ch))
                 {
-                case space:
+                    if ('"' == ch)
+                    {
+                        remove_ch = true;
 
-                    state = quotedArgumentStart;
-                    break;
-                case argument:
+                        state = quotedArgument;
+                    }
+                    else
+                    {
+                        state = argument;
+                    }
 
-                    break;
-                case quotedArgumentStart:
-
-                    state = space;
-                    break;
-                case quotedArgument:
-
-                    *b      =   '\0';
-                    state   =   space;
-                    break;
+                    add_pointer(&*b);
                 }
-            }
-            else if (isspace(ch))
-            {
-                switch (state)
+                break;
+            case argument:
+
+                if (isspace(ch))
                 {
-                case space:
-
-                    break;
-                case argument:
-
-                    STLSOFT_ASSERT(argument == state);
-
                     *b = '\0';
 
                     state = space;
-                    break;
-                case quotedArgumentStart:
+                }
+                else if ('"' == ch)
+                {
+                    remove_ch = true;
 
                     state = quotedArgument;
-
-                    add_pointer(&*b);
-                    break;
-                case quotedArgument:
-
-                    break;
                 }
-            }
-            else
-            {
-                switch (state)
+                break;
+            case quotedArgument:
+
+                if ('"' == ch)
                 {
-                case space:
+                    remove_ch = true;
 
                     state = argument;
+                }
+                break;
+            }
 
-                    add_pointer(&*b);
-                    break;
-                case argument:
+            if (remove_ch)
+            {
+                // special case - must remove
+                {
+                    size_type const num_processed = b - m_buffer.begin();
+                    size_type const num_remaining = m_buffer.size() - num_processed;
 
-                    break;
-                case quotedArgumentStart:
+                    STLSOFT_API_EXTERNAL_memfns_memmove(&m_buffer[num_processed] + 0, &m_buffer[num_processed] + 1, sizeof(char_type) * (num_remaining - 1));
+                    m_buffer.resize(m_buffer.size() - 1);
 
-                    state = quotedArgument;
-
-                    add_pointer(&*b);
-                    break;
-                case quotedArgument:
-
-                    break;
+                    --b;
+                    --e;
                 }
             }
         }
