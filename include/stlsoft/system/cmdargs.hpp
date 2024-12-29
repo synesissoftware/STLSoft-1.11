@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    10
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        52
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       1
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    1
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -217,9 +217,12 @@ public: // construction
     ~cmdargs() STLSOFT_NOEXCEPT;
 
 public: // attributes
-    /// non-mutating reference to the options
+    /// The program name
+    string_type const&      program_name() const;
+
+    /// (Non-mutating) reference to the options collection
     options_type const&     options() const;
-    /// non-mutating reference to the values
+    /// (Non-mutating) reference to the values collection
     values_type const&      values() const;
 
     const_options_iterator  options_begin() const;
@@ -315,6 +318,7 @@ private: // implementation
     ) const;
 
 private: // fields
+    string_type     m_program_name;
     options_type    m_options;
     values_type     m_values;
 };
@@ -331,6 +335,9 @@ cmdargs::cmdargs(
     int     argc
 ,   char*   argv[]
 )
+    : m_program_name((argc > 0) ? argv[0] : "")
+    , m_options()
+    , m_values()
 {
 
     if (argc >= 2)
@@ -364,6 +371,13 @@ cmdargs::cmdargs(
 inline
 cmdargs::~cmdargs() STLSOFT_NOEXCEPT
 {
+}
+
+inline
+cmdargs::string_type const&
+cmdargs::program_name() const
+{
+    return m_program_name;
 }
 
 inline
@@ -485,11 +499,11 @@ cmdargs::has_option_(
  * operators
  */
 
-template <ss_typename_param_k S>
+template <ss_typename_param_k T_stream>
 inline
-S&
+T_stream&
 operator <<(
-    S&                      stm
+    T_stream&               stm
 ,   cmdargs::option const&  option
 )
 {
@@ -513,11 +527,11 @@ operator <<(
     return stm;
 }
 
-template <ss_typename_param_k S>
+template <ss_typename_param_k T_stream>
 inline
-S&
+T_stream&
 operator <<(
-    S&                      stm
+    T_stream&               stm
 ,   cmdargs::value const&   value
 )
 {

@@ -50,6 +50,7 @@ namespace
     static void TEST_1_VALUE();
     static void TEST_2_VALUES();
     static void TEST_3_VALUES();
+    static void TEST_1_OPTION();
 } // anonymous namespace
 
 
@@ -93,6 +94,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_1_VALUE);
         XTESTS_RUN_CASE(TEST_2_VALUES);
         XTESTS_RUN_CASE(TEST_3_VALUES);
+        XTESTS_RUN_CASE(TEST_1_OPTION);
 
         XTESTS_PRINT_RESULTS();
 
@@ -129,9 +131,12 @@ static void TEST_EMPTY()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", ca.program_name());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.size());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.options_size());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.options().size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.values().size());
 }
 
 static void TEST_PROGRAM_ONLY()
@@ -144,9 +149,12 @@ static void TEST_PROGRAM_ONLY()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.size());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.options_size());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.options().size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.values().size());
 }
 
 static void TEST_1_VALUE()
@@ -160,9 +168,11 @@ static void TEST_1_VALUE()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
     XTESTS_TEST_INTEGER_EQUAL(1, ca.size());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.options_size());
     XTESTS_TEST_INTEGER_EQUAL(1, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.options().size());
     XTESTS_TEST_INTEGER_EQUAL(1, ca.values().size());
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", streamable_to_string(ca.values()[0]));
 }
@@ -179,9 +189,11 @@ static void TEST_2_VALUES()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
     XTESTS_TEST_INTEGER_EQUAL(2, ca.size());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.options_size());
     XTESTS_TEST_INTEGER_EQUAL(2, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.options().size());
     XTESTS_TEST_INTEGER_EQUAL(2, ca.values().size());
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", streamable_to_string(ca.values()[0]));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("d e f", streamable_to_string(ca.values()[1]));
@@ -200,13 +212,35 @@ static void TEST_3_VALUES()
 
     cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
     XTESTS_TEST_INTEGER_EQUAL(3, ca.size());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.options_size());
     XTESTS_TEST_INTEGER_EQUAL(3, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.options().size());
     XTESTS_TEST_INTEGER_EQUAL(3, ca.values().size());
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", streamable_to_string(ca.values()[0]));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("d e f", streamable_to_string(ca.values()[1]));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ghi", streamable_to_string(ca.values()[2]));
+}
+
+static void TEST_1_OPTION()
+{
+    char* argv[] =
+    {
+        "my-program",
+        "--abc",
+        ss_nullptr_k
+    };
+
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.options_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.options().size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.values().size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--abc", streamable_to_string(ca.options()[0]));
 }
 
 } // anonymous namespace
