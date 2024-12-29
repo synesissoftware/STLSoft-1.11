@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MAJOR     2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  12
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      61
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  13
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -386,6 +386,7 @@ inline
 zorder_iterator_tmpl<T>::~zorder_iterator_tmpl() STLSOFT_NOEXCEPT
 {}
 
+/*
 template <ss_typename_param_k T>
 inline
 ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type&
@@ -397,6 +398,7 @@ zorder_iterator_tmpl<T>::operator =(ss_typename_type_k zorder_iterator_tmpl<T>::
 
     return *this;
 }
+ */
 
 template <ss_typename_param_k T>
 inline
