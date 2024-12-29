@@ -106,6 +106,7 @@ namespace
 
             s = &sz[0];
             n = 0;
+            break;
         case 8:
 
             s = stlsoft::integer_to_octal_string(sz, STLSOFT_NUM_ELEMENTS(sz), ct.v, &n);
