@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    8
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        49
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -212,7 +212,7 @@ public:
 
 public: // construction
     /// Constructs from argc/argv
-    cmdargs(int argc, char /*const*/ ** argv);
+    cmdargs(int argc, char* argv[]);
     /// Releases any resources
     ~cmdargs() STLSOFT_NOEXCEPT;
 
@@ -309,7 +309,10 @@ private: // implementation
     values_type::const_iterator
     has_value_(char const* valueName) const;
     options_type::const_iterator
-    has_option_(char const* optionName, int type) const;
+    has_option_(
+        char const* optionName
+    ,   int         type
+    ) const;
 
 private: // fields
     options_type    m_options;
@@ -324,7 +327,10 @@ private: // fields
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 inline
-cmdargs::cmdargs(int argc, char /*const*/ **argv)
+cmdargs::cmdargs(
+    int     argc
+,   char*   argv[]
+)
 {
     for (int i = 1; i < argc; ++i)
     {
@@ -446,7 +452,10 @@ cmdargs::has_value_(char const* valueName) const
 
 inline
 cmdargs::options_type::const_iterator
-cmdargs::has_option_(char const* optionName, int type) const
+cmdargs::has_option_(
+    char const* optionName
+,   int         type
+) const
 {
     STLSOFT_ASSERT(NULL != optionName);
 
