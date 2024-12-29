@@ -54,6 +54,8 @@ namespace
     static void TEST_1_OPTION_WITH_VALUE();
     static void TEST_1_OPTION_WITH_VALUE_AND_1_VALUE();
     static void TEST_SINGLE_DASH();
+    static void TEST_DOUBLE_DASH();
+    static void TEST_DOUBLE_DASH_WITH_VALUES_AND_OPTIONS();
 } // anonymous namespace
 
 
@@ -101,6 +103,8 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_1_OPTION_WITH_VALUE);
         XTESTS_RUN_CASE(TEST_1_OPTION_WITH_VALUE_AND_1_VALUE);
         XTESTS_RUN_CASE(TEST_SINGLE_DASH);
+        XTESTS_RUN_CASE(TEST_DOUBLE_DASH);
+        XTESTS_RUN_CASE(TEST_DOUBLE_DASH_WITH_VALUES_AND_OPTIONS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -309,6 +313,48 @@ static void TEST_SINGLE_DASH()
     XTESTS_TEST_INTEGER_EQUAL(1, ca.options().size());
     XTESTS_TEST_INTEGER_EQUAL(0, ca.values().size());
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-", streamable_to_string(ca.options()[0]));
+}
+
+static void TEST_DOUBLE_DASH()
+{
+    char* argv[] =
+    {
+        "my-program",
+        "--",
+        ss_nullptr_k
+    };
+
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.options_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.options().size());
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.values().size());
+}
+
+static void TEST_DOUBLE_DASH_WITH_VALUES_AND_OPTIONS()
+{
+    char* argv[] =
+    {
+        "my-program",
+        "--abc=d e f",
+        "v1",
+        "--",
+        "--ghi=m n o",
+        "v2",
+        ss_nullptr_k
+    };
+
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("my-program", ca.program_name());
+    XTESTS_TEST_INTEGER_EQUAL(4, ca.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.options_size());
+    XTESTS_TEST_INTEGER_EQUAL(3, ca.values_size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.options().size());
+    XTESTS_TEST_INTEGER_EQUAL(3, ca.values().size());
 }
 
 } // anonymous namespace

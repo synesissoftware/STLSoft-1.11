@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       1
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        53
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -122,6 +122,8 @@ namespace stlsoft
 class cmdargs
 {
 public:
+    /// The char type
+    typedef char                                            char_type;
     /// The string type
 #ifdef STLSOFT_SYSTEM_CMDARGS_USE_STD_STRING
     typedef std::string                                     string_type;
@@ -320,8 +322,13 @@ public: // attributes
     }
 
 private: // implementation
+    static
+    size_type
+    count_dashes_(char_type const* arg);
+
     values_type::const_iterator
     has_value_(char const* valueName) const;
+
     options_type::const_iterator
     has_option_(
         char const* optionName
@@ -342,6 +349,35 @@ private: // fields
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 inline
+/* static */
+cmdargs::size_type
+cmdargs::count_dashes_(char_type const* arg)
+{
+    if ('-' != arg[0])
+    {
+        return 0;
+    }
+
+    if ('-' != arg[1])
+    {
+        return 1;
+    }
+
+    if ('-' != arg[2])
+    {
+        return 2;
+    }
+
+    if ('-' != arg[2])
+    {
+        return 3;
+    }
+
+    return 0;
+}
+
+
+inline
 cmdargs::cmdargs(
     int     argc
 ,   char*   argv[]
@@ -353,26 +389,35 @@ cmdargs::cmdargs(
 
     if (argc >= 2)
     {
+        bool treat_as_values = false;
+
         for (int i = 1; i != argc; ++i)
         {
-            char const* arg = argv[i];
+            char const*     arg         =   argv[i];
+            size_type const num_dashes  =   count_dashes_(arg);
 
-            if ('-' == arg[0])
+            if (!treat_as_values &&
+                0 != num_dashes)
             {
-                ++arg;
 
                 if ('\0' == arg[1])
                 {
                     m_options.push_back(option(singleDash, i));
                 }
                 else
+                if (2 == num_dashes &&
+                    '\0' == arg[2])
                 {
-                    int const type = ('-' != arg[0]) ? singleDash : (++arg, doubleDash);
+                    treat_as_values = true;
+                }
+                else
+                {
+                    int const type = int(num_dashes);
 
                     string_type s0;
                     string_type s1;
 
-                    split(arg, '=', s0, s1);
+                    split(arg + num_dashes, '=', s0, s1);
 
                     m_options.push_back(option(s0, s1, type, i, argv[i]));
                 }
