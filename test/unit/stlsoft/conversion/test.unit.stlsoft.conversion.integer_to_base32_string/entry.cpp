@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_base32_string`.
  *
  * Created: 17th February 2024
- * Updated: 28th December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -107,6 +107,8 @@ namespace
         char const* s;
     };
 
+#if __cplusplus >= 201103L
+
     const mapping_t fibonacci_mappings[] =
     {
             {          0,       "0" }
@@ -169,6 +171,7 @@ namespace
         ,   {    -317811,   "-9mbj" }
         ,   {    -514229,   "-fm5l" }
     };
+#endif
 
 
 static void test_zero()

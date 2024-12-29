@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_limits`.
  *
  * Created: 21st November 2024
- * Updated: 28th December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -96,12 +96,16 @@ namespace stlsoft {
         /** Returns the minimum value for the type */
         static value_type minimum()
         {
-            return { INT_MIN };
+            int_wrapper w = { INT_MIN };
+
+            return w;
         }
         /** Returns the maximum value for the type */
         static value_type maximum()
         {
-            return { INT_MAX };
+            int_wrapper w = { INT_MAX };
+
+            return w;
         }
     };
 } // namespace stlsoft
