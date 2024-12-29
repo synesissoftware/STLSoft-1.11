@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::string_insert`.
  *
  * Created: 14th November 2024
- * Updated: 14th November 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -102,6 +102,10 @@ namespace
 
         switch (base)
         {
+        default:
+
+            s = &sz[0];
+            n = 0;
         case 8:
 
             s = stlsoft::integer_to_octal_string(sz, STLSOFT_NUM_ELEMENTS(sz), ct.v, &n);

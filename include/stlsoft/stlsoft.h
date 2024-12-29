@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 27th December 2024
+ * Updated: 29th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     581
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     582
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -376,12 +376,13 @@
 # define _STLSOFT_VER_1_11_1_A26    0x010b015a  /*!< Version 1.11.1 alpha 26 (23rd November 2024) */
 # define _STLSOFT_VER_1_11_1_A27    0x010b015b  /*!< Version 1.11.1 alpha 27 (19th December 2024) */
 # define _STLSOFT_VER_1_11_1_A28    0x010b015c  /*!< Version 1.11.1 alpha 28 (28th December 2024) */
+# define _STLSOFT_VER_1_11_1_A29    0x010b015d  /*!< Version 1.11.1 alpha 29 (30th December 2024) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A28
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_A29
 
 
 /* /////////////////////////////////////
@@ -825,7 +826,7 @@
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 15.x"
 #  elif _MSC_VER <= 1929
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 16.x"
-#  elif _MSC_VER <= 1941
+#  elif _MSC_VER <= 1942
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 17.x"
 #  else
 #   error Visual C++ version that is > vc17 is not recognised

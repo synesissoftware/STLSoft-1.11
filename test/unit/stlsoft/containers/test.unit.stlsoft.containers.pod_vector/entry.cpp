@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::pod_vector`
  *
  * Created: 1st December 2008
- * Updated: 28th December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,7 +26,6 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <platformstl/performance/performance_counter.hpp>
 
 /* Standard C++ header files */
 #include <numeric>

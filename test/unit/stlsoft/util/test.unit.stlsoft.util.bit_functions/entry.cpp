@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::bit_functions`.
  *
  * Created: 19th March 2010
- * Updated: 28th December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,8 +28,7 @@
 #include <xtests/xtests.h>
 
 /* STLSoft header files */
-#include <stlsoft/stlsoft.h>
-#include <platformstl/performance/performance_counter.hpp>
+#include <platformstl/diagnostics/stopwatch.hpp>
 
 /* Standard C++ header files */
 
@@ -94,11 +93,11 @@ namespace
     using stlsoft::sint64_t;
     using stlsoft::uint64_t;
 
-    using platformstl::performance_counter;
+    using platformstl::stopwatch;
 
 static void test_count_bits_Kernighan()
 {
-    performance_counter counter;
+    stopwatch counter;
 
     counter.start();
 
@@ -160,7 +159,7 @@ static void test_count_bits_Kernighan()
 
 static void test_count_bits_8bit_table()
 {
-    performance_counter counter;
+    stopwatch counter;
 
     counter.start();
 

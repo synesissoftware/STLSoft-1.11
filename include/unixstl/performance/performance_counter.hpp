@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        unixstl/performance/performance_counter.hpp
+ * File:    unixstl/performance/performance_counter.hpp
  *
- * Purpose:     UNIXSTL performance counter class.
+ * Purpose: UNIXSTL performance counter class.
  *
- * Created:     16th January 2002
- * Updated:     11th March 2024
+ * Created: 16th January 2002
+ * Updated: 29th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       76
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,9 +99,12 @@ namespace unixstl_project
  * typedefs
  */
 
-typedef stopwatch                       performance_counter;
+typedef stopwatch                                           performance_counter;
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
@@ -121,8 +124,6 @@ typedef stopwatch                       performance_counter;
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER */
 

@@ -19,6 +19,24 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-alpha29 (30th December 2024)
+
+General:
+========
+
+ * Visual C++ compatibility (including _MSC_VER 1942);
+ * MinGW compatibility;
+ * ...
+
+Changes:
+========
+
+T.B.C.
+
+
+============================================================================
+
+
 Changes for 1.11.1-alpha28 (28th December 2024)
 
 General:
