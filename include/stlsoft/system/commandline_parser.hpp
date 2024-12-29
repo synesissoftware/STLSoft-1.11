@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 10
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     56
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    3
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 1
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -140,9 +140,11 @@ public: // types
     typedef C                                               char_type;
     /// The traits type
     typedef T                                               traits_type;
-    /// The traits type
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     typedef A                                               allocator_type;
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 private:
+    /// The traits type
     typedef A                                               allocator_type_;
 public:
     /// The current instantiation of the type
@@ -198,20 +200,20 @@ public: // construction
 
         // Here's the algorithm:
         //
-        // Walk the string, mindful of quotes, remembering the start of an
-        // argument, and writing the nul-character into spaces.
+        // Walk the string, mindful of quotes, remembering whether in
+        // string-escaped section, and writing the nul-character into the
+        // spaces before arguments so can present pointers
 
         enum state_t
         {
-                argument
-            ,   quotedArgumentStart
+                space
+            ,   argument
             ,   quotedArgument
-            ,   space
         };
 
-        state_t         state   =   space;
-        iterator        b       =   m_buffer.begin();
-        iterator const  e       =   m_buffer.end() - 1;
+        state_t     state   =   space;
+        iterator    b       =   m_buffer.begin();
+        iterator    e       =   m_buffer.end() - 1;
 
         for (; b != e; ++b)
         {
@@ -219,71 +221,78 @@ public: // construction
 
             STLSOFT_ASSERT('\0' != ch);
 
-            if ('"' == ch)
-            {
-                if (quotedArgumentStart == state)
-                {
-                    state = space;
-                }
-                else if (quotedArgument == state)
-                {
-                    *b      =   '\0';
-                    state   =   space;
-                }
-                else if (space == state)
-                {
-                    state = quotedArgumentStart;
-                }
-                else
-                {
-                }
-            }
-            else if (isspace(ch))
-            {
-                if (quotedArgumentStart == state)
-                {
-                    state = quotedArgument;
+            bool remove_ch = false;
 
-                    add_pointer(&*b);
-                }
-                else if (quotedArgument == state)
-                {
-                }
-                else if (space == state)
-                {
-                }
-                else
-                {
-                    STLSOFT_ASSERT(argument == state);
+            switch (state)
+            {
+            case space:
 
+                if (!isspace(ch))
+                {
+                    if ('"' == ch)
+                    {
+                        remove_ch = true;
+
+                        state = quotedArgument;
+                    }
+                    else
+                    {
+                        state = argument;
+                    }
+
+                    add_pointer_(&*b);
+                }
+                break;
+            case argument:
+
+                if (isspace(ch))
+                {
                     *b = '\0';
 
                     state = space;
                 }
-            }
-            else
-            {
-                if (quotedArgumentStart == state)
+                else if ('"' == ch)
                 {
+                    remove_ch = true;
+
                     state = quotedArgument;
-
-                    add_pointer(&*b);
                 }
-                else if (space == state)
-                {
-                    state = argument;
+                break;
+            case quotedArgument:
 
-                    add_pointer(&*b);
+                if ('"' == ch)
+                {
+                    remove_ch = true;
+
+                    state = argument;
+                }
+                break;
+            }
+
+            if (remove_ch)
+            {
+                // special case - must remove
+                {
+                    size_type const num_processed = b - m_buffer.begin();
+                    size_type const num_remaining = m_buffer.size() - num_processed;
+
+                    STLSOFT_API_EXTERNAL_memfns_memmove(&m_buffer[num_processed] + 0, &m_buffer[num_processed] + 1, sizeof(char_type) * (num_remaining - 1));
+                    m_buffer.resize(m_buffer.size() - 1);
+
+                    --b;
+                    --e;
                 }
             }
         }
+
+        add_pointer_(NULL);
     }
 
 public: // accessors
     /// The number of arguments
     size_type size() const
     {
-        return m_pointers.size();
+        return m_pointers.size() - 1;
     }
 
     /** Returns a non-mutating (const) pointer to each argument
@@ -296,7 +305,7 @@ public: // accessors
      */
     value_type const& operator [](size_type index) const
     {
-        STLSOFT_ASSERT(index < size());
+        STLSOFT_ASSERT(index <= size());
 
         return m_pointers[index];
     }
@@ -310,12 +319,12 @@ public: // iteration
     /// An iterator representing the end of the sequence
     const_iterator  end() const
     {
-        return m_pointers.end();
+        return m_pointers.end() - 1;
     }
 
 private: // implementation
     bool_type_
-    add_pointer(pointer_type_ p)
+    add_pointer_(pointer_type_ p)
     {
         if (!m_pointers.resize(1 + m_pointers.size()))
         {

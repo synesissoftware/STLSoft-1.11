@@ -20,7 +20,7 @@
 
 #include <platformstl/platformstl.h>
 #if 0
-#elif defined(PLATFORMSTL_IS_WINDOWS)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <winstl/system/commandline_parser.hpp>
 #else
 # include <stlsoft/system/commandline_parser.hpp>
@@ -58,6 +58,9 @@ namespace
     static void TEST_TWO_FLAGS();
     static void TEST_ONE_OPTION();
     static void TEST_DOC_EXAMPLE();
+    static void TEST_ONE_OPTION_WITH_SPACES_1();
+    static void TEST_ONE_OPTION_WITH_SPACES_2();
+    static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS();
 } // anonymous namespace
 
 
@@ -82,6 +85,9 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(TEST_TWO_FLAGS);
         XTESTS_RUN_CASE(TEST_ONE_OPTION);
         XTESTS_RUN_CASE(TEST_DOC_EXAMPLE);
+        XTESTS_RUN_CASE(TEST_ONE_OPTION_WITH_SPACES_1);
+        XTESTS_RUN_CASE(TEST_ONE_OPTION_WITH_SPACES_2);
+        XTESTS_RUN_CASE(TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -99,7 +105,7 @@ int main(int argc, char *argv[])
 namespace {
 
 #if 0
-#elif defined(PLATFORMSTL_IS_WINDOWS)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
     using winstl::commandline_parser_a;
 #else
     using stlsoft::commandline_parser_a;
@@ -120,6 +126,8 @@ static void TEST_EMPTY_STRING()
 
     XTESTS_TEST_INTEGER_EQUAL(0, clp.size());
     XTESTS_TEST_INTEGER_EQUAL(0, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[0]);
 }
 
 static void TEST_WHITESPACE_ONLY_STRING()
@@ -128,6 +136,8 @@ static void TEST_WHITESPACE_ONLY_STRING()
 
     XTESTS_TEST_INTEGER_EQUAL(0, clp.size());
     XTESTS_TEST_INTEGER_EQUAL(0, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[0]);
 }
 
 static void TEST_ONE_VALUE()
@@ -138,6 +148,7 @@ static void TEST_ONE_VALUE()
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 static void TEST_TWO_VALUES()
@@ -149,6 +160,7 @@ static void TEST_TWO_VALUES()
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", clp[1]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[2]);
 }
 
 static void TEST_ONE_FLAG()
@@ -159,6 +171,7 @@ static void TEST_ONE_FLAG()
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--flag1", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 static void TEST_TWO_FLAGS()
@@ -170,6 +183,7 @@ static void TEST_TWO_FLAGS()
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--flag1", clp[0]);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-f2", clp[1]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[2]);
 }
 
 static void TEST_ONE_OPTION()
@@ -180,6 +194,7 @@ static void TEST_ONE_OPTION()
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=abc", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 static void TEST_DOC_EXAMPLE()
@@ -190,6 +205,42 @@ static void TEST_DOC_EXAMPLE()
     XTESTS_TEST_INTEGER_EQUAL(3, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("d e f", clp[1]);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ghi", clp[2]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[3]);
+}
+
+static void TEST_ONE_OPTION_WITH_SPACES_1()
+{
+    commandline_parser_a const clp("--option1=\"a b c\"");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
+}
+
+static void TEST_ONE_OPTION_WITH_SPACES_2()
+{
+    commandline_parser_a const clp("--option1=\"a b \"c");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
+}
+
+static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS()
+{
+    commandline_parser_a const clp("--option1=\"\"\"a \"\"b \"c");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
+
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
+    XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
 
 } // anonymous namespace
