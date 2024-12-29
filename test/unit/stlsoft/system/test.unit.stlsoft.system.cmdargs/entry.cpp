@@ -32,6 +32,7 @@
 
 /* Standard C++ header files */
 #include <algorithm>
+#include <sstream>
 
 /* Standard C header files */
 #include <stdlib.h>
@@ -45,6 +46,32 @@ namespace
 {
 
     static void TEST_EMPTY();
+    static void TEST_PROGRAM_ONLY();
+    static void TEST_1_VALUE();
+    static void TEST_2_VALUES();
+    static void TEST_3_VALUES();
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+namespace
+{
+
+    template <ss_typename_param_k T>
+    std::string
+    streamable_to_string(
+        T const&    t
+    )
+    {
+        std::stringstream stm;
+
+        stm << t;
+
+        return stm.str();
+    }
 } // anonymous namespace
 
 
@@ -62,6 +89,10 @@ int main(int argc, char *argv[])
     if (XTESTS_START_RUNNER("test.component.platformstl.diagnostics.stopwatch", verbosity))
     {
         XTESTS_RUN_CASE(TEST_EMPTY);
+        XTESTS_RUN_CASE(TEST_PROGRAM_ONLY);
+        XTESTS_RUN_CASE(TEST_1_VALUE);
+        XTESTS_RUN_CASE(TEST_2_VALUES);
+        XTESTS_RUN_CASE(TEST_3_VALUES);
 
         XTESTS_PRINT_RESULTS();
 
@@ -96,9 +127,76 @@ static void TEST_EMPTY()
         ss_nullptr_k
     };
 
-    cmdargs const ca(0, argv);
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
 
     XTESTS_TEST_INTEGER_EQUAL(0, ca.size());
+}
+
+static void TEST_PROGRAM_ONLY()
+{
+    char* argv[] =
+    {
+        "my-program",
+        ss_nullptr_k
+    };
+
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
+
+    XTESTS_TEST_INTEGER_EQUAL(0, ca.size());
+}
+
+static void TEST_1_VALUE()
+{
+    char* argv[] =
+    {
+        "my-program",
+        "abc",
+        ss_nullptr_k
+    };
+
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
+
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, ca.values().size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", streamable_to_string(ca.values()[0]));
+}
+
+static void TEST_2_VALUES()
+{
+    char* argv[] =
+    {
+        "my-program",
+        "abc",
+        "d e f",
+        ss_nullptr_k
+    };
+
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
+
+    XTESTS_TEST_INTEGER_EQUAL(2, ca.size());
+    XTESTS_TEST_INTEGER_EQUAL(2, ca.values().size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", streamable_to_string(ca.values()[0]));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("d e f", streamable_to_string(ca.values()[1]));
+}
+
+static void TEST_3_VALUES()
+{
+    char* argv[] =
+    {
+        "my-program",
+        "abc",
+        "d e f",
+        "ghi",
+        ss_nullptr_k
+    };
+
+    cmdargs const ca(STLSOFT_NUM_ELEMENTS(argv) - 1, argv);
+
+    XTESTS_TEST_INTEGER_EQUAL(3, ca.size());
+    XTESTS_TEST_INTEGER_EQUAL(3, ca.values().size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", streamable_to_string(ca.values()[0]));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("d e f", streamable_to_string(ca.values()[1]));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("ghi", streamable_to_string(ca.values()[2]));
 }
 
 } // anonymous namespace

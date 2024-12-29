@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    9
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        51
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    10
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -332,26 +332,31 @@ cmdargs::cmdargs(
 ,   char*   argv[]
 )
 {
-    for (int i = 1; i < argc; ++i)
+
+    if (argc >= 2)
     {
-        char const* arg = argv[i];
-
-        if ('-' == arg[0])
+        for (int i = 1; i != argc; ++i)
         {
-            ++arg;
+            char const* arg = argv[i];
 
-            int const type = ('-' != arg[0]) ? singleDash : (++arg, doubleDash);
 
-            string_type s0;
-            string_type s1;
+            if ('-' == arg[0])
+            {
+                ++arg;
 
-            split(arg, '=', s0, s1);
+                int const type = ('-' != arg[0]) ? singleDash : (++arg, doubleDash);
 
-            m_options.push_back(option(s0, s1, type, i, argv[i]));
-        }
-        else
-        {
-            m_values.push_back(value(arg, i));
+                string_type s0;
+                string_type s1;
+
+                split(arg, '=', s0, s1);
+
+                m_options.push_back(option(s0, s1, type, i, argv[i]));
+            }
+            else
+            {
+                m_values.push_back(value(arg, i));
+            }
         }
     }
 }
