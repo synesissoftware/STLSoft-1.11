@@ -20,7 +20,7 @@
 
 #include <platformstl/platformstl.h>
 #if 0
-#elif defined(PLATFORMSTL_IS_WINDOWS)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <winstl/system/commandline_parser.hpp>
 #else
 # include <stlsoft/system/commandline_parser.hpp>
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 namespace {
 
 #if 0
-#elif defined(PLATFORMSTL_IS_WINDOWS)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
     using winstl::commandline_parser_a;
 #else
     using stlsoft::commandline_parser_a;

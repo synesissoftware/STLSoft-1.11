@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR      2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   8
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       54
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -71,23 +71,12 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
-# include <stlsoft/memory/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
-# include <stlsoft/string/char_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
-# include <stlsoft/shims/access/string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-
-#ifndef STLSOFT_INCL_H_CTYPE
-# define STLSOFT_INCL_H_CTYPE
-# include <ctype.h>     // for isspace()
-#endif /* !STLSOFT_INCL_H_CTYPE */
+#ifndef STLSOFT_INCL_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER
+# include <stlsoft/system/commandline_parser.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,8 +103,8 @@ namespace winstl_project
  * classes
  */
 
-/** Parses a Windows (<code>WinMain()</code>) command line into
- *   parts, and provides array semantics for their access.
+/** Parses a Windows (<code>WinMain()</code>) command line into parts, and
+ * provides array semantics for their access.
  *
 \code
 winstl::commandline_parser  cp("abc \"d e f\" ghi");
@@ -131,6 +120,7 @@ assert(0 == ::strcmp("ghi",   cp[2]));
 template<
     ss_typename_param_k C
 ,   ss_typename_param_k T = STLSOFT_NS_QUAL(stlsoft_char_traits)<C>
+,   ss_typename_param_k A = processheap_allocator<C>
 >
 class basic_commandline_parser
 {
@@ -140,12 +130,14 @@ public: // types
     /// The traits type
     typedef T                                               traits_type;
 private:
-    typedef processheap_allocator<char_type>                allocator_type_;
+    /// The traits type
+    typedef A                                               allocator_type_;
 public:
     /// The current instantiation of the type
     typedef basic_commandline_parser<
         char_type
     ,   traits_type
+    ,   allocator_type_
     >                                                       class_type;
 private:
     typedef ws_bool_t                                       bool_type_;
@@ -210,15 +202,15 @@ private:
 
         enum state_t
         {
-                argument
+                space
+            ,   argument
             ,   quotedArgumentStart
             ,   quotedArgument
-            ,   space
         };
 
-        state_t         state   =   space;
-        iterator        b       =   m_buffer.begin();
-        iterator const  e       =   m_buffer.end() - 1;
+        state_t     state   =   space;
+        iterator    b       =   m_buffer.begin();
+        iterator    e       =   m_buffer.end() - 1;
 
         for (; b != e; ++b)
         {
