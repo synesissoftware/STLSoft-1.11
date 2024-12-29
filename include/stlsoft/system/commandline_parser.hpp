@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 9
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     55
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 10
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -142,39 +142,43 @@ public: // types
     typedef T                                               traits_type;
     /// The traits type
     typedef A                                               allocator_type;
+private:
+    typedef A                                               allocator_type_;
+public:
     /// The current instantiation of the type
     typedef basic_commandline_parser<
         char_type
     ,   traits_type
-    ,   allocator_type
+    ,   allocator_type_
     >                                                       class_type;
 private:
-    typedef char_type*                                      pointer_type;
+    typedef ss_bool_t                                       bool_type_;
+    typedef char_type*                                      pointer_type_;
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
     typedef ss_typename_type_k A::ss_template_qual_k rebind<
-        pointer_type
-    >::other                                                pointers_allocator_type;
+        pointer_type_
+    >::other                                                pointers_allocator_type_;
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     typedef ss_typename_type_k allocator_selector<
-        pointer_type
-    >::allocator_type                                       pointers_allocator_type;
+        pointer_type_
+    >::allocator_type_                                      pointers_allocator_type_;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     typedef STLSOFT_NS_QUAL(auto_buffer)<
         char_type
     ,   256
-    ,   allocator_type
-    >                                                       buffer_type;
+    ,   allocator_type_
+    >                                                       buffer_type_;
     typedef STLSOFT_NS_QUAL(auto_buffer)<
-        pointer_type
+        pointer_type_
     ,   20
-    ,   pointers_allocator_type
-        >                                                       pointers_type;
-    typedef ss_typename_type_k buffer_type::iterator        iterator;
+    ,   pointers_allocator_type_
+    >                                                       pointers_type_;
+    typedef ss_typename_type_k buffer_type_::iterator       iterator;
 public:
     /// The value type
-    typedef ss_typename_type_k pointers_type::value_type    value_type;
+    typedef ss_typename_type_k pointers_type_::value_type   value_type;
     /// The non-mutating (const) iterator type
-    typedef ss_typename_type_k pointers_type::const_iterator
+    typedef ss_typename_type_k pointers_type_::const_iterator
                                                             const_iterator;
     /// The size type
     typedef ss_size_t                                       size_type;
@@ -310,8 +314,8 @@ public: // iteration
     }
 
 private: // implementation
-    ss_bool_t
-    add_pointer(pointer_type p)
+    bool_type_
+    add_pointer(pointer_type_ p)
     {
         if (!m_pointers.resize(1 + m_pointers.size()))
         {
@@ -324,8 +328,8 @@ private: // implementation
     }
 
 private: // fields
-    buffer_type     m_buffer;
-    pointers_type   m_pointers;
+    buffer_type_    m_buffer;
+    pointers_type_  m_pointers;
 };
 
 
