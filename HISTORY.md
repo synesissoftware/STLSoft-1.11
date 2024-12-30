@@ -4,7 +4,7 @@
 ----
 
 
-30th December 2024 - 1.11.1-alpha29 released
+31st December 2024 - 1.11.1-alpha29 released
 --------------------------------------------
 
  * Visual C++ compatibility (including _MSC_VER 1942);
