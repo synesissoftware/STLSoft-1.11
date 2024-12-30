@@ -4,7 +4,7 @@
  * Purpose: Special string instance class template.
  *
  * Created: 3rd June 2006
- * Updated: 5th November 2024
+ * Updated: 26th December 2024
  *
  * Thanks:  Pablo Aguilar for spotting my omission of string access shims
  *          for special_string_instance_1.
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        47
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -368,6 +368,7 @@ public:
     defined(STLSOFT_COMPILER_IS_CLANG) || \
     defined(STLSOFT_COMPILER_IS_GCC) || \
     0
+
     ssi_buffer_non_static(class_type const& rhs)
         : parent_class_type(rhs)
     {}
@@ -394,6 +395,7 @@ private:
     !defined(STLSOFT_COMPILER_IS_CLANG) && \
     !defined(STLSOFT_COMPILER_IS_GCC) && \
     1
+
     ssi_buffer_non_static(class_type const&);
 #endif /* compiler */
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
@@ -454,6 +456,7 @@ public:
     defined(STLSOFT_COMPILER_IS_CLANG) || \
     defined(STLSOFT_COMPILER_IS_GCC) || \
     0
+
     ssi_buffer_static(class_type const& rhs)
         : m_buffer(rhs.m_buffer)
     {}
@@ -538,6 +541,7 @@ private:
     !defined(STLSOFT_COMPILER_IS_CLANG) && \
     !defined(STLSOFT_COMPILER_IS_GCC) && \
     1
+
     ssi_buffer_static(class_type const&);
 #endif /* compiler */
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
@@ -898,8 +902,8 @@ public:
     {
         return data();
     }
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
     cstring_a_type  c_str_a() const
     {
         return c_str();
@@ -1126,8 +1130,8 @@ public:
     {
         return length();
     }
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
     cstring_a_type  c_str_a() const
     {
         return c_str();
@@ -1169,8 +1173,8 @@ template<
 >
 bool
 operator ==(
-    special_string_instance_base<T_policy, T_ssi> const&  lhs
-,   T_string const&                                       rhs
+    special_string_instance_base<T_policy, T_ssi> const&    lhs
+,   T_string const&                                         rhs
 )
 {
     return lhs.equal(rhs);
@@ -1183,8 +1187,8 @@ template<
 >
 bool
 operator ==(
-    T_string const&                                       lhs
-,   special_string_instance_base<T_policy, T_ssi> const&  rhs
+    T_string const&                                         lhs
+,   special_string_instance_base<T_policy, T_ssi> const&    rhs
 )
 {
     return rhs.equal(lhs);
@@ -1197,8 +1201,8 @@ template<
 >
 bool
 operator !=(
-    special_string_instance_base<T_policy, T_ssi> const&  lhs
-,   T_string const&                                       rhs
+    special_string_instance_base<T_policy, T_ssi> const&    lhs
+,   T_string const&                                         rhs
 )
 {
     return !lhs.equal(rhs);
@@ -1211,8 +1215,8 @@ template<
 >
 bool
 operator !=(
-    T_string const&                                       lhs
-,   special_string_instance_base<T_policy, T_ssi> const&  rhs
+    T_string const&                                         lhs
+,   special_string_instance_base<T_policy, T_ssi> const&    rhs
 )
 {
     return !rhs.equal(lhs);
@@ -1240,6 +1244,7 @@ c_str_ptr_null(
     return (0 != ssi.length()) ? ssi.c_str() : NULL;
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<
     ss_typename_param_k T_policy
 ,   ss_typename_param_k T_initex
@@ -1283,6 +1288,7 @@ c_str_ptr(
     return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<
     ss_typename_param_k T_policy
 ,   ss_typename_param_k T_initex
@@ -1326,6 +1332,7 @@ c_str_data(
     return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<
     ss_typename_param_k T_policy
 ,   ss_typename_param_k T_initex
@@ -1369,6 +1376,7 @@ c_str_len(
     return ssi.length();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<
     ss_typename_param_k T_policy
 ,   ss_typename_param_k T_initex
@@ -1424,6 +1432,7 @@ c_str_ptr_null(STLSOFT_NS_QUAL(special_string_instance_1)<T_policy, T_initex> co
     return (0 != ssi.length()) ? ssi.c_str() : NULL;
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<
     ss_typename_param_k T_policy
 ,   ss_typename_param_k T_initex
@@ -1464,11 +1473,10 @@ c_str_ptr(
     STLSOFT_NS_QUAL(special_string_instance_1)<T_policy, T_initex> const& ssi
 )
 {
-    return
-    ssi.c_str()
-;
+    return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<
     ss_typename_param_k T_policy
 ,   ss_typename_param_k T_initex
@@ -1507,11 +1515,10 @@ inline
 ss_typename_type_ret_k special_string_instance_1<T_policy, T_initex>::char_type const*
 c_str_data(STLSOFT_NS_QUAL(special_string_instance_1)<T_policy, T_initex> const& ssi)
 {
-    return
-    ssi.c_str()
-;
+    return ssi.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<
     ss_typename_param_k T_policy
 ,   ss_typename_param_k T_initex
@@ -1555,6 +1562,7 @@ c_str_len(
     return ssi.length();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<
     ss_typename_param_k T_policy
 ,   ss_typename_param_k T_initex

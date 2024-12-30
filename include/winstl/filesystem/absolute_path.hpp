@@ -4,7 +4,7 @@
  * Purpose: Simple class that converts a relative path to an absolute one.
  *
  * Created: 20th December 2002
- * Updated: 10th October 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        87
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,24 +123,19 @@ namespace winstl_project
 template <ss_typename_param_k C>
 struct abspath_policy
 {
-/// \name Member Types
-/// @{
-public:
-    typedef C                           char_type;
-    typedef char_type const*            argument_0_type;
-    typedef processheap_allocator<C>    allocator_type;
-    typedef ws_size_t                   size_type;
-    typedef size_type                   (*pfn_type)(argument_0_type, char_type *, size_type);
+public: // member types
+    typedef C                                               char_type;
+    typedef char_type const*                                argument_0_type;
+    typedef processheap_allocator<C>                        allocator_type;
+    typedef ws_size_t                                       size_type;
+    typedef size_type                                     (*pfn_type)(argument_0_type, char_type *, size_type);
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
     // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type
-    typedef winstl::spin_mutex          spin_mutex_type;
-    typedef winstl::atomic_int_t        atomic_int_type;
+    typedef winstl::spin_mutex                              spin_mutex_type;
+    typedef winstl::atomic_int_t                            atomic_int_type;
 #endif /* compiler */
-/// @}
 
-/// \name Member Constants
-/// @{
-public:
+public: // member constants
     enum { internalBufferSize       =   128 };
 
     enum { allowImplicitConversion  =   1   };
@@ -148,17 +143,14 @@ public:
     enum { caseSensitive            =   0   };
 
     enum { sharedState              =   0   };
-/// @}
 
-/// \name Operations
-/// @{
-public:
-    static pfn_type     get_fn()
+public: // operations
+    static pfn_type get_fn()
     {
         return winstl::filesystem_traits<char_type>::get_full_path_name;
     }
-/// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * basic_absolute_path
@@ -182,14 +174,16 @@ class basic_absolute_path
 /// \name Member Types
 /// @{
 private:
-    typedef STLSOFT_NS_QUAL(special_string_instance_1)<abspath_policy<C> >  parent_class_type;
+    typedef STLSOFT_NS_QUAL(special_string_instance_1)<
+        abspath_policy<C>
+    >                                                       parent_class_type;
 public:
     /// The char type
-    typedef ss_typename_type_k parent_class_type::char_type     char_type;
+    typedef ss_typename_type_k parent_class_type::char_type char_type;
     /// The current specialisation of the type
-    typedef basic_absolute_path<C>                              class_type;
+    typedef basic_absolute_path<C>                          class_type;
     /// The size type
-    typedef ss_typename_type_k parent_class_type::size_type     size_type;
+    typedef ss_typename_type_k parent_class_type::size_type size_type;
 /// @}
 
 /// \name Construction
@@ -206,12 +200,6 @@ public:
         : parent_class_type(STLSOFT_NS_QUAL(c_str_ptr)(path))
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
-/// @}
-
-/** @{
- *
- * \ingroup group__library__FileSystem
- */
 private:
     basic_absolute_path(class_type const&);
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
@@ -227,17 +215,17 @@ private:
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_absolute_path<ws_char_a_t>    absolute_path_a;
+typedef basic_absolute_path<ws_char_a_t>                    absolute_path_a;
 /** Specialisation of the basic_absolute_path template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_absolute_path<ws_char_w_t>    absolute_path_w;
+typedef basic_absolute_path<ws_char_w_t>                    absolute_path_w;
 /** Specialisation of the basic_absolute_path template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_absolute_path<TCHAR>          absolute_path;
+typedef basic_absolute_path<TCHAR>                          absolute_path;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -252,14 +240,18 @@ typedef basic_absolute_path<TCHAR>          absolute_path;
  *   parameter.
  */
 template<ss_typename_param_k C>
-inline basic_absolute_path<C> make_absolute_path(C const* path)
+inline
+basic_absolute_path<C>
+make_absolute_path(C const* path)
 {
     return basic_absolute_path<C>(path);
 }
-
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
