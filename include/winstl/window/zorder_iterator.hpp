@@ -4,7 +4,7 @@
  * Purpose: Z-order iteration.
  *
  * Created: 11th July 2005
- * Updated: 10th October 2024
+ * Updated: 29th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MAJOR     2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  12
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      60
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  13
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -126,8 +126,9 @@ struct zorder_iterator_reverse_traits;
 struct zorder_iterator_forward_traits
 {
 public:
-    typedef zorder_iterator_forward_traits  this_type;
-    typedef zorder_iterator_reverse_traits  alternate_type;
+    typedef zorder_iterator_forward_traits                  this_type;
+    typedef zorder_iterator_reverse_traits                  alternate_type;
+
 public:
     static HWND get_first_child(HWND hwnd)
     {
@@ -154,8 +155,9 @@ public:
 struct zorder_iterator_reverse_traits
 {
 public:
-    typedef zorder_iterator_reverse_traits  this_type;
-    typedef zorder_iterator_forward_traits  alternate_type;
+    typedef zorder_iterator_reverse_traits                  this_type;
+    typedef zorder_iterator_forward_traits                  alternate_type;
+
 public:
     static HWND get_first_child(HWND hwnd)
     {
@@ -193,35 +195,47 @@ class zorder_iterator_tmpl
 #else /* ? 0 */
     , public STLSOFT_NS_QUAL(iterator_base)<STLSOFT_NS_QUAL_STD(input_iterator_tag)
 #endif /* 0 */
-                                        ,   HWND
-                                        ,   ws_ptrdiff_t
-                                        ,   void    // By-Value Temporary reference
-                                        ,   HWND    // By-Value Temporary reference: This has to be non-void, otherwise reverse_iterator::operator *() will return void
-                                        >
+,   HWND
+,   ws_ptrdiff_t
+,   void    // By-Value Temporary reference
+,   HWND    // By-Value Temporary reference: This has to be non-void, otherwise reverse_iterator::operator *() will return void
+>
 {
 /// \name Types
 /// @{
 public:
-    typedef T                                                                       traits_type;
-    typedef HWND                                                                    value_type;
-    typedef ws_size_t                                                               size_type;
-    typedef ws_ptrdiff_t                                                            difference_type;
-    typedef zorder_iterator_tmpl<T>                                                 class_type;
-    typedef zorder_iterator_tmpl<ss_typename_type_k traits_type::alternate_type>    base_iterator_type;
-    typedef base_iterator_type                                                      iterator_type;
+    typedef T                                               traits_type;
+    typedef HWND                                            value_type;
+    typedef ws_size_t                                       size_type;
+    typedef ws_ptrdiff_t                                    difference_type;
+    typedef zorder_iterator_tmpl<
+        traits_type
+    >                                                       class_type;
+    typedef zorder_iterator_tmpl<
+        ss_typename_type_k traits_type::alternate_type
+    >                                                       base_iterator_type;
+    typedef base_iterator_type                              iterator_type;
 /// @}
 
 /// \name Construction
 /// @{
 private:
-    zorder_iterator_tmpl(HWND hwndRoot, HWND hwndCurrent);
+    zorder_iterator_tmpl(
+        HWND    hwndRoot
+    ,   HWND    hwndCurrent
+    );
 public:
     zorder_iterator_tmpl();
     ~zorder_iterator_tmpl() STLSOFT_NOEXCEPT;
 
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-    static class_type create(HWND hwndRoot, search from);
+    static
+    class_type
+    create(
+        HWND    hwndRoot
+    ,   search  from
+    );
 /// @}
 
 /// \name Iteration
@@ -251,7 +265,12 @@ public:
 /// \name Implementation
 /// @{
 private:
-    static HWND get_next_window_(HWND hwnd, HWND (*pfn)(HWND )) /* throw(stlsoft::external_iterator_invalidation) */;
+    static
+    HWND
+    get_next_window_(
+        HWND    hwnd
+    ,   HWND  (*pfn)(HWND )
+    ) /* throw(stlsoft::external_iterator_invalidation) */;
 /// @}
 
 /// \name Members
@@ -293,14 +312,22 @@ class std::ostream_iterator<zorder_iterator_tmpl<zorder_iterator_reverse_traits>
  */
 
 template <ss_typename_param_k T>
-inline bool operator ==(zorder_iterator_tmpl<T> const& lhs
-                    ,   zorder_iterator_tmpl<T> const& rhs)
+inline
+bool
+operator ==(
+    zorder_iterator_tmpl<T> const&  lhs
+,   zorder_iterator_tmpl<T> const&  rhs
+)
 {
     return lhs.equal(rhs);
 }
 template <ss_typename_param_k T>
-inline bool operator !=(zorder_iterator_tmpl<T> const& lhs
-                    ,   zorder_iterator_tmpl<T> const& rhs)
+inline
+bool
+operator !=(
+    zorder_iterator_tmpl<T> const&  lhs
+,   zorder_iterator_tmpl<T> const&  rhs
+)
 {
     return !lhs.equal(rhs);
 }
@@ -313,7 +340,13 @@ inline bool operator !=(zorder_iterator_tmpl<T> const& lhs
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline /* static */ HWND zorder_iterator_tmpl<T>::get_next_window_(HWND hwnd, HWND (*pfn)(HWND )) /* throw(stlsoft::external_iterator_invalidation) */
+inline
+/* static */
+HWND
+zorder_iterator_tmpl<T>::get_next_window_(
+    HWND    hwnd
+,   HWND  (*pfn)(HWND )
+) /* throw(stlsoft::external_iterator_invalidation) */
 {
     hwnd = (*pfn)(hwnd);
 
@@ -332,65 +365,88 @@ inline /* static */ HWND zorder_iterator_tmpl<T>::get_next_window_(HWND hwnd, HW
 }
 
 template <ss_typename_param_k T>
-inline zorder_iterator_tmpl<T>::zorder_iterator_tmpl()
+inline
+zorder_iterator_tmpl<T>::zorder_iterator_tmpl()
     : m_hwndRoot(NULL)
     , m_hwndCurrent(NULL)
 {}
 
 template <ss_typename_param_k T>
-inline zorder_iterator_tmpl<T>::zorder_iterator_tmpl(HWND hwndRoot, HWND hwndCurrent)
+inline
+zorder_iterator_tmpl<T>::zorder_iterator_tmpl(
+    HWND    hwndRoot
+,   HWND    hwndCurrent
+)
     : m_hwndRoot(hwndRoot)
     , m_hwndCurrent(hwndCurrent)
 {}
 
 template <ss_typename_param_k T>
-inline zorder_iterator_tmpl<T>::~zorder_iterator_tmpl() STLSOFT_NOEXCEPT
+inline
+zorder_iterator_tmpl<T>::~zorder_iterator_tmpl() STLSOFT_NOEXCEPT
 {}
 
+/*
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type& zorder_iterator_tmpl<T>::operator =(ss_typename_type_k zorder_iterator_tmpl<T>::class_type const& rhs)
+inline
+ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type&
+zorder_iterator_tmpl<T>::operator =(ss_typename_type_k zorder_iterator_tmpl<T>::class_type const& rhs)
 {
     WINSTL_ASSERT(NULL == m_hwndRoot || NULL == rhs.m_hwndRoot || (rhs.m_hwndRoot == m_hwndRoot));
 
-    m_hwndCurrent   =   rhs.m_hwndCurrent;
+    m_hwndCurrent = rhs.m_hwndCurrent;
 
     return *this;
 }
+ */
 
 template <ss_typename_param_k T>
-inline /* static */ zorder_iterator_tmpl<T> zorder_iterator_tmpl<T>::create(HWND hwndRoot, search from)
+inline
+/* static */
+zorder_iterator_tmpl<T>
+zorder_iterator_tmpl<T>::create(
+    HWND    hwndRoot
+,   search  from
+)
 {
     HWND    hwndCurrent;
 
     switch (from)
     {
-        case    fromFirstChild:
-        case    atLastChild:
-            hwndRoot = get_next_window_(hwndRoot, traits_type::get_first_child);
-        default:
-            break;
+    case    fromFirstChild:
+    case    atLastChild:
+
+        hwndRoot = get_next_window_(hwndRoot, traits_type::get_first_child);
+    default:
+
+        break;
     }
 
     switch (from)
     {
-        case    fromCurrent:
-            hwndCurrent = hwndRoot;
-            break;
-        case    fromFirstPeer:
-        case    fromFirstChild:
-            hwndCurrent = get_next_window_(hwndRoot, traits_type::get_first_peer);
-            break;
-        case    atLastChild:
-        case    atLastPeer:
-            hwndCurrent = NULL;
-            break;
+    case    fromCurrent:
+
+        hwndCurrent = hwndRoot;
+        break;
+    case    fromFirstPeer:
+    case    fromFirstChild:
+
+        hwndCurrent = get_next_window_(hwndRoot, traits_type::get_first_peer);
+        break;
+    case    atLastChild:
+    case    atLastPeer:
+
+        hwndCurrent = NULL;
+        break;
     }
 
     return zorder_iterator_tmpl<T>(hwndRoot, hwndCurrent);
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type& zorder_iterator_tmpl<T>::operator ++()
+inline
+ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type&
+zorder_iterator_tmpl<T>::operator ++()
 {
     WINSTL_MESSAGE_ASSERT("Attempt to increment an invalid / out-of-range iterator", NULL != m_hwndCurrent);
 
@@ -400,9 +456,11 @@ inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type& zorder_iterat
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tmpl<T>::operator ++(int)
+inline
+ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type
+zorder_iterator_tmpl<T>::operator ++(int)
 {
-    class_type  ret(*this);
+    class_type ret(*this);
 
     operator ++();
 
@@ -410,26 +468,30 @@ inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type zorder_iterato
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type& zorder_iterator_tmpl<T>::operator --()
+inline
+ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type&
+zorder_iterator_tmpl<T>::operator --()
 {
     WINSTL_MESSAGE_ASSERT("Attempt to decrement an invalid / out-of-range iterator", NULL != m_hwndRoot);
 
     if (NULL != m_hwndCurrent)
     {
-        m_hwndCurrent  = class_type::get_next_window_(m_hwndCurrent, traits_type::get_previous_peer);
+        m_hwndCurrent = class_type::get_next_window_(m_hwndCurrent, traits_type::get_previous_peer);
     }
     else
     {
-        m_hwndCurrent  = class_type::get_next_window_(m_hwndRoot, traits_type::get_last_peer);
+        m_hwndCurrent = class_type::get_next_window_(m_hwndRoot, traits_type::get_last_peer);
     }
 
     return *this;
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type zorder_iterator_tmpl<T>::operator --(int)
+inline
+ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type
+zorder_iterator_tmpl<T>::operator --(int)
 {
-    class_type  ret(*this);
+    class_type ret(*this);
 
     operator --();
 
@@ -437,27 +499,32 @@ inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::class_type zorder_iterato
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::base_iterator_type zorder_iterator_tmpl<T>::base() const
+inline
+ss_typename_type_ret_k zorder_iterator_tmpl<T>::base_iterator_type
+zorder_iterator_tmpl<T>::base() const
 {
-    base_iterator_type  it = base_iterator_type::create(m_hwndCurrent, fromCurrent);
+    base_iterator_type it = base_iterator_type::create(m_hwndCurrent, fromCurrent);
 
     return ++it;
 }
 
 template <ss_typename_param_k T>
-inline ss_typename_type_ret_k zorder_iterator_tmpl<T>::value_type zorder_iterator_tmpl<T>::operator *() const
+inline
+ss_typename_type_ret_k zorder_iterator_tmpl<T>::value_type
+zorder_iterator_tmpl<T>::operator *() const
 {
     return m_hwndCurrent;
 }
 
 template <ss_typename_param_k T>
-inline bool zorder_iterator_tmpl<T>::equal(ss_typename_type_k zorder_iterator_tmpl<T>::class_type const& rhs) const
+inline
+bool
+zorder_iterator_tmpl<T>::equal(ss_typename_type_k zorder_iterator_tmpl<T>::class_type const& rhs) const
 {
     WINSTL_MESSAGE_ASSERT("Iterators are not endpoint iterators, and refer to different collections", (NULL == m_hwndRoot || NULL == rhs.m_hwndRoot || (rhs.m_hwndRoot == m_hwndRoot)));
 
     return m_hwndCurrent == rhs.m_hwndCurrent;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
