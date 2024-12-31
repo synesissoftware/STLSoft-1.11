@@ -15,16 +15,6 @@
  * Win32 compatibility;
 
 
-
-TTTTTTTTT      BBBBBB          CCCCCCC
-   TTT         B     B        C       C
-   TTT         B     B        C
-   TTT         BBBBBB         C
-   TTT         B     B        C
-   TTT         B     B        C       C
-   TTT         BBBBBB          CCCCCCC
-
-
 31st December 2024 - 1.11.1-beta1 released
 ------------------------------------------
 
