@@ -5,7 +5,7 @@
  * Purpose: Unit-tests for `stlsoft::commandline_parser` / `winstl::commandline_parser`.
  *
  * Created: 29th December 2024
- * Updated: 29th December 2024
+ * Updated: 31st December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -124,7 +124,7 @@ static void TEST_EMPTY_STRING()
 {
     commandline_parser_a const clp("");
 
-    XTESTS_TEST_INTEGER_EQUAL(0, clp.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, clp.size());
     XTESTS_TEST_INTEGER_EQUAL(0, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_POINTER_EQUAL(NULL, clp[0]);
@@ -134,7 +134,7 @@ static void TEST_WHITESPACE_ONLY_STRING()
 {
     commandline_parser_a const clp("  \t\n");
 
-    XTESTS_TEST_INTEGER_EQUAL(0, clp.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, clp.size());
     XTESTS_TEST_INTEGER_EQUAL(0, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_POINTER_EQUAL(NULL, clp[0]);
@@ -144,7 +144,7 @@ static void TEST_ONE_VALUE()
 {
     commandline_parser_a const clp(" abc ");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
@@ -155,7 +155,7 @@ static void TEST_TWO_VALUES()
 {
     commandline_parser_a const clp(" abc def");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2, clp.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2u, clp.size()));
     XTESTS_TEST_INTEGER_EQUAL(2, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
@@ -167,7 +167,7 @@ static void TEST_ONE_FLAG()
 {
     commandline_parser_a const clp("--flag1");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--flag1", clp[0]);
@@ -178,7 +178,7 @@ static void TEST_TWO_FLAGS()
 {
     commandline_parser_a const clp("--flag1 \t -f2\t");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2, clp.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2u, clp.size()));
     XTESTS_TEST_INTEGER_EQUAL(2, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--flag1", clp[0]);
@@ -190,7 +190,7 @@ static void TEST_ONE_OPTION()
 {
     commandline_parser_a const clp("--option1=abc");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=abc", clp[0]);
@@ -201,7 +201,7 @@ static void TEST_DOC_EXAMPLE()
 {
     commandline_parser_a const clp("abc \"d e f\" ghi");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3, clp.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, clp.size()));
     XTESTS_TEST_INTEGER_EQUAL(3, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", clp[0]);
@@ -214,7 +214,7 @@ static void TEST_ONE_OPTION_WITH_SPACES_1()
 {
     commandline_parser_a const clp("--option1=\"a b c\"");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
@@ -225,7 +225,7 @@ static void TEST_ONE_OPTION_WITH_SPACES_2()
 {
     commandline_parser_a const clp("--option1=\"a b \"c");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
@@ -236,7 +236,7 @@ static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS()
 {
     commandline_parser_a const clp("--option1=\"\"\"a \"\"b \"c");
 
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1, clp.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, clp.size()));
     XTESTS_TEST_INTEGER_EQUAL(1, std::distance(clp.begin(), clp.end()));
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);

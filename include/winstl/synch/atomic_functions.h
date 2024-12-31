@@ -4,7 +4,7 @@
  * Purpose: WinSTL atomic functions.
  *
  * Created: 23rd October 1997
- * Updated: 27th December 2024
+ * Updated: 31st December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR       8
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION    5
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT        237
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION    6
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT        238
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1391,6 +1391,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement(atomic_int_t volatile*
 
 STLSOFT_INLINE
 atomic_int32_t
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_preincrement32(atomic_int32_t volatile* pv)
 {
     return atomic_preincrement(pv);
@@ -1488,6 +1489,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement(atomic_int_t volatile*
 
 STLSOFT_INLINE
 atomic_int32_t
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_predecrement32(atomic_int32_t volatile* pv)
 {
     return atomic_predecrement(pv);
@@ -1583,6 +1585,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement(atomic_int_t volatile
 
 STLSOFT_INLINE
 atomic_int32_t
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_postincrement32(atomic_int32_t volatile* pv)
 {
     return atomic_postincrement(pv);
@@ -1678,6 +1681,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement(atomic_int_t volatile
 
 STLSOFT_INLINE
 atomic_int32_t
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_postdecrement32(atomic_int32_t volatile* pv)
 {
     return atomic_postdecrement(pv);
@@ -1768,6 +1772,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(atomic_int_t volatile* /* pl */)
 
 STLSOFT_INLINE
 void
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_increment32(atomic_int32_t volatile* pv)
 {
     atomic_increment(pv);
@@ -1854,6 +1859,7 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(atomic_int_t volatile* /* pl */)
 
 STLSOFT_INLINE
 void
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_decrement32(atomic_int32_t volatile* pv)
 {
     atomic_decrement(pv);
@@ -2624,6 +2630,7 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_smp(
  */
 STLSOFT_INLINE
 atomic_int_t
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_preadd_up(
     atomic_int_t volatile*  pl
 ,   atomic_int_t            n
@@ -2638,6 +2645,7 @@ atomic_preadd_up(
  */
 STLSOFT_INLINE
 void
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_increment_smp(atomic_int_t volatile* pl)
 {
     atomic_postincrement_smp(pl);
@@ -2649,6 +2657,7 @@ atomic_increment_smp(atomic_int_t volatile* pl)
  */
 STLSOFT_INLINE
 void
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_decrement_smp(atomic_int_t volatile* pl)
 {
     atomic_postdecrement_smp(pl);
@@ -2660,6 +2669,7 @@ atomic_decrement_smp(atomic_int_t volatile* pl)
  */
 STLSOFT_INLINE
 atomic_int_t
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_preadd_smp(
     atomic_int_t volatile*  pl
 ,   atomic_int_t            n
@@ -2674,6 +2684,7 @@ atomic_preadd_smp(
  */
 STLSOFT_INLINE
 atomic_int_t
+WINSTL_ATOMIC_FNS_CALLCONV
 atomic_preadd(
     atomic_int_t volatile*  pl
 ,   atomic_int_t            n
