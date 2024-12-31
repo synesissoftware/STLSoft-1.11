@@ -7,12 +7,11 @@
 31st December 2024 - 1.11.1-beta1 released
 ------------------------------------------
 
- * `stlsoft::cmdargs` significant refactoring and enhancement, including recognising `"--"` special flag;
- * command-line handling components minor improvements and unit-testing;
+ * Command-line handling components minor improvements and unit-testing;
  * Visual C++ compatibility (including _MSC_VER 1942);
  * MinGW compatibility;
- * miscellaneous backwards-compatibility fixes;
- * Win32 compatibility;
+ * Miscellaneous backwards-compatibility fixes;
+ * Miscellaneous (near) final fixes and tidying;
 
 
 31st December 2024 - 1.11.1-beta1 released
