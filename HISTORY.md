@@ -14,16 +14,6 @@
  * Miscellaneous (near) final fixes and tidying;
 
 
-31st December 2024 - 1.11.1-beta1 released
-------------------------------------------
-
- * Command-line handling components minor improvements and unit-testing;
- * Visual C++ compatibility (including _MSC_VER 1942);
- * MinGW compatibility;
- * Miscellaneous backwards-compatibility fixes;
- * Miscellaneous (near) final fixes and tidying;
-
-
 28th December 2024 - 1.11.1-alpha28 released
 --------------------------------------------
 
