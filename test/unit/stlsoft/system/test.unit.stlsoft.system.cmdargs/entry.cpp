@@ -1,6 +1,6 @@
 
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.component.stlsoft.cmdargs/entry.cpp
+ * File:    test.unit.stlsoft.system.cmdargs/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::cmdargs`.
  *
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.component.platformstl.diagnostics.stopwatch", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.system.cmdargs", verbosity))
     {
         XTESTS_RUN_CASE(TEST_EMPTY);
         XTESTS_RUN_CASE(TEST_PROGRAM_ONLY);
