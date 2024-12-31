@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 28th December 2024
+ * Updated: 30th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -524,6 +524,7 @@ static void test_ctor_move_4()
     stlsoft::auto_buffer<int, 10> buff(10u, 123);
 
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.size());
+    XTESTS_TEST_BOOLEAN_FALSE(buff.empty());
     XTESTS_TEST_INTEGER_EQUAL(10u, buff.internal_size());
 
     XTESTS_TEST_INTEGER_EQUAL(1230, std::accumulate(buff.begin(), buff.end(), 0));

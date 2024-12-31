@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *
  * Created: ... mid 2010s ...
- * Updated: 28th December 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,6 +31,7 @@
 
 #include <cstddef>
 #include <cstdlib>
+#include <cstring>
 #include <iostream>
 #include <list>
 #include <random>
@@ -231,7 +232,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -355,7 +356,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -488,7 +489,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -627,7 +628,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -760,7 +761,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -887,14 +888,17 @@ int main(int argc, char* argv[])
         }
     }
 
+#if __cplusplus >= 201703L &&\
+    !defined(STLSOFT_COMPILER_IS_MSVC) &&\
+    1
+
     // range construction (or as close as can be)
-#if __cplusplus >= 201703L
     {
         char const* const grpname = "range construction (from input-iterator)";
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -1029,7 +1033,7 @@ int main(int argc, char* argv[])
 
         fprintf(stdout, "%s:\n", grpname);
 
-        platformstl::stopwatch::interval_type   tm_vec;
+        platformstl::stopwatch::interval_type   tm_vec = 0;
 
         // std::vector::vector :
         {
@@ -1241,7 +1245,7 @@ create_integers_arrays(
 
         for (std::size_t j = 0; j != num_integers; ++j)
         {
-            row.push_back(dist_num_integers(mt));
+            row.push_back(static_cast<int>(dist_num_integers(mt)));
         }
 
         v.push_back(row);

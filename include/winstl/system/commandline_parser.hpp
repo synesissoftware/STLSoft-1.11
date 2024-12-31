@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/system/commandline_parser.hpp (originally MLCmdArg.h, ::SynesisStd)
+ * File:    winstl/system/commandline_parser.hpp (originally MLCmdArg.h, ::SynesisStd)
  *
- * Purpose:     commandline_parser class.
+ * Purpose: commandline_parser class.
  *
- * Created:     20th May 2000
- * Updated:     11th March 2024
+ * Created: 20th May 2000
+ * Updated: 29th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR      2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   7
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       52
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -71,23 +71,12 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
-# include <stlsoft/memory/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
-# include <stlsoft/string/char_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
-#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
-# include <stlsoft/shims/access/string.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-
-#ifndef STLSOFT_INCL_H_CTYPE
-# define STLSOFT_INCL_H_CTYPE
-# include <ctype.h>      // for isspace()
-#endif /* !STLSOFT_INCL_H_CTYPE */
+#ifndef STLSOFT_INCL_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER
+# include <stlsoft/system/commandline_parser.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,8 +103,8 @@ namespace winstl_project
  * classes
  */
 
-/** Parses a Windows (<code>WinMain()</code>) command line into
- *   parts, and provides array semantics for their access.
+/** Parses a Windows (<code>WinMain()</code>) command line into parts, and
+ * provides array semantics for their access.
  *
 \code
 winstl::commandline_parser  cp("abc \"d e f\" ghi");
@@ -128,165 +117,68 @@ assert(0 == ::strcmp("ghi",   cp[2]));
  *
  * \ingroup group__library__System
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T = STLSOFT_NS_QUAL(stlsoft_char_traits)<C>
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T = STLSOFT_NS_QUAL(stlsoft_char_traits)<C>
+,   ss_typename_param_k A = processheap_allocator<C>
+>
 class basic_commandline_parser
 {
-/// \name Member Types
-/// @{
-public:
+public: // types
     /// The character type
-    typedef C                                                   char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                                   traits_type;
-    /// The current instantiation of the type
-    typedef basic_commandline_parser<C, T>                      class_type;
+    typedef T                                               traits_type;
 private:
-    typedef char_type*                                          pointer_type_;
-    typedef processheap_allocator<char_type>                    allocator_type_;
-    typedef processheap_allocator<pointer_type_>                pointers_allocator_type_;
-    typedef STLSOFT_NS_QUAL(auto_buffer)<
+    /// The traits type
+    typedef A                                               allocator_type_;
+public:
+    /// The current instantiation of the type
+    typedef basic_commandline_parser<
         char_type
-    ,   256
+    ,   traits_type
     ,   allocator_type_
-    >                                                           buffer_type_;
-    typedef STLSOFT_NS_QUAL(auto_buffer)<
-        pointer_type_
-    ,   20
-    ,   pointers_allocator_type_
-    >                                                           pointers_type_;
-    typedef ss_typename_type_k buffer_type_::iterator           iterator;
+    >                                                       class_type;
+private:
+    typedef STLSOFT_NS_QUAL(basic_commandline_parser)<
+        char_type
+    ,   traits_type
+    ,   allocator_type_
+    >                                                       ss_clp_type_;
 public:
     /// The value type
-    typedef ss_typename_type_k pointers_type_::value_type       value_type;
+    typedef ss_typename_type_k ss_clp_type_::value_type     value_type;
     /// The non-mutating (const) iterator type
-    typedef ss_typename_type_k pointers_type_::const_iterator   const_iterator;
+    typedef ss_typename_type_k ss_clp_type_::const_iterator
+                                                            const_iterator;
     /// The size type
-    typedef ss_size_t                                           size_type;
-/// @}
+    typedef ss_size_t                                       size_type;
 
-/// \name Construction
-/// @{
-public:
-    /** Parses the given command-line and creates an internal array
-     *   of pointers to the arguments.
+public: // construction
+    /** Parses the given command-line and creates an internal array of
+     * pointers to the arguments.
      */
-    ss_explicit_k basic_commandline_parser(char_type const* cmdLine)
-        : m_buffer(1 + STLSOFT_NS_QUAL(c_str_len)(cmdLine))
-        , m_pointers(0)
-    {
-        init_(cmdLine, m_buffer.size() - 1);
-    }
-    /** Parses the given command-line and creates an internal array
-     *   of pointers to the arguments.
+    ss_explicit_k
+    basic_commandline_parser(char_type const* cmdLine)
+        : m_clp(cmdLine)
+    {}
+
+# if 0
+
+    /** Parses the given command-line and creates an internal array of
+     * pointers to the arguments.
      */
-    ss_explicit_k basic_commandline_parser(char_type const* cmdLine, size_type len)
-        : m_buffer(1 + len)
-        , m_pointers(0)
-    {
-        init_(cmdLine, len);
-    }
+    ss_explicit_k
+    basic_commandline_parser(char_type const* cmdLine, size_type len)
+        : m_clp((cmdLine, len)
+    {}
+# endif
 
-private:
-    void init_(char_type const* cmdLine, size_type len)
-    {
-        WINSTL_MESSAGE_ASSERT("command-line may not be NULL, unless length is 0", (0 == len) || (NULL != cmdLine));
-
-        traits_type::copy(&m_buffer[0], cmdLine, len);
-        m_buffer[len] = '\0';
-
-        // Here's the algorithm:
-        //
-        // Walk the string, mindful of quotes, remembering the start of an
-        // argument, and writing the nul-character into spaces.
-
-        enum state_t
-        {
-                argument
-            ,   quotedArgumentStart
-            ,   quotedArgument
-            ,   space
-        };
-
-        state_t         state   =   space;
-        iterator        b       =   m_buffer.begin();
-        const iterator  e       =   m_buffer.end() - 1;
-
-        for (; b != e; ++b)
-        {
-            const char_type ch = *b;
-
-            WINSTL_ASSERT('\0' != ch);
-
-            if ('"' == ch)
-            {
-                if (quotedArgumentStart == state)
-                {
-                    state   =   space;
-                }
-                else if (quotedArgument == state)
-                {
-                    *b      =   '\0';
-                    state   =   space;
-                }
-                else if (space == state)
-                {
-                    state   =   quotedArgumentStart;
-                }
-                else
-                {
-                }
-            }
-            else if (isspace(ch))
-            {
-                if (quotedArgumentStart == state)
-                {
-                    state   =   quotedArgument;
-
-                    add_pointer(&*b);
-                }
-                else if (quotedArgument == state)
-                {
-                }
-                else if (space == state)
-                {
-                }
-                else
-                {
-                    WINSTL_ASSERT(argument == state);
-
-                    *b = '\0';
-
-                    state = space;
-                }
-            }
-            else
-            {
-                if (quotedArgumentStart == state)
-                {
-                    state   =   quotedArgument;
-
-                    add_pointer(&*b);
-                }
-                else if (space == state)
-                {
-                    state   =   argument;
-
-                    add_pointer(&*b);
-                }
-            }
-        }
-    }
-/// @}
-
-/// \name Accessors
-/// @{
-public:
+public: // accessors
     /// The number of arguments
-    size_type           size() const
+    size_type size() const
     {
-        return m_pointers.size();
+        return m_clp.size();
     }
 
     /** Returns a non-mutating (const) pointer to each argument
@@ -300,51 +192,29 @@ public:
      *  other than to take its address (which is the address of the
      *  <a href="http://www.extendedstl.com/glossary.html#end-element">"end-element"</a>).
      */
-    value_type const&   operator [](size_type index) const
+    value_type const& operator [](size_type index) const
     {
         WINSTL_ASSERT(index <= size());
 
-        return m_pointers[index];
+        return m_clp[index];
     }
-/// @}
 
-/// \name Iteration
-/// @{
-public:
+public: // iteration
     /// An iterator representing the start of the sequence
     const_iterator  begin() const
     {
-        return m_pointers.begin();
+        return m_clp.begin();
     }
     /// An iterator representing the end of the sequence
     const_iterator  end() const
     {
-        return m_pointers.end();
+        return m_clp.end();
     }
-/// @}
 
-/// \name Implementation
-/// @{
-private:
-    ws_bool_t add_pointer(pointer_type_ p)
-    {
-        if (!m_pointers.resize(1 + m_pointers.size()))
-        {
-            return false;
-        }
+private: // implementation
 
-        m_pointers[m_pointers.size() - 1] = p;
-
-        return true;
-    }
-/// @}
-
-/// \name Members
-/// @{
-private:
-    buffer_type_    m_buffer;
-    pointers_type_  m_pointers;
-/// @}
+private: // fields
+    ss_clp_type_    m_clp;
 };
 
 
@@ -356,19 +226,22 @@ private:
  *
  * \ingroup group__library__System
  */
-typedef basic_commandline_parser<ws_char_a_t>   commandline_parser_a;
+typedef basic_commandline_parser<ws_char_a_t>               commandline_parser_a;
 /** Specialisation of the basic_commandline_parser template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__System
  */
-typedef basic_commandline_parser<ws_char_w_t>   commandline_parser_w;
+typedef basic_commandline_parser<ws_char_w_t>               commandline_parser_w;
 /** Specialisation of the basic_commandline_parser template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__System
  */
-typedef basic_commandline_parser<TCHAR>         commandline_parser;
+typedef basic_commandline_parser<TCHAR>                     commandline_parser;
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

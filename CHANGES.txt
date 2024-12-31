@@ -19,6 +19,39 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-beta1 (31st December 2024)
+
+General:
+========
+
+ * Command-line handling components minor improvements and unit-testing;
+ * Visual C++ compatibility (including _MSC_VER 1942);
+ * MinGW compatibility;
+ * Miscellaneous backwards-compatibility fixes;
+ * Miscellaneous (near) final fixes and tidying;
+
+Changes:
+========
+
+Command-line handling components minor improvements and unit-testing:
+ * `stlsoft::cmdargs` significant refactoring and enhancement, including recognising `"--"` special flag;
+ * `stlsoft:basic_commandline_parser<>` : ~ refactored and enhanced logic, so can work with multiple string-escape sections in an argument;
+ * `stlsoft::basic_commandline_parser<>` : + now maintains an additional (uncounted by `#size()`) pointer that is `NULL`;
+ * `winstl::basic_commandline_parser<>` : ~ reimplemented in terms of `stlsoft::basic_commandline_parser<>`;
+ * added **test.unit.stlsoft.system.cmdargs**;
+ * added **test.component.platformstl.commandline_parser**;
+
+Miscellaneous backwards-compatibility fixes:
+ * ensuring C++98 and C++03 compatibility;
+ * ensuring Win32 compatibility;
+
+Miscellaneous (near) final fixes and tidying:
+ * added **test.component.platformstl.system.environment_variable_traits**;
+ * general tidyings;
+
+
+============================================================================
+
 Changes for 1.11.1-alpha28 (28th December 2024)
 
 General:
@@ -52,7 +85,6 @@ Added more test programs:
 
 
 ============================================================================
-
 
 Changes for 1.11.1-alpha27 (19th December 2024)
 
@@ -93,7 +125,6 @@ Changes for 1.11.1-alpha26 (23rd November 2024)
 
 ============================================================================
 
-
 Changes for 1.11.1-alpha25 (18th November 2024)
 
  * added MSVC MT support;
@@ -105,7 +136,6 @@ Changes for 1.11.1-alpha25 (18th November 2024)
 
 ============================================================================
 
-
 Changes for 1.11.1-alpha24 (4th November 2024)
 
  * `frequency_map` : ~ now default-specialised on `frequency_map_traits_unordered` when compiling with C++11+;
@@ -113,7 +143,6 @@ Changes for 1.11.1-alpha24 (4th November 2024)
 
 
 ============================================================================
-
 
 Changes for 1.11.1-alpha23 (28th October 2024)
 
@@ -125,7 +154,6 @@ Changes for 1.11.1-alpha23 (28th October 2024)
 
 
 ============================================================================
-
 
 Changes for 1.11.1-alpha22 (26th October 2024)
 

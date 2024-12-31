@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_traits`.
  *
  * Created: 21st November 2024
- * Updated: 28th December 2024
+ * Updated: 31st December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -110,7 +110,9 @@ namespace stlsoft {
             underlying_type const& value
         )
         {
-            return { value };
+            int_wrapper w = { value };
+
+            return w;
         }
     };
 } // namespace stlsoft
@@ -144,8 +146,8 @@ static void test_1()
 
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<traits_t::integer_type, traits_t::underlying_type>::value));
 
-        XTESTS_TEST_INTEGER_EQUAL(12345678, traits_t::get_underlying_value(12345678));
-        XTESTS_TEST_INTEGER_EQUAL(12345678, traits_t::from_underlying_type(12345678));
+        XTESTS_TEST_INTEGER_EQUAL(12345678u, traits_t::get_underlying_value(12345678));
+        XTESTS_TEST_INTEGER_EQUAL(12345678u, traits_t::from_underlying_type(12345678));
     }
 
     {
@@ -164,7 +166,11 @@ static void test_1()
 
         STLSOFT_STATIC_ASSERT((!stlsoft::is_same_type<traits_t::integer_type, traits_t::underlying_type>::value));
 
-        XTESTS_TEST_INTEGER_EQUAL(12345678, traits_t::get_underlying_value(int_wrapper { 12345678} ));
+        {
+            int_wrapper iw_12345678 = { 12345678 };
+
+            XTESTS_TEST_INTEGER_EQUAL(12345678, traits_t::get_underlying_value(iw_12345678));
+        }
         XTESTS_TEST_INTEGER_EQUAL(12345678, traits_t::from_underlying_type(12345678).value);
     }
 }
