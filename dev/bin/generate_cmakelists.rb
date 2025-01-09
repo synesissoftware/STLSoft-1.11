@@ -20,6 +20,7 @@
 # ######################################################################## #
 # requires
 
+require 'highline'
 require 'libclimate'
 require 'recls'
 
@@ -30,6 +31,10 @@ require 'recls'
 
 # ######################################################################## #
 # constants
+
+PROGRAM_VER_MAJOR = 0
+PROGRAM_VER_MINOR = 1
+PROGRAM_VER_PATCH = 0
 
 
 # ######################################################################## #
@@ -47,6 +52,16 @@ end
 options = {}
 climate = LibCLImate::Climate.new do |cl|
 
+  cl.add_flag('--verbose', alias: '-v', help: 'operate verbosely') { options[:verbose] = true }
+
+  cl.info_lines = [
+    'STLSoft Development Tools',
+    'Copyright Synesis Software Pty Ltd (c) 1999-2019, Synesis Information Systems Pty Ltd (c) 2019-2025',
+    :version,
+    "Creates or regenerates CMakeLists.txt files in a manner compatible with Synesis Information Systems' libraries",
+    nil,
+  ]
+  cl.value_names = [ 'directory' ]
   cl.constrain_values = 1..;
   cl.usage_values = '<directory-1> [ ... <directory-N> ]'
 end
@@ -61,11 +76,17 @@ directories.all? { |directory| Recls.directory? directory } or climate.abort "on
 # ######################################################################## #
 # main()
 
+num_directories_processed     = 0
+num_custom_directories_found  = 0
+num_missing_makelists_created = 0
+num_stock_makelists_replaced  = 0
+
+
 directories.each do |directory|
 
   # Search each top-level directory for its subdirectories
 
-  $stderr.puts "processing in #{directory} ..."
+  $stdout.puts "processing in #{HighLine.color(directory, :blue, :bold)} ..." if options[:verbose]
 
   subdirectories = Recls.rsearch(directory, nil, Recls::DIRECTORIES).to_a#.map { |fe| fe.path }
 
@@ -73,7 +94,9 @@ directories.each do |directory|
 
   subdirectories.each do |subdirectory|
 
-    $stderr.puts "\tprocessing #{subdirectory}:"
+    $stdout.print "\tprocessing #{HighLine.color(subdirectory.search_relative_path, :blue, :bold)} - " if options[:verbose]
+
+    num_directories_processed += 1
 
     cml_path = Recls.combine_paths(subdirectory, 'CMakeLists.txt')
     cml = Recls.stat(cml_path)
@@ -86,16 +109,28 @@ directories.each do |directory|
 
       if lines.empty?
 
+        num_missing_makelists_created += 1
+
         regenerate_cml = true
       elsif lines[0].strip == '# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten'
 
+        regenerate_cml = true
+
+        num_stock_makelists_replaced += 1
       else
 
-        $stderr.puts "\t\t - found custom 'CMakeLists.txt'"
+        $stdout.puts HighLine.color("ignoring custom 'CMakeLists.txt'", :cyan, :bold) if options[:verbose]
       end
     else
 
+      num_missing_makelists_created += 1
+
       regenerate_cml = true
+    end
+
+    unless regenerate_cml
+
+      num_custom_directories_found += 1
     end
 
     if regenerate_cml
@@ -110,6 +145,8 @@ directories.each do |directory|
 
       if is_leaf
 
+        $stdout.puts HighLine.color("generating LEAF", :magenta, :bold) if options[:verbose]
+
         File.open(cml_path, 'w') do |f|
 
           f << <<-END_of_
@@ -119,12 +156,30 @@ END_of_
         end
       else
 
+        $stdout.puts HighLine.color("generating non-LEAF", :magenta, :bold) if options[:verbose]
+
+        File.open(cml_path, 'w') do |f|
+
+          f << <<-END_of_
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+END_of_
+
+          subdirectory_names = contents.map { |fe| fe.basename }.to_a.sort
+
+          subdirectory_names.each do |subdir_name|
+
+            next if subdir_name == 'CMakeLists.txt'
+
+            f << "add_subdirectory(#{subdir_name})" << "\n"
+          end
+        end
       end
     end
   end
 end
 
+$stdout.puts "#{num_directories_processed} directories processed, in which there were #{num_custom_directories_found} custom configuration(s), #{num_missing_makelists_created} missing configuration(s), #{num_stock_makelists_replaced} stock configuration(s)"
+
 
 # ############################## end of file ############################# #
-
 
