@@ -1,2 +1,2 @@
 
-# define_example_program(comstl comstl.cpp)
+# define_example_program(comstl main.cpp)
