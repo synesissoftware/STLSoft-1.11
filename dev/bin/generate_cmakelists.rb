@@ -34,15 +34,47 @@ require 'recls'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 1
-PROGRAM_VER_PATCH = 1
+PROGRAM_VER_PATCH = 2
+
+FILES_TO_IGNORE = [
+  'implicit_link.c',
+  'implicit_link.cpp',
+  /\.dsp$/,
+  /\.vcproj$/,
+  /\.vcxproj$/,
+  /\.vcxproj.filters$/,
+]
 
 
 # ######################################################################## #
 # functions
 
-def get_program_source_entry entries
+def get_program_source_entry entries, **options
 
   entries.find { |fe| fe.file? && [ '.c', '.cpp' ].include?(fe.extension) && [ 'entry', 'main' ].include?(fe.stem) }
+end
+
+def strip_excludes contents, ignore_list, **options
+
+  def match_item fe, ignore_list
+
+    ignore_list.each do |ignore|
+
+      case ignore
+      when ::Regexp
+
+        return true if ignore =~ fe.basename
+      when ::String
+
+        return true if ignore == fe.basename
+      else
+      end
+    end
+
+    false
+  end
+
+  contents.reject { |fe| match_item fe, ignore_list }
 end
 
 
@@ -136,6 +168,8 @@ directories.each do |directory|
     if regenerate_cml
 
       contents = Recls.search(subdirectory, nil, Recls::FILES | Recls::DIRECTORIES).to_a
+
+      contents = strip_excludes contents, FILES_TO_IGNORE, **options
 
       fe_prg = get_program_source_entry contents
 
