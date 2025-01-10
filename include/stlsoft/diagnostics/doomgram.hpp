@@ -4,11 +4,11 @@
  * Purpose: Definition of the doomgram class.
  *
  * Created: 13th May 2013
- * Updated: 24th December 2024
+ * Updated: 9th January 2024
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2013-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MAJOR     2
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MINOR     0
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_REVISION  1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      34
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -121,11 +121,11 @@ public: // operations
     /// Pushes an event with the given number of nanoseconds
     bool push_event_time_ns(integer_type time_in_ns);
     /// Pushes an event with the given number of microseconds
-    bool push_event_time_us(integer_type time_in_ms);
+    bool push_event_time_us(integer_type time_in_us);
     /// Pushes an event with the given number of milliseconds
     bool push_event_time_ms(integer_type time_in_ms);
     /// Pushes an event with the given number of seconds
-    bool push_event_time_s(integer_type time_in_ms);
+    bool push_event_time_s(integer_type time_in_s);
 
 
 public: // accessors
@@ -140,7 +140,7 @@ public: // accessors
     /// \retval false Overflow has occurred
     bool try_get_total_event_time_ns(integer_type* value) const STLSOFT_NOEXCEPT;
     /// Obtains the total event time (in nanoseconds), regardless of whether
-    ///
+    /// overflow has occurred
     integer_type total_event_time_ns_raw() const STLSOFT_NOEXCEPT;
     /// Attempts to obtain the minimum event time (in nanoseconds)
     ///
