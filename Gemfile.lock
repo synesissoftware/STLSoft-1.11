@@ -2,15 +2,11 @@ GEM
   remote: https://rubygems.org/
   specs:
     clasp-ruby (0.23.0.2)
-    highline (3.1.2)
-      reline
-    io-console (0.8.0)
+    highline (2.1.0)
     libclimate-ruby (0.17.0)
       clasp-ruby (~> 0.23, >= 0.23.0.2)
       xqsr3 (~> 0.39)
     recls-ruby (2.13.1)
-    reline (0.6.0)
-      io-console (~> 0.5)
     xqsr3 (0.39.3)
 
 PLATFORMS
@@ -23,4 +19,4 @@ DEPENDENCIES
   xqsr3 (~> 0.39)
 
 BUNDLED WITH
-   2.3.7
+   2.3.17
