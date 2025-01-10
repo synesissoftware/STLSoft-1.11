@@ -7,7 +7,7 @@
 #           compatible with Synesis Information Systems' libraries.
 #
 # Created:  9th January 2025
-# Updated:  9th January 2025
+# Updated:  10th January 2025
 #
 # Author:   Matthew Wilson
 #
@@ -34,7 +34,7 @@ require 'recls'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 1
-PROGRAM_VER_PATCH = 0
+PROGRAM_VER_PATCH = 1
 
 
 # ######################################################################## #
@@ -152,6 +152,7 @@ directories.each do |directory|
           f << <<-END_of_
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 #{fe_prg.stem == 'entry' ? 'define_automated_test_program' : 'define_example_program'}(#{subdirectory.basename} #{fe_prg.basename})
+
 END_of_
         end
       else
@@ -172,6 +173,8 @@ END_of_
 
             f << "add_subdirectory(#{subdir_name})" << "\n"
           end
+
+          f << "\n"
         end
       end
     end
