@@ -770,14 +770,17 @@ public: // construction
                 i = value_type();
             }
         }
-#else /* ? STLSOFT_IS_CONSTANT_EVALUATED */
-
-        // ... otherwise initialise zeroth element (for compilers that demand it, because the class invariant does not)
-# ifdef STLSOFT_COMPILER_IS_GCC
-
-        m_internal[0] = value_type();
-# endif
+        else
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
+
+            // ... otherwise initialise zeroth element (for compilers that demand it, because the class invariant does not)
+#ifdef STLSOFT_COMPILER_IS_GCC
+
+            m_internal[0] = value_type();
+#endif
+        }
+
 
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be
@@ -848,14 +851,16 @@ public: // construction
                 i = value_type();
             }
         }
-#else /* ? STLSOFT_IS_CONSTANT_EVALUATED */
-
-        // ... otherwise initialise zeroth element (for compilers that demand it, because the class invariant does not)
-# ifdef STLSOFT_COMPILER_IS_GCC
-
-        m_internal[0] = value_type();
-# endif
+        else
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
+
+            // ... otherwise initialise zeroth element (for compilers that demand it, because the class invariant does not)
+#ifdef STLSOFT_COMPILER_IS_GCC
+
+            m_internal[0] = value_type();
+#endif
+        }
 
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be
