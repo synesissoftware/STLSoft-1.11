@@ -4,7 +4,7 @@
  * Purpose: Contains the shared_ptr template class.
  *
  * Created: 17th June 2002
- * Updated: 7th October 2024
+ * Updated: 19th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR      3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR      6
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT       64
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT       65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -221,7 +221,7 @@ public: // construction
     ///
     /// \note If exception handling is not enabled and memory cannot be
     ///   acquired to hold the sharing resource the object represented
-    ///   by \c p will be deleted, and get() will return \c NULL
+    ///   by \c p will be deleted, and get() will return \c nullptr
     ///
     /// \exception std::bad_alloc If exception support is enabled,
     ///   an instance of <code>std::bad_alloc</code> will be thrown if
@@ -669,7 +669,7 @@ is_null(
  *
  * \ingroup group__library__SmartPointer
  *
- * \pre NULL != p.get()
+ * \pre nullptr != p.get()
  */
 template<
     ss_typename_param_k S

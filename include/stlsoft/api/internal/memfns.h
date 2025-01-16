@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for memXXX() functions.
  *
  * Created: 2nd January 2021
- * Updated: 16th July 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -59,39 +59,21 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#if 0
-#elif 0 || \
-      defined(STLSOFT_COMPILER_IS_BORLAND) || \
-      (   defined(STLSOFT_COMPILER_IS_INTEL) && \
-          defined(_WIN32))|| \
-      defined(STLSOFT_COMPILER_IS_MSVC) || \
-      0
-# ifndef STLSOFT_INCL_H_MEMORY
-#  define STLSOFT_INCL_H_MEMORY
-#  include <memory.h>
-# endif /* !STLSOFT_INCL_H_MEMORY */
-#else /* ? compiler */
-# ifndef STLSOFT_INCL_H_STRING
-#  define STLSOFT_INCL_H_STRING
-#  include <string.h>
-# endif /* !STLSOFT_INCL_H_STRING */
-#endif /* compiler */
-#ifndef STLSOFT_INCL_H_WCHAR
-# define STLSOFT_INCL_H_WCHAR
-# include <wchar.h>
-#endif /* !STLSOFT_INCL_H_WCHAR */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * memory functions
  */
 
-/* The C standard function memcpy() requires that its pointer parameters are
- * non-NULL even in the case where the copy byte-count is 0. GCC warns about
- * this and appears to be really aggressive in its analysis (in later
- * versions, anyway), so this adaptation function is required to ensure that
- * passing NULL when count is 0 - WHICH IS THE SENSIBLE SEMANTIC - are
- * available throughout the STLSoft libs.
+/** The C standard function memcpy() requires that its pointer parameters
+ * are non-\c nullptr even in the case where the copy byte-count is 0. GCC
+ * warns about this and appears to be really aggressive in its analysis (in
+ * later versions, anyway), so this adaptation function is required to
+ * ensure that passing \c nullptr when count is 0 - WHICH IS THE SENSIBLE
+ * SEMANTIC - are available throughout the STLSoft libs.
  */
 STLSOFT_INLINE
 void*
@@ -130,7 +112,7 @@ STLSOFT_API_INTERNAL_memfns_memcpy(
         }
 #endif
 
-        STLSOFT_NS_GLOBAL(memcpy)(dest, src, count);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, count);
     }
 
     return r;
@@ -165,7 +147,7 @@ STLSOFT_API_INTERNAL_memfns_memset(
         }
 #endif
 
-        STLSOFT_NS_GLOBAL(memset)(dest, value, count);
+        STLSOFT_API_EXTERNAL_memfns_memset(dest, value, count);
     }
 
     return r;
@@ -174,7 +156,7 @@ STLSOFT_API_INTERNAL_memfns_memset(
 STLSOFT_INLINE
 wchar_t*
 STLSOFT_API_INTERNAL_memfns_wmemcpy(
-    wchar_t *       dest
+    wchar_t*        dest
 ,   wchar_t  const* src
 ,   size_t          count
 )
@@ -208,7 +190,7 @@ STLSOFT_API_INTERNAL_memfns_wmemcpy(
         }
 #endif
 
-        STLSOFT_NS_GLOBAL(wmemcpy)(dest, src, count);
+        STLSOFT_API_EXTERNAL_memfns_wmemcpy(dest, src, count);
     }
 
     return r;
@@ -243,7 +225,7 @@ STLSOFT_API_INTERNAL_memfns_wmemset(
         }
 #endif
 
-        STLSOFT_NS_GLOBAL(wmemset)(dest, value, count);
+        STLSOFT_API_EXTERNAL_memfns_wmemset(dest, value, count);
     }
 
     return r;

@@ -4,7 +4,7 @@
  * Purpose: Policies for enumerator interface handling.
  *
  * Created: 20th December 2003
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MAJOR       6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MINOR       1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    16
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        73
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -78,9 +78,9 @@
 # endif /* !COMSTL_INCL_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -254,7 +254,7 @@ public:
 public:
     /// Gets a working "copy" of the given enumerator root
     ///
-    /// \remarks For this policy, this calls Clone(), and returns NULL
+    /// \remarks For this policy, this calls Clone(), and returns \c nullptr
     ///   if that fails.
     static interface_type *get_working_instance(interface_type *root)
     {
@@ -326,7 +326,7 @@ public:
     ///
     /// \remarks For this policy, this calls Clone(), and throws an
     ///   instance of comstl::clone_failure if that fails (or returns
-    ///   NULL if exception support is disabled).
+    ///   \c nullptr if exception support is disabled).
     static interface_type *get_working_instance(interface_type *root)
     {
         COMSTL_ASSERT(NULL != root);
@@ -520,7 +520,7 @@ public:
             UINT        argErrIndex;
             VARIANT     result;
 
-            STLSOFT_API_INTERNAL_memfns_memset(&params, 0, sizeof(params));
+            STLSOFT_API_EXTERNAL_memfns_memset(&params, 0, sizeof(params));
             ::VariantInit(&result);
 
             hr = pdisp->Invoke( DISPID_NEWENUM
@@ -560,7 +560,10 @@ public:
     }
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

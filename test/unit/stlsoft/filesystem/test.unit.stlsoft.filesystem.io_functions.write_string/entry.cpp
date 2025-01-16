@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.filesystem.io_functions.write_string.cpp
+ * File:    test.unit.stlsoft.filesystem.io_functions.write_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::write_string<>()`.
  *
  * Created: 22nd January 2024
- * Updated: 11th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,20 +46,20 @@
 namespace
 {
 
-    static void test_write_css_n_empty(void);
-    static void test_write_css_n_1_character(void);
-    static void test_write_css_n_1_long_string(void);
-    static void test_write_css_n_3_strings(void);
+    static void test_write_css_n_empty();
+    static void test_write_css_n_1_character();
+    static void test_write_css_n_1_long_string();
+    static void test_write_css_n_3_strings();
 
-    static void test_write_css_empty(void);
-    static void test_write_css_1_character(void);
-    static void test_write_css_1_long_string(void);
-    static void test_write_css_3_strings(void);
+    static void test_write_css_empty();
+    static void test_write_css_1_character();
+    static void test_write_css_1_long_string();
+    static void test_write_css_3_strings();
 
-    static void test_write_stdstring_empty(void);
-    static void test_write_stdstring_1_character(void);
-    static void test_write_stdstring_1_long_string(void);
-    static void test_write_stdstring_3_strings(void);
+    static void test_write_stdstring_empty();
+    static void test_write_stdstring_1_character();
+    static void test_write_stdstring_1_long_string();
+    static void test_write_stdstring_3_strings();
 
 } // anonymous namespace
 

@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/obsolete/first_class_promoter.hpp
+ * File:    stlsoft/obsolete/first_class_promoter.hpp
  *
- * Purpose:     Class template that allows built-in & aggregate types to be
- *              treated as 1st-class types.
+ * Purpose: Class template that allows built-in & aggregate types to be
+ *          treated as 1st-class types.
  *
- * Created:     8th September 2002
- * Updated:     11th March 2024
+ * Created: 8th September 2002
+ * Updated: 26th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MINOR     0
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_REVISION  9
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      65
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_REVISION  10
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -78,9 +78,9 @@
 # include <stlsoft/meta/is_fundamental_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,23 +119,23 @@ struct first_class_promoter_init_traits<false>
 
 
 template<ss_typename_param_k T>
-inline void first_class_promotion_do_init(T *t, yes_type, yes_type)
+inline void first_class_promotion_do_init(T* t, yes_type, yes_type)
 {
     *t = T();
 }
 
 template<ss_typename_param_k T>
-inline void first_class_promotion_do_init(T *t, yes_type, no_type)
+inline void first_class_promotion_do_init(T* t, yes_type, no_type)
 {
-    STLSOFT_API_INTERNAL_memfns_memset(t, 0, sizeof(T));
+    STLSOFT_API_EXTERNAL_memfns_memset(t, 0, sizeof(T));
 }
 
 template<ss_typename_param_k T>
-inline void first_class_promotion_do_init(T *, no_type, yes_type)
+inline void first_class_promotion_do_init(T* , no_type, yes_type)
 {}
 
 template<ss_typename_param_k T>
-inline void first_class_promotion_do_init(T *, no_type, no_type)
+inline void first_class_promotion_do_init(T* , no_type, no_type)
 {}
 
 template<   ss_typename_param_k T
@@ -152,7 +152,7 @@ struct first_class_promoter_traits
     typedef ss_typename_type_k first_class_promoter_init_traits<is_fundamental_type<T>::value>::type    is_fundamental_yesno_type;
 #endif /* compiler */
 
-    static void initialise(T *value)
+    static void initialise(T* value)
     {
         first_class_promotion_do_init(value, do_init_yesno_type(), is_fundamental_yesno_type());
     }

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.container.pod_vector.cpp
+ * File:    test.unit.stlsoft.container.pod_vector/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::pod_vector`
  *
  * Created: 1st December 2008
- * Updated: 11th October 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,7 +26,6 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <platformstl/performance/performance_counter.hpp>
 
 /* Standard C++ header files */
 #include <numeric>
@@ -45,26 +44,26 @@
 namespace
 {
 
-    static void test_default_ctor(void);
-    static void test_ctor_size(void);
-    static void test_ctor_size_and_value(void);
-    static void test_ctor_begin_end(void);
-    static void test_copy_ctor(void);
-    static void test_copy_assign(void);
+    static void test_default_ctor();
+    static void test_ctor_size();
+    static void test_ctor_size_and_value();
+    static void test_ctor_begin_end();
+    static void test_copy_ctor();
+    static void test_copy_assign();
 
-    static void test_assign(void);
-    static void test_at_1(void);
-    static void test_at_2(void);
-    static void test_clear(void);
-    static void test_erase(void);
-    static void test_front_and_back(void);
-    static void test_insert(void);
-    static void test_pop_back(void);
-    static void test_push_back(void);
-    static void test_reserve(void);
-    static void test_resize(void);
-    static void test_subscript_operator(void);
-    static void test_swap(void);
+    static void test_assign();
+    static void test_at_1();
+    static void test_at_2();
+    static void test_clear();
+    static void test_erase();
+    static void test_front_and_back();
+    static void test_insert();
+    static void test_pop_back();
+    static void test_push_back();
+    static void test_reserve();
+    static void test_resize();
+    static void test_subscript_operator();
+    static void test_swap();
 
 } // anonymous namespace
 

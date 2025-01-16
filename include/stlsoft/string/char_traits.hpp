@@ -4,7 +4,7 @@
  * Purpose: char_traits classes.
  *
  * Created: 19th November 1998
- * Updated: 6th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     99
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR       4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR       3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT        100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -127,6 +127,9 @@
 # include <stlsoft/api/internal/memfns.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -473,7 +476,8 @@ public:
         return ret;
     }
 
-    /// Finds the first \c c in \c cch elements in \c s, or \c NULL if not found
+    /// Finds the first \c c in \c cch elements in \c s, or \c nullptr if
+    /// not found
     static
     char_type const*
     find(
@@ -769,7 +773,8 @@ public:
         return parent_class_type::move(dest, src, cch);
     }
 
-    /// Finds the first \c c in \c cch elements in \c s, or \c NULL if not found
+    /// Finds the first \c c in \c cch elements in \c s, or \c nullptr if
+    /// not found
     static
     char_type const*
     find(
@@ -953,7 +958,7 @@ stlsoft_char_traits<char>::compare(
 ,   ss_size_t   cch
 ) STLSOFT_NOEXCEPT
 {
-    return STLSOFT_NS_GLOBAL(memcmp)(s1, s2, cch);
+    return STLSOFT_API_EXTERNAL_memfns_memcmp(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -1050,7 +1055,7 @@ stlsoft_char_traits<wchar_t>::compare(
 ,   ss_size_t       cch
 ) STLSOFT_NOEXCEPT
 {
-    return STLSOFT_NS_GLOBAL(wmemcmp)(s1, s2, cch);
+    return STLSOFT_API_EXTERNAL_memfns_wmemcmp(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -1127,7 +1132,9 @@ stlsoft_char_traits<wchar_t>::length_max(
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

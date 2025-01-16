@@ -4,7 +4,7 @@
  * Purpose: Type conversions for Windows.
  *
  * Created: 31st May 2003
- * Updated: 5th November 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    4
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 14
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     118
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 15
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,9 +98,9 @@
 # include <errno.h>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
@@ -143,7 +143,7 @@ template <
     ws_size_t V_internalSize
 >
 class multibyte2wide
-    : private auto_buffer<ws_char_w_t, V_internalSize, processheap_allocator<ws_char_w_t>>
+    : private auto_buffer<ws_char_w_t, V_internalSize, processheap_allocator<ws_char_w_t> >
 {
 /// \name Member Types
 /// @{
@@ -187,9 +187,9 @@ public:
     multibyte2wide(class_type const& s)
         : parent_class_type(s.size() + 1)
     {
-        char_type* p = &static_cast<parent_class_type&>(*this)[0];
+        char_type* const p = &static_cast<parent_class_type&>(*this)[0];
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
         STLSOFT_ASSERT('\0' == (*this)[s.size()]);
     }
 # endif /* compiler */
@@ -301,7 +301,7 @@ private:
  */
 template <ws_size_t V_internalSize>
 class wide2multibyte
-    : private auto_buffer<ws_char_a_t, V_internalSize, processheap_allocator<ws_char_a_t>>
+    : private auto_buffer<ws_char_a_t, V_internalSize, processheap_allocator<ws_char_a_t> >
 {
 /// \name Member Types
 /// @{
@@ -345,9 +345,9 @@ public:
     wide2multibyte(class_type const& s)
         : parent_class_type(s.size() + 1)
     {
-        char_type* p = &static_cast<parent_class_type&>(*this)[0];
+        char_type* const p = &static_cast<parent_class_type&>(*this)[0];
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
+        STLSOFT_API_EXTERNAL_memfns_memcpy(p, s, sizeof(char_type) * (1u + s.size()));
         STLSOFT_ASSERT('\0' == (*this)[s.size()]);
     }
 # endif /* compiler */

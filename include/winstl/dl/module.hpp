@@ -4,7 +4,7 @@
  * Purpose: Contains the dl_module class.
  *
  * Created: 30th October 1997
- * Updated: 13th October 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      7
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      0
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   2
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       256
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       257
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -215,7 +215,7 @@ public:
     ///
     /// \note If exception-handling is being used, then this throws a
     ///  \link winstl::winstl_exception winstl_exception\endlink
-    ///  if the handle is NULL.
+    ///  if the handle is \c nullptr.
     ss_explicit_k
     dl_module(module_handle_type hmodule);
     /// Copy constructor
@@ -253,14 +253,14 @@ public:
     ///
     /// \param moduleName The file name of the executable module to be loaded.
     ///
-    /// \return The module handle, or NULL if no matching module found.
+    /// \return The module handle, or \c nullptr if no matching module found.
     static module_handle_type   load(ws_char_a_t const* moduleName);
     /// Loads the named module, returning its handle, which the
     ///   caller must close with unload().
     ///
     /// \param moduleName The file name of the executable module to be loaded.
     ///
-    /// \return The module handle, or NULL if no matching module found.
+    /// \return The module handle, or \c nullptr if no matching module found.
     static module_handle_type   load(ws_char_w_t const* moduleName);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
@@ -274,7 +274,7 @@ public:
     ///   \ref group__concept__Shim__string_access "string access shim"
     ///   stlsoft::c_str_ptr is defined.
     ///
-    /// \return The module handle, or NULL if no matching module found.
+    /// \return The module handle, or \c nullptr if no matching module found.
     template <ss_typename_param_k S>
     static module_handle_type   load(S const& moduleName)
     {
@@ -285,11 +285,11 @@ public:
     static void                 unload(module_handle_type hmodule) STLSOFT_NOEXCEPT;
     /// Looks up a named symbol from the given module.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     static proc_pointer_type    get_symbol(module_handle_type hmodule, ws_char_a_t const* symbolName);
     /// Looks up a symbol by ordinal from the given module.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     static proc_pointer_type    get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
@@ -297,7 +297,7 @@ public:
 
     /// Looks up a named symbol from the given module into a typed function pointer variable.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     template <ss_typename_param_k F>
     static proc_pointer_type    get_symbol(module_handle_type hmodule, ws_char_a_t const* symbolName, F& f)
     {
@@ -309,7 +309,7 @@ public:
     }
     /// Looks up a symbol by ordinal from the given module into a typed function pointer variable.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     template <ss_typename_param_k F>
     static proc_pointer_type    get_symbol(module_handle_type hmodule, ws_uint32_t symbolOrdinal, F& f)
     {
@@ -337,11 +337,11 @@ public:
 public:
     /// Looks up a named symbol.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     proc_pointer_type   get_symbol(ws_char_a_t const* symbolName);
     /// Looks up a symbol by ordinal.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     proc_pointer_type   get_symbol(ws_uint32_t symbolOrdinal);
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
@@ -349,7 +349,7 @@ public:
 
     /// Looks up a named symbol into a typed function pointer variable.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     template <ss_typename_param_k F>
     proc_pointer_type   get_symbol(ws_char_a_t const* symbolName, F& f)
     {
@@ -357,7 +357,7 @@ public:
     }
     /// Looks up a symbol by ordinal into a typed function pointer variable.
     ///
-    /// \return A pointer to the named symbol, or NULL if not found.
+    /// \return A pointer to the named symbol, or \c nullptr if not found.
     template <ss_typename_param_k F>
     proc_pointer_type   get_symbol(ws_uint32_t symbolOrdinal, F& f)
     {

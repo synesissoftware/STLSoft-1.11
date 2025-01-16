@@ -4,7 +4,7 @@
  * Purpose: stlsoft::spin_mutex_base class template.
  *
  * Created: 27th August 1997
- * Updated: 10th October 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  To Rupert Kittinger, for pointing out that the prior
  *          implementation that always yielded was not really "spinning".
@@ -55,10 +55,10 @@
 #define STLSOFT_INCL_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MAJOR     6
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MINOR     0
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_REVISION  5
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT      80
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MAJOR    6
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_MINOR    0
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_REVISION 5
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_SPIN_MUTEX_BASE_EDIT     81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,8 +141,8 @@ public:
 
     /// Creates an instance of the mutex
     ///
-    /// \param p Pointer to an external counter variable. May be NULL, in
-    ///  which case an internal member is used for the counter variable.
+    /// \param p Pointer to an external counter variable. May be \c nullptr,
+    ///   in which case an internal member is used for the counter variable.
     ss_explicit_k
     spin_mutex_base(atomic_int_type *p = NULL) STLSOFT_NOEXCEPT
         : m_spinCount((NULL != p) ? p : &m_internalCount)
@@ -153,8 +153,8 @@ public:
     {}
     /// Creates an instance of the mutex
     ///
-    /// \param p Pointer to an external counter variable. May be NULL, in
-    ///   which case an internal member is used for the counter variable.
+    /// \param p Pointer to an external counter variable. May be \c nullptr,
+    ///   in which case an internal member is used for the counter variable.
     /// \param yieldContext The yield context
     spin_mutex_base(atomic_int_type *p, void* yieldContext) STLSOFT_NOEXCEPT
         : m_spinCount((NULL != p) ? p : &m_internalCount)
@@ -176,7 +176,8 @@ private:
 /// \name Operations
 /// @{
 public:
-    /// Acquires a lock on the mutex, pending the thread until the lock is acquired
+    /// Acquires a lock on the mutex, pending the thread until the lock is
+    /// acquired
     void lock() STLSOFT_NOEXCEPT
     {
 #ifdef STLSOFT_SPINMUTEX_CHECK_INIT

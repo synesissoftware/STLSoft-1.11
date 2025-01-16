@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readdir_sequence`.
  *
  * Created: sometime in 2010s
- * Updated: 11th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,8 +38,8 @@
 namespace
 {
 
-    static void test_empty_directory(void);
-    static void test_non_empty_directory(void);
+    static void test_empty_directory();
+    static void test_non_empty_directory();
 } // anonymous namespace
 
 
@@ -80,7 +80,7 @@ namespace
     using ::xtests::cpp::util::temp_directory;
 
 
-static void test_empty_directory(void)
+static void test_empty_directory()
 {
     temp_directory dir(temp_directory::EmptyOnClose | temp_directory::EmptyOnOpen | temp_directory::RemoveOnClose);
 
@@ -90,7 +90,7 @@ static void test_empty_directory(void)
     XTESTS_TEST_BOOLEAN_TRUE(rds.empty());
 }
 
-static void test_non_empty_directory(void)
+static void test_non_empty_directory()
 {
     readdir_sequence_t rds(".");
 

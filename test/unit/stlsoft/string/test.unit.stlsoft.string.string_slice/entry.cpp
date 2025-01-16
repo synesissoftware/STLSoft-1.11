@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.string.string_slice.cpp
+ * File:    test.unit.stlsoft.string.string_slice/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::basic_string_slice`.
  *
  * Created: 19th February 2010
- * Updated: 15th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,27 +40,27 @@
 namespace
 {
 
-    static void test_type_exists(void);
-    static void test_constructor_callable(void);
-    static void test_constructed_state(void);
-    static void test_constructed_subslice_1(void);
-    static void test_constructed_from_c_string_1(void);
-    static void test_copy_construction_1(void);
-    static void test_assignment_1(void);
-    static void test_string_access_shims_1(void);
-    static void test_string_access_shims_multibyte_1(void);
-    static void test_string_access_shims_2(void);
-    static void test_string_access_shims_multibyte_2(void);
-    static void test_string_access_shims_multibyte_3(void);
-    static void test_equality_operator_1(void);
-    static void test_less_than_operator_1(void);
-    static void test_greater_than_operator_1(void);
-    static void test_lessgreaterequal_operators_1(void);
-    static void test_lessgreaterequal_operators_2(void);
-    static void test_insertion_1(void);
-    static void test_insertion_2(void);
-    static void test_insertion_3(void);
-    static void test_insertion_4(void);
+    static void test_type_exists();
+    static void test_constructor_callable();
+    static void test_constructed_state();
+    static void test_constructed_subslice_1();
+    static void test_constructed_from_c_string_1();
+    static void test_copy_construction_1();
+    static void test_assignment_1();
+    static void test_string_access_shims_1();
+    static void test_string_access_shims_multibyte_1();
+    static void test_string_access_shims_2();
+    static void test_string_access_shims_multibyte_2();
+    static void test_string_access_shims_multibyte_3();
+    static void test_equality_operator_1();
+    static void test_less_than_operator_1();
+    static void test_greater_than_operator_1();
+    static void test_lessgreaterequal_operators_1();
+    static void test_lessgreaterequal_operators_2();
+    static void test_insertion_1();
+    static void test_insertion_2();
+    static void test_insertion_3();
+    static void test_insertion_4();
 
 } // anonymous namespace
 
@@ -406,7 +406,7 @@ static void test_lessgreaterequal_operators_2()
     XTESTS_TEST_BOOLEAN_TRUE(slice1_w <= slice2_w);
 }
 
-static void test_insertion_1(void)
+static void test_insertion_1()
 {
     stlsoft::string_slice<char> const   s1;
     stlsoft::string_slice<char> const   s2("abc");
@@ -439,7 +439,7 @@ static void test_insertion_1(void)
     }
 }
 
-static void test_insertion_2(void)
+static void test_insertion_2()
 {
     stlsoft::string_slice<char> const   s2("abc");
     stlsoft::string_slice<char> const   s3("def");
@@ -459,7 +459,7 @@ static void test_insertion_2(void)
     }
 }
 
-static void test_insertion_3(void)
+static void test_insertion_3()
 {
     stlsoft::string_slice<char> const   s1;
     stlsoft::string_slice<char> const   s2("abc");
@@ -483,7 +483,7 @@ static void test_insertion_3(void)
 }
 
 
-static void test_insertion_4(void)
+static void test_insertion_4()
 {
     const std::size_t FIELD_WIDTH = 2000;
 #if defined(_MSC_VER) &&\

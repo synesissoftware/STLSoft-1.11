@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -58,7 +58,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      185
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      186
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -125,10 +125,9 @@
 # include <stdexcept>                        // for std::runtime_error
 #endif /* !STLSOFT_INCL_STDEXCEPT */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -1101,7 +1100,7 @@ glob_sequence::init_glob_2_(
 {
     // Preconditions:
     //
-    // - pattern must not be NULL
+    // - pattern must not be \c nullptr
     // - pattern must not contain a path-name separator
     UNIXSTL_ASSERT(NULL != pattern0);
     UNIXSTL_ASSERT(NULL == traits_type::str_chr(pattern0, '/'));
@@ -1331,7 +1330,7 @@ glob_sequence::init_glob_3_(
 
             UNIXSTL_ASSERT(m_buffer.size() == cItems);
 
-            base = static_cast<char_type**>(STLSOFT_API_INTERNAL_memfns_memcpy(&m_buffer[0], base, m_buffer.size() * sizeof(char_type*)));
+            base = static_cast<char_type**>(STLSOFT_API_EXTERNAL_memfns_memcpy(&m_buffer[0], base, m_buffer.size() * sizeof(char_type*)));
         }
 
         // This section elides dots directories.

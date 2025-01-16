@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/copy_functions.h
+ * File:    stlsoft/string/copy_functions.h
  *
- * Purpose:     String copy functions.
+ * Purpose: String copy functions.
  *
- * Created:     29th September 2016
- * Updated:     11th March 2024
+ * Created: 29th September 2016
+ * Updated: 26th September 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_MINOR      0
-# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_REVISION   3
-# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_EDIT       13
+# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_REVISION   4
+# define STLSOFT_VER_STLSOFT_STRING_H_COPY_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,9 +84,9 @@
 # include <stlsoft/quality/cover.h>
 #endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ STLSoft_C_string_copy_a(
     if (0 != n &&
         0 != cchSrc)
     {
-        STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, sizeof(ss_char_a_t) * n);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, sizeof(ss_char_a_t) * n);
 
         if (n < cchDest)
         {
@@ -168,7 +168,7 @@ STLSoft_C_string_copy_w(
     if (0 != n &&
         0 != cchSrc)
     {
-        STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, sizeof(ss_char_w_t) * n);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, sizeof(ss_char_w_t) * n);
     }
 
     if (n < cchDest)
@@ -227,7 +227,7 @@ STLSoft_C_string_copy_with_nul_a(
 
     if (0 != n)
     {
-        STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, sizeof(ss_char_a_t) * n);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, sizeof(ss_char_a_t) * n);
 
         dest[n] = '\0';
     }
@@ -267,7 +267,7 @@ STLSoft_C_string_copy_with_nul_w(
 
     if (0 != n)
     {
-        STLSOFT_API_INTERNAL_memfns_memcpy(dest, src, sizeof(ss_char_w_t) * n);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(dest, src, sizeof(ss_char_w_t) * n);
     }
 
     if (0 != cchDest)

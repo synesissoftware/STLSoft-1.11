@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::shell_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 5th November 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,14 +44,14 @@
 namespace
 {
 
-    static void test_alloc_0(void);
-    static void test_alloc_small(void);
-    static void test_alloc_medium(void);
-    static void test_alloc_large(void);
-    static void test_alloc_toolarge(void);
+    static void test_alloc_0();
+    static void test_alloc_small();
+    static void test_alloc_medium();
+    static void test_alloc_large();
+    static void test_alloc_toolarge();
 
-    static void test_specialise_list(void);
-    static void test_specialise_vector(void);
+    static void test_specialise_list();
+    static void test_specialise_vector();
 } // anonymous namespace
 
 
@@ -93,37 +93,37 @@ int main(int argc, char *argv[])
 namespace
 {
 
-static void test_alloc_0(void)
+static void test_alloc_0()
 {
 
 }
 
-static void test_alloc_small(void)
+static void test_alloc_small()
 {
 
 }
 
-static void test_alloc_medium(void)
+static void test_alloc_medium()
 {
 
 }
 
-static void test_alloc_large(void)
+static void test_alloc_large()
 {
 
 }
 
-static void test_alloc_toolarge(void)
+static void test_alloc_toolarge()
 {
 
 }
 
-static void test_specialise_list(void)
+static void test_specialise_list()
 {
 
 }
 
-static void test_specialise_vector(void)
+static void test_specialise_vector()
 {
 
 }

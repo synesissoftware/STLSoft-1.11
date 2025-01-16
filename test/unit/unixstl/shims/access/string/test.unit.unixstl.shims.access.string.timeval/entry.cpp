@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.unixstl.shims.access.string.timeval.cpp
+ * File:    test.unit.unixstl.shims.access.string.timeval/entry.cpp
  *
  * Purpose: Unit-tests for string-access-shims for UNIX `timeval`.
  *
  * Created: 5th May 2014
- * Updated: 11th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,10 +47,10 @@
 namespace
 {
 
-    static void test_calls_possible(void);
-    static void test_c_str_len(void);
-    static void test_c_str_ptr(void);
-    static void test_invalid_value_conversion(void);
+    static void test_calls_possible();
+    static void test_c_str_len();
+    static void test_c_str_ptr();
+    static void test_invalid_value_conversion();
 } // anonymous namespace
 
 

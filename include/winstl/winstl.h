@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 15th October 2024
+ * Updated: 27th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       18
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    7
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        235
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    8
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        236
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -171,12 +171,13 @@
 # define _WINSTL_VER_1_13_0_A01 0x010d0041  /*!< Version 1.13.0 alpha 1 (with STLSoft 1.11.1 alpha 15) */
 # define _WINSTL_VER_1_13_0_A02 0x010d0042  /*!< Version 1.13.0 alpha 2 (with STLSoft 1.11.1 alpha 17) */
 # define _WINSTL_VER_1_13_0_A03 0x010d0043  /*!< Version 1.13.0 alpha 3 (with STLSoft 1.11.1 alpha 18) */
+# define _WINSTL_VER_1_13_0_A04 0x010d0044  /*!< Version 1.13.0 alpha 4 (with STLSoft 1.11.1 alpha 28) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       13
 #define _WINSTL_VER_REVISION    0
-#define _WINSTL_VER             _WINSTL_VER_1_13_0_A03
+#define _WINSTL_VER             _WINSTL_VER_1_13_0_A04
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -564,17 +565,23 @@
 # undef WINSTL_UDATE_DEFINED
 #endif /* WINSTL_UDATE_DEFINED */
 
-#if defined(WINSTL_FORCE_UDATE) || \
-    defined(STLSOFT_COMPILER_IS_BORLAND) || \
-    (   defined(STLSOFT_COMPILER_IS_COMO) && \
-        defined(_MSC_VER)) || \
-    defined(STLSOFT_COMPILER_IS_DMC) || \
-    (   defined(STLSOFT_COMPILER_IS_GCC) && \
-        (   defined(__MINGW32__) || \
-            defined(__MINGW64__))) || \
-    defined(STLSOFT_COMPILER_IS_INTEL) || \
-    defined(STLSOFT_COMPILER_IS_MWERKS) || \
-    defined(STLSOFT_COMPILER_IS_MSVC)
+#if 0
+#elif defined(WINSTL_FORCE_UDATE)
+
+# define WINSTL_UDATE_DEFINED
+#elif 0 ||\
+      defined(STLSOFT_COMPILER_IS_BORLAND) ||\
+      ( defined(STLSOFT_COMPILER_IS_COMO) &&\
+        defined(_MSC_VER)) ||\
+      defined(STLSOFT_COMPILER_IS_DMC) ||\
+      ( 1 &&\
+        defined(STLSOFT_COMPILER_IS_GCC) &&\
+        defined(STLSOFT_MINGW) &&\
+        1) ||\
+      defined(STLSOFT_COMPILER_IS_INTEL) ||\
+      defined(STLSOFT_COMPILER_IS_MWERKS) ||\
+      defined(STLSOFT_COMPILER_IS_MSVC) ||\
+      0
 
 # define WINSTL_UDATE_DEFINED
 #endif /* WINSTL_FORCE_UDATE || compiler */
@@ -1030,9 +1037,10 @@ typedef ws_uptrint_t                                        uptrint_t;
 #elif defined(_MAX_PATH)
 
 # define WINSTL_CONST_MAX_PATH                              _MAX_PATH
-#elif defined(__CYGWIN__) || \
-      defined(__MINGW32__) || \
-      defined(__MINGW64__)
+#elif 0 ||\
+      defined(__CYGWIN__) || \
+      defined(STLSOFT_MINGW) || \
+      0
 
 # define WINSTL_CONST_MAX_PATH                              (260)
 #else

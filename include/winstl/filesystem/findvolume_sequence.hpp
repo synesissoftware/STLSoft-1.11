@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 15th January 2002
- * Updated: 10th October 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  17
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      140
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      142
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -136,12 +136,18 @@ enum
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template <ss_typename_param_k C, ss_typename_param_k T>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 class basic_findvolume_sequence_value_type;
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 class basic_findvolume_sequence_const_iterator;
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -159,31 +165,42 @@ class basic_findvolume_sequence_const_iterator;
  * \param C The character type
  * \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
  */
-template<   ss_typename_param_k C
+template<
+    ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-        ,   ss_typename_param_k T = filesystem_traits<C>
+,   ss_typename_param_k T = filesystem_traits<C>
 #else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        ,   ss_typename_param_k T /* = filesystem_traits<C> */
+,   ss_typename_param_k T /* = filesystem_traits<C> */
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        >
+>
 class basic_findvolume_sequence
     : public STLSOFT_NS_QUAL(stl_collection_tag)
 {
 public:
     /// The character type
-    typedef C                                                           char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                                           traits_type;
+    typedef T                                               traits_type;
     /// The current specialisation of the type
-    typedef basic_findvolume_sequence<C, T>                             class_type;
+    typedef basic_findvolume_sequence<
+        C
+    ,   T
+    >                                                       class_type;
     /// The value type
-    typedef basic_findvolume_sequence_value_type<C, T>                  value_type;
+    typedef basic_findvolume_sequence_value_type<
+        C
+    ,   T
+    >                                                       value_type;
     /// The non-mutating (const) iterator type
-    typedef basic_findvolume_sequence_const_iterator<C, T, value_type>  const_iterator;
+    typedef basic_findvolume_sequence_const_iterator<
+        C
+    ,   T
+    ,   value_type
+    >                                                       const_iterator;
     /// The reference type
-    typedef value_type&                                                 reference;
+    typedef value_type&                                     reference;
     /// The non-mutable (const) reference type
-    typedef value_type const&                                           const_reference;
+    typedef value_type const&                               const_reference;
 
 // Iteration
 public:
@@ -211,17 +228,26 @@ public:
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_findvolume_sequence<ws_char_a_t, filesystem_traits<ws_char_a_t> >     findvolume_sequence_a;
+typedef basic_findvolume_sequence<
+    ws_char_a_t
+,   filesystem_traits<ws_char_a_t>
+>                                                           findvolume_sequence_a;
 /** Specialisation of the basic_findvolume_sequence template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_findvolume_sequence<ws_char_w_t, filesystem_traits<ws_char_w_t> >     findvolume_sequence_w;
+typedef basic_findvolume_sequence<
+    ws_char_w_t
+,   filesystem_traits<ws_char_w_t>
+>                                                           findvolume_sequence_w;
 /** Specialisation of the basic_findvolume_sequence template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__FileSystem
  */
-typedef basic_findvolume_sequence<TCHAR, filesystem_traits<TCHAR> >                 findvolume_sequence;
+typedef basic_findvolume_sequence<
+    TCHAR
+,   filesystem_traits<TCHAR>
+>                                                           findvolume_sequence;
 
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -231,18 +257,19 @@ typedef basic_findvolume_sequence<TCHAR, filesystem_traits<TCHAR> >             
  *
  * \ingroup group__library__FileSystem
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 class basic_findvolume_sequence_value_type
 {
 public:
     /// The character type
-    typedef C                                           char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                           traits_type;
+    typedef T                                               traits_type;
     /// The current specialisation of the type
-    typedef basic_findvolume_sequence_value_type<C, T>  class_type;
+    typedef basic_findvolume_sequence_value_type<C, T>      class_type;
 
 public:
     /// Default constructor
@@ -275,10 +302,11 @@ private:
  *
  * \ingroup group__library__FileSystem
  */
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k V
-        >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 class basic_findvolume_sequence_const_iterator
     : public STLSOFT_NS_QUAL(iterator_base)<
         STLSOFT_NS_QUAL_STD(input_iterator_tag)
@@ -290,13 +318,17 @@ class basic_findvolume_sequence_const_iterator
 {
 public:
     /// The character type
-    typedef C                                                   char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                                   traits_type;
+    typedef T                                               traits_type;
     /// The traits type
-    typedef V                                                   value_type;
+    typedef V                                               value_type;
     /// The current specialisation of the type
-    typedef basic_findvolume_sequence_const_iterator<C, T, V>   class_type;
+    typedef basic_findvolume_sequence_const_iterator<
+        C
+    ,   T
+    ,   V
+    >                                                       class_type;
 
 /// \name Utility classes
 /// @{
@@ -305,7 +337,7 @@ private:
     struct shared_handle
     {
     public:
-        typedef shared_handle       class_type;
+        typedef shared_handle                                   class_type;
 
     // Members
     public:
@@ -415,24 +447,32 @@ private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline ws_char_a_t const* c_str_data_a(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_a_t, T> const& v)
+inline
+ws_char_a_t const*
+c_str_data_a(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_a_t, T> const& v)
 {
     return v;
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const* c_str_data_w(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_w_t, T> const& v)
+inline
+ws_char_w_t const*
+c_str_data_w(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_w_t, T> const& v)
 {
     return v;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_data for winstl::basic_findvolume_sequence_value_type
  *
  * \ingroup group__concept__Shim__string_access
  */
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline C const* c_str_data(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
+inline
+C const*
+c_str_data(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v)
 {
     return v;
 }
@@ -443,12 +483,16 @@ inline C const* c_str_data(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline ws_size_t c_str_len_a(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_a_t, T> const& v)
+inline
+ws_size_t
+c_str_len_a(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_a_t, T> const& v)
 {
     return STLSOFT_NS_QUAL(c_str_len_a(STLSOFT_NS_QUAL(c_str_ptr_a(v))));
 }
 template <ss_typename_param_k T>
-inline ws_size_t c_str_len_w(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_w_t, T> const& v)
+inline
+ws_size_t
+c_str_len_w(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_w_t, T> const& v)
 {
     return STLSOFT_NS_QUAL(c_str_len_w(STLSOFT_NS_QUAL(c_str_ptr_w(v))));
 }
@@ -459,8 +503,13 @@ inline ws_size_t c_str_len_w(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type
  *
  * \ingroup group__concept__Shim__string_access
  */
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ws_size_t c_str_len(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
+inline
+ws_size_t
+c_str_len(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v)
 {
     return STLSOFT_NS_QUAL(c_str_len(STLSOFT_NS_QUAL(c_str_ptr(v))));
 }
@@ -471,23 +520,29 @@ inline ws_size_t c_str_len(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline ws_char_a_t const* c_str_ptr_a(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_a_t, T> const& v)
+inline
+ws_char_a_t const*
+c_str_ptr_a(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_a_t, T> const& v)
 {
     return v;
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const* c_str_ptr_w(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_w_t, T> const& v)
+inline
+ws_char_w_t const*
+c_str_ptr_w(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_w_t, T> const& v)
 {
     return v;
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr for winstl::basic_findvolume_sequence_value_type
  *
  * \ingroup group__concept__Shim__string_access
  */
-template <ss_typename_param_k C, ss_typename_param_k T>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline C const* c_str_ptr(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v)
 {
     return v;
@@ -499,24 +554,32 @@ inline C const* c_str_ptr(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline ws_char_a_t const* c_str_ptr_null_a(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_a_t, T> const& v)
+inline
+ws_char_a_t const*
+c_str_ptr_null_a(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_a_t, T> const& v)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_a(v));
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const* c_str_ptr_null_w(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_w_t, T> const& v)
+inline
+ws_char_w_t const*
+c_str_ptr_null_w(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<ws_char_w_t, T> const& v)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_w(v));
 }
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \ref group__concept__Shim__string_access__c_str_ptr_null for winstl::basic_findvolume_sequence_value_type
  *
  * \ingroup group__concept__Shim__string_access
  */
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline C const* c_str_ptr_null(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
+inline
+C const*
+c_str_ptr_null(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null(v));
 }
@@ -528,8 +591,13 @@ inline C const* c_str_ptr_null(WINSTL_NS_QUAL(basic_findvolume_sequence_value_ty
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ws_bool_t is_empty(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
+inline
+ws_bool_t
+is_empty(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C, T> const& v) STLSOFT_NOEXCEPT
 {
     return '\0' == v[0];
 }
@@ -544,8 +612,13 @@ inline ws_bool_t is_empty(WINSTL_NS_QUAL(basic_findvolume_sequence_value_type)<C
 
 // basic_findvolume_sequence
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_ret_k basic_findvolume_sequence<C, T>::const_iterator basic_findvolume_sequence<C, T>::begin() const
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
+inline
+ss_typename_type_ret_k basic_findvolume_sequence<C, T>::const_iterator
+basic_findvolume_sequence<C, T>::begin() const
 {
     char_type   vol_name[MAX_VOL_NAME + 1];
     HANDLE      hSrch   =   traits_type::find_first_volume(vol_name, STLSOFT_NUM_ELEMENTS(vol_name));
@@ -571,13 +644,19 @@ inline ss_typename_type_ret_k basic_findvolume_sequence<C, T>::const_iterator ba
     return const_iterator(*this);
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline ss_typename_type_ret_k basic_findvolume_sequence<C, T>::const_iterator basic_findvolume_sequence<C, T>::end() const
 {
     return const_iterator(*this);
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline ws_bool_t basic_findvolume_sequence<C, T>::empty() const
 {
     return end() == begin();
@@ -585,25 +664,37 @@ inline ws_bool_t basic_findvolume_sequence<C, T>::empty() const
 
 // basic_findvolume_sequence_value_type
 
-template <ss_typename_param_k C, ss_typename_param_k T>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_value_type()
 {
     m_name[0] = '\0';
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_value_type(class_type const& rhs)
 {
     traits_type::char_copy(m_name, rhs.m_name, STLSOFT_NUM_ELEMENTS(m_name));
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline basic_findvolume_sequence_value_type<C, T>::basic_findvolume_sequence_value_type(char_type const* vol_name)
 {
     traits_type::char_copy(m_name, vol_name, STLSOFT_NUM_ELEMENTS(m_name));
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
 inline ss_typename_type_ret_k basic_findvolume_sequence_value_type<C, T>::class_type& basic_findvolume_sequence_value_type<C, T>::operator =(class_type const& rhs)
 {
     traits_type::char_copy(m_name, rhs.m_name, STLSOFT_NUM_ELEMENTS(m_name));
@@ -614,7 +705,11 @@ inline ss_typename_type_ret_k basic_findvolume_sequence_value_type<C, T>::class_
 
 // basic_findvolume_sequence_const_iterator
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_sequence_const_iterator()
     : m_list(NULL)
     , m_handle(NULL)
@@ -622,7 +717,11 @@ inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_seque
     m_name[0] = '\0';
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_sequence_const_iterator(basic_findvolume_sequence<C, T> const& l)
     : m_list(&l)
     , m_handle(NULL)
@@ -630,7 +729,11 @@ inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_seque
     m_name[0] = '\0';
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_sequence_const_iterator(class_type const& rhs)
     : m_list(rhs.m_list)
     , m_handle(rhs.m_handle)
@@ -643,7 +746,11 @@ inline basic_findvolume_sequence_const_iterator<C, T, V>::basic_findvolume_seque
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type& basic_findvolume_sequence_const_iterator<C, T, V>::operator =(ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type const& rhs)
 {
     shared_handle   *this_handle    =   m_handle;
@@ -665,7 +772,11 @@ inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>:
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline basic_findvolume_sequence_const_iterator<C, T, V>::~basic_findvolume_sequence_const_iterator() STLSOFT_NOEXCEPT
 {
     if (NULL != m_handle)
@@ -674,7 +785,11 @@ inline basic_findvolume_sequence_const_iterator<C, T, V>::~basic_findvolume_sequ
     }
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type& basic_findvolume_sequence_const_iterator<C, T, V>::operator ++()
 {
     WINSTL_MESSAGE_ASSERT("Attempting to increment an invalid iterator!", NULL != m_handle);
@@ -689,7 +804,11 @@ inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>:
     return *this;
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>::class_type basic_findvolume_sequence_const_iterator<C, T, V>::operator ++(int)
 {
     class_type  ret(*this);
@@ -699,7 +818,11 @@ inline ss_typename_type_ret_k basic_findvolume_sequence_const_iterator<C, T, V>:
     return ret;
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline const ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V>::value_type basic_findvolume_sequence_const_iterator<C, T, V>::operator *() const
 {
     if (NULL != m_handle)
@@ -712,7 +835,11 @@ inline const ss_typename_type_k basic_findvolume_sequence_const_iterator<C, T, V
     }
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator ==(class_type const& rhs) const
 {
     WINSTL_MESSAGE_ASSERT("Comparing iterators from separate sequences", (m_list == rhs.m_list || NULL == m_list || NULL == rhs.m_list));
@@ -720,7 +847,11 @@ inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator ==(
     return m_handle == rhs.m_handle;
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k V>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k V
+>
 inline ws_bool_t basic_findvolume_sequence_const_iterator<C, T, V>::operator !=(class_type const& rhs) const
 {
     return ! operator ==(rhs);

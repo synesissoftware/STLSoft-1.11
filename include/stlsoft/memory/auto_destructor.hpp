@@ -5,7 +5,7 @@
  *          classes.
  *
  * Created: 1st November 1994
- * Updated: 10th October 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MAJOR       5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MINOR       2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        93
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_MINOR       3
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    1
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -275,12 +275,12 @@ public:
     ///
     /// \deprecated This function will be removed in a future release. Users
     ///   should instead invoke get()
-    value_type* get_ptr() const
+    value_type* get_ptr() const STLSOFT_NOEXCEPT
     {
         return get();
     }
     /// Returns the pointer
-    value_type* get() const
+    value_type* get() const STLSOFT_NOEXCEPT
     {
         return m_value;
     }
@@ -394,12 +394,12 @@ public:
     ///
     /// \deprecated This function will be removed in a future release. Users
     ///   should instead invoke get()
-    value_type* get_ptr() const
+    value_type* get_ptr() const STLSOFT_NOEXCEPT
     {
         return get();
     }
     /// Returns the pointer
-    value_type* get() const
+    value_type* get() const STLSOFT_NOEXCEPT
     {
         return m_value;
     }
@@ -456,14 +456,14 @@ class return_value_destructor
 /// @{
 public:
     /// The value type
-    typedef T                                           value_type;
+    typedef T                                               value_type;
     /// The current specialisation of the type
-    typedef return_value_destructor<T>                  class_type;
+    typedef return_value_destructor<T>                      class_type;
     /// The auto type
-    typedef auto_destructor<T>                          auto_type;
+    typedef auto_destructor<T>                              auto_type;
 private:
     /// The proxy type
-    typedef move_proxy<T, class_type>                   proxy_type;
+    typedef move_proxy<T, class_type>                       proxy_type;
 /// @}
 
 /// \name Construction
@@ -652,7 +652,9 @@ private:
  * \ingroup group__concept__Shim__Attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T *get_ptr(auto_destructor<T> const& ad)
+inline
+T*
+get_ptr(auto_destructor<T> const& ad) STLSOFT_NOEXCEPT
 {
     return ad.get();
 }
@@ -661,7 +663,9 @@ inline T *get_ptr(auto_destructor<T> const& ad)
  * \ingroup group__concept__Shim__Attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T* get_ptr(return_value_destructor<T> const& ad)
+inline
+T*
+get_ptr(return_value_destructor<T> const& ad) STLSOFT_NOEXCEPT
 {
     return ad.get();
 }
@@ -670,7 +674,9 @@ inline T* get_ptr(return_value_destructor<T> const& ad)
  * \ingroup group__concept__Shim__Attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T* get_ptr(auto_array_destructor<T> const& ad)
+inline
+T*
+get_ptr(auto_array_destructor<T> const& ad) STLSOFT_NOEXCEPT
 {
     return ad.get();
 }
@@ -679,12 +685,17 @@ inline T* get_ptr(auto_array_destructor<T> const& ad)
  * \ingroup group__concept__Shim__Attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T* get_ptr(return_value_array_destructor<T> const& ad)
+inline
+T*
+get_ptr(return_value_array_destructor<T> const& ad) STLSOFT_NOEXCEPT
 {
     return ad.get();
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

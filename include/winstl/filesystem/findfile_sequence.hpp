@@ -144,9 +144,9 @@
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
@@ -996,9 +996,7 @@ c_str_ptr_null(WINSTL_NS_QUAL(basic_findfile_sequence_value_type)<C, T> const& v
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline
 ws_bool_t
-is_empty(
-    basic_findfile_sequence<C, T> const& s
-)
+is_empty(basic_findfile_sequence<C, T> const& s) STLSOFT_NOEXCEPT
 {
     return s.empty();
 }
@@ -1062,7 +1060,7 @@ struct fff_traits_<ws_char_w_t>
         searchSpec_l[2] =   L'?';
         searchSpec_l[3] =   L'\\';
 
-        STLSOFT_API_INTERNAL_memfns_memcpy(&searchSpec_l[0] + 4, &searchSpec[0], sizeof(ws_char_w_t) * searchSpec.size());
+        STLSOFT_API_EXTERNAL_memfns_memcpy(&searchSpec_l[0] + 4, &searchSpec[0], sizeof(ws_char_w_t) * searchSpec.size());
 
         return T_fs_traits::find_first_file(searchSpec_l.data(), findData);
     }

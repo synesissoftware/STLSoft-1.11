@@ -120,9 +120,9 @@
 # include <stdexcept>                       // for std::out_of_range
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1861,7 +1861,7 @@ basic_simple_string<C, T, A>::copy_buffer_(ss_typename_type_k basic_simple_strin
 
         if (ss_nullptr_k != new_buffer)
         {
-            STLSOFT_API_INTERNAL_memfns_memcpy(new_buffer, buffer, cb);
+            STLSOFT_API_EXTERNAL_memfns_memcpy(new_buffer, buffer, cb);
 
             return member_pointer_from_string_buffer_(new_buffer);
         }

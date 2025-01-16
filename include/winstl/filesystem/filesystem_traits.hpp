@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 5th November 2024
+ * Updated: 24th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       21
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        190
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        191
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,10 +119,6 @@
 # include <wctype.h>
 #endif /* !STLSOFT_INCL_H_WCTYPE */
 
-#ifndef STLSOFT_INCL_STLSOFT_API_internal_h_memfns
-# include <stlsoft/api/internal/memfns.h>
-#endif /* !STLSOFT_INCL_STLSOFT_API_internal_h_memfns */
-
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
@@ -136,6 +132,9 @@
 # include <winstl/internal/windows_version_.h>
 #endif /* !WINSTL_INCL_WINSTL_INTERNAL_H_WINDOWS_VERSION_ */
 
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
@@ -791,12 +790,12 @@ public:
     static bool_type    fstat(file_handle_type fd, fstat_data_type* fstat_data);
     /// Gets the file attributes for the given path
     ///
-    /// \pre (NULL != path);
-    /// \pre (NULL != attr);
+    /// \pre (nullptr != path);
+    /// \pre (nullptr != attr);
     static bool_type    get_file_attributes(char_type const* path, file_attributes_type* attr);
     /// Sets the file attributes for the given path
     ///
-    /// \pre (NULL != path);
+    /// \pre (nullptr != path);
     /// \pre (INVALID_FILE_ATTRIBUTES != attr);
     static bool_type    set_file_attributes(char_type const* path, file_attributes_type const attr);
 
@@ -856,7 +855,7 @@ public:
     static large_size_type  get_file_size(stat_data_type const& sd);
     /// Gets the size of the file
     ///
-    /// \pre (NULL != psd)
+    /// \pre (nullptr != psd)
     static large_size_type  get_file_size(stat_data_type const* psd);
 #else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
 private:
@@ -1720,7 +1719,7 @@ private:
                         r2 = cchBuffer;
                     }
 
-                    STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0], &buffer_[0], sizeof(char_type) * r2);
+                    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0], &buffer_[0], sizeof(char_type) * r2);
                     if (NULL != pFile2 &&
                         r2 == (r - 1) &&
                         static_cast<size_type>(pFile2 - &buffer_[0]) < r2)
@@ -1785,7 +1784,7 @@ private:
                 fileName_[len] = '\0';
 
                 return get_full_path_name_impl(
-                    static_cast<char_type*>(STLSOFT_API_INTERNAL_memfns_memcpy(&fileName_[0], fileName, sizeof(char_type) * len))
+                    static_cast<char_type*>(STLSOFT_API_EXTERNAL_memfns_memcpy(&fileName_[0], fileName, sizeof(char_type) * len))
                 ,   len
                 ,   buffer
                 ,   cchBuffer
@@ -2212,7 +2211,7 @@ public:
             {
                 WINSTL_ASSERT(len > 0);
 
-                STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
+                STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
 
                 buffer[len - 1] = '\0';
 
@@ -2249,7 +2248,7 @@ public:
     }
 
 #if 0
-    /// \pre (NULL != path);
+    /// \pre (nullptr != path);
     /// \pre (INVALID_FILE_ATTRIBUTES != attr);
 #endif
 
@@ -3530,7 +3529,7 @@ public:
             {
                 WINSTL_ASSERT(len > 0);
 
-                STLSOFT_API_INTERNAL_memfns_memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
+                STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0], path, sizeof(char_type) * (len - 1));
 
                 buffer[len - 1] = L'\0';
 
@@ -3817,10 +3816,12 @@ private:
 #endif /* _WINSTL_FILESYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 };
-
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

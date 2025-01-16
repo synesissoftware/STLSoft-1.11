@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.smartptr.shared_ptr.cpp
+ * File:    test.unit.stlsoft.smartptr.shared_ptr/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::shared_ptr`.
  *
  * Created: 7th October 2024
- * Updated: 15th October 2024
+ * Updated: 28th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,19 +40,19 @@
 namespace
 {
 
-    static void test_types_exist(void);
+    static void test_types_exist();
 
-    static void test_ctor_default(void);
-    static void test_ctor_nullptr(void);
-    static void test_ctor_conversion(void);
-    static void test_ctor_copy(void);
+    static void test_ctor_default();
+    static void test_ctor_nullptr();
+    static void test_ctor_conversion();
+    static void test_ctor_copy();
 #ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-    static void test_ctor_move(void);
+    static void test_ctor_move();
 #endif
-    static void test_swap(void);
-    static void test_std_swap(void);
-    static void test_1_1(void);
+    static void test_swap();
+    static void test_std_swap();
+    static void test_1_1();
 } // anonymous namespace
 
 

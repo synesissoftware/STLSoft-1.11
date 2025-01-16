@@ -4,11 +4,11 @@
  * Purpose: Contains the get_ptr attribute shim.
  *
  * Created: 10th January 2002
- * Updated: 26th March 2024
+ * Updated: 28th December 2024
  *
- * Thanks:   Nevin Liber for spotting a mistake in the get_ptr definition.
+ * Thanks:  Nevin Liber for spotting a mistake in the get_ptr definition.
  *
- * Home:     http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MAJOR     4
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MINOR     1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_REVISION  8
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      63
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MINOR     2
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_REVISION  1
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,14 +109,18 @@ namespace stlsoft
  * \ingroup group__concept__Shim__Attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T *get_ptr(STLSOFT_NS_QUAL_STD(auto_ptr)<T> const& p)
+inline
+T*
+get_ptr(STLSOFT_NS_QUAL_STD(auto_ptr)<T> const& p) STLSOFT_NOEXCEPT
 {
     return p.get();
 }
-
 #endif /* _STLSOFT_PTR_ACCESS_NO_AUTO_PTR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

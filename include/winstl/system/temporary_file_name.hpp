@@ -5,7 +5,7 @@
  *          name.
  *
  * Created: 5th June 2011
- * Updated: 5th May 2024
+ * Updated: 28th December 2024
  *
  * Thanks:  Pablo Aguilar for requesting this component.
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_MAJOR     1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_MINOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_REVISION  4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_EDIT      25
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_REVISION  6
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_TEMPORARY_FILE_NAME_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,9 +77,9 @@
 # include <stlsoft/string/special_string_instance.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
-#  include <winstl/error/exceptions.hpp>
-# endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
+# ifndef WINSTL_INCL_WINSTL_EXCEPTION_HPP_WINSTL_EXCEPTION
+#  include <winstl/exception/winstl_exception.hpp>
+# endif /* !WINSTL_INCL_WINSTL_EXCEPTION_HPP_WINSTL_EXCEPTION */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
@@ -229,7 +229,7 @@ private:
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 
-        size_t cch = ::str_len(filePath_);
+        size_t cch = traits_type_::str_len(filePath_);
 
         if (0 != cchBuff)
         {

@@ -76,7 +76,6 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_DynamicLinkLibrary
 # include <winstl/api/external/DynamicLinkLibrary.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_DynamicLinkLibrary */
-
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */

@@ -4,7 +4,7 @@
  * Purpose: stlsoft::filesystem_exception_base class template
  *
  * Created: 1st January 2017
- * Updated: 10th October 2024
+ * Updated: 28th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_MAJOR     1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_MINOR     0
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_REVISION  4
-# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_EDIT      8
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_REVISION  5
+# define STLSOFT_VER_STLSOFT_EXCEPTION_UTIL_HPP_FILESYSTEM_EXCEPTION_BASE_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -181,8 +181,6 @@ public:
     ~filesystem_exception_base() STLSOFT_NOEXCEPT
     {}
 #ifdef STLSOFT_COMPILER_IS_GCC
-    filesystem_exception_base(class_type const&) = default;
-    class_type& operator =(class_type const&) = default;
 #else
 private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;

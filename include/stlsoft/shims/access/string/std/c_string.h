@@ -5,7 +5,7 @@
  *          c_str_size accessors.
  *
  * Created: 16th January 2002
- * Updated: 5th November 2024
+ * Updated: 26th December 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_MAJOR       4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_REVISION    14
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_EDIT        109
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING_EDIT        110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,6 +117,7 @@ namespace stlsoft
  */
 struct cannot_use_untyped_0_or_NULL_with_shims;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
@@ -130,10 +131,12 @@ struct cannot_use_untyped_0_or_NULL_with_shims;
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
-STLSOFT_INLINE ss_char_a_t const* c_str_data_a(ss_char_a_t const* s)
+STLSOFT_INLINE
+ss_char_a_t const*
+c_str_data_a(ss_char_a_t const* s)
 {
     return (NULL != s) ? s : "";
 }
@@ -144,10 +147,12 @@ STLSOFT_INLINE ss_char_a_t const* c_str_data_a(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_data(ss_char_a_t const* s)
+inline
+ss_char_a_t const*
+c_str_data(ss_char_a_t const* s)
 {
     return c_str_data_a(s);
 }
@@ -159,10 +164,12 @@ inline ss_char_a_t const* c_str_data(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
-STLSOFT_INLINE ss_char_w_t const* c_str_data_w(ss_char_w_t const* s)
+STLSOFT_INLINE
+ss_char_w_t const*
+c_str_data_w(ss_char_w_t const* s)
 {
     return (NULL != s) ? s : stlsoft_static_cast(ss_char_w_t const*, L"");
 }
@@ -173,10 +180,12 @@ STLSOFT_INLINE ss_char_w_t const* c_str_data_w(ss_char_w_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_data(ss_char_w_t const* s)
+inline
+ss_char_w_t const*
+c_str_data(ss_char_w_t const* s)
 {
     return c_str_data_w(s);
 }
@@ -190,10 +199,12 @@ inline ss_char_w_t const* c_str_data(ss_char_w_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_data_a(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_data_a(ss_char_a_t *s)
 {
     return (NULL != s) ? s : "";
 }
@@ -203,10 +214,12 @@ inline ss_char_a_t const* c_str_data_a(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_data(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_data(ss_char_a_t *s)
 {
     return c_str_data_a(s);
 }
@@ -217,10 +230,12 @@ inline ss_char_a_t const* c_str_data(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_data_w(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_data_w(ss_char_w_t *s)
 {
     return (NULL != s) ? s : L"";
 }
@@ -230,10 +245,12 @@ inline ss_char_w_t const* c_str_data_w(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_data(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_data(ss_char_w_t *s)
 {
     return c_str_data_w(s);
 }
@@ -245,11 +262,13 @@ inline ss_char_w_t const* c_str_data(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>char</code>.
  */
 template <ss_typename_param_k S>
-inline ss_char_a_t const* c_str_data_a(S const& s)
+inline
+ss_char_a_t const*
+c_str_data_a(S const& s)
 {
     return STLSOFT_NS_QUAL(c_str_data_a)(static_cast<ss_char_a_t const*>(STLSOFT_NS_QUAL(c_str_ptr_a)(s))));
 }
@@ -258,17 +277,19 @@ inline ss_char_a_t const* c_str_data_a(S const& s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a C-style
+ * \return None-\c nullptr, non-mutating pointer to a C-style
  *   string of <code>wchar_t</code>.
  */
 template <ss_typename_param_k S>
-inline ss_char_w_t const* c_str_data_w(S const& s)
+inline
+ss_char_w_t const*
+c_str_data_w(S const& s)
 {
     return STLSOFT_NS_QUAL(c_str_data_w)(static_cast<ss_char_w_t const*>(STLSOFT_NS_QUAL(c_str_ptr_w)(s))));
 }
 # endif /* 0 */
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
@@ -284,9 +305,11 @@ inline ss_char_w_t const* c_str_data_w(S const& s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
-STLSOFT_INLINE ss_size_t c_str_len_a(ss_char_a_t const* s)
+STLSOFT_INLINE
+ss_size_t
+c_str_len_a(ss_char_a_t const* s)
 {
     return (s == 0) ? 0 : STLSOFT_NS_GLOBAL(strlen)(s);
 }
@@ -298,9 +321,11 @@ STLSOFT_INLINE ss_size_t c_str_len_a(ss_char_a_t const* s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
-inline ss_size_t c_str_len(ss_char_a_t const* s)
+inline
+ss_size_t
+c_str_len(ss_char_a_t const* s)
 {
     return c_str_len_a(s);
 }
@@ -313,9 +338,11 @@ inline ss_size_t c_str_len(ss_char_a_t const* s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
-STLSOFT_INLINE ss_size_t c_str_len_w(ss_char_w_t const* s)
+STLSOFT_INLINE
+ss_size_t
+c_str_len_w(ss_char_w_t const* s)
 {
     return (s == 0) ? 0 : STLSOFT_NS_GLOBAL(wcslen)(s);
 }
@@ -327,9 +354,11 @@ STLSOFT_INLINE ss_size_t c_str_len_w(ss_char_w_t const* s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
-inline ss_size_t c_str_len(ss_char_w_t const* s)
+inline
+ss_size_t
+c_str_len(ss_char_w_t const* s)
 {
     return c_str_len_w(s);
 }
@@ -345,9 +374,11 @@ inline ss_size_t c_str_len(ss_char_w_t const* s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
-inline ss_size_t c_str_len_a(ss_char_a_t *s)
+inline
+ss_size_t
+c_str_len_a(ss_char_a_t *s)
 {
     return c_str_len_a(static_cast<ss_char_a_t const*>(s));
 }
@@ -358,9 +389,11 @@ inline ss_size_t c_str_len_a(ss_char_a_t *s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in bytes) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
-inline ss_size_t c_str_len(ss_char_a_t *s)
+inline
+ss_size_t
+c_str_len(ss_char_a_t *s)
 {
     return c_str_len_a(s);
 }
@@ -372,9 +405,11 @@ inline ss_size_t c_str_len(ss_char_a_t *s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
-inline ss_size_t c_str_len_w(ss_char_w_t *s)
+inline
+ss_size_t
+c_str_len_w(ss_char_w_t *s)
 {
     return c_str_len_w(static_cast<ss_char_w_t const*>(s));
 }
@@ -385,15 +420,17 @@ inline ss_size_t c_str_len_w(ss_char_w_t *s)
  * \ingroup group__concept__Shim__string_access
  *
  * \return Length (in characters) of the C-style string <code>s</code>, or 0 if
- *   <code>s</code> is NULL.
+ *   <code>s</code> is \c nullptr.
  */
-inline ss_size_t c_str_len(ss_char_w_t *s)
+inline
+ss_size_t
+c_str_len(ss_char_w_t *s)
 {
     return c_str_len_w(s);
 }
 # endif /* _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST */
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
@@ -408,10 +445,12 @@ inline ss_size_t c_str_len(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
-STLSOFT_INLINE ss_char_a_t const* c_str_ptr_a(ss_char_a_t const* s)
+STLSOFT_INLINE
+ss_char_a_t const*
+c_str_ptr_a(ss_char_a_t const* s)
 {
     return (NULL != s) ? s : "";
 }
@@ -422,10 +461,12 @@ STLSOFT_INLINE ss_char_a_t const* c_str_ptr_a(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_ptr(ss_char_a_t const* s)
+inline
+ss_char_a_t const*
+c_str_ptr(ss_char_a_t const* s)
 {
     return c_str_ptr_a(s);
 }
@@ -437,10 +478,12 @@ inline ss_char_a_t const* c_str_ptr(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
-STLSOFT_INLINE ss_char_w_t const* c_str_ptr_w(ss_char_w_t const* s)
+STLSOFT_INLINE
+ss_char_w_t const*
+c_str_ptr_w(ss_char_w_t const* s)
 {
     return (NULL != s) ? s : stlsoft_static_cast(ss_char_w_t const*, L"");
 }
@@ -449,10 +492,12 @@ STLSOFT_INLINE ss_char_w_t const* c_str_ptr_w(ss_char_w_t const* s)
 /** \ref group__concept__Shim__string_access__c_str_ptr function
  *    for <code>wchar_t const*</code>.
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_ptr(ss_char_w_t const* s)
+inline
+ss_char_w_t const*
+c_str_ptr(ss_char_w_t const* s)
 {
     return c_str_ptr_w(s);
 }
@@ -464,10 +509,12 @@ inline ss_char_w_t const* c_str_ptr(ss_char_w_t const* s)
 /** \ref group__concept__Shim__string_access__c_str_ptr function
  *    for <code>char const*</code>.
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_ptr_a(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_ptr_a(ss_char_a_t *s)
 {
     return (NULL != s) ? s : "";
 }
@@ -477,10 +524,12 @@ inline ss_char_a_t const* c_str_ptr_a(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>char</code>.
  */
-inline ss_char_a_t const* c_str_ptr(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_ptr(ss_char_a_t *s)
 {
     return c_str_ptr_a(s);
 }
@@ -491,10 +540,12 @@ inline ss_char_a_t const* c_str_ptr(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_ptr_w(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_ptr_w(ss_char_w_t *s)
 {
     return (NULL != s) ? s : L"";
 }
@@ -504,21 +555,24 @@ inline ss_char_w_t const* c_str_ptr_w(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return None-NULL, non-mutating pointer to a nul-terminated C-style
+ * \return None-\c nullptr, non-mutating pointer to a nul-terminated C-style
  *   string of <code>wchar_t</code>.
  */
-inline ss_char_w_t const* c_str_ptr(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_ptr(ss_char_w_t *s)
 {
     return c_str_ptr_w(s);
 }
 # endif /* _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST */
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
+ * pointer to the character string or \c nullptr.
  */
 
 /* C-style ANSI string */
@@ -527,11 +581,13 @@ inline ss_char_w_t const* c_str_ptr(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
-STLSOFT_INLINE ss_char_a_t const* c_str_ptr_null_a(ss_char_a_t const* s)
+STLSOFT_INLINE
+ss_char_a_t const*
+c_str_ptr_null_a(ss_char_a_t const* s)
 {
     return (NULL == s || '\0' == *s) ? NULL : s;
 }
@@ -542,11 +598,13 @@ STLSOFT_INLINE ss_char_a_t const* c_str_ptr_null_a(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
-inline ss_char_a_t const* c_str_ptr_null(ss_char_a_t const* s)
+inline
+ss_char_a_t const*
+c_str_ptr_null(ss_char_a_t const* s)
 {
     return c_str_ptr_null_a(s);
 }
@@ -558,11 +616,13 @@ inline ss_char_a_t const* c_str_ptr_null(ss_char_a_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
-STLSOFT_INLINE ss_char_w_t const* c_str_ptr_null_w(ss_char_w_t const* s)
+STLSOFT_INLINE
+ss_char_w_t const*
+c_str_ptr_null_w(ss_char_w_t const* s)
 {
     return (NULL == s || L'\0' == *s) ? NULL : s;
 }
@@ -573,11 +633,13 @@ STLSOFT_INLINE ss_char_w_t const* c_str_ptr_null_w(ss_char_w_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
-inline ss_char_w_t const* c_str_ptr_null(ss_char_w_t const* s)
+inline
+ss_char_w_t const*
+c_str_ptr_null(ss_char_w_t const* s)
 {
     return c_str_ptr_null_w(s);
 }
@@ -592,11 +654,13 @@ inline ss_char_w_t const* c_str_ptr_null(ss_char_w_t const* s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
-inline ss_char_a_t const* c_str_ptr_null_a(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_ptr_null_a(ss_char_a_t *s)
 {
     return (NULL == s || '\0' == *s) ? NULL : s;
 }
@@ -606,11 +670,13 @@ inline ss_char_a_t const* c_str_ptr_null_a(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
-inline ss_char_a_t const* c_str_ptr_null(ss_char_a_t *s)
+inline
+ss_char_a_t const*
+c_str_ptr_null(ss_char_a_t *s)
 {
     return c_str_ptr_null_a(s);
 }
@@ -621,11 +687,13 @@ inline ss_char_a_t const* c_str_ptr_null(ss_char_a_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
-inline ss_char_w_t const* c_str_ptr_null_w(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_ptr_null_w(ss_char_w_t *s)
 {
     return (NULL == s || L'\0' == *s) ? NULL : s;
 }
@@ -635,11 +703,13 @@ inline ss_char_w_t const* c_str_ptr_null_w(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
-inline ss_char_w_t const* c_str_ptr_null(ss_char_w_t *s)
+inline
+ss_char_w_t const*
+c_str_ptr_null(ss_char_w_t *s)
 {
     return c_str_ptr_null_w(s);
 }
@@ -651,12 +721,14 @@ inline ss_char_w_t const* c_str_ptr_null(ss_char_w_t *s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>char</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>char</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 template <ss_typename_param_k S>
-inline ss_char_a_t const* c_str_ptr_null_a(S const& s)
+inline
+ss_char_a_t const*
+c_str_ptr_null_a(S const& s)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_a)(static_cast<ss_char_a_t const*>(STLSOFT_NS_QUAL(c_str_ptr_a)(s))));
 }
@@ -665,18 +737,20 @@ inline ss_char_a_t const* c_str_ptr_null_a(S const& s)
  *
  * \ingroup group__concept__Shim__string_access
  *
- * \return Possibly NULL, non-mutating pointer to a nul-terminated C-style
- *   string of <code>wchar_t</code>. If <code>s</code> is NULL, or has zero
- *   length, NULL is returned.
+ * \return Possibly \c nullptr, non-mutating pointer to a nul-terminated C-style
+ *   string of <code>wchar_t</code>. If <code>s</code> is \c nullptr, or has zero
+ *   length, \c nullptr is returned.
  */
 template <ss_typename_param_k S>
-inline ss_char_w_t const* c_str_ptr_null_w(S const& s)
+inline
+ss_char_w_t const*
+c_str_ptr_null_w(S const& s)
 {
     return STLSOFT_NS_QUAL(c_str_ptr_null_w)(static_cast<ss_char_w_t const*>(STLSOFT_NS_QUAL(c_str_ptr_w)(s))));
 }
 # endif /* 0 */
-
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_size
@@ -696,7 +770,9 @@ inline ss_char_w_t const* c_str_ptr_null_w(S const& s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-STLSOFT_INLINE ss_size_t c_str_size_a(ss_char_a_t const* s)
+STLSOFT_INLINE
+ss_size_t
+c_str_size_a(ss_char_a_t const* s)
 {
     return c_str_len_a(s) * sizeof(ss_char_a_t);
 }
@@ -711,7 +787,9 @@ STLSOFT_INLINE ss_size_t c_str_size_a(ss_char_a_t const* s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size(ss_char_a_t const* s)
+inline
+ss_size_t
+c_str_size(ss_char_a_t const* s)
 {
     return c_str_size_a(s);
 }
@@ -727,7 +805,9 @@ inline ss_size_t c_str_size(ss_char_a_t const* s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-STLSOFT_INLINE ss_size_t c_str_size_w(ss_char_w_t const* s)
+STLSOFT_INLINE
+ss_size_t
+c_str_size_w(ss_char_w_t const* s)
 {
     return c_str_len_w(s) * sizeof(ss_char_w_t);
 }
@@ -742,7 +822,9 @@ STLSOFT_INLINE ss_size_t c_str_size_w(ss_char_w_t const* s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size(ss_char_w_t const* s)
+inline
+ss_size_t
+c_str_size(ss_char_w_t const* s)
 {
     return c_str_size_w(s);
 }
@@ -761,7 +843,9 @@ inline ss_size_t c_str_size(ss_char_w_t const* s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size_a(ss_char_a_t *s)
+inline
+ss_size_t
+c_str_size_a(ss_char_a_t *s)
 {
     return c_str_len(s) * sizeof(ss_char_a_t);
 }
@@ -775,7 +859,9 @@ inline ss_size_t c_str_size_a(ss_char_a_t *s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size(ss_char_a_t *s)
+inline
+ss_size_t
+c_str_size(ss_char_a_t *s)
 {
     return c_str_size_a(s);
 }
@@ -790,7 +876,9 @@ inline ss_size_t c_str_size(ss_char_a_t *s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size_w(ss_char_w_t *s)
+inline
+ss_size_t
+c_str_size_w(ss_char_w_t *s)
 {
     return c_str_len(s) * sizeof(ss_char_w_t);
 }
@@ -804,7 +892,9 @@ inline ss_size_t c_str_size_w(ss_char_w_t *s)
  *   character string pointed to by <code>s</code>, excluding a
  *   nul-terminating character.
  */
-inline ss_size_t c_str_size(ss_char_w_t *s)
+inline
+ss_size_t
+c_str_size(ss_char_w_t *s)
 {
     return c_str_size_w(s);
 }
@@ -820,7 +910,9 @@ inline ss_size_t c_str_size(ss_char_w_t *s)
  *   nul-terminating character.
  */
 template <ss_typename_param_k S>
-inline ss_size_t c_str_size_a(S const& s)
+inline
+ss_size_t
+c_str_size_a(S const& s)
 {
     return sizeof(ss_char_a_t) * c_str_len_a(s);
 }
@@ -835,7 +927,9 @@ inline ss_size_t c_str_size_a(S const& s)
  *   nul-terminating character.
  */
 template <ss_typename_param_k S>
-inline ss_size_t c_str_size_w(S const& s)
+inline
+ss_size_t
+c_str_size_w(S const& s)
 {
     return sizeof(ss_char_w_t) * c_str_len_w(s);
 }
@@ -850,13 +944,15 @@ inline ss_size_t c_str_size_w(S const& s)
  *   nul-terminating character.
  */
 template <ss_typename_param_k S>
-inline ss_size_t c_str_size(S const& s)
+inline
+ss_size_t
+c_str_size(S const& s)
 {
     return sizeof(*c_str_ptr(s)) * c_str_len(s);
 }
 
 /** Implementation of \ref group__concept__Shim__string_access__c_str_size
- *    for trapping use of literal <code>0</code> or <code>NULL</code>.
+ *    for trapping use of literal <code>0</code> or \c nullptr.
  *
  * \ingroup group__concept__Shim__string_access
  *
@@ -864,11 +960,15 @@ inline ss_size_t c_str_size(S const& s)
  *   which serves to remind users, via compilation error message, that
  *   they're attempting something disallowed.
  */
-inline cannot_use_untyped_0_or_NULL_with_shims c_str_size(int deny_literal_NULL);
-
+inline
+cannot_use_untyped_0_or_NULL_with_shims
+c_str_size(int deny_literal_NULL);
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */

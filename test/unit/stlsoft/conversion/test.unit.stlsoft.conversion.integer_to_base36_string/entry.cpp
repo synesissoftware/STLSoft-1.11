@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.conversion.integer_to_base36_string.cpp
+ * File:    test.unit.stlsoft.conversion.integer_to_base36_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::integer_to_base36_string`.
  *
  * Created: 14th February 2024
- * Updated: 15th October 2024
+ * Updated: 29th December 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -56,12 +56,12 @@
 namespace
 {
 
-    static void test_zero(void);
-    static void test_ones(void);
+    static void test_zero();
+    static void test_ones();
 #if __cplusplus >= 201103L
-    static void test_fibonacci(void);
+    static void test_fibonacci();
 #endif
-    static void test_limits(void);
+    static void test_limits();
 
 } // anonymous namespace
 
@@ -105,6 +105,8 @@ namespace
         long long   v;
         char const* s;
     };
+
+#if __cplusplus >= 201103L
 
     const mapping_t fibonacci_mappings[] =
     {
@@ -168,6 +170,7 @@ namespace
         ,   {    -317811,   "-6t83" }
         ,   {    -514229,   "-b0s5" }
     };
+#endif
 
 
 static void test_zero()

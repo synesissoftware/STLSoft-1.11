@@ -4,7 +4,7 @@
  * Purpose: Windows console functions.
  *
  * Created: 3rd December 2005
- * Updated: 5th November 2024
+ * Updated: 27th November 2024
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  6
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      51
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  7
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -70,7 +70,7 @@
 #endif /* STLSOFT_TRACE_INCLUDE */
 
 #if 0 ||\
-    defined(__MINGW32__) ||\
+    defined(STLSOFT_MINGW) ||\
     defined(_MSC_VER) ||\
     0
 # ifndef STLSOFT_INCL_H_IO
@@ -210,7 +210,7 @@ winstl_C_isatty_fd_(
     int (*pfn_isatty)(int);
 
 #if 0 ||\
-    defined(__MINGW32__) ||\
+    defined(STLSOFT_MINGW) ||\
     defined(_MSC_VER) ||\
     0
 
@@ -323,7 +323,7 @@ GetConsoleWindow()
  * \ingroup group__library__System
  *
  * \warning This only works on Windows 2000, or later, operating systems. It
- *    will return NULL on other operating systems.
+ *    will return \c nullptr on other operating systems.
  */
 STLSOFT_INLINE
 HWND
@@ -451,7 +451,7 @@ get_console_width()
  * \ingroup group__library__System
  *
  * \warning This only works on Windows 2000, or later, operating systems. It
- *    will return NULL on other operating systems.
+ *    will return \c nullptr on other operating systems.
  */
 inline
 HWND

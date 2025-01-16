@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/value_policies.hpp (originally MOEnSeq.h, ::SynesisCom)
+ * File:    comstl/util/value_policies.hpp (originally MOEnSeq.h, ::SynesisCom)
  *
- * Purpose:     Value policies that work with STL sequence types for IEnumXXXX
- *              enumerator interfaces.
+ * Purpose: Value policies that work with STL sequence types for IEnumXXXX
+ *          enumerator interfaces.
  *
- * Created:     17th September 1998
- * Updated:     11th March 2024
+ * Created: 17th September 1998
+ * Updated: 24th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 8
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     180
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     181
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -158,7 +158,7 @@ public:
     /// Initialises an instance
     ///
     /// In the case of the <code>BSTR</code> type, this involves setting
-    /// the value to NULL
+    /// the value to \c nullptr
     static void init(value_type* p) STLSOFT_NOEXCEPT
     {
         *p = NULL;
@@ -211,7 +211,7 @@ public:
     /// Initialises an instance
     ///
     /// In the case of the OLE string type, this involves setting
-    /// the value to NULL
+    /// the value to \c nullptr
     static void init(value_type* p) STLSOFT_NOEXCEPT
     {
         *p = NULL;
@@ -318,7 +318,7 @@ public:
     /// Initialises an instance
     ///
     /// In the case of an interface pointer type, this involves setting
-    /// the value to NULL
+    /// the value to \c nullptr
     static void init(value_type* p) STLSOFT_NOEXCEPT
     {
         *p = NULL;
@@ -326,7 +326,7 @@ public:
     /// Initialises an instance from another
     ///
     /// In the case of an interface pointer type, this involves taking a
-    /// copy of the pointer and, if the source is non-NULL, invoking
+    /// copy of the pointer and, if the source is non-\c nullptr, invoking
     /// <code>AddRef()</code>
     static void copy(value_type* dest, value_type const* src)
     {
@@ -339,8 +339,8 @@ public:
     /// Releases an instance
     ///
     /// In the case of an interface pointer type, this involves
-    /// invoking <code>Release()</code> and setting the value to NULL
-    /// (unless it is already NULL)
+    /// invoking <code>Release()</code> and setting the value to \c nullptr
+    /// (unless it is already \c nullptr)
     static void clear(value_type* p) STLSOFT_NOEXCEPT
     {
         if (NULL != *p)
@@ -368,7 +368,7 @@ public:
     /// Initialises an instance
     ///
     /// In the case of the <code>LPUNKNOWN</code> type, this involves setting
-    /// the value to NULL
+    /// the value to \c nullptr
     static void init(value_type* p) STLSOFT_NOEXCEPT
     {
         *p = NULL;
@@ -376,7 +376,7 @@ public:
     /// Initialises an instance from another
     ///
     /// In the case of the <code>LPUNKNOWN</code> type, this involves taking
-    /// a copy of the pointer and, if the source is non-NULL, invoking
+    /// a copy of the pointer and, if the source is non-\c nullptr, invoking
     /// <code>AddRef()</code>
     static void copy(value_type* dest, value_type const* src)
     {
@@ -389,8 +389,8 @@ public:
     /// Releases an instance
     ///
     /// In the case of the <code>LPUNKNOWN</code> type, this involves
-    /// invoking <code>Release()</code> and setting the value to NULL
-    /// (unless it is already NULL)
+    /// invoking <code>Release()</code> and setting the value to \c nullptr
+    /// (unless it is already \c nullptr)
     static void clear(value_type* p) STLSOFT_NOEXCEPT
     {
         if (NULL != *p)
@@ -418,7 +418,7 @@ public:
     /// Initialises an instance
     ///
     /// In the case of the <code>STATSTG</code> type, this involves setting
-    /// the <code>pwcsName</code> member to NULL
+    /// the <code>pwcsName</code> member to \c nullptr
     static void init(value_type* p) STLSOFT_NOEXCEPT
     {
         p->pwcsName = NULL;
@@ -475,7 +475,7 @@ public:
     /// Initialises an instance
     ///
     /// In the case of the <code>FORMATETC</code> type, this involves setting
-    /// the <code>ptd</code> member to NULL
+    /// the <code>ptd</code> member to \c nullptr
     static void init(value_type* p) STLSOFT_NOEXCEPT
     {
         p->ptd = NULL;
@@ -526,7 +526,10 @@ public:
     }
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

@@ -4,6 +4,72 @@
 ----
 
 
+31st December 2024 - 1.11.1-beta1 released
+------------------------------------------
+
+ * Command-line handling components minor improvements and unit-testing;
+ * Visual C++ compatibility (including _MSC_VER 1942);
+ * MinGW compatibility;
+ * Miscellaneous backwards-compatibility fixes;
+ * Miscellaneous (near) final fixes and tidying;
+
+
+28th December 2024 - 1.11.1-alpha28 released
+--------------------------------------------
+
+ * substantial reworking of abstraction of memory functions, resulting in performance improvements across numerous components, `stlsoft::auto_buffer<>` in particular;
+ * MinGW compatibility;
+ * miscellaneous generalisation of code and dependencies;
+ * added more test programs;
+
+
+19th December 2024 - 1.11.1-alpha27 released
+--------------------------------------------
+
+ * added `stlsoft::doomgram` and `stlsoft::gram_scope` (from old research repo(s));
+ * added **include/stlsoft/diagnostics/gram_utils.hpp**, including `stlsoft::gram_to_strip()`;
+ * added `stlsoft::count_hexadecimal_digits()`, and refactored `stlsoft::count_digits()` into `stlsoft::count_decimal_digits()`;
+ * added **unixstl/time/comparison_functions.h**, including `unixstl_C_compare_timevals()` / `unixstl::compare()`;
+ * added `winstl_C_difference_in_microseconds_QPC()` and `winstl_C_absolute_difference_in_microseconds_QPC()`;
+ * `winstl::micro_sleep()` (and `winstl_C_micro_sleep()`) now implemented in terms of active methods for accurate behaviour in small durations (0 < delay_us <= 250000);
+ * added `#pause()` and `#unpause()` to stopwatch types (incl. `stlsoft::std_chrono_hrc_stopwatch`, `unixstl::stopwatch()`, `winstl::stopwatch()`);
+ * added `#get_kernel_nanoseconds()`, `#get_user_nanoseconds()`, `#get_nanoseconds()` to `unixstl::stopwatch()`;
+ * added `#cbegin()` / `#cend()` and `#crbegin()` / `#crend()` methods to `stlsoft::auto_buffer<>`;
+ * separated Windows-specific `platformstl::readdir_sequence` into `winstl::readdir_sequence`;
+ * added **test.component.platformstl.diagnostics.stopwatch**;
+ * added **test.performance.stlsoft.count_digits**;
+ * added **test.performance.stlsoft.doomgram**;
+ * added **test.performance.stlsoft.gram_utils**;
+ * added **test.scratch.winstl.micro_sleep**;
+ * added **test.unit.stlsoft.diagnostics.doomgram**;
+ * added **test.unit.stlsoft.diagnostics.gram_scope**;
+ * added **test.unit.stlsoft.util.count_decimal_digits**;
+ * added **test.unit.stlsoft.util.count_hexadecimal_digits**;
+ * added **test.unit.winstl.conversion.number.grouping_functions**;
+ * **run_all_unit_tests.sh** now respects environment variables `XTESTS_VERBOSITY` and `TEST_VERBOSITY`;
+ * miscellaneous minor/trivial improvements;
+
+
+23rd November 2024 - 1.11.1-alpha26 released
+--------------------------------------------
+
+ * added `stlsoft::integral_traits<>` (**stlsoft/traits/integral_traits.hpp**);
+ * added `stlsoft::unicode_point_map`;
+ * added **test.unit.stlsoft.limits.integral_limits**;
+ * added **test.unit.stlsoft.traits.integral_traits**;
+ * minor tidying to CMake facilities;
+
+
+18th November 2024 - 1.11.1-alpha25 released
+--------------------------------------------
+
+ * added MSVC MT support;
+ * added and applied macro `STLSOFT_IS_CONSTANT_EVALUATED()`, in particular to `stlsoft::auto_buffer<>`;
+ * include ordering (around api/internal / api/external helper headers);
+ * copy-paste typos;
+ * made consistent include ordering (around api/internal / api/external helper headers);
+
+
 4th November 2024 - 1.11.1-alpha24 released
 -------------------------------------------
 

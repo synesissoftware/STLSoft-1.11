@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        acestl/shims/logical/is_empty/message_queue.hpp
+ * File:    acestl/shims/logical/is_empty/message_queue.hpp
  *
- * Purpose:     Helper functions for ACE_Message_Queue class.
+ * Purpose: Helper functions for ACE_Message_Queue class.
  *
- * Created:     16th December 2004
- * Updated:     11th March 2024
+ * Created: 16th December 2004
+ * Updated: 28th December 2024
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_MAJOR       3
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_MINOR       0
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_REVISION    9
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT        41
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_MINOR       1
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_REVISION    1
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_MESSAGE_QUEUE_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,18 +98,22 @@ namespace stlsoft
 
 STLSOFT_OPEN_WORKER_NS_(is_empty_ns)
 
-    no_type is_empty_helper_assistant(ACE_Message_Queue_Base const*, ACE_Message_Queue_Base const*)
+    no_type
+    is_empty_helper_assistant(
+        ACE_Message_Queue_Base const*
+    ,   ACE_Message_Queue_Base const*
+    )
     {
         return no_type();
     }
 
-    inline ss_bool_t is_empty_helper(ACE_Message_Queue_Base const& q, no_type)
+    inline
+    ss_bool_t
+    is_empty_helper(ACE_Message_Queue_Base const& q, no_type) STLSOFT_NOEXCEPT
     {
         return 0 != const_cast<ACE_Message_Queue_Base&>(q).is_empty();
     }
-
 STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
-
 #else /* ? STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 
 /** Indicates whether the message queue is empty
@@ -117,7 +121,9 @@ STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
  * \ingroup group__concept__Shim__Logical__is_empty
  *
  */
-inline int is_empty(ACE_Message_Queue_Base const& q)
+inline
+int
+is_empty(ACE_Message_Queue_Base const& q) STLSOFT_NOEXCEPT
 {
     // Have to cast this, as ACE is not const-correct with is_empty().
 
@@ -130,16 +136,20 @@ inline int is_empty(ACE_Message_Queue_Base const& q)
  *
  */
 template <ACE_SYNCH_DECL>
-inline int is_empty(ACE_Message_Queue<ACE_SYNCH_USE> const& q)
+inline
+int
+is_empty(ACE_Message_Queue<ACE_SYNCH_USE> const& q) STLSOFT_NOEXCEPT
 {
     // Have to cast this, as ACE is not const-correct with is_empty().
 
     return const_cast<ACE_Message_Queue<ACE_SYNCH_USE>&>(q).is_empty();
 }
-
 #endif /* STLSOFT_SHIM_LOGICAL_IS_EMPTY_NEEDS_HELP */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } /* namespace stlsoft */
