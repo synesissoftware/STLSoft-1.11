@@ -31,8 +31,7 @@ Changes:
 ========
 
 GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20):
- * **stlsoft/stlsoft.h** : + added `STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_` when `STLSOFT_IS_CONSTANT_EVALUATED()` defined in terms of GCC's `__builtin_is_constant_evaluated`;
- * **stlsoft/memory/auto_buffer.hpp** : ~ now discriminates for `STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_` and calls `__builtin_is_constant_evaluated` directly when required;
+ * **stlsoft/stlsoft.h** : ~ `__builtin_is_constant_evaluated` must be called as if a function;
 
 
 

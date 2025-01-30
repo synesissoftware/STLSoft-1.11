@@ -3111,8 +3111,7 @@ public: // attributes
 # elif defined(STLSOFT_COMPILER_IS_GCC) &&\
        STLSOFT_GCC_VER >= 90000
 
-#  define STLSOFT_IS_CONSTANT_EVALUATED()                   __builtin_is_constant_evaluated
-#  define STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
+#  define STLSOFT_IS_CONSTANT_EVALUATED()                   __builtin_is_constant_evaluated()
 # elif defined(STLSOFT_COMPILER_IS_MSVC) &&\
        _MSC_VER  >= 1935
 

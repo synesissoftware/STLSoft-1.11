@@ -763,11 +763,7 @@ public: // construction
         // initialise `m_internal` iff we are being used constexpr, ...
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
-        if (__builtin_is_constant_evaluated)
-# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (STLSOFT_IS_CONSTANT_EVALUATED())
-# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         {
             for (auto& i : m_internal)
             {
@@ -801,11 +797,7 @@ public: // construction
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
-        if (!__builtin_is_constant_evaluated)
-# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (!STLSOFT_IS_CONSTANT_EVALUATED())
-# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
         {
 
@@ -852,11 +844,7 @@ public: // construction
         // initialise `m_internal` iff we are being used constexpr, ...
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
-        if (__builtin_is_constant_evaluated)
-# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (STLSOFT_IS_CONSTANT_EVALUATED())
-# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         {
             for (auto& i : m_internal)
             {
@@ -889,11 +877,7 @@ public: // construction
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
-        if (!__builtin_is_constant_evaluated)
-# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (!STLSOFT_IS_CONSTANT_EVALUATED())
-# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
         {
 
@@ -914,11 +898,7 @@ public: // construction
 
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
-# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
-        if (__builtin_is_constant_evaluated)
-# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (STLSOFT_IS_CONSTANT_EVALUATED())
-# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         {
             std::fill_n(&m_buffer[0], m_cItems, v);
         }
