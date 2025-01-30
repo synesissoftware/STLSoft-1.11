@@ -4,6 +4,12 @@
 ----
 
 
+31st January 2025 - 1.11.1-beta2 released
+-----------------------------------------
+
+ * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
+
+
 31st December 2024 - 1.11.1-beta1 released
 ------------------------------------------
 

@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 17th January 2025
+ * Updated: 30th January 2025
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       8
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    3
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        224
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    4
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        225
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -763,7 +763,11 @@ public: // construction
         // initialise `m_internal` iff we are being used constexpr, ...
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
+# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
+        if (__builtin_is_constant_evaluated)
+# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (STLSOFT_IS_CONSTANT_EVALUATED())
+# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         {
             for (auto& i : m_internal)
             {
@@ -797,7 +801,11 @@ public: // construction
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
+# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
+        if (!__builtin_is_constant_evaluated)
+# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (!STLSOFT_IS_CONSTANT_EVALUATED())
+# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
         {
 
@@ -844,7 +852,11 @@ public: // construction
         // initialise `m_internal` iff we are being used constexpr, ...
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
+# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
+        if (__builtin_is_constant_evaluated)
+# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (STLSOFT_IS_CONSTANT_EVALUATED())
+# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         {
             for (auto& i : m_internal)
             {
@@ -877,7 +889,11 @@ public: // construction
 #endif /* STLSOFT_CF_USE_RAW_OFFSETOF_IN_STATIC_ASSERT */
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
+# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
+        if (!__builtin_is_constant_evaluated)
+# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (!STLSOFT_IS_CONSTANT_EVALUATED())
+# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
         {
 
@@ -898,7 +914,11 @@ public: // construction
 
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
+# ifdef STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_
+        if (__builtin_is_constant_evaluated)
+# else /* ? STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         if (STLSOFT_IS_CONSTANT_EVALUATED())
+# endif /* STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_ */
         {
             std::fill_n(&m_buffer[0], m_cItems, v);
         }

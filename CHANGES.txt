@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  19th December 2024
+; Updated:  31st January 2025
 
 ============================================================================
 
@@ -18,6 +18,25 @@ STLSoft - Changes
 
 
 
+
+Changes for 1.11.1-beta2 (31st January 2025)
+
+General:
+========
+
+ * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
+ * T.B.C.
+
+Changes:
+========
+
+GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20):
+ * **stlsoft/stlsoft.h** : + added `STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_` when `STLSOFT_IS_CONSTANT_EVALUATED()` defined in terms of GCC's `__builtin_is_constant_evaluated`;
+ * **stlsoft/memory/auto_buffer.hpp** : ~ now discriminates for `STLSOFT_NAKED_builtin_is_constant_evaluated_REQUIRED_` and calls `__builtin_is_constant_evaluated` directly when required;
+
+
+
+============================================================================
 
 Changes for 1.11.1-beta1 (31st December 2024)
 
