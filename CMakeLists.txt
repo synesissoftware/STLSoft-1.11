@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  31st December 2024
+# Updated:  1st February 2025
 #
 # ######################################################################## #
 

@@ -32,6 +32,7 @@ function(define_automated_test_program program_name entry_point_source_name)
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 			-Werror -Wall -Wextra -pedantic
 
+			${GCC_WARN_NO_c99_long_long}
 			${GCC_WARN_NO_cxx11_long_long}
 			${X_GCC_CUSTOM_WARNINGS_}
 		>
@@ -75,6 +76,7 @@ function(define_example_program program_name entry_point_source_name)
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 			-Werror -Wall -Wextra -pedantic
 
+			${GCC_WARN_NO_c99_long_long}
 			${GCC_WARN_NO_cxx11_long_long}
 			${X_GCC_CUSTOM_WARNINGS_}
 		>
