@@ -3,8 +3,10 @@
 #include <platformstl/platformstl.h>
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
+# include <inetstl/inetstl.h>
 # include <unixstl/unixstl.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# include <inetstl/inetstl.h>
 # include <winstl/winstl.h>
 #endif
 
@@ -118,6 +120,32 @@ int main(int argc, char* argv[])
         ,   "_WINSTL_VER = 0x%04x%04x\n"
         ,   (unsigned int)((_WINSTL_VER >> 16) & 0xffff)
         ,   (unsigned int)((_WINSTL_VER >> 0) & 0xffff)
+        );
+        fprintf(stdout, "\n");
+    }
+#endif
+
+
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX) || \
+      defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    /* _INETSTL_VER */
+    {
+
+        fprintf(
+            stdout
+        ,   "InetSTL = %d.%d.%d.%d\n"
+        ,   (_INETSTL_VER >> 24) & 0xff
+        ,   (_INETSTL_VER >> 16) & 0xff
+        ,   (_INETSTL_VER >> 8) & 0xff
+        ,   (_INETSTL_VER >> 0) & 0xff
+        );
+        fprintf(
+            stdout
+        ,   "_INETSTL_VER = 0x%04x%04x\n"
+        ,   (unsigned int)((_INETSTL_VER >> 16) & 0xffff)
+        ,   (unsigned int)((_INETSTL_VER >> 0) & 0xffff)
         );
         fprintf(stdout, "\n");
     }

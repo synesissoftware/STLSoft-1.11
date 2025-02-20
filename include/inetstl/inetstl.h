@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 27th December 2024
+ * Updated: 21st February 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    10
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 4
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     573
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 5
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     574
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -133,12 +133,13 @@
 # define _INETSTL_VER_1_4_1_B03  0x01040183  /*!< Version 1.4.1 beta 3 (with STLSoft 1.10.1 beta 26) */
 # define _INETSTL_VER_1_4_1      0x010401ff  /*!< Version 1.4.1 (with STLSoft 1.10.3) */
 # define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1 alpha 8) */
+# define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0 alpha 1 (with STLSoft 1.11.1 beta 2) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
-#define _INETSTL_VER_MINOR       4
-#define _INETSTL_VER_REVISION    2
-#define _INETSTL_VER             _INETSTL_VER_1_4_2
+#define _INETSTL_VER_MINOR       5
+#define _INETSTL_VER_REVISION    0
+#define _INETSTL_VER             _INETSTL_VER_1_5_0_A01
 
 
 /* /////////////////////////////////////////////////////////////////////////
