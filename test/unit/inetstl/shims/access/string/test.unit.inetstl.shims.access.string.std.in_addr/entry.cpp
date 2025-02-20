@@ -35,7 +35,7 @@
 #include <time.h>
 
 /* internet header files */
-#include <arpa/inet.h>
+#include <inetstl/internal/std/in_addr_.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
