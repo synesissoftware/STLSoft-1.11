@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       166
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       167
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -245,9 +245,7 @@ public:
             includeDots     =   0x0008  /*!< Requests that dots directories be included in the returned sequence. */
         ,   directories     =   0x0010  /*!< Causes the search to include directories. */
         ,   files           =   0x0020  /*!< Causes the search to include files. */
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-        ,   sockets         =   0x0000  /*!< CURRENTLY UNSUPPORTED : DO NOT USE! This exists for forward compatibility with STLSoft 1.10 test programs, and is subject to change in the future. A future version will support sockets, but it may not use this enumerator name. */
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+        ,   sockets         =   0x0040  /*!< Causes the search to include sockets. */
         ,   typeMask        =   0x0070
         ,   fullPath        =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
         ,   absolutePath    =   0x0200  /*!< The search directory is converted to an absolute path. */
@@ -547,6 +545,7 @@ readdir_sequence::validate_flags_(
                                     |   0
                                     |   directories
                                     |   files
+                                    |   sockets
                                     |   0
                                     |   fullPath
                                     |   absolutePath
@@ -555,7 +554,7 @@ readdir_sequence::validate_flags_(
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
     STLSOFT_SUPPRESS_UNUSED(validFlags);
 
-    if (0 == (flags & (directories | files)))
+    if (0 == (flags & (directories | files | sockets)))
     {
         flags |= (directories | files);
     }
@@ -886,14 +885,15 @@ readdir_sequence::const_iterator::operator ++()
                 else
                 {
 #ifndef _WIN32
-                    // Test for sockets : this version does not support sockets,
-                    // but does elide them from the search results.
-                    if (traits_type::is_socket(&st))
+                    if (m_flags & sockets) // want sockets
                     {
-                        continue;
+                        if (traits_type::is_socket(&st))
+                        {
+                            // It is a socket, so accept it
+                            break;
+                        }
                     }
 #endif /* !_WIN32 */
-
                     if (m_flags & directories) // Want directories
                     {
                         if (traits_type::is_directory(&st))
