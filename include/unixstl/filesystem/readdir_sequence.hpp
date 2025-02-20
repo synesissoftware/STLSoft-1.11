@@ -4,11 +4,11 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 28th December 2024
+ * Updated: 20th February 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       165
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       166
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -242,9 +242,9 @@ public:
 public:
     enum
     {
-            includeDots     =   0x0008  /*!< Requests that dots directories be included in the returned sequence */
-        ,   directories     =   0x0010  /*!< Causes the search to include directories */
-        ,   files           =   0x0020  /*!< Causes the search to include files */
+            includeDots     =   0x0008  /*!< Requests that dots directories be included in the returned sequence. */
+        ,   directories     =   0x0010  /*!< Causes the search to include directories. */
+        ,   files           =   0x0020  /*!< Causes the search to include files. */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
         ,   sockets         =   0x0000  /*!< CURRENTLY UNSUPPORTED : DO NOT USE! This exists for forward compatibility with STLSoft 1.10 test programs, and is subject to change in the future. A future version will support sockets, but it may not use this enumerator name. */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
