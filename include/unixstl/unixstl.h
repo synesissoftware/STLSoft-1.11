@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 13th October 2024
+ * Updated: 21st February 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    10
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 9
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     120
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 10
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h
@@ -171,8 +171,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010b0151
-# error This version of the UNIXSTL libraries requires STLSoft version 1.11.1 alpha 17, or later
+#if _STLSOFT_VER < 0x010b0182
+# error This version of the UNIXSTL libraries requires STLSoft version 1.11.1 beta 2, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -189,11 +189,10 @@
 #if 0
 
 #elif defined(STLSOFT_COMPILER_IS_CLANG)
- /* ******************************* Comeau ****************************** */
+ /* ******************************* Clang ****************************** */
 # if __clang_major__ < 6
 #  error Versions of Clang C++ prior to 6 are not supported by the UNIXSTL libraries
 # endif /* __COMO_VERSION__ */
-
 
 #elif defined(STLSOFT_COMPILER_IS_COMO)
  /* ******************************* Comeau ****************************** */
@@ -228,14 +227,14 @@
 # endif /* __cplusplus */
 
 #else
-/* No recognised compiler */
+ /* *********************** No recognised compiler ********************** */
 # ifdef _STLSOFT_FORCE_ANY_COMPILER
 #  define _UNIXSTL_COMPILER_IS_UNKNOWN
 #  ifdef STLSOFT_COMPILE_VERBOSE
 #   pragma message("Compiler is unknown to UNIXSTL")
 #  endif /* STLSOFT_COMPILE_VERBOSE */
 # else
-#  error Currently only the Comeau, GCC, Intel and Sun Pro C/C++ compilers are supported by the UNIXSTL libraries. To use other, possibly untested, compilers, define _STLSOFT_FORCE_ANY_COMPILER
+#  error Currently only the Clang, Comeau, GCC, Intel and Sun Pro C/C++ compilers are supported by the UNIXSTL libraries. To use other, possibly untested, compilers, define _STLSOFT_FORCE_ANY_COMPILER
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 

@@ -1,4 +1,8 @@
 
+if(UNIX OR WIN32)
+
+	add_subdirectory(inetstl)
+endif(UNIX OR WIN32)
 add_subdirectory(platformstl)
 add_subdirectory(stlsoft)
 if(UNIX)
