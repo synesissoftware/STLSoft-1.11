@@ -26,6 +26,7 @@ General:
 
  * `unixstl::readdir_sequence` now can search for sockets, in addition to files and directories;
  * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
+ * **InetSTL** partial compatibility with macOS / Linux;
  * T.B.C.
 
 Changes:
@@ -37,6 +38,8 @@ Changes:
 GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20):
  * **stlsoft/stlsoft.h** : ~ `__builtin_is_constant_evaluated` must be called as if a function;
 
+**InetSTL** partial compatibility with macOS / Linux:
+ * brought over **test.unit.inetstl.shims.access.string.std.in_addr**;
 
 
 ============================================================================

@@ -9,6 +9,7 @@
 
  * `unixstl::readdir_sequence` now can search for sockets, in addition to files and directories;
  * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
+ * **InetSTL** partial compatibility with macOS / Linux;
 
 
 31st December 2024 - 1.11.1-beta1 released
