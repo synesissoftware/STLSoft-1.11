@@ -111,7 +111,9 @@ namespace
             }
             else
             {
+#ifdef UNIXSTL_OS_IS_MACOSX
                 sa.sun_len = sizeof(sa);
+#endif
                 sa.sun_family = AF_UNIX;
                 strncpy(sa.sun_path, uds_path, 1 + len);
 
@@ -179,7 +181,9 @@ static void TEST_is_socket()
             }
             else
             {
+#ifdef UNIXSTL_OS_IS_MACOSX
                 sa.sun_len = sizeof(sa);
+#endif
                 sa.sun_family = AF_UNIX;
                 strcpy(sa.sun_path, sk_path.c_str());
 
