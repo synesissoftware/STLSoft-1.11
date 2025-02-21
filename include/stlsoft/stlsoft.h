@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 21dst February 2025
+ * Updated: 21st February 2025
  *
  * Home:    http://stlsoft.org/
  *
