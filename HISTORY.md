@@ -4,9 +4,10 @@
 ----
 
 
-31st January 2025 - 1.11.1-beta2 released
+21st February 2025 - 1.11.1-beta2 released
 -----------------------------------------
 
+ * `unixstl::readdir_sequence` now can search for sockets, in addition to files and directories;
  * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
 
 

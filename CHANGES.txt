@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  31st January 2025
+; Updated:  21st February 2025
 
 ============================================================================
 
@@ -19,16 +19,20 @@ STLSoft - Changes
 
 
 
-Changes for 1.11.1-beta2 (31st January 2025)
+Changes for 1.11.1-beta2 (21st February 2025)
 
 General:
 ========
 
+ * `unixstl::readdir_sequence` now can search for sockets, in addition to files and directories;
  * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
  * T.B.C.
 
 Changes:
 ========
+
+`unixstl::readdir_sequence` now can search for sockets, in addition to files and directories:
+ * T.B.C.
 
 GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20):
  * **stlsoft/stlsoft.h** : ~ `__builtin_is_constant_evaluated` must be called as if a function;
