@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readdir_sequence`.
  *
  * Created: sometime in 2010s
- * Updated: 20th February 2025
+ * Updated: 21st February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -111,7 +111,9 @@ namespace
             }
             else
             {
+#ifdef UNIXSTL_OS_IS_MACOSX
                 sa.sun_len = sizeof(sa);
+#endif
                 sa.sun_family = AF_UNIX;
                 strncpy(sa.sun_path, uds_path, 1 + len);
 
@@ -169,7 +171,7 @@ static void TEST_is_socket()
         }
         else
         {
-            stlsoft::scoped_handle scoper(sk, close);
+            stlsoft::scoped_handle<int> scoper_sk(sk, close);
 
             struct sockaddr_un sa;
 
@@ -179,7 +181,9 @@ static void TEST_is_socket()
             }
             else
             {
+#ifdef UNIXSTL_OS_IS_MACOSX
                 sa.sun_len = sizeof(sa);
+#endif
                 sa.sun_family = AF_UNIX;
                 strcpy(sa.sun_path, sk_path.c_str());
 
@@ -193,7 +197,7 @@ static void TEST_is_socket()
                 }
                 else
                 {
-
+                    stlsoft::scoped_handle<char const*> scoper_file(sk_path.c_str(), unlink);
 
                     readdir_sequence_t  rds(td.c_str(), readdir_sequence_t::sockets | readdir_sequence_t::fullPath);
                     size_t              n       =   0;
@@ -206,10 +210,6 @@ static void TEST_is_socket()
                             first = *i;
                         }
                     }
-
-                    scoper.close();
-
-                    unlink(sk_path.c_str());
 
                     TEST_INT_EQ(1u, n);
 

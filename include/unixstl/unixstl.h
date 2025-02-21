@@ -147,12 +147,13 @@
 # define _UNIXSTL_VER_1_8_4     0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.11.1 alpha 8) */
 # define _UNIXSTL_VER_1_8_5     0x010805ff  /*!< Version 1.8.5 (with STLSoft 1.11.1 alpha 12) */
 # define _UNIXSTL_VER_1_8_6_A01 0x01080641  /*!< Version 1.8.8 alpha 1 (with STLSoft 1.11.1 alpha 17) */
+# define _UNIXSTL_VER_1_8_6_B01 0x01080681  /*!< Version 1.8.8 beta 1 (with STLSoft 1.11.1 beta 2) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _UNIXSTL_VER_MAJOR      1
 #define _UNIXSTL_VER_MINOR      8
 #define _UNIXSTL_VER_REVISION   6
-#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_6_A01
+#define _UNIXSTL_VER            _UNIXSTL_VER_1_8_6_B01
 
 
 /* /////////////////////////////////////////////////////////////////////////
