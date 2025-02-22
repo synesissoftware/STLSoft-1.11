@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `struct in_addr`.
  *
  * Created: ...
- * Updated: 21st February 2025
+ * Updated: 23rd February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -116,6 +116,25 @@ int main(int argc, char *argv[])
 namespace
 {
 
+
+inline
+void ipv4_address_to_in_addr(
+    char const*     ipv4_address
+,   struct in_addr* addr
+)
+{
+    STLSOFT_ASSERT(NULL != addr);
+
+#ifdef INETSTL_OS_IS_WINDOWS
+
+    addr->s_addr = inet_addr(ipv4_address);
+#else
+
+    inet_aton(ipv4_address, addr);
+#endif
+}
+
+
 static void TEST_nullptr()
 {
     struct in_addr const* const addr = NULL;
@@ -125,8 +144,8 @@ static void TEST_nullptr()
         TEST_MS_EQ("", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_a(addr)));
 #ifdef PLATFORMSTL_OS_IS_WINDOWS
 
-        TEST_MS_EQ(L"", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_w(addr)));
-        TEST_S_EQ(TEXT("")), stlsoft::c_str_ptr(stlsoft::c_str_ptr(addr)));
+        TEST_WS_EQ(L"", stlsoft::c_str_ptr_w(stlsoft::c_str_ptr_w(addr)));
+        TEST_S_EQ(TEXT(""), stlsoft::c_str_ptr(stlsoft::c_str_ptr(addr)));
 #endif
     }
 
@@ -158,7 +177,7 @@ static void TEST_127_0_0_1()
 {
     struct in_addr addr;
 
-    inet_aton("127.0.0.1", &addr);
+    ipv4_address_to_in_addr("127.0.0.1", &addr);
 
     /* c_str_ptr(|_a|_w) */
     {
@@ -167,10 +186,10 @@ static void TEST_127_0_0_1()
         TEST_MS_EQ("127.0.0.1", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_a(&addr)));
 #ifdef PLATFORMSTL_OS_IS_WINDOWS
 
-        TEST_MS_EQ(L"127.0.0.1", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_w(addr)));
-        TEST_MS_EQ(L"127.0.0.1", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_w(&addr)));
-        TEST_S_EQ(TEXT("127.0.0.1")), stlsoft::c_str_ptr(stlsoft::c_str_ptr(addr)));
-        TEST_S_EQ(TEXT("127.0.0.1")), stlsoft::c_str_ptr(stlsoft::c_str_ptr(&addr)));
+        TEST_WS_EQ(L"127.0.0.1", stlsoft::c_str_ptr_w(stlsoft::c_str_ptr_w(addr)));
+        TEST_WS_EQ(L"127.0.0.1", stlsoft::c_str_ptr_w(stlsoft::c_str_ptr_w(&addr)));
+        TEST_S_EQ(TEXT("127.0.0.1"), stlsoft::c_str_ptr(stlsoft::c_str_ptr(addr)));
+        TEST_S_EQ(TEXT("127.0.0.1"), stlsoft::c_str_ptr(stlsoft::c_str_ptr(&addr)));
 #endif
     }
 
@@ -192,16 +211,16 @@ static void TEST_254_120_99_7()
 {
     struct in_addr addr;
 
-    inet_aton("254.120.99.7", &addr);
+    ipv4_address_to_in_addr("254.120.99.7", &addr);
 
     TEST_MS_EQ("254.120.99.7", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_a(addr)));
     TEST_MS_EQ("254.120.99.7", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_a(&addr)));
 #ifdef PLATFORMSTL_OS_IS_WINDOWS
 
-    TEST_MS_EQ(L"254.120.99.7", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_w(addr)));
-    TEST_MS_EQ(L"254.120.99.7", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_w(&addr)));
-    TEST_S_EQ(TEXT("254.120.99.7")), stlsoft::c_str_ptr(stlsoft::c_str_ptr(addr)));
-    TEST_S_EQ(TEXT("254.120.99.7")), stlsoft::c_str_ptr(stlsoft::c_str_ptr(&addr)));
+    TEST_WS_EQ(L"254.120.99.7", stlsoft::c_str_ptr_w(stlsoft::c_str_ptr_w(addr)));
+    TEST_WS_EQ(L"254.120.99.7", stlsoft::c_str_ptr_w(stlsoft::c_str_ptr_w(&addr)));
+    TEST_S_EQ(TEXT("254.120.99.7"), stlsoft::c_str_ptr(stlsoft::c_str_ptr(addr)));
+    TEST_S_EQ(TEXT("254.120.99.7"), stlsoft::c_str_ptr(stlsoft::c_str_ptr(&addr)));
 #endif
 }
 
@@ -209,16 +228,16 @@ static void TEST_255_255_255_255()
 {
     struct in_addr addr;
 
-    inet_aton("255.255.255.255", &addr);
+    ipv4_address_to_in_addr("255.255.255.255", &addr);
 
     TEST_MS_EQ("255.255.255.255", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_a(addr)));
     TEST_MS_EQ("255.255.255.255", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_a(&addr)));
 #ifdef PLATFORMSTL_OS_IS_WINDOWS
 
-    TEST_MS_EQ(L"255.255.255.255", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_w(addr)));
-    TEST_MS_EQ(L"255.255.255.255", stlsoft::c_str_ptr_a(stlsoft::c_str_ptr_w(&addr)));
-    TEST_S_EQ(TEXT("255.255.255.255")), stlsoft::c_str_ptr(stlsoft::c_str_ptr(addr)));
-    TEST_S_EQ(TEXT("255.255.255.255")), stlsoft::c_str_ptr(stlsoft::c_str_ptr(&addr)));
+    TEST_WS_EQ(L"255.255.255.255", stlsoft::c_str_ptr_w(stlsoft::c_str_ptr_w(addr)));
+    TEST_WS_EQ(L"255.255.255.255", stlsoft::c_str_ptr_w(stlsoft::c_str_ptr_w(&addr)));
+    TEST_S_EQ(TEXT("255.255.255.255"), stlsoft::c_str_ptr(stlsoft::c_str_ptr(addr)));
+    TEST_S_EQ(TEXT("255.255.255.255"), stlsoft::c_str_ptr(stlsoft::c_str_ptr(&addr)));
 #endif
 }
 } // anonymous namespace
