@@ -28,6 +28,7 @@ General:
  * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
  * **InetSTL** partial compatibility with macOS / Linux;
  * T.B.C.
+ * **InetSTL** newly released functionality;
 
 Changes:
 ========
@@ -40,6 +41,9 @@ GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not
 
 **InetSTL** partial compatibility with macOS / Linux:
  * brought over **test.unit.inetstl.shims.access.string.std.in_addr**;
+
+**InetSTL** newly released functionality:
+ * **inetstl/util/uds_helpers.h**, containing `inetstl_c_sockaddr_un_init_from_path()`;
 
 
 ============================================================================

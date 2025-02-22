@@ -172,8 +172,8 @@
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010b0151
-# error This version of the UNIXSTL libraries requires STLSoft version 1.11.1 alpha 17, or later
+#if _STLSOFT_VER < 0x010b0182
+# error This version of the UNIXSTL libraries requires STLSoft version 1.11.1 beta 2, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -190,11 +190,10 @@
 #if 0
 
 #elif defined(STLSOFT_COMPILER_IS_CLANG)
- /* ******************************* Comeau ****************************** */
+ /* ******************************* Clang ****************************** */
 # if __clang_major__ < 6
 #  error Versions of Clang C++ prior to 6 are not supported by the UNIXSTL libraries
 # endif /* __COMO_VERSION__ */
-
 
 #elif defined(STLSOFT_COMPILER_IS_COMO)
  /* ******************************* Comeau ****************************** */
@@ -229,14 +228,14 @@
 # endif /* __cplusplus */
 
 #else
-/* No recognised compiler */
+ /* *********************** No recognised compiler ********************** */
 # ifdef _STLSOFT_FORCE_ANY_COMPILER
 #  define _UNIXSTL_COMPILER_IS_UNKNOWN
 #  ifdef STLSOFT_COMPILE_VERBOSE
 #   pragma message("Compiler is unknown to UNIXSTL")
 #  endif /* STLSOFT_COMPILE_VERBOSE */
 # else
-#  error Currently only the Comeau, GCC, Intel and Sun Pro C/C++ compilers are supported by the UNIXSTL libraries. To use other, possibly untested, compilers, define _STLSOFT_FORCE_ANY_COMPILER
+#  error Currently only the Clang, Comeau, GCC, Intel and Sun Pro C/C++ compilers are supported by the UNIXSTL libraries. To use other, possibly untested, compilers, define _STLSOFT_FORCE_ANY_COMPILER
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
