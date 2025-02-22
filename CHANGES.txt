@@ -25,10 +25,9 @@ General:
 ========
 
  * `unixstl::readdir_sequence` now can search for sockets, in addition to files and directories;
+ * added **inetstl/util/uds_helpers.h** that provides Unix Domain Sockets helper functions;
  * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
- * **InetSTL** partial compatibility with macOS / Linux;
- * T.B.C.
- * **InetSTL** newly released functionality;
+ * **InetSTL** improved compatibility with macOS / Linux;
 
 Changes:
 ========
@@ -39,7 +38,8 @@ Changes:
 GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20):
  * **stlsoft/stlsoft.h** : ~ `__builtin_is_constant_evaluated` must be called as if a function;
 
-**InetSTL** partial compatibility with macOS / Linux:
+**InetSTL** improved compatibility with macOS / Linux:
+ * substantial changes to main header to detect architecture, operating system, etc.;
  * brought over **test.unit.inetstl.shims.access.string.std.in_addr**;
 
 **InetSTL** newly released functionality:
