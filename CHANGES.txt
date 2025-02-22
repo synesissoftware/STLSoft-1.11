@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  19th December 2024
+; Updated:  21st February 2025
 
 ============================================================================
 
@@ -18,6 +18,35 @@ STLSoft - Changes
 
 
 
+
+Changes for 1.11.1-beta2 (21st February 2025)
+
+General:
+========
+
+ * `unixstl::readdir_sequence` now can search for sockets, in addition to files and directories;
+ * added **inetstl/util/uds_helpers.h** that provides Unix Domain Sockets helper functions;
+ * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
+ * **InetSTL** improved compatibility with macOS / Linux;
+
+Changes:
+========
+
+`unixstl::readdir_sequence` now can search for sockets, in addition to files and directories:
+ * T.B.C.
+
+GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20):
+ * **stlsoft/stlsoft.h** : ~ `__builtin_is_constant_evaluated` must be called as if a function;
+
+**InetSTL** improved compatibility with macOS / Linux:
+ * substantial changes to main header to detect architecture, operating system, etc.;
+ * brought over **test.unit.inetstl.shims.access.string.std.in_addr**;
+
+**InetSTL** newly released functionality:
+ * **inetstl/util/uds_helpers.h**, containing `inetstl_c_sockaddr_un_init_from_path()`;
+
+
+============================================================================
 
 Changes for 1.11.1-beta1 (31st December 2024)
 

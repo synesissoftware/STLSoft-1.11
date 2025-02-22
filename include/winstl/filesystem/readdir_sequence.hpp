@@ -4,11 +4,11 @@
  * Purpose: Platform header for the readdir_sequence components.
  *
  * Created: 29th April 2006
- * Updated: 19th December 2024
+ * Updated: 20th February 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     38
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION 2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -135,9 +135,12 @@ public:
 public:
     enum search_flags
     {
-            includeDots     =   0x0008  /*!< Requests that dots directories be included in the returned sequence */
-        ,   directories     =   0x0010  /*!< Causes the search to include directories */
-        ,   files           =   0x0020  /*!< Causes the search to include files */
+            includeDots     =   0x0008  /*!< Requests that dots directories be included in the returned sequence. */
+        ,   directories     =   0x0010  /*!< Causes the search to include directories. */
+        ,   files           =   0x0020  /*!< Causes the search to include files. */
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+        ,   sockets         =   0x0000  /*!< This has no effect on Windows, but is here for structural conformance compatibility with unixstl::readdir_sequence. */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
         ,   fullPath        =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
         ,   absolutePath    =   0x0200  /*!< The search directory is converted to an absolute path. */
     };

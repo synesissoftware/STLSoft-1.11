@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 29th December 2024
+ * Updated: 30th January 2025
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -12,7 +12,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       8
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        223
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    4
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        225
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -760,12 +760,7 @@ public: // construction
         , m_cItems((NULL != m_buffer) ? cItems : 0)
         , m_bExternal(space < cItems)
     {
-# ifdef STLSOFT_COMPILER_IS_GCC
-
-        m_internal[0] = value_type();
-# endif
-
-        // initialise `m_internal` iff we are being used constexpr
+        // initialise `m_internal` iff we are being used constexpr, ...
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
         if (STLSOFT_IS_CONSTANT_EVALUATED())
@@ -775,13 +770,17 @@ public: // construction
                 i = value_type();
             }
         }
-#else /* ? STLSOFT_IS_CONSTANT_EVALUATED */
-
-# ifdef STLSOFT_COMPILER_IS_GCC
-
-        m_internal[0] = value_type();
-# endif
+        else
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
+
+            // ... otherwise initialise zeroth element (for compilers that demand it, because the class invariant does not)
+#ifdef STLSOFT_COMPILER_IS_GCC
+
+            m_internal[0] = value_type();
+#endif
+        }
+
 
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be
@@ -842,12 +841,7 @@ public: // construction
         , m_cItems((NULL != m_buffer) ? cItems : 0)
         , m_bExternal(space < cItems)
     {
-# ifdef STLSOFT_COMPILER_IS_GCC
-
-        m_internal[0] = value_type();
-# endif
-
-        // initialise `m_internal` iff we are being used constexpr
+        // initialise `m_internal` iff we are being used constexpr, ...
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
 
         if (STLSOFT_IS_CONSTANT_EVALUATED())
@@ -857,13 +851,16 @@ public: // construction
                 i = value_type();
             }
         }
-#else /* ? STLSOFT_IS_CONSTANT_EVALUATED */
-
-# ifdef STLSOFT_COMPILER_IS_GCC
-
-        m_internal[0] = value_type();
-# endif
+        else
 #endif /* STLSOFT_IS_CONSTANT_EVALUATED */
+        {
+
+            // ... otherwise initialise zeroth element (for compilers that demand it, because the class invariant does not)
+#ifdef STLSOFT_COMPILER_IS_GCC
+
+            m_internal[0] = value_type();
+#endif
+        }
 
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be

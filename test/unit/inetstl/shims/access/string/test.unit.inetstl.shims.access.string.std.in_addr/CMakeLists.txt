@@ -1,2 +1,2 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-define_example_program(test.performance.stlsoft.auto_buffer main.cpp)
+define_automated_test_program(test.unit.inetstl.shims.access.string.std.in_addr entry.cpp)
