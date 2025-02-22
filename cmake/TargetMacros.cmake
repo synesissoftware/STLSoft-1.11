@@ -10,6 +10,14 @@ function(define_automated_test_program program_name entry_point_source_name)
 		xTests::core
 	)
 
+	if(WIN32)
+
+		target_link_libraries(${program_name}
+			ws2_32
+			wsock32
+		)
+	endif()
+
 	set(X_GCC_CUSTOM_WARNINGS_ "")
 
 	if(X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED)
