@@ -145,7 +145,7 @@ namespace {
 
 namespace {
 
-	using stlsoft::ss_uintptr_t;
+    using stlsoft::ss_uintptr_t;
 
     typedef stlsoft::frequency_map<
         int
