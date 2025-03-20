@@ -244,7 +244,10 @@ public:
 /// \name Operations
 /// @{
 public:
-    template<ss_typename_param_k I, ss_typename_param_k F>
+    template<
+        ss_typename_param_k I
+    ,   ss_typename_param_k F
+    >
     HRESULT Init(I begin, I end, F fn)
     {
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -273,7 +276,7 @@ public:
         }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
-    template<ss_typename_param_k I>
+    template <ss_typename_param_k I>
     HRESULT Init(I begin, I end)
     {
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT

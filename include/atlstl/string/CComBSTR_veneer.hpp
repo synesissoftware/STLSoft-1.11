@@ -518,7 +518,7 @@ inline LPCOLESTR c_str_ptr_null_w(ATLSTL_NS_QUAL(CComBSTR_veneer) const& str)   
  *
  * \ingroup group__concept__Shim__stream_insertion
  */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline S& operator <<(S& s, ATLSTL_NS_QUAL(CComBSTR_veneer) const& str)
 {
     s << str.c_str();

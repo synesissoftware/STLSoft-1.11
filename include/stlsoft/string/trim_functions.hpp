@@ -239,7 +239,7 @@ trim_left_impl(
  *
  * \ingroup group__library__String
  */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 trim_left(
@@ -367,7 +367,7 @@ trim_right_impl(
  *
  * \ingroup group__library__String
  */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 trim_right(
@@ -513,7 +513,7 @@ trim_all_impl(
  *
  * \ingroup group__library__String
  */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 trim_all(
@@ -578,7 +578,7 @@ remove_all_impl(
 ,   C const*    removeChars
 )
 #else /* ? compiler */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 remove_all_impl(
@@ -628,7 +628,7 @@ remove_all_impl(
  *
  * \ingroup group__library__String
  */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 remove_all(

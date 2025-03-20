@@ -300,7 +300,7 @@ using options_verifier_internal_ns::options_verifier;
 #endif /* STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS */
 
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 options_verifier<T> verify_options(T const& value, char const* failureMessage)
 {
     return options_verifier<T>(value, failureMessage);

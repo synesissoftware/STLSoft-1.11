@@ -186,13 +186,23 @@ private:
 };
 
 
-template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k A
+,   ss_typename_param_k S
+,   ss_typename_param_k Q
+>
 inline ws_bool_t operator ==(ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator const& lhs, ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator const& rhs)
 {
     return lhs.equal(rhs);
 }
 
-template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k A
+,   ss_typename_param_k S
+,   ss_typename_param_k Q
+>
 inline ws_bool_t operator !=(ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator const& lhs, ss_typename_type_k edit_line_sequence<C, A, S, Q>::const_iterator const& rhs)
 {
     return !lhs.equal(rhs);
@@ -205,7 +215,12 @@ inline ws_bool_t operator !=(ss_typename_type_k edit_line_sequence<C, A, S, Q>::
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k A
+,   ss_typename_param_k S
+,   ss_typename_param_k Q
+>
 inline /* ss_explicit_k */ edit_line_sequence<C, A, S, Q>::edit_line_sequence(HWND hwndEdit, unsigned /* = 0 */)
     : m_hwndEdit(hwndEdit)
 {
@@ -235,25 +250,45 @@ inline /* ss_explicit_k */ edit_line_sequence<C, A, S, Q>::edit_line_sequence(HW
     m_queue.swap(queue);
 }
 
-template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k A
+,   ss_typename_param_k S
+,   ss_typename_param_k Q
+>
 inline ss_typename_type_ret_k edit_line_sequence<C, A, S, Q>::const_iterator edit_line_sequence<C, A, S, Q>::begin() const
 {
     return m_queue.begin();
 }
 
-template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k A
+,   ss_typename_param_k S
+,   ss_typename_param_k Q
+>
 inline ss_typename_type_ret_k edit_line_sequence<C, A, S, Q>::const_iterator edit_line_sequence<C, A, S, Q>::end() const
 {
     return m_queue.end();
 }
 
-template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k A
+,   ss_typename_param_k S
+,   ss_typename_param_k Q
+>
 inline ss_typename_type_ret_k edit_line_sequence<C, A, S, Q>::const_reverse_iterator edit_line_sequence<C, A, S, Q>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
 
-template<ss_typename_param_k C, ss_typename_param_k A, ss_typename_param_k S, ss_typename_param_k Q>
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k A
+,   ss_typename_param_k S
+,   ss_typename_param_k Q
+>
 inline ss_typename_type_ret_k edit_line_sequence<C, A, S, Q>::const_reverse_iterator edit_line_sequence<C, A, S, Q>::rend() const
 {
     return const_reverse_iterator(begin());

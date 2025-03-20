@@ -441,22 +441,22 @@ public:
     };
 };
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct msi_iterator_traits<T*>
 {
     enum { is_const = 0 };
 };
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct msi_iterator_traits<T const*>
 {
     enum { is_const = 1 };
 };
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct msi_iterator_traits<T volatile*>
 {
     enum { is_const = 0 };
 };
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct msi_iterator_traits<T const volatile*>
 {
     enum { is_const = 1 };

@@ -156,10 +156,10 @@ STLSOFT_OPEN_WORKER_NS_(ximpl_winstl_version_info_)
 // that only raises its ugly head in large, non-trivial, compilation
 // contexts.
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct hdr
 {
-    template<int N>
+    template <int N>
     struct hdr_
     {
         WORD    wLength;
@@ -177,7 +177,7 @@ typedef hdr<int>::hdr_<4>                                   Var_hdr;
 typedef hdr<int>::hdr_<5>                                   StringTable_hdr;
 typedef hdr<int>::hdr_<6>                                   String_hdr;
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 T*
 rounded_ptr(
     T*          p
@@ -199,7 +199,7 @@ rounded_ptr(
     return u.p;
 }
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 T*
 rounded_ptr(
     T*              p

@@ -249,7 +249,7 @@ c_str_len(resource_string const& s)
     return s.length();
 }
 
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 operator <<(

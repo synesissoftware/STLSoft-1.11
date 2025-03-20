@@ -157,7 +157,7 @@ namespace winstl_project
  *
  * \ingroup group__library__Windows_Registry
  */
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 class reg_blob
     : protected A
     , public STLSOFT_NS_QUAL(stl_collection_tag)
@@ -892,13 +892,13 @@ basic_reg_value<C, T, A>::value_multi_sz() const
 
 // reg_blob
 
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 reg_blob<A>::reg_blob()
     : m_buffer(0)
 {}
 
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 reg_blob<A>::reg_blob(
     ss_typename_type_k reg_blob<A>::value_type const*   data
@@ -909,7 +909,7 @@ reg_blob<A>::reg_blob(
     STLSOFT_NS_QUAL_STD(copy)(data, data + m_buffer.size(), m_buffer.begin());
 }
 
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 reg_blob<A>::reg_blob(ss_typename_type_k reg_blob<A>::class_type const& rhs)
     : m_buffer(rhs.size())
@@ -917,12 +917,12 @@ reg_blob<A>::reg_blob(ss_typename_type_k reg_blob<A>::class_type const& rhs)
     STLSOFT_NS_QUAL_STD(copy)(rhs.data(), rhs.data() + m_buffer.size(), m_buffer.begin());
 }
 
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 reg_blob<A>::~reg_blob() STLSOFT_NOEXCEPT
 {}
 
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 ss_typename_type_ret_k reg_blob<A>::size_type
 reg_blob<A>::size() const
@@ -930,7 +930,7 @@ reg_blob<A>::size() const
     return m_buffer.size();
 }
 
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 ss_typename_type_ret_k reg_blob<A>::const_pointer
 reg_blob<A>::data() const
@@ -938,7 +938,7 @@ reg_blob<A>::data() const
     return m_buffer.data();
 }
 
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 ss_typename_type_ret_k reg_blob<A>::const_iterator
 reg_blob<A>::begin() const
@@ -946,7 +946,7 @@ reg_blob<A>::begin() const
     return m_buffer.begin();
 }
 
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 ss_typename_type_ret_k reg_blob<A>::const_iterator
 reg_blob<A>::end() const
@@ -955,7 +955,7 @@ reg_blob<A>::end() const
 }
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 ss_typename_type_ret_k reg_blob<A>::const_reverse_iterator
 reg_blob<A>::rbegin() const
@@ -963,7 +963,7 @@ reg_blob<A>::rbegin() const
     return const_reverse_iterator(end());
 }
 
-template<ss_typename_param_k A>
+template <ss_typename_param_k A>
 inline
 ss_typename_type_ret_k reg_blob<A>::const_reverse_iterator
 reg_blob<A>::rend() const

@@ -134,7 +134,7 @@ namespace stlsoft
 \endcode
  */
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct member_traits
 {
 public: // types

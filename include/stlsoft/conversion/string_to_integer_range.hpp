@@ -116,25 +116,25 @@ namespace stlsoft
 
 struct ximpl_string_to_integer_range_util_
 {
-    template<ss_typename_param_k I>
+    template <ss_typename_param_k I>
     static bool is_negative_(I const* v, yes_type)
     {
         return *v < 0;
     }
 
-    template<ss_typename_param_k I>
+    template <ss_typename_param_k I>
     static bool is_negative_(I const* /* v */, no_type)
     {
         return false;
     }
 
-    template<ss_typename_param_k I>
+    template <ss_typename_param_k I>
     static I negate_(I const* v, yes_type)
     {
         return -*v;
     }
 
-    template<ss_typename_param_k I>
+    template <ss_typename_param_k I>
     static I negate_(I const* v, no_type)
     {
         return *v;

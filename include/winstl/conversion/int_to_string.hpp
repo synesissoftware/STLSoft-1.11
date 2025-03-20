@@ -391,7 +391,7 @@ assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"13"));
  *   it is only invoked once in a statement. This includes possible
  *   invocations by other functions in the same statement.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(ws_sint8_t value)
 {
     const ws_size_t CCH     = 21; // 5 fits 8-bit + sign
@@ -416,7 +416,7 @@ assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"14"));
  *   it is only invoked once in a statement. This includes possible
  *   invocations by other functions in the same statement.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(ws_uint8_t value)
 {
     const ws_size_t CCH     = 21; // 4 fits 8-bit
@@ -441,7 +441,7 @@ assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"15"));
  *   it is only invoked once in a statement. This includes possible
  *   invocations by other functions in the same statement.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(ws_sint16_t value)
 {
     const ws_size_t CCH     = 21; // 7 fits 16-bit + sign
@@ -466,7 +466,7 @@ assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"16"));
  *   it is only invoked once in a statement. This includes possible
  *   invocations by other functions in the same statement.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(ws_uint16_t value)
 {
     const ws_size_t CCH     = 21; // 6 fits 16-bit
@@ -491,7 +491,7 @@ assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"17"));
  *   it is only invoked once in a statement. This includes possible
  *   invocations by other functions in the same statement.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(ws_sint32_t value)
 {
     const ws_size_t CCH     = 21; // 12 fits 32-bit + sign
@@ -516,7 +516,7 @@ assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"18"));
  *   it is only invoked once in a statement. This includes possible
  *   invocations by other functions in the same statement.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(ws_uint32_t value)
 {
     const ws_size_t CCH     = 21; // 11 fits 32-bit
@@ -541,7 +541,7 @@ assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"19"));
  *   it is only invoked once in a statement. This includes possible
  *   invocations by other functions in the same statement.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(ws_sint64_t const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit + sign
@@ -566,7 +566,7 @@ assert(0 == ::wcscmp(winstl::int_to_string<wchar_t>(v), L"20"));
  *   it is only invoked once in a statement. This includes possible
  *   invocations by other functions in the same statement.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(ws_uint64_t const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit
@@ -578,7 +578,7 @@ inline C const* int_to_string(ws_uint64_t const& value)
 
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
 
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(int const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit
@@ -587,7 +587,7 @@ inline C const* int_to_string(int const& value)
     return stlsoft::integer_to_decimal_string(buffer, CCH, value);
 }
 
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(unsigned int const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit
@@ -600,7 +600,7 @@ inline C const* int_to_string(unsigned int const& value)
 
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(long const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit
@@ -609,7 +609,7 @@ inline C const* int_to_string(long const& value)
     return stlsoft::integer_to_decimal_string(buffer, CCH, value);
 }
 
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline C const* int_to_string(unsigned long const& value)
 {
     const ws_size_t CCH     = 21; // fits 64-bit

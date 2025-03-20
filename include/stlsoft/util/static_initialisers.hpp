@@ -90,7 +90,7 @@ namespace stlsoft
 class method_constructor
 {
 public:
-    template<ss_typename_param_k T>
+    template <ss_typename_param_k T>
     method_constructor(T const& t, void (T::*const fn)())
     {
         (t.*fn)();

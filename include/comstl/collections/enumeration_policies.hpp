@@ -193,7 +193,7 @@ struct repeatable_enumerator_tag
  *
  * \param I The enumeration interface
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 struct input_cloning_policy
     : public noncloneable_enumerator_tag
 {
@@ -242,7 +242,7 @@ public:
  *
  * \param I The enumeration interface
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 struct cloneable_cloning_policy
     : public cloneable_enumerator_tag
 {
@@ -312,7 +312,7 @@ public:
  *
  * \param I The enumeration interface
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 struct forward_cloning_policy
     : public repeatable_enumerator_tag
 {

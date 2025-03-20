@@ -128,7 +128,7 @@ namespace winstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-template<ss_typename_param_k V>
+template <ss_typename_param_k V>
 struct th_sequence_value_traits;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -150,7 +150,7 @@ struct th_sequence_value_traits;
  *
  * \ingroup group__library__Windows_Toolhelp
  */
-template<ss_typename_param_k V>
+template <ss_typename_param_k V>
 class th_sequence_const_iterator
     : public STLSOFT_NS_QUAL(iterator_base)<STLSOFT_NS_QUAL_STD(input_iterator_tag)
                                         ,   V
@@ -260,7 +260,7 @@ private:
  *   th_sequence_base that do not require the process Id.
  * \ingroup group__library__Windows_Toolhelp
  */
-template<typename V>
+template <typename V>
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 struct sequence_doesnt_use_pid;
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */

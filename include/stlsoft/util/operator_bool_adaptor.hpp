@@ -94,7 +94,7 @@ namespace stlsoft
  *
  * \ingroup group__library__Utility
  */
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 class operator_bool_adaptor
 {
 public:

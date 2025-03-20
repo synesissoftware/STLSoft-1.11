@@ -264,7 +264,7 @@ public:
     /// Constructs an instance of the proxy from the given CWnd instance
     ///
     /// \param w The CWnd instance from which the text will be retrieved
-    template<ss_typename_param_k W>
+    template <ss_typename_param_k W>
     ss_explicit_k
     c_str_ptr_null_CWnd_proxy(W const& w)
         : m_block(make_block_(w))
@@ -300,7 +300,7 @@ public:
     }
 
 private: // implementation
-    template<ss_typename_param_k W>
+    template <ss_typename_param_k W>
     static
     block_type_*
     make_block_(W const& w)
@@ -351,7 +351,7 @@ public:
     /// Constructs an instance of the proxy from the given CWnd instance
     ///
     /// \param w The CWnd instance from which the text will be retrieved
-    template<ss_typename_param_k W>
+    template <ss_typename_param_k W>
     ss_explicit_k
     c_str_ptr_CWnd_proxy(W const& w)
         : m_block(make_block_(w))
@@ -382,7 +382,7 @@ public:
     }
 
 private: // implementation
-    template<ss_typename_param_k W>
+    template <ss_typename_param_k W>
     static
     block_type_*
     make_block_(W const& w)
@@ -436,7 +436,7 @@ inline ms_bool_t operator !=(c_str_ptr_null_CWnd_proxy const& lhs, LPCTSTR rhs)
  * iostream compatibility
  */
 
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline S& operator <<(S& s, c_str_ptr_null_CWnd_proxy const& shim)
 {
     s << static_cast<LPCTSTR>(shim);

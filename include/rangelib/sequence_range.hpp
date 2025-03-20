@@ -467,7 +467,7 @@ private:
  * functions
  */
 
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 inline sequence_range<S> make_sequence_range(S &s)
 #else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */

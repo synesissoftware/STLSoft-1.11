@@ -92,7 +92,7 @@ namespace stlsoft
  *
  * \param L The lockable class
  */
-template<ss_typename_param_k L>
+template <ss_typename_param_k L>
 struct lock_traits
 {
 /// \name Member Types
@@ -129,7 +129,7 @@ public:
  *
  * \param L The lockable class
  */
-template<ss_typename_param_k L>
+template <ss_typename_param_k L>
 struct lock_invert_traits
 {
 /// \name Member Types
@@ -166,7 +166,7 @@ public:
  *
  * \param L The traits class
  */
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct lock_traits_inverter
 {
 /// \name Member Types

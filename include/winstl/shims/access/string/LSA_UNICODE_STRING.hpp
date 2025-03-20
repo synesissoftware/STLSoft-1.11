@@ -225,7 +225,7 @@ private: // fields
  * iostream compatibility
  */
 
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 operator <<(
@@ -238,7 +238,7 @@ operator <<(
     return s;
 }
 
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 operator <<(

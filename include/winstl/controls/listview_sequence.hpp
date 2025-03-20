@@ -151,7 +151,7 @@ using ::lvs_string_t;
  *
  * \ingroup group__library__Windows_Control
  */
-//template<ss_typename_param_k S = lvs_string_t>
+//template <ss_typename_param_k S = lvs_string_t>
 class listview_sequence_item
 {
 public:

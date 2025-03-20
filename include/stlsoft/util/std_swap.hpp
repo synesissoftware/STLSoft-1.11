@@ -111,7 +111,7 @@ namespace stlsoft_std_swap {
 namespace stlsoft_nostd_util {
 # endif /* STLSOFT_NO_NAMESPACE */
 
-    template<ss_typename_param_k T>
+    template <ss_typename_param_k T>
     inline void swap(T& lhs, T& rhs)
     {
         T   tmp(lhs);
@@ -138,7 +138,7 @@ namespace stlsoft_nostd_util {
  * \param lhs The left hand parameter
  * \param rhs The right hand parameter
  */
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void std_swap(T& lhs, T& rhs)
 {
     // Here we introduce the 'std' implementation, via a 'using namespace std'
@@ -188,7 +188,7 @@ namespace stlsoft
     ///
     /// \param lhs The left hand parameter
     /// \param rhs The right hand parameter
-    template<ss_typename_param_k T>
+    template <ss_typename_param_k T>
     inline void std_swap(T& lhs, T& rhs)
     {
         // Defer to std_swap implementation in stlsoft_std_swap namespace

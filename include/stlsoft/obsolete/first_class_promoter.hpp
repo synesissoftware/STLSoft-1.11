@@ -103,7 +103,7 @@ namespace stlsoft
 namespace first_class_promotion {
 #endif /* STLSOFT_NO_NAMESPACE */
 
-template<ss_bool_t INIT>
+template <ss_bool_t INIT>
 struct first_class_promoter_init_traits
 {
     typedef yes_type                                        type;
@@ -116,23 +116,23 @@ struct first_class_promoter_init_traits<false>
 };
 
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* t, yes_type, yes_type)
 {
     *t = T();
 }
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* t, yes_type, no_type)
 {
     STLSOFT_API_EXTERNAL_memfns_memset(t, 0, sizeof(T));
 }
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* , no_type, yes_type)
 {}
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* , no_type, no_type)
 {}
 

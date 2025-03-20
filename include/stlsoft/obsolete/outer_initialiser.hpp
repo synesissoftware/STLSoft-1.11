@@ -101,7 +101,7 @@ namespace stlsoft
  *
  * \obsolete
  */
-template<ss_typename_param_k O>
+template <ss_typename_param_k O>
 class outer_initialiser
 {
 public:

@@ -160,7 +160,7 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
     /// Create an instance representing the given environment variable
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k basic_environment_variable(S const& name)
         : m_buffer(1)
         , m_exists(obtain_(STLSOFT_NS_QUAL(c_str_ptr)(name), m_buffer))
@@ -445,7 +445,7 @@ operator !=(
  *
  * \ingroup group__library__System
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline
 basic_environment_variable<C>
 make_environment_variable(

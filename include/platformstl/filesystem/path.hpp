@@ -183,7 +183,7 @@ namespace platformstl_project
         {}
 #  ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         /// Constructs a path from \c path
-        template<ss_typename_param_k S>
+        template <ss_typename_param_k S>
         basic_path(S const& s)
             : parent_class_type(s)
         {}
@@ -214,7 +214,7 @@ namespace platformstl_project
             return *this;
         }
 #  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
-        template<ss_typename_param_k S>
+        template <ss_typename_param_k S>
         class_type& operator =(S const& s)
         {
             parent_class_type::operator =(s);
@@ -290,7 +290,7 @@ namespace platformstl_project
         {}
 #  ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
         /// Constructs a path from \c path
-        template<ss_typename_param_k S>
+        template <ss_typename_param_k S>
         basic_path(S const& s)
             : parent_class_type(s)
         {}
@@ -321,7 +321,7 @@ namespace platformstl_project
             return *this;
         }
 #  ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
-        template<ss_typename_param_k S>
+        template <ss_typename_param_k S>
         class_type& operator =(S const& s)
         {
             parent_class_type::operator =(s);
