@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readonly_memory_mapped_file`.
  *
  * Created: sometime in 2010s
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,8 +36,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_types_exist();
 
@@ -45,12 +44,12 @@ namespace
 
         static void test_nonexisting_file();
         static void test_a_new_file_with_fixed_content();
-    } /* namespace single_threaded */
+    } // namespace single_threaded
     namespace multi_threaded {
 
         static void test_nonexisting_file();
         static void test_a_new_file_with_fixed_content();
-    } /* namespace multi_threaded */
+    } // namespace multi_threaded
 } // anonymous namespace
 
 
@@ -88,8 +87,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     using ::xtests::cpp::util::temp_file;
 
@@ -129,7 +127,7 @@ namespace single_threaded {
         XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(sizeof(bytes), mmf.size());
         XTESTS_TEST_BOOLEAN_TRUE(0 == ::memcmp(bytes, mmf.memory(), sizeof(bytes)));
     }
-} /* namespace single_threaded */
+} // namespace single_threaded
 namespace multi_threaded {
 
     typedef unixstl::readonly_memory_mapped_file_base<platformstl::refcount_policy_multi_threaded> rommf_t;
@@ -159,8 +157,7 @@ namespace multi_threaded {
         XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(sizeof(bytes), mmf.size());
         XTESTS_TEST_BOOLEAN_TRUE(0 == ::memcmp(bytes, mmf.memory(), sizeof(bytes)));
     }
-} /* namespace multi_threaded */
-
+} // namespace multi_threaded
 } // anonymous namespace
 
 

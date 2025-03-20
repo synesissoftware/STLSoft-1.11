@@ -4,11 +4,11 @@
  * Purpose: Scopes the console colour (and intensity).
  *
  * Created: 20th July 2006
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_REVISION 16
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_EDIT     30
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_CONSOLE_COLOUR_SCOPE_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -203,10 +203,10 @@ private:
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

@@ -4,11 +4,11 @@
  * Purpose:     Error .
  *
  * Created:     20th March 2005
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_MINOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_REVISION   6
-# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_EDIT       34
+# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -214,10 +214,10 @@ namespace platformstl_project
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace platformstl */
+} // namespace platformstl
 #else
-} /* namespace platformstl_project */
-} /* namespace stlsoft */
+} // namespace platformstl_project
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

@@ -5,11 +5,11 @@
  *              the same cv-qualification.
  *
  * Created:     25th February 2004
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_REVISION   8
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       60
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_SAP_CAST_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -186,7 +186,7 @@ inline TO sap_cast(FROM from)
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

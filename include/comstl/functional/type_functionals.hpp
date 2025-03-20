@@ -4,11 +4,11 @@
  * Purpose: Type-specific predicates and functions.
  *
  * Created: 14th June 2002
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MAJOR    4
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_MINOR    0
 # define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_REVISION 10
-# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     79
+# define COMSTL_VER_COMSTL_FUNCTIONAL_HPP_TYPE_FUNCTIONALS_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -216,10 +216,10 @@ public:
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 

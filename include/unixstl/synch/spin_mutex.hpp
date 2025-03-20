@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Thanks:      To Rupert Kittinger, for pointing out that the prior
  *              implementation that always yielded was not really "spinning".
@@ -14,7 +14,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR     6
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      77
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SPIN_MUTEX_EDIT      78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,10 +139,10 @@ typedef STLSOFT_NS_QUAL(spin_mutex_base)<
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

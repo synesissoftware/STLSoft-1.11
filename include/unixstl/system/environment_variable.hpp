@@ -4,11 +4,11 @@
  * Purpose: Simple class that provides access to an environment variable.
  *
  * Created: 2nd November 2003
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      3
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   9
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       85
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -285,10 +285,10 @@ make_environment_variable(C const* path)
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

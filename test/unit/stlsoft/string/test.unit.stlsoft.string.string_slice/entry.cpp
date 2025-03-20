@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_slice`.
  *
  * Created: 19th February 2010
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,8 +37,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_type_exists();
     static void test_constructor_callable();
@@ -61,8 +60,8 @@ namespace
     static void test_insertion_2();
     static void test_insertion_3();
     static void test_insertion_4();
-
 } // anonymous namespace
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -111,8 +110,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     struct SimpleStream
     {
         std::string     contents;
@@ -552,9 +551,8 @@ static void test_insertion_4()
 # undef FIELD_WIDTH
 #endif
 }
-
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

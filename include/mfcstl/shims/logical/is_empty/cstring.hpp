@@ -4,11 +4,11 @@
  * Purpose: is_empty attribute shims for MFC CString
  *
  * Created: 18th December 2006
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_MAJOR     2
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_MINOR     1
 # define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_REVISION  1
-# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_EDIT      20
+# define MFCSTL_VER_MFCSTL_SHIMS_LOGICAL_IS_EMPTY_HPP_CSTRING_EDIT      21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,10 +120,10 @@ is_empty(CString const& s) STLSOFT_NOEXCEPT
 #ifndef _MFCSTL_NO_NAMESPMFC
 # if defined(_STLSOFT_NO_NAMESPMFC) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPMFC */
 
 namespace stlsoft
@@ -131,7 +131,7 @@ namespace stlsoft
 
     using ::mfcstl::is_empty;
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* !_MFCSTL_NO_NAMESPMFC */
 
 

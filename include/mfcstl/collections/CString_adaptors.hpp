@@ -5,11 +5,11 @@
  *          CString_iadaptor class templates.
  *
  * Created: 1st October 2002
- * Updated: 20th February 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MAJOR       4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MINOR       1
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    10
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        106
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1200,9 +1200,9 @@ inline ms_bool_t operator >=(unsigned char const* lhs, const_CString_iadaptor co
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
+} // namespace mfcstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 
@@ -1603,10 +1603,10 @@ inline const_CString_iadaptor::const_reference const_CString_iadaptor::operator 
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 

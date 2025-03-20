@@ -4,13 +4,13 @@
  * Purpose: Contains classes for initialising COM/OLE.
  *
  * Created: 8th February 1999
- * Updated: 11th October 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  To Adi Shavit, for demanding better documentation of COMSTL.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   12
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       100
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -504,10 +504,10 @@ inline HRESULT initialiser<IP, XP>::get_HRESULT() const
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace stlsoft::comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 

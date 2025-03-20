@@ -4,11 +4,11 @@
  * Purpose: Scoping class template for type information resources.
  *
  * Created: 6th April 2005
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_MAJOR    1
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_MINOR    2
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_REVISION 6
-# define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_EDIT     44
+# define COMSTL_VER_COMSTL_TYPELIB_HPP_TYPEINFO_RESOURCE_SCOPE_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -213,10 +213,10 @@ typedef TypeInfo_resource_scope<ximpl_comstl_typelib_TypeInfo_resource_scope_uti
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace stlsoft::comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 

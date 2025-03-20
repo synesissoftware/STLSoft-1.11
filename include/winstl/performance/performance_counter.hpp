@@ -6,11 +6,11 @@
  *          otherwise using the tick-count facilities.
  *
  * Created: 31st July 2002
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR    5
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR    0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     45
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -111,10 +111,10 @@ typedef stopwatch                                           performance_counter;
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

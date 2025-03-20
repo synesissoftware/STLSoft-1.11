@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::shared_ptr`.
  *
  * Created: 7th October 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,8 +37,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_types_exist();
 
@@ -95,8 +94,7 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     struct CountHolder
     {
@@ -124,8 +122,7 @@ namespace
     };
 } // anonymous namespace
 
-namespace
-{
+namespace {
 
 static void test_types_exist()
 {

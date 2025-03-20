@@ -4,11 +4,11 @@
  * Purpose: Simple class that converts a relative path to an absolute one.
  *
  * Created: 20th December 2002
- * Updated: 26th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        88
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -256,10 +256,10 @@ make_absolute_path(C const* path)
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

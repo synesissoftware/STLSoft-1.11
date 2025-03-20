@@ -4,11 +4,11 @@
  * Purpose:     winstl::to_DATE(DATE const&) overload.
  *
  * Created:     21st October 2007
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_MAJOR      1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_MINOR      0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_REVISION   8
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_EDIT       15
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_DATE_HPP_DATE_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -127,10 +127,10 @@ to_DATE(
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace stlsoft::winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

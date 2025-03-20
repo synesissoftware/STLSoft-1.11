@@ -4,11 +4,11 @@
  * Purpose:     resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MAJOR      4
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_MINOR      0
 # define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_REVISION   8
-# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       94
+# define MFCSTL_VER_MFCSTL_STRING_HPP_RESOURCE_STRING_EDIT       95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -382,10 +382,10 @@ resource_string::data() const
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 
@@ -432,7 +432,7 @@ using ::mfcstl::c_str_len;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

@@ -4,11 +4,11 @@
  * Purpose: Path squeeze functions
  *
  * Created: 13th June 2006
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MAJOR     2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      30
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -323,10 +323,10 @@ path_squeeze(
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

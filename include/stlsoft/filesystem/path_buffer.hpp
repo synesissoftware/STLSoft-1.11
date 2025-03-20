@@ -4,11 +4,11 @@
  * Purpose: Contains the basic_path_buffer template class.
  *
  * Created: 27th May 2020
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2025, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_MAJOR       1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_MINOR       3
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_REVISION    5
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_EDIT        12
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_PATH_BUFFER_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -554,7 +554,7 @@ private: // fields
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

@@ -4,11 +4,11 @@
  * Purpose:     Definition of the CArray_traits traits class.
  *
  * Created:     1st December 2002
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_MAJOR      2
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_MINOR      0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_REVISION   6
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_EDIT       26
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_TRAITS_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -212,10 +212,10 @@ struct CArray_specific_traits
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 

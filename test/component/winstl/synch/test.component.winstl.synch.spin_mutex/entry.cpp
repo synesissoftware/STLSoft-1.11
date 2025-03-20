@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::spin_mutex`.
  *
  * Created: sometime in 2015
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,8 +54,8 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
+
     static void test_1_0();
     static void test_types_exist();
     static void test_types_have_expected_attributes();
@@ -66,7 +66,7 @@ namespace
     static void test_spin_mutex32_can_be_locked_and_unlocked_with_lock_scope();
     static void test_spin_mutex32_can_be_locked_in_the_main_thread_and_unlocked_in_a_worker_thread();
     static void test_with_specific_policy();
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -184,7 +184,7 @@ namespace {
 #endif
         }
     };
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -193,15 +193,14 @@ namespace {
 
 namespace {
 
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     static void test_1_0()
     {
@@ -355,7 +354,7 @@ namespace
 
         XTESTS_TEST_PASSED();
     }
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

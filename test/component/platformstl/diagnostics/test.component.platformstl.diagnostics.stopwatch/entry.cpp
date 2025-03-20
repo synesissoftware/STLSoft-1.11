@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::stopwatch`.
  *
  * Created: 19th November 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,8 +40,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_default_ctor();
     static void test_start_then_stop_immediately();
@@ -82,15 +81,14 @@ int main(int argc, char *argv[])
 namespace {
 
     using platformstl::stopwatch;
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void test_default_ctor()
 {
@@ -166,7 +164,6 @@ static void test_get_epoch_twice()
     XTESTS_TEST_INTEGER_EQUAL(num_us, num_ns / 1000);
 #endif
 }
-
 } // anonymous namespace
 
 

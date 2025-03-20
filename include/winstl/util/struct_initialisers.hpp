@@ -4,11 +4,11 @@
  * Purpose: Functions for initialising Win32 structures.
  *
  * Created: 20th October 1994
- * Updated: 15th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MAJOR       4
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       1
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    11
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        241
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        242
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -387,10 +387,10 @@ WINSTL_THE_INITIALISABLE_STRUCTURE_(NOTIFYICONDATAW, has::cbSize_member_type);
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `inetstl::environment_variable`.
  *
  * Created: 21st February 2025
- * Updated: 21st February 2025
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,8 +38,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void TEST_INSUFFICIENT_SPACE();
     static void TEST_EMPTY_path();
@@ -77,8 +76,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void TEST_INSUFFICIENT_SPACE()
 {

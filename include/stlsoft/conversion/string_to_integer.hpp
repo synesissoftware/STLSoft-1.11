@@ -4,7 +4,7 @@
  * Purpose: String to integer conversions.
  *
  * Created: 18th November 2008
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Chris Oldwood for righteous criticism of one of my hastily-
  *          written articles, which led to the creation of the
@@ -12,7 +12,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_REVISION  2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      75
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1304,7 +1304,7 @@ namespace
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

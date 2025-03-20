@@ -4,11 +4,11 @@
  * Purpose:     Synchronisation concept tags.
  *
  * Created:     16th January 2006
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MINOR       0
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_REVISION    7
-# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        26
+# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -188,8 +188,8 @@ typedef synchronisable_object_tag       synchronizable_object_tag;
  * concept checks
  */
 
-namespace concept_check
-{
+namespace concept_check {
+
     template <ss_typename_param_k S>
     void synch_conformance_synch_obj(S& s, synchronisable_object_tag const*)
     {
@@ -255,13 +255,13 @@ namespace concept_check
         synch_conformance_synch_obj(s,&s);
         synch_conformance_lock(s, &s);
     }
+} // namespace concept_check
 
-} /* namespace concept_check */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

@@ -4,7 +4,7 @@
  * Purpose: basic_string_view class.
  *
  * Created: 16th October 2004
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Bjorn Karlsson and Scott Patterson for discussions on various
  *          naming and design issues. Thanks also to Pablo Aguilar for
@@ -12,7 +12,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       6
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        118
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1999,7 +1999,7 @@ inline ss_char_w_t const* c_str_ptr_null_w(STLSOFT_NS_QUAL(basic_string_view)<ss
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
@@ -2019,7 +2019,7 @@ namespace std
     {
         lhs.swap(rhs);
     }
-} /* namespace std */
+} // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 

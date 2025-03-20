@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_base36_string`.
  *
  * Created: 14th February 2024
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,8 +53,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_zero();
     static void test_ones();
@@ -62,7 +61,6 @@ namespace
     static void test_fibonacci();
 #endif
     static void test_limits();
-
 } // anonymous namespace
 
 
@@ -98,8 +96,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     struct mapping_t
     {
         long long   v;
@@ -621,7 +619,6 @@ static void test_limits()
 #endif
     }
 }
-
 } // anonymous namespace
 
 

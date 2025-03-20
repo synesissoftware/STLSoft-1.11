@@ -5,7 +5,7 @@
  * Purpose: Unit-tests for `stlsoft::cmdargs`.
  *
  * Created: 29th December 2024
- * Updated: 31st December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,8 +42,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void TEST_EMPTY();
     static void TEST_PROGRAM_ONLY();
@@ -63,8 +62,7 @@ namespace
  * helper functions
  */
 
-namespace
-{
+namespace {
 
     template <ss_typename_param_k T>
     std::string
@@ -122,15 +120,14 @@ int main(int argc, char *argv[])
 namespace {
 
     using stlsoft::cmdargs;
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void TEST_EMPTY()
 {
@@ -356,7 +353,6 @@ static void TEST_DOUBLE_DASH_WITH_VALUES_AND_OPTIONS()
     XTESTS_TEST_INTEGER_EQUAL(1u, ca.options().size());
     XTESTS_TEST_INTEGER_EQUAL(3u, ca.values().size());
 }
-
 } // anonymous namespace
 
 

@@ -4,13 +4,13 @@
  * Purpose: bstr class.
  *
  * Created: 20th December 1996
- * Updated: 5th November 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  To Gabor Fischer for requesting attach().
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       8
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    16
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        84
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -876,10 +876,10 @@ inline void bstr::swap(BSTR& rhs) STLSOFT_NOEXCEPT
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace stlsoft::comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 
@@ -972,7 +972,7 @@ struct string_traits< ::comstl::bstr>
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

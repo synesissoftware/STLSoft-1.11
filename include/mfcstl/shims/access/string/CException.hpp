@@ -5,11 +5,11 @@
  *              exceptions.
  *
  * Created:     15th September 2010
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_MAJOR    1
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_MINOR    0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_REVISION 8
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_EDIT     104
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CEXCEPTION_EDIT     105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -288,10 +288,10 @@ c_str_ptr_a(CException const& x)
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace stlsoft::mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 
@@ -336,7 +336,7 @@ using ::mfcstl::c_str_ptr_a;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

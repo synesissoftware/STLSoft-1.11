@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::glob_sequence`.
  *
  * Created: 24th January 2009
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,8 +40,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_empty_directory();
 
@@ -143,8 +142,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     typedef unixstl::glob_sequence                          glob_sequence_t;
     typedef unixstl::filesystem_traits<char>                traits_m_t;
@@ -607,7 +605,6 @@ static void test_dotdot_and_stardotstar_and_directories_absolutePath()
 
     XTESTS_TEST_PASSED();
 }
-
 } // anonymous namespace
 
 

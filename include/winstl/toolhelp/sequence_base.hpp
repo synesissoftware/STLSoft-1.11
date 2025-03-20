@@ -4,13 +4,13 @@
  * Purpose: TOOLHELP sequence_base class template.
  *
  * Created: 21st May 2005
- * Updated: 5th November 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  To Pablo for contributing this great library.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2007, Pablo Aguilar
  * Copyright (c) 2006-2007, Matthew Wilson
  * All rights reserved.
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  16
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      37
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -399,10 +399,10 @@ private:
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

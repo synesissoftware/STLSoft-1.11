@@ -4,11 +4,11 @@
  * Purpose: Definition of stlsoft::read_line() function template.
  *
  * Created: 2nd January 2007
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_MAJOR    3
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_MINOR    0
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_REVISION 3
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_EDIT     29
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_IO_FUNCTIONS_HPP_READ_LINE_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -138,8 +138,8 @@ operator |(
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-namespace readers
-{
+namespace readers {
+
     class read_from_FILE
     {
     public: // types
@@ -304,11 +304,10 @@ namespace readers
         ss_size_t const     m_size;
         ss_size_t           m_current;
     };
+} // namespace readers
 
-} /* namespace readers */
+namespace read_line_impl {
 
-namespace read_line_impl
-{
     template <
         ss_typename_param_k S
     ,   ss_typename_param_k P
@@ -416,8 +415,7 @@ namespace read_line_impl
 
         return !line.empty();
     }
-
-} /* namespace read_line_impl */
+} // namespace read_line_impl
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -502,7 +500,7 @@ read_line(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

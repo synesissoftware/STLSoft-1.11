@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::gram_scope`.
  *
  * Created: 15th December 2024
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,8 +44,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void TEST_gram_scope_CONSTRUCT_FROM_INSTANCES();
 } // anonymous namespace
@@ -79,8 +78,7 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void TEST_gram_scope_CONSTRUCT_FROM_INSTANCES()
 {
@@ -101,7 +99,6 @@ static void TEST_gram_scope_CONSTRUCT_FROM_INSTANCES()
     XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10000000, total_time_ns);
     XTESTS_TEST_INTEGER_LESS_OR_EQUAL(20000000, total_time_ns);
 }
-
 } // anonymous namespace
 
 

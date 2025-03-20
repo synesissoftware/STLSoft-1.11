@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::scoped_handle`.
  *
  * Created: 16th October 2008
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,8 +34,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_types_exist();
 
@@ -120,8 +119,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
     defined(WINSTL_ARCH_IS_X86)
 
@@ -170,11 +169,9 @@ namespace
     void    FNDECL_2 free_void_2();
     void    FNDECL_3 free_void_3();
     void    FNDECL_4 free_void_4();
-
 } // anonymous namespace
 
-namespace
-{
+namespace {
 
 static void test_types_exist()
 {
@@ -642,15 +639,13 @@ static void test_1_18()
 static void test_1_19()
 {
 }
-
 #endif /* compiler */
-
 } // anonymous namespace
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-namespace
-{
+namespace {
 
     int alloc_int(bool succeeds)    // Returns -1 on failure
     {
@@ -802,10 +797,9 @@ namespace
     {
         --s_voidCount;
     }
-
 #endif /* compiler */
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

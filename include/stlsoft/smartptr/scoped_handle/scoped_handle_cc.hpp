@@ -5,13 +5,13 @@
  *          types.
  *
  * Created: 1st November 1994
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Adi Shavit, for requesting the indirect functionality
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_MAJOR      5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_MINOR      7
 # define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_REVISION   3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_EDIT       693
+# define STLSOFT_VER_STLSOFT_SMARTPTR_SCOPED_HANDLE_HPP_SCOPED_HANDLE_CC_EDIT       694
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -925,7 +925,7 @@ is_null(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
@@ -947,7 +947,7 @@ namespace std
     {
         lhs.swap(rhs);
     }
-} /* namespace std */
+} // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 

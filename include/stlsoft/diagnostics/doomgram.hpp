@@ -4,11 +4,11 @@
  * Purpose: Definition of the doomgram class.
  *
  * Created: 13th May 2013
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2013-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MAJOR     2
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_MINOR     0
 # define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_REVISION  1
-# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      34
+# define STLSOFT_VER_STLSOFT_DIAGNOSTICS_HPP_DOOMGRAM_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -742,7 +742,7 @@ doomgram::has_overflowed() const STLSOFT_NOEXCEPT
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

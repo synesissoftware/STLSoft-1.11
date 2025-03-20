@@ -4,11 +4,11 @@
  * Purpose: Contains the definition of the CComBSTR_veneer template.
  *
  * Created: 1st October 2002
- * Updated: 3rd September 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MAJOR    5
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_MINOR    3
 # define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_REVISION 10
-# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     94
+# define ATLSTL_VER_ATLSTL_STRING_HPP_CCOMBSTR_VENEER_EDIT     95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -741,10 +741,10 @@ inline CComBSTR_veneer::const_pointer CComBSTR_veneer::data() const
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace atlstl */
+} // namespace atlstl
 # else
-} /* namespace atlstl_project */
-} /* namespace stlsoft */
+} // namespace atlstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
 
@@ -760,7 +760,7 @@ namespace stlsoft
     {
         lhs.swap(rhs);
     }
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 
@@ -848,7 +848,7 @@ struct string_traits< ::atlstl::CComBSTR_veneer>
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

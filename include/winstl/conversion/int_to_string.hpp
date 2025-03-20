@@ -4,11 +4,11 @@
  * Purpose:     WinSTL integer to string conversions.
  *
  * Created:     31st July 2002
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MAJOR      2
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_MINOR      1
 # define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_REVISION   15
-# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       62
+# define _WINSTL_VER_WINSTL_CONVERSION_HPP_INT_TO_STRING_EDIT       63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -136,8 +136,7 @@ namespace winstl_project
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #ifdef STLSOFT_CF_NAMESPACE_SUPPORT
-namespace int_to_string_tls
-{
+namespace int_to_string_tls {
 #endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
 // NOTE: This class had to be moved out of line to prevent VC++
@@ -339,7 +338,7 @@ private:
 };
 
 #ifdef STLSOFT_CF_NAMESPACE_SUPPORT
-} /* namespace int_to_string_tls */
+} // namespace int_to_string_tls
 #endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
 
@@ -626,10 +625,10 @@ inline C const* int_to_string(unsigned long const& value)
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

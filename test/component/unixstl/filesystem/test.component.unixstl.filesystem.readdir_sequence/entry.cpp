@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readdir_sequence`.
  *
  * Created: sometime in 2010s
- * Updated: 21st February 2025
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,8 +37,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_empty_directory();
     static void test_non_empty_directory();
@@ -82,8 +81,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     typedef platformstl::filesystem_traits<char>            fs_traits_t;
     typedef platformstl::path                               path_t;
@@ -126,9 +124,7 @@ namespace
         return -1;
     }
 
-namespace
-{
-
+namespace {
 
 static void test_empty_directory()
 {

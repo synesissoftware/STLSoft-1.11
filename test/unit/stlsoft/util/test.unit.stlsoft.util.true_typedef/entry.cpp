@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *
  * Created: 27th February 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,14 +43,12 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_int_spec();
     static void test_Integer_spec();
     static void test_double_spec();
     static void test_stdstring_spec();
-
 } // anonymous namespace
 
 
@@ -86,8 +84,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
 #if __cplusplus >= 201402L
 
     struct SimpleStream
@@ -647,9 +645,6 @@ static void test_stdstring_spec()
 {
 
 }
-
-
-
 } // anonymous namespace
 
 

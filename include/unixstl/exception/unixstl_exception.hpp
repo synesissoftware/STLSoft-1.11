@@ -4,11 +4,11 @@
  * Purpose:     unixstl::unixstl_exception class
  *
  * Created:     19th June 2004
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_MINOR     4
 # define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_EDIT      67
+# define UNIXSTL_VER_UNIXSTL_EXCEPTION_HPP_UNIXSTL_EXCEPTION_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -128,10 +128,10 @@ typedef unixstl_exception                                   unix_exception;
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

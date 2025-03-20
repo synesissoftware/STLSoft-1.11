@@ -4,11 +4,11 @@
  * Purpose: Platform header for the readdir_sequence components.
  *
  * Created: 29th April 2006
- * Updated: 19th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   13
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       38
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -150,10 +150,10 @@ namespace platformstl_project
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace platformstl */
+} // namespace platformstl
 #else
-} /* namespace platformstl_project */
-} /* namespace stlsoft */
+} // namespace platformstl_project
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::format_thousands`.
  *
  * Created: 30th November 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -72,8 +72,7 @@ hooked_GetLocaleInfoW(
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void TEST_format_thousands_SIMPLE();
     static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS();
@@ -199,8 +198,8 @@ hooked_GetLocaleInfoW(
 }
 
 
-namespace
-{
+namespace {
+
     using stlsoft::ss_sint64_t;
     using stlsoft::ss_uint64_t;
     typedef std::string                                     string_a_t;
@@ -380,7 +379,6 @@ static void TEST_format_thousands_minus9223372036854775808_WITH_DEFAULT_SEPARATO
 
     s_picture_m = NULL;
 }
-
 } // anonymous namespace
 
 

@@ -4,11 +4,11 @@
  * Purpose: Initialiser classes for the STLSoft libraries.
  *
  * Created: 17th February 1997
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_REVISION  8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_EDIT      231
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_EDIT      232
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -273,7 +273,7 @@ private:
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

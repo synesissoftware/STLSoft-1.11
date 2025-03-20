@@ -4,11 +4,11 @@
  * Purpose: Command-line sequences class.
  *
  * Created: 25th June 2005
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        54
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -608,7 +608,7 @@ operator <<(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

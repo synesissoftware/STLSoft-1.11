@@ -4,7 +4,7 @@
  * Purpose: Functions for comparing Windows API structures.
  *
  * Created: 9th October 2024
- * Updated: 15th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_MAJOR      1
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_MINOR      0
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_REVISION   4
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_EDIT       4
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_COMPARERS_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -933,10 +933,10 @@ WINSTL_THE_COMPARABLE_STRUCTURE_(SHQUERYRBINFO, is::comparable_by_bytes);
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

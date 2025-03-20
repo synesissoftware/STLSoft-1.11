@@ -4,11 +4,11 @@
  * Purpose: Intra-process mutext, based on PTHREADS.
  *
  * Created: 15th May 2002
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      6
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   13
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       91
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -377,9 +377,9 @@ private:
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
+} // namespace unixstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
@@ -468,10 +468,10 @@ public:
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

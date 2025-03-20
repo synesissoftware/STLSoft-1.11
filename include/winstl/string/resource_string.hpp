@@ -4,14 +4,14 @@
  * Purpose: basic_resource_string class.
  *
  * Created: 1st November 1994
- * Updated: 30th September 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Ryan Ginstrom for suggesting the implementation for handling
  *          Unicode strings on Win9x.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 2004-2005, Ryan Ginstrom
  * All rights reserved.
@@ -59,7 +59,7 @@
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    2
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 14
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     105
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -442,10 +442,10 @@ inline ss_size_t c_str_len(basic_resource_string<S, X> const& s)
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

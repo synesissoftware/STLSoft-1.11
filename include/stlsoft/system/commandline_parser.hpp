@@ -4,11 +4,11 @@
  * Purpose: commandline_parser class.
  *
  * Created: 20th May 2000
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     59
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -363,7 +363,7 @@ typedef basic_commandline_parser<ss_char_w_t>               commandline_parser_w
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

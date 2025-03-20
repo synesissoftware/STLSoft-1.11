@@ -5,7 +5,7 @@
  *          CArray_iadaptor class templates.
  *
  * Created: 1st December 2002
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Nevin Liber and Scott Meyers for kicking my lazy behind, and
  *          requiring that I implement the full complement of standard
@@ -13,7 +13,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MAJOR    4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_MINOR    3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_REVISION 13
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     106
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CARRAY_ADAPTORS_EDIT     107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1675,10 +1675,10 @@ inline ms_bool_t operator >=(A const& lhs, CArray_adaptor_base<A, I, T> const& r
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 

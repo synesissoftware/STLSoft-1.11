@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::reg_value`.
  *
  * Created: 23rd February 2009
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,8 +42,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
 #if 0
     static void test_missing_value();
@@ -63,8 +62,8 @@ namespace
  * helper functions
  */
 
-namespace
-{
+namespace {
+
     static winstl::reg_key* rootKey;
 }
 
@@ -138,8 +137,7 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     std::string get_value_name(char const* root, size_t n)
     {
@@ -296,7 +294,6 @@ static void test_multistring_wide()
         XTESTS_TEST_WIDE_STRING_EQUAL(values[i], key.get_value(stlsoft::c_str_ptr_w(guid)).value_multi_sz()[i]);
     }}
 }
-
 } // anonymous namespace
 
 
