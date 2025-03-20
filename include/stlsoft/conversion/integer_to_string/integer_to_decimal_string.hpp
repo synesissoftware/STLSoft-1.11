@@ -5,11 +5,11 @@
  *          decimal representation.
  *
  * Created: 7th April 2002
- * Updated: 5th November 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_DECIMAL_STRING_MAJOR       5
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_DECIMAL_STRING_MINOR       0
 # define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_DECIMAL_STRING_REVISION    20
-# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_DECIMAL_STRING_EDIT        96
+# define STLSOFT_VER_STLSOFT_CONVERSION_INTEGER_TO_STRING_HPP_INTEGER_TO_DECIMAL_STRING_EDIT        97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -709,7 +709,7 @@ integer_to_decimal_string(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

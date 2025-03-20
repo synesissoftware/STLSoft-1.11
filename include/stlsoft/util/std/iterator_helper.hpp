@@ -1,17 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    stlsoft/util/std/iterator_helper.hpp
  *
- * Purpose: Definition of iterator class templates and macros for 
+ * Purpose: Definition of iterator class templates and macros for
  *          abstracting away standard library inconsistencies.
  *
  * Created: 2nd January 2000
- * Updated: 1st October 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  To Cláudio Albuquerque for assisting with VC++ 12 & 14 support.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_MINOR     8
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_REVISION  9
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      127
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER_EDIT      128
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1012,7 +1012,7 @@ public:
 #ifdef _STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 template<
@@ -1032,10 +1032,10 @@ private:
     char    x[1024];
 };
 
-namespace std
-{
-    namespace test_dinkumware
-    {
+namespace std {
+
+    namespace test_dinkumware {
+
         template<
             ss_typename_param_k T1
         ,   ss_typename_param_k T2
@@ -1080,10 +1080,8 @@ namespace std
             ,   sizeof(_Ptrit_type) < 1024
             >::selected_type                                iterator_type;
         };
-
-    } /* namespace test_dinkumware */
-
-} /* namespace std */
+    } // namespace test_dinkumware
+} // namespace std
 
 #ifndef STLSOFT_NO_NAMESPACE
 namespace stlsoft
@@ -1214,7 +1212,7 @@ distance_type(pointer_iterator<V, P, R>::type const&)
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

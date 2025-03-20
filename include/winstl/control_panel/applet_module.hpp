@@ -4,11 +4,11 @@
  * Purpose: Control Panel module/applet manipulation classes.
  *
  * Created: 1st April 2006
- * Updated: 13th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 25
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     48
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -851,10 +851,10 @@ inline applet_module::const_iterator applet_module::end() const
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

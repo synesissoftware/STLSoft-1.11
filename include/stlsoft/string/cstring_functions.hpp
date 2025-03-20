@@ -4,11 +4,11 @@
  * Purpose: String duplication functions.
  *
  * Created: 26th May 2005
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MAJOR     2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_MINOR     2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_REVISION  8
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT      51
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS_EDIT      52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -196,7 +196,7 @@ inline C* string_dup(C const* str, A& ator, ss_size_t* psize = NULL)
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

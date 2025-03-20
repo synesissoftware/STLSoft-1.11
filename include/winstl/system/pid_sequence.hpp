@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 24th June 2005
- * Updated: 13th October 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Adi Shavit for spotting a small inefficiency in the
  *          resize()-ing, during the review of Extended STL volume 1
@@ -12,7 +12,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 14
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     74
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -466,10 +466,10 @@ pid_sequence::size() const
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

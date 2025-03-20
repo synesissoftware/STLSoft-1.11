@@ -4,11 +4,11 @@
  * Purpose: Define the library_identifier_provider inteface.
  *
  * Created: 29th December 2016
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_MAJOR    1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_MINOR    1
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_REVISION 3
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_EDIT     8
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_LIBRARY_IDENTIFIER_PROVIDER_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -126,7 +126,7 @@ private:
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

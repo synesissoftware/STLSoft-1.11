@@ -4,11 +4,11 @@
  * Purpose: String access shims for Internet types
  *
  * Created: 21st October 2006
- * Updated: 25th September 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define INETSTL_VER_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR_MAJOR      1
 # define INETSTL_VER_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR_MINOR      1
 # define INETSTL_VER_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR_REVISION   4
-# define INETSTL_VER_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR_EDIT       27
+# define INETSTL_VER_INETSTL_SHIMS_ACCESS_STRING_STD_HPP_IN_ADDR_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -505,10 +505,10 @@ c_str_ptr(
 #ifndef INETSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace inetstl */
+} // namespace inetsl
 # else
-} /* namespace inetstl_project */
-} /* namespace stlsoft */
+} // namespace inetstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
 
@@ -543,7 +543,7 @@ using ::inetstl::c_str_ptr;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

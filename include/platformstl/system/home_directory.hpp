@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the home_directory components.
  *
  * Created:     9th January 2017
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_EDIT     9
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_HOME_DIRECTORY_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -142,10 +142,10 @@ typedef WINSTL_NS_QUAL(home_directory)                      home_directory;
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace platformstl */
+} // namespace platformstl
 #else
-} /* namespace platformstl_project */
-} /* namespace stlsoft */
+} // namespace platformstl_project
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

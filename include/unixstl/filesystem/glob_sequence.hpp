@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -12,7 +12,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      186
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      187
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1519,10 +1519,10 @@ glob_sequence::init_glob_3_(
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

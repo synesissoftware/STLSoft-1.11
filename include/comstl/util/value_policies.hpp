@@ -5,11 +5,11 @@
  *          enumerator interfaces.
  *
  * Created: 17th September 1998
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 8
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     181
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     182
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -534,10 +534,10 @@ public:
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace stlsoft::comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 

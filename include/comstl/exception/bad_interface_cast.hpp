@@ -4,11 +4,11 @@
  * Purpose: Exception thrown when interface casts fail.
  *
  * Created: 22nd December 2003
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_MAJOR       6
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_MINOR       0
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_REVISION    5
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_EDIT        55
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_BAD_INTERFACE_CAST_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -218,10 +218,10 @@ private:
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 

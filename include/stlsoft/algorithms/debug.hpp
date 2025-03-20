@@ -4,11 +4,11 @@
  * Purpose:     Debug algorithms.
  *
  * Created:     17th January 2002
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_MAJOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_MINOR     1
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_REVISION  5
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_EDIT      83
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_DEBUG_EDIT      84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -169,7 +169,7 @@ inline UF for_each_postinc(I first, I last, UF func)
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

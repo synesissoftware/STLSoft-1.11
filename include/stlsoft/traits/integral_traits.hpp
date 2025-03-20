@@ -4,7 +4,7 @@
  * Purpose: integral_traits classes.
  *
  * Created: 21st November 2024
- * Updated: 21st November 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_TRAITS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_TRAITS_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_TRAITS_REVISION  1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_TRAITS_EDIT      1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_INTEGRAL_TRAITS_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -194,7 +194,7 @@ STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TYPE(unsigned long long);
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

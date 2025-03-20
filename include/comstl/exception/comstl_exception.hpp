@@ -4,11 +4,11 @@
  * Purpose:     comstl::comstl_exception class
  *
  * Created:     8th December 2004
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_MAJOR     3
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_MINOR     2
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_REVISION  2
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_EDIT      60
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_COMSTL_EXCEPTION_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,10 +131,10 @@ typedef comstl_exception                                    com_exception;
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 

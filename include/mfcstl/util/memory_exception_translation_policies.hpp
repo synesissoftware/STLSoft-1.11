@@ -4,11 +4,11 @@
  * Purpose:     .
  *
  * Created:     2nd February 2006
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MAJOR     1
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MINOR     0
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_REVISION  9
-# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      25
+# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -148,10 +148,10 @@ public:
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 

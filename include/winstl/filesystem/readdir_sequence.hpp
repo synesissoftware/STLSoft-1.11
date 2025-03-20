@@ -4,7 +4,7 @@
  * Purpose: Platform header for the readdir_sequence components.
  *
  * Created: 29th April 2006
- * Updated: 20th February 2025
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     40
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -466,10 +466,10 @@ operator !=(
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

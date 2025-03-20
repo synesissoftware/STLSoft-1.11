@@ -4,11 +4,11 @@
  * Purpose: CString Get/ReleaseBuffer scoping class.
  *
  * Created: 12th February 1999
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_MAJOR      5
 # define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_MINOR      0
 # define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_REVISION   3
-# define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_EDIT       75
+# define MFCSTL_VER_MFCSTL_STRING_HPP_GRAB_CSTRING_BUFFER_EDIT       76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -233,10 +233,10 @@ int grab_CString_buffer::original_length() const
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 

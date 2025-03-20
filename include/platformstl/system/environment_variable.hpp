@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the environment_variable components.
  *
  * Created:     9th January 2017
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,10 +141,10 @@ typedef WINSTL_NS_QUAL(environment_variable)                environment_variable
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace platformstl */
+} // namespace platformstl
 #else
-} /* namespace platformstl_project */
-} /* namespace stlsoft */
+} // namespace platformstl_project
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

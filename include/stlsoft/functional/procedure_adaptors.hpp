@@ -4,11 +4,11 @@
  * Purpose:     Contains the adaptors to allow functions to be used as procedures in algorithms.
  *
  * Created:     13th June 1999
- * Updated:     8th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_MINOR       0
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_REVISION    6
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_EDIT        25
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_PROCEDURE_ADAPTORS_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -195,7 +195,7 @@ inline binary_procedure_adaptor<F> adapt_binary_procedure(F func)
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

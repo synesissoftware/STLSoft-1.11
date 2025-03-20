@@ -4,14 +4,14 @@
  * Purpose: Special string instance class template.
  *
  * Created: 3rd June 2006
- * Updated: 26th December 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Pablo Aguilar for spotting my omission of string access shims
  *          for special_string_instance_1.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       5
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        48
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1609,7 +1609,7 @@ c_str_len_w(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

@@ -4,11 +4,11 @@
  * Purpose:     Contains the std_swap() function.
  *
  * Created:     27th June 2005
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MINOR    2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_REVISION 5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     32
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,8 +93,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #ifndef STLSOFT_NO_NAMESPACE
-namespace stlsoft_std_swap
-{
+namespace stlsoft_std_swap {
 #endif /* STLSOFT_NO_NAMESPACE */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -109,8 +108,7 @@ namespace stlsoft_std_swap
 // This is defined only when the std namespace is not.
 #ifdef STLSOFT_STD_SWAP_NO_USE_STD
 # ifndef STLSOFT_NO_NAMESPACE
-namespace stlsoft_nostd_util
-{
+namespace stlsoft_nostd_util {
 # endif /* STLSOFT_NO_NAMESPACE */
 
     template<ss_typename_param_k T>
@@ -123,7 +121,7 @@ namespace stlsoft_nostd_util
     }
 
 # ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft_nostd_util */
+} // namespace stlsoft_nostd_util
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* STLSOFT_STD_SWAP_NO_USE_STD */
 
@@ -173,7 +171,7 @@ inline void std_swap(T& lhs, T& rhs)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft_std_swap */
+} // namespace stlsoft_std_swap
 #endif /* STLSOFT_NO_NAMESPACE */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -202,7 +200,7 @@ namespace stlsoft
         stlsoft_std_swap::std_swap(lhs, rhs);
     }
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 #endif /* STLSOFT_NO_NAMESPACE */
 

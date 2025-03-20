@@ -4,11 +4,11 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_MINOR      0
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_REVISION   6
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       39
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTDLIB_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -260,7 +260,7 @@ inline int system(S const& s)
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

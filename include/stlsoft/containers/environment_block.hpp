@@ -4,11 +4,11 @@
  * Purpose: Contains the basic_environment_block class.
  *
  * Created: 25th June 2004
- * Updated: 27th September 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MINOR     2
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_REVISION  11
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT      63
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT      64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -347,7 +347,7 @@ typedef basic_environment_block<ss_char_w_t>                environment_block_w;
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

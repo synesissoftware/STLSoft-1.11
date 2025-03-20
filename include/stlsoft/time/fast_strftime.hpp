@@ -4,11 +4,11 @@
  * Purpose: Efficient drop-in replacement for strftime().
  *
  * Created: 23rd December 2018
- * Updated: 3rd September 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2018-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_MAJOR       1
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_MINOR       3
 # define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_REVISION    1
-# define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_EDIT        16
+# define STLSOFT_VER_STLSOFT_TIME_HPP_FAST_STRFTIME_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -125,8 +125,7 @@ struct fast_strftime_info_w_t
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-namespace ximpl_fast_strftime_
-{
+namespace ximpl_fast_strftime_ {
 
 template <ss_typename_param_k T>
 struct fast_strftime_traits_;
@@ -1078,8 +1077,7 @@ finish_sliced_item:
 
     return n;
 }
-
-} /* namespace ximpl_fast_strftime_ */
+} // namespace ximpl_fast_strftime_
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1355,7 +1353,7 @@ fast_strftime(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

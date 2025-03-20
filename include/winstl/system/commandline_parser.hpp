@@ -4,11 +4,11 @@
  * Purpose: commandline_parser class.
  *
  * Created: 20th May 2000
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR      2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       55
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -246,10 +246,10 @@ typedef basic_commandline_parser<TCHAR>                     commandline_parser;
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

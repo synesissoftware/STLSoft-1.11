@@ -4,11 +4,11 @@
  * Purpose: Field-based properties.
  *
  * Created: 6th October 2003
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -63,7 +63,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   11
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       49
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -408,7 +408,7 @@ inline S& operator <<(  S& s
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

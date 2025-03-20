@@ -4,11 +4,11 @@
  * Purpose: Type conversions for Windows.
  *
  * Created: 31st May 2003
- * Updated: 27th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    4
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 15
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     119
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -811,10 +811,10 @@ operator <<(
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
@@ -853,7 +853,7 @@ using ::winstl::c_str_ptr_null_w;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

@@ -4,11 +4,11 @@
  * Purpose: Safe interface casting functions.
  *
  * Created: 25th June 2002
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -64,7 +64,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      4
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   1
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       144
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       145
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1090,10 +1090,10 @@ is_empty(
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 
@@ -1124,7 +1124,7 @@ using ::comstl::is_empty;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

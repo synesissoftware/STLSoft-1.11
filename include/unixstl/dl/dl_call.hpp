@@ -4,11 +4,11 @@
  * Purpose: Invocation of functions in dynamic libraries.
  *
  * Created: sometime in 1998
- * Updated: 13th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    20
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        65
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -3787,10 +3787,10 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

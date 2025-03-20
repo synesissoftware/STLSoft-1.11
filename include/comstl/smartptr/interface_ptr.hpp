@@ -4,11 +4,11 @@
  * Purpose: Interface management helper classes.
  *
  * Created: 2nd November 1994
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1994-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR     7
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR     4
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION  1
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT      516
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT      517
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -340,10 +340,10 @@ inline ss_typename_type_ret_k interface_ptr<T>::pointer interface_ptr<T>::get_in
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 
@@ -375,7 +375,7 @@ using ::comstl::is_empty;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */
@@ -400,7 +400,7 @@ namespace std
     {
         lhs.swap(rhs);
     }
-} /* namespace std */
+} // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 

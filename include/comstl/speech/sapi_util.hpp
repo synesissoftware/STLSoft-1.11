@@ -4,11 +4,11 @@
  * Purpose:     Definition of SAPI types and constants.
  *
  * Created:     31st August 2006
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MAJOR       1
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MINOR       0
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    9
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        22
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -252,7 +252,7 @@ namespace impl
         return sapi_speak_(voice, STLSOFT_NS_QUAL(a2w)(words), flags);
     }
 
-} /* namespace impl */
+} // namespace impl
 
 template<   ss_typename_param_k V
         ,   ss_typename_param_k S
@@ -282,10 +282,10 @@ sapi_create(
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 
 # ifndef COMSTL_SPEECH_SAPI_UTIL_USE_MS_SAPI_HEADERS

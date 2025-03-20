@@ -5,11 +5,11 @@
  *          and Unicode specialisations thereof.
  *
  * Created: 30th April 1999
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR     3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR     0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION  28
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      172
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT      173
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1493,10 +1493,10 @@ inline is_bool_t basic_findfile_sequence_const_input_iterator<C, T, X, V>::equal
 #ifndef INETSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace inetstl */
+} // namespace inetsl
 # else
-} /* namespace inetstl_project */
-} /* namespace stlsoft */
+} // namespace inetstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !INETSTL_NO_NAMESPACE */
 
@@ -1536,7 +1536,7 @@ using ::inetstl::c_str_ptr_null_w;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

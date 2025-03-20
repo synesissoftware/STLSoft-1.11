@@ -4,11 +4,11 @@
  * Purpose: Helper functions for ACE_String_Base class.
  *
  * Created: 16th December 2004
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MAJOR     2
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_MINOR     1
 # define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_REVISION  1
-# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_EDIT      25
+# define ACESTL_VER_ACESTL_SHIMS_LOGICAL_IS_EMPTY_HPP_STRING_BASE_EDIT      26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -157,7 +157,7 @@ is_empty(ACE_String_Base<ss_char_w_t> const& s) STLSOFT_NOEXCEPT
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* !STLSOFT_NO_NAMESPACE */
 
 

@@ -4,11 +4,11 @@
  * Purpose:     is_void_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_VOID_TYPE_MAJOR    2
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_VOID_TYPE_MINOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_VOID_TYPE_REVISION 2
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_VOID_TYPE_EDIT     20
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_VOID_TYPE_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,7 +119,7 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_void_type, ss_template_void_k, 1, 
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

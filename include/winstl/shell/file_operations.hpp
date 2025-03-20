@@ -4,13 +4,13 @@
  * Purpose: Shell file operations.
  *
  * Created: 12th December 1996
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  To Pablo Aguilar for default folder enhancements.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MINOR      1
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_REVISION   9
-# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       105
+# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,8 +117,7 @@ namespace winstl_project
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-namespace ximpl_winstl_shell_functions_
-{
+namespace ximpl_winstl_shell_functions_ {
 
 inline
 int
@@ -231,7 +230,7 @@ shell_delete_w_(
         return res;
     }
 }
-} /* namespace ximpl_winstl_shell_functions_ */
+} // namespace ximpl_winstl_shell_functions_
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** Requests the shell to delete the given file
@@ -1220,10 +1219,10 @@ shell_delete(
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

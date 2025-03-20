@@ -4,11 +4,11 @@
  * Purpose: Helper functions for ACE strings.
  *
  * Created: 23rd September 2004
- * Updated: 27th September 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MAJOR      2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MINOR      0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   13
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       61
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -259,7 +259,7 @@ namespace acestl_inet_addr_access_string_util
         return retVal;
     }
 
-} /* namespace acestl_inet_addr_access_string_util */
+} // namespace acestl_inet_addr_access_string_util
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -443,10 +443,10 @@ operator <<(
 #ifndef ACESTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace acestl */
+} // namespace acestl
 # else
-} /* namespace acestl_project */
-} /* namespace stlsoft */
+} // namespace acestl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 
 /** The \ref group__concept__Shim__stream_insertion "stream insertion shim" for ACE_INET_Addr.
@@ -487,7 +487,7 @@ namespace stlsoft
     using ::acestl::c_str_ptr_null_a;
     using ::acestl::c_str_ptr_null_w;
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 #endif /* !ACESTL_NO_NAMESPACE */
 

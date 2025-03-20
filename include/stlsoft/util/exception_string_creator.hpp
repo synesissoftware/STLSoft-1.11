@@ -4,11 +4,11 @@
  * Purpose: Contains the exception_string_creator class.
  *
  * Created: 25th May 2010
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MINOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 11
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     31
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -639,7 +639,7 @@ c_str_ptr_w(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

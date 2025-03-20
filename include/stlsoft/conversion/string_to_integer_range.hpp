@@ -4,11 +4,11 @@
  * Purpose:     String to integer conversions.
  *
  * Created:     28th October 2020
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2020-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2025, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_MINOR       0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_REVISION    1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_EDIT        3
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_RANGE_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -542,7 +542,7 @@ try_parse_range_of(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

@@ -4,11 +4,11 @@
  * Purpose:     Special-string instance that obtains the current directory.
  *
  * Created:     1st November 2003
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR     2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      69
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT      70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -164,10 +164,10 @@ typedef STLSOFT_NS_QUAL(special_string_instance_0)< cwd_policy<char> >          
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

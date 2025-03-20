@@ -4,11 +4,11 @@
  * Purpose:     winstl::time_cast<>.
  *
  * Created:     26th May 2014
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_MAJOR     2
 # define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_MINOR     0
 # define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_REVISION  2
-# define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_EDIT      14
+# define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_EDIT      15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -126,8 +126,7 @@ namespace winstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-namespace ximpl_winstl_time_cast
-{
+namespace ximpl_winstl_time_cast {
 
     template <
         typename T_to
@@ -210,8 +209,7 @@ namespace ximpl_winstl_time_cast
             return st;
         }
     };
-
-} /* namespace ximpl_winstl_time_cast */
+} // namespace ximpl_winstl_time_cast
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -237,10 +235,10 @@ time_cast(T_from const& from)
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

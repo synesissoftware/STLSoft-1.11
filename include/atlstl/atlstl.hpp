@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 9th July 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     7
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  2
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      125
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -584,10 +584,10 @@ inline as_bool_t InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace atlstl */
+} // namespace atlstl
 # else
-} /* namespace atlstl_project */
-} /* namespace stlsoft */
+} // namespace atlstl_project
+} // namespace stlsoft
 namespace atlstl = ::stlsoft::atlstl_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */

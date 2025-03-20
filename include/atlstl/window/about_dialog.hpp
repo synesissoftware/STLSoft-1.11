@@ -4,11 +4,11 @@
  * Purpose: Simple 'about' dialog, that shell-executes hyperlinks.
  *
  * Created: 30th January 2000
- * Updated: 26th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MAJOR    4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MINOR    0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION 9
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT     71
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT     72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -269,10 +269,10 @@ class AboutDialogId
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace atlstl */
+} // namespace atlstl
 # else
-} /* namespace atlstl_project */
-} /* namespace stlsoft */
+} // namespace atlstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
 

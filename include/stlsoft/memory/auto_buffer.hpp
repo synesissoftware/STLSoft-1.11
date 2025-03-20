@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 30th January 2025
+ * Updated: 20th March 2025
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       8
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    4
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        225
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        226
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1920,7 +1920,7 @@ is_empty(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
@@ -1959,7 +1959,7 @@ namespace std
     {
         lhs.swap(rhs);
     }
-} /* namespace std */
+} // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 

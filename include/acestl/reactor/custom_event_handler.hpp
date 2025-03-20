@@ -4,11 +4,11 @@
  * Purpose: Event handler class for custom event notifications.
  *
  * Created: 1st October 2004
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR       2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR       1
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION    13
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        45
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -953,10 +953,10 @@ inline int custom_event_handler::handle_callback_timeout(ACE_Time_Value const& c
 #ifndef ACESTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace acestl */
+} // namespace acestl
 # else
-} /* namespace acestl_project */
-} /* namespace stlsoft */
+} // namespace acestl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ACESTL_NO_NAMESPACE */
 

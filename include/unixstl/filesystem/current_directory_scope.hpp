@@ -4,11 +4,11 @@
  * Purpose: Current working directory scoping class.
  *
  * Created: 12th November 1998
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    17
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        139
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -518,10 +518,10 @@ basic_current_directory_scope<C, T>::operator ss_typename_type_k basic_current_d
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace stlsoft::unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
@@ -560,7 +560,7 @@ using ::unixstl::c_str_ptr_null_w;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

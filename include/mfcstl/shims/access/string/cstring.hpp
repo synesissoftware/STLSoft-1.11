@@ -4,11 +4,11 @@
  * Purpose: String access shims for CString
  *
  * Created: 24th May 2002
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MAJOR    4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_MINOR    0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_REVISION 7
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     102
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CSTRING_EDIT     103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -212,10 +212,10 @@ inline LPCTSTR c_str_ptr_null_a(CString const& s)
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace stlsoft::mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 
@@ -267,7 +267,7 @@ using ::mfcstl::c_str_ptr_null_a;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

@@ -4,11 +4,11 @@
  * Purpose: Memory mapped file class.
  *
  * Created: 15th December 1996
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR    6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     114
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -532,10 +532,10 @@ swap(
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
@@ -553,7 +553,7 @@ namespace std
         lhs.swap(rhs);
     }
 
-} /* namespace std */
+} // namespace std
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 
