@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *
  * Created: 9th June 2010
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -203,7 +203,7 @@ namespace {
 static void test_1_1()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_FALSE(
@@ -235,7 +235,7 @@ static void test_1_1()
 static void test_1_2()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -256,7 +256,7 @@ static void test_1_2()
 static void test_1_3()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -278,7 +278,7 @@ static void test_1_3()
 static void test_1_4()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -301,7 +301,7 @@ static void test_1_4()
 static void test_1_5()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -325,7 +325,7 @@ static void test_1_5()
 static void test_1_6()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -350,7 +350,7 @@ static void test_1_6()
 static void test_1_7()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -376,7 +376,7 @@ static void test_1_7()
 static void test_1_8()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -403,7 +403,7 @@ static void test_1_8()
 static void test_1_9()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -431,7 +431,7 @@ static void test_1_9()
 static void test_1_10()
 {
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -474,7 +474,7 @@ static void test_1_11()
     };
 
     char const  VAR[] = "B";
-    int         var;
+    int         var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -559,7 +559,7 @@ static void test_2_2()
 static void test_3_1()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_FALSE(
@@ -591,7 +591,7 @@ static void test_3_1()
 static void test_3_2()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -612,7 +612,7 @@ static void test_3_2()
 static void test_3_3()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -634,7 +634,7 @@ static void test_3_3()
 static void test_3_4()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -657,7 +657,7 @@ static void test_3_4()
 static void test_3_5()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -681,7 +681,7 @@ static void test_3_5()
 static void test_3_6()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -706,7 +706,7 @@ static void test_3_6()
 static void test_3_7()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -732,7 +732,7 @@ static void test_3_7()
 static void test_3_8()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -759,7 +759,7 @@ static void test_3_8()
 static void test_3_9()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -787,7 +787,7 @@ static void test_3_9()
 static void test_3_10()
 {
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
@@ -830,7 +830,7 @@ static void test_3_11()
     };
 
     wchar_t const   VAR[] = L"B";
-    int             var;
+    int             var = -1;
 
     XTESTS_REQUIRE(
         XTESTS_TEST_BOOLEAN_TRUE(
