@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *
  * Created: 27th February 2024
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,7 +24,7 @@
  */
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -152,8 +152,8 @@ static void test_int_spec()
         type_t          v0(0);
         type_t const    cv0(0);
 
-        XTESTS_TEST_INTEGER_EQUAL(0, v0.base_type_value());
-        XTESTS_TEST_INTEGER_EQUAL(0, cv0.base_type_value());
+        TEST_INT_EQ(0, v0);
+        TEST_INT_EQ(0, cv0);
 
         XTESTS_TEST(v0 == v0);
         XTESTS_TEST(v0 == 0);
@@ -188,8 +188,8 @@ static void test_int_spec()
 
         type_t  v_2 = ++v;
 
-        XTESTS_TEST_INTEGER_EQUAL(1, v.base_type_value());
-        XTESTS_TEST_INTEGER_EQUAL(1, v_2.base_type_value());
+        TEST_INT_EQ(1, v);
+        TEST_INT_EQ(1, v_2);
     }
 
     // ++(int)
@@ -199,8 +199,8 @@ static void test_int_spec()
 
         type_t  v_2 = v++;
 
-        XTESTS_TEST_INTEGER_EQUAL(1, v.base_type_value());
-        XTESTS_TEST_INTEGER_EQUAL(0, v_2.base_type_value());
+        TEST_INT_EQ(1, v);
+        TEST_INT_EQ(0, v_2);
     }
 
 
@@ -211,8 +211,8 @@ static void test_int_spec()
 
         type_t  v_2 = --v;
 
-        XTESTS_TEST_INTEGER_EQUAL(-1, v.base_type_value());
-        XTESTS_TEST_INTEGER_EQUAL(-1, v_2.base_type_value());
+        TEST_INT_EQ(-1, v);
+        TEST_INT_EQ(-1, v_2);
     }
 
     // --(int)
@@ -222,8 +222,8 @@ static void test_int_spec()
 
         type_t  v_2 = v--;
 
-        XTESTS_TEST_INTEGER_EQUAL(-1, v.base_type_value());
-        XTESTS_TEST_INTEGER_EQUAL(0, v_2.base_type_value());
+        TEST_INT_EQ(-1, v);
+        TEST_INT_EQ(0, v_2);
     }
 
 
