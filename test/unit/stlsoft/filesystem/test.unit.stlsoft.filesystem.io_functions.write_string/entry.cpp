@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::write_string<>()`.
  *
  * Created: 22nd January 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,8 +43,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_write_css_n_empty();
     static void test_write_css_n_1_character();
@@ -60,7 +59,6 @@ namespace
     static void test_write_stdstring_1_character();
     static void test_write_stdstring_1_long_string();
     static void test_write_stdstring_3_strings();
-
 } // anonymous namespace
 
 
@@ -106,8 +104,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using ::xtests::cpp::util::temp_file;
 
 
@@ -359,7 +357,6 @@ static void test_write_stdstring_3_strings()
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("hi", lines[2]);
     }
 }
-
 } // anonymous namespace
 
 

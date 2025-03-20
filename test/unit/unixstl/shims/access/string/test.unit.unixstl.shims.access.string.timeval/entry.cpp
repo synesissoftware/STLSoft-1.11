@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for UNIX `timeval`.
  *
  * Created: 5th May 2014
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,8 +44,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_calls_possible();
     static void test_c_str_len();
@@ -84,8 +83,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     char const* get_fixed_date_string()
     {
         return "May 05 05:03:02.013987 2014";

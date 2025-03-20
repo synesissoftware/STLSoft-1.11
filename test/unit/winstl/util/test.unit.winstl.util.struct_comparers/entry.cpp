@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_comparers`.
  *
  * Created: 9th October 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,11 +31,12 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
+
     static void test_FILETIME();
     static void test_SYSTEMTIME();
 } // anonymous namespace
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -61,12 +62,13 @@ int main(int argc, char *argv[])
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using stlsoft::ss_size_t;
 
 static void test_FILETIME()
@@ -139,7 +141,7 @@ static void test_SYSTEMTIME()
     }
 #endif
 }
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */

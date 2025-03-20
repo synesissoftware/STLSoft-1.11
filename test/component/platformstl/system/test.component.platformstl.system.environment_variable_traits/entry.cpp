@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::environment_variable_traits`.
  *
  * Created: 30th December 2024
- * Updated: 30th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,8 +39,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
 #ifdef PLATFORMSTL_ENVVAR_SET_SUPPORTED
 
@@ -83,15 +82,14 @@ int main(int argc, char *argv[])
 namespace {
 
     using platformstl::environment_variable_traits;
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 #ifdef PLATFORMSTL_ENVVAR_SET_SUPPORTED
 

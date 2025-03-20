@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 30th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -163,8 +163,8 @@ private:
  * forward declarations
  */
 
-namespace
-{
+namespace {
+
     // auto_buffer(size_t)
     static void test_ctor_n_1();
     static void test_ctor_n_2();
@@ -337,8 +337,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     const int INTEGERS[] = {
          0,  1,  2,  3,  4,  5,  6,  7,  8,  9
     ,   10, 11, 12, 13, 14, 15, 16, 17, 18, 19

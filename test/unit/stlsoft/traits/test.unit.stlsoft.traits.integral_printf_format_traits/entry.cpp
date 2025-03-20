@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_printf_format_traits`.
  *
  * Created: 20th October 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,8 +39,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_char();
     static void test_char_signed();
@@ -98,8 +97,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void test_char()
 {
@@ -567,7 +565,6 @@ static void test_long_long_unsigned()
 # endif /* printf-64 */
 }
 #endif /* STLSOFT_CF_BUILTIN_long_long_SUPPORT */
-
 } // anonymous namespace
 
 

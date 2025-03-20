@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::count_decimal_digits`.
  *
  * Created: 18th October 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,8 +39,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void TEST_count_decimal_digits_WITH_uint16();
     static void TEST_count_decimal_digits_WITH_uint32();
@@ -78,8 +77,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void TEST_count_decimal_digits_WITH_uint16()
 {

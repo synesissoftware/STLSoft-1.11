@@ -5,7 +5,7 @@
  *          `stlsoft::translate_thousands`.
  *
  * Created: 28th March 2024
- * Updated: 31st December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,8 +43,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void TEST_format_thousands_SIMPLE();
     static void TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS();
@@ -92,8 +91,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using stlsoft::ss_sint64_t;
     using stlsoft::ss_uint64_t;
     typedef std::string                                     string_a_t;
@@ -418,7 +417,6 @@ static void TEST_translate_thousands_WIDE()
         XTESTS_TEST_WIDE_STRING_EQUAL(L"abc,def,ghi", dest);
     }
 }
-
 } // anonymous namespace
 
 

@@ -4,7 +4,7 @@
  * Purpose: Component test for WinSTL atomic_functions.
  *
  * Created: sometime in 2015
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,105 +51,105 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
+
     namespace atomic_decrement {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_decrement */
+    } // namespace atomic_decrement
 
     namespace atomic_increment {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_increment */
+    } // namespace atomic_increment
 
     namespace atomic_postadd {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_postadd */
+    } // namespace atomic_postadd
 
     namespace atomic_postdecrement {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_postdecrement */
+    } // namespace atomic_postdecrement
 
     namespace atomic_postincrement {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_postincrement */
+    } // namespace atomic_postincrement
 
     namespace atomic_preadd {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_preadd */
+    } // namespace atomic_preadd
 
     namespace atomic_predecrement {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_predecrement */
+    } // namespace atomic_predecrement
 
     namespace atomic_preincrement {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_preincrement */
+    } // namespace atomic_preincrement
 
 
     namespace atomic_decrement32 {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_decrement32 */
+    } // namespace atomic_decrement32
 
     namespace atomic_increment32 {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_increment32 */
+    } // namespace atomic_increment32
 
     namespace atomic_postadd32 {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_postadd32 */
+    } // namespace atomic_postadd32
 
     namespace atomic_postdecrement32 {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_postdecrement32 */
+    } // namespace atomic_postdecrement32
 
     namespace atomic_postincrement32 {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_postincrement32 */
+    } // namespace atomic_postincrement32
 
     namespace atomic_preadd32 {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_preadd32 */
+    } // namespace atomic_preadd32
 
     namespace atomic_predecrement32 {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_predecrement32 */
+    } // namespace atomic_predecrement32
 
     namespace atomic_preincrement32 {
 
         static void test_check_semantics();
         static void test_a_large_number();
-    } /* namespace atomic_preincrement32 */
-} /* anonymous namespace */
+    } // namespace atomic_preincrement32
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -230,10 +230,10 @@ int main(int argc, char* argv[])
 
 namespace {
 
-using winstl::atomic_int_t;
-using winstl::atomic_int32_t;
+    using winstl::atomic_int_t;
+    using winstl::atomic_int32_t;
+} // anonymous namespace
 
-} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers
@@ -241,7 +241,7 @@ using winstl::atomic_int32_t;
 
 namespace {
 
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -292,7 +292,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(0, v);
         }
-    } /* namespace atomic_decrement */
+    } // namespace atomic_decrement
 
     namespace atomic_increment {
 
@@ -336,7 +336,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
         }
-    } /* namespace atomic_increment */
+    } // namespace atomic_increment
 
     namespace atomic_postadd {
 
@@ -382,7 +382,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL((FinalValue * Increment), v);
         }
-    } /* namespace atomic_postadd */
+    } // namespace atomic_postadd
 
     namespace atomic_postdecrement {
 
@@ -426,7 +426,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(0, v);
         }
-    } /* namespace atomic_postdecrement */
+    } // namespace atomic_postdecrement
 
     namespace atomic_postincrement {
 
@@ -470,7 +470,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
         }
-    } /* namespace atomic_postincrement */
+    } // namespace atomic_postincrement
 
     namespace atomic_preadd {
 
@@ -515,7 +515,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL((FinalValue * Increment), v);
         }
-    } /* namespace atomic_preadd */
+    } // namespace atomic_preadd
 
     namespace atomic_predecrement {
 
@@ -559,7 +559,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(0, v);
         }
-    } /* namespace atomic_predecrement */
+    } // namespace atomic_predecrement
 
     namespace atomic_preincrement {
 
@@ -603,7 +603,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
         }
-    } /* namespace atomic_preincrement */
+    } // namespace atomic_preincrement
 
 
 
@@ -649,7 +649,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(0, v);
         }
-    } /* namespace atomic_decrement32 */
+    } // namespace atomic_decrement32
 
     namespace atomic_increment32 {
 
@@ -693,7 +693,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
         }
-    } /* namespace atomic_increment32 */
+    } // namespace atomic_increment32
 
     namespace atomic_postadd32 {
 
@@ -738,7 +738,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL((FinalValue * Increment), v);
         }
-    } /* namespace atomic_postadd32 */
+    } // namespace atomic_postadd32
 
     namespace atomic_postdecrement32 {
 
@@ -782,7 +782,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(0, v);
         }
-    } /* namespace atomic_postdecrement32 */
+    } // namespace atomic_postdecrement32
 
     namespace atomic_postincrement32 {
 
@@ -826,7 +826,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
         }
-    } /* namespace atomic_postincrement32 */
+    } // namespace atomic_postincrement32
 
     namespace atomic_preadd32 {
 
@@ -871,7 +871,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL((FinalValue * Increment), v);
         }
-    } /* namespace atomic_preadd32 */
+    } // namespace atomic_preadd32
 
     namespace atomic_predecrement32 {
 
@@ -915,7 +915,7 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(0, v);
         }
-    } /* namespace atomic_predecrement32 */
+    } // namespace atomic_predecrement32
 
     namespace atomic_preincrement32 {
 
@@ -959,8 +959,8 @@ namespace {
 
             XTESTS_TEST_INTEGER_EQUAL(FinalValue, v);
         }
-    } /* namespace atomic_preincrement32 */
-} /* anonymous namespace */
+    } // namespace atomic_preincrement32
+} // anonymous namespace
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

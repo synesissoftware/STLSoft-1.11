@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,8 +42,8 @@
  * types
  */
 
-namespace
-{
+namespace {
+
     typedef unixstl::dl_module                              unixstl_module_t;
     typedef unixstl_module_t::module_handle_type            h_module_t;
 } // anonymous namespace
@@ -53,8 +53,7 @@ namespace
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_1_00();
     static void test_example_so_abs1();
@@ -71,8 +70,7 @@ namespace
  * helper functions
  */
 
-namespace
-{
+namespace {
 
     static
     std::unique_ptr<unixstl_module_t>
@@ -232,8 +230,7 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void test_1_00()
 {
@@ -302,7 +299,6 @@ static void test_example_so_add10()
         XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
-
 } // anonymous namespace
 
 

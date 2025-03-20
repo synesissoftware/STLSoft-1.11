@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,8 +50,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_types_exist();
     static void test_type_sizes();
@@ -203,8 +202,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     struct SimpleStream
     {
@@ -1106,7 +1104,7 @@ static void test_string_traits()
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
     }
 }
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
