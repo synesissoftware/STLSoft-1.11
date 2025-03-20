@@ -29,6 +29,7 @@
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/conversion/integer_to_string/integer_to_decimal_string.hpp>
+#include <stlsoft/meta/is_integral_type.hpp>
 
 /* Standard C++ header files */
 #if __cplusplus >= 201402L
@@ -145,7 +146,9 @@ static void test_int_spec()
 {
     STLSOFT_GEN_OPAQUE(h_int_tt)
 
-    typedef stlsoft::true_typedef<int, h_int_tt>    type_t;
+    typedef stlsoft::true_typedef<int, h_int_tt>            type_t;
+
+    STLSOFT_STATIC_ASSERT(stlsoft::is_integral_type<type_t>::value);
 
     // v = 0
     {
@@ -638,12 +641,20 @@ static void test_Integer_spec()
 
 static void test_double_spec()
 {
+    STLSOFT_GEN_OPAQUE(h_double_tt)
 
+    typedef stlsoft::true_typedef<double, h_double_tt>      type_t;
+
+    STLSOFT_STATIC_ASSERT(!stlsoft::is_integral_type<type_t>::value);
 }
 
 static void test_stdstring_spec()
 {
+    STLSOFT_GEN_OPAQUE(h_string_tt)
 
+    typedef stlsoft::true_typedef<std::string, h_string_tt> type_t;
+
+    STLSOFT_STATIC_ASSERT(!stlsoft::is_integral_type<type_t>::value);
 }
 } // anonymous namespace
 

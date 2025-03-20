@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MAJOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR    2
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR    3
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT     96
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT     97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,6 +69,9 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
+# include <stlsoft/meta/is_integral_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
 # include <stlsoft/meta/is_same_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
@@ -305,6 +308,46 @@ struct true_typedef_impl_
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+# define STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(T)                  \
+                                                                                \
+template <ss_typename_param_k U> struct is_integral_type<true_typedef<T, U> >   \
+{                                                                               \
+    enum { value = 1 };                                                         \
+    typedef yes_type type;                                                      \
+}
+
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_sint8_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_uint8_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_sint16_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_uint16_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_sint32_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_uint32_t);
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_sint64_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_uint64_t);
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+#ifdef STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed char);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned char);
+#endif /* STLSOFT_CF_CHAR_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed short);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned short);
+#endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed int);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned int);
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed long);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned long);
+#endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_LONG_LONG_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed long long);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned long long);
+#endif /* STLSOFT_CF_LONG_LONG_DISTINCT_INT_TYPE */
+
 
 // TODO: work out the best way to do this using modern techniques
 
