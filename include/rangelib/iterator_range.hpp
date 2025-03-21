@@ -4,7 +4,7 @@
  * Purpose:     Iterator range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     20th March 2025
+ * Updated:     21st March 2025
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 9
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     57
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -10,7 +10,7 @@
  *          regretably now implemented as independent classes.
  *
  * Created: 19th January 2002
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Thanks:  To Diego Chanoux for spotting a defect in the value_sz() method.
  *
@@ -70,7 +70,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  14
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      135
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      136
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
