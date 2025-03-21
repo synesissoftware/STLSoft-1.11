@@ -4,7 +4,7 @@
  * Purpose:     Exception throwing policy classes.
  *
  * Created:     19th January 2002
- * Updated:     20th March 2025
+ * Updated:     21st March 2025
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_MAJOR     6
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_MINOR     0
 # define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_REVISION  1
-# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_EDIT      63
+# define STLSOFT_VER_STLSOFT_EXCEPTION_HPP_THROW_POLICIES_EDIT      64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -163,7 +163,7 @@ typedef null_exception_policy   nothrow_exception_policy;
  * \ingroup group__library__Exception
  *
  */
-template<ss_typename_param_k E>
+template <ss_typename_param_k E>
 // [[synesis:class:exception-policy: throw_exception_policy]]
 struct throw_exception_policy
 {
@@ -190,19 +190,31 @@ public:
         STLSOFT_THROW_X(thrown_type(t));
     }
     /// Function call operator, taking two parameters
-    template<ss_typename_param_k T1, ss_typename_param_k T2>
+    template<
+        ss_typename_param_k T1
+    ,   ss_typename_param_k T2
+    >
     void operator ()(T1 const& t1, T2 const& t2) const
     {
         STLSOFT_THROW_X(thrown_type(t1, t2));
     }
     /// Function call operator, taking three parameters
-    template<ss_typename_param_k T1, ss_typename_param_k T2, ss_typename_param_k T3>
+    template<
+        ss_typename_param_k T1
+    ,   ss_typename_param_k T2
+    ,   ss_typename_param_k T3
+    >
     void operator ()(T1 const& t1, T2 const& t2, T3 const& t3) const
     {
         STLSOFT_THROW_X(thrown_type(t1, t2, t3));
     }
     /// Function call operator, taking four parameters
-    template<ss_typename_param_k T1, ss_typename_param_k T2, ss_typename_param_k T3, ss_typename_param_k T4>
+    template<
+        ss_typename_param_k T1
+    ,   ss_typename_param_k T2
+    ,   ss_typename_param_k T3
+    ,   ss_typename_param_k T4
+    >
     void operator ()(T1 const& t1, T2 const& t2, T3 const& t3, T4 const& t4) const
     {
         STLSOFT_THROW_X(thrown_type(t1, t2, t3, t4));

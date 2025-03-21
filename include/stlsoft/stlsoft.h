@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 21st February 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 6
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     586
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     587
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -3404,7 +3404,7 @@ STLSOFT_GEN_OPAQUE(HProcess)
  * Is it used as follows:
  *
 \code
-template<typename T>
+template <typename T>
 class Thing
 {
   STLSOFT_DECLARE_TEMPLATE_PARAM_AS_FRIEND(T);
@@ -3523,38 +3523,47 @@ STLSOFT_CLOSE_WORKER_NS_(template_ex)
             1)|| \
         defined(STLSOFT_COMPILER_IS_WATCOM) ||\
         0)
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void stlsoft_suppress_unused_func(T const volatile &)
 {}
 
 # if defined(STLSOFT_CF_CDECL_SUPPORTED)
-template<ss_typename_param_k R>
+template <ss_typename_param_k R>
 inline void stlsoft_suppress_unused_func(R (STLSOFT_CDECL *)())
 {}
-template<ss_typename_param_k R, ss_typename_param_k A0>
+template<
+    ss_typename_param_k R
+,   ss_typename_param_k A0
+>
 inline void stlsoft_suppress_unused_func(R (STLSOFT_CDECL *)(A0))
 {}
 # endif /* STLSOFT_CF_CDECL_SUPPORTED */
 # if defined(STLSOFT_CF_FASTCALL_SUPPORTED)
-template<ss_typename_param_k R>
+template <ss_typename_param_k R>
 inline void stlsoft_suppress_unused_func(R (STLSOFT_FASTCALL *)())
 {}
-template<ss_typename_param_k R, ss_typename_param_k A0>
+template<
+    ss_typename_param_k R
+,   ss_typename_param_k A0
+>
 inline void stlsoft_suppress_unused_func(R (STLSOFT_FASTCALL *)(A0))
 {}
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 # if defined(STLSOFT_CF_STDCALL_SUPPORTED)
-template<ss_typename_param_k R>
+template <ss_typename_param_k R>
 inline void stlsoft_suppress_unused_func(R (STLSOFT_STDCALL *)())
 {}
-template<ss_typename_param_k R, ss_typename_param_k A0>
+template<
+    ss_typename_param_k R
+,   ss_typename_param_k A0
+>
 inline void stlsoft_suppress_unused_func(R (STLSOFT_STDCALL *)(A0))
 {}
 # endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
 # ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void stlsoft_suppress_unused_func(T&&)
 {}
 # else /* ? STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */

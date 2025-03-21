@@ -4,7 +4,7 @@
  * Purpose: Simple class that converts a relative path to an absolute one.
  *
  * Created: 20th December 2002
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        89
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -195,7 +195,7 @@ public:
     {}
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Constructs an absolute path from \c path
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k basic_absolute_path(S const& path)
         : parent_class_type(STLSOFT_NS_QUAL(c_str_ptr)(path))
     {}
@@ -239,7 +239,7 @@ typedef basic_absolute_path<TCHAR>                          absolute_path;
  *   makes an absolute path variable without needing to qualify the template
  *   parameter.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline
 basic_absolute_path<C>
 make_absolute_path(C const* path)

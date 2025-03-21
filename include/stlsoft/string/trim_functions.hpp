@@ -4,7 +4,7 @@
  * Purpose: String utility functions for trimming and removing string contents.
  *
  * Created: 25th April 2005
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_MINOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_REVISION    4
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        62
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_TRIM_FUNCTIONS_EDIT        63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -239,7 +239,7 @@ trim_left_impl(
  *
  * \ingroup group__library__String
  */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 trim_left(
@@ -367,7 +367,7 @@ trim_right_impl(
  *
  * \ingroup group__library__String
  */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 trim_right(
@@ -513,7 +513,7 @@ trim_all_impl(
  *
  * \ingroup group__library__String
  */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 trim_all(
@@ -578,7 +578,7 @@ remove_all_impl(
 ,   C const*    removeChars
 )
 #else /* ? compiler */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 remove_all_impl(
@@ -628,7 +628,7 @@ remove_all_impl(
  *
  * \ingroup group__library__String
  */
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 remove_all(

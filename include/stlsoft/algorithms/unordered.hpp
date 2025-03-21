@@ -4,7 +4,7 @@
  * Purpose:     Algorithms for manipulating unordered sequences.
  *
  * Created:     17th January 2002
- * Updated:     20th March 2025
+ * Updated:     21st March 2025
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MAJOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MINOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_REVISION  7
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      88
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,7 +110,7 @@ namespace stlsoft
  * \note This algorithm works for ordered sequences, but \c std::adjacent_find
  * is more suitable for such cases
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 // [[synesis:function:algorithm: find_first_duplicate(T<I> first, T<I> last)]]
 #if 0
 #elif defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -392,7 +392,7 @@ inline void remove_duplicates_from_unordered_sequence(C &container, BP pred)
  * \param container The container
  */
 // [[synesis:function:algorithm: remove_duplicates_from_unordered_sequence(T<C> &container)]]
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline void remove_duplicates_from_unordered_sequence(C &container)
 {
     typedef ss_typename_type_k C::value_type    value_t;
@@ -413,7 +413,7 @@ inline void remove_duplicates_from_unordered_sequence(C &container)
  * \param first The start of the sequence
  * \param last The (one past the) end point of the sequence
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 // [[synesis:function:algorithm: fill_all(T<I> first, T<I> last)]]
 inline I skip_equal(I first, I last)
 {

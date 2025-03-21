@@ -4,7 +4,7 @@
  * Purpose: Synchronisation object lock scoping class.
  *
  * Created: 1st October 1994
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_MAJOR     6
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_REVISION  8
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_EDIT      130
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_LOCK_SCOPE_EDIT      131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -92,7 +92,7 @@ namespace stlsoft
  *
  * \param L The lockable class
  */
-template<ss_typename_param_k L>
+template <ss_typename_param_k L>
 struct lock_traits
 {
 /// \name Member Types
@@ -129,7 +129,7 @@ public:
  *
  * \param L The lockable class
  */
-template<ss_typename_param_k L>
+template <ss_typename_param_k L>
 struct lock_invert_traits
 {
 /// \name Member Types
@@ -166,7 +166,7 @@ public:
  *
  * \param L The traits class
  */
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct lock_traits_inverter
 {
 /// \name Member Types

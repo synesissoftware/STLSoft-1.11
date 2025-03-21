@@ -4,7 +4,7 @@
  * Purpose: Initialiser classes for the STLSoft libraries.
  *
  * Created: 17th February 1997
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_REVISION  8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_EDIT      232
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STATIC_INITIALISERS_EDIT      233
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -90,7 +90,7 @@ namespace stlsoft
 class method_constructor
 {
 public:
-    template<ss_typename_param_k T>
+    template <ss_typename_param_k T>
     method_constructor(T const& t, void (T::*const fn)())
     {
         (t.*fn)();

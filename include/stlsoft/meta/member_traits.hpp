@@ -5,7 +5,7 @@
  *          for too long.
  *
  * Created: 11th October 2004
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -60,7 +60,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    6
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        51
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -134,7 +134,7 @@ namespace stlsoft
 \endcode
  */
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct member_traits
 {
 public: // types

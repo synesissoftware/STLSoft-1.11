@@ -4,7 +4,7 @@
  * Purpose: Enumerator classes.
  *
  * Created: 11th November 1998
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 12
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     87
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -244,7 +244,10 @@ public:
 /// \name Operations
 /// @{
 public:
-    template<ss_typename_param_k I, ss_typename_param_k F>
+    template<
+        ss_typename_param_k I
+    ,   ss_typename_param_k F
+    >
     HRESULT Init(I begin, I end, F fn)
     {
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -273,7 +276,7 @@ public:
         }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
-    template<ss_typename_param_k I>
+    template <ss_typename_param_k I>
     HRESULT Init(I begin, I end)
     {
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT

@@ -4,7 +4,7 @@
  * Purpose: File-system related functions and predicates.
  *
  * Created: 19th January 2002
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR     2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  7
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      107
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -276,7 +276,10 @@ public: // operations
     ///
     /// \note The comparison is determined by evaluation the full-paths of both \c s1 and \c s2
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
-    template<ss_typename_param_k T1, ss_typename_param_k T2>
+    template<
+        ss_typename_param_k T1
+    ,   ss_typename_param_k T2
+    >
     result_type operator ()(T1 const& s1, T2 const& s2) const
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     result_type operator ()(first_argument_type s1, second_argument_type s2) const
@@ -330,7 +333,10 @@ public: // operations
     ///
     /// \note The comparison is determined by evaluation the full-paths of both \c s1 and \c s2
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
-    template<ss_typename_param_k T1, ss_typename_param_k T2>
+    template<
+        ss_typename_param_k T1
+    ,   ss_typename_param_k T2
+    >
     result_type operator ()(T1 const& s1, T2 const& s2) const
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     result_type operator ()(first_argument_type s1, second_argument_type s2) const

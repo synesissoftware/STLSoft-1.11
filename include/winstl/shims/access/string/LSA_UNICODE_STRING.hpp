@@ -4,7 +4,7 @@
  * Purpose: String access shims for LSA strings.
  *
  * Created: 24th May 2002
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MAJOR     4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MINOR     2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_REVISION  3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      135
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      136
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -225,7 +225,7 @@ private: // fields
  * iostream compatibility
  */
 
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 operator <<(
@@ -238,7 +238,7 @@ operator <<(
     return s;
 }
 
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline
 S&
 operator <<(

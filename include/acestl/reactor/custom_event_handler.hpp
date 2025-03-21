@@ -4,7 +4,7 @@
  * Purpose: Event handler class for custom event notifications.
  *
  * Created: 1st October 2004
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR       2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR       1
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION    13
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        46
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -140,7 +140,7 @@ public:
  *    template.
  * \ingroup group__library__ACE_Reactor
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 struct cancel_adapter
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     : public ceh_root
@@ -427,7 +427,7 @@ public:
 #if 0
     /// Some compilers (i.e. VC++ 6) have a big cry here, so we define this out
     /// of the class, and use the private base type trick
-    template<ss_typename_param_k C>
+    template <ss_typename_param_k C>
     struct cancel_adapter
     {
         typedef cancel_adapter<C>   class_type;
@@ -487,7 +487,7 @@ public:
   mh->cancel_custom_events(100, &ch, &CancelHandler::report);
 \endcode
      */
-    template<ss_typename_param_k C>
+    template <ss_typename_param_k C>
     int cancel_custom_events(long code, C* obj, void (C::*pfn)(long code, event_id id, void* arg))
     {
         cancel_adapter<C>   adapter(obj, pfn);

@@ -4,7 +4,7 @@
  * Purpose: Contains the listview_sequence class template.
  *
  * Created: 8th May 2003
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Thanks:  To Pablo Aguilar for making the requisite feature requests.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MINOR     3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  10
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      95
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      96
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -151,7 +151,7 @@ using ::lvs_string_t;
  *
  * \ingroup group__library__Windows_Control
  */
-//template<ss_typename_param_k S = lvs_string_t>
+//template <ss_typename_param_k S = lvs_string_t>
 class listview_sequence_item
 {
 public:

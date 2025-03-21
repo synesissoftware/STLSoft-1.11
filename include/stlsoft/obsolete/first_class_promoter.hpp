@@ -5,7 +5,7 @@
  *          treated as 1st-class types.
  *
  * Created: 8th September 2002
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MINOR     0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_REVISION  10
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      67
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -103,7 +103,7 @@ namespace stlsoft
 namespace first_class_promotion {
 #endif /* STLSOFT_NO_NAMESPACE */
 
-template<ss_bool_t INIT>
+template <ss_bool_t INIT>
 struct first_class_promoter_init_traits
 {
     typedef yes_type                                        type;
@@ -116,23 +116,23 @@ struct first_class_promoter_init_traits<false>
 };
 
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* t, yes_type, yes_type)
 {
     *t = T();
 }
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* t, yes_type, no_type)
 {
     STLSOFT_API_EXTERNAL_memfns_memset(t, 0, sizeof(T));
 }
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* , no_type, yes_type)
 {}
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* , no_type, no_type)
 {}
 

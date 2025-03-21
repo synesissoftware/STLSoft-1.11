@@ -4,7 +4,7 @@
  * Purpose: Contains the ref_ptr template class.
  *
  * Created: 2nd November 1994
- * Updated: 20th March 2025
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MAJOR     5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_MINOR     5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_REVISION  1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT      516
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_REF_PTR_EDIT      517
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,7 +96,7 @@ namespace stlsoft
  * \note The behaviour of the ref_ptr is undefined if this method throws an
  *   exception
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline void add_reference(I* pi)
 {
     STLSOFT_ASSERT(NULL != pi);
@@ -115,7 +115,7 @@ inline void add_reference(I* pi)
  * \note The behaviour of the ref_ptr is undefined if this method throws an
  *   exception
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline void release_reference(I* pi)
 {
     STLSOFT_ASSERT(NULL != pi);
@@ -128,7 +128,7 @@ inline void release_reference(I* pi)
  *
  * \ingroup group__library__SmartPointer
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline void borrow_reference(I* pi)
 {
     STLSOFT_ASSERT(NULL != pi);
@@ -144,7 +144,7 @@ inline void borrow_reference(I* pi)
  *
  * \note The assumption of initial reference count of 1 is NOT what ATL does
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline void own_reference(I* pi)
 {
     STLSOFT_ASSERT(NULL != pi);
