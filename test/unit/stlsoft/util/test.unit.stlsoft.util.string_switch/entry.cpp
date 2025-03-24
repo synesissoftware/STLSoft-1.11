@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::count_hexadecimal_digits`.
  *
  * Created: 9th June 2010
- * Updated: 21st March 2025
+ * Updated: 23rd March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -124,8 +124,7 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-namespace stlsoft
-{
+namespace stlsoft {
 
     template<
         typename Name
