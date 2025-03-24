@@ -4,7 +4,7 @@
  * Purpose: sn(w)printf() variants.
  *
  * Created: 15th July 2012
- * Updated: 23rd March 2025
+ * Updated: 24th March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_REVISION    4
-# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_EDIT        12
+# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_REVISION    5
+# define STLSOFT_VER_STLSOFT_UTIL_STRING_H_SNPRINTF_EDIT        13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,13 +72,6 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STRING_H_VSNPRINTF
 # include <stlsoft/util/string/vsnprintf.h>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STRING_H_VSNPRINTF */
-
-#ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT
-# include <stlsoft/quality/contract.h>
-#endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_CONTRACT */
-#ifndef STLSOFT_INCL_STLSOFT_QUALITY_H_COVER
-# include <stlsoft/quality/cover.h>
-#endif /* !STLSOFT_INCL_STLSOFT_QUALITY_H_COVER */
 
 #ifndef STLSOFT_INCL_H_STDARG
 # define STLSOFT_INCL_H_STDARG
@@ -109,11 +102,25 @@ namespace stlsoft
 STLSOFT_INLINE
 int
 stlsoft_C_snprintf(
-    ss_char_a_t*        buf
+    ss_char_a_t         buf[]
 ,   ss_size_t           cchBuf
 ,   ss_char_a_t const*  fmt
 ,   ...
 )
+#if 0
+#elif defined(__GNUC__)
+__attribute__((format(printf, 3, 4)))
+;
+
+STLSOFT_INLINE
+int
+stlsoft_C_snprintf(
+    ss_char_a_t         buf[]
+,   ss_size_t           cchBuf
+,   ss_char_a_t const*  fmt
+,   ...
+)
+#endif
 {
     int     r;
     va_list args;
@@ -138,6 +145,20 @@ stlsoft_C_snprintf(
 ,   ss_char_a_t const*  fmt
 ,   ...
 )
+#if 0
+#elif defined(__GNUC__)
+__attribute__((format(printf, 2, 3)))
+;
+
+template <ss_size_t N>
+inline
+int
+stlsoft_C_snprintf(
+    ss_char_a_t       (&buf)[N]
+,   ss_char_a_t const*  fmt
+,   ...
+)
+#endif
 {
     int     r;
     va_list args;
@@ -156,7 +177,7 @@ stlsoft_C_snprintf(
 STLSOFT_INLINE
 int
 stlsoft_C_snwprintf(
-    ss_char_w_t*        buf
+    ss_char_w_t         buf[]
 ,   ss_size_t           cchBuf
 ,   ss_char_w_t const*  fmt
 ,   ...
@@ -210,11 +231,25 @@ stlsoft_C_snwprintf(
 inline
 int
 snprintf(
-    ss_char_a_t*        buf
+    ss_char_a_t         buf[]
 ,   ss_size_t           cchBuf
 ,   ss_char_a_t const*  fmt
 ,   ...
 )
+#if 0
+#elif defined(__GNUC__)
+__attribute__((format(printf, 3, 4)))
+;
+
+inline
+int
+snprintf(
+    ss_char_a_t         buf[]
+,   ss_size_t           cchBuf
+,   ss_char_a_t const*  fmt
+,   ...
+)
+#endif
 {
     int     r;
     va_list args;
@@ -228,6 +263,7 @@ snprintf(
     return r;
 }
 # ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+
 template <ss_size_t N>
 inline
 int
@@ -236,6 +272,20 @@ snprintf(
 ,   ss_char_a_t const*  fmt
 ,   ...
 )
+#if 0
+#elif defined(__GNUC__)
+__attribute__((format(printf, 2, 3)))
+;
+
+template <ss_size_t N>
+inline
+int
+snprintf(
+    ss_char_a_t       (&buf)[N]
+,   ss_char_a_t const*  fmt
+,   ...
+)
+#endif
 {
     int     r;
     va_list args;
@@ -254,7 +304,7 @@ snprintf(
 inline
 int
 snwprintf(
-    ss_char_w_t*        buf
+    ss_char_w_t         buf[]
 ,   ss_size_t           cchBuf
 ,   ss_char_w_t const*  fmt
 ,   ...
