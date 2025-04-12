@@ -25,11 +25,6 @@
  * includes
  */
 
-/* xCover header files */
-#ifdef STLSOFT_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* STLSOFT_USE_XCOVER */
-
 /* xTests header files */
 #include <xtests/xtests.h>
 
@@ -110,10 +105,6 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.string_view", verbosity))
     {
-#ifdef STLSOFT_USE_XCOVER
-        xcover::init();
-#endif /* STLSOFT_USE_XCOVER */
-
         XTESTS_RUN_CASE(test_types_exist);
         XTESTS_RUN_CASE(test_type_sizes);
         XTESTS_RUN_CASE(test_ctor_default);
@@ -157,15 +148,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_insertion_4);
         XTESTS_RUN_CASE(test_string_traits);
 
-#ifdef STLSOFT_USE_XCOVER
-        XCOVER_REPORT_FILE_COVERAGE("*stlsoft*/string_view.hpp", NULL);
-#endif /* STLSOFT_USE_XCOVER */
-
         XTESTS_PRINT_RESULTS();
-
-#ifdef STLSOFT_USE_XCOVER
-        xcover::uninit();
-#endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
