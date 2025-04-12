@@ -42,6 +42,18 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
+    (   STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR == 3 && \
+        STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR >= 4)
+
+# define HAS_SUBSTR_                                        (1)
+#endif /* 3.4+ */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
@@ -64,15 +76,13 @@ namespace {
     static void test_refresh();
     static void test_reverse_iterators();
     static void test_copy();
-#if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
-    (   STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR == 3 && \
-        STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR >= 4)
+#ifdef HAS_SUBSTR_
 
     static void test_substr();
     static void test_substr_2();
     static void test_substr_throw();
     static void test_substr_throw_2();
-#endif /* 3.4+ */
+#endif /* HAS_SUBSTR_ */
     static void test_compare_1();
     static void test_compare_2();
     static void test_compare_3();
@@ -122,15 +132,13 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_refresh);
         XTESTS_RUN_CASE(test_reverse_iterators);
         XTESTS_RUN_CASE(test_copy);
-#if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
-    (   STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR == 3 && \
-        STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR >= 4)
+#ifdef HAS_SUBSTR_
 
         XTESTS_RUN_CASE(test_substr);
         XTESTS_RUN_CASE(test_substr_2);
         XTESTS_RUN_CASE_THAT_THROWS(test_substr_throw, std::out_of_range);
         XTESTS_RUN_CASE_THAT_THROWS(test_substr_throw_2, std::out_of_range);
-#endif /* 3.4+ */
+#endif /* HAS_SUBSTR_ */
         XTESTS_RUN_CASE(test_compare_1);
         XTESTS_RUN_CASE(test_compare_2);
         XTESTS_RUN_CASE(test_compare_3);
@@ -561,9 +569,8 @@ static void test_copy()
 
 }
 
-#if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
-    (   STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR == 3 && \
-        STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR >= 4)
+#ifdef HAS_SUBSTR_
+
 static void test_substr()
 {
     string_v_t const    s1("abcdefghi");
@@ -607,7 +614,7 @@ static void test_substr_throw_2()
 
     XTESTS_TEST_FAIL("should not get here");
 }
-#endif /* 3.4+ */
+#endif /* HAS_SUBSTR_ */
 
 static void test_compare_1()
 {
