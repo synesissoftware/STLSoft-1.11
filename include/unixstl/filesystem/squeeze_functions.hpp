@@ -4,7 +4,7 @@
  * Purpose: Path squeeze functions
  *
  * Created: 13th June 2006
- * Updated: 20th March 2025
+ * Updated: 11th April 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MAJOR     2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      31
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -78,6 +78,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+
 #if defined(_WIN32) || \
     defined(_WIN64)
 # include <ctype.h>
@@ -299,6 +300,9 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_unixstl_squeeze_functions_)
  * \param cchBuffer The number of available characters inc buffer. This
  *   value in inclusive of the required <code>nul</code>-terminator
  *
+ * \return If \c buffer is NULL, then returns the number required, including
+ *  the NUL character; otherwise, returns the number of characters written
+ *  into \c buffer excluding any NUL character if written.
  */
 
 template<
