@@ -163,6 +163,8 @@ path_squeeze_impl(
 
             if (p.is_rooted())
             {
+#if defined(_WIN32) || \
+    defined(_WIN64)
                 if (p.is_absolute())
                 {
                     if (traits_t::is_path_UNC(path_ptr))
@@ -173,15 +175,12 @@ path_squeeze_impl(
 
                         rootLen = 1 + static_cast<size_t>(p1 - path_ptr);
                     }
-#if defined(_WIN32) || \
-    defined(_WIN64)
                     else if (isalpha(path_ptr[0]) &&
                             ':' == path_ptr[1])
                     {
                         // 2. drive
                         rootLen = 3;
                     }
-#endif /* Windows */
                     else
                     {
                         // 3. rooted - begins with \ or /
@@ -189,6 +188,7 @@ path_squeeze_impl(
                     }
                 }
                 else
+#endif /* Windows */
                 {
                     // 3. rooted - begins with \ or /
                     rootLen = 1;

@@ -221,6 +221,19 @@ static void TEST_SUFFICIENT_SPACE()
         }
     }
 
+    // stem only (short)
+    {
+        char const* const input = "abc";
+
+        {
+            char            buff[101];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("abc", buff);
+        }
+    }
+
     // basename
     {
         char const* const input = "remove_cmake_artefacts.sh";
@@ -273,6 +286,20 @@ static void TEST_SUFFICIENT_SPACE()
             TEST_MS_EQ("/_/xyz/mno/abcdef.ghi", buff);
         }
     }
+
+    // full path (short basename)
+    {
+        char const* const input = "/_/xyz/mno/a.b";
+
+        {
+            char            buff[23];
+            size_t const    cch = (buff[14] = buff[15] = '#', unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff)));
+
+            TEST_INT_EQ(15, cch);
+            TEST_CHAR_EQ('#', buff[15]);
+            TEST_MS_EQ("/_/xyz/mno/a.b", buff);
+        }
+    }
 }
 
 static void TEST_EXACT_SPACE()
@@ -287,6 +314,19 @@ static void TEST_EXACT_SPACE()
 
             TEST_INT_EQ(7, cch);
             TEST_MS_EQ("abcdef", buff);
+        }
+    }
+
+    // stem only (short)
+    {
+        char const* const input = "abc";
+
+        {
+            char            buff[4];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("abc", buff);
         }
     }
 
@@ -313,6 +353,19 @@ static void TEST_EXACT_SPACE()
 
             TEST_INT_EQ(22, cch);
             TEST_MS_EQ("/_/xyz/mno/abcdef.ghi", buff);
+        }
+    }
+
+    // full path
+    {
+        char const* const input = "/_/xyz/mno/a.b";
+
+        {
+            char            buff[22];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(15, cch);
+            TEST_MS_EQ("/_/xyz/mno/a.b", buff);
         }
     }
 }
@@ -357,6 +410,27 @@ static void TEST_INSUFFICIENT_SPACE()
             TEST_INT_EQ(4, cch);
             TEST_MS_EQ("abc", buff);
         }
+
+        {
+            char            buff[3];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(3, cch);
+            TEST_MS_EQ("ab", buff);
+        }
+    }
+
+    // stem only (short)
+    {
+        char const* const input = "abc";
+
+        {
+            char            buff[3];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(3, cch);
+            TEST_MS_EQ("ab", buff);
+        }
     }
 
     // basename
@@ -393,6 +467,22 @@ static void TEST_INSUFFICIENT_SPACE()
 
             TEST_INT_EQ(16, cch);
             TEST_MS_EQ("remove...cts.sh", buff);
+        }
+
+        {
+            char            buff[12];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(12, cch);
+            TEST_MS_EQ("remo...s.sh", buff);
+        }
+
+        {
+            char            buff[9];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(9, cch);
+            TEST_MS_EQ("re....sh", buff);
         }
     }
 
@@ -438,6 +528,203 @@ static void TEST_INSUFFICIENT_SPACE()
 
             TEST_INT_EQ(17, cch);
             TEST_MS_EQ("/_.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[16];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(16, cch);
+            TEST_MS_EQ("/.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[15];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[12];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[11];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[10];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(10, cch);
+            TEST_MS_EQ("abc...ghi", buff);
+        }
+
+        {
+            char            buff[9];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(9, cch);
+            TEST_MS_EQ("ab...ghi", buff);
+        }
+
+        {
+            char            buff[7];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(7, cch);
+            TEST_MS_EQ("a...hi", buff);
+        }
+
+        {
+            char            buff[6];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(6, cch);
+            TEST_MS_EQ("a...i", buff);
+        }
+
+        {
+            char            buff[5];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(5, cch);
+            TEST_MS_EQ("abcd", buff);
+        }
+
+        {
+            char            buff[4];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("abc", buff);
+        }
+
+        {
+            char            buff[3];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(3, cch);
+            TEST_MS_EQ("ab", buff);
+        }
+
+        {
+            char            buff[2];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(2, cch);
+            TEST_MS_EQ("a", buff);
+        }
+    }
+
+    // full path (short basename)
+    {
+        char const* const input = "/_/xyz/mno/a.b";
+
+        {
+            char            buff[15];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(15, cch);
+            TEST_MS_EQ("/_/xyz/mno/a.b", buff);
+        }
+
+        {
+            char            buff[14];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(14, cch);
+            TEST_MS_EQ("/_/xyz.../a.b", buff);
+        }
+
+        {
+            char            buff[12];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(12, cch);
+            TEST_MS_EQ("/_/x.../a.b", buff);
+        }
+
+        {
+            char            buff[11];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("/_/.../a.b", buff);
+        }
+
+        {
+            char            buff[10];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(10, cch);
+            TEST_MS_EQ("/_.../a.b", buff);
+        }
+
+        {
+            char            buff[9];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(9, cch);
+            TEST_MS_EQ("/.../a.b", buff);
+        }
+
+        {
+            char            buff[7];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("a.b", buff);
+        }
+
+        {
+            char            buff[6];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("a.b", buff);
+        }
+
+        {
+            char            buff[5];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("a.b", buff);
+        }
+
+        {
+            char            buff[4];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("a.b", buff);
+        }
+
+        {
+            char            buff[3];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(3, cch);
+            TEST_MS_EQ("a.", buff);
+        }
+
+        {
+            char            buff[2];
+            size_t const    cch = unixstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(2, cch);
+            TEST_MS_EQ("a", buff);
         }
     }
 }
