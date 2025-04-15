@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+    XTESTS_COMMANDLINE_PARSE_HELP_OR_VERBOSITY(argc, argv, &verbosity);
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.system.cmdargs", verbosity))
     {

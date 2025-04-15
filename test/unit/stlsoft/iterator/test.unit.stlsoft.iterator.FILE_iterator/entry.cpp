@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::FILE_iterator`.
  *
  * Created: 24th March 2025
- * Updated: 24th March 2025
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -119,9 +119,9 @@ static void test_1()
         platformstl::file_lines     lines(f.c_str());
 
         REQUIRE(TEST_INT_EQ(3u, lines.size()));
-        TEST_MS_EQ("abc", lines[0]);
-        TEST_MS_EQ("", lines[1]);
-        TEST_MS_EQ("jklmnopqrstuvwxyz", lines[2]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", lines[0], lines[0].size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("", lines[1], lines[1].size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("jklmnopqrstuvwxyz", lines[2], lines[2].size());
     }
 }
 } // anonymous namespace

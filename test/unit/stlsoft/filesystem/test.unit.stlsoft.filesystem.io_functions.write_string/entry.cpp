@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::write_string<>()`.
  *
  * Created: 22nd January 2024
- * Updated: 20th March 2025
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -142,7 +142,7 @@ static void test_write_css_n_1_character()
         platformstl::file_lines     lines(f.c_str());
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("a", lines[0], lines[0].size());
     }
 }
 
@@ -161,7 +161,7 @@ static void test_write_css_n_1_long_string()
         platformstl::file_lines     lines(f.c_str());
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abcdefghijklmnopqrstuvwxyz", lines[0], lines[0].size());
     }
 }
 
@@ -182,9 +182,9 @@ static void test_write_css_n_3_strings()
         platformstl::file_lines     lines(f.c_str());
 
         XTESTS_TEST_INTEGER_EQUAL(3u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("defg", lines[1]);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("hi", lines[2]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", lines[0], lines[0].size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("defg", lines[1], lines[1].size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("hi", lines[2], lines[2].size());
     }
 }
 
@@ -222,7 +222,7 @@ static void test_write_css_1_character()
         platformstl::file_lines     lines(f.c_str());
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("a", lines[0], lines[0].size());
     }
 }
 
@@ -241,7 +241,7 @@ static void test_write_css_1_long_string()
         platformstl::file_lines     lines(f.c_str());
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abcdefghijklmnopqrstuvwxyz", lines[0], lines[0].size());
     }
 }
 
@@ -262,9 +262,9 @@ static void test_write_css_3_strings()
         platformstl::file_lines     lines(f.c_str());
 
         XTESTS_TEST_INTEGER_EQUAL(3u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("defg", lines[1]);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("hi", lines[2]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", lines[0], lines[0].size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("defg", lines[1], lines[1].size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("hi", lines[2], lines[2].size());
     }
 }
 
@@ -306,7 +306,7 @@ static void test_write_stdstring_1_character()
         platformstl::file_lines     lines(f.c_str());
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("a", lines[0], lines[0].size());
     }
 }
 
@@ -327,7 +327,7 @@ static void test_write_stdstring_1_long_string()
         platformstl::file_lines     lines(f.c_str());
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcdefghijklmnopqrstuvwxyz", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abcdefghijklmnopqrstuvwxyz", lines[0], lines[0].size());
     }
 }
 
@@ -352,9 +352,9 @@ static void test_write_stdstring_3_strings()
         platformstl::file_lines     lines(f.c_str());
 
         XTESTS_TEST_INTEGER_EQUAL(3u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("defg", lines[1]);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("hi", lines[2]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", lines[0], lines[0].size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("defg", lines[1], lines[1].size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("hi", lines[2], lines[2].size());
     }
 }
 } // anonymous namespace
