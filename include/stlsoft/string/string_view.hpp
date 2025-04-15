@@ -1720,7 +1720,6 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::class_type
     return *this;
 }
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
-
 #ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
 
 template<
