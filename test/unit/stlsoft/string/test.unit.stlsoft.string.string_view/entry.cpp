@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 20th March 2025
+ * Updated: 12th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,11 +25,6 @@
  * includes
  */
 
-/* xCover header files */
-#ifdef STLSOFT_USE_XCOVER
-# include <xcover/xcover.h>
-#endif /* STLSOFT_USE_XCOVER */
-
 /* xTests header files */
 #include <xtests/xtests.h>
 
@@ -47,6 +42,18 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
+    (   STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR == 3 && \
+        STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR >= 4)
+
+# define HAS_SUBSTR_                                        (1)
+#endif /* 3.4+ */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
@@ -59,52 +66,38 @@ namespace {
     static void test_ctor_range_1();
     static void test_ctor_range_2();
     static void test_ctor_range_3();
-    static void test_1_9();
     static void test_swap_1();
     static void test_swap_2();
     static void test_swap_3();
     static void test_clear();
-    static void test_1_10();
     static void test_get_allocator();
-    static void test_1_14();
     static void test_front();
     static void test_back();
-    static void test_1_19();
     static void test_refresh();
-    static void test_1_22();
     static void test_reverse_iterators();
-    static void test_1_23();
     static void test_copy();
-#if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
-    (   STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR == 3 && \
-        STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR >= 4)
+#ifdef HAS_SUBSTR_
+
     static void test_substr();
     static void test_substr_2();
     static void test_substr_throw();
     static void test_substr_throw_2();
-#endif /* 3.4+ */
-    static void test_1_24();
-    static void test_1_25();
+#endif /* HAS_SUBSTR_ */
     static void test_compare_1();
     static void test_compare_2();
     static void test_compare_3();
     static void test_compare_4();
-    static void test_1_26();
     static void test_at_1();
     static void test_at_2();
     static void test_at_3();
     static void test_at_4();
-    static void test_1_27();
     static void test_index_1();
     static void test_index_2();
-    static void test_1_28();
     static void test_string_access_shims();
-    static void test_1_29();
     static void test_insertion_1();
     static void test_insertion_2();
     static void test_insertion_3();
     static void test_insertion_4();
-    static void test_1_30();
     static void test_string_traits();
 } // anonymous namespace
 
@@ -118,14 +111,10 @@ int main(int argc, char *argv[])
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
-    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+    XTESTS_COMMANDLINE_PARSE_HELP_OR_VERBOSITY(argc, argv, &verbosity);
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.string.string_view", verbosity))
     {
-#ifdef STLSOFT_USE_XCOVER
-        xcover::init();
-#endif /* STLSOFT_USE_XCOVER */
-
         XTESTS_RUN_CASE(test_types_exist);
         XTESTS_RUN_CASE(test_type_sizes);
         XTESTS_RUN_CASE(test_ctor_default);
@@ -133,63 +122,41 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_ctor_range_1);
         XTESTS_RUN_CASE(test_ctor_range_2);
         XTESTS_RUN_CASE(test_ctor_range_3);
-        XTESTS_RUN_CASE(test_1_9);
         XTESTS_RUN_CASE(test_swap_1);
         XTESTS_RUN_CASE(test_swap_2);
         XTESTS_RUN_CASE(test_swap_3);
         XTESTS_RUN_CASE(test_clear);
-        XTESTS_RUN_CASE(test_1_10);
         XTESTS_RUN_CASE(test_get_allocator);
-        XTESTS_RUN_CASE(test_1_14);
         XTESTS_RUN_CASE(test_front);
         XTESTS_RUN_CASE(test_back);
-        XTESTS_RUN_CASE(test_1_19);
         XTESTS_RUN_CASE(test_refresh);
-        XTESTS_RUN_CASE(test_1_22);
         XTESTS_RUN_CASE(test_reverse_iterators);
-        XTESTS_RUN_CASE(test_1_23);
         XTESTS_RUN_CASE(test_copy);
-#if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
-    (   STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR == 3 && \
-        STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR >= 4)
+#ifdef HAS_SUBSTR_
+
         XTESTS_RUN_CASE(test_substr);
         XTESTS_RUN_CASE(test_substr_2);
         XTESTS_RUN_CASE_THAT_THROWS(test_substr_throw, std::out_of_range);
         XTESTS_RUN_CASE_THAT_THROWS(test_substr_throw_2, std::out_of_range);
-#endif /* 3.4+ */
-        XTESTS_RUN_CASE(test_1_24);
-        XTESTS_RUN_CASE(test_1_25);
+#endif /* HAS_SUBSTR_ */
         XTESTS_RUN_CASE(test_compare_1);
         XTESTS_RUN_CASE(test_compare_2);
         XTESTS_RUN_CASE(test_compare_3);
         XTESTS_RUN_CASE(test_compare_4);
-        XTESTS_RUN_CASE(test_1_26);
         XTESTS_RUN_CASE(test_at_1);
         XTESTS_RUN_CASE(test_at_2);
         XTESTS_RUN_CASE_THAT_THROWS(test_at_3, std::out_of_range);
         XTESTS_RUN_CASE_THAT_THROWS(test_at_4, std::out_of_range);
-        XTESTS_RUN_CASE(test_1_27);
         XTESTS_RUN_CASE(test_index_1);
         XTESTS_RUN_CASE(test_index_2);
-        XTESTS_RUN_CASE(test_1_28);
         XTESTS_RUN_CASE(test_string_access_shims);
-        XTESTS_RUN_CASE(test_1_29);
         XTESTS_RUN_CASE(test_insertion_1);
         XTESTS_RUN_CASE(test_insertion_2);
         XTESTS_RUN_CASE(test_insertion_3);
         XTESTS_RUN_CASE(test_insertion_4);
-        XTESTS_RUN_CASE(test_1_30);
         XTESTS_RUN_CASE(test_string_traits);
 
-#ifdef STLSOFT_USE_XCOVER
-        XCOVER_REPORT_FILE_COVERAGE("*stlsoft*/string_view.hpp", NULL);
-#endif /* STLSOFT_USE_XCOVER */
-
         XTESTS_PRINT_RESULTS();
-
-#ifdef STLSOFT_USE_XCOVER
-        xcover::uninit();
-#endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
     }
@@ -366,10 +333,6 @@ static void test_ctor_range_3()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("nopqrstuvwxyz", s3);
 }
 
-static void test_1_9()
-{
-}
-
 static void test_swap_1()
 {
     {
@@ -493,19 +456,11 @@ static void test_clear()
     }
 }
 
-static void test_1_10()
-{
-}
-
 static void test_get_allocator()
 {
     string_v_t s;
 
     XTESTS_TEST(s.get_allocator() == string_v_t::allocator_type());
-}
-
-static void test_1_14()
-{
 }
 
 static void test_front()
@@ -530,10 +485,6 @@ static void test_back()
     }
 }
 
-static void test_1_19()
-{
-}
-
 static void test_refresh()
 {
     {
@@ -553,10 +504,6 @@ static void test_refresh()
             XTESTS_TEST_POINTER_NOT_EQUAL(p1a, p1b);
         }
     }
-}
-
-static void test_1_22()
-{
 }
 
 static void test_reverse_iterators()
@@ -584,10 +531,6 @@ static void test_reverse_iterators()
         ++ri;
         XTESTS_TEST(s.rend() == ri);
     }
-}
-
-static void test_1_23()
-{
 }
 
 static void test_copy()
@@ -626,9 +569,8 @@ static void test_copy()
 
 }
 
-#if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
-    (   STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR == 3 && \
-        STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR >= 4)
+#ifdef HAS_SUBSTR_
+
 static void test_substr()
 {
     string_v_t const    s1("abcdefghi");
@@ -672,15 +614,7 @@ static void test_substr_throw_2()
 
     XTESTS_TEST_FAIL("should not get here");
 }
-#endif /* 3.4+ */
-
-static void test_1_24()
-{
-}
-
-static void test_1_25()
-{
-}
+#endif /* HAS_SUBSTR_ */
 
 static void test_compare_1()
 {
@@ -800,10 +734,6 @@ static void test_compare_4()
 }
 
 
-static void test_1_26()
-{
-}
-
 static void test_at_1()
 {
     string_v_t  s("abc");
@@ -837,10 +767,6 @@ static void test_at_4()
 }
 
 
-static void test_1_27()
-{
-}
-
 static void test_index_1()
 {
     string_v_t  s("abc");
@@ -860,10 +786,6 @@ static void test_index_2()
     XTESTS_TEST_CHARACTER_EQUAL('\0', s[3u]);
 }
 
-
-static void test_1_28()
-{
-}
 
 static void test_string_access_shims()
 {
@@ -913,10 +835,6 @@ static void test_string_access_shims()
 //      XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null(s));
     }
 
-}
-
-static void test_1_29()
-{
 }
 
 static void test_insertion_1()
@@ -1064,10 +982,6 @@ static void test_insertion_4()
 #ifdef FIELD_WIDTH
 # undef FIELD_WIDTH
 #endif
-}
-
-static void test_1_30()
-{
 }
 
 static void test_string_traits()
