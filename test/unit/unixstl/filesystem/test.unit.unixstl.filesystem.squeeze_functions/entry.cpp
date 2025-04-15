@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test.unit.unixstl.filesystem.squeeze_functions/entry.cpp
  *
- * Purpose: Unit-tests for `inetstl::squeeze_path`.
+ * Purpose: Unit-tests for `unixstl::squeeze_path`.
  *
  * Created: 29th October 2016
  * Updated: 15th April 2025
@@ -10,15 +10,17 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////
  * test component header file include(s)
  */
 
+#include <unixstl/filesystem/squeeze_functions.hpp>
 
- #include <unixstl/filesystem/squeeze_functions.hpp>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * includes
+/* /////////////////////////////////////
+ * general includes
  */
 
 /* xTests header files */
@@ -26,9 +28,6 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* Standard C++ header files */
-#include <string>
 
 /* Standard C header files */
 #include <stdlib.h>
@@ -45,16 +44,6 @@ namespace {
     static void TEST_EXACT_SPACE();
     static void TEST_INSUFFICIENT_SPACE();
 } // anonymous namespace
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * types
- */
-
-namespace {
-
-    typedef std::basic_string<char>                         string_a_t;
-} /* anonymous namespace */
 
 
 /* /////////////////////////////////////////////////////////////////////////
