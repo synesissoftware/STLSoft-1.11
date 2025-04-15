@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 12th April 2025
+ * Updated: 15th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,7 +26,7 @@
  */
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -52,6 +52,11 @@
 # define HAS_SUBSTR_                                        (1)
 #endif /* 3.4+ */
 
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
+
+# define HAS_c_str_
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -73,7 +78,9 @@ namespace {
     static void test_get_allocator();
     static void test_front();
     static void test_back();
+#ifdef HAS_c_str_
     static void test_refresh();
+#endif /* HAS_c_str_ */
     static void test_reverse_iterators();
     static void test_copy();
 #ifdef HAS_SUBSTR_
@@ -129,7 +136,9 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_get_allocator);
         XTESTS_RUN_CASE(test_front);
         XTESTS_RUN_CASE(test_back);
+#ifdef HAS_c_str_
         XTESTS_RUN_CASE(test_refresh);
+#endif /* HAS_c_str_ */
         XTESTS_RUN_CASE(test_reverse_iterators);
         XTESTS_RUN_CASE(test_copy);
 #ifdef HAS_SUBSTR_
@@ -230,8 +239,15 @@ static void test_types_exist()
 
 static void test_type_sizes()
 {
+#ifdef HAS_c_str_
+
     STLSOFT_STATIC_ASSERT(sizeof(stlsoft::string_view) >= 3 * sizeof(void*));
     STLSOFT_STATIC_ASSERT(sizeof(stlsoft::wstring_view) >= 3 * sizeof(void*));
+#else /* ? HAS_c_str_ */
+
+    STLSOFT_STATIC_ASSERT(sizeof(stlsoft::string_view) >= 2 * sizeof(void*));
+    STLSOFT_STATIC_ASSERT(sizeof(stlsoft::wstring_view) >= 2 * sizeof(void*));
+#endif /* HAS_c_str_ */
 }
 
 static void test_ctor_default()
@@ -262,7 +278,7 @@ static void test_ctor_copy()
         string_v_t  s2(s1);
 
         XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s1, s2, s1.size());
     }
 
     {
@@ -270,7 +286,7 @@ static void test_ctor_copy()
         string_v_t  s2(s1);
 
         XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s1, s2, s1.size());
     }
 
     {
@@ -278,7 +294,7 @@ static void test_ctor_copy()
         string_v_t  s2(s1, 0u, s1.size());
 
         XTESTS_TEST_INTEGER_EQUAL(s1.size(), s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s1, s2, s1.size());
     }
 
     {
@@ -286,7 +302,7 @@ static void test_ctor_copy()
         string_v_t  s2(s1, 1u, s1.size() - 1u);
 
         XTESTS_TEST_INTEGER_EQUAL(2u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bc", s2);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("bc", s2, s2.size());
     }
 }
 
@@ -299,10 +315,10 @@ static void test_ctor_range_1()
     string_v_t const    s3(s1.begin(), s1.end());
     string_v_t          s4(s3.begin(), s3.end());
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s1);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s2);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s3);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s4);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(alphabet, s1, s1.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(alphabet, s2, s2.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(alphabet, s3, s3.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(alphabet, s4, s4.size());
 
     XTESTS_TEST_POINTER_EQUAL(alphabet, s1.base());
     XTESTS_TEST_POINTER_EQUAL(alphabet, s2.base());
@@ -317,8 +333,8 @@ static void test_ctor_range_2()
     string_v_t      s1(alphabet);
     string_v_t      s2(&alphabet[0], &alphabet[0] + STLSOFT_NUM_ELEMENTS(alphabet) -1);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s1);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s2);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(alphabet, s1, s1.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(alphabet, s2, s2.size());
 }
 
 static void test_ctor_range_3()
@@ -329,8 +345,8 @@ static void test_ctor_range_3()
     string_v_t      s2(s1, 0);
     string_v_t      s3(s1, 13);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s2);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("nopqrstuvwxyz", s3);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(alphabet, s2, s2.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("nopqrstuvwxyz", s3, s3.size());
 }
 
 static void test_swap_1()
@@ -354,7 +370,7 @@ static void test_swap_1()
 
         XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
         XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", s1, s1.size());
         XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
 
         s1.swap(s2);
@@ -362,7 +378,7 @@ static void test_swap_1()
         XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
         XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
         XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", s2, s2.size());
     }
 }
 
@@ -387,7 +403,7 @@ static void test_swap_2()
 
         XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
         XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", s1, s1.size());
         XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
 
         std::swap(s1, s2);
@@ -395,7 +411,7 @@ static void test_swap_2()
         XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
         XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
         XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", s2, s2.size());
     }
 }
 
@@ -425,7 +441,7 @@ static void test_swap_3()
 
         XTESTS_TEST_BOOLEAN_FALSE(s1.empty());
         XTESTS_TEST_INTEGER_EQUAL(3u, s1.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s1);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", s1, s1.size());
         XTESTS_TEST_BOOLEAN_TRUE(s2.empty());
 
         swap(s1, s2);
@@ -433,7 +449,7 @@ static void test_swap_3()
         XTESTS_TEST_BOOLEAN_TRUE(s1.empty());
         XTESTS_TEST_BOOLEAN_FALSE(s2.empty());
         XTESTS_TEST_INTEGER_EQUAL(3u, s2.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", s2);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("abc", s2, s2.size());
     }
 }
 
@@ -485,6 +501,8 @@ static void test_back()
     }
 }
 
+#ifdef HAS_c_str_
+
 static void test_refresh()
 {
     {
@@ -505,6 +523,7 @@ static void test_refresh()
         }
     }
 }
+#endif /* HAS_c_str_ */
 
 static void test_reverse_iterators()
 {
@@ -579,10 +598,10 @@ static void test_substr()
     string_v_t          s4 = s1.substr(0, s1.size() * 2);
     string_v_t          s5 = s1.substr();
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s3);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s4);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s5);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s1, s2, s2.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s1, s3, s3.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s1, s4, s4.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s1, s5, s5.size());
 }
 
 static void test_substr_2()
@@ -593,10 +612,10 @@ static void test_substr_2()
     string_v_t          s4 = s1.substr(7, 2);
     string_v_t          s5 = s1.substr(7, 50);
 
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bcdefghi", s2);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("bcd", s3);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("hi", s4);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("hi", s5);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("bcdefghi", s2, s2.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("bcd", s3, s3.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("hi", s4, s4.size());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("hi", s5, s5.size());
 }
 
 static void test_substr_throw()
@@ -622,26 +641,38 @@ static void test_compare_1()
     string_v_t  s2("def");
 
     XTESTS_TEST_BOOLEAN_TRUE(s1 != s2);
+#ifdef HAS_c_str_
     XTESTS_TEST_BOOLEAN_TRUE(s1 != s2.c_str());
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() != s2);
-    XTESTS_TEST_MULTIBYTE_STRING_NOT_EQUAL(s1, s2);
+#endif /* HAS_c_str_ */
+    XTESTS_TEST_MULTIBYTE_STRING_NOT_EQUAL_N(s1, s2, s2.size());
 
     XTESTS_TEST_BOOLEAN_TRUE(s1 < s2);
+#ifdef HAS_c_str_
     XTESTS_TEST_BOOLEAN_TRUE(s1 < s2.c_str());
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() < s2);
+#endif /* HAS_c_str_ */
     XTESTS_TEST_BOOLEAN_TRUE(s1 <= s2);
+#ifdef HAS_c_str_
     XTESTS_TEST_BOOLEAN_TRUE(s1 <= s2.c_str());
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() <= s2);
+#endif /* HAS_c_str_ */
     XTESTS_TEST_BOOLEAN_TRUE(s2 > s1);
+#ifdef HAS_c_str_
     XTESTS_TEST_BOOLEAN_TRUE(s2 > s1.c_str());
     XTESTS_TEST_BOOLEAN_TRUE(s2.c_str() > s1);
+#endif /* HAS_c_str_ */
     XTESTS_TEST_BOOLEAN_TRUE(s2 >= s1);
+#ifdef HAS_c_str_
     XTESTS_TEST_BOOLEAN_TRUE(s2 >= s1.c_str());
     XTESTS_TEST_BOOLEAN_TRUE(s2.c_str() >= s1);
+#endif /* HAS_c_str_ */
 
     XTESTS_TEST_BOOLEAN_TRUE(s1 == s1);
+#ifdef HAS_c_str_
     XTESTS_TEST_BOOLEAN_TRUE(s1 == s1.c_str());
     XTESTS_TEST_BOOLEAN_TRUE(s1.c_str() == s1);
+#endif /* HAS_c_str_ */
 }
 
 static void test_compare_2()
@@ -652,9 +683,11 @@ static void test_compare_2()
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(s2));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 2u, s2));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, s2));
+#ifdef HAS_c_str_
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, s2.c_str()));
 //  XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 4u, s2.c_str()));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, s2.c_str(), s2.size()));
+#endif /* HAS_c_str_ */
 
     string_v_t  s3("c");
 
@@ -728,7 +761,9 @@ static void test_compare_4()
         string_v_t  s2("mnopqr");
 
         XTESTS_TEST_INTEGER_LESS(0, s1.compare(s2));
+#ifdef HAS_c_str_
         XTESTS_TEST_INTEGER_LESS(0, s1.compare(s2.c_str()));
+#endif /* HAS_c_str_ */
         XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, s1.size(), s2));
     }
 }
@@ -801,6 +836,8 @@ static void test_string_access_shims()
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data(s));
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_data(s));
 
+#ifdef HAS_c_str_
+
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr_a(s));
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::c_str_ptr_a(s));
 
@@ -810,6 +847,7 @@ static void test_string_access_shims()
         XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null_a(s));
 
         XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null(s));
+#endif /* HAS_c_str_ */
     }
 
     {
@@ -824,6 +862,8 @@ static void test_string_access_shims()
 //      XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_data(s));
 //      XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_data(s));
 
+#ifdef HAS_c_str_
+
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, stlsoft::c_str_ptr_w(s));
         XTESTS_TEST_WIDE_STRING_EQUAL(L"", stlsoft::c_str_ptr_w(s));
 
@@ -833,6 +873,7 @@ static void test_string_access_shims()
         XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null_w(s));
 
 //      XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null(s));
+#endif /* HAS_c_str_ */
     }
 
 }
@@ -1004,9 +1045,9 @@ static void test_string_traits()
         string_v_t  s5 = stlsoft::string_traits<string_v_t>::construct(s2, 0u, s2.size());
         string_v_t  s6 = stlsoft::string_traits<string_v_t>::construct(s3, 0u, s3.size());
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s4);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s2, s5);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s3, s6);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s1, s4, s4.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s2, s5, s5.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s3, s6, s6.size());
     }
 
     {
@@ -1015,7 +1056,7 @@ static void test_string_traits()
 
         stlsoft::string_traits<string_v_t>::assign_inplace(s1, s2.begin(), s2.end());
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(s1, s2);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(s1, s2, s2.size());
     }
 }
 } // anonymous namespace
