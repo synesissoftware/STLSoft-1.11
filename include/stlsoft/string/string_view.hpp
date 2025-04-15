@@ -4,7 +4,7 @@
  * Purpose: basic_string_view class.
  *
  * Created: 16th October 2004
- * Updated: 12th April 2025
+ * Updated: 15th April 2025
  *
  * Thanks:  Bjorn Karlsson and Scott Patterson for discussions on various
  *          naming and design issues. Thanks also to Pablo Aguilar for
@@ -56,11 +56,30 @@
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_VIEW
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        120
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       0
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if 0
+#elif defined(STLSOFT_OBSOLETE)
+
+# ifndef STLSOFT_STRING_VIEW_PROVIDE_c_str
+#  define STLSOFT_STRING_VIEW_PROVIDE_c_str
+# endif
+#endif
+
+#ifdef STLSOFT_STRING_VIEW_NO_PROVIDE_c_str
+# ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
+#  undef STLSOFT_STRING_VIEW_PROVIDE_c_str
+# endif
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -357,7 +376,9 @@ public:
     ///
     /// \note If the view's specialisation is with a no-throw allocator,
     ///   behaviour is undefined in con
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     value_type const*       c_str() const;
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 #if 0
 
     /// Facility for calling refresh() followed by c_str()
@@ -459,10 +480,14 @@ private:
     static ss_sint_t compare_(char_type const* lhs, size_type lhs_len, char_type const* rhs, size_type rhs_len);
 
     // Closes the m_cstr member
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     void close_() STLSOFT_NOEXCEPT;
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 
     // Closes the m_cstr member and sets to \c nullptr
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     void close_set_null_() STLSOFT_NOEXCEPT;
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 
     const_iterator          begin_() const;
     const_iterator          end_() const;
@@ -477,7 +502,9 @@ private:
 private:
     size_type           m_length;  // The number of elements in the view
     char_type const*    m_base;    // Pointer to the first element in the view, or NULL for a null view
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     char_type*          m_cstr;    // Pointer to a nul-terminated copy of the view, at the time of the c_str() call. Will be \c nullptr before c_str() is called
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 /// @}
 };
 
@@ -984,6 +1011,8 @@ inline /* static */ ss_sint_t basic_string_view<C, T, A>::compare_( ss_typename_
     return result;
 }
 
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
+
 template<
     ss_typename_param_k C
 ,   ss_typename_param_k T
@@ -1016,6 +1045,7 @@ inline /* static */ void basic_string_view<C, T, A>::close_set_null_() STLSOFT_N
         m_cstr = NULL;
     }
 }
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 
 template<
     ss_typename_param_k C
@@ -1050,11 +1080,14 @@ inline ss_bool_t basic_string_view<C, T, A>::is_valid() const
 {
     // NOTE: Must not call any methods or ctors in this function!!
 
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
+
     if (0 == m_length &&
         NULL != m_cstr)
     {
         return false; // If the slice is empty, there should be no m_cstr
     }
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 
     if (0 != m_length &&
         NULL == m_base)
@@ -1078,7 +1111,9 @@ inline basic_string_view<C, T, A>::basic_string_view()
     , stl_collection_tag()
     , m_length(0)
     , m_base(NULL)
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     , m_cstr(NULL)
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 {
     STLSOFT_ASSERT(is_valid());
 }
@@ -1093,7 +1128,9 @@ inline basic_string_view<C, T, A>::basic_string_view(basic_string_view<C, T, A> 
     , stl_collection_tag(rhs)
     , m_length(rhs.m_length)
     , m_base(rhs.m_base)
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     , m_cstr(NULL)
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 {
     STLSOFT_ASSERT(is_valid());
 }
@@ -1108,7 +1145,9 @@ inline basic_string_view<C, T, A>::basic_string_view(basic_string_view<C, T, A> 
     , stl_collection_tag(rhs)
     , m_length(rhs.m_length - pos)
     , m_base(&rhs[pos]) // Use this so we get the debug-time invariant checking on the validity of pos
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     , m_cstr(NULL)
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 {
     STLSOFT_ASSERT(pos <= rhs.m_length);
 
@@ -1127,7 +1166,9 @@ inline basic_string_view<C, T, A>::basic_string_view(   basic_string_view<C, T, 
     , stl_collection_tag(rhs)
     , m_length(cch)
     , m_base(&rhs[pos]) // Use this so we get the debug-time invariant checking on the validity of pos
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     , m_cstr(NULL)
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 {
     STLSOFT_ASSERT(is_valid());
 }
@@ -1142,7 +1183,9 @@ inline basic_string_view<C, T, A>::basic_string_view(ss_typename_type_k basic_st
     , stl_collection_tag()
     , m_length(T::length(s))
     , m_base(s)
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     , m_cstr(NULL)
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 {
     STLSOFT_ASSERT(is_valid());
 }
@@ -1158,7 +1201,9 @@ inline basic_string_view<C, T, A>::basic_string_view(   ss_typename_type_k basic
     , stl_collection_tag()
     , m_length(cch)
     , m_base(s)
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     , m_cstr(NULL)
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 {
     STLSOFT_ASSERT(is_valid());
 }
@@ -1174,7 +1219,9 @@ inline basic_string_view<C, T, A>::basic_string_view(   ss_typename_type_k basic
     , stl_collection_tag()
     , m_length(static_cast<size_type>(last - first))
     , m_base(first)
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     , m_cstr(NULL)
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 {
     STLSOFT_ASSERT(first <= last);
 
@@ -1190,10 +1237,13 @@ inline basic_string_view<C, T, A>::~basic_string_view() STLSOFT_NOEXCEPT
 {
     STLSOFT_ASSERT(is_valid());
 
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
+
     if (NULL != m_cstr)
     {
         close_();
     }
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 }
 
 template<
@@ -1203,7 +1253,9 @@ template<
 >
 inline basic_string_view<C, T, A> &basic_string_view<C, T, A>::operator =(basic_string_view<C, T, A> const& rhs)
 {
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     close_set_null_();
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 
     m_length    =   rhs.m_length;
     m_base      =   rhs.m_base;
@@ -1224,7 +1276,9 @@ inline void basic_string_view<C, T, A>::swap(ss_typename_type_k basic_string_vie
 
     std_swap(m_length, rhs.m_length);
     std_swap(m_base, rhs.m_base);
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     std_swap(m_cstr, rhs.m_cstr);
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 
     STLSOFT_ASSERT(is_valid());
 }
@@ -1238,7 +1292,9 @@ inline void basic_string_view<C, T, A>::clear() STLSOFT_NOEXCEPT
 {
     STLSOFT_ASSERT(is_valid());
 
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     close_set_null_();
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 
     m_length    =   0;
     m_base      =   NULL;
@@ -1255,7 +1311,9 @@ inline void basic_string_view<C, T, A>::refresh() STLSOFT_NOEXCEPT
 {
     STLSOFT_ASSERT(is_valid());
 
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
     close_set_null_();
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 
     STLSOFT_ASSERT(is_valid());
 }
@@ -1662,6 +1720,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::class_type
     return *this;
 }
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
 
 template<
     ss_typename_param_k C
@@ -1716,6 +1775,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::value_type const* basi
         }
     }
 }
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 #if 0
 
 template<
@@ -2030,6 +2090,8 @@ inline ss_size_t c_str_len_w(STLSOFT_NS_QUAL(basic_string_view)<ss_char_w_t, T, 
 
 // c_str_ptr
 
+#ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
+
 /** \ref group__concept__Shim__string_access__c_str_ptr for stlsoft::basic_string_view
  *
  * \ingroup group__concept__Shim__string_access
@@ -2056,6 +2118,7 @@ inline ss_char_w_t const* c_str_ptr_w(STLSOFT_NS_QUAL(basic_string_view)<ss_char
 {
     return s.c_str();
 }
+#endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
