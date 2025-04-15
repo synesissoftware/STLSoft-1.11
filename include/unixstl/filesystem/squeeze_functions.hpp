@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MAJOR     2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION  5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      33
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -304,7 +304,7 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_unixstl_squeeze_functions_)
  *
  * \return If \c buffer is NULL, then returns the number required, including
  *  the NUL character; otherwise, returns the number of characters written
- *  into \c buffer excluding any NUL character if written.
+ *  into \c buffer including NUL character.
  */
 
 template<
