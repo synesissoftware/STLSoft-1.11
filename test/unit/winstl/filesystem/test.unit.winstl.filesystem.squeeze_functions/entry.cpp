@@ -39,6 +39,10 @@
 
 namespace {
 
+    static void TEST_NULL_BUFFER();
+    static void TEST_SUFFICIENT_SPACE();
+    static void TEST_EXACT_SPACE();
+    static void TEST_INSUFFICIENT_SPACE();
 } // anonymous namespace
 
 
@@ -55,6 +59,10 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.winstl.filesystem.squeeze_functions", verbosity))
     {
+        XTESTS_RUN_CASE(TEST_NULL_BUFFER);
+        XTESTS_RUN_CASE(TEST_SUFFICIENT_SPACE);
+        XTESTS_RUN_CASE(TEST_EXACT_SPACE);
+        XTESTS_RUN_CASE(TEST_INSUFFICIENT_SPACE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -71,552 +79,850 @@ int main(int argc, char *argv[])
 
 namespace {
 
+static void TEST_NULL_BUFFER()
+{
+    // stem only
+    {
+        char const* const input = "abcdef";
 
-#if 0
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 0);
 
-SCENARIO("testing winstl/filesystem/squeeze_functions.hpp", "[file-system]") {
-
-    GIVEN("a file name only") {
-
-        char const* const input = "abcdef.ghi";
-
-        THEN("check passing in a null buffer") {
-
-            size_t  cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 0);
-
-            CHECK(11u == cch);
+            TEST_INT_EQ(7, cch);
         }
 
-        AND_THEN("check passing in a buffer length of 0") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 4);
 
-            char    buffer[1] = { '~' };
-            size_t  cch = winstl::path_squeeze(input, buffer, 0);
-
-            CHECK(0u == cch);
-            CHECK('~' == buffer[0]);
+            TEST_INT_EQ(7, cch);
         }
 
-        AND_THEN("checking passing in a too-small buffer (length 1)") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 10);
 
-            char    buffer[1];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(1u == cch);
-            CHECK('\0' == buffer[0]);
+            TEST_INT_EQ(7, cch);
         }
 
-        AND_THEN("checking passing in a too-small buffer (length 2)") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 11);
 
-            char    buffer[2];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(2u == cch);
-            CHECK(string_a_t("a") == buffer);
+            TEST_INT_EQ(7, cch);
         }
 
-        AND_THEN("checking passing in a too-small buffer (length 3)") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 12);
 
-            char    buffer[3];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(3u == cch);
-            CHECK(string_a_t("ab") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 4)") {
-
-            char    buffer[4];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(4u == cch);
-            CHECK(string_a_t("abc") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 5)") {
-
-            char    buffer[5];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(5u == cch);
-            CHECK(string_a_t("abcd") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 6)") {
-
-            char    buffer[6];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(6u == cch);
-            CHECK(string_a_t("a...i") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 7)") {
-
-            char    buffer[7];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(7u == cch);
-            CHECK(string_a_t("a...hi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 8)") {
-
-            char    buffer[8];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(8u == cch);
-            CHECK(string_a_t("ab...hi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 9)") {
-
-            char    buffer[9];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(9u == cch);
-            CHECK(string_a_t("ab...ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 10)") {
-
-            char    buffer[10];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(10u == cch);
-            CHECK(string_a_t("abc...ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 11)") {
-
-            char    buffer[11];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(11u == cch);
-            CHECK(string_a_t(input) == buffer);
-        }
-
-        AND_THEN("checking passing in an adequate buffer (length 12)") {
-
-            char    buffer[12];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(11u == cch);
-            CHECK(string_a_t(input) == buffer);
-        }
-
-        AND_THEN("checking passing in an adequate buffer (length 120)") {
-
-            char    buffer[120];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(11u == cch);
-            CHECK(string_a_t(input) == buffer);
+            TEST_INT_EQ(7, cch);
         }
     }
 
-    GIVEN("a relative path") {
+    // basename
+    {
+        char const* const input = "remove_cmake_artefacts.sh";
 
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 0);
+
+            TEST_INT_EQ(26, cch);
+        }
+
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 4);
+
+            TEST_INT_EQ(26, cch);
+        }
+
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 10);
+
+            TEST_INT_EQ(26, cch);
+        }
+
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 11);
+
+            TEST_INT_EQ(26, cch);
+        }
+
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 12);
+
+            TEST_INT_EQ(26, cch);
+        }
+    }
+
+    // slash-rooted path
+    {
         char const* const input = "/_/xyz/mno/abcdef.ghi";
 
-        THEN("check passing in a null buffer") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 0);
 
-            size_t  cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 0);
-
-            CHECK(22u == cch);
+            TEST_INT_EQ(22, cch);
         }
 
-        AND_THEN("check passing in a buffer length of 0") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 4);
 
-            char    buffer[1] = { '~' };
-            size_t  cch = winstl::path_squeeze(input, buffer, 0);
-
-            CHECK(0u == cch);
-            CHECK('~' == buffer[0]);
+            TEST_INT_EQ(22, cch);
         }
 
-        AND_THEN("checking passing in a too-small buffer (length 1)") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 10);
 
-            char    buffer[1];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(1u == cch);
-            CHECK('\0' == buffer[0]);
+            TEST_INT_EQ(22, cch);
         }
 
-        AND_THEN("checking passing in a too-small buffer (length 2)") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 11);
 
-            char    buffer[2];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(2u == cch);
-            CHECK(string_a_t("a") == buffer);
+            TEST_INT_EQ(22, cch);
         }
 
-        AND_THEN("checking passing in a too-small buffer (length 3)") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 12);
 
-            char    buffer[3];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(3u == cch);
-            CHECK(string_a_t("ab") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 4)") {
-
-            char    buffer[4];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(4u == cch);
-            CHECK(string_a_t("abc") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 5)") {
-
-            char    buffer[5];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(5u == cch);
-            CHECK(string_a_t("abcd") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 6)") {
-
-            char    buffer[6];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(6u == cch);
-            CHECK(string_a_t("a...i") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 7)") {
-
-            char    buffer[7];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(7u == cch);
-            CHECK(string_a_t("a...hi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 8)") {
-
-            char    buffer[8];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(8u == cch);
-            CHECK(string_a_t("ab...hi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 9)") {
-
-            char    buffer[9];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(9u == cch);
-            CHECK(string_a_t("ab...ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 10)") {
-
-            char    buffer[10];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(10u == cch);
-            CHECK(string_a_t("abc...ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 11)") {
-
-            char    buffer[11];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(11u == cch);
-            CHECK(string_a_t("abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 12 - 17)") {
-
-            char    buffer[17];
-
-            for (size_t n = 12; n != 16; ++n)
-            {
-                size_t  cch = winstl::path_squeeze(input, buffer, n);
-
-                CHECK(11u == cch);
-                CHECK(string_a_t("abcdef.ghi") == buffer);
-            }
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 16)") {
-
-            char    buffer[16];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(16u == cch);
-            CHECK(string_a_t("/.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 17)") {
-
-            char    buffer[17];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(17u == cch);
-            CHECK(string_a_t("/_.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 18)") {
-
-            char    buffer[18];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(18u == cch);
-            CHECK(string_a_t("/_/.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 19)") {
-
-            char    buffer[19];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(19u == cch);
-            CHECK(string_a_t("/_/x.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in an adequate buffer (length 20)") {
-
-            char    buffer[20];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(20u == cch);
-            CHECK(string_a_t("/_/xy.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in an adequate buffer (length 21)") {
-
-            char    buffer[21];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(21u == cch);
-            CHECK(string_a_t("/_/xyz.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in an adequate buffer (length 22)") {
-
-            char    buffer[22];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(22u == cch);
-            CHECK(string_a_t(input) == buffer);
-        }
-
-        AND_THEN("checking passing in an adequate buffer (length 23)") {
-
-            char    buffer[23];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(22u == cch);
-            CHECK(string_a_t(input) == buffer);
-        }
-
-        AND_THEN("checking passing in an adequate buffer (length 220)") {
-
-            char    buffer[220];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(22u == cch);
-            CHECK(string_a_t(input) == buffer);
+            TEST_INT_EQ(22, cch);
         }
     }
 
-    GIVEN("a drive-rooted path") {
+    // drive-rooted path
+    {
+        char const* const input = "C:/_/xyz/mno/abcdef.ghi";
 
-        char const* const input = "H:/xyz/mno/abcdef.ghi";
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 0);
 
-        THEN("check passing in a null buffer") {
-
-            size_t  cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 0);
-
-            CHECK(22u == cch);
+            TEST_INT_EQ(24, cch);
         }
 
-        AND_THEN("check passing in a buffer length of 0") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 4);
 
-            char    buffer[1] = { '~' };
-            size_t  cch = winstl::path_squeeze(input, buffer, 0);
-
-            CHECK(0u == cch);
-            CHECK('~' == buffer[0]);
+            TEST_INT_EQ(24, cch);
         }
 
-        AND_THEN("checking passing in a too-small buffer (length 1)") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 10);
 
-            char    buffer[1];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(1u == cch);
-            CHECK('\0' == buffer[0]);
+            TEST_INT_EQ(24, cch);
         }
 
-        AND_THEN("checking passing in a too-small buffer (length 2)") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 11);
 
-            char    buffer[2];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(2u == cch);
-            CHECK(string_a_t("a") == buffer);
+            TEST_INT_EQ(24, cch);
         }
 
-        AND_THEN("checking passing in a too-small buffer (length 3)") {
+        {
+            size_t const cch = winstl::path_squeeze(input, static_cast<char*>(NULL), 12);
 
-            char    buffer[3];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(3u == cch);
-            CHECK(string_a_t("ab") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 4)") {
-
-            char    buffer[4];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(4u == cch);
-            CHECK(string_a_t("abc") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 5)") {
-
-            char    buffer[5];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(5u == cch);
-            CHECK(string_a_t("abcd") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 6)") {
-
-            char    buffer[6];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(6u == cch);
-            CHECK(string_a_t("a...i") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 7)") {
-
-            char    buffer[7];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(7u == cch);
-            CHECK(string_a_t("a...hi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 8)") {
-
-            char    buffer[8];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(8u == cch);
-            CHECK(string_a_t("ab...hi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 9)") {
-
-            char    buffer[9];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(9u == cch);
-            CHECK(string_a_t("ab...ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 10)") {
-
-            char    buffer[10];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(10u == cch);
-            CHECK(string_a_t("abc...ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 11)") {
-
-            char    buffer[11];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(11u == cch);
-            CHECK(string_a_t("abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 12 - 17)") {
-
-            char    buffer[17];
-
-            for (size_t n = 12; n != 18; ++n)
-            {
-                size_t  cch = winstl::path_squeeze(input, buffer, n);
-
-                CHECK(11u == cch);
-                CHECK(string_a_t("abcdef.ghi") == buffer);
-            }
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 18)") {
-
-            char    buffer[18];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(18u == cch);
-            CHECK(string_a_t("H:/.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 19)") {
-
-            char    buffer[19];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(19u == cch);
-            CHECK(string_a_t("H:/x.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 20)") {
-
-            char    buffer[20];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(20u == cch);
-            CHECK(string_a_t("H:/xy.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in a too-small buffer (length 21)") {
-
-            char    buffer[21];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(21u == cch);
-            CHECK(string_a_t("H:/xyz.../abcdef.ghi") == buffer);
-        }
-
-        AND_THEN("checking passing in an adequate buffer (length 22)") {
-
-            char    buffer[22];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(22u == cch);
-            CHECK(string_a_t(input) == buffer);
-        }
-
-        AND_THEN("checking passing in an adequate buffer (length 220)") {
-
-            char    buffer[220];
-            size_t  cch = winstl::path_squeeze(input, buffer, dimensionof(buffer));
-
-            CHECK(22u == cch);
-            CHECK(string_a_t(input) == buffer);
+            TEST_INT_EQ(24, cch);
         }
     }
 }
-#endif
 
+static void TEST_SUFFICIENT_SPACE()
+{
+    // stem only
+    {
+        char const* const input = "abcdef";
+
+        {
+            char            buff[101];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(7, cch);
+            TEST_MS_EQ("abcdef", buff);
+        }
+
+        {
+            char            buff[8];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(7, cch);
+            TEST_MS_EQ("abcdef", buff);
+        }
+    }
+
+    // stem only (short)
+    {
+        char const* const input = "abc";
+
+        {
+            char            buff[101];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("abc", buff);
+        }
+    }
+
+    // basename
+    {
+        char const* const input = "remove_cmake_artefacts.sh";
+
+        {
+            char            buff[101];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(26, cch);
+            TEST_MS_EQ("remove_cmake_artefacts.sh", buff);
+        }
+
+        {
+            char            buff[27];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(26, cch);
+            TEST_MS_EQ("remove_cmake_artefacts.sh", buff);
+        }
+
+        {
+            char            buff[28];
+            size_t const    cch = (buff[25] = buff[26] = buff[27] = '#', winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff)));
+
+            TEST_INT_EQ(26, cch);
+            TEST_CHAR_EQ('#', buff[27]);
+            TEST_MS_EQ("remove_cmake_artefacts.sh", buff);
+        }
+
+        {
+            char            buff[29];
+            size_t const    cch = (buff[25] = buff[26] = buff[27] = buff[28] = '#', winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff)));
+
+            TEST_INT_EQ(26, cch);
+            TEST_CHAR_EQ('#', buff[28]);
+            TEST_MS_EQ("remove_cmake_artefacts.sh", buff);
+        }
+    }
+
+
+    // slash-rooted path
+    {
+        char const* const input = "/_/xyz/mno/abcdef.ghi";
+
+        {
+            char            buff[23];
+            size_t const    cch = (buff[22] = '#', winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff)));
+
+            TEST_INT_EQ(22, cch);
+            TEST_CHAR_EQ('#', buff[22]);
+            TEST_MS_EQ("/_/xyz/mno/abcdef.ghi", buff);
+        }
+    }
+
+    // slash-rooted path (short basename)
+    {
+        char const* const input = "/_/xyz/mno/a.b";
+
+        {
+            char            buff[23];
+            size_t const    cch = (buff[14] = buff[15] = '#', winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff)));
+
+            TEST_INT_EQ(15, cch);
+            TEST_CHAR_EQ('#', buff[15]);
+            TEST_MS_EQ("/_/xyz/mno/a.b", buff);
+        }
+    }
+}
+
+static void TEST_EXACT_SPACE()
+{
+    // stem only
+    {
+        char const* const input = "abcdef";
+
+        {
+            char            buff[7];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(7, cch);
+            TEST_MS_EQ("abcdef", buff);
+        }
+    }
+
+    // stem only (short)
+    {
+        char const* const input = "abc";
+
+        {
+            char            buff[4];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("abc", buff);
+        }
+    }
+
+    // basename
+    {
+        char const* const input = "remove_cmake_artefacts.sh";
+
+        {
+            char            buff[26];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(26, cch);
+            TEST_MS_EQ("remove_cmake_artefacts.sh", buff);
+        }
+    }
+
+    // slash-rooted path
+    {
+        char const* const input = "/_/xyz/mno/abcdef.ghi";
+
+        {
+            char            buff[22];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(22, cch);
+            TEST_MS_EQ("/_/xyz/mno/abcdef.ghi", buff);
+        }
+    }
+
+    // slash-rooted path (short basename)
+    {
+        char const* const input = "/_/xyz/mno/a.b";
+
+        {
+            char            buff[22];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(15, cch);
+            TEST_MS_EQ("/_/xyz/mno/a.b", buff);
+        }
+    }
+
+    // drive-rooted path
+    {
+        char const* const input = "C:/_/xyz/mno/abcdef.ghi";
+
+        {
+            char            buff[24];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(24, cch);
+            TEST_MS_EQ("C:/_/xyz/mno/abcdef.ghi", buff);
+        }
+    }
+}
+
+static void TEST_INSUFFICIENT_SPACE()
+{
+    // stem only
+    {
+        char const* const input = "abcdef";
+
+        {
+            char            buff[6] = { '\0', '\1', '\2', '\3', '\4', '\5' };
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(6, cch);
+            TEST_CHAR_EQ('\0', buff[5]);
+            TEST_MS_EQ("a...f", buff);
+        }
+
+        {
+            char            buff[7] = { '\0', '\1', '\2', '\3', '\4', '\5', '\6' };
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff) - 1);
+
+            TEST_INT_EQ(6, cch);
+            TEST_CHAR_EQ('\6', buff[6]);
+            TEST_CHAR_EQ('\0', buff[5]);
+            TEST_MS_EQ("a...f", buff);
+        }
+
+        {
+            char            buff[5];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(5, cch);
+            TEST_MS_EQ("abcd", buff);
+        }
+
+        {
+            char            buff[4];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("abc", buff);
+        }
+
+        {
+            char            buff[3];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(3, cch);
+            TEST_MS_EQ("ab", buff);
+        }
+    }
+
+    // stem only (short)
+    {
+        char const* const input = "abc";
+
+        {
+            char            buff[3];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(3, cch);
+            TEST_MS_EQ("ab", buff);
+        }
+    }
+
+    // basename
+    {
+        char const* const input = "remove_cmake_artefacts.sh";
+
+        {
+            char            buff[25];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(25, cch);
+            TEST_MS_EQ("remove_cma...rtefacts.sh", buff);
+        }
+
+        {
+            char            buff[24];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(24, cch);
+            TEST_MS_EQ("remove_cma...tefacts.sh", buff);
+        }
+
+        {
+            char            buff[20];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(20, cch);
+            TEST_MS_EQ("remove_c...facts.sh", buff);
+        }
+
+        {
+            char            buff[16];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(16, cch);
+            TEST_MS_EQ("remove...cts.sh", buff);
+        }
+
+        {
+            char            buff[12];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(12, cch);
+            TEST_MS_EQ("remo...s.sh", buff);
+        }
+
+        {
+            char            buff[9];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(9, cch);
+            TEST_MS_EQ("re....sh", buff);
+        }
+    }
+
+    // slash-rooted path
+    {
+        char const* const input = "/_/xyz/mno/abcdef.ghi";
+
+        {
+            char            buff[21];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(21, cch);
+            TEST_MS_EQ("/_/xyz.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[20];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(20, cch);
+            TEST_MS_EQ("/_/xy.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[19];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(19, cch);
+            TEST_MS_EQ("/_/x.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[18];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(18, cch);
+            TEST_MS_EQ("/_/.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[17];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(17, cch);
+            TEST_MS_EQ("/_.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[16];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(16, cch);
+            TEST_MS_EQ("/.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[15];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[12];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[11];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[10];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(10, cch);
+            TEST_MS_EQ("abc...ghi", buff);
+        }
+
+        {
+            char            buff[9];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(9, cch);
+            TEST_MS_EQ("ab...ghi", buff);
+        }
+
+        {
+            char            buff[7];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(7, cch);
+            TEST_MS_EQ("a...hi", buff);
+        }
+
+        {
+            char            buff[6];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(6, cch);
+            TEST_MS_EQ("a...i", buff);
+        }
+
+        {
+            char            buff[5];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(5, cch);
+            TEST_MS_EQ("abcd", buff);
+        }
+
+        {
+            char            buff[4];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("abc", buff);
+        }
+
+        {
+            char            buff[3];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(3, cch);
+            TEST_MS_EQ("ab", buff);
+        }
+
+        {
+            char            buff[2];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(2, cch);
+            TEST_MS_EQ("a", buff);
+        }
+    }
+
+    // slash-rooted path (short basename)
+    {
+        char const* const input = "/_/xyz/mno/a.b";
+
+        {
+            char            buff[15];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(15, cch);
+            TEST_MS_EQ("/_/xyz/mno/a.b", buff);
+        }
+
+        {
+            char            buff[14];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(14, cch);
+            TEST_MS_EQ("/_/xyz.../a.b", buff);
+        }
+
+        {
+            char            buff[12];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(12, cch);
+            TEST_MS_EQ("/_/x.../a.b", buff);
+        }
+
+        {
+            char            buff[11];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("/_/.../a.b", buff);
+        }
+
+        {
+            char            buff[10];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(10, cch);
+            TEST_MS_EQ("/_.../a.b", buff);
+        }
+
+        {
+            char            buff[9];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(9, cch);
+            TEST_MS_EQ("/.../a.b", buff);
+        }
+
+        {
+            char            buff[7];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("a.b", buff);
+        }
+
+        {
+            char            buff[6];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("a.b", buff);
+        }
+
+        {
+            char            buff[5];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("a.b", buff);
+        }
+
+        {
+            char            buff[4];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("a.b", buff);
+        }
+
+        {
+            char            buff[3];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(3, cch);
+            TEST_MS_EQ("a.", buff);
+        }
+
+        {
+            char            buff[2];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(2, cch);
+            TEST_MS_EQ("a", buff);
+        }
+    }
+
+    // drive-rooted path
+    {
+        char const* const input = "C:/_/xyz/mno/abcdef.ghi";
+
+        {
+            char            buff[23];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(23, cch);
+            TEST_MS_EQ("C:/_/xyz.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[22];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(22, cch);
+            TEST_MS_EQ("C:/_/xy.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[21];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(21, cch);
+            TEST_MS_EQ("C:/_/x.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[20];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(20, cch);
+            TEST_MS_EQ("C:/_/.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[19];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(19, cch);
+            TEST_MS_EQ("C:/_.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[18];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(18, cch);
+            TEST_MS_EQ("C:/.../abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[17];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[16];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[15];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[12];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[11];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(11, cch);
+            TEST_MS_EQ("abcdef.ghi", buff);
+        }
+
+        {
+            char            buff[10];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(10, cch);
+            TEST_MS_EQ("abc...ghi", buff);
+        }
+
+        {
+            char            buff[9];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(9, cch);
+            TEST_MS_EQ("ab...ghi", buff);
+        }
+
+        {
+            char            buff[7];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(7, cch);
+            TEST_MS_EQ("a...hi", buff);
+        }
+
+        {
+            char            buff[6];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(6, cch);
+            TEST_MS_EQ("a...i", buff);
+        }
+
+        {
+            char            buff[5];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(5, cch);
+            TEST_MS_EQ("abcd", buff);
+        }
+
+        {
+            char            buff[4];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(4, cch);
+            TEST_MS_EQ("abc", buff);
+        }
+
+        {
+            char            buff[3];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(3, cch);
+            TEST_MS_EQ("ab", buff);
+        }
+
+        {
+            char            buff[2];
+            size_t const    cch = winstl::path_squeeze(input, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(2, cch);
+            TEST_MS_EQ("a", buff);
+        }
+    }
+}
 } /* anonymous namespace */
 
 
