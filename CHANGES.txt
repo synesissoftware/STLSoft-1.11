@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  21st February 2025
+; Updated:  16th April 2025
 
 ============================================================================
 
@@ -18,6 +18,20 @@ STLSoft - Changes
 
 
 
+
+Changes for 1.11.1-beta3 (16th April 2025)
+
+General:
+========
+
+ * Added specialisations of `integral_traits<>` for integer specialisations of `true_typedef<>`;
+ * Applied `printf()` format attributes throughout;
+ * Defect fix(es) to `unixstl::path_squeeze<>()` / `winstl::path_squeeze<>()`;
+ * MinGW compatibility;
+ * Wholesale trivial/minor tidying;
+
+
+============================================================================
 
 Changes for 1.11.1-beta2 (21st February 2025)
 

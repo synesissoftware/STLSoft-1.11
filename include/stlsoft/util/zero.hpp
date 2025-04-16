@@ -4,11 +4,11 @@
  * Purpose: ZERO_v template class.
  *
  * Created: 29th July 2003
- * Updated: 11th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MINOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION 8
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT     61
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -329,7 +329,7 @@ inline ss_bool_t operator !=(long double const& i, ZERO_v const& /* lhs */) { re
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

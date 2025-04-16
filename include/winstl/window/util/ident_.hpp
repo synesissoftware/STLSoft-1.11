@@ -4,11 +4,11 @@
  * Purpose:     Windows identification.
  *
  * Created:     11th March 2004
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__MINOR      1
 # define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__REVISION   3
-# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT       60
+# define WINSTL_VER_WINSTL_WINDOW_UTIL_HPP_IDENT__EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,8 +99,7 @@ namespace winstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-namespace ximpl_winstl_window_ident
-{
+namespace ximpl_winstl_window_ident {
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -168,7 +167,7 @@ GetWindowIdent(
  * namespace
  */
 
-} /* namespace ximpl_winstl_window_ident */
+} // namespace ximpl_winstl_window_ident
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -179,10 +178,10 @@ GetWindowIdent(
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

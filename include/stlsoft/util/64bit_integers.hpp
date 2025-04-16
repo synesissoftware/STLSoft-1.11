@@ -4,11 +4,11 @@
  * Purpose:     Byte-order independent large integer (aggregate) classes.
  *
  * Created:     15th October 2000
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_MINOR     1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_REVISION  5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_EDIT      143
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_64BIT_INTEGERS_EDIT      144
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -85,8 +85,7 @@ namespace stlsoft
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-namespace sinteger64_util
-{
+namespace sinteger64_util {
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /** Signed 64-bit integer class
@@ -196,7 +195,7 @@ private:
 };
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace sinteger64_util */
+} // namespace sinteger64_util
 
 using ::stlsoft::sinteger64_util::sinteger64;
 #endif /* STLSOFT_NO_NAMESPACE */
@@ -207,8 +206,7 @@ using ::stlsoft::sinteger64_util::sinteger64;
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-namespace sinteger64_util
-{
+namespace sinteger64_util {
 #endif /* STLSOFT_NO_NAMESPACE */
 
 // operator ==
@@ -307,9 +305,8 @@ inline sinteger64 operator %(sinteger64 const& lhs, sinteger64 const& rhs)
 
     return result;
 }
-
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace sinteger64_util */
+} // namespace sinteger64_util
 #endif /* STLSOFT_NO_NAMESPACE */
 
 
@@ -320,8 +317,7 @@ inline sinteger64 operator %(sinteger64 const& lhs, sinteger64 const& rhs)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #ifndef STLSOFT_NO_NAMESPACE
-namespace sinteger64_util
-{
+namespace sinteger64_util {
 #endif /* STLSOFT_NO_NAMESPACE */
 
 inline sinteger64::sinteger64()
@@ -663,7 +659,7 @@ inline ss_sint_t sinteger64::compare(long i) const
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace sinteger64_util */
+} // namespace sinteger64_uti
 #endif /* STLSOFT_NO_NAMESPACE */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -671,7 +667,7 @@ inline ss_sint_t sinteger64::compare(long i) const
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

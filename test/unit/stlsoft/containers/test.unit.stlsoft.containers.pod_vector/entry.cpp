@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::pod_vector`
  *
  * Created: 1st December 2008
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,8 +41,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_default_ctor();
     static void test_ctor_size();
@@ -64,7 +63,6 @@ namespace
     static void test_resize();
     static void test_subscript_operator();
     static void test_swap();
-
 } // anonymous namespace
 
 
@@ -115,8 +113,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     typedef stlsoft::pod_vector<int>    int_vector_t;
 
@@ -593,7 +590,6 @@ static void test_swap()
     XTESTS_TEST_BOOLEAN_FALSE(v2.empty());
     XTESTS_TEST_INTEGER_EQUAL(-10, std::accumulate(v2.begin(), v2.end(), 0));
 }
-
 } // anonymous namespace
 
 

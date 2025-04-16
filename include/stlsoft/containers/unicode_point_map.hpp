@@ -5,7 +5,7 @@
  *          character points it contains.
  *
  * Created: 5th November 2024
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_REVISION  4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_EDIT      4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_UNICODE_POINT_MAP_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -832,7 +832,7 @@ swap(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 #if defined(STLSOFT_CF_std_NAMESPACE)
@@ -852,7 +852,7 @@ namespace std
         lhs.swap(rhs);
     }
 # endif
-} /* namespace std */
+} // namespace std
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 

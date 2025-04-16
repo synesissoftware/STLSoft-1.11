@@ -4,11 +4,11 @@
  * Purpose: Policies for enumerator interface handling.
  *
  * Created: 20th December 2003
- * Updated: 24th December 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MAJOR       6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_MINOR       1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_REVISION    16
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        74
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -193,7 +193,7 @@ struct repeatable_enumerator_tag
  *
  * \param I The enumeration interface
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 struct input_cloning_policy
     : public noncloneable_enumerator_tag
 {
@@ -242,7 +242,7 @@ public:
  *
  * \param I The enumeration interface
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 struct cloneable_cloning_policy
     : public cloneable_enumerator_tag
 {
@@ -312,7 +312,7 @@ public:
  *
  * \param I The enumeration interface
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 struct forward_cloning_policy
     : public repeatable_enumerator_tag
 {
@@ -568,10 +568,10 @@ public:
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace stlsoft::comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 

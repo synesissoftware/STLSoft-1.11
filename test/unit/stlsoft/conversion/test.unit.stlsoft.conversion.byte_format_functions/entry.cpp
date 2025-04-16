@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_simple_string`.
  *
  * Created: 12th September 2019
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,8 +47,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_format_bytes_1_byte_1_grouping();
     static void test_format_bytes_1_byte_2_grouping();
@@ -72,7 +71,6 @@ namespace
     static void test_1_28();
     static void test_1_29();
     static void test_1_30();
-
 } // anonymous namespace
 
 
@@ -136,8 +134,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void test_format_bytes_1_byte_1_grouping()
 {
@@ -320,8 +317,8 @@ static void test_1_29()
 static void test_1_30()
 {
 }
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

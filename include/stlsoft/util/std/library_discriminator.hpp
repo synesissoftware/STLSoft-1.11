@@ -4,7 +4,7 @@
  * Purpose: Discriminates between standard library implementations
  *
  * Created: 2nd January 2000
- * Updated: 4th May 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  To Cláudio Albuquerque for assisting with VC++ 12 & 14 support.
  *          To Gabor Fischer for reporting problems with VC++ 9/10
@@ -13,7 +13,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       11
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    4
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        126
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -427,7 +427,7 @@ namespace stlsoft
 #   endif /* 1100 <= _MSC_VER < = 1200 */
 
 #   ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #   endif /* STLSOFT_NO_NAMESPACE */
 #   include <xtree>
 #   if defined(_XTREE_)
@@ -510,7 +510,7 @@ namespace stlsoft
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

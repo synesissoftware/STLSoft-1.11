@@ -4,11 +4,11 @@
  * Purpose: Enumerator classes.
  *
  * Created: 11th November 1998
- * Updated: 10th October 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 12
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     86
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -244,7 +244,10 @@ public:
 /// \name Operations
 /// @{
 public:
-    template<ss_typename_param_k I, ss_typename_param_k F>
+    template<
+        ss_typename_param_k I
+    ,   ss_typename_param_k F
+    >
     HRESULT Init(I begin, I end, F fn)
     {
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -273,7 +276,7 @@ public:
         }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
-    template<ss_typename_param_k I>
+    template <ss_typename_param_k I>
     HRESULT Init(I begin, I end)
     {
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -632,10 +635,10 @@ inline ss_typename_type_ret_k copy_enumerator_impl<I, piid, V, IV, I2ETx>::itera
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace atlstl */
+} // namespace atlstl
 # else
-} /* namespace atlstl_project */
-} /* namespace stlsoft */
+} // namespace atlstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
 

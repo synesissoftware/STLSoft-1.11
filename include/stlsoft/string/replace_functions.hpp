@@ -4,11 +4,11 @@
  * Purpose:     String replace functions.
  *
  * Created:     11th May 2010
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_MINOR     1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_EDIT      15
+# define STLSOFT_VER_STLSOFT_STRING_HPP_REPLACE_FUNCTIONS_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,7 +160,7 @@ replace(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

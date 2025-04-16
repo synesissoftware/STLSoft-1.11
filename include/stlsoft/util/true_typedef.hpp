@@ -4,11 +4,11 @@
  * Purpose: Contains the true_typedef class template.
  *
  * Created: 16th January 2002
- * Updated: 10th October 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MAJOR    4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION 3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT     94
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_MINOR    3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_TRUE_TYPEDEF_EDIT     97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -69,6 +69,9 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
+# include <stlsoft/meta/is_integral_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
 # include <stlsoft/meta/is_same_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
@@ -78,6 +81,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_INTEGRAL_TRAITS
+# include <stlsoft/traits/integral_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_INTEGRAL_TRAITS */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -295,6 +301,113 @@ struct true_typedef_impl_
 # endif /* C++ version */
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * traits
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+# define STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(T)                  \
+                                                                                \
+template <ss_typename_param_k U> struct is_integral_type<true_typedef<T, U> >   \
+{                                                                               \
+    enum { value = 1 };                                                         \
+    typedef yes_type type;                                                      \
+}
+
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_sint8_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_uint8_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_sint16_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_uint16_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_sint32_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_uint32_t);
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_sint64_t);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(ss_uint64_t);
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+#ifdef STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed char);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned char);
+#endif /* STLSOFT_CF_CHAR_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed short);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned short);
+#endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed int);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned int);
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed long);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned long);
+#endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_LONG_LONG_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(signed long long);
+STLSOFT_IMPLEMENT_is_integral_type_FOR_INTEGRAL_TT(unsigned long long);
+#endif /* STLSOFT_CF_LONG_LONG_DISTINCT_INT_TYPE */
+
+
+// TODO: work out the best way to do this using modern techniques
+
+# define STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(T)                   \
+                                                                                \
+template <ss_typename_param_k U> struct integral_traits<true_typedef<T, U> >    \
+{                                                                               \
+    typedef true_typedef<T, U>  integer_type;                                   \
+    typedef int                 underlying_type;                                \
+                                                                                \
+    static                                                                      \
+    underlying_type                                                             \
+    get_underlying_value(                                                       \
+        integer_type const& value                                               \
+    ) STLSOFT_NOEXCEPT                                                          \
+    {                                                                           \
+        return value.base_type_value();                                         \
+    }                                                                           \
+                                                                                \
+    static                                                                      \
+    integer_type                                                                \
+    from_underlying_type(                                                       \
+        underlying_type const& value                                            \
+    )                                                                           \
+    {                                                                           \
+        return integer_type(value);                                             \
+    }                                                                           \
+}
+
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(ss_sint8_t);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(ss_uint8_t);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(ss_sint16_t);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(ss_uint16_t);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(ss_sint32_t);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(ss_uint32_t);
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(ss_sint64_t);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(ss_uint64_t);
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+#ifdef STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(signed char);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(unsigned char);
+#endif /* STLSOFT_CF_CHAR_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(signed short);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(unsigned short);
+#endif /* STLSOFT_CF_SHORT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(signed int);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(unsigned int);
+#endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(signed long);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(unsigned long);
+#endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
+#ifdef STLSOFT_CF_LONG_LONG_DISTINCT_INT_TYPE
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(signed long long);
+STLSOFT_IMPLEMENT_integral_traits_FOR_INTEGRAL_TT(unsigned long long);
+#endif /* STLSOFT_CF_LONG_LONG_DISTINCT_INT_TYPE */
+#endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1484,7 +1597,7 @@ operator |=(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

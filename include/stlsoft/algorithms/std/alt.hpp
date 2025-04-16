@@ -5,11 +5,11 @@
  *          do or do not have a standard library.
  *
  * Created: 17th January 2002
- * Updated: 25th September 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_MINOR       5
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_REVISION    5
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        94
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_STD_HPP_ALT_EDIT        95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,8 +117,8 @@ namespace std_alt_algorithms_util_
 {
 # endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
-template<ss_typename_param_k I>
-void std_advance_impl(  I               &i
+template <ss_typename_param_k I>
+void std_advance_impl(  I&              i
                     ,   ss_ptrdiff_t    n
 # if !defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
                     ,   no_type
@@ -137,8 +137,8 @@ void std_advance_impl(  I               &i
     }
 }
 
-template<ss_typename_param_k I>
-void std_advance_impl(  I               *&i
+template <ss_typename_param_k I>
+void std_advance_impl(  I*&             i
                     ,   ss_ptrdiff_t    n
 # if !defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
                     ,   yes_type
@@ -150,18 +150,19 @@ void std_advance_impl(  I               *&i
 
 # if !defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
 
-template<   ss_typename_param_k T1
-        ,   ss_typename_param_k T2
-        >
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
 no_type is_ptr_(T1 const&, T2 const*) { return no_type(); }
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 yes_type is_ptr_(T const*, T const**) { return yes_type(); }
 
 # endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 # ifdef STLSOFT_CF_NAMESPACE_SUPPORT
-} /* namespace std_alt_algorithms_util_ */
+} // namespace std_alt_algorithms_util_
 # endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -174,7 +175,7 @@ yes_type is_ptr_(T const*, T const**) { return yes_type(); }
  *
  * \ingroup group__library__Algorithm
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 // [[synesis:function:algorithm: std_advance(T<I> &i, ss_ptrdiff_t n)]]
 void std_advance(I &i, ss_ptrdiff_t n)
 {
@@ -202,11 +203,14 @@ void std_advance(I &i, ss_ptrdiff_t n)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k O
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k O
+>
 // [[synesis:function:algorithm: std_copy(T<I> first, T<I> last, T<O> dest)]]
-inline O std_copy(I first, I last, O dest)
+inline
+O
+std_copy(I first, I last, O dest)
 {
 #if defined(STLSOFT_CF_std_NAMESPACE) && \
     !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
@@ -227,11 +231,14 @@ inline O std_copy(I first, I last, O dest)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k UP
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k UP
+>
 // [[synesis:function:algorithm: std_count_if(T<I> first, T<I> last, T<UP> pred)]]
-inline ss_size_t std_count_if(I first, I last, UP pred)
+inline
+ss_size_t
+std_count_if(I first, I last, UP pred)
 {
 #ifdef STLSOFT_CF_std_NAMESPACE
 
@@ -256,11 +263,14 @@ inline ss_size_t std_count_if(I first, I last, UP pred)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k O
-        ,   ss_typename_param_k V
-        >
+template<
+    ss_typename_param_k O
+,   ss_typename_param_k V
+>
 // [[synesis:function:algorithm: std_fill(T<O> first, T<O> last, T<V> const& value)]]
-inline void std_fill(O first, O last, V const& value)
+inline
+void
+std_fill(O first, O last, V const& value)
 {
 #ifdef STLSOFT_CF_std_NAMESPACE
 
@@ -278,11 +288,14 @@ inline void std_fill(O first, O last, V const& value)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k O
-        ,   ss_typename_param_k V
-        >
+template<
+    ss_typename_param_k O
+,   ss_typename_param_k V
+>
 // [[synesis:function:algorithm: std_fill_n(T<O> dest, ss_size_t n, T<V> const& value)]]
-inline void std_fill_n(O dest, ss_size_t n, V const& value)
+inline
+void
+std_fill_n(O dest, ss_size_t n, V const& value)
 {
 #if defined(STLSOFT_CF_std_NAMESPACE) && \
     !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
@@ -301,11 +314,14 @@ inline void std_fill_n(O dest, ss_size_t n, V const& value)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k V
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k V
+>
 // [[synesis:function:algorithm: std_find(T<I> first, T<I> last, T<V> const& value)]]
-inline I std_find(I first, I last, V const& value)
+inline
+I
+std_find(I first, I last, V const& value)
 {
 #ifdef STLSOFT_CF_std_NAMESPACE
 
@@ -328,11 +344,14 @@ inline I std_find(I first, I last, V const& value)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k UP
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k UP
+>
 // [[synesis:function:algorithm: std_find_if(T<I> first, T<I> last, T<UP> pred)]]
-inline I std_find_if(I first, I last, UP pred)
+inline
+I
+std_find_if(I first, I last, UP pred)
 {
 #ifdef STLSOFT_CF_std_NAMESPACE
 
@@ -355,11 +374,14 @@ inline I std_find_if(I first, I last, UP pred)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k UF
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k UF
+>
 // [[synesis:function:algorithm: std_for_each(T<I> first, T<I> last, T<UF> func)]]
-inline UF std_for_each(I first, I last, UF func)
+inline
+UF
+std_for_each(I first, I last, UF func)
 {
 #ifdef STLSOFT_CF_std_NAMESPACE
 
@@ -379,11 +401,14 @@ inline UF std_for_each(I first, I last, UF func)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k T
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k T
+>
 // [[synesis:function:algorithm: std_replace(T<I> first, T<I> last, T<V> const& valFind, T<V> const& valReplace)]]
-inline void std_replace(I first, I last, T const& valFind, T const& valReplace)
+inline
+void
+std_replace(I first, I last, T const& valFind, T const& valReplace)
 {
     for (; first != last; ++first)
     {
@@ -401,7 +426,9 @@ inline void std_replace(I first, I last, T const& valFind, T const& valReplace)
  */
 template <ss_typename_param_k RI>
 // [[synesis:function:algorithm: std_sort(T<RI> first, T<RI> last)]]
-inline void sort(RI first, RI last)
+inline
+void
+sort(RI first, RI last)
 {
     STLSOFT_NS_QUAL_STD(sort)(first, last);
 }
@@ -410,39 +437,48 @@ inline void sort(RI first, RI last)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k RI
-        ,   ss_typename_param_k BP
-        >
+template<
+    ss_typename_param_k RI
+,   ss_typename_param_k BP
+>
 // [[synesis:function:algorithm: std_sort(T<RI> first, T<RI> last, T<BP> pred)]]
-inline void std_sort(RI first, RI last, BP pred)
+inline
+void
+std_sort(RI first, RI last, BP pred)
 {
     STLSOFT_NS_QUAL_STD(sort)(first, last, pred);
 }
-
 #else /* ? STLSOFT_CF_std_NAMESPACE */
 
 // Nothing current defined
 template <ss_typename_param_k RI>
-inline void sort(RI first, RI last);
+inline
+void
+sort(RI first, RI last);
 
 // Nothing current defined
-template<   ss_typename_param_k RI
-        ,   ss_typename_param_k BP
-        >
-inline void std_sort(RI first, RI last, BP pred);
-
+template<
+    ss_typename_param_k RI
+,   ss_typename_param_k BP
+>
+inline
+void
+std_sort(RI first, RI last, BP pred);
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 /** Equivalent to std::transform()
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k I
-        ,   ss_typename_param_k O
-        ,   ss_typename_param_k UF
-        >
+template<
+    ss_typename_param_k I
+,   ss_typename_param_k O
+,   ss_typename_param_k UF
+>
 // [[synesis:function:algorithm: std_transform(T<I> first, T<I> last, T<O> dest, T<UF> func)]]
-inline O std_transform(I first, I last, O dest, UF func)
+inline
+O
+std_transform(I first, I last, O dest, UF func)
 {
 #if defined(STLSOFT_CF_std_NAMESPACE) && \
     !defined(STLSOFT_USING_SAFE_STR_FUNCTIONS)
@@ -463,11 +499,14 @@ inline O std_transform(I first, I last, O dest, UF func)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k FI
-        ,   ss_typename_param_k BP
-        >
+template<
+    ss_typename_param_k FI
+,   ss_typename_param_k BP
+>
 // [[synesis:function:algorithm: std_unique(T<FI> first, T<FI> last, T<BP> pred)]]
-inline FI std_unique(FI first, FI last, BP pred)
+inline
+FI
+std_unique(FI first, FI last, BP pred)
 {
 #ifdef STLSOFT_ENFORCE_ORDERING
     stlsoft_assert("range passed to unique() is not strict-weak ordered", is_strict_weak_ordered(first, last, pred));
@@ -514,7 +553,9 @@ inline FI std_unique(FI first, FI last, BP pred)
  */
 template <ss_typename_param_k FI>
 // [[synesis:function:algorithm: std_unique(T<FI> first, T<FI> last)]]
-inline FI std_unique(FI first, FI last)
+inline
+FI
+std_unique(FI first, FI last)
 {
 #ifdef STLSOFT_ENFORCE_ORDERING
     stlsoft_assert("range passed to unique() is not strict-weak ordered", is_strict_weak_ordered(first, last));
@@ -559,11 +600,14 @@ inline FI std_unique(FI first, FI last)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k FI
-        ,   ss_typename_param_k OI
-        >
+template<
+    ss_typename_param_k FI
+,   ss_typename_param_k OI
+>
 // [[synesis:function:algorithm: std_unique_copy(T<FI> first, T<FI> last, T<OI> dest)]]
-inline OI std_unique_copy(FI first, FI last, OI dest)
+inline
+OI
+std_unique_copy(FI first, FI last, OI dest)
 {
 #ifdef STLSOFT_ENFORCE_ORDERING
     stlsoft_assert("range passed to unique_copy() is not strict-weak ordered", is_strict_weak_ordered(first, last));
@@ -606,12 +650,15 @@ inline OI std_unique_copy(FI first, FI last, OI dest)
  *
  * \ingroup group__library__Algorithm
  */
-template<   ss_typename_param_k FI
-        ,   ss_typename_param_k OI
-        ,   ss_typename_param_k BP
-        >
+template<
+    ss_typename_param_k FI
+,   ss_typename_param_k OI
+,   ss_typename_param_k BP
+>
 // [[synesis:function:algorithm: std_unique_copy(T<FI> first, T<FI> last, T<OI> dest, T<BP> pred)]]
-inline OI std_unique_copy(FI first, FI last, OI dest, BP pred)
+inline
+OI
+std_unique_copy(FI first, FI last, OI dest, BP pred)
 {
 #ifdef STLSOFT_ENFORCE_ORDERING
     stlsoft_assert("range passed to unique_copy() is not strict-weak ordered", is_strict_weak_ordered(first, last, pred));
@@ -650,6 +697,7 @@ inline OI std_unique_copy(FI first, FI last, OI dest, BP pred)
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
+
 ////////////////////////////////////////////////////////////////////////////
 
 /// @} // end of group algorithms_std_alt
@@ -660,7 +708,7 @@ inline OI std_unique_copy(FI first, FI last, OI dest, BP pred)
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

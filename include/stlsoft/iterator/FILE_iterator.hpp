@@ -4,11 +4,11 @@
  * Purpose: FILE* output iterator.
  *
  * Created: 21st April 2009
- * Updated: 10th October 2024
+ * Updated: 23rd March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_MINOR       0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    11
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        20
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_REVISION    12
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILE_ITERATOR_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -168,11 +168,12 @@ std::copy(ints.begin(), ints.end()
  * \warn There is no protection against a mismatched format string. You must
  *   ensure that the assigned type matches the format string.
  */
-template<   ss_typename_param_k V
-        ,   ss_typename_param_k C = char
-        ,   ss_typename_param_k T = stlsoft_ns_qual_std(char_traits)<C>
-        ,   ss_typename_param_k S = stlsoft_ns_qual_std(basic_string)<C, T>
-        >
+template<
+    ss_typename_param_k V
+,   ss_typename_param_k C = char
+,   ss_typename_param_k T = stlsoft_ns_qual_std(char_traits)<C>
+,   ss_typename_param_k S = stlsoft_ns_qual_std(basic_string)<C, T>
+>
 // [[synesis:class:iterator: FILE_iterator<T<V>, T<C>, T<T>, T<S>>]]
 class FILE_iterator
     : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(output_iterator_tag), void, void, void, void>
@@ -181,15 +182,15 @@ class FILE_iterator
 /// @{
 public:
     /// The value type
-    typedef V                           assigned_type;
+    typedef V                                               assigned_type;
     /// The character type
-    typedef C                           char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                           traits_type;
+    typedef T                                               traits_type;
     /// The string type
-    typedef S                           string_type;
+    typedef S                                               string_type;
     /// The class type
-    typedef FILE_iterator<V, C, T, S>   class_type;
+    typedef FILE_iterator<V, C, T, S>                       class_type;
 private:
     class deref_proxy;
     friend class deref_proxy;
@@ -202,7 +203,10 @@ public:
     ///
     /// \note This is 100% functionally compatible with FILE_iterator
     template <ss_typename_param_k S1>
-    FILE_iterator(FILE* stm, S1 const& format)
+    FILE_iterator(
+        FILE*       stm
+    ,   S1 const&   format
+    )
         : m_stm(stm)
         , m_format(stlsoft::c_str_data(format), stlsoft::c_str_len(format))
     {}
@@ -258,7 +262,17 @@ private:
         fprintf_(m_stm, m_format.c_str(), value);
     }
 
-    static int fprintf_(FILE* stm, ss_char_a_t const* fmt, ...)
+    static
+    int
+    fprintf_(
+        FILE*               stm
+    ,   ss_char_a_t const*  fmt
+    ,   ...
+    )
+    #if 0
+    #elif defined(__GNUC__)
+    __attribute__((format(printf, 2, 3)))
+    #endif
     {
         STLSOFT_STATIC_ASSERT(sizeof(char_type) == sizeof(ss_char_a_t));
 
@@ -271,7 +285,13 @@ private:
 
         return r;
     }
-    static int fprintf_(FILE* stm, ss_char_w_t const* fmt, ...)
+    static
+    int
+    fprintf_(
+        FILE*               stm
+    ,   ss_char_w_t const*  fmt
+    ,   ...
+    )
     {
         STLSOFT_STATIC_ASSERT(sizeof(char_type) == sizeof(ss_char_w_t));
 
@@ -332,10 +352,12 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

@@ -5,11 +5,11 @@
  *          treated as 1st-class types.
  *
  * Created: 8th September 2002
- * Updated: 26th September 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_MINOR     0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_REVISION  10
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      66
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_FIRST_CLASS_PROMOTER_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,41 +100,39 @@ namespace stlsoft
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 #ifndef STLSOFT_NO_NAMESPACE
-namespace first_class_promotion
-{
+namespace first_class_promotion {
 #endif /* STLSOFT_NO_NAMESPACE */
 
-
-template<ss_bool_t INIT>
+template <ss_bool_t INIT>
 struct first_class_promoter_init_traits
 {
-    typedef yes_type    type;
+    typedef yes_type                                        type;
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct first_class_promoter_init_traits<false>
 {
-    typedef no_type     type;
+    typedef no_type                                         type;
 };
 
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* t, yes_type, yes_type)
 {
     *t = T();
 }
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* t, yes_type, no_type)
 {
     STLSOFT_API_EXTERNAL_memfns_memset(t, 0, sizeof(T));
 }
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* , no_type, yes_type)
 {}
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline void first_class_promotion_do_init(T* , no_type, no_type)
 {}
 
@@ -143,13 +141,17 @@ template<   ss_typename_param_k T
         >
 struct first_class_promoter_traits
 {
-    typedef ss_typename_type_k first_class_promoter_init_traits<INIT>::type                             do_init_yesno_type;
+    typedef ss_typename_type_k first_class_promoter_init_traits<
+        INIT
+    >::type                                                 do_init_yesno_type;
 #if defined(STLSOFT_COMPILER_IS_BORLAND) && \
     __BORLANDC__ < 0x0564
     enum { val = is_fundamental_type<T>::value };
-    typedef first_class_promoter_init_traits<val>::type    is_fundamental_yesno_type;
+    typedef first_class_promoter_init_traits<val>::type     is_fundamental_yesno_type;
 #else /* ? compiler */
-    typedef ss_typename_type_k first_class_promoter_init_traits<is_fundamental_type<T>::value>::type    is_fundamental_yesno_type;
+    typedef ss_typename_type_k first_class_promoter_init_traits<
+        is_fundamental_type<T>::value
+    >::type                                                 is_fundamental_yesno_type;
 #endif /* compiler */
 
     static void initialise(T* value)
@@ -159,9 +161,8 @@ struct first_class_promoter_traits
 };
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace first_class_promotion */
+} // namespace first_class_promotion
 #endif /* STLSOFT_NO_NAMESPACE */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -188,17 +189,17 @@ class first_class_promoter
 {
 public:
     /// The value type
-    typedef T                       value_type;
+    typedef T                                               value_type;
     /// The current specialisation of the type
-    typedef first_class_promoter<T> class_type;
+    typedef first_class_promoter<T>                         class_type;
     /// The pointer type
-    typedef T*                      pointer;
+    typedef T*                                              pointer;
     /// The non-mutating (const) pointer type
-    typedef T const*                const_pointer;
+    typedef T const*                                        const_pointer;
     /// The reference type
-    typedef T&                      reference;
+    typedef T&                                              reference;
     /// The non-mutating (const) reference type
-    typedef T const&                const_reference;
+    typedef T const&                                        const_reference;
 
 // Construction
 public:
@@ -313,10 +314,11 @@ private:
     T   m_value;
 };
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

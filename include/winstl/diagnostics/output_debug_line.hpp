@@ -4,11 +4,11 @@
  * Purpose: Functions to write lines to the Windows debugger.
  *
  * Created: 5th January 2011
- * Updated: 5th November 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_OUTPUT_DEBUG_LINE_MAJOR      2
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_OUTPUT_DEBUG_LINE_MINOR      2
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_OUTPUT_DEBUG_LINE_REVISION   4
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_OUTPUT_DEBUG_LINE_EDIT       18
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_HPP_OUTPUT_DEBUG_LINE_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -108,17 +108,13 @@
 # if defined(STLSOFT_NO_NAMESPACE) || \
          defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
-namespace winstl
-{
+namespace winstl {
 # else
 /* Define stlsoft::winstl_project */
-namespace stlsoft
-{
-namespace winstl_project
-{
+namespace stlsoft {
+namespace winstl_project {
 # endif /* STLSOFT_NO_NAMESPACE */
-namespace diagnostics
-{
+namespace diagnostics {
 #endif /* !WINSTL_NO_NAMESPACE */
 
 
@@ -218,8 +214,7 @@ output_debug_line_(
 
     output_debug_line_(buff, pcchBuff, index + 1, count, args...);
 }
-
-} /* namespace ximpl_odl_ */
+} // namespace ximpl_odl_
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** Emits one or more arguments, interpreted via string access shims, in
@@ -871,13 +866,13 @@ output_debug_line(
  */
 
 #ifndef WINSTL_NO_NAMESPACE
-} /* namespace diagnostics */
+} // namespace diagnostics
 # if defined(STLSOFT_NO_NAMESPACE) || \
          defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 namespace winstl = ::stlsoft::winstl_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */

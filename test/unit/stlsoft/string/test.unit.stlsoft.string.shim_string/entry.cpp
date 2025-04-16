@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_shim_string`.
  *
  * Created: 9th November 2008
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,8 +50,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_sizes();
     static void test_construction();
@@ -78,8 +77,8 @@ namespace
     static void test_insertion_2();
     static void test_insertion_3();
     static void test_insertion_4();
-
 } // anonymous namespace
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -136,8 +135,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     struct SimpleStream
     {
         std::string     contents;
@@ -927,9 +926,8 @@ static void test_insertion_4()
 # undef FIELD_WIDTH
 #endif
 }
-
-
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

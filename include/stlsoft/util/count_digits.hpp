@@ -86,7 +86,7 @@ count_digits(
 
 
 #  ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #  endif /* STLSOFT_NO_NAMESPACE */
 # endif /* __cplusplus */
 #endif

@@ -4,13 +4,13 @@
  * Purpose: Contains the dl_module class.
  *
  * Created: 30th October 1997
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Pablo Aguilar for the idea of a template-based get_symbol().
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      7
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      0
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   2
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       257
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       258
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -737,10 +737,10 @@ dl_module::get() const
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

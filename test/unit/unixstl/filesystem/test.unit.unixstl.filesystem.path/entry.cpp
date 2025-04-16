@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::basic_path`.
  *
  * Created: 16th February 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,14 +45,11 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_construct_default();
     static void test_construct_filename();
     static void test_construct_relative_directory_and_file();
-
-
 } // anonymous namespace
 
 
@@ -92,16 +89,14 @@ namespace {
 
     typedef unixstl::path_a                                 path_a_t;
     typedef unixstl::path_a                                 path_t;
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void test_construct_default()
 {
@@ -493,7 +488,6 @@ static void test_construct_relative_directory_and_file()
     XTESTS_TEST(p1.equivalent(p3));
     XTESTS_TEST(p3.equivalent(p1));
 }
-
 } // anonymous namespace
 
 

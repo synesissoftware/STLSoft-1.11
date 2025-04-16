@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `struct in_addr`.
  *
  * Created: ...
- * Updated: 23rd February 2025
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -58,8 +58,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void TEST_nullptr();
     static void TEST_127_0_0_1();
@@ -80,7 +79,7 @@ namespace
 
     typedef std::basic_string<TCHAR>                        string_t;
 #endif
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,9 +112,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
-
+namespace {
 
 inline
 void ipv4_address_to_in_addr(

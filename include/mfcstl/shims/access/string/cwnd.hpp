@@ -4,11 +4,11 @@
  * Purpose: String access shims for CWnd
  *
  * Created: 24th May 2002
- * Updated: 24th December 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MAJOR       4
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_MINOR       0
 # define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_REVISION    16
-# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        111
+# define MFCSTL_VER_MFCSTL_SHIMS_ACCESS_STRING_HPP_CWND_EDIT        113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -264,7 +264,7 @@ public:
     /// Constructs an instance of the proxy from the given CWnd instance
     ///
     /// \param w The CWnd instance from which the text will be retrieved
-    template<ss_typename_param_k W>
+    template <ss_typename_param_k W>
     ss_explicit_k
     c_str_ptr_null_CWnd_proxy(W const& w)
         : m_block(make_block_(w))
@@ -300,7 +300,7 @@ public:
     }
 
 private: // implementation
-    template<ss_typename_param_k W>
+    template <ss_typename_param_k W>
     static
     block_type_*
     make_block_(W const& w)
@@ -351,7 +351,7 @@ public:
     /// Constructs an instance of the proxy from the given CWnd instance
     ///
     /// \param w The CWnd instance from which the text will be retrieved
-    template<ss_typename_param_k W>
+    template <ss_typename_param_k W>
     ss_explicit_k
     c_str_ptr_CWnd_proxy(W const& w)
         : m_block(make_block_(w))
@@ -382,7 +382,7 @@ public:
     }
 
 private: // implementation
-    template<ss_typename_param_k W>
+    template <ss_typename_param_k W>
     static
     block_type_*
     make_block_(W const& w)
@@ -436,7 +436,7 @@ inline ms_bool_t operator !=(c_str_ptr_null_CWnd_proxy const& lhs, LPCTSTR rhs)
  * iostream compatibility
  */
 
-template<ss_typename_param_k S>
+template <ss_typename_param_k S>
 inline S& operator <<(S& s, c_str_ptr_null_CWnd_proxy const& shim)
 {
     s << static_cast<LPCTSTR>(shim);
@@ -804,10 +804,10 @@ inline ms_size_t c_str_len_a(CListView const& w)
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace stlsoft::mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 
@@ -859,7 +859,7 @@ using ::mfcstl::c_str_ptr_null_a;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

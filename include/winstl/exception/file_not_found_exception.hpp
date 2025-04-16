@@ -4,11 +4,11 @@
  * Purpose:     winstl::file_not_found_exception class
  *
  * Created:     1st January 2017
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2017-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_FILE_NOT_FOUND_EXCEPTION_MAJOR     1
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_FILE_NOT_FOUND_EXCEPTION_MINOR     0
 # define WINSTL_VER_WINSTL_EXCEPTION_HPP_FILE_NOT_FOUND_EXCEPTION_REVISION  1
-# define WINSTL_VER_WINSTL_EXCEPTION_HPP_FILE_NOT_FOUND_EXCEPTION_EDIT      5
+# define WINSTL_VER_WINSTL_EXCEPTION_HPP_FILE_NOT_FOUND_EXCEPTION_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -113,10 +113,10 @@ typedef STLSOFT_NS_QUAL(filesystem_propagating_exception_base)<
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

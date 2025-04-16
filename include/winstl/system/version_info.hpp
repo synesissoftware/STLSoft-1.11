@@ -4,11 +4,11 @@
  * Purpose: Helper for accessing version information.
  *
  * Created: 16th February 1998
- * Updated: 28th December 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    3
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 20
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     157
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     159
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -156,10 +156,10 @@ STLSOFT_OPEN_WORKER_NS_(ximpl_winstl_version_info_)
 // that only raises its ugly head in large, non-trivial, compilation
 // contexts.
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 struct hdr
 {
-    template<int N>
+    template <int N>
     struct hdr_
     {
         WORD    wLength;
@@ -177,7 +177,7 @@ typedef hdr<int>::hdr_<4>                                   Var_hdr;
 typedef hdr<int>::hdr_<5>                                   StringTable_hdr;
 typedef hdr<int>::hdr_<6>                                   String_hdr;
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 T*
 rounded_ptr(
     T*          p
@@ -199,7 +199,7 @@ rounded_ptr(
     return u.p;
 }
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 T*
 rounded_ptr(
     T*              p
@@ -1671,10 +1671,10 @@ version_info::init_()
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

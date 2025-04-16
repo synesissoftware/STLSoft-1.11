@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::string_insert`.
  *
  * Created: 14th November 2024
- * Updated: 29th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -72,10 +72,10 @@ namespace stlsoft {
         }
     }
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 
-namespace
-{
+namespace {
+
     using stlsoft::ss_uint32_t;
 
     struct CustomNumericType
@@ -150,8 +150,6 @@ namespace
 
         return stm;
     }
-
-
 } // anonymous namespace
 
 
@@ -252,8 +250,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
 } // anonymous namespace
 
 

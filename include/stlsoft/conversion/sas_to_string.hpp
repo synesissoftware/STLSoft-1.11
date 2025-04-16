@@ -4,11 +4,11 @@
  * Purpose:     String creation functions (from String Access Shims)
  *
  * Created:     25th December 2018
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2018-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_MAJOR    1
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_MINOR    1
 # define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_REVISION 3
-# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_EDIT     10
+# define STLSOFT_VER_INCL_STLSOFT_CONVERSION_HPP_SAS_TO_STRING_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -175,7 +175,7 @@ sas_to_string(
  * namespace
  */
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 
 /* /////////////////////////////////////////////////////////////////////////

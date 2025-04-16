@@ -4,11 +4,11 @@
  * Purpose:     Functions for manipulating COM Type Libraries.
  *
  * Created:     5th April 2005
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_MAJOR      1
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_MINOR      4
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_REVISION   3
-# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_EDIT       85
+# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_EDIT       86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -333,10 +333,10 @@ typeinfo_get_name(
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace stlsoft::comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 

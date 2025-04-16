@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::struct_initialisers`.
  *
  * Created: 9th October 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,8 +34,8 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
+
     // no_init_member_type
     static void test_FILETIME();
     static void test_SYSTEM_INFO();
@@ -130,8 +130,8 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using stlsoft::ss_size_t;
 
 
@@ -410,8 +410,6 @@ static void test_DCB()
     XTESTS_TEST_CHARACTER_EQUAL('\0', dcb.EvtChar);
     XTESTS_TEST_INTEGER_EQUAL(0u, dcb.wReserved1);
 }
-
-
 } // anonymous namespace
 
 

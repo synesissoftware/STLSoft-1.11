@@ -4,11 +4,11 @@
  * Purpose:     Range categories.
  *
  * Created:     4th November 2003
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_MINOR      1
 # define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_REVISION   4
-# define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_EDIT       32
+# define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -137,10 +137,10 @@ struct indirect_range_tag
 #ifndef RANGELIB_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace rangelib */
+} // namespace rangelib
 # else
-} /* namespace rangelib_project */
-} /* namespace stlsoft */
+} // namespace rangelib_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
 

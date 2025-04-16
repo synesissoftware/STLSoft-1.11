@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::global_allocator`.
  *
  * Created: 18th October 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,8 +41,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_alloc_0();
     static void test_alloc_small();
@@ -90,8 +89,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void test_alloc_0()
 {
@@ -127,7 +125,6 @@ static void test_specialise_vector()
 {
 
 }
-
 } // anonymous namespace
 
 

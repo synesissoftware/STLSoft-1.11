@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::reg_value_sequence`.
  *
  * Created: 22nd October 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,8 +41,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_1_12();
 } // anonymous namespace
@@ -52,8 +51,8 @@ namespace
  * helper functions
  */
 
-namespace
-{
+namespace {
+
     static winstl::reg_key* rootKey;
 }
 
@@ -117,8 +116,8 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using winstl::reg_value;
     using winstl::reg_value_sequence;
 
@@ -158,7 +157,6 @@ static void test_1_12()
         }
     }}
 }
-
 } // anonymous namespace
 
 

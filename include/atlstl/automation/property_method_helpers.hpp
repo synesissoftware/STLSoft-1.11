@@ -5,11 +5,11 @@
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     11th March 2024
+ * Updated:     21st March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MAJOR    5
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_REVISION 2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     89
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     91
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -137,8 +137,17 @@ namespace atlstl_project
  * \retval E_POINTER ret was a null pointer
  * \retval S_OK The value was retrieved successfully
  */
-template <class C, ss_typename_param_k T>
-inline HRESULT get_MemberValue(C* const cls, T* ret, T C::*mem)
+template<
+    class               C
+,   ss_typename_param_k T
+>
+inline
+HRESULT
+get_MemberValue(
+    C* const    cls
+,   T*          ret
+,   T       C::*mem
+)
 {
     return (ret == 0) ? E_POINTER : (*ret = cls->*mem, S_OK);
 }
@@ -159,8 +168,17 @@ inline HRESULT get_MemberValue(C* const cls, T* ret, T C::*mem)
  *   version would like lead to code that violated COM's memory rules
  *
  */
-template <class C, ss_typename_param_k T>
-inline HRESULT get_MemberValue(C* const cls, T **ret, T *C::*mem);
+template<
+    class               C
+,   ss_typename_param_k T
+>
+inline
+HRESULT
+get_MemberValue(
+    C* const    cls
+,   T**         ret
+,   T      *C::*mem
+);
 
 /** Inline retrieval of a <code>CComBSTR</code> member variable value
  *
@@ -181,7 +199,13 @@ inline HRESULT get_MemberValue(C* const cls, T **ret, T *C::*mem);
  * \retval S_OK The value was retrieved successfully
  */
 template <class C>
-inline HRESULT get_MemberValue(C* const cls, BSTR* ret, CComBSTR C::*mem)
+inline
+HRESULT
+get_MemberValue(
+    C* const        cls
+,   BSTR*           ret
+,   CComBSTR    C::*mem
+)
 {
     return (ret == 0) ? E_POINTER : (*ret = (cls->*mem).Copy(), (*ret != 0 ? S_OK :  E_OUTOFMEMORY));
 }
@@ -209,7 +233,13 @@ inline HRESULT get_MemberValue(C* const cls, BSTR* ret, CComBSTR C::*mem)
  * \retval S_OK The value was retrieved successfully
  */
 template <class C>
-inline HRESULT get_MemberValue(C* const cls, VARIANT* ret, CComVariant C::*mem)
+inline
+HRESULT
+get_MemberValue(
+    C* const        cls
+,   VARIANT*        ret
+,   CComVariant C::*mem
+)
 {
     return (ret == 0) ? E_POINTER : ::VariantCopy(ret, &(cls->*mem));
 }
@@ -232,7 +262,13 @@ inline HRESULT get_MemberValue(C* const cls, VARIANT* ret, CComVariant C::*mem)
  * \retval S_OK The value was retrieved successfully
  */
 template <class C>
-inline HRESULT get_MemberValue(C* const cls, BOOL* ret, bool C::*mem)
+inline
+HRESULT
+get_MemberValue(
+    C* const    cls
+,   BOOL*       ret
+,   bool    C::*mem
+)
 {
     return (ret == 0) ? E_POINTER : (*ret = (cls->*mem), S_OK);
 }
@@ -255,7 +291,13 @@ inline HRESULT get_MemberValue(C* const cls, BOOL* ret, bool C::*mem)
  * \retval S_OK The value was retrieved successfully
  */
 template <class C>
-inline HRESULT get_MemberValue(C* const cls, VARIANT_BOOL* ret, bool C::*mem)
+inline
+HRESULT
+get_MemberValue(
+    C* const        cls
+,   VARIANT_BOOL*   ret
+,   bool        C::*mem
+)
 {
     return (ret == 0) ? E_POINTER : (*ret = (cls->*mem) ? VARIANT_TRUE : VARIANT_FALSE, S_OK);
 }
@@ -320,8 +362,18 @@ get_MemberValue(
  * \retval E_POINTER ret was a null pointer
  * \retval S_OK The value was retrieved successfully
  */
-template<class C, ss_typename_param_k T, ss_typename_param_k T2>
-inline HRESULT get_MemberValue(C* const cls, T* ret, T2 (C::*pfn)() const)
+template<
+    class               C
+,   ss_typename_param_k T
+,   ss_typename_param_k T2
+>
+inline
+HRESULT
+get_MemberValue(
+    C* const    cls
+,   T*          ret
+,   T2     (C::*pfn)() const
+)
 {
     return (ret == 0) ? E_POINTER : (*ret = (cls->*pfn)(), S_OK);
 }
@@ -401,8 +453,17 @@ get_MemberValue(
  * \param mem Pointer to the member variable
  * \retval S_OK The value was assigned successfully
  */
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline HRESULT put_MemberValue(C* const cls, T const& newVal, T C::*mem)
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+>
+inline
+HRESULT
+put_MemberValue(
+    C* const    cls
+,   T const&    newVal
+,   T       C::*mem
+)
 {
     return (cls->*mem = newVal, S_OK);
 }
@@ -422,7 +483,13 @@ inline HRESULT put_MemberValue(C* const cls, T const& newVal, T C::*mem)
  * \retval S_OK The value was assigned successfully
  */
 template <ss_typename_param_k C>
-inline HRESULT put_MemberValue(C* const cls, BSTR newVal, CComBSTR C::*mem)
+inline
+HRESULT
+put_MemberValue(
+    C* const        cls
+,   BSTR            newVal
+,   CComBSTR    C::*mem
+)
 {
     return (cls->*mem = newVal, S_OK);
 }
@@ -442,7 +509,13 @@ inline HRESULT put_MemberValue(C* const cls, BSTR newVal, CComBSTR C::*mem)
  * \retval S_OK The value was assigned successfully
  */
 template <ss_typename_param_k C>
-inline HRESULT put_MemberValue(C* const cls, CComBSTR const& newVal, CComBSTR C::*mem)
+inline
+HRESULT
+put_MemberValue(
+    C* const        cls
+,   CComBSTR const& newVal
+,   CComBSTR    C::*mem
+)
 {
     return put_MemberValue(cls, (BSTR)newVal, mem);
 }
@@ -462,7 +535,13 @@ inline HRESULT put_MemberValue(C* const cls, CComBSTR const& newVal, CComBSTR C:
  * \retval S_OK The value was assigned successfully
  */
 template <ss_typename_param_k C>
-inline HRESULT put_MemberValue(C* const cls, VARIANT const& newVal, CComVariant C::*mem)
+inline
+HRESULT
+put_MemberValue(
+    C* const        cls
+,   VARIANT const&  newVal
+,   CComVariant C::*mem
+)
 {
     return (cls->*mem = newVal, (VT_ERROR == (cls->*mem).vt) ? (cls->*mem).scode : S_OK);
 }
@@ -481,7 +560,13 @@ inline HRESULT put_MemberValue(C* const cls, VARIANT const& newVal, CComVariant 
  * \retval S_OK The value was assigned successfully
  */
 template <ss_typename_param_k C>
-inline HRESULT put_MemberValue(C* const cls, BOOL const& newVal, bool C::*mem)
+inline
+HRESULT
+put_MemberValue(
+    C* const    cls
+,   BOOL const& newVal
+,   bool    C::*mem
+)
 {
     return (cls->*mem = (0 != newVal), S_OK);
 }
@@ -500,14 +585,16 @@ inline HRESULT put_MemberValue(C* const cls, BOOL const& newVal, bool C::*mem)
  * \retval S_OK The value was assigned successfully
  */
 template <ss_typename_param_k C>
-inline HRESULT put_MemberValue(C* const cls, VARIANT_BOOL const& newVal, bool C::*mem)
+inline
+HRESULT
+put_MemberValue(
+    C* const            cls
+,   VARIANT_BOOL const& newVal
+,   bool             C::*mem
+)
 {
     return (cls->*mem = (VARIANT_FALSE != newVal), S_OK);
 }
-
-
-
-
 
 
 
@@ -532,8 +619,16 @@ STDMETHODIMP DatabaseFlags::get_OrderFields(BOOL *pVal)
  *
  */
 
-template <ss_typename_type_k T1, ss_typename_type_k T2>
-inline HRESULT get_ConstantValue(T1* ret, T2 const& value)
+template<
+    ss_typename_type_k T1
+,   ss_typename_type_k T2
+>
+inline
+HRESULT
+get_ConstantValue(
+    T1*         ret
+,   T2 const&   value
+)
 {
     return (NULL == ret) ? E_POINTER : (*ret = value, S_OK);
 }
@@ -543,10 +638,10 @@ inline HRESULT get_ConstantValue(T1* ret, T2 const& value)
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace atlstl */
+} // namespace atlstl
 # else
-} /* namespace atlstl_project */
-} /* namespace stlsoft */
+} // namespace atlstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
 

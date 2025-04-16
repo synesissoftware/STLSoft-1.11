@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::memory_mapped_file`.
  *
  * Created: sometime in 2010s
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,8 +35,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_nonexisting_file();
     static void test_existing_file_with_known_contents();
@@ -72,8 +71,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     using ::xtests::cpp::util::temp_file;
 
@@ -102,7 +100,6 @@ static void test_existing_file_with_known_contents()
     XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(sizeof(bytes), mmf.size());
     XTESTS_TEST_BOOLEAN_TRUE((0 == ::memcmp(bytes, mmf.memory(), sizeof(bytes))));
 }
-
 } // anonymous namespace
 
 

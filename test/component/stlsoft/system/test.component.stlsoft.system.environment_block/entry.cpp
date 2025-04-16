@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::environment_block`.
  *
  * Created: 11th August 2010
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,15 +36,12 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_empty();
     static void test_1_element();
     static void test_2_elements();
     static void test_clear();
-
-
 } // anonymous namespace
 
 
@@ -79,8 +76,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void test_empty()
 {
@@ -125,7 +121,6 @@ static void test_clear()
 
     XTESTS_TEST_INTEGER_EQUAL(0u, block.size());
 }
-
 } // anonymous namespace
 
 

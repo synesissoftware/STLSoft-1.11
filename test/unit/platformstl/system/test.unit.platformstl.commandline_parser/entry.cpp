@@ -5,7 +5,7 @@
  * Purpose: Unit-tests for `stlsoft::commandline_parser` / `winstl::commandline_parser`.
  *
  * Created: 29th December 2024
- * Updated: 31st December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,8 +47,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void TEST_EMPTY_STRING();
     static void TEST_WHITESPACE_ONLY_STRING();
@@ -110,15 +109,14 @@ namespace {
 #else
     using stlsoft::commandline_parser_a;
 #endif
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void TEST_EMPTY_STRING()
 {
@@ -242,7 +240,6 @@ static void TEST_ONE_OPTION_WITH_MANY_STRING_SECTIONS()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("--option1=a b c", clp[0]);
     XTESTS_TEST_POINTER_EQUAL(NULL, clp[1]);
 }
-
 } // anonymous namespace
 
 

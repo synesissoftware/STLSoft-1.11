@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::doomgram`.
  *
  * Created: 13th May 2013
- * Updated: 31st December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,8 +45,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void TEST_doomgram_DEFAULT_CONSTRUCT();
     static void TEST_doomgram_SINGLE_TIMING_EVENT();
@@ -110,8 +109,7 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 
 static void TEST_doomgram_DEFAULT_CONSTRUCT()

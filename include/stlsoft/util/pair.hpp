@@ -4,11 +4,11 @@
  * Purpose:     Contains the pair template.
  *
  * Created:     19th November 1998
- * Updated:     11th March 2024
+ * Updated:     21st March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MAJOR     5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_REVISION  7
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT      67
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PAIR_EDIT      69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -127,43 +127,64 @@ public:
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<ss_typename_param_k T1, ss_typename_param_k T2>
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
 inline ss_bool_t operator ==(pair<T1, T2> const& x, pair<T1, T2> const& y)
 {
     return x.first == y.first && x.second == y.second;
 }
 
-template<ss_typename_param_k T1, ss_typename_param_k T2>
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
 inline ss_bool_t operator !=(pair<T1, T2> const& x, pair<T1, T2> const& y)
 {
     return !(x == y);
 }
 
-template<ss_typename_param_k T1, ss_typename_param_k T2>
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
 inline ss_bool_t operator <(pair<T1, T2> const& x, pair<T1, T2> const& y)
 {
     return x.first < y.first || (!(y.first < x.first) && x.second < y.second);
 }
 
-template<ss_typename_param_k T1, ss_typename_param_k T2>
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
 inline ss_bool_t operator >(pair<T1, T2> const& x, pair<T1, T2> const& y)
 {
     return y < x;
 }
 
-template<ss_typename_param_k T1, ss_typename_param_k T2>
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
 inline ss_bool_t operator <=(pair<T1, T2> const& x, pair<T1, T2> const& y)
 {
     return !(y < x);
 }
 
-template<ss_typename_param_k T1, ss_typename_param_k T2>
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
 inline ss_bool_t operator >=(pair<T1, T2> const& x, pair<T1, T2> const& y)
 {
     return !(x < y);
 }
 
-template<ss_typename_param_k T1, ss_typename_param_k T2>
+template<
+    ss_typename_param_k T1
+,   ss_typename_param_k T2
+>
 inline pair<T1, T2> make_pair(T1 const& x, T2 const& y)
 {
     return pair<T1, T2>(x, y);
@@ -174,7 +195,7 @@ inline pair<T1, T2> make_pair(T1 const& x, T2 const& y)
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

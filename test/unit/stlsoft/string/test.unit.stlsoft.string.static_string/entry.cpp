@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_static_string`.
  *
  * Created: 4th November 2008
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,8 +48,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     // construction
 
@@ -167,8 +166,6 @@ namespace
     // shims : sas
 
     static void test_string_access_shims();
-
-
 } // anonymous namespace
 
 
@@ -313,8 +310,8 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     typedef stlsoft::basic_static_string<char, 10>          string_10_t;
     typedef stlsoft::basic_static_string<char, 30>          string_30_t;
     typedef stlsoft::basic_static_string<wchar_t, 10>       wstring_10_t;
@@ -2305,7 +2302,7 @@ static void test_insertion_4()
 #ifdef FIELD_WIDTH
 # undef FIELD_WIDTH
 #endif
-}
+} // anonymous namespace
 
 
 // shims : sas
@@ -2360,9 +2357,7 @@ static void test_string_access_shims()
 
 //      XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null(s));
     }
-
 }
-
 } // anonymous namespace
 
 

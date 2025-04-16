@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::truncation_test<>`.
  *
  * Created: 7th November 2008
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,8 +42,8 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
+
     static void test_12();
     static void test_zero();
     static void test_sign();
@@ -91,8 +91,7 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     using stlsoft::sint8_t;
     using stlsoft::uint8_t;

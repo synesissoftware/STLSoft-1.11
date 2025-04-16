@@ -4,13 +4,13 @@
  * Purpose: Simple class that provides access to an environment variable.
  *
  * Created: 20th December 2002
- * Updated: 10th October 2024
+ * Updated: 21st March 2025
  *
  * Thanks:  Pablo Aguilar for requesting size() and empty().
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 6
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     90
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,7 +160,7 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
     /// Create an instance representing the given environment variable
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k basic_environment_variable(S const& name)
         : m_buffer(1)
         , m_exists(obtain_(STLSOFT_NS_QUAL(c_str_ptr)(name), m_buffer))
@@ -445,7 +445,7 @@ operator !=(
  *
  * \ingroup group__library__System
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline
 basic_environment_variable<C>
 make_environment_variable(
@@ -462,10 +462,10 @@ make_environment_variable(
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

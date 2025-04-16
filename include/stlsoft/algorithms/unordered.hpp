@@ -4,11 +4,11 @@
  * Purpose:     Algorithms for manipulating unordered sequences.
  *
  * Created:     17th January 2002
- * Updated:     11th March 2024
+ * Updated:     21st March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MAJOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MINOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_REVISION  7
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      87
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,7 +110,7 @@ namespace stlsoft
  * \note This algorithm works for ordered sequences, but \c std::adjacent_find
  * is more suitable for such cases
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 // [[synesis:function:algorithm: find_first_duplicate(T<I> first, T<I> last)]]
 #if 0
 #elif defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -392,7 +392,7 @@ inline void remove_duplicates_from_unordered_sequence(C &container, BP pred)
  * \param container The container
  */
 // [[synesis:function:algorithm: remove_duplicates_from_unordered_sequence(T<C> &container)]]
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline void remove_duplicates_from_unordered_sequence(C &container)
 {
     typedef ss_typename_type_k C::value_type    value_t;
@@ -413,7 +413,7 @@ inline void remove_duplicates_from_unordered_sequence(C &container)
  * \param first The start of the sequence
  * \param last The (one past the) end point of the sequence
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 // [[synesis:function:algorithm: fill_all(T<I> first, T<I> last)]]
 inline I skip_equal(I first, I last)
 {
@@ -475,7 +475,7 @@ inline ss_bool_t unordered_includes(I1 first1, I1 last1, I2 first2, I2 last2)
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 
