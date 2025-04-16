@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  15th April 2025
+; Updated:  16th April 2025
 
 ============================================================================
 
@@ -19,7 +19,7 @@ STLSoft - Changes
 
 
 
-Changes for 1.11.1-beta3 (15th April 2025)
+Changes for 1.11.1-beta3 (16th April 2025)
 
 General:
 ========
