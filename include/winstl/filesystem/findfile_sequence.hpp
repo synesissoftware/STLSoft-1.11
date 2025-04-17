@@ -18,7 +18,7 @@
  *          ownership issues described in the article.
  *
  * Created: 15th January 2002
- * Updated: 20th March 2025
+ * Updated: 17th April 2025
  *
  * Thanks:  To Nevin Liber for pressing upon me the need to lead by example
  *          when writing books about good design/implementation; to Florin L
@@ -71,9 +71,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    16
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        275
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       11
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        276
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -279,6 +279,9 @@ public:
             includeDots                 =   0x0008  //!< Causes the search to include the "." and ".." directories, which are elided by default
         ,   directories                 =   0x0010  //!< Causes the search to include directories
         ,   files                       =   0x0020  //!< Causes the search to include files
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+        ,   sockets                     =   0x0000  /*!< This has no effect on Windows, but is here for structural conformance compatibility with unixstl::glob_sequence. */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
         ,   skipReparseDirs             =   0x0100  //!< Causes the search to skip directories that are reparse points
         ,   skipHiddenFiles             =   0x0200  //!< Causes the search to skip files marked hidden
         ,   skipHiddenDirs              =   0x0400  //!< Causes the search to skip directories marked hidden
