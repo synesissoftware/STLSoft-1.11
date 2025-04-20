@@ -56,17 +56,77 @@ int main(int argc, char* argv[])
     }
 
 
-    std::cout << "searching in '" << root_dir << "':" << std::endl;
-
-    readdir_sequence files(root_dir, readdir_sequence::files | readdir_sequence::directories);
-
-    for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
     {
-        std::cout
-            << "\t"
-            << *i
-            << (fs_traits_t::is_directory(*i) ? "/" : "")
-            << std::endl;
+        std::cout << "searching for directories in '" << root_dir << "':" << std::endl;
+
+        readdir_sequence files(root_dir, readdir_sequence::directories);
+
+        for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << "/"
+                << std::endl;
+        }
+    }
+
+    {
+        std::cout << "searching for files in '" << root_dir << "':" << std::endl;
+
+        readdir_sequence files(root_dir, readdir_sequence::files);
+
+        for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << std::endl;
+        }
+    }
+
+    {
+        std::cout << "searching for sockets in '" << root_dir << "':" << std::endl;
+
+        readdir_sequence files(root_dir, readdir_sequence::sockets);
+
+        for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << std::endl;
+        }
+    }
+
+    {
+        std::cout << "searching for directories + files + sockets in '" << root_dir << "':" << std::endl;
+
+        readdir_sequence files(root_dir, readdir_sequence::directories | readdir_sequence::files | readdir_sequence::sockets);
+
+        for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << (fs_traits_t::is_directory(*i) ? "/" : "")
+                << std::endl;
+        }
+    }
+
+    {
+        std::cout << "searching for all types in '" << root_dir << "':" << std::endl;
+
+        readdir_sequence files(root_dir, 0);
+
+        for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << (fs_traits_t::is_directory(*i) ? "/" : "")
+                << std::endl;
+        }
     }
 
 
