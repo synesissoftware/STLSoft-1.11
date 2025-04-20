@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 17th April 2025
+ * Updated: 20th April 2025
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -58,7 +58,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      188
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      189
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -263,11 +263,13 @@ class glob_sequence_exception
 /// \name Types
 /// @{
 public:
+    /// The parent class type
 #if defined(STLSOFT_COMPILER_IS_DMC)
     typedef std::exception                                  parent_class_type;
 #else /* ? compiler */
     typedef STLSOFT_NS_QUAL_STD(exception)                  parent_class_type;
 #endif /* compiler */
+    /// This type
     typedef glob_sequence_exception                         class_type;
 /// @}
 
@@ -330,7 +332,7 @@ class glob_sequence
 /// \name Types
 /// @{
 public:
-    /// This class
+    /// This type
     typedef glob_sequence                                   class_type;
     /// The char type
     typedef us_char_a_t                                     char_type;
