@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      189
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      190
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -434,7 +434,10 @@ public:
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
     template <ss_typename_param_k S>
-    glob_sequence(S const& pattern, search_flags flag)
+    glob_sequence(
+        S const&        pattern
+    ,   search_flags    flag
+    )
         : m_flags(validate_flags_(flag))
         , m_buffer(1)
     {
@@ -506,7 +509,10 @@ public:
     }
 
     template <ss_typename_param_k S>
-    glob_sequence(S const& pattern, us_int_t flags)
+    glob_sequence(
+        S const&    pattern
+    ,   us_int_t    flags
+    )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
     {
@@ -680,7 +686,7 @@ private:
     us_size_t           init_glob_(char_type const* directory, char_type const* pattern);
     us_size_t           init_glob_1_(size_type bufferSize, char_type* combinedPath);
     us_size_t           init_glob_2_(char_type const* patternDir, char_type const* pattern0);
-    us_size_t           init_glob_3_(char_type const* pattern, bool isPattern0Wild);
+    us_size_t           init_glob_3_(char_type const* pattern, us_bool_t isPattern0Wild);
 /// @}
 
 /// \name Members
@@ -1060,7 +1066,7 @@ glob_sequence::init_glob_(
             directory = NULL;
         }
 
-        bool const              reqEnd  =   (NULL == directory) ? false : !traits_type::has_dir_end(directory);
+        us_bool_t const         reqEnd  =   (NULL == directory) ? false : !traits_type::has_dir_end(directory);
         size_type const         dirLen  =   (NULL == directory) ? 0u : traits_type::str_len(directory);
         size_type const         patLen  =   traits_type::str_len(pattern);
         size_type const         baseLen =   dirLen + (reqEnd ? 1 : 0);
@@ -1172,7 +1178,7 @@ glob_sequence::init_glob_2_(
         }
         else
         {
-            bool const              reqEnd  =   !traits_type::has_dir_end(directory);
+            us_bool_t const         reqEnd  =   !traits_type::has_dir_end(directory);
             size_type const         dirLen  =   traits_type::str_len(directory);
             size_type const         patLen  =   traits_type::str_len(pattern0);
             size_type const         baseLen =   dirLen + (reqEnd ? 1 : 0);
@@ -1216,7 +1222,7 @@ inline
 us_size_t
 glob_sequence::init_glob_3_(
     char_type const*    pattern
-,   bool                isPattern0Wild
+,   us_bool_t           isPattern0Wild
 )
 {
     us_int_t glob_flags = 0;
@@ -1334,7 +1340,7 @@ glob_sequence::init_glob_3_(
         //     to remove directories
         //
 
-        bool const elidingDots = isPattern0Wild && (0 == (m_flags & includeDots));
+        us_bool_t const elidingDots = isPattern0Wild && (0 == (m_flags & includeDots));
 
 
         if (elidingDots ||                                      // 1
@@ -1413,7 +1419,7 @@ glob_sequence::init_glob_3_(
 #ifdef UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYREG
 
         // 1. Looking for files only
-        if (files == (m_flags & (directories | files)))
+        if (files == (m_flags & (directories | files | sockets)))
         {
             ; // Nothing to do
         }
@@ -1429,7 +1435,7 @@ glob_sequence::init_glob_3_(
         else
 #endif /* UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR */
         // 3. Looking for anything
-        if (0 == (m_flags & (directories | files)))
+        if (0 == (m_flags & (directories | files | sockets)))
         {
             // NOTE: this conditional branch is a future-compatibility
             // feature, for when sockets and links are supported
@@ -1457,10 +1463,10 @@ glob_sequence::init_glob_3_(
 
                 if (markDirs == (m_flags & markDirs))
                 {
-                    bool const isDirectory = traits_type::has_dir_end(entry);
+                    us_bool_t const isDirectory = traits_type::has_dir_end(entry);
 
                     if (isDirectory &&
-                        directories == (m_flags & (directories)))
+                        directories == (m_flags & directories))
                     {
                         // It is a directory, and we want directories, so
                         // don't elide (by continue-ing)
@@ -1468,7 +1474,7 @@ glob_sequence::init_glob_3_(
                     }
                     else
                     if (!isDirectory &&
-                        files == (m_flags & (directories | files)))
+                        0 == (m_flags & directories))
                     {
                         // It is not a directory, and we want files,
                         // so don't elide (by continue-ing)
@@ -1489,16 +1495,22 @@ glob_sequence::init_glob_3_(
                 else
                 { // stat() succeeded
 
-                    if (files == (m_flags & (files)) &&
+                    if (directories == (m_flags & directories) &&
+                        traits_type::is_directory(&st))
+                    {
+                        continue; // A directory, so accept it
+                    }
+                    else
+                    if (files == (m_flags & files) &&
                         traits_type::is_file(&st))
                     {
                         continue; // A file, so accept it
                     }
                     else
-                    if (directories == (m_flags & (directories)) &&
-                        traits_type::is_directory(&st))
+                    if (sockets == (m_flags & sockets) &&
+                        traits_type::is_socket(&st))
                     {
-                        continue; // A directory, so accept it
+                        continue; // A file, so accept it
                     }
                     else
                     {

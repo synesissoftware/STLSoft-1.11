@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 20th March 2025
+ * Updated: 20th April 2025
  *
  * Home:    http://stlsoft.org/
  *
