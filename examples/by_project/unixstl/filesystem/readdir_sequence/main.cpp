@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for directories in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence directories(root_dir, readdir_sequence::directories);
+        readdir_sequence directories(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::directories);
 
         for (readdir_sequence::const_iterator i = directories.begin(); directories.end() != i; ++i)
         {
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for files in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence files(root_dir, readdir_sequence::files);
+        readdir_sequence files(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::files);
 
         for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
         {
@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for sockets in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence sockets(root_dir, readdir_sequence::sockets);
+        readdir_sequence sockets(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::sockets);
 
         for (readdir_sequence::const_iterator i = sockets.begin(); sockets.end() != i; ++i)
         {
@@ -100,9 +100,24 @@ int main(int argc, char* argv[])
     }
 
     {
+        std::cout << "searching for files + sockets in '" << root_dir << "':" << std::endl;
+
+        readdir_sequence entries(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::files | readdir_sequence::sockets);
+
+        for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << (fs_traits_t::is_directory(*i) ? "/" : "")
+                << std::endl;
+        }
+    }
+
+    {
         std::cout << "searching for directories + files + sockets in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence entries(root_dir, readdir_sequence::directories | readdir_sequence::files | readdir_sequence::sockets);
+        readdir_sequence entries(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::directories | readdir_sequence::files | readdir_sequence::sockets);
 
         for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
         {
