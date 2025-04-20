@@ -8,10 +8,12 @@
 #include <unixstl/filesystem/glob_sequence.hpp>
 
 #include <platformstl/filesystem/path_functions.h>
+#include <unixstl/filesystem/filesystem_traits.hpp>
 
 #include <iostream>
 
 
+typedef unixstl::filesystem_traits<char>    fs_traits_t;
 using unixstl::glob_sequence;
 
 
@@ -121,6 +123,7 @@ int main(int argc, char* argv[])
             std::cout
                 << "\t"
                 << *i
+                << (fs_traits_t::is_directory(*i) ? "/" : "")
                 << std::endl;
         }
     }
@@ -128,13 +131,14 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for all types in '" << root_dir << "':" << std::endl;
 
-        glob_sequence entries(root_dir, "*");
+        glob_sequence entries(root_dir, "*", glob_sequence::absolutePath);
 
         for (glob_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
         {
             std::cout
                 << "\t"
                 << *i
+                << (fs_traits_t::is_directory(*i) ? "/" : "")
                 << std::endl;
         }
     }

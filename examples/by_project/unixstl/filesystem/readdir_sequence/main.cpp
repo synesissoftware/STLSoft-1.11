@@ -132,7 +132,7 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for all types in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence entries(root_dir);
+        readdir_sequence entries(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath);
 
         for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
         {
