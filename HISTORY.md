@@ -4,6 +4,23 @@
 ----
 
 
+22nd April 2025 - 1.11.1-beta4 released
+---------------------------------------
+
+ * `unixstl::glob_sequence` now can search for sockets, in addition to files and directories;
+ * `stlsoft::cmdargs` added missing member types;
+
+
+16th April 2025 - 1.11.1-beta3 released
+-----------------------------------------
+
+ * Added specialisations of `integral_traits<>` for integer specialisations of `true_typedef<>`;
+ * Applied `printf()` format attributes throughout;
+ * Defect fix(es) to `unixstl::path_squeeze<>()` / `winstl::path_squeeze<>()`;
+ * MinGW compatibility;
+ * Wholesale trivial/minor tidying;
+
+
 23rd February 2025 - 1.11.1-beta2 released
 -----------------------------------------
 

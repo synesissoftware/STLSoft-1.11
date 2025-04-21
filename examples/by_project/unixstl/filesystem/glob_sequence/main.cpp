@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * Purpose: Illustrates the use of `unixstl::readdir_sequence` to search for
+ * Purpose: Illustrates the use of `unixstl::glob_sequence` to search for
  *          the files and directories in a given root-directory.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#include <unixstl/filesystem/readdir_sequence.hpp>
+#include <unixstl/filesystem/glob_sequence.hpp>
 
 #include <platformstl/filesystem/path_functions.h>
 #include <unixstl/filesystem/filesystem_traits.hpp>
@@ -13,8 +13,8 @@
 #include <iostream>
 
 
-using unixstl::readdir_sequence;
 typedef unixstl::filesystem_traits<char>    fs_traits_t;
+using unixstl::glob_sequence;
 
 
 int main(int argc, char* argv[])
@@ -59,9 +59,9 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for directories in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence directories(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::directories);
+        glob_sequence directories(root_dir, "*", glob_sequence::absolutePath | glob_sequence::directories);
 
-        for (readdir_sequence::const_iterator i = directories.begin(); directories.end() != i; ++i)
+        for (glob_sequence::const_iterator i = directories.begin(); directories.end() != i; ++i)
         {
             std::cout
                 << "\t"
@@ -74,9 +74,9 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for files in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence files(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::files);
+        glob_sequence files(root_dir, "*", glob_sequence::absolutePath | glob_sequence::files);
 
-        for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+        for (glob_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
         {
             std::cout
                 << "\t"
@@ -88,9 +88,9 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for sockets in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence sockets(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::sockets);
+        glob_sequence sockets(root_dir, "*", glob_sequence::absolutePath | glob_sequence::sockets);
 
-        for (readdir_sequence::const_iterator i = sockets.begin(); sockets.end() != i; ++i)
+        for (glob_sequence::const_iterator i = sockets.begin(); sockets.end() != i; ++i)
         {
             std::cout
                 << "\t"
@@ -102,14 +102,13 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for files + sockets in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence entries(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::files | readdir_sequence::sockets);
+        glob_sequence entries(root_dir, "*", glob_sequence::absolutePath | glob_sequence::files | glob_sequence::sockets);
 
-        for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+        for (glob_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
         {
             std::cout
                 << "\t"
                 << *i
-                << (fs_traits_t::is_directory(*i) ? "/" : "")
                 << std::endl;
         }
     }
@@ -117,9 +116,9 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for directories + files + sockets in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence entries(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::directories | readdir_sequence::files | readdir_sequence::sockets);
+        glob_sequence entries(root_dir, "*", glob_sequence::absolutePath | glob_sequence::directories | glob_sequence::files | glob_sequence::sockets);
 
-        for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+        for (glob_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
         {
             std::cout
                 << "\t"
@@ -132,9 +131,9 @@ int main(int argc, char* argv[])
     {
         std::cout << "searching for all types in '" << root_dir << "':" << std::endl;
 
-        readdir_sequence entries(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath);
+        glob_sequence entries(root_dir, "*", glob_sequence::absolutePath);
 
-        for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+        for (glob_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
         {
             std::cout
                 << "\t"

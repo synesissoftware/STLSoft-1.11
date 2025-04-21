@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 20th March 2025
+ * Updated: 20th April 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      3
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       168
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       169
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -159,25 +159,31 @@ class readdir_sequence_exception
 /// \name Types
 /// @{
 public:
+    /// The parent class type
     typedef unixstl_exception                               parent_class_type;
+    /// This type
     typedef readdir_sequence_exception                      class_type;
+    /// The string type
     typedef parent_class_type::string_type                  string_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
-    readdir_sequence_exception(us_char_a_t const* message, us_int_t erno)
+    readdir_sequence_exception(
+        us_char_a_t const*  message
+    ,   us_int_t            erno
+    )
         : parent_class_type(message, erno)
         , Directory()
     {}
-    readdir_sequence_exception(us_char_a_t const* message, us_int_t erno, us_char_a_t const* directory)
+    readdir_sequence_exception(
+        us_char_a_t const*  message
+    ,   us_int_t            erno
+    ,   us_char_a_t const*  directory
+    )
         : parent_class_type(message, erno)
-#if 0
-        , Directory(directory)
-#else /* ? 0 */
         , Directory(stlsoft::c_str_ptr(directory))
-#endif /* 0 */
     {}
     ~readdir_sequence_exception() STLSOFT_NOEXCEPT
     {}
@@ -211,7 +217,7 @@ class readdir_sequence
 /// \name Member Types
 /// @{
 public:
-    /// This class
+    /// This type
     typedef readdir_sequence                                class_type;
 private:
     // These make it easy to move to a template, if ever needed
@@ -230,8 +236,8 @@ public:
 #endif /* UNIXSTL_READDIR_SEQUENCE_OLD_VALUE_TYPE */
     /// The flags type
     typedef us_int_t                                        flags_type;
-
 public:
+    /// The string type
     typedef STLSOFT_NS_QUAL(basic_simple_string)<
         char_type
     >                                                       string_type;
@@ -270,7 +276,10 @@ public:
     /// this reflects the default behaviour of \c readdir(), and also because it is the
     /// most efficient.
     template <ss_typename_param_k S>
-    readdir_sequence(S const& directory, flags_type flags = directories | files)
+    readdir_sequence(
+        S const&    directory
+    ,   flags_type  flags       =   directories | files
+    )
         : m_flags(validate_flags_(flags))
         , m_directory(prepare_directory_T_(directory, flags))
     {}
@@ -307,13 +316,7 @@ public:
     /// \c fullPath nor \c absolutePath.
     string_type const&  get_directory() const;
 
-    /// The flags used by the sequence
-    ///
-    /// \note This value is the value used by the sequence, which may, as a
-    /// result of the determination of defaults, be different from those
-    /// specified in its constructor. For example, if
-    /// <code>includeDots</code> was specified, this function will instead
-    /// return <code>includeDots | directories | files</code>.
+    /// The flags used by the sequence.
     flags_type          get_flags() const;
 /// @}
 
@@ -537,7 +540,7 @@ inline
 /* static */
 readdir_sequence::flags_type
 readdir_sequence::validate_flags_(
-        readdir_sequence::flags_type flags
+    readdir_sequence::flags_type flags
 )
 {
     const flags_type    validFlags  =   0

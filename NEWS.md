@@ -3,6 +3,7 @@
 
 | Date                  | News Item                                                 |
 | --------------------- | --------------------------------------------------------- |
+| 22nd April 2025       |   Release of STLSoft 1.11.1-beta4                         |
 | 16th April 2025       |   Release of STLSoft 1.11.1-beta3                         |
 | 23rd February 2025    |   Release of STLSoft 1.11.1-beta2                         |
 | 31st December 2024    |   Release of STLSoft 1.11.1-beta1                         |

@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  16th April 2025
+; Updated:  22nd April 2025
 
 ============================================================================
 
@@ -18,6 +18,17 @@ STLSoft - Changes
 
 
 
+
+Changes for 1.11.1-beta4 (22nd April 2025)
+
+General:
+========
+
+ * `unixstl::glob_sequence` now can search for sockets, in addition to files and directories;
+ * `stlsoft::cmdargs` added missing member types;
+
+
+============================================================================
 
 Changes for 1.11.1-beta3 (16th April 2025)
 

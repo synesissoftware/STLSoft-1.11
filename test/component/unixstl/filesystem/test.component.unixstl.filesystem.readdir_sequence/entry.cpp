@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readdir_sequence`.
  *
  * Created: sometime in 2010s
- * Updated: 20th March 2025
+ * Updated: 17th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,6 +31,11 @@
 
 /* Standard C header files */
 #include <stdlib.h>
+#ifdef PLATFORMSTL_OS_IS_UNIX
+
+# include <sys/socket.h>
+# include <sys/un.h>
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -46,7 +51,6 @@ namespace {
     static void TEST_is_socket();
 #endif
 } // anonymous namespace
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -78,7 +82,7 @@ int main(int argc, char *argv[])
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * test function implementations
+ * types
  */
 
 namespace {
@@ -89,40 +93,49 @@ namespace {
     using ::xtests::cpp::util::temp_directory;
 } // anonymous namespace
 
-    #include <sys/socket.h>
-    #include <sys/un.h>
 
-    int
-    create_uds_socket_and_bind(
-        char const* uds_path
-    )
+/* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+namespace {
+
+#ifdef PLATFORMSTL_OS_IS_UNIXx
+
+int
+create_uds_socket_and_bind(
+    char const* uds_path
+)
+{
+    assert(NULL != uds_path);
+
     {
-        assert(NULL != uds_path);
+        struct sockaddr_un  sa;
+        size_t const        len = strlen(uds_path);
 
+        if (len >= STLSOFT_NUM_ELEMENTS(sa.sun_path))
         {
-            struct sockaddr_un  sa;
-            size_t const        len = strlen(uds_path);
-
-            if (len >= STLSOFT_NUM_ELEMENTS(sa.sun_path))
-            {
-                return EINVAL;
-            }
-            else
-            {
-#ifdef UNIXSTL_OS_IS_MACOSX
-                sa.sun_len = sizeof(sa);
-#endif
-                sa.sun_family = AF_UNIX;
-                strncpy(sa.sun_path, uds_path, 1 + len);
-
-            }
-
+            return EINVAL;
         }
-
-
-
-        return -1;
+        else
+        {
+#ifdef UNIXSTL_OS_IS_MACOSX
+            sa.sun_len = sizeof(sa);
+#endif
+            sa.sun_family = AF_UNIX;
+            strncpy(sa.sun_path, uds_path, 1 + len);
+        }
     }
+
+    return -1;
+}
+#endif
+} // anonymous namespace
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace {
 
