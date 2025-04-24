@@ -7,7 +7,7 @@
 #           compatible with Synesis Information Systems' libraries.
 #
 # Created:  9th January 2025
-# Updated:  10th January 2025
+# Updated:  24th April 2025
 #
 # Author:   Matthew Wilson
 #
@@ -51,7 +51,18 @@ FILES_TO_IGNORE = [
 
 def get_program_source_entry entries, **options
 
-  entries.find { |fe| fe.file? && [ '.c', '.cpp' ].include?(fe.extension) && [ 'entry', 'main' ].include?(fe.stem) }
+  files = entries.select { |fe| fe.file? }
+
+  c_cpp_files = files.select { |fe| [ '.c', '.cpp' ].include?(fe.extension) }
+
+  return c_cpp_files[0] if c_cpp_files.size == 1
+end
+
+def dead_directory? subdirectory, contents, **options
+
+  return true if contents.empty?
+
+  false
 end
 
 def strip_excludes contents, ignore_list, **options
@@ -112,6 +123,7 @@ num_directories_processed     = 0
 num_custom_directories_found  = 0
 num_missing_makelists_created = 0
 num_stock_makelists_replaced  = 0
+num_dead_directories          = 0
 
 
 directories.each do |directory|
@@ -174,7 +186,6 @@ directories.each do |directory|
       fe_prg = get_program_source_entry contents
 
       is_leaf = true
-      is_leaf = is_leaf && !contents.any? { |fe| fe.directory? }
       is_leaf = is_leaf && fe_prg
 
       if is_leaf
@@ -183,13 +194,41 @@ directories.each do |directory|
 
         File.open(cml_path, 'w') do |f|
 
+          macro = case fe_prg.stem
+          when 'entry'
+
+            'define_automated_test_program'
+          when 'main'
+
+            'define_example_program'
+          else
+
+            if fe_prg.directory_parts.include?('test/') && [ 'unit/', 'component/' ].any? { |dirname| $stderr.puts "\t\t#{dirname} => #{fe_prg.directory_parts.include? dirname}" ; fe_prg.directory_parts.include?(dirname) }
+
+              'define_automated_test_program'
+            else
+
+              'define_example_program'
+            end
+          end
+
           f << <<-END_of_
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-#{fe_prg.stem == 'entry' ? 'define_automated_test_program' : 'define_example_program'}(#{subdirectory.basename} #{fe_prg.basename})
-
+#{macro}(#{subdirectory.basename} #{fe_prg.basename})
 END_of_
         end
       else
+
+        # not-leaf, but might be a dead directory
+
+        if dead_directory? subdirectory, contents, **options
+
+          $stdout.puts HighLine.color("ignoring DEAD", :green, :bold) if options[:verbose]
+
+          num_dead_directories += 1
+
+          next
+        end
 
         $stdout.puts HighLine.color("generating non-LEAF", :magenta, :bold) if options[:verbose]
 
@@ -215,7 +254,7 @@ END_of_
   end
 end
 
-$stdout.puts "#{num_directories_processed} directories processed, in which there were #{num_custom_directories_found} custom configuration(s), #{num_missing_makelists_created} missing configuration(s), #{num_stock_makelists_replaced} stock configuration(s)"
+$stdout.puts "#{num_directories_processed} directories processed, in which there were #{num_custom_directories_found} custom configuration(s), #{num_missing_makelists_created} missing configuration(s), #{num_stock_makelists_replaced} stock configuration(s); #{num_dead_directories} dead directories"
 
 
 # ############################## end of file ############################# #
