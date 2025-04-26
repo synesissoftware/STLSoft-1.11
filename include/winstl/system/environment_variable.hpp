@@ -4,7 +4,7 @@
  * Purpose: Simple class that provides access to an environment variable.
  *
  * Created: 20th December 2002
- * Updated: 21st March 2025
+ * Updated: 26th April 2025
  *
  * Thanks:  Pablo Aguilar for requesting size() and empty().
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 6
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     92
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -327,17 +327,26 @@ private:
  *
  * \ingroup group__library__System
  */
-typedef basic_environment_variable<ws_char_a_t, system_traits<ws_char_a_t> >    environment_variable_a;
+typedef basic_environment_variable<
+    ws_char_a_t
+,   system_traits<ws_char_a_t>
+>                                                           environment_variable_a;
 /** Specialisation of the basic_environment_variable template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__System
  */
-typedef basic_environment_variable<ws_char_w_t, system_traits<ws_char_w_t> >    environment_variable_w;
+typedef basic_environment_variable<
+    ws_char_w_t
+,   system_traits<ws_char_w_t>
+>                                                           environment_variable_w;
 /** Specialisation of the basic_environment_variable template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__System
  */
-typedef basic_environment_variable<TCHAR, system_traits<TCHAR> >                environment_variable;
+typedef basic_environment_variable<
+    TCHAR
+,   system_traits<TCHAR>
+>                                                           environment_variable;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -454,10 +463,12 @@ make_environment_variable(
 {
     return basic_environment_variable<C>(path);
 }
-
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \

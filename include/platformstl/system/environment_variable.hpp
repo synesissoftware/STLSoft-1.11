@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/system/environment_variable.hpp
+ * File:    platformstl/system/environment_variable.hpp
  *
- * Purpose:     Platform header for the environment_variable components.
+ * Purpose: Platform header for the environment_variable components.
  *
- * Created:     9th January 2017
- * Updated:     20th March 2025
+ * Created: 9th January 2017
+ * Updated: 26th April 2025
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2025, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       3
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,7 +100,10 @@ namespace platformstl_project
 {
 #endif /* STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
@@ -128,16 +131,18 @@ class environment_variable
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 typedef UNIXSTL_NS_QUAL(environment_variable)               environment_variable;
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 typedef WINSTL_NS_QUAL(environment_variable)                environment_variable;
-
 #else /* ? operating system */
+
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
