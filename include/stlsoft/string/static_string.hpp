@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 20th March 2025
+ * Updated: 26th April 2025
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -54,10 +54,10 @@
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     230
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR     5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      232
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -568,7 +568,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    // If exception-support is enabled , this will throw an instance
+    // If exception-support is enabled then this will throw an instance
     // of `std::length_error` with a suitable message from the given
     // qualifier; otherwise, will return `false` (such that this can be used
     // within a contract enforcement)
@@ -586,14 +586,24 @@ private:
         {
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-            char            message[101];
+            char            message[149];
+#  ifdef STLSOFT_CF_BUILTIN_long_long_SUPPORT
+            ss_size_t const n = stlsoft_C_snprintf(
+                    &message[0]
+                ,   STLSOFT_NUM_ELEMENTS(message)
+                ,   "operation would result in static_string (of %llu element(s)) that is too large for static limit (of %llu element(s))"
+                ,   static_cast<unsigned long long>(new_length)
+                ,   static_cast<unsigned long long>(max_size())
+                );
+#  else /* ? STLSOFT_CF_BUILTIN_long_long_SUPPORT */
             ss_size_t const n = stlsoft_C_snprintf(
                     &message[0]
                 ,   STLSOFT_NUM_ELEMENTS(message)
                 ,   "operation would result in static_string (of %lu element(s)) that is too large for static limit (of %lu element(s))"
-                ,   new_length
-                ,   max_size()
+                ,   static_cast<unsigned long>(new_length)
+                ,   static_cast<unsigned long>(max_size())
                 );
+#  endif /* STLSOFT_CF_BUILTIN_long_long_SUPPORT */
 
             STLSOFT_ASSERT(0 != n);
             STLSOFT_SUPPRESS_UNUSED(n);
