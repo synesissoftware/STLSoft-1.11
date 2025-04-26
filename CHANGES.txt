@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  22nd April 2025
+; Updated:  26th April 2025
 
 ============================================================================
 
@@ -18,6 +18,47 @@ STLSoft - Changes
 
 
 
+
+Changes for 1.11.1-beta5 (26th April 2025)
+
+General:
+========
+
+ * Added `platformstl::environment_variable_scope`;
+ * Added more unit-tests;
+ * MinGW compatibility;
+ * `stlsoft::basic_static_string<>` minor fix;
+ * Miscellaneous fixes;
+
+Changes:
+========
+
+Added `platformstl::environment_variable_scope`:
+ * added `platformstl::environment_variable_scope`;
+ * added **test.component.platformstl.system.environment_variable_scope**;
+
+MinGW compatibility:
+ * `stlsoft::basic_static_string<>` : MinGW compatibility (#86)
+ * **test.unit.stlsoft.string.copy_functions** : ~ warning suppression;
+ * **test.unit.stlsoft.util.string.snprintf** : ~ warning suppression;
+
+Added more unit-tests:
+ * + brought over **test.component.platformstl.system.system_traits**
+ * + brought over **test.unit.stlsoft.string.copy_functions**
+
+`stlsoft::basic_static_string<>` minor fix:
+ * preparatory tidying;
+ * fixed format specifiers for generation of `length_error`;
+ * **test.unit.stlsoft.string.static_string** : + tests for `length_error`
+
+Miscellaneous fixes:
+ * **include/unixstl/system/directory_functions.h** : ~ minor improvements to API signatures;
+ * added optional dependency to **shwild**, so as to allow **xTests**' pattern matching constructs to be used;
+ * preparatory tidying
+ * shim fixes (in component tests) in light of changes to xTests
+
+
+============================================================================
 
 Changes for 1.11.1-beta4 (22nd April 2025)
 

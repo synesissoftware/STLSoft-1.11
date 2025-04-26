@@ -4,6 +4,16 @@
 ----
 
 
+26th April 2025 - 1.11.1-beta5 released
+---------------------------------------
+
+ * Added `platformstl::environment_variable_scope`;
+ * Added more unit-tests;
+ * MinGW compatibility;
+ * `stlsoft::basic_static_string<>` minor fix;
+ * Miscellaneous fixes;
+
+
 22nd April 2025 - 1.11.1-beta4 released
 ---------------------------------------
 
