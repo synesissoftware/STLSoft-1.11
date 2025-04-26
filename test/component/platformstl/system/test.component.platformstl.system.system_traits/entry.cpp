@@ -89,7 +89,10 @@ static void TEST_INSUFFICIENT_SPACE()
 {
     size_t const required = platformstl::system_traits<char>::get_home_directory(NULL, 0);
 
-fprintf(stderr, "%s:%d:%s: required=%zu\n", __STLSOFT_FILE_LINE_FUNCTION__, required);
+    // TODO: consider (strongly) making the UNIXSTL and WinSTL implementations consistent, and also consider whether it's any use at all to get a partial result
+
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
     if(0 != required)
     {
@@ -99,11 +102,23 @@ fprintf(stderr, "%s:%d:%s: required=%zu\n", __STLSOFT_FILE_LINE_FUNCTION__, requ
 
             size_t const cch = platformstl::system_traits<char>::get_home_directory(&buff[0], buff.size());
 
-            fprintf(stderr, "%s:%d:%s: required=%zu, i=%zu, cch=%zu\n", __STLSOFT_FILE_LINE_FUNCTION__, required, i, cch);
+            XTESTS_TEST_INTEGER_EQUAL(i - 1, cch);
+        }}
+    }
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    if(0 != required)
+    {
+        { for(size_t i = 1; i != required; ++i)
+        {
+            stlsoft::auto_buffer<char>  buff(i);
+
+            size_t const cch = platformstl::system_traits<char>::get_home_directory(&buff[0], buff.size());
 
             XTESTS_TEST_INTEGER_EQUAL(required, cch);
         }}
     }
+#endif
 
     stlsoft::auto_buffer<char>  buff(required);
     size_t const                actual = platformstl::system_traits<char>::get_home_directory(&buff[0], buff.size());
