@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      0
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       4
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,17 +123,23 @@ namespace platformstl_project
  * platforms it resolves to the winstl::environment_variable class. It
  * is not defined for other platforms.
  */
-template<   ss_typename_param_k C
-        >
+template<
+    ss_typename_param_k C
+>
 class environment_variable
 {};
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 typedef UNIXSTL_NS_QUAL(environment_variable)               environment_variable;
+typedef UNIXSTL_NS_QUAL(environment_variable_a)             environment_variable_a;
+typedef UNIXSTL_NS_QUAL(environment_variable_a)             environment_variable_m;
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 typedef WINSTL_NS_QUAL(environment_variable)                environment_variable;
+typedef WINSTL_NS_QUAL(environment_variable_a)              environment_variable_a;
+typedef WINSTL_NS_QUAL(environment_variable_a)              environment_variable_m;
+typedef WINSTL_NS_QUAL(environment_variable_w)              environment_variable_w;
 #else /* ? operating system */
 
 # error Operating system not discriminated
