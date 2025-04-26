@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 8
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     591
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 9
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     592
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -381,12 +381,13 @@
 # define _STLSOFT_VER_1_11_1_B3     0x010b0183  /*!< Version 1.11.1 beta 3 (15th April 2025) */
 # define _STLSOFT_VER_1_11_1_B4     0x010b0184  /*!< Version 1.11.1 beta 4 (22nd April 2025) */
 # define _STLSOFT_VER_1_11_1_B5     0x010b0185  /*!< Version 1.11.1 beta 5 (26th April 2025) */
+# define _STLSOFT_VER_1_11_1_B6     0x010b0186  /*!< Version 1.11.1 beta 6 (27th April 2025) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_B5
+#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_B6
 
 
 /* /////////////////////////////////////
@@ -830,7 +831,7 @@
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 15.x"
 #  elif _MSC_VER <= 1929
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 16.x"
-#  elif _MSC_VER <= 1942
+#  elif _MSC_VER <= 1943
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 17.x"
 #  else
 #   error Visual C++ version that is > vc17 is not recognised
