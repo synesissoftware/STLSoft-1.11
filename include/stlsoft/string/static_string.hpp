@@ -4,7 +4,7 @@
  * Purpose: basic_static_string class template.
  *
  * Created: 11th June 1994
- * Updated: 20th March 2025
+ * Updated: 26th April 2025
  *
  * Thanks:  To Cláudio Albuquerque for supplying the pop_back() member.
  *
@@ -54,10 +54,10 @@
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_STATIC_STRING
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     230
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR     5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR     5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION  2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT      231
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -568,7 +568,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    // If exception-support is enabled , this will throw an instance
+    // If exception-support is enabled then this will throw an instance
     // of `std::length_error` with a suitable message from the given
     // qualifier; otherwise, will return `false` (such that this can be used
     // within a contract enforcement)
