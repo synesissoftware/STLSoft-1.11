@@ -117,6 +117,7 @@ option(BUILD_EXAMPLES "Build examples" ON)
 # - xTests - required for testing;
 #
 # optional:
+# - shwild - enhances xTests for testing;
 
 
 # ############################
@@ -143,6 +144,22 @@ if(BUILD_TESTING)
 
 		message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
 	endif()
+endif(BUILD_TESTING)
+
+
+# ############################
+# shwild
+
+if(BUILD_TESTING)
+
+	find_package(shwild QUIET)
+
+	if(shwild_FOUND)
+
+		message("-- CMake package shwild found (version ${shwild_VERSION})")
+
+		add_compile_definitions(XTESTS_USE_SHWILD)
+	endif(shwild_FOUND)
 endif(BUILD_TESTING)
 
 
