@@ -8,6 +8,7 @@ function(define_automated_test_program program_name entry_point_source_name)
 
 	target_link_libraries(${program_name}
 		xTests::core
+		$<${shwild_FOUND}:shwild::core>
 	)
 
 	if(WIN32)
