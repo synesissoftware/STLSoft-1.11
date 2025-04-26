@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::glob_sequence`.
  *
  * Created: 24th January 2009
- * Updated: 17th April 2025
+ * Updated: 23rd April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,13 +24,14 @@
  * includes
  */
 
+#include <platformstl/filesystem/path.hpp>
+
 /* xTests header files */
 #include <xtests/terse-api.h>
 #include <xtests/util/temp_directory.hpp>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <platformstl/filesystem/path.hpp>
 #include <unixstl/filesystem/filesystem_traits.hpp>
 
 /* Standard C header files */

@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readdir_sequence`.
  *
  * Created: sometime in 2010s
- * Updated: 17th April 2025
+ * Updated: 23rd April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -20,13 +20,14 @@
  * includes
  */
 
+#include <platformstl/filesystem/path.hpp>
+
 /* xTests header files */
 #include <xtests/terse-api.h>
 #include <xtests/util/temp_directory.hpp>
 
 /* STLSoft header files */
 #include <platformstl/filesystem/filesystem_traits.hpp>
-#include <platformstl/filesystem/path.hpp>
 #include <stlsoft/smartptr/scoped_handle.hpp>
 
 /* Standard C header files */
