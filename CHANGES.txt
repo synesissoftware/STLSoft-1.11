@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  26th April 2025
+; Updated:  27th April 2025
 
 ============================================================================
 
@@ -18,6 +18,17 @@ STLSoft - Changes
 
 
 
+
+
+Changes for 1.11.1-beta6 (27th April 2025)
+
+General:
+========
+
+ * Visual C++ compatibility (including _MSC_VER 1943);
+
+
+============================================================================
 
 Changes for 1.11.1-beta5 (26th April 2025)
 

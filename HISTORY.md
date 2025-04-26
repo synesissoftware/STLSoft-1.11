@@ -4,6 +4,12 @@
 ----
 
 
+27th April 2025 - 1.11.1-beta6 released
+---------------------------------------
+
+ * Visual C++ compatibility (including _MSC_VER 1943);
+
+
 26th April 2025 - 1.11.1-beta5 released
 ---------------------------------------
 
