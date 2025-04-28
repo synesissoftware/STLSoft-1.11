@@ -2,3 +2,4 @@
 add_subdirectory(dl)
 add_subdirectory(registry)
 add_subdirectory(synch)
+add_subdirectory(system)
