@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for `struct in_addr`.
  *
  * Created: ...
- * Updated: 20th March 2025
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -122,7 +122,7 @@ void ipv4_address_to_in_addr(
 {
     STLSOFT_ASSERT(NULL != addr);
 
-#ifdef INETSTL_OS_IS_WINDOWS
+#ifdef _WIN32
 
     addr->s_addr = inet_addr(ipv4_address);
 #else

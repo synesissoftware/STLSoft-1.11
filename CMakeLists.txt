@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  31st December 2024
+# Updated:  28th April 2025
 #
 # ######################################################################## #
 
@@ -85,6 +85,7 @@ else(MSVC)
 	endif(MSVC_USE_MT)
 endif(MSVC)
 
+
 # ##########################################################
 # dependencies, includes, options
 
@@ -118,6 +119,7 @@ option(BUILD_EXAMPLES "Build examples" ON)
 #
 # optional:
 # - shwild - enhances xTests for testing;
+# - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
 
 
 # ############################
@@ -150,17 +152,41 @@ endif(BUILD_TESTING)
 # ############################
 # shwild
 
-if(BUILD_TESTING)
+if(NOT (CMAKE_NO_SHWILD))
 
-	find_package(shwild QUIET)
+	if(BUILD_TESTING)
 
-	if(shwild_FOUND)
+		set(shwild_REQUIRED_VERSION_ 0.12)
 
-		message("-- CMake package shwild found (version ${shwild_VERSION})")
+		find_package(shwild ${shwild_REQUIRED_VERSION_} QUIET)
 
-		add_compile_definitions(XTESTS_USE_SHWILD)
-	endif(shwild_FOUND)
-endif(BUILD_TESTING)
+		if(shwild_FOUND)
+
+			message("-- CMake package shwild found (version ${shwild_VERSION}; ${shwild_REQUIRED_VERSION_} requested)")
+
+			add_compile_definitions(XTESTS_USE_SHWILD)
+		endif(shwild_FOUND)
+	endif(BUILD_TESTING)
+endif()
+
+
+# ############################
+# UNIXem
+
+if((USE_UNIXEM) AND (WIN32))
+
+	if((BUILD_EXAMPLES) OR (BUILD_TESTING))
+
+		set(UNIXem_REQUIRED_VERSION_ 1.12.7)
+
+		find_package(UNIXem ${UNIXem_REQUIRED_VERSION_} REQUIRED)
+
+		message("-- CMake package UNIXem found (version ${UNIXem_VERSION}; ${UNIXem_REQUIRED_VERSION_} requested)")
+
+		add_compile_definitions(_STLSOFT_FORCE_ANY_COMPILER)
+		add_compile_definitions(STLSOFT_HAS_UNIXEM)
+	endif()
+endif()
 
 
 # ############################
@@ -189,6 +215,27 @@ include(GNUInstallDirs)
 
 # ##########################################################
 # targets
+
+# ################################################
+# custom definitions
+
+if(UNIX)
+
+	set(_BUILD_AS_UNIX 1)
+else(UNIX)
+
+	if(WIN32)
+
+		if(USE_UNIXEM)
+
+			set(_BUILD_AS_UNIX 1)
+		else(USE_UNIXEM)
+
+			set(_BUILD_AS_WIN32 1)
+		endif(USE_UNIXEM)
+	endif(WIN32)
+endif(UNIX)
+
 
 # ################################################
 # main libraries

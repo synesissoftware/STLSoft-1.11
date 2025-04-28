@@ -4,7 +4,7 @@
  * Purpose: stopwatch class.
  *
  * Created: 16th January 2002
- * Updated: 20th March 2025
+ * Updated: 28th April 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MAJOR    5
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_MINOR    2
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     83
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_REVISION 3
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_STOPWATCH_EDIT     84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -281,10 +281,21 @@ stopwatch::compare_(
 ,   stopwatch::epoch_type const&    rhs
 )
 {
-    interval_type const lhs_us = interval_to_us_(lhs);
-    interval_type const rhs_us = interval_to_us_(rhs);
+    interval_type const lhs_us  =   interval_to_us_(lhs);
+    interval_type const rhs_us  =   interval_to_us_(rhs);
+    interval_type const r       =   lhs_us - rhs_us;
 
-    return lhs_us - rhs_us;
+    if (r < 0)
+    {
+        return -1;
+    }
+
+    if (r > 0)
+    {
+        return +1;
+    }
+
+    return 0;
 }
 
 inline

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for UNIX `timeval`.
  *
  * Created: 5th May 2014
- * Updated: 20th March 2025
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,6 +33,10 @@
 /* Standard C header files */
 #include <stdlib.h>
 #include <time.h>
+
+#ifdef _WIN32
+# include <unixem/time.h>
+#endif
 
 
 #ifdef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME
@@ -109,7 +113,11 @@ namespace {
 
         struct timeval  tv;
 
+#ifdef _WIN32
+        tv.tv_sec   =   static_cast<long>(::timegm(&tm));
+#else
         tv.tv_sec   =   ::timegm(&tm);
+#endif
         tv.tv_usec  =   13987;
 
         // ((void)&s1);

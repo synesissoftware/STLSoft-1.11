@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::glob_sequence`.
  *
  * Created: 24th January 2009
- * Updated: 23rd April 2025
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -18,6 +18,19 @@
 #define UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
 
 #include <unixstl/filesystem/glob_sequence.hpp>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+# ifndef _WIN32
+#  define PLATFORM_SUPPORTS_SOCKETS_
+# endif
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -36,7 +49,7 @@
 
 /* Standard C header files */
 #include <stdlib.h>
-#ifdef PLATFORMSTL_OS_IS_UNIX
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
 
 # include <sys/socket.h>
 # include <sys/un.h>
@@ -84,7 +97,7 @@ namespace {
     static void test_dot_and_stardotstar_and_directories_absolutePath();
     static void test_dotdot_and_stardotstar_and_files_absolutePath();
     static void test_dotdot_and_stardotstar_and_directories_absolutePath();
-#ifdef PLATFORMSTL_OS_IS_UNIX
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
 
     static void TEST_is_socket();
 #endif
@@ -139,7 +152,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_dot_and_stardotstar_and_directories_absolutePath);
         XTESTS_RUN_CASE(test_dotdot_and_stardotstar_and_files_absolutePath);
         XTESTS_RUN_CASE(test_dotdot_and_stardotstar_and_directories_absolutePath);
-#ifdef PLATFORMSTL_OS_IS_UNIX
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
 
         XTESTS_RUN_CASE(TEST_is_socket);
 #endif
@@ -620,7 +633,7 @@ static void test_dotdot_and_stardotstar_and_directories_absolutePath()
 
     XTESTS_TEST_PASSED();
 }
-#ifdef PLATFORMSTL_OS_IS_UNIX
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
 
 static void TEST_is_socket()
 {
