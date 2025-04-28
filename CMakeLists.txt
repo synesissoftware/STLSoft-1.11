@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  31st December 2024
+# Updated:  28th April 2025
 #
 # ######################################################################## #
 
@@ -150,17 +150,22 @@ endif(BUILD_TESTING)
 # ############################
 # shwild
 
-if(BUILD_TESTING)
+if(NOT (CMAKE_NO_SHWILD))
 
-	find_package(shwild QUIET)
+	if(BUILD_TESTING)
 
-	if(shwild_FOUND)
+		set(shwild_REQUIRED_VERSION_ 0.12)
 
-		message("-- CMake package shwild found (version ${shwild_VERSION})")
+		find_package(shwild ${shwild_REQUIRED_VERSION_} QUIET)
 
-		add_compile_definitions(XTESTS_USE_SHWILD)
-	endif(shwild_FOUND)
-endif(BUILD_TESTING)
+		if(shwild_FOUND)
+
+			message("-- CMake package shwild found (version ${shwild_VERSION}; ${shwild_REQUIRED_VERSION_} requested)")
+
+			add_compile_definitions(XTESTS_USE_SHWILD)
+		endif(shwild_FOUND)
+	endif(BUILD_TESTING)
+endif()
 
 
 # ############################
