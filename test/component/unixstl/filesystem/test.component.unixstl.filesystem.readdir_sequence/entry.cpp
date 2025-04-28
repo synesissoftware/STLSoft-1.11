@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::readdir_sequence`.
  *
  * Created: sometime in 2010s
- * Updated: 23rd April 2025
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,6 +14,19 @@
  */
 
 #include <unixstl/filesystem/readdir_sequence.hpp>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+# ifndef _WIN32
+#  define PLATFORM_SUPPORTS_SOCKETS_
+# endif
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -32,7 +45,7 @@
 
 /* Standard C header files */
 #include <stdlib.h>
-#ifdef PLATFORMSTL_OS_IS_UNIX
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
 
 # include <sys/socket.h>
 # include <sys/un.h>
@@ -47,7 +60,7 @@ namespace {
 
     static void test_empty_directory();
     static void test_non_empty_directory();
-#ifdef PLATFORMSTL_OS_IS_UNIX
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
 
     static void TEST_is_socket();
 #endif
@@ -68,7 +81,7 @@ int main(int argc, char *argv[])
     {
         XTESTS_RUN_CASE(test_empty_directory);
         XTESTS_RUN_CASE(test_non_empty_directory);
-#ifdef PLATFORMSTL_OS_IS_UNIX
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
 
         XTESTS_RUN_CASE(TEST_is_socket);
 #endif
@@ -156,7 +169,7 @@ static void test_non_empty_directory()
     XTESTS_TEST_BOOLEAN_FALSE(rds.empty());
 }
 
-#ifdef PLATFORMSTL_OS_IS_UNIX
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
 
 static void TEST_is_socket()
 {

@@ -1,16 +1,16 @@
 
-if(UNIX OR WIN32)
+if(_BUILD_AS_UNIX OR _BUILD_AS_WIN32)
 
 	add_subdirectory(inetstl)
-endif(UNIX OR WIN32)
+endif(_BUILD_AS_UNIX OR _BUILD_AS_WIN32)
 add_subdirectory(platformstl)
 add_subdirectory(stlsoft)
-if(UNIX)
+if(_BUILD_AS_UNIX)
 	add_subdirectory(unixstl)
-endif(UNIX)
-if(WIN32)
+endif(_BUILD_AS_UNIX)
+if(_BUILD_AS_WIN32)
 	add_subdirectory(winstl)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 
 # ############################## end of file ############################# #

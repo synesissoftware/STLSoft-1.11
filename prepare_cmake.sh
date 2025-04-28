@@ -13,6 +13,7 @@ MinGW=0
 NO_shwild=0
 RunMake=0
 TestingDisabled=0
+USE_UNIXem=0
 VerboseMakefile=0
 
 
@@ -53,6 +54,10 @@ while [[ $# -gt 0 ]]; do
     -m|--run-make)
 
       RunMake=1
+      ;;
+    --use-unixem)
+
+      USE_UNIXem=1
       ;;
     --help)
 
@@ -95,7 +100,8 @@ Flags/options:
 
     --msvc-mt
         when using Visual C++ (MSVC), the static runtime library will be
-        selected; the default is the dynamic runtime library
+        selected; the default is the dynamic runtime library. Has no effect
+        when not using Visual C++
 
     --no-shwild
         prevents recognising shwild library
@@ -103,6 +109,12 @@ Flags/options:
     -m
     --run-make
         executes make after a successful running of CMake
+
+    --use-unixem
+      when building on Windows, use the UNIXem library and define the
+      preprocessor symbol _STLSOFT_FORCE_ANY_COMPILER so as to emulate and
+      exercise UNIXSTL, not WinSTL (or COMSTL, etc.). Has no effect when not
+      executing on Windows
 
 
     standard flags:
@@ -138,6 +150,7 @@ cd $CMakeDir
 echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
+if [ $USE_UNIXem -ne 0 ]; then CMakeUSE_UNIXem="ON" ; else CMakeUSE_UNIXem="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
@@ -150,6 +163,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
+    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -162,6 +176,7 @@ else
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
+    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
     -S $Dir \
     -B $CMakeDir \
