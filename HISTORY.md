@@ -4,10 +4,14 @@
 ----
 
 
-27th April 2025 - 1.11.1-beta6 released
+28th April 2025 - 1.11.1-beta6 released
 ---------------------------------------
 
  * Visual C++ compatibility (including _MSC_VER 1943);
+ * CMake / UNIXem compatibility;
+ * Refactored / enhanced retrieval of home-directory, including, for Windows, trying first for `"USERPROFILE"` and then falls back to `"HOMEDRIVE"` and `"HOMEPATH"`;
+ * **prepare_cmake.sh** / **CMakeLists.txt** : + added '--no-shwild' / `CMAKE_NO_SHWILD`;
+ * Added **test.component.winstl.system.directory_functions**;
 
 
 26th April 2025 - 1.11.1-beta5 released

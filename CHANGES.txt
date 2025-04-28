@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  27th April 2025
+; Updated:  28th April 2025
 
 ============================================================================
 
@@ -19,13 +19,16 @@ STLSoft - Changes
 
 
 
-
-Changes for 1.11.1-beta6 (27th April 2025)
+Changes for 1.11.1-beta6 (28th April 2025)
 
 General:
 ========
 
  * Visual C++ compatibility (including _MSC_VER 1943);
+ * CMake / UNIXem compatibility;
+ * Refactored / enhanced retrieval of home-directory, including, for Windows, trying first for `"USERPROFILE"` and then falls back to `"HOMEDRIVE"` and `"HOMEPATH"`;
+ * **prepare_cmake.sh** / **CMakeLists.txt** : + added '--no-shwild' / `CMAKE_NO_SHWILD`;
+ * Added **test.component.winstl.system.directory_functions**;
 
 
 ============================================================================
