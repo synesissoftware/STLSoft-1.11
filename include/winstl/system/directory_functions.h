@@ -4,11 +4,11 @@
  * Purpose: Directory functions.
  *
  * Created: 29th January 2013
- * Updated: 5th November 2024
+ * Updated: 27th April 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2013-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -69,6 +69,10 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
+#ifndef WINSTL_API_INTERNAL_H_get_home_directory_
+# include <winstl/api/internal/get_home_directory_.h>
+#endif /* WINSTL_API_INTERNAL_H_get_home_directory_ */
+
 #ifndef WINSTL_INCL_WINSTL_API_external_h_SystemInformation
 # include <winstl/api/external/SystemInformation.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_SystemInformation */
@@ -109,35 +113,7 @@ winstl_C_get_home_directory_a(
 ,   ws_size_t   cchBuffer
 )
 {
-    /* NOTE: assumes that HOMEDRIVE and HOMEPATH can never be larger than _MAX_PATH */
-
-    ws_char_a_t     drive[WINSTL_CONST_MAX_PATH];
-    ws_char_a_t     directory[WINSTL_CONST_MAX_PATH];
-    DWORD const     cchDrive        =   WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableA("HOMEDRIVE", &drive[0], STLSOFT_NUM_ELEMENTS(drive));
-    DWORD const     cchDirectory    =   (0 == cchDrive) ? 0 : WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableA("HOMEPATH", &directory[0], STLSOFT_NUM_ELEMENTS(directory));
-    DWORD const     cchTotal        =   cchDrive + cchDirectory;
-
-    if (0 == cchDirectory)
-    {
-        return 0;
-    }
-
-    if (cchBuffer < 1 + cchTotal)
-    {
-        if (NULL != buffer &&
-            cchBuffer > 0)
-        {
-            buffer[0] = '\0';
-        }
-
-        return 1 + cchTotal;
-    }
-
-    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_a_t) * cchDrive);
-    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_a_t) * cchDirectory);
-    buffer[cchDrive + cchDirectory] = '\0';
-
-    return cchTotal;
+    return WINSTL_API_INTERNAL_System_get_home_directory_a_(buffer, STLSOFT_STATIC_CAST(DWORD, cchBuffer));
 }
 
 STLSOFT_INLINE
@@ -147,35 +123,7 @@ winstl_C_get_home_directory_w(
 ,   ws_size_t   cchBuffer
 )
 {
-    /* NOTE: assumes that HOMEDRIVE and HOMEPATH can never be larger than _MAX_PATH */
-
-    ws_char_w_t     drive[WINSTL_CONST_MAX_PATH];
-    ws_char_w_t     directory[WINSTL_CONST_MAX_PATH];
-    DWORD const     cchDrive        =   WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableW(L"HOMEDRIVE", &drive[0], STLSOFT_NUM_ELEMENTS(drive));
-    DWORD const     cchDirectory    =   (0 == cchDrive) ? 0 : WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableW(L"HOMEPATH", &directory[0], STLSOFT_NUM_ELEMENTS(directory));
-    DWORD const     cchTotal        =   cchDrive + cchDirectory;
-
-    if (0 == cchDirectory)
-    {
-        return 0;
-    }
-
-    if (cchBuffer < 1 + cchTotal)
-    {
-        if (NULL != buffer &&
-            cchBuffer > 0)
-        {
-            buffer[0] = '\0';
-        }
-
-        return 1 + cchTotal;
-    }
-
-    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(ws_char_w_t) * cchDrive);
-    STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(ws_char_w_t) * cchDirectory);
-    buffer[cchDrive + cchDirectory] = '\0';
-
-    return cchTotal;
+    return WINSTL_API_INTERNAL_System_get_home_directory_w_(buffer, STLSOFT_STATIC_CAST(DWORD, cchBuffer));
 }
 
 
@@ -204,9 +152,34 @@ get_home_directory(
 {
     return winstl_C_get_home_directory_w(buffer, cchBuffer);
 }
+# ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
+
+template <ss_size_t N>
+inline
+ws_size_t
+get_home_directory(
+    ws_char_a_t   (&ar)[N]
+)
+{
+    return get_home_directory(&ar[0], N);
+}
+
+template <ss_size_t N>
+inline
+ws_size_t
+get_home_directory(
+    ws_char_w_t   (&ar)[N]
+)
+{
+    return get_home_directory(&ar[0], N);
+}
+# endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
