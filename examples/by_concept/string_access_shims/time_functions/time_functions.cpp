@@ -4,7 +4,7 @@
  * Purpose: C++ example program demonstrating use of string access shims.
  *
  * Created: 27th January 2017
- * Updated: 6th October 2024
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -109,7 +109,7 @@ int main()
     {
         struct timeval  tv;
 
-        tv.tv_sec   =   ::timegm(tm);
+        tv.tv_sec   =   static_cast<long>(::timegm(tm));
         tv.tv_usec  =   123456;
 
         output_by("struct timeval", tv);
