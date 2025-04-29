@@ -556,6 +556,10 @@ readdir_sequence::validate_flags_(
                                     |   0
                                     |   fullPath
                                     |   absolutePath
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORTx
+                                    |   0
+                                    |   noThrowOnAccessFailure
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                                     |   0;
 
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
