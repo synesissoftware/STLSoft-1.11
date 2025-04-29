@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       171
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       172
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,9 @@
 #  include <unixstl/exception/unixstl_exception.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION */
 
+#ifndef STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION
+# include <stlsoft/exception/out_of_memory_exception.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION */
 #ifdef __GNUC__
 # ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_HPP_STD_BASIC_STRING
 #  include <stlsoft/shims/access/string/std/basic_string.hpp>
@@ -678,10 +681,26 @@ readdir_sequence::begin() const
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         int e = (0 != errno) ? errno : ENOMEM;
 
-        if (EACCES != e ||
+        if (ENOMEM == e)
+        {
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL(out_of_memory_exception)(STLSoftProjectIdentifier_UNIXSTL, STLSoftLibraryIdentifier_FileSystem, e));
+        }
+
+        bool const  access_denied   =   false
+                                    ||  EACCES == e
+# ifdef EPERM
+                                    ||  EPERM == e
+# endif /* EPERM */
+                                    ||  false
+                                    ;
+
+fprintf(stderr, "%s:%d:%s: e=%d (EACCES=%d, EPERM=%d)\n", __STLSOFT_FILE_LINE_FUNCTION__, e, EACCES, EPERM);
+
+
+        if (!access_denied ||
             0 == (noThrowOnAccessFailure & m_flags))
         {
-            STLSOFT_THROW_X(readdir_sequence_exception("failed to enumerate directory", errno, m_directory.c_str()));
+            STLSOFT_THROW_X(readdir_sequence_exception("failed to enumerate directory", e, m_directory.c_str()));
         }
 
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
