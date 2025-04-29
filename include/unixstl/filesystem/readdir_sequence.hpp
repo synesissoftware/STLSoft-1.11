@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 29th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       172
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       173
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -693,9 +693,6 @@ readdir_sequence::begin() const
 # endif /* EPERM */
                                     ||  false
                                     ;
-
-fprintf(stderr, "%s:%d:%s: e=%d (EACCES=%d, EPERM=%d)\n", __STLSOFT_FILE_LINE_FUNCTION__, e, EACCES, EPERM);
-
 
         if (!access_denied ||
             0 == (noThrowOnAccessFailure & m_flags))
