@@ -19,6 +19,16 @@ STLSoft - Changes
 
 
 
+Changes for 1.11.1-beta7 (29th April 2025)
+
+General:
+========
+
+ * `unixstl::readdir_sequence` now suppresses exception when `EACCES` if new flag `unixstl::readdir_sequence::noThrowOnAccessFailure` specified;
+
+
+============================================================================
+
 Changes for 1.11.1-beta6 (28th April 2025)
 
 General:
