@@ -4,6 +4,12 @@
 ----
 
 
+29th April 2025 - 1.11.1-beta7 released
+---------------------------------------
+
+ * `unixstl::readdir_sequence` now suppresses exception when `EACCES` if new flag `unixstl::readdir_sequence::noThrowOnAccessFailure` specified;
+
+
 28th April 2025 - 1.11.1-beta6 released
 ---------------------------------------
 
