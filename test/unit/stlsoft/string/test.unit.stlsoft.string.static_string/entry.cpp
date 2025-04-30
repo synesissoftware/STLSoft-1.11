@@ -2188,6 +2188,9 @@ static void TEST_overlong_ctor()
 #ifdef XTESTS_USE_SHWILD
 
         XTESTS_TEST_MULTIBYTE_STRING_MATCHES("operation would result in static_string (of 11 element(s)) that is too large for static limit (of 10 element(s))", x.what());
+#else
+
+        STLSOFT_SUPPRESS_UNUSED(x);
 #endif // XTESTS_USE_SHWILD
     }
 }
@@ -2226,6 +2229,9 @@ static void TEST_overlong_resize()
 #ifdef XTESTS_USE_SHWILD
 
         XTESTS_TEST_MULTIBYTE_STRING_MATCHES("operation would result in static_string (of ?* element(s)) that is too large for static limit (of 10 element(s))", x.what());
+#else
+
+        STLSOFT_SUPPRESS_UNUSED(x);
 #endif // XTESTS_USE_SHWILD
     }
 }
