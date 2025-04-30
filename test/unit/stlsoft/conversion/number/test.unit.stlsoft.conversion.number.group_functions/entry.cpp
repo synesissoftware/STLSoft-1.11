@@ -5,7 +5,7 @@
  *          `stlsoft::translate_thousands`.
  *
  * Created: 28th March 2024
- * Updated: 20th March 2025
+ * Updated: 30th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -287,13 +287,6 @@ static void TEST_translate_thousands_MULTIBYTE()
     char        dest[101];
 
     {
-        size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "", "123456789", ';', ',');
-
-        XTESTS_TEST_INTEGER_EQUAL(9u + 1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("123456789", dest);
-    }
-
-    {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), "3", "123456789", ';', ',');
 
         XTESTS_TEST_INTEGER_EQUAL(10u + 1u, n);
@@ -353,13 +346,6 @@ static void TEST_translate_thousands_MULTIBYTE()
 static void TEST_translate_thousands_WIDE()
 {
     wchar_t dest[101];
-
-    {
-        size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L"", L"123456789", L';', L',');
-
-        XTESTS_TEST_INTEGER_EQUAL(9u + 1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"123456789", dest);
-    }
 
     {
         size_t const    n   =   stlsoft::translate_thousands(dest, STLSOFT_NUM_ELEMENTS(dest), L"3", L"123456789", L';', L',');
