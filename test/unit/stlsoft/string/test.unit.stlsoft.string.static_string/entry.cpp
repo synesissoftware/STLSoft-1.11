@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_static_string`.
  *
  * Created: 4th November 2008
- * Updated: 26th April 2025
+ * Updated: 30th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -2185,7 +2185,13 @@ static void TEST_overlong_ctor()
     }
     catch (std::length_error& x)
     {
+#ifdef XTESTS_USE_SHWILD
+
         XTESTS_TEST_MULTIBYTE_STRING_MATCHES("operation would result in static_string (of 11 element(s)) that is too large for static limit (of 10 element(s))", x.what());
+#else
+
+        STLSOFT_SUPPRESS_UNUSED(x);
+#endif // XTESTS_USE_SHWILD
     }
 }
 
@@ -2220,7 +2226,13 @@ static void TEST_overlong_resize()
     }
     catch (std::length_error& x)
     {
+#ifdef XTESTS_USE_SHWILD
+
         XTESTS_TEST_MULTIBYTE_STRING_MATCHES("operation would result in static_string (of ?* element(s)) that is too large for static limit (of 10 element(s))", x.what());
+#else
+
+        STLSOFT_SUPPRESS_UNUSED(x);
+#endif // XTESTS_USE_SHWILD
     }
 }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

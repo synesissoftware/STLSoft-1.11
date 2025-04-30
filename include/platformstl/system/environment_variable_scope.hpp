@@ -4,7 +4,7 @@
  * Purpose: Definition of the environment_variable_scope class.
  *
  * Created: 26th April 2025
- * Updated: 26th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,10 +52,10 @@
 
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_SCOPE_MAJOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_SCOPE_MINOR    2
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_SCOPE_REVISION 13
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_SCOPE_EDIT     45
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_SCOPE_MAJOR     2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_SCOPE_MINOR     2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_SCOPE_REVISION  14
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_SCOPE_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -134,7 +134,14 @@ public: // construction
         , m_name(name)
         , m_current(test_ptr_(name, exists_flag_()))
     {
-        traits_type::set_variable(name, new_value);
+        if (ss_nullptr_k == new_value)
+        {
+            traits_type::erase_variable(name);
+        }
+        else
+        {
+            traits_type::set_variable(name, new_value);
+        }
     }
     /// T.B.C.
     ///

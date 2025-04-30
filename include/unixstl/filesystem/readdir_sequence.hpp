@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 28th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       170
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   0
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       175
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,9 @@
 #  include <unixstl/exception/unixstl_exception.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION */
 
+#ifndef STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION
+# include <stlsoft/exception/out_of_memory_exception.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION */
 #ifdef __GNUC__
 # ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_HPP_STD_BASIC_STRING
 #  include <stlsoft/shims/access/string/std/basic_string.hpp>
@@ -248,13 +251,18 @@ public:
 public:
     enum
     {
-            includeDots     =   0x0008  /*!< Requests that dots directories be included in the returned sequence. */
-        ,   directories     =   0x0010  /*!< Causes the search to include directories. */
-        ,   files           =   0x0020  /*!< Causes the search to include files. */
-        ,   sockets         =   0x0040  /*!< Causes the search to include sockets. */
-        ,   typeMask        =   0x0070
-        ,   fullPath        =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
-        ,   absolutePath    =   0x0200  /*!< The search directory is converted to an absolute path. */
+            none                    =   0x0000
+        ,   includeDots             =   0x0008  /*!< Requests that dots directories be included in the returned sequence. */
+        ,   directories             =   0x0010  /*!< Causes the search to include directories. */
+        ,   files                   =   0x0020  /*!< Causes the search to include files. */
+        ,   sockets                 =   0x0040  /*!< Causes the search to include sockets. */
+        ,   devices                 =   0x0080  /*!< Causes the search to include devices. */
+        ,   typeMask                =   0x00f0
+        ,   fullPath                =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
+        ,   absolutePath            =   0x0200  /*!< The search directory is converted to an absolute path. */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        ,   noThrowOnAccessFailure  =   0x2000  /*!< Suppresses an exception from being thrown if a directory cannot be accessed. */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     };
 /// @}
 
@@ -278,7 +286,7 @@ public:
     template <ss_typename_param_k S>
     readdir_sequence(
         S const&    directory
-    ,   flags_type  flags       =   directories | files
+    ,   flags_type  flags       =   directories | files | sockets
     )
         : m_flags(validate_flags_(flags))
         , m_directory(prepare_directory_T_(directory, flags))
@@ -548,18 +556,23 @@ readdir_sequence::validate_flags_(
                                     |   0
                                     |   directories
                                     |   files
+                                    |   devices
                                     |   sockets
                                     |   0
                                     |   fullPath
                                     |   absolutePath
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                                    |   0
+                                    |   noThrowOnAccessFailure
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                                     |   0;
 
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
     STLSOFT_SUPPRESS_UNUSED(validFlags);
 
-    if (0 == (flags & (directories | files | sockets)))
+    if (0 == (flags & (devices | directories | files | sockets)))
     {
-        flags |= (directories | files);
+        flags |= (directories | files | sockets);
     }
 
     return flags;
@@ -668,10 +681,33 @@ readdir_sequence::begin() const
     if (NULL == dir)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(readdir_sequence_exception("failed to enumerate directory", errno, m_directory.c_str()));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-        return const_iterator();
+        int e = (0 != errno) ? errno : ENOMEM;
+
+        if (ENOMEM == e)
+        {
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL(out_of_memory_exception)(STLSoftProjectIdentifier_UNIXSTL, STLSoftLibraryIdentifier_FileSystem, e));
+        }
+
+        bool const  access_denied   =   false
+                                    ||  EACCES == e
+# ifdef ENOTDIR
+                                    ||  ENOTDIR == e
+# endif /* ENOTDIR */
+# ifdef EPERM
+                                    ||  EPERM == e
+# endif /* EPERM */
+                                    ||  false
+                                    ;
+
+        if (!access_denied ||
+            0 == (noThrowOnAccessFailure & m_flags))
+        {
+            STLSOFT_THROW_X(readdir_sequence_exception("failed to enumerate directory", e, m_directory.c_str()));
+        }
+
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+        return const_iterator();
     }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -888,6 +924,14 @@ readdir_sequence::const_iterator::operator ++()
                 else
                 {
 #ifndef _WIN32
+                    if (m_flags & devices) // want devices
+                    {
+                        if (traits_type::is_device(&st))
+                        {
+                            // It is a device, so accept it
+                            break;
+                        }
+                    }
                     if (m_flags & sockets) // want sockets
                     {
                         if (traits_type::is_socket(&st))

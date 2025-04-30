@@ -4,7 +4,7 @@
  * Purpose: Byte formatting functions.
  *
  * Created: 23rd July 2006
- * Updated: 20th March 2025
+ * Updated: 30th March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MINOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  13
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      40
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -243,7 +243,7 @@ inline void format_hex_uint256(char buff[16], ss_byte_t const* py, bool requestU
  * \param buff Pointer to the destination character buffer to receive the
  *   formatted contents
  * \param cchBuff Number of character spaces available in the buffer
- * \param byteGrouping Number of bytes in a group. Must be 0, 1, 2, 4, 6, 16
+ * \param byteGrouping Number of bytes in a group. Must be 0, 1, 2, 4, 8, 16
  *   or 32. If 0, is reevaluated to sizeof(int)
  * \param groupSeparator Group separator. If \c nullptr, defaults to ""
  * \param groupsPerLine Number of groups per line

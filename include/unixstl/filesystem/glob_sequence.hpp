@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 28th April 2025
+ * Updated: 30th April 2025
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      191
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  0
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      192
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -381,6 +381,7 @@ public:
         ,   directories     =   0x0010  /*!< Causes the search to include directories */
         ,   files           =   0x0020  /*!< Causes the search to include files */
         ,   sockets         =   0x0040  /*!< Causes the search to include sockets */
+        ,   devices         =   0x0080  /*!< Causes the search to include devices */
         ,   noSort          =   0x0100  /*!< Does not sort entries. Corresponds to GLOB_NOSORT. */
         ,   markDirs        =   0x0200  /*!< Mark directories with a trailing path name separator. Corresponds to GLOB_MARK. */
         ,   absolutePath    =   0x0400  /*!< Return all entries in absolute format. Ignored when a dots directory is specified as the pattern. Note, absolute paths may not always be in canonical form, e.g. '/user/me/.' if specify ('/user/me', '.', absolutePath), in which case the caller is responsible for obtaining canonical form. */
@@ -900,6 +901,7 @@ glob_sequence::validate_flags_(
                                 |   includeDots
                                 |   directories
                                 |   files
+                                |   devices
                                 |   sockets
                                 |   noSort
                                 |   markDirs
@@ -923,7 +925,7 @@ glob_sequence::validate_flags_(
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
     STLSOFT_SUPPRESS_UNUSED(validFlags);
 
-    if (0 == (flags & (directories | files | sockets)))
+    if (0 == (flags & (devices | directories | files | sockets)))
     {
         flags |= (directories | files | sockets);
     }
@@ -1240,7 +1242,7 @@ glob_sequence::init_glob_3_(
     }
 #ifdef UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR // If this is not defined, we rely on stat
 
-    if (directories == (m_flags & (directories | files | sockets)))
+    if (directories == (m_flags & (devices | directories | files | sockets)))
     {
         // Ask for only directories
         glob_flags |= GLOB_ONLYDIR;
@@ -1343,11 +1345,11 @@ glob_sequence::init_glob_3_(
         us_bool_t const elidingDots = isPattern0Wild && (0 == (m_flags & includeDots));
 
 
-        if (elidingDots ||                                      // 1
+        if (elidingDots ||                                                          // 1
 #ifndef UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR
-            directories == (m_flags & (directories | files | sockets)) || // 2
+            directories == (m_flags & (devices | directories | files | sockets)) || // 2
 #endif /* !UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR */
-            0 == (m_flags & directories))         // 3
+            0 == (m_flags & directories))                                           // 3
         {
             if (!m_buffer.resize(cItems))
             {
@@ -1419,7 +1421,7 @@ glob_sequence::init_glob_3_(
 #ifdef UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYREG
 
         // 1. Looking for files only
-        if (files == (m_flags & (directories | files | sockets)))
+        if (files == (m_flags & (devices | directories | files | sockets)))
         {
             ; // Nothing to do
         }
@@ -1435,7 +1437,7 @@ glob_sequence::init_glob_3_(
         else
 #endif /* UNIXSTL_GLOB_SEQUENCE_TRUST_ONLYDIR */
         // 3. Looking for anything
-        if (0 == (m_flags & (directories | files | sockets)))
+        if (0 == (m_flags & (devices | directories | files | sockets)))
         {
             // NOTE: this conditional branch is a future-compatibility
             // feature, for when sockets and links are supported
@@ -1508,6 +1510,12 @@ glob_sequence::init_glob_3_(
                     }
                     else
 #ifndef _WIN32
+                    if (devices == (m_flags & devices) &&
+                        traits_type::is_device(&st))
+                    {
+                        continue; // A file, so accept it
+                    }
+                    else
                     if (sockets == (m_flags & sockets) &&
                         traits_type::is_socket(&st))
                     {

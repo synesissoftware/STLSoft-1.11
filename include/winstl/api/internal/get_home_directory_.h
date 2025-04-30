@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for obtaining home directory.
  *
  * Created: 27th April 2025
- * Updated: 27th April 2025
+ * Updated: 30th April 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -116,6 +116,7 @@ int WINSTL_API_INTERNAL_System_get_home_directory_a_(
                 {
                     STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(CHAR) * cchDrive);
                     STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(CHAR) * cchDirectory);
+                    buffer[cchDrive + cchDirectory] = '\0';
 
                     return cchDrive + cchDirectory;
                 }

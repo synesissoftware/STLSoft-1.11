@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  28th April 2025
+; Updated:  30th April 2025
 
 ============================================================================
 
@@ -18,6 +18,27 @@ STLSoft - Changes
 
 
 
+
+Changes for 1.11.1-beta7 (30th April 2025)
+
+General:
+========
+
+ * Support for searching of devices on the file system, primarily concerning `unixstl::glob_sequence` and `unixstl::readdir_sequence`;
+
+Changes:
+========
+
+Support for searching of devices on the file system:
+ * `unixstl::filesystem_traits` : + added `::is_device()` overloads;
+ * `unixstl::glob_sequence` : + added member constant `devices` and filtering for devices;
+ * `unixstl::readdir_sequence` : + added member constant `devices` and filtering for devices;
+ * `unixstl::readdir_sequence` : + added conditional suppression of access-related exceptions with new flag `noThrowOnAccessFailure`;
+ * `winstl::findfile_sequence` : + added member constant `devices` (with value 0) for structural conformance with `unixstl::glob_sequence`;
+ * `winstl::readdir_sequence` : + added member constant `devices` (with value 0) for structural conformance with `unixstl::readdir_sequence`;
+
+
+============================================================================
 
 Changes for 1.11.1-beta6 (28th April 2025)
 
