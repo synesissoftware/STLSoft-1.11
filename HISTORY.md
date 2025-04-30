@@ -4,10 +4,10 @@
 ----
 
 
-29th April 2025 - 1.11.1-beta7 released
+30th April 2025 - 1.11.1-beta7 released
 ---------------------------------------
 
- * `unixstl::readdir_sequence` now suppresses exception when `EACCES` if new flag `unixstl::readdir_sequence::noThrowOnAccessFailure` specified;
+ * Support for searching of devices on the file system, primarily concerning `unixstl::glob_sequence` and `unixstl::readdir_sequence`;
 
 
 28th April 2025 - 1.11.1-beta6 released

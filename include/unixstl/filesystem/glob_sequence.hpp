@@ -423,7 +423,7 @@ public:
     ss_explicit_k
     glob_sequence(
         S const&    pattern
-    ,   us_int_t    flags = devices | directories | files | sockets
+    ,   us_int_t    flags = directories | files | sockets
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -466,7 +466,7 @@ public:
     glob_sequence(
         S1 const&   directory
     ,   S2 const&   pattern
-    ,   us_int_t    flags = devices | directories | files | sockets
+    ,   us_int_t    flags = directories | files | sockets
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -501,7 +501,7 @@ public:
     glob_sequence(
         S const& pattern
     )
-        : m_flags(validate_flags_(devices | directories | files | sockets))
+        : m_flags(validate_flags_(directories | files | sockets))
         , m_buffer(1)
     {
         m_cItems = init_glob_(NULL, STLSOFT_NS_QUAL(c_str_ptr)(pattern));
@@ -525,14 +525,14 @@ public:
     glob_sequence(
         char_type const*    directory
     ,   char_type const*    pattern
-    ,   us_int_t            flags = devices | directories | files | sockets
+    ,   us_int_t            flags = directories | files | sockets
     );
 
     template <ss_typename_param_k S>
     glob_sequence(
         S const&    directory
     ,   char const* pattern
-    ,   us_int_t    flags = devices | directories | files | sockets
+    ,   us_int_t    flags = directories | files | sockets
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -546,7 +546,7 @@ public:
     glob_sequence(
         S const&    directory
     ,   S const&    pattern
-    ,   us_int_t    flags = devices | directories | files | sockets
+    ,   us_int_t    flags = directories | files | sockets
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -560,13 +560,13 @@ public:
     ss_explicit_k
     glob_sequence(
         char_type const*    pattern
-    ,   us_int_t            flags = devices | directories | files | sockets
+    ,   us_int_t            flags = directories | files | sockets
     );
 
     glob_sequence(
         char_type const*    directory
     ,   char_type const*    pattern
-    ,   us_int_t            flags = devices | directories | files | sockets
+    ,   us_int_t            flags = directories | files | sockets
     );
 #else /* ? constructor form */
 
@@ -589,7 +589,7 @@ public:
         char_type const*    directory
     ,   char_type const*    pattern
     ,   char_type           delim
-    ,   us_int_t            flags = devices | directories | files | sockets
+    ,   us_int_t            flags = directories | files | sockets
     );
 #endif /* 0 */
 
@@ -927,7 +927,7 @@ glob_sequence::validate_flags_(
 
     if (0 == (flags & (devices | directories | files | sockets)))
     {
-        flags |= (devices | directories | files | sockets);
+        flags |= (directories | files | sockets);
     }
 #ifndef UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
 

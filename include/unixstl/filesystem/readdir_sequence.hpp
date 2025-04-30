@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       174
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       175
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -286,7 +286,7 @@ public:
     template <ss_typename_param_k S>
     readdir_sequence(
         S const&    directory
-    ,   flags_type  flags       =   directories | files
+    ,   flags_type  flags       =   directories | files | sockets
     )
         : m_flags(validate_flags_(flags))
         , m_directory(prepare_directory_T_(directory, flags))
@@ -561,7 +561,7 @@ readdir_sequence::validate_flags_(
                                     |   0
                                     |   fullPath
                                     |   absolutePath
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORTx
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                                     |   0
                                     |   noThrowOnAccessFailure
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -572,7 +572,7 @@ readdir_sequence::validate_flags_(
 
     if (0 == (flags & (devices | directories | files | sockets)))
     {
-        flags |= (directories | files);
+        flags |= (directories | files | sockets);
     }
 
     return flags;

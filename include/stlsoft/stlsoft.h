@@ -382,7 +382,7 @@
 # define _STLSOFT_VER_1_11_1_B4     0x010b0184  /*!< Version 1.11.1 beta 4 (22nd April 2025) */
 # define _STLSOFT_VER_1_11_1_B5     0x010b0185  /*!< Version 1.11.1 beta 5 (26th April 2025) */
 # define _STLSOFT_VER_1_11_1_B6     0x010b0186  /*!< Version 1.11.1 beta 6 (28th April 2025) */
-# define _STLSOFT_VER_1_11_1_B7     0x010b0187  /*!< Version 1.11.1 beta 7 (29th April 2025) */
+# define _STLSOFT_VER_1_11_1_B7     0x010b0187  /*!< Version 1.11.1 beta 7 (30th April 2025) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
