@@ -103,6 +103,28 @@ int main(int argc, char* argv[])
 
     {
         std::cout << std::endl;
+        std::cout << "searching for devices in '" << root_dir << "':" << std::endl;
+
+        try
+        {
+            readdir_sequence devices(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::devices);
+
+            for (readdir_sequence::const_iterator i = devices.begin(); devices.end() != i; ++i)
+            {
+                std::cout
+                    << "\t"
+                    << *i
+                    << std::endl;
+            }
+        }
+        catch (unixstl::unixstl_exception& x)
+        {
+            std::cerr << "EXCEPTION: " << x.what() << std::endl;
+        }
+    }
+
+    {
+        std::cout << std::endl;
         std::cout << "searching for sockets in '" << root_dir << "':" << std::endl;
 
         try

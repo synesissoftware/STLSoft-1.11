@@ -4,7 +4,7 @@
  * Purpose: Platform header for the readdir_sequence components.
  *
  * Created: 29th April 2006
- * Updated: 20th March 2025
+ * Updated: 30th March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR    0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     41
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION 0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,6 +139,7 @@ public:
         ,   directories     =   0x0010  /*!< Causes the search to include directories. */
         ,   files           =   0x0020  /*!< Causes the search to include files. */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+        ,   devices         =   0x0000  /*!< This has no effect on Windows, but is here for structural conformance compatibility with unixstl::readdir_sequence. */
         ,   sockets         =   0x0000  /*!< This has no effect on Windows, but is here for structural conformance compatibility with unixstl::readdir_sequence. */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
         ,   fullPath        =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
