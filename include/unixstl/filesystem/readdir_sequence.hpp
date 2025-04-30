@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       173
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   0
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       174
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -256,7 +256,8 @@ public:
         ,   directories             =   0x0010  /*!< Causes the search to include directories. */
         ,   files                   =   0x0020  /*!< Causes the search to include files. */
         ,   sockets                 =   0x0040  /*!< Causes the search to include sockets. */
-        ,   typeMask                =   0x0070
+        ,   devices                 =   0x0080  /*!< Causes the search to include devices. */
+        ,   typeMask                =   0x00f0
         ,   fullPath                =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
         ,   absolutePath            =   0x0200  /*!< The search directory is converted to an absolute path. */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -555,6 +556,7 @@ readdir_sequence::validate_flags_(
                                     |   0
                                     |   directories
                                     |   files
+                                    |   devices
                                     |   sockets
                                     |   0
                                     |   fullPath
@@ -568,7 +570,7 @@ readdir_sequence::validate_flags_(
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
     STLSOFT_SUPPRESS_UNUSED(validFlags);
 
-    if (0 == (flags & (directories | files | sockets)))
+    if (0 == (flags & (devices | directories | files | sockets)))
     {
         flags |= (directories | files);
     }
@@ -688,6 +690,9 @@ readdir_sequence::begin() const
 
         bool const  access_denied   =   false
                                     ||  EACCES == e
+# ifdef ENOTDIR
+                                    ||  ENOTDIR == e
+# endif /* ENOTDIR */
 # ifdef EPERM
                                     ||  EPERM == e
 # endif /* EPERM */
@@ -919,6 +924,14 @@ readdir_sequence::const_iterator::operator ++()
                 else
                 {
 #ifndef _WIN32
+                    if (m_flags & devices) // want devices
+                    {
+                        if (traits_type::is_device(&st))
+                        {
+                            // It is a device, so accept it
+                            break;
+                        }
+                    }
                     if (m_flags & sockets) // want sockets
                     {
                         if (traits_type::is_socket(&st))

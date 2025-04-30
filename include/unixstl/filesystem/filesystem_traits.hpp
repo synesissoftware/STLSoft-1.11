@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 20th March 2025
+ * Updated: 30th April 2025
  *
  * Thanks:  To Sergey Nikulov, for spotting a preprocessor typo that broke
  *          GCC -pedantic; to Michal Makowski and Zar Eindl for reporting
@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     15
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      186
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     16
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  0
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      187
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -787,6 +787,8 @@ public:
     /// Returns whether the given path represents a directory
     static bool_type    is_directory(char_type const* path);
 #ifndef _WIN32
+    /// Returns whether the given path represents a device
+    static bool_type    is_device(char_type const* path);
     /// Returns whether the given path represents a socket
     static bool_type    is_socket(char_type const* path);
 #endif /* OS */
@@ -805,6 +807,8 @@ public:
     /// Returns whether the given stat info represents a directory
     static bool_type    is_directory(stat_data_type const* stat_data);
 #ifndef _WIN32
+    /// Returns whether the given stat info represents a device
+    static bool_type    is_device(stat_data_type const* stat_data);
     /// Returns whether the given stat info represents a socket
     static bool_type    is_socket(stat_data_type const* stat_data);
 #endif /* OS */
@@ -2346,21 +2350,28 @@ public: // file-system state
     {
         stat_data_type sd;
 
-        return class_type::stat(path, &sd) && S_IFREG == (sd.st_mode & S_IFMT);
+        return class_type::stat(path, &sd) && class_type::is_file(&sd);
     }
     static bool_type is_directory(char_type const* path)
     {
         stat_data_type sd;
 
-        return class_type::stat(path, &sd) && S_IFDIR == (sd.st_mode & S_IFMT);
+        return class_type::stat(path, &sd) && class_type::is_directory(&sd);
     }
 #ifndef _WIN32
+
+    static bool_type is_device(char_type const* path)
+    {
+        stat_data_type sd;
+
+        return class_type::stat(path, &sd) && class_type::is_device(&sd);
+    }
 
     static bool_type is_socket(char_type const* path)
     {
         stat_data_type sd;
 
-        return class_type::stat(path, &sd) && S_IFSOCK == (sd.st_mode & S_IFMT);
+        return class_type::stat(path, &sd) && class_type::is_socket(&sd);
     }
 #endif /* OS */
     static bool_type is_link(char_type const* path)
@@ -2463,6 +2474,35 @@ public: // file-system state
 #endif /* 0 */
     }
 #ifndef _WIN32
+
+    static bool_type is_device(stat_data_type const* stat_data)
+    {
+#if 1
+        switch (stat_data->st_mode & S_IFMT)
+        {
+#ifdef S_IFBLK
+        case S_IFBLK:
+#endif // S_IFBLK
+#ifdef S_IFCHR
+        case S_IFCHR:
+#endif // S_IFCHR
+#ifdef S_IFIFO
+        case S_IFIFO:
+#endif // S_IFIFO
+#ifdef S_IFWHT
+        case S_IFWHT:
+#endif // S_IFWHT
+            return true;
+
+        default:
+
+            return false;
+        }
+#else /* ? 0 */
+
+        return false;
+#endif /* 0 */
+    }
 
     static bool_type is_socket(stat_data_type const* stat_data)
     {
