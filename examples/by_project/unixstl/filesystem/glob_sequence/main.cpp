@@ -57,6 +57,7 @@ int main(int argc, char* argv[])
 
 
     {
+        std::cout << std::endl;
         std::cout << "searching for directories in '" << root_dir << "':" << std::endl;
 
         glob_sequence directories(root_dir, "*", glob_sequence::absolutePath | glob_sequence::directories);
@@ -72,6 +73,7 @@ int main(int argc, char* argv[])
     }
 
     {
+        std::cout << std::endl;
         std::cout << "searching for files in '" << root_dir << "':" << std::endl;
 
         glob_sequence files(root_dir, "*", glob_sequence::absolutePath | glob_sequence::files);
@@ -86,6 +88,7 @@ int main(int argc, char* argv[])
     }
 
     {
+        std::cout << std::endl;
         std::cout << "searching for sockets in '" << root_dir << "':" << std::endl;
 
         glob_sequence sockets(root_dir, "*", glob_sequence::absolutePath | glob_sequence::sockets);
@@ -100,6 +103,7 @@ int main(int argc, char* argv[])
     }
 
     {
+        std::cout << std::endl;
         std::cout << "searching for files + sockets in '" << root_dir << "':" << std::endl;
 
         glob_sequence entries(root_dir, "*", glob_sequence::absolutePath | glob_sequence::files | glob_sequence::sockets);
@@ -114,6 +118,7 @@ int main(int argc, char* argv[])
     }
 
     {
+        std::cout << std::endl;
         std::cout << "searching for directories + files + sockets in '" << root_dir << "':" << std::endl;
 
         glob_sequence entries(root_dir, "*", glob_sequence::absolutePath | glob_sequence::directories | glob_sequence::files | glob_sequence::sockets);
@@ -129,6 +134,7 @@ int main(int argc, char* argv[])
     }
 
     {
+        std::cout << std::endl;
         std::cout << "searching for all types in '" << root_dir << "':" << std::endl;
 
         glob_sequence entries(root_dir, "*", glob_sequence::absolutePath);
