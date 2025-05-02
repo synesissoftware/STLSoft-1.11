@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 29th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 10
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     594
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     595
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -3200,7 +3200,7 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
 #   define STLSOFT_NUM_ELEMENTS(ar)                         sizeof(STLSOFT_NS_QUAL(ss_static_array_size)(ar).c)
 #  endif /* 0 */
 # else /* ? __cplusplus && STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
-#  define STLSOFT_NUM_ELEMENTS(ar)                      STLSOFT_NUM_ELEMENTS_(ar)
+#  define STLSOFT_NUM_ELEMENTS(ar)                          STLSOFT_NUM_ELEMENTS_(ar)
 # endif /* __cplusplus && STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 # define STLSOFT_NUM_ELEMENTS(ar)
