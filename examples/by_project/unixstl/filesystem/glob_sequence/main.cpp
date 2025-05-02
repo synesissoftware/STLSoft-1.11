@@ -129,6 +129,102 @@ int main(int argc, char* argv[])
 #else // ? GLOB_BRACE
 
         {
+            glob_sequence directories(root_dir, ".*", flags);
+
+            for (glob_sequence::const_iterator i = directories.begin(); directories.end() != i; ++i)
+            {
+                std::cout
+                    << "\t"
+                    << *i
+                    << "/"
+                    << std::endl;
+            }
+        }
+
+        {
+            glob_sequence directories(root_dir, "*", flags);
+
+            for (glob_sequence::const_iterator i = directories.begin(); directories.end() != i; ++i)
+            {
+                std::cout
+                    << "\t"
+                    << *i
+                    << "/"
+                    << std::endl;
+            }
+        }
+#endif // GLOB_BRACE
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "searching for files in '" << root_dir << "':" << std::endl;
+
+        int flags = glob_sequence::absolutePath | glob_sequence::files;
+
+#ifdef GLOB_BRACE
+
+        flags |= glob_sequence::bracePatterns;
+
+        glob_sequence files(root_dir, "{.*,*}", flags);
+
+        for (glob_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << std::endl;
+        }
+#else // ? GLOB_BRACE
+
+        {
+            glob_sequence files(root_dir, ".*", flags);
+
+            for (glob_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+            {
+                std::cout
+                    << "\t"
+                    << *i
+                    << std::endl;
+            }
+        }
+
+        {
+            glob_sequence files(root_dir, "*", flags);
+
+            for (glob_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+            {
+                std::cout
+                    << "\t"
+                    << *i
+                    << std::endl;
+            }
+        }
+#endif // GLOB_BRACE
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "searching for non-hidden files in '" << root_dir << "':" << std::endl;
+
+        int flags = glob_sequence::absolutePath | glob_sequence::files | glob_sequence::skipHiddenFiles;
+
+#ifdef GLOB_BRACE
+
+        flags |= glob_sequence::bracePatterns;
+
+        glob_sequence files(root_dir, "{.*,*}", flags);
+
+        for (glob_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << std::endl;
+        }
+#else // ? GLOB_BRACE
+
+        {
             glob_sequence files(root_dir, ".*", flags);
 
             for (glob_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
@@ -259,6 +355,53 @@ int main(int argc, char* argv[])
                     << "\t"
                     << *i
                     << (fs_traits_t::is_directory(*i) ? "/" : "")
+                    << std::endl;
+            }
+        }
+#endif // GLOB_BRACE
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "searching for all non-hidden entries in '" << root_dir << "':" << std::endl;
+
+        int flags = glob_sequence::absolutePath | glob_sequence::skipHiddenDirs | glob_sequence::skipHiddenFiles | glob_sequence::markDirs;
+
+#ifdef GLOB_BRACE
+
+        flags |= glob_sequence::bracePatterns;
+
+        glob_sequence entries(root_dir, "{.*,*}", flags);
+
+        for (glob_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << std::endl;
+        }
+#else // ? GLOB_BRACE
+
+        {
+            glob_sequence entries(root_dir, ".*", flags);
+
+            for (glob_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+            {
+                std::cout
+                    << "\t"
+                    << *i
+                    << std::endl;
+            }
+        }
+
+        {
+            glob_sequence entries(root_dir, "*", flags);
+
+            for (glob_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+            {
+                std::cout
+                    << "\t"
+                    << *i
                     << std::endl;
             }
         }

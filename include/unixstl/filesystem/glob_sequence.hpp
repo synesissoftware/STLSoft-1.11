@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      193
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  0
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      194
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -400,6 +400,8 @@ public:
 
         ,   expandTilde     =   0x8000  /*!< Expand ~ and ~<user> directories. Corresponds to GLOB_TILDE. */
 #endif /* GLOB_TILDE */
+        ,   skipHiddenFiles =   0x0002  //!< Causes the search to skip files (and devices and sockets) marked hidden
+        ,   skipHiddenDirs  =   0x0004  //!< Causes the search to skip directories marked hidden
     };
 /// @}
 
@@ -925,6 +927,9 @@ glob_sequence::validate_flags_(
 
                                 |   expandTilde
 #endif /* GLOB_TILDE */
+                                |   0
+                                |   skipHiddenFiles
+                                |   skipHiddenDirs
                                 |   0
                                 ;
 
@@ -1466,7 +1471,24 @@ glob_sequence::init_glob_3_(
             {
                 // Now need to process the file, by using stat
                 traits_type::stat_data_type st;
-                char_type const* const      entry = *begin;
+                char_type const* const      entry       =   *begin;
+                bool const                  is_hidden   =   '.' == entry[cchDirectory];
+
+                if (is_hidden)
+                {
+                    if ((skipHiddenDirs | skipHiddenFiles) == ((skipHiddenDirs | skipHiddenFiles) & m_flags))
+                    {
+                        // since we aim to elide all hidden things, so we can
+                        // skip now (without needed to call `stat()`)
+
+                        // Swap with whatever is at base[0]
+                        STLSOFT_NS_QUAL(std_swap)(*begin, *base);
+                        ++base;
+                        --cItems;
+
+                        continue;
+                    }
+                }
 
                 // Shortcut relying on mark, based on the assumption that
                 // a strlen()-equiv. operation is faster than a call to
@@ -1497,16 +1519,42 @@ glob_sequence::init_glob_3_(
 # endif /* !UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK */
                 if (!traits_type::stat(entry, &st))
                 {
-                    // We could throw an exception here, but it might just be
-                    // the case that a file has been deleted subsequent to its
-                    // having been included in the glob list. As such, it makes
-                    // more sense to just kick it from the list
+                    // We could throw an exception here, but it might just
+                    // be the case that a file has been deleted subsequent
+                    // to its having been included in the glob list. As
+                    // such, it makes more sense to just kick it from the
+                    // list.
 
 // TODO: Consider adding a callback function here, which can elect to throw, if the application requires that. Also, consider a throwOnStat flag
                 }
                 else
                 { // stat() succeeded
 
+                    bool should_trim = false;
+
+                    if (is_hidden)
+                    {
+                        if (traits_type::is_directory(&st))
+                        {
+                            if (skipHiddenDirs & m_flags)
+                            {
+                                should_trim = true;
+                            }
+                        }
+                        else
+                        {
+                            if (skipHiddenFiles & m_flags)
+                            {
+                                should_trim = true;
+                            }
+                        }
+                    }
+
+                    if (should_trim)
+                    {
+                        // fall through to strip
+                    }
+                    else
                     if (directories == (m_flags & directories) &&
                         traits_type::is_directory(&st))
                     {
