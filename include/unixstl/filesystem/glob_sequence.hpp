@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 30th April 2025
+ * Updated: 3rd May 2025
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      192
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      193
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -687,7 +687,12 @@ private:
     us_size_t           init_glob_(char_type const* directory, char_type const* pattern);
     us_size_t           init_glob_1_(size_type bufferSize, char_type* combinedPath);
     us_size_t           init_glob_2_(char_type const* patternDir, char_type const* pattern0);
-    us_size_t           init_glob_3_(char_type const* pattern, us_bool_t isPattern0Wild);
+    us_size_t           init_glob_3_(
+        size_type           cchDirectory
+    ,   char_type const*    pattern
+    ,   size_type           cchPattern
+    ,   us_bool_t           isPattern0Wild
+    );
 /// @}
 
 /// \name Members
@@ -920,7 +925,8 @@ glob_sequence::validate_flags_(
 
                                 |   expandTilde
 #endif /* GLOB_TILDE */
-                                |   0;
+                                |   0
+                                ;
 
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
     STLSOFT_SUPPRESS_UNUSED(validFlags);
@@ -1211,19 +1217,23 @@ glob_sequence::init_glob_2_(
             traits_type::char_copy(&scratch_[0] + baseLen, pattern0, patLen);
             scratch_[baseLen + patLen] = '\0';
 
-            return init_glob_3_(scratch_.data(), isPattern0Wild);
+            return init_glob_3_(baseLen, scratch_.data(), patLen, isPattern0Wild);
         }
     }
     else
     {
-        return init_glob_3_(pattern0, isPattern0Wild);
+        size_type const cchPattern0 = traits_type::str_len(pattern0);
+
+        return init_glob_3_(0, pattern0, cchPattern0, isPattern0Wild);
     }
 }
 
 inline
 us_size_t
 glob_sequence::init_glob_3_(
-    char_type const*    pattern
+    size_type           cchDirectory
+,   char_type const*    pattern
+,   size_type           cchPattern
 ,   us_bool_t           isPattern0Wild
 )
 {
