@@ -108,9 +108,9 @@ int main(int argc, char* argv[])
 
     {
         std::cout << std::endl;
-        std::cout << "searching for files in '" << root_dir << "':" << std::endl;
+        std::cout << "searching for non-hidden directories in '" << root_dir << "':" << std::endl;
 
-        int flags = glob_sequence::absolutePath | glob_sequence::directories;
+        int flags = glob_sequence::absolutePath | glob_sequence::directories | glob_sequence::skipHiddenDirs;
 
 #ifdef GLOB_BRACE
 
@@ -217,7 +217,7 @@ int main(int argc, char* argv[])
 
     {
         std::cout << std::endl;
-        std::cout << "searching for all types in '" << root_dir << "':" << std::endl;
+        std::cout << "searching for all entries in '" << root_dir << "':" << std::endl;
 
         int flags = glob_sequence::absolutePath;
 
