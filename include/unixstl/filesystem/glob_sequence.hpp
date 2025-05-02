@@ -1246,6 +1246,8 @@ glob_sequence::init_glob_3_(
 {
     us_int_t glob_flags = 0;
 
+    STLSOFT_SUPPRESS_UNUSED(cchPattern);
+
     if (m_flags & noSort)
     {
         // Don't bother sorting
