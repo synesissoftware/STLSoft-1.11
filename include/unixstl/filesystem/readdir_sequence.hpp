@@ -4,7 +4,7 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 30th April 2025
+ * Updated: 2nd May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       175
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       176
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -263,6 +263,8 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ,   noThrowOnAccessFailure  =   0x2000  /*!< Suppresses an exception from being thrown if a directory cannot be accessed. */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        ,   skipHiddenFiles         =   0x4000  //!< Causes the search to skip files (and devices and sockets) marked hidden
+        ,   skipHiddenDirs          =   0x8000  //!< Causes the search to skip directories marked hidden
     };
 /// @}
 
@@ -565,6 +567,8 @@ readdir_sequence::validate_flags_(
                                     |   0
                                     |   noThrowOnAccessFailure
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+                                    |   skipHiddenFiles
+                                    |   skipHiddenDirs
                                     |   0;
 
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
@@ -882,15 +886,29 @@ readdir_sequence::const_iterator::operator ++()
         {
             UNIXSTL_ASSERT(NULL != m_entry->d_name);
 
-            // Check for dots
+            bool const is_hidden = '.' == m_entry->d_name[0];
 
-            if (0 == (m_flags & includeDots))
+            if (is_hidden)
             {
-                if (traits_type::is_dots(m_entry->d_name))
+                // Check for dots
+
+                if (0 == (m_flags & includeDots))
                 {
-                    continue; // Don't want dots; skip it
+                    if (traits_type::is_dots(m_entry->d_name))
+                    {
+                        continue; // Don't want dots; skip it
+                    }
+                }
+
+                if ((skipHiddenDirs | skipHiddenFiles) == ((skipHiddenDirs | skipHiddenFiles) & m_flags))
+                {
+                    // since we aim to elide all hidden things, so we can
+                    // skip now (without needed to call `stat()`)
+
+                    continue;
                 }
             }
+
 
             // If either
             //
@@ -923,6 +941,24 @@ readdir_sequence::const_iterator::operator ++()
                 }
                 else
                 {
+                    if (is_hidden)
+                    {
+                        if (traits_type::is_directory(&st))
+                        {
+                            if (skipHiddenDirs & m_flags)
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            if (skipHiddenFiles & m_flags)
+                            {
+                                continue;
+                            }
+                        }
+                    }
+
 #ifndef _WIN32
                     if (m_flags & devices) // want devices
                     {
