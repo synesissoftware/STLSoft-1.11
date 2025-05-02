@@ -4,7 +4,7 @@
  * Purpose: Platform header for the readdir_sequence components.
  *
  * Created: 29th April 2006
- * Updated: 30th March 2025
+ * Updated: 2nd May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,9 +54,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR    2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION 0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     42
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -142,6 +142,8 @@ public:
         ,   devices         =   0x0000  /*!< This has no effect on Windows, but is here for structural conformance compatibility with unixstl::readdir_sequence. */
         ,   sockets         =   0x0000  /*!< This has no effect on Windows, but is here for structural conformance compatibility with unixstl::readdir_sequence. */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+        ,   skipHiddenFiles =   0x1000  //!< Causes the search to skip files marked hidden
+        ,   skipHiddenDirs  =   0x2000  //!< Causes the search to skip directories marked hidden
         ,   fullPath        =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
         ,   absolutePath    =   0x0200  /*!< The search directory is converted to an absolute path. */
     };
@@ -357,11 +359,19 @@ readdir_sequence::validate_flags_(readdir_sequence::flags_type flags)
 {
     flags_type const    validFlags  =   0
                                     |   includeDots
+                                    |   0
                                     |   directories
                                     |   files
+                                    |   devices
+                                    |   sockets
+                                    |   0
+                                    |   skipHiddenFiles
+                                    |   skipHiddenDirs
+                                    |   0
                                     |   fullPath
                                     |   absolutePath
-                                    |   0;
+                                    |   0
+                                    ;
 
     WINSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
     STLSOFT_SUPPRESS_UNUSED(validFlags);
@@ -394,6 +404,16 @@ readdir_sequence::translate_flags_(readdir_sequence::flags_type flags)
     if (files & flags)
     {
         translatedFlags |= underlying_sequence_type::files;
+    }
+
+    if (skipHiddenFiles & flags)
+    {
+        translatedFlags |= underlying_sequence_type::skipHiddenFiles;
+    }
+
+    if (skipHiddenDirs & flags)
+    {
+        translatedFlags |= underlying_sequence_type::skipHiddenDirs;
     }
 
     if (fullPath == ((fullPath | absolutePath) & flags))

@@ -74,6 +74,8 @@
   * [x] add **test.component.winstl.system.directory_functions** - ✅;
   * [x] implement **unixstl_C_get_home_directory_invoke_getenv_a_()** in terms of `WINSTL_API_INTERNAL_System_get_home_directory_a_()` - ✅;
  * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
+ * [x] `unixstl::glob_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
+ * [x] `unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
 
 
 ## STLSoft 1.12+ TODOs:

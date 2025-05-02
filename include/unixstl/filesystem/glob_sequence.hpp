@@ -4,7 +4,7 @@
  * Purpose: glob_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 30th April 2025
+ * Updated: 3rd May 2025
  *
  * Thanks:  To Carlos Santander Bernal for helping with Mac compatibility.
  *          To Nevin Liber for pressing upon me the need to lead by example
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     7
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      192
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -382,6 +382,8 @@ public:
         ,   files           =   0x0020  /*!< Causes the search to include files */
         ,   sockets         =   0x0040  /*!< Causes the search to include sockets */
         ,   devices         =   0x0080  /*!< Causes the search to include devices */
+        ,   typeMask        =   0x00f0
+        ,   typeDefault     =   directories | files | sockets
         ,   noSort          =   0x0100  /*!< Does not sort entries. Corresponds to GLOB_NOSORT. */
         ,   markDirs        =   0x0200  /*!< Mark directories with a trailing path name separator. Corresponds to GLOB_MARK. */
         ,   absolutePath    =   0x0400  /*!< Return all entries in absolute format. Ignored when a dots directory is specified as the pattern. Note, absolute paths may not always be in canonical form, e.g. '/user/me/.' if specify ('/user/me', '.', absolutePath), in which case the caller is responsible for obtaining canonical form. */
@@ -400,6 +402,8 @@ public:
 
         ,   expandTilde     =   0x8000  /*!< Expand ~ and ~<user> directories. Corresponds to GLOB_TILDE. */
 #endif /* GLOB_TILDE */
+        ,   skipHiddenFiles =   0x0002  //!< Causes the search to skip files (and devices and sockets) marked hidden
+        ,   skipHiddenDirs  =   0x0004  //!< Causes the search to skip directories marked hidden
     };
 /// @}
 
@@ -423,7 +427,7 @@ public:
     ss_explicit_k
     glob_sequence(
         S const&    pattern
-    ,   us_int_t    flags = directories | files | sockets
+    ,   us_int_t    flags = typeDefault
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -466,7 +470,7 @@ public:
     glob_sequence(
         S1 const&   directory
     ,   S2 const&   pattern
-    ,   us_int_t    flags = directories | files | sockets
+    ,   us_int_t    flags = typeDefault
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -501,7 +505,7 @@ public:
     glob_sequence(
         S const& pattern
     )
-        : m_flags(validate_flags_(directories | files | sockets))
+        : m_flags(validate_flags_(typeDefault))
         , m_buffer(1)
     {
         m_cItems = init_glob_(NULL, STLSOFT_NS_QUAL(c_str_ptr)(pattern));
@@ -525,14 +529,14 @@ public:
     glob_sequence(
         char_type const*    directory
     ,   char_type const*    pattern
-    ,   us_int_t            flags = directories | files | sockets
+    ,   us_int_t            flags = typeDefault
     );
 
     template <ss_typename_param_k S>
     glob_sequence(
         S const&    directory
     ,   char const* pattern
-    ,   us_int_t    flags = directories | files | sockets
+    ,   us_int_t    flags = typeDefault
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -546,7 +550,7 @@ public:
     glob_sequence(
         S const&    directory
     ,   S const&    pattern
-    ,   us_int_t    flags = directories | files | sockets
+    ,   us_int_t    flags = typeDefault
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -560,13 +564,13 @@ public:
     ss_explicit_k
     glob_sequence(
         char_type const*    pattern
-    ,   us_int_t            flags = directories | files | sockets
+    ,   us_int_t            flags = typeDefault
     );
 
     glob_sequence(
         char_type const*    directory
     ,   char_type const*    pattern
-    ,   us_int_t            flags = directories | files | sockets
+    ,   us_int_t            flags = typeDefault
     );
 #else /* ? constructor form */
 
@@ -589,7 +593,7 @@ public:
         char_type const*    directory
     ,   char_type const*    pattern
     ,   char_type           delim
-    ,   us_int_t            flags = directories | files | sockets
+    ,   us_int_t            flags = typeDefault
     );
 #endif /* 0 */
 
@@ -687,7 +691,12 @@ private:
     us_size_t           init_glob_(char_type const* directory, char_type const* pattern);
     us_size_t           init_glob_1_(size_type bufferSize, char_type* combinedPath);
     us_size_t           init_glob_2_(char_type const* patternDir, char_type const* pattern0);
-    us_size_t           init_glob_3_(char_type const* pattern, us_bool_t isPattern0Wild);
+    us_size_t           init_glob_3_(
+        size_type           cchDirectory
+    ,   char_type const*    pattern
+    ,   size_type           cchPattern
+    ,   us_bool_t           isPattern0Wild
+    );
 /// @}
 
 /// \name Members
@@ -920,14 +929,18 @@ glob_sequence::validate_flags_(
 
                                 |   expandTilde
 #endif /* GLOB_TILDE */
-                                |   0;
+                                |   0
+                                |   skipHiddenFiles
+                                |   skipHiddenDirs
+                                |   0
+                                ;
 
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
     STLSOFT_SUPPRESS_UNUSED(validFlags);
 
     if (0 == (flags & (devices | directories | files | sockets)))
     {
-        flags |= (directories | files | sockets);
+        flags |= typeDefault;
     }
 #ifndef UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
 
@@ -1211,23 +1224,29 @@ glob_sequence::init_glob_2_(
             traits_type::char_copy(&scratch_[0] + baseLen, pattern0, patLen);
             scratch_[baseLen + patLen] = '\0';
 
-            return init_glob_3_(scratch_.data(), isPattern0Wild);
+            return init_glob_3_(baseLen, scratch_.data(), patLen, isPattern0Wild);
         }
     }
     else
     {
-        return init_glob_3_(pattern0, isPattern0Wild);
+        size_type const cchPattern0 = traits_type::str_len(pattern0);
+
+        return init_glob_3_(0, pattern0, cchPattern0, isPattern0Wild);
     }
 }
 
 inline
 us_size_t
 glob_sequence::init_glob_3_(
-    char_type const*    pattern
+    size_type           cchDirectory
+,   char_type const*    pattern
+,   size_type           cchPattern
 ,   us_bool_t           isPattern0Wild
 )
 {
     us_int_t glob_flags = 0;
+
+    STLSOFT_SUPPRESS_UNUSED(cchPattern);
 
     if (m_flags & noSort)
     {
@@ -1456,7 +1475,24 @@ glob_sequence::init_glob_3_(
             {
                 // Now need to process the file, by using stat
                 traits_type::stat_data_type st;
-                char_type const* const      entry = *begin;
+                char_type const* const      entry       =   *begin;
+                bool const                  is_hidden   =   '.' == entry[cchDirectory];
+
+                if (is_hidden)
+                {
+                    if ((skipHiddenDirs | skipHiddenFiles) == ((skipHiddenDirs | skipHiddenFiles) & m_flags))
+                    {
+                        // since we aim to elide all hidden things, so we can
+                        // skip now (without needed to call `stat()`)
+
+                        // Swap with whatever is at base[0]
+                        STLSOFT_NS_QUAL(std_swap)(*begin, *base);
+                        ++base;
+                        --cItems;
+
+                        continue;
+                    }
+                }
 
                 // Shortcut relying on mark, based on the assumption that
                 // a strlen()-equiv. operation is faster than a call to
@@ -1487,16 +1523,42 @@ glob_sequence::init_glob_3_(
 # endif /* !UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK */
                 if (!traits_type::stat(entry, &st))
                 {
-                    // We could throw an exception here, but it might just be
-                    // the case that a file has been deleted subsequent to its
-                    // having been included in the glob list. As such, it makes
-                    // more sense to just kick it from the list
+                    // We could throw an exception here, but it might just
+                    // be the case that a file has been deleted subsequent
+                    // to its having been included in the glob list. As
+                    // such, it makes more sense to just kick it from the
+                    // list.
 
 // TODO: Consider adding a callback function here, which can elect to throw, if the application requires that. Also, consider a throwOnStat flag
                 }
                 else
                 { // stat() succeeded
 
+                    bool should_trim = false;
+
+                    if (is_hidden)
+                    {
+                        if (traits_type::is_directory(&st))
+                        {
+                            if (skipHiddenDirs & m_flags)
+                            {
+                                should_trim = true;
+                            }
+                        }
+                        else
+                        {
+                            if (skipHiddenFiles & m_flags)
+                            {
+                                should_trim = true;
+                            }
+                        }
+                    }
+
+                    if (should_trim)
+                    {
+                        // fall through to strip
+                    }
+                    else
                     if (directories == (m_flags & directories) &&
                         traits_type::is_directory(&st))
                     {
