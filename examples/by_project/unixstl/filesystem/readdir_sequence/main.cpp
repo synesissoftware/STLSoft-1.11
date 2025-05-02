@@ -14,7 +14,7 @@
 
 
 using unixstl::readdir_sequence;
-typedef unixstl::filesystem_traits<char>    fs_traits_t;
+typedef unixstl::filesystem_traits<char>                    fs_traits_t;
 
 
 int main(int argc, char* argv[])
@@ -203,7 +203,6 @@ int main(int argc, char* argv[])
                 std::cout
                     << "\t"
                     << *i
-                    << (fs_traits_t::is_directory(*i) ? "/" : "")
                     << std::endl;
             }
         }

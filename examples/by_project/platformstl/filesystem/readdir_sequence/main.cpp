@@ -56,17 +56,82 @@ int main(int argc, char* argv[])
     }
 
 
-    std::cout << "searching in '" << root_dir << "':" << std::endl;
-
-    readdir_sequence files(root_dir, readdir_sequence::files | readdir_sequence::directories);
-
-    for (readdir_sequence::const_iterator i = files.begin(); files.end() != i; ++i)
     {
-        std::cout
-            << "\t"
-            << *i
-            << (fs_traits_t::is_directory(*i) ? "/" : "")
-            << std::endl;
+        std::cout << std::endl;
+        std::cout << "searching for directories + files + sockets in '" << root_dir << "':" << std::endl;
+
+        readdir_sequence entries(root_dir, readdir_sequence::directories | readdir_sequence::files | readdir_sequence::sockets);
+
+        for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << (fs_traits_t::is_directory(*i) ? "/" : "")
+                << std::endl;
+        }
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "searching for non-hidden directories + files + sockets in '" << root_dir << "':" << std::endl;
+
+        readdir_sequence entries(root_dir, readdir_sequence::directories | readdir_sequence::files | readdir_sequence::sockets | readdir_sequence::skipHiddenDirs | readdir_sequence::skipHiddenFiles);
+
+        for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+        {
+            std::cout
+                << "\t"
+                << *i
+                << (fs_traits_t::is_directory(*i) ? "/" : "")
+                << std::endl;
+        }
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "searching for all types in '" << root_dir << "':" << std::endl;
+
+        try
+        {
+            readdir_sequence entries(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath);
+
+            for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+            {
+                std::cout
+                    << "\t"
+                    << *i
+                    << (fs_traits_t::is_directory(*i) ? "/" : "")
+                    << std::endl;
+            }
+        }
+        catch (unixstl::unixstl_exception& x)
+        {
+            std::cerr << "EXCEPTION: " << x.what() << std::endl;
+        }
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "searching for all non-hidden types in '" << root_dir << "':" << std::endl;
+
+        try
+        {
+            readdir_sequence entries(root_dir, readdir_sequence::absolutePath | readdir_sequence::fullPath | readdir_sequence::skipHiddenDirs | readdir_sequence::skipHiddenFiles);
+
+            for (readdir_sequence::const_iterator i = entries.begin(); entries.end() != i; ++i)
+            {
+                std::cout
+                    << "\t"
+                    << *i
+                    << (fs_traits_t::is_directory(*i) ? "/" : "")
+                    << std::endl;
+            }
+        }
+        catch (unixstl::unixstl_exception& x)
+        {
+            std::cerr << "EXCEPTION: " << x.what() << std::endl;
+        }
     }
 
 
