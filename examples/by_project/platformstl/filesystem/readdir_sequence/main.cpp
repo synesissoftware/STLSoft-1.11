@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 
     {
         std::cout << std::endl;
-        std::cout << "searching for all types in '" << root_dir << "':" << std::endl;
+        std::cout << "searching for all entries in '" << root_dir << "':" << std::endl;
 
         try
         {
@@ -113,7 +113,7 @@ int main(int argc, char* argv[])
 
     {
         std::cout << std::endl;
-        std::cout << "searching for all non-hidden types in '" << root_dir << "':" << std::endl;
+        std::cout << "searching for all non-hidden entries in '" << root_dir << "':" << std::endl;
 
         try
         {
