@@ -4,6 +4,14 @@
 ----
 
 
+3rd May 2025 - 1.11.1-beta8 released
+------------------------------------
+
+ * Added skipping of hidden directories and files to `unixstl::glob_sequence` and `unixstl::readdir_sequence`;
+ * Various example improvements;
+ * Updated **TODO.md** with structure and items;
+
+
 30th April 2025 - 1.11.1-beta7 released
 ---------------------------------------
 
