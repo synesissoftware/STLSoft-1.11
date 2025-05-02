@@ -2,6 +2,7 @@
 
 > **NOTE**: some of the following are very old, stretching back even into the 2000s, so this list will be updated a lot over the coming months. The most glaring of these is to ensure compatiblity with C++-14/17/20 as is necessary.
 
+
 ## Table of Contents <!-- omit in toc -->
 
 - [STLSoft 1.10.x TODOs:](#stlsoft-110x-todos)
@@ -31,7 +32,7 @@
  * `stlsoft::auto_buffer<>::copy_from()` should be template and work with other instances (with different `V_internalSize`)
  * GitHub README.md image features - version, build, etc;
  * hash specialisations for all possible key types (incl. `stlsoft::basic_simple_string<>`, etc.);
- * ~~better documentation markup for `stlsoft::translate_thousands()`, `stlsoft::format_thousands()`, `stlsoft::integer_to_lc_string()`, `winstl::format_thousands()`, ...~~
+ * ~~better documentation markup for `stlsoft::translate_thousands()`, `stlsoft::format_thousands()`, `stlsoft::integer_to_lc_string()`, `winstl::format_thousands()`, ...~~ - ✅;
  * apply `stlsoft::string_insert()` to **WinSTL** time type shims;
  * fix Doxygen build;
 
@@ -59,12 +60,12 @@
  * Website - currenty http://stlsoft.org/ is *VERY* out of date
  * Set-up donation
 
- * [ ] **winstl/api/internal/get_home_directory_.h**;
-  * [x] add `WINSTL_API_INTERNAL_System_get_home_directory_a_()` / `WINSTL_API_INTERNAL_System_get_home_directory_w_()`;
-  * [x] tries first for `"USERPROFILE"` and then falls back to `"HOMEDRIVE"` and `"HOMEPATH"`;
-  * [x] implement `winstl_C_get_home_directory_a()` / `winstl_C_get_home_directory_w()` (**winstl/system/directory_functions.h**) in terms of `WINSTL_API_INTERNAL_System_get_home_directory_a_()` / `WINSTL_API_INTERNAL_System_get_home_directory_w_()`;
-  * [x] add **test.component.winstl.system.directory_functions**;
-  * [ ] implement **unixstl_C_get_home_directory_invoke_getenv_a_()** in terms of `WINSTL_API_INTERNAL_System_get_home_directory_a_()`;
+ * [x] **winstl/api/internal/get_home_directory_.h**;
+  * [x] add `WINSTL_API_INTERNAL_System_get_home_directory_a_()` / `WINSTL_API_INTERNAL_System_get_home_directory_w_()` - ✅;
+  * [x] tries first for `"USERPROFILE"` and then falls back to `"HOMEDRIVE"` and `"HOMEPATH"` - ✅;
+  * [x] implement `winstl_C_get_home_directory_a()` / `winstl_C_get_home_directory_w()` (**winstl/system/directory_functions.h**) in terms of `WINSTL_API_INTERNAL_System_get_home_directory_a_()` / `WINSTL_API_INTERNAL_System_get_home_directory_w_()` - ✅;
+  * [x] add **test.component.winstl.system.directory_functions** - ✅;
+  * [x] implement **unixstl_C_get_home_directory_invoke_getenv_a_()** in terms of `WINSTL_API_INTERNAL_System_get_home_directory_a_()` - ✅;
  * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
 
 
