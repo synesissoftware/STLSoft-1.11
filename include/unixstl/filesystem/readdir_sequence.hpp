@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       176
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       177
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -258,6 +258,7 @@ public:
         ,   sockets                 =   0x0040  /*!< Causes the search to include sockets. */
         ,   devices                 =   0x0080  /*!< Causes the search to include devices. */
         ,   typeMask                =   0x00f0
+        ,   typeDefault             =   directories | files | sockets
         ,   fullPath                =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
         ,   absolutePath            =   0x0200  /*!< The search directory is converted to an absolute path. */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -288,7 +289,7 @@ public:
     template <ss_typename_param_k S>
     readdir_sequence(
         S const&    directory
-    ,   flags_type  flags       =   directories | files | sockets
+    ,   flags_type  flags       =   typeDefault
     )
         : m_flags(validate_flags_(flags))
         , m_directory(prepare_directory_T_(directory, flags))
@@ -576,7 +577,7 @@ readdir_sequence::validate_flags_(
 
     if (0 == (flags & (devices | directories | files | sockets)))
     {
-        flags |= (directories | files | sockets);
+        flags |= typeDefault;
     }
 
     return flags;

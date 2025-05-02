@@ -58,7 +58,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     7
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      194
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      195
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -382,6 +382,8 @@ public:
         ,   files           =   0x0020  /*!< Causes the search to include files */
         ,   sockets         =   0x0040  /*!< Causes the search to include sockets */
         ,   devices         =   0x0080  /*!< Causes the search to include devices */
+        ,   typeMask        =   0x00f0
+        ,   typeDefault     =   directories | files | sockets
         ,   noSort          =   0x0100  /*!< Does not sort entries. Corresponds to GLOB_NOSORT. */
         ,   markDirs        =   0x0200  /*!< Mark directories with a trailing path name separator. Corresponds to GLOB_MARK. */
         ,   absolutePath    =   0x0400  /*!< Return all entries in absolute format. Ignored when a dots directory is specified as the pattern. Note, absolute paths may not always be in canonical form, e.g. '/user/me/.' if specify ('/user/me', '.', absolutePath), in which case the caller is responsible for obtaining canonical form. */
@@ -425,7 +427,7 @@ public:
     ss_explicit_k
     glob_sequence(
         S const&    pattern
-    ,   us_int_t    flags = directories | files | sockets
+    ,   us_int_t    flags = typeDefault
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -468,7 +470,7 @@ public:
     glob_sequence(
         S1 const&   directory
     ,   S2 const&   pattern
-    ,   us_int_t    flags = directories | files | sockets
+    ,   us_int_t    flags = typeDefault
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -503,7 +505,7 @@ public:
     glob_sequence(
         S const& pattern
     )
-        : m_flags(validate_flags_(directories | files | sockets))
+        : m_flags(validate_flags_(typeDefault))
         , m_buffer(1)
     {
         m_cItems = init_glob_(NULL, STLSOFT_NS_QUAL(c_str_ptr)(pattern));
@@ -527,14 +529,14 @@ public:
     glob_sequence(
         char_type const*    directory
     ,   char_type const*    pattern
-    ,   us_int_t            flags = directories | files | sockets
+    ,   us_int_t            flags = typeDefault
     );
 
     template <ss_typename_param_k S>
     glob_sequence(
         S const&    directory
     ,   char const* pattern
-    ,   us_int_t    flags = directories | files | sockets
+    ,   us_int_t    flags = typeDefault
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -548,7 +550,7 @@ public:
     glob_sequence(
         S const&    directory
     ,   S const&    pattern
-    ,   us_int_t    flags = directories | files | sockets
+    ,   us_int_t    flags = typeDefault
     )
         : m_flags(validate_flags_(flags))
         , m_buffer(1)
@@ -562,13 +564,13 @@ public:
     ss_explicit_k
     glob_sequence(
         char_type const*    pattern
-    ,   us_int_t            flags = directories | files | sockets
+    ,   us_int_t            flags = typeDefault
     );
 
     glob_sequence(
         char_type const*    directory
     ,   char_type const*    pattern
-    ,   us_int_t            flags = directories | files | sockets
+    ,   us_int_t            flags = typeDefault
     );
 #else /* ? constructor form */
 
@@ -591,7 +593,7 @@ public:
         char_type const*    directory
     ,   char_type const*    pattern
     ,   char_type           delim
-    ,   us_int_t            flags = directories | files | sockets
+    ,   us_int_t            flags = typeDefault
     );
 #endif /* 0 */
 
@@ -938,7 +940,7 @@ glob_sequence::validate_flags_(
 
     if (0 == (flags & (devices | directories | files | sockets)))
     {
-        flags |= (directories | files | sockets);
+        flags |= typeDefault;
     }
 #ifndef UNIXSTL_GLOB_SEQUENCE_DONT_TRUST_MARK
 
