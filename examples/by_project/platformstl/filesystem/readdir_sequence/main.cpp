@@ -7,6 +7,7 @@
 
 #include <platformstl/filesystem/readdir_sequence.hpp>
 
+#include <platformstl/exception/platformstl_exception.hpp>
 #include <platformstl/filesystem/path_functions.h>
 #include <platformstl/filesystem/filesystem_traits.hpp>
 
@@ -105,7 +106,7 @@ int main(int argc, char* argv[])
                     << std::endl;
             }
         }
-        catch (unixstl::unixstl_exception& x)
+        catch (platformstl::platformstl_exception& x)
         {
             std::cerr << "EXCEPTION: " << x.what() << std::endl;
         }
@@ -128,7 +129,7 @@ int main(int argc, char* argv[])
                     << std::endl;
             }
         }
-        catch (unixstl::unixstl_exception& x)
+        catch (platformstl::platformstl_exception& x)
         {
             std::cerr << "EXCEPTION: " << x.what() << std::endl;
         }
