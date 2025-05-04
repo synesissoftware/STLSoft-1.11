@@ -4,7 +4,7 @@
  * Purpose: basic_string_view class.
  *
  * Created: 16th October 2004
- * Updated: 15th April 2025
+ * Updated: 4th May 2025
  *
  * Thanks:  Bjorn Karlsson and Scott Patterson for discussions on various
  *          naming and design issues. Thanks also to Pablo Aguilar for
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        121
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -474,10 +474,19 @@ public:
 /// @{
 private:
     // Empty string
-    static char_type const* empty_string_();
+    static
+    char_type const*
+    empty_string_() STLSOFT_NOEXCEPT;
 
     // Comparison
-    static ss_sint_t compare_(char_type const* lhs, size_type lhs_len, char_type const* rhs, size_type rhs_len);
+    static
+    ss_sint_t
+    compare_(
+        char_type const*    lhs
+    ,   size_type           lhs_len
+    ,   char_type const*    rhs
+    ,   size_type           rhs_len
+    ) STLSOFT_NOEXCEPT;
 
     // Closes the m_cstr member
 #ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
@@ -489,11 +498,11 @@ private:
     void close_set_null_() STLSOFT_NOEXCEPT;
 #endif /* STLSOFT_STRING_VIEW_PROVIDE_c_str */
 
-    const_iterator          begin_() const;
-    const_iterator          end_() const;
+    const_iterator          begin_() const STLSOFT_NOEXCEPT;
+    const_iterator          end_() const STLSOFT_NOEXCEPT;
 #if 0
-    iterator                begin_();
-    iterator                end_();
+    iterator                begin_() STLSOFT_NOEXCEPT;
+    iterator                end_() STLSOFT_NOEXCEPT;
 #endif /* 0 */
 /// @}
 
@@ -978,7 +987,9 @@ template<
 ,   ss_typename_param_k T
 ,   ss_typename_param_k A
 >
-inline /* static */ ss_typename_type_ret_k basic_string_view<C, T, A>::char_type const* basic_string_view<C, T, A>::empty_string_()
+inline
+/* static */ ss_typename_type_ret_k basic_string_view<C, T, A>::char_type const*
+basic_string_view<C, T, A>::empty_string_() STLSOFT_NOEXCEPT
 {
     // This character array is initialised to 0, which conveniently happens to
     // be the empty string, by the module/application load, so it is
@@ -995,17 +1006,29 @@ template<
 ,   ss_typename_param_k T
 ,   ss_typename_param_k A
 >
-inline /* static */ ss_sint_t basic_string_view<C, T, A>::compare_( ss_typename_type_k basic_string_view<C, T, A>::value_type const* lhs
-                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::size_type lhs_len
-                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::value_type const* rhs
-                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::size_type rhs_len)
+inline
+/* static */ ss_sint_t
+basic_string_view<C, T, A>::compare_(
+    ss_typename_type_k basic_string_view<C, T, A>::value_type const*    lhs
+,   ss_typename_type_k basic_string_view<C, T, A>::size_type            lhs_len
+,   ss_typename_type_k basic_string_view<C, T, A>::value_type const*    rhs
+,   ss_typename_type_k basic_string_view<C, T, A>::size_type            rhs_len
+) STLSOFT_NOEXCEPT
 {
     size_type   cmp_len =   (lhs_len < rhs_len) ? lhs_len : rhs_len;
     ss_int_t    result  =   traits_type::compare(lhs, rhs, cmp_len);
 
     if (0 == result)
     {
-        result = static_cast<ss_int_t>(lhs_len) - static_cast<ss_int_t>(rhs_len);
+        if (lhs_len < rhs_len)
+        {
+            result = -1;
+        }
+        else
+        if (lhs_len > rhs_len)
+        {
+            result = +1;
+        }
     }
 
     return result;
@@ -1052,7 +1075,9 @@ template<
 ,   ss_typename_param_k T
 ,   ss_typename_param_k A
 >
-inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator basic_string_view<C, T, A>::begin_() const
+inline
+ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator
+basic_string_view<C, T, A>::begin_() const STLSOFT_NOEXCEPT
 {
     return m_base;
 }
@@ -1062,7 +1087,9 @@ template<
 ,   ss_typename_param_k T
 ,   ss_typename_param_k A
 >
-inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator basic_string_view<C, T, A>::end_() const
+inline
+ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator
+basic_string_view<C, T, A>::end_() const STLSOFT_NOEXCEPT
 {
     return begin_() + m_length;
 }
@@ -1422,27 +1449,34 @@ template<
 ,   ss_typename_param_k T
 ,   ss_typename_param_k A
 >
-inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic_string_view<C, T, A>::size_type          pos
-                                                    ,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cch
-                                                    ,   ss_typename_type_k basic_string_view<C, T, A>::value_type const*  rhs
-                                                    ,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cchRhs) const STLSOFT_NOEXCEPT
+inline
+ss_sint_t
+basic_string_view<C, T, A>::compare(
+    ss_typename_type_k basic_string_view<C, T, A>::size_type          pos
+,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cch
+,   ss_typename_type_k basic_string_view<C, T, A>::value_type const*  rhs
+,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cchRhs
+) const STLSOFT_NOEXCEPT
 {
     STLSOFT_ASSERT(is_valid());
 
     size_type   lhs_len =   size();
 
-    if (!(pos < lhs_len))
+    if (pos >= lhs_len)
     {
+        // pos is already at/beyond available lhs range
+
         pos = lhs_len;
+        lhs_len = 0;
     }
     else
     {
-        lhs_len -= pos;
-    }
+        // adjust lhs_len based on cch requested
 
-    if (cch < lhs_len)
-    {
-        lhs_len = cch;
+        if (lhs_len > pos + cch)
+        {
+            lhs_len = lhs_len - pos;
+        }
     }
 
     size_type   rhs_len =   (NULL == rhs) ? 0 : traits_type::length(rhs);
