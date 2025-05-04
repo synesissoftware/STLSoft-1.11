@@ -4,6 +4,13 @@
 ----
 
 
+5th May 2025 - 1.11.1-beta9 released
+------------------------------------
+
+ * `stlsoft::basic_string_view` fixed defect in comparison;
+ * **example.platformstl.filesystem.readdir_sequence** minor fix;
+
+
 3rd May 2025 - 1.11.1-beta8 released
 ------------------------------------
 
