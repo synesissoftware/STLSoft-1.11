@@ -7,7 +7,7 @@
 
 - [STLSoft 1.10.x TODOs:](#stlsoft-110x-todos)
 - [STLSoft 1.11+ TODOs:](#stlsoft-111-todos)
-  - [Adminiatration changes](#adminiatration-changes)
+  - [Administrative changes](#administrative-changes)
   - [Code changes](#code-changes)
 - [STLSoft 1.12+ TODOs:](#stlsoft-112-todos)
 - [abandoned TODOs:](#abandoned-todos)
@@ -36,7 +36,7 @@
 
 ## STLSoft 1.11+ TODOs:
 
-### Adminiatration changes
+### Administrative changes
 
  * [ ] STLSoft 1.11-related blog posts (focusing on new components);
  * [ ] update the downloads on SourceForge;
