@@ -4,7 +4,7 @@
  * Purpose: basic_string_view class.
  *
  * Created: 16th October 2004
- * Updated: 15th April 2025
+ * Updated: 4th May 2025
  *
  * Thanks:  Bjorn Karlsson and Scott Patterson for discussions on various
  *          naming and design issues. Thanks also to Pablo Aguilar for
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        121
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -477,7 +477,14 @@ private:
     static char_type const* empty_string_();
 
     // Comparison
-    static ss_sint_t compare_(char_type const* lhs, size_type lhs_len, char_type const* rhs, size_type rhs_len);
+    static
+    ss_sint_t
+    compare_(
+        char_type const*    lhs
+    ,   size_type           lhs_len
+    ,   char_type const*    rhs
+    ,   size_type           rhs_len
+    );
 
     // Closes the m_cstr member
 #ifdef STLSOFT_STRING_VIEW_PROVIDE_c_str
@@ -995,10 +1002,14 @@ template<
 ,   ss_typename_param_k T
 ,   ss_typename_param_k A
 >
-inline /* static */ ss_sint_t basic_string_view<C, T, A>::compare_( ss_typename_type_k basic_string_view<C, T, A>::value_type const* lhs
-                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::size_type lhs_len
-                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::value_type const* rhs
-                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::size_type rhs_len)
+inline
+/* static */ ss_sint_t
+basic_string_view<C, T, A>::compare_(
+    ss_typename_type_k basic_string_view<C, T, A>::value_type const*    lhs
+,   ss_typename_type_k basic_string_view<C, T, A>::size_type            lhs_len
+,   ss_typename_type_k basic_string_view<C, T, A>::value_type const*    rhs
+,   ss_typename_type_k basic_string_view<C, T, A>::size_type            rhs_len
+)
 {
     size_type   cmp_len =   (lhs_len < rhs_len) ? lhs_len : rhs_len;
     ss_int_t    result  =   traits_type::compare(lhs, rhs, cmp_len);
@@ -1422,10 +1433,14 @@ template<
 ,   ss_typename_param_k T
 ,   ss_typename_param_k A
 >
-inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic_string_view<C, T, A>::size_type          pos
-                                                    ,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cch
-                                                    ,   ss_typename_type_k basic_string_view<C, T, A>::value_type const*  rhs
-                                                    ,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cchRhs) const STLSOFT_NOEXCEPT
+inline
+ss_sint_t
+basic_string_view<C, T, A>::compare(
+    ss_typename_type_k basic_string_view<C, T, A>::size_type          pos
+,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cch
+,   ss_typename_type_k basic_string_view<C, T, A>::value_type const*  rhs
+,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cchRhs
+) const STLSOFT_NOEXCEPT
 {
     STLSOFT_ASSERT(is_valid());
 
