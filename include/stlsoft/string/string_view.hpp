@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        123
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        124
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1462,18 +1462,21 @@ basic_string_view<C, T, A>::compare(
 
     size_type   lhs_len =   size();
 
-    if (!(pos < lhs_len))
+    if (pos >= lhs_len)
     {
+        // pos is already at/beyond available lhs range
+
         pos = lhs_len;
+        lhs_len = 0;
     }
     else
     {
-        lhs_len -= pos;
-    }
+        // adjust lhs_len based on cch requested
 
-    if (cch < lhs_len)
-    {
-        lhs_len = cch;
+        if (lhs_len > pos + cch)
+        {
+            lhs_len = lhs_len - pos;
+        }
     }
 
     size_type   rhs_len =   (NULL == rhs) ? 0 : traits_type::length(rhs);
