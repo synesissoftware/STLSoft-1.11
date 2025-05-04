@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_string_view`.
  *
  * Created: 4th November 2008
- * Updated: 15th April 2025
+ * Updated: 4th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -680,7 +680,11 @@ static void test_compare_2()
     string_v_t  s1("abc");
     string_v_t  s2("def");
 
+    TEST_INT_EQ(0, s1.compare(s1));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(s2));
+    TEST_INT_GT(0, s2.compare(s1));
+
+
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 2u, s2));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, s2));
 #ifdef HAS_c_str_
@@ -692,7 +696,10 @@ static void test_compare_2()
     string_v_t  s3("c");
 
     XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(3u, 0u, s2.substr(s2.size())));
+    TEST_INT_EQ(0, s1.compare(2u, 2u, s3));
     XTESTS_TEST_INTEGER_EQUAL(0, s1.compare(2u, 2u, s3));
+    TEST_INT_EQ(0, s1.compare(2u, 3u, s3));
+    TEST_INT_EQ(0, s1.compare(2u, 333u, s3));
 }
 
 static void test_compare_3()
@@ -700,6 +707,13 @@ static void test_compare_3()
     string_v_t  s1("def");
 
     XTESTS_TEST_INTEGER_LESS(0, s1.compare("ghi"));
+    TEST_INT_LT(0, s1.compare(0u, s1.size(), "ghi", 3));
+    TEST_INT_LT(0, s1.compare(0u, s1.size(), "ghi", 2));
+    TEST_INT_LT(0, s1.compare(0u, s1.size(), "ghi", 1));
+    TEST_INT_LT(0, s1.compare(0u, 2u, "ghi"));
+    TEST_INT_LT(0, s1.compare(0u, 2u, "ghi", 3));
+    TEST_INT_LT(0, s1.compare(0u, 2u, "ghi", 2));
+    TEST_INT_LT(0, s1.compare(0u, 2u, "ghi", 1));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 3u, "ghi"));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(3u, 0u, "ghi"));
     XTESTS_TEST_INTEGER_LESS(0, s1.compare(0u, 2u, "ghi"));
