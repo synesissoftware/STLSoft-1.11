@@ -106,7 +106,7 @@ Flags/options:
         when not using Visual C++
 
     --no-shwild
-        prevents recognising shwild library
+        suppresses discovery of shwild package
 
     -m
     --run-make
