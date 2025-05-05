@@ -152,7 +152,7 @@ endif(BUILD_TESTING)
 # ############################
 # shwild
 
-if(NOT (CMAKE_NO_SHWILD))
+if(NOT (NO_SHWILD))
 
 	if(BUILD_TESTING)
 
