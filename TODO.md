@@ -68,6 +68,7 @@
    - [ ] abstracting out string stuff (into `stlsoft::`);
    - [ ] sorting the "safe-string" stuff;
    - [ ] abstracted file-system operations such as `#make_writeable()` / `#make_readonly()`;
+ - [ ] **test.performance.stlsoft.util.bit_functions**;
 
  * [x] **winstl/api/internal/get_home_directory_.h**;
   * [x] add `WINSTL_API_INTERNAL_System_get_home_directory_a_()` / `WINSTL_API_INTERNAL_System_get_home_directory_w_()` - ✅;
