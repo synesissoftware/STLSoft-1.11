@@ -121,6 +121,7 @@
      * [ ] T.B.C.;
      * [ ] T.B.C.;
  * [ ] syslog in variadic templates, a la `winstl::output_debug_line()`;
+ * [ ] Simple thread-pool (bring from **SS** work circa 2000);
  * [ ] include/*stl*/error => include/*stl*/diagnostics;
  * [ ] memory-mapped-file class minor issues;
  * [ ] canonicalise all exception messages - consistency, lower-case, etc.;
