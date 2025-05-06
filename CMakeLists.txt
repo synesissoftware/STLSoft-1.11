@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  28th April 2025
+# Updated:  6th May 2025
 #
 # ######################################################################## #
 
@@ -152,7 +152,7 @@ endif(BUILD_TESTING)
 # ############################
 # shwild
 
-if(NOT (CMAKE_NO_SHWILD))
+if(NOT (NO_SHWILD))
 
 	if(BUILD_TESTING)
 
@@ -222,6 +222,8 @@ include(GNUInstallDirs)
 if(UNIX)
 
 	set(_BUILD_AS_UNIX 1)
+
+	message("-- Operating system Unix")
 else(UNIX)
 
 	if(WIN32)
@@ -229,10 +231,17 @@ else(UNIX)
 		if(USE_UNIXEM)
 
 			set(_BUILD_AS_UNIX 1)
+
+			message("-- Operating system Unix (synthesised on Windows)")
 		else(USE_UNIXEM)
 
 			set(_BUILD_AS_WIN32 1)
+
+			message("-- Operating system Windows")
 		endif(USE_UNIXEM)
+	else(WIN32)
+
+		message("-- Operating system unknown")
 	endif(WIN32)
 endif(UNIX)
 
@@ -330,6 +339,13 @@ write_basic_package_version_file(
 	VERSION ${PROJECT_VERSION}
 	COMPATIBILITY AnyNewerVersion
 )
+
+#[====[
+export(EXPORT project-targets
+	FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-targets.cmake"
+	NAMESPACE "${PROJECT_NAME}::"
+)
+#]====]
 
 # install stlsoft-targets.cmake        => /usr/local/lib/cmake/stlsoft
 install(EXPORT project-targets

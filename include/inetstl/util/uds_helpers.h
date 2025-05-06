@@ -4,12 +4,11 @@
  * Purpose: Unix Domain Sockets helper functions
  *
  * Created: 21st February 2025
- * Updated: 4th May 2025
+ * Updated: 6th May 2025
  *
  * Home:    http://stlsoft.org/
  *
  * Copyright (c) 2025, Matthew Wilson and Synesis Information Systems
- * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MAJOR       1
 # define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_MINOR       0
-# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_REVISION    0
-# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        2
+# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_REVISION    1
+# define INETSTL_VER_INETSTL_UTIL_H_UDS_HELPERS_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -89,10 +88,12 @@
  * includes - 2
  */
 
-#ifndef STLSOFT_INCL_H_SYS_UN
-# define STLSOFT_INCL_H_SYS_UN
-# include <sys/un.h>
-#endif /* !STLSOFT_INCL_H_SYS_UN */
+#ifndef _WIN32
+# ifndef STLSOFT_INCL_H_SYS_UN
+#  define STLSOFT_INCL_H_SYS_UN
+#  include <sys/un.h>
+# endif /* !STLSOFT_INCL_H_SYS_UN */
+#endif /* _WIN32 */
 
 #ifndef STLSOFT_INCL_H_ERRNO
 # define STLSOFT_INCL_H_ERRNO

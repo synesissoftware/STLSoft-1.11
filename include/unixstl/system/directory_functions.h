@@ -85,6 +85,10 @@
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
 
+#ifdef _WIN32
+# include <windows.h>
+#endif /* _WIN32 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
