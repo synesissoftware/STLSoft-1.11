@@ -4,6 +4,15 @@
 ----
 
 
+6th May 2025 - 1.11.1-rc1 released
+----------------------------------
+
+ * Various CMake improvements;
+ * MinGW compatibility;
+ * **UNIXem** compatibility;
+ * Windows compatibility;
+
+
 5th May 2025 - 1.11.1-beta9 released
 ------------------------------------
 
