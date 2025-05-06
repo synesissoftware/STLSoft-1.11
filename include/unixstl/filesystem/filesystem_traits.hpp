@@ -2565,7 +2565,13 @@ public: // file-system state
 
         STLSOFT_SUPPRESS_UNUSED(permissions);
 
+# ifdef STLSOFT_MINGW
+
+        return 0 == ::mkdir(dir);
+# else // ? STLSOFT_MINGW
+
         return 0 == ::_mkdir(dir);
+# endif // STLSOFT_MINGW
 #else /* ? _WIN32 */
 
         return 0 == ::mkdir(dir, permissions);
