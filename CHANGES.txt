@@ -17,7 +17,28 @@ STLSoft - Changes
    **************************************
 
 
+Changes for 1.11.1-rc1 (6th May 2025)
 
+General:
+========
+
+ * Various CMake improvements;
+ * MinGW compatibility;
+ * **UNIXem** compatibility;
+ * Windows compatibility;
+
+Changes:
+========
+
+ * **prepare_cmake.sh** : ~ canonicalising flag/option handling (by placing aliases last)
+ * CMake canonicalisation : ~ renamed `CMAKE_NO_SHWILD` => `NO_SHWILD\'
+ * CMake helper scripts now define default make command as "mingw32-make.xe" if recognise MinGW
+ * CMakeLists.txt : + added operating system flavour diagnostic message
+ * ~ minor improvement to '--no-shwild' help message
+ * **inetstl/util/uds_helpers.h** : ~ reorganising includes / compatibility checks
+
+
+============================================================================
 
 Changes for 1.11.1-beta9 (5th May 2025)
 

@@ -4,7 +4,9 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
-MakeCmd=${SIS_CMAKE_COMMAND:-make}
+[[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
+MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
+
 
 Configuration=Release
 ExamplesDisabled=0
@@ -23,19 +25,19 @@ VerboseMakefile=0
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    -v|--cmake-verbose-makefile)
+    --cmake-verbose-makefile|-v)
 
       VerboseMakefile=1
       ;;
-    -d|--debug-configuration)
+    --debug-configuration|-d)
 
       Configuration=Debug
       ;;
-    -E|--disable-examples)
+    --disable-examples|-E)
 
       ExamplesDisabled=1
       ;;
-    -T|--disable-testing)
+    --disable-testing|-T)
 
       TestingDisabled=1
       ;;
@@ -51,7 +53,7 @@ while [[ $# -gt 0 ]]; do
 
       NO_shwild=1
       ;;
-    -m|--run-make)
+    --run-make|-m)
 
       RunMake=1
       ;;
@@ -104,7 +106,7 @@ Flags/options:
         when not using Visual C++
 
     --no-shwild
-        prevents recognising shwild library
+        suppresses discovery of shwild package
 
     -m
     --run-make
@@ -162,7 +164,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
-    -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
+    -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -G "MinGW Makefiles" \
     -S $Dir \
@@ -174,7 +176,7 @@ else
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
-    -DCMAKE_NO_SHWILD:BOOL=$CMakeNoShwild \
+    -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
