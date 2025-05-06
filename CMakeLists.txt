@@ -340,6 +340,13 @@ write_basic_package_version_file(
 	COMPATIBILITY AnyNewerVersion
 )
 
+#[====[
+export(EXPORT project-targets
+	FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-targets.cmake"
+	NAMESPACE "${PROJECT_NAME}::"
+)
+#]====]
+
 # install stlsoft-targets.cmake        => /usr/local/lib/cmake/stlsoft
 install(EXPORT project-targets
 	NAMESPACE "${PROJECT_NAME}::"

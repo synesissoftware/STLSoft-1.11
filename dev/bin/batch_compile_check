@@ -6,7 +6,7 @@
 # Purpose:  Finds and compiles (individually) headers in the libraries.
 #
 # Created:  14th February 2024
-# Updated:  28th December 2024
+# Updated:  6th May 2025
 #
 # Home:     http://stlsoft.org/
 #
@@ -91,33 +91,39 @@ VerboseMode=0
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -c|--c-compiler)
+        --c-compiler|-c)
 
             shift
             COMPILER_COMMAND_C=$1
 
             ;;
-        -n|--counts)
+        --cxx-compiler|-x)
+
+            shift
+            COMPILER_COMMAND_Cxx=$1
+
+            ;;
+        --counts|-n)
 
             ShowCounts="true"
             ;;
-        -d|--debug-configuration)
+        --debug-configuration|-d)
 
             DebugConfiguration=1
             ;;
-        -y|--dry-run)
+        --dry-run|-y)
 
             DryRun="true"
             ;;
-        -C|--language-is-C)
+        --language-is-C|-C)
 
             Language=C
             ;;
-        -C++|--language-is-C++)
+        --language-is-C++|-C++)
 
             Language=Cxx
             ;;
-        -l|--language-version)
+        --language-version|-l)
 
             shift
             language_version=$1
@@ -131,7 +137,7 @@ while [[ $# -gt 0 ]]; do
 
             LanguageVersions+=($language_version)
             ;;
-        -p|--subproject)
+        --subproject|-p)
 
             shift
             subproject=$1
@@ -145,15 +151,9 @@ while [[ $# -gt 0 ]]; do
 
             Subprojects+=($subproject)
             ;;
-        -v|--verbose-mode)
+        --verbose-mode|-v)
 
             VerboseMode=1
-            ;;
-        -x|--cxx-compiler)
-
-            shift
-            COMPILER_COMMAND_Cxx=$1
-
             ;;
         --help)
 
@@ -173,6 +173,11 @@ Flags/options:
     --c-compiler
         specifies the name of the C-compiler, which otherwise defaults
         to cc
+
+    -x
+    --cxx-compiler
+        specifies the name of the C++-compiler, which otherwise defaults
+        to c++
 
     -n
     --counts
@@ -210,11 +215,6 @@ Flags/options:
     -v
     --verbose-mode
         announces each include file as it is compiled
-
-    -x
-    --cxx-compiler
-        specifies the name of the C++-compiler, which otherwise defaults
-        to c++
 
 
     standard flags:
