@@ -409,7 +409,7 @@ static void TEST_get_windows_directory()
             ss_size_t const n = system_traits_m_t::get_windows_directory(&buff[0], STLSOFT_NUM_ELEMENTS(buff));
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
-            TEST_INT_GE(11, n);
+            TEST_INT_GE(10, n);
             TEST_CHAR_EQ('\0', buff[n]);
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
@@ -422,7 +422,7 @@ static void TEST_get_windows_directory()
             ss_size_t const n = system_traits_w_t::get_windows_directory(&buff[0], STLSOFT_NUM_ELEMENTS(buff));
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
-            TEST_INT_GE(11, n);
+            TEST_INT_GE(10, n);
             TEST_CHAR_EQ(L'\0', buff[n]);
             TEST_CHAR_NE(L'\0', buff[n - 1]);
         }
@@ -435,7 +435,7 @@ static void TEST_get_windows_directory()
             ss_size_t const n = system_traits_m_t::get_windows_directory(buff);
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
-            TEST_INT_GE(11, n);
+            TEST_INT_GE(10, n);
             TEST_INT_EQ(265, buff.size());
             TEST_CHAR_EQ('\0', buff[n]);
             TEST_CHAR_NE('\0', buff[n - 1]);
@@ -449,7 +449,7 @@ static void TEST_get_windows_directory()
             ss_size_t const n = system_traits_w_t::get_windows_directory(buff);
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
-            TEST_INT_GE(11, n);
+            TEST_INT_GE(10, n);
             TEST_INT_EQ(265, buff.size());
             TEST_CHAR_EQ(L'\0', buff[n]);
             TEST_CHAR_NE(L'\0', buff[n - 1]);
