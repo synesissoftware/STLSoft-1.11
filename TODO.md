@@ -79,6 +79,9 @@
  * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
  * [x] `unixstl::glob_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
  * [x] `unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
+ * [ ] standardise (via **INTERNAL**) of following:
+  * [ ] `GetWindowsDirectoryA/W()`:
+
 
 
 ## STLSoft 1.12+ TODOs:
