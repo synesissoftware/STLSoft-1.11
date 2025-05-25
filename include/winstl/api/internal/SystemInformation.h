@@ -4,7 +4,7 @@
  * Purpose: Internal preprocessor aliases for internal Windows' System
  *          Information Functions API.
  *
- * Created: 24th December 2016
+ * Created: 25th May 2025
  * Updated: 25th May 2025
  *
  * Home:    http://stlsoft.org/
@@ -74,6 +74,50 @@
 /* /////////////////////////////////////////////////////////////////////////
  * Windows' System Information Functions
  */
+
+STLSOFT_INLINE
+DWORD
+WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(
+    CHAR    buff[]
+,   DWORD   cchBuff
+) STLSOFT_NOEXCEPT
+{
+    DWORD const n = WINSTL_API_EXTERNAL_SystemInformation_GetSystemDirectoryA(buff, cchBuff);
+
+    if (n > cchBuff)
+    {
+        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+
+        if (0 != cchBuff)
+        {
+            buff[0] = '\0';
+        }
+    }
+
+    return n;
+}
+
+STLSOFT_INLINE
+DWORD
+WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(
+    WCHAR   buff[]
+,   DWORD   cchBuff
+) STLSOFT_NOEXCEPT
+{
+    DWORD const n = WINSTL_API_EXTERNAL_SystemInformation_GetSystemDirectoryW(buff, cchBuff);
+
+    if (n > cchBuff)
+    {
+        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+
+        if (0 != cchBuff)
+        {
+            buff[0] = L'\0';
+        }
+    }
+
+    return n;
+}
 
 
 /** T.B.C.

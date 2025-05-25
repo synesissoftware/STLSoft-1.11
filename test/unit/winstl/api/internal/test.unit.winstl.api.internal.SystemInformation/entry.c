@@ -43,6 +43,7 @@
  * forward declarations
  */
 
+static void TEST_GetSystemDirectory(void);
 static void TEST_GetWindowsDirectory(void);
 
 
@@ -59,6 +60,7 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.winstl.api.internal.SystemInformation", verbosity))
     {
+        XTESTS_RUN_CASE(TEST_GetSystemDirectory);
         XTESTS_RUN_CASE(TEST_GetWindowsDirectory);
 
         XTESTS_PRINT_RESULTS();
@@ -74,11 +76,86 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
+static void TEST_GetSystemDirectory(void)
+{
+    /* 0 buffer */
+    {
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            CHAR        szBuff[1] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(&szBuff[0], 0);
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_GE(19, n);
+            TEST_CHAR_EQ('~', szBuff[0]);
+        }
+
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            WCHAR       szBuff[1] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(&szBuff[0], 0);
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_GE(19, n);
+            TEST_CHAR_EQ(L'~', szBuff[0]);
+        }
+    }
+
+    /* 1 buffer */
+    {
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            CHAR        szBuff[1] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(&szBuff[0], STLSOFT_NUM_ELEMENTS(szBuff));
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_GE(19, n);
+            TEST_CHAR_EQ('\0', szBuff[0]);
+        }
+
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            WCHAR       szBuff[1] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(&szBuff[0], STLSOFT_NUM_ELEMENTS(szBuff));
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_GE(19, n);
+            TEST_CHAR_EQ(L'\0', szBuff[0]);
+        }
+    }
+
+    /* sufficient buffer */
+    {
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            CHAR        szBuff[10001] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(&szBuff[0], STLSOFT_NUM_ELEMENTS(szBuff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
+            TEST_INT_GE(19, n);
+            TEST(isalpha(szBuff[0]));
+        }
+
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            WCHAR       szBuff[10001] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(&szBuff[0], STLSOFT_NUM_ELEMENTS(szBuff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
+            TEST_INT_GE(19, n);
+            TEST(iswalpha(szBuff[0]));
+        }
+    }
+}
+
 static void TEST_GetWindowsDirectory(void)
 {
-// WINSTL_API_EXTERNAL_SystemInformation_GetWindowsDirectoryA
-// WINSTL_API_EXTERNAL_SystemInformation_GetWindowsDirectoryW
-
     /* 0 buffer */
     {
         {

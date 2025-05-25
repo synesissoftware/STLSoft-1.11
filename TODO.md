@@ -80,6 +80,7 @@
  * [x] `unixstl::glob_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
  * [x] `unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
  * [ ] standardise (via **INTERNAL**) of following:
+  * [ ] `GetSystemDirectoryA/W()`:
   * [ ] `GetWindowsDirectoryA/W()`:
 
 
