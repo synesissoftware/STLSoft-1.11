@@ -86,7 +86,7 @@ static void TEST_GetSystemDirectory(void)
             CHAR        szBuff[1] = { '~' };
             DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(&szBuff[0], 0);
 
-            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
             TEST_INT_GE(19, n);
             TEST_CHAR_EQ('~', szBuff[0]);
         }
@@ -97,7 +97,7 @@ static void TEST_GetSystemDirectory(void)
             WCHAR       szBuff[1] = { '~' };
             DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(&szBuff[0], 0);
 
-            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
             TEST_INT_GE(19, n);
             TEST_CHAR_EQ(L'~', szBuff[0]);
         }
@@ -164,7 +164,7 @@ static void TEST_GetWindowsDirectory(void)
             CHAR        szBuff[1] = { '~' };
             DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryA(&szBuff[0], 0);
 
-            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
             TEST_INT_GE(10, n);
             TEST_CHAR_EQ('~', szBuff[0]);
         }
@@ -175,7 +175,7 @@ static void TEST_GetWindowsDirectory(void)
             WCHAR       szBuff[1] = { '~' };
             DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryW(&szBuff[0], 0);
 
-            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
             TEST_INT_GE(10, n);
             TEST_CHAR_EQ(L'~', szBuff[0]);
         }

@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 20th March 2025
+ * Updated: 25th May 2025
  *
  * Thanks:  Austin Ziegler for spotting the defective pre-condition
  *          enforcement of expand_environment_strings().
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR       6
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR       0
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        170
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION    6
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT        171
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -117,6 +117,9 @@
 #ifndef WINSTL_INCL_WINSTL_API_internal_h_DynamicLinkLibrary
 # include <winstl/api/internal/DynamicLinkLibrary.h>
 #endif /* !WINSTL_INCL_WINSTL_API_internal_h_DynamicLinkLibrary */
+#ifndef WINSTL_INCL_WINSTL_API_internal_h_SystemInformation
+# include <winstl/api/internal/SystemInformation.h>
+#endif /* !WINSTL_INCL_WINSTL_API_internal_h_SystemInformation */
 
 #ifndef WINSTL_INCL_WINSTL_API_external_h_DynamicLinkLibrary
 # include <winstl/api/external/DynamicLinkLibrary.h>
@@ -803,9 +806,26 @@ public:
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_system_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_system_directory(static_cast<char_type*>(NULL), 0) : get_system_directory(&rb[0], rb.size());
 
-        rb.resize(cchRequired);
+        if (rb.size() < cchRequired)
+        {
+            error_type const le = get_last_error();
+
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_system_directory(&rb[0], rb.size());
     }
@@ -826,9 +846,26 @@ public:
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_windows_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_windows_directory(static_cast<char_type*>(NULL), 0) : get_windows_directory(&rb[0], rb.size());
 
-        rb.resize(cchRequired);
+        if (rb.size() < cchRequired)
+        {
+            error_type const le = get_last_error();
+
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_windows_directory(&rb[0], rb.size());
     }
@@ -1012,16 +1049,16 @@ private:
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetSystemDirectoryA(buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         WINSTL_MESSAGE_ASSERT("buffer size out of range", STLSOFT_NS_QUAL(truncation_test)<DWORD>(cchBuffer));
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetSystemDirectoryA(buffer, static_cast<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(buffer, static_cast<DWORD>(cchBuffer));
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetSystemDirectoryA(buffer, cchBuffer);
+        return WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(buffer, cchBuffer);
 #endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
@@ -1031,16 +1068,16 @@ private:
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetWindowsDirectoryA(buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryA(buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         WINSTL_MESSAGE_ASSERT("buffer size out of range", STLSOFT_NS_QUAL(truncation_test)<DWORD>(cchBuffer));
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetWindowsDirectoryA(buffer, static_cast<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryA(buffer, static_cast<DWORD>(cchBuffer));
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetWindowsDirectoryA(buffer, cchBuffer);
+        return WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryA(buffer, cchBuffer);
 #endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
@@ -1297,9 +1334,26 @@ public:
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_system_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_system_directory(static_cast<char_type*>(NULL), 0) : get_system_directory(&rb[0], rb.size());
 
-        rb.resize(cchRequired);
+        if (rb.size() < cchRequired)
+        {
+            error_type const le = get_last_error();
+
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_system_directory(&rb[0], rb.size());
     }
@@ -1320,9 +1374,26 @@ public:
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_windows_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_windows_directory(static_cast<char_type*>(NULL), 0) : get_windows_directory(&rb[0], rb.size());
 
-        rb.resize(cchRequired);
+        if (rb.size() < cchRequired)
+        {
+            error_type const le = get_last_error();
+
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_windows_directory(&rb[0], rb.size());
     }
@@ -1506,16 +1577,16 @@ private:
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetSystemDirectoryW(buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         WINSTL_MESSAGE_ASSERT("buffer size out of range", STLSOFT_NS_QUAL(truncation_test)<DWORD>(cchBuffer));
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetSystemDirectoryW(buffer, static_cast<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(buffer, static_cast<DWORD>(cchBuffer));
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetSystemDirectoryW(buffer, cchBuffer);
+        return WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(buffer, cchBuffer);
 #endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
@@ -1525,16 +1596,16 @@ private:
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetWindowsDirectoryW(buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryW(buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         WINSTL_MESSAGE_ASSERT("buffer size out of range", STLSOFT_NS_QUAL(truncation_test)<DWORD>(cchBuffer));
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetWindowsDirectoryW(buffer, static_cast<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryW(buffer, static_cast<DWORD>(cchBuffer));
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetWindowsDirectoryW(buffer, cchBuffer);
+        return WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryW(buffer, cchBuffer);
 #endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 

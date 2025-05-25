@@ -81,8 +81,9 @@
  * [x] `unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
  * [ ] standardise (via **INTERNAL**) of following:
   * [ ] `GetSystemDirectoryA/W()`:
+   * [x] needs to set `ERROR_INSUFFICIENT_BUFFER`;
   * [ ] `GetWindowsDirectoryA/W()`:
-
+   * [x] needs to set `ERROR_INSUFFICIENT_BUFFER`;
 
 
 ## STLSoft 1.12+ TODOs:

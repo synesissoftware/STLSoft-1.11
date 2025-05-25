@@ -86,10 +86,17 @@ WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(
 
     if (n > cchBuff)
     {
-        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
-
-        if (0 != cchBuff)
+        if (0 == cchBuff)
         {
+            if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+            {
+                WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+            }
+        }
+        else
+        {
+            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+
             buff[0] = '\0';
         }
     }
@@ -108,10 +115,17 @@ WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(
 
     if (n > cchBuff)
     {
-        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
-
-        if (0 != cchBuff)
+        if (0 == cchBuff)
         {
+            if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+            {
+                WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+            }
+        }
+        else
+        {
+            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+
             buff[0] = L'\0';
         }
     }
@@ -137,10 +151,17 @@ WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryA(
 
     if (n > cchBuff)
     {
-        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
-
-        if (0 != cchBuff)
+        if (0 == cchBuff)
         {
+            if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+            {
+                WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+            }
+        }
+        else
+        {
+            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+
             buff[0] = '\0';
         }
     }
@@ -165,10 +186,17 @@ WINSTL_API_INTERNAL_SystemInformation_GetWindowsDirectoryW(
 
     if (n > cchBuff)
     {
-        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
-
-        if (0 != cchBuff)
+        if (0 == cchBuff)
         {
+            if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+            {
+                WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+            }
+        }
+        else
+        {
+            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+
             buff[0] = L'\0';
         }
     }
