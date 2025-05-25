@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/api/internal/DynamicLinkLibrary.h
+ * File:    winstl/api/internal/DynamicLinkLibrary.h
  *
- * Purpose:     Internal preprocessor aliases for internal Windows' Dynamic
- *              Link Library Functions API.
+ * Purpose: Internal preprocessor aliases for internal Windows' Dynamic Link
+ *          Library Functions API.
  *
- * Created:     30th November 2020
- * Updated:     30th November 2020
+ * Created: 30th November 2020
+ * Updated: 26th May 2025
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2020-2025, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -75,6 +75,23 @@
  * Windows' File Management Functions
  */
 
+/** Obtains the fully qualified path for the file that contains the
+ * specified module (that must have been loaded by the current process).
+ *
+ * \param hModule A handle to the loaded module for which the path is to be
+ *  obtained;
+ * \param filename A pointer to the buffer into which to write the path. May
+ *  not be NULL unless \c cchFilename is 0;
+ * \param cchFilename Number of available bytes in \c filename;
+ *
+ * \return The number of characters written if cchFilename is sufficient to
+ *  hold the entire string; the number of characters required (including for
+ *  terminating NUL character) if not.
+ *
+ * \note The number of characters required returned is 2 (not 1) more than
+ *  the number of characters in the string, due to the underlying API
+ *  function not providing any direct indication as to (in)sufficient size.
+ */
 STLSOFT_INLINE
 DWORD
 WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameA(
@@ -83,34 +100,157 @@ WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameA(
 ,   DWORD   cchFilename
 ) STLSOFT_NOEXCEPT
 {
-    if (0 == cchFilename)
-    {
-        /* When given a too-small buffer GetModuleFileNameA() does not
-         * return the required size, but rather it copies as much as
-         * is possible + the nul character and returns cchBuffer
-         *
-         * Hence, we supply the largest possible buffer (for multibyte
-         * form) and invoke in a way that obviates this design defect
-         */
+    WINSTL_ASSERT(0 == cchFilename || NULL != filename);
 
-        CHAR        buff[1 + WINSTL_CONST_MAX_PATH];
-        DWORD const cch = WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameA(hModule, buff, STLSOFT_NUM_ELEMENTS(buff));
+    CHAR stub[1];
+
+    if (NULL == filename)
+    {
+        filename = &stub[0];
+    }
+
+    /* When given a too-small buffer GetModuleFileNameA() does not return
+     * the required size, but rather it copies as much as is possible + the
+     * NUL character and returns cchBuffer.
+     *
+     * Hence, we must use the following algorithm:
+     * - try with the given buffer and: if fails (for other reason that
+     *   insufficient buffer) then fail; otherwise check for buffer being
+     *   definitely sufficient and return with success;
+     * - otherwise, insufficient, so: try with stack memory (e.g. 2 x
+     *   WINSTL_CONST_MAX_PATH), and otherwise try with heap memory
+     *   (WINSTL_CONST_NT_MAX_PATH). If succeeds, ensure that does set
+     *   ERROR_INSUFFICIENT_BUFFER if 0 != cchFilename; otherwise ensure
+     *   that does not set ERROR_INSUFFICIENT_BUFFER;
+     */
+
+    if (0 != cchFilename)
+    {
+        /* try with what is given, as that might be sufficient */
+
+        DWORD const cch = WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA(hModule, filename, cchFilename);
 
         if (0 == cch)
         {
+            /* failed for reason other than insufficient buffer */
+
             return 0;
         }
         else
         {
-            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+            /* The return value can only be trusted if 2+ spare characters in buffer */
 
-            return 1 + cch;
+            if (cch + 1 < cchFilename)
+            {
+                /* prospective check (against future changes) */
+
+                if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+                {
+                    WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+                }
+
+                return cch;
+            }
         }
     }
 
-    return WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA(hModule, filename, cchFilename);
+    {
+        /* stack memory */
+        {
+            CHAR        buff[2 * WINSTL_CONST_MAX_PATH];
+            DWORD const cch = WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA(hModule, buff, STLSOFT_NUM_ELEMENTS(buff));
+
+            if (0 == cch)
+            {
+                /* failed for reason other than insufficient buffer */
+
+                return 0;
+            }
+            else
+            {
+                /* The return value can only be trusted if 2+ spare characters in buffer */
+
+                if (cch + 1 < STLSOFT_NUM_ELEMENTS(buff))
+                {
+                    /* prospective check (against future changes) */
+
+                    if (0 == cchFilename)
+                    {
+                        if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+                        {
+                            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+                        }
+                    }
+                    else
+                    {
+                        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+                    }
+
+                    return 2 + cch;
+                }
+            }
+        }
+
+        /* heap memory */
+        {
+            DWORD const     n       =   (1 + WINSTL_CONST_NT_MAX_PATH);
+            DWORD const     cb      =   n * sizeof(CHAR);
+            CHAR* const     buff2   =   STLSOFT_STATIC_CAST(CHAR*, WINSTL_API_EXTERNAL_MemoryManagement_HeapAlloc(WINSTL_API_EXTERNAL_MemoryManagement_GetProcessHeap(), 0, cb));
+
+            if (NULL == buff2)
+            {
+                WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+            else
+            {
+                DWORD const cch2 = WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameA(hModule, &buff2[0], n);
+
+                WINSTL_API_EXTERNAL_MemoryManagement_HeapFree(WINSTL_API_EXTERNAL_MemoryManagement_GetProcessHeap(), 0, buff2);
+
+                if (0 == cch2)
+                {
+                    return 0;
+                }
+                else
+                {
+                    if (0 == cchFilename)
+                    {
+                        if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+                        {
+                            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+                        }
+                    }
+                    else
+                    {
+                        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+                    }
+
+                    return 2 + cch2;
+                }
+            }
+        }
+    }
 }
 
+/** Obtains the fully qualified path for the file that contains the
+ * specified module (that must have been loaded by the current process).
+ *
+ * \param hModule A handle to the loaded module for which the path is to be
+ *  obtained;
+ * \param filename A pointer to the buffer into which to write the path. May
+ *  not be NULL unless \c cchFilename is 0;
+ * \param cchFilename Number of available characters in \c filename;
+ *
+ * \return The number of characters written if cchFilename is sufficient to
+ *  hold the entire string; the number of characters required (including for
+ *  terminating NUL character) if not.
+ *
+ * \note The number of characters required returned is 2 (not 1) more than
+ *  the number of characters in the string, due to the underlying API
+ *  function not providing any direct indication as to (in)sufficient size.
+ */
 STLSOFT_INLINE
 DWORD
 WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameW(
@@ -119,36 +259,99 @@ WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameW(
 ,   DWORD   cchFilename
 ) STLSOFT_NOEXCEPT
 {
-    if (0 == cchFilename)
-    {
-        /* When given a too-small buffer GetModuleFileNameW() does not
-         * return the required size, but rather it copies as much as
-         * is possible + the nul character and returns cchBuffer
-         *
-         * Hence, we supply the largest possible buffer (for multibyte
-         * form) and invoke in a way that obviates this design defect
-         */
+    WINSTL_ASSERT(0 == cchFilename || NULL != filename);
 
-        WCHAR       buff1[1 + WINSTL_CONST_MAX_PATH];
-        DWORD const cch = WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameW(hModule, buff1, STLSOFT_NUM_ELEMENTS(buff1));
+    WCHAR stub[1];
+
+    if (NULL == filename)
+    {
+        filename = &stub[0];
+    }
+
+    /* When given a too-small buffer GetModuleFileNameA() does not return
+     * the required size, but rather it copies as much as is possible + the
+     * NUL character and returns cchBuffer.
+     *
+     * Hence, we must use the following algorithm:
+     * - try with the given buffer and: if fails (for other reason that
+     *   insufficient buffer) then fail; otherwise check for buffer being
+     *   definitely sufficient and return with success;
+     * - otherwise, insufficient, so: try with stack memory (e.g. 2 x
+     *   WINSTL_CONST_MAX_PATH), and otherwise try with heap memory
+     *   (WINSTL_CONST_NT_MAX_PATH). If succeeds, ensure that does set
+     *   ERROR_INSUFFICIENT_BUFFER if 0 != cchFilename; otherwise ensure
+     *   that does not set ERROR_INSUFFICIENT_BUFFER;
+     */
+
+    if (0 != cchFilename)
+    {
+        /* try with what is given, as that might be sufficient */
+
+        DWORD const cch = WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameW(hModule, filename, cchFilename);
 
         if (0 == cch)
         {
+            /* failed for reason other than insufficient buffer */
+
             return 0;
         }
         else
-        if (STLSOFT_NUM_ELEMENTS(buff1) != cch)
         {
-            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+            /* The return value can only be trusted if 2+ spare characters in buffer */
 
-            return 1 + cch;
+            if (cch + 1 < cchFilename)
+            {
+                /* prospective check (against future changes) */
+
+                if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+                {
+                    WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+                }
+
+                return cch;
+            }
         }
-        else
-        {
-            /* We go heap because (i) we're already asking for a lot, and
-             * (ii) we're not going to provoke the stack
-             */
+    }
 
+    {
+        /* stack memory */
+        {
+            WCHAR       buff[2 * WINSTL_CONST_MAX_PATH];
+            DWORD const cch = WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameW(hModule, buff, STLSOFT_NUM_ELEMENTS(buff));
+
+            if (0 == cch)
+            {
+                /* failed for reason other than insufficient buffer */
+
+                return 0;
+            }
+            else
+            {
+                /* The return value can only be trusted if 2+ spare characters in buffer */
+
+                if (cch + 1 < STLSOFT_NUM_ELEMENTS(buff))
+                {
+                    /* prospective check (against future changes) */
+
+                    if (0 == cchFilename)
+                    {
+                        if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+                        {
+                            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+                        }
+                    }
+                    else
+                    {
+                        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+                    }
+
+                    return 2 + cch;
+                }
+            }
+        }
+
+        /* heap memory */
+        {
             DWORD const     n       =   (1 + WINSTL_CONST_NT_MAX_PATH);
             DWORD const     cb      =   n * sizeof(WCHAR);
             WCHAR* const    buff2   =   STLSOFT_STATIC_CAST(WCHAR*, WINSTL_API_EXTERNAL_MemoryManagement_HeapAlloc(WINSTL_API_EXTERNAL_MemoryManagement_GetProcessHeap(), 0, cb));
@@ -161,7 +364,7 @@ WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameW(
             }
             else
             {
-                DWORD const cch2 = WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameW(hModule, &buff2[0], n);
+                DWORD const cch2 = WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameW(hModule, &buff2[0], n);
 
                 WINSTL_API_EXTERNAL_MemoryManagement_HeapFree(WINSTL_API_EXTERNAL_MemoryManagement_GetProcessHeap(), 0, buff2);
 
@@ -171,15 +374,23 @@ WINSTL_API_INTERNAL_DynamicLinkLibrary_GetModuleFileNameW(
                 }
                 else
                 {
-                    WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+                    if (0 == cchFilename)
+                    {
+                        if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+                        {
+                            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+                        }
+                    }
+                    else
+                    {
+                        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+                    }
 
-                    return 1 + cch2;
+                    return 2 + cch2;
                 }
             }
         }
     }
-
-    return WINSTL_API_EXTERNAL_DynamicLinkLibrary_GetModuleFileNameW(hModule, filename, cchFilename);
 }
 
 

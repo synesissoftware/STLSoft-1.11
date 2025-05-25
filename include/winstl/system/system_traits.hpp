@@ -748,9 +748,26 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_module_filename(hModule, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_module_filename(hModule, static_cast<char_type*>(NULL), 0) : get_module_filename(hModule, &rb[0], rb.size());
 
-        rb.resize(cchRequired);
+        if (rb.size() < cchRequired)
+        {
+            error_type const le = get_last_error();
+
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_module_filename(hModule, &rb[0], rb.size());
     }
@@ -1293,9 +1310,26 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_module_filename(hModule, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_module_filename(hModule, static_cast<char_type*>(NULL), 0) : get_module_filename(hModule, &rb[0], rb.size());
 
-        rb.resize(cchRequired);
+        if (rb.size() < cchRequired)
+        {
+            error_type const le = get_last_error();
+
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_module_filename(hModule, &rb[0], rb.size());
     }

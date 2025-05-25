@@ -44,10 +44,11 @@ namespace {
 
     static void TEST_get_home_directory();
 
+    static void TEST_get_module_filename();
+
     static void TEST_get_system_directory();
 
     static void TEST_get_windows_directory();
-
 } // anonymous namespace
 
 
@@ -66,10 +67,11 @@ int main(int argc, char *argv[])
     {
         XTESTS_RUN_CASE(TEST_get_home_directory);
 
+        XTESTS_RUN_CASE(TEST_get_module_filename);
+
         XTESTS_RUN_CASE(TEST_get_system_directory);
 
         XTESTS_RUN_CASE(TEST_get_windows_directory);
-
 
         XTESTS_PRINT_RESULTS();
 
@@ -176,6 +178,181 @@ static void TEST_get_home_directory()
 
     // sufficient memory
     {
+    }
+}
+
+static void TEST_get_module_filename()
+{
+    // invalid handle
+    {
+        HMODULE hmInvalid = reinterpret_cast<HMODULE>(stlsoft::integral_limits<std::uintptr_t>::maximum());
+
+        // passing character array (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            char            buff[261]; buff[0] = buff[STLSOFT_NUM_ELEMENTS(buff) - 1] = '~';
+            ss_size_t const n = system_traits_m_t::get_module_filename(hmInvalid, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_MOD_NOT_FOUND, ::GetLastError());
+            TEST_INT_GE(0, n);
+            TEST_CHAR_EQ('~', buff[n]);
+            TEST_CHAR_EQ('~', buff[STLSOFT_NUM_ELEMENTS(buff) - 1]);
+        }
+
+        // passing character array (wchar_t)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            wchar_t         buff[261]; buff[0] = buff[STLSOFT_NUM_ELEMENTS(buff) - 1] = '~';
+            ss_size_t const n = system_traits_w_t::get_module_filename(hmInvalid, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_MOD_NOT_FOUND, ::GetLastError());
+            TEST_INT_GE(0, n);
+            TEST_CHAR_EQ(L'~', buff[n]);
+            TEST_CHAR_EQ(L'~', buff[STLSOFT_NUM_ELEMENTS(buff) - 1]);
+        }
+
+        // passing resizeable buffer (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_m_t          buff(1); buff[0] = '~';
+            ss_size_t const n = system_traits_m_t::get_module_filename(hmInvalid, buff);
+
+            TEST_INT_EQ(ERROR_MOD_NOT_FOUND, ::GetLastError());
+            TEST_INT_GE(0, n);
+            TEST_INT_EQ(1, buff.size());
+            TEST_CHAR_EQ('~', buff[n]);
+        }
+
+        // passing resizeable buffer (wchar_t)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_w_t          buff(1); buff[0] = '~';
+            ss_size_t const n = system_traits_w_t::get_module_filename(hmInvalid, buff);
+
+            TEST_INT_EQ(ERROR_MOD_NOT_FOUND, ::GetLastError());
+            TEST_INT_GE(0, n);
+            TEST_INT_EQ(1, buff.size());
+            TEST_CHAR_EQ(L'~', buff[n]);
+        }
+    }
+
+    HMODULE                         hmKernel    =   ::LoadLibraryA("kernel32");
+    stlsoft::scoped_handle<HMODULE> scoper_Kernel(hmKernel, ::FreeLibrary);
+
+    // insufficient memory
+    {
+        // passing character array (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            char            buff[1] = { '~' };
+            ss_size_t const n = system_traits_m_t::get_module_filename(hmKernel, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, ::GetLastError());
+            TEST_INT_GE(4, n);
+            TEST_CHAR_EQ('\0', buff[0]);
+        }
+
+        // passing character array (wchar_t)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            wchar_t         buff[1] = { '~' };
+            ss_size_t const n = system_traits_w_t::get_module_filename(hmKernel, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, ::GetLastError());
+            TEST_INT_GE(4, n);
+            TEST_CHAR_EQ(L'\0', buff[0]);
+        }
+
+        // passing resizeable buffer (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_m_t          buff(1);
+            ss_size_t const n = system_traits_m_t::get_module_filename(hmKernel, buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(15, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (wchar_t)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_w_t          buff(1);
+            ss_size_t const n = system_traits_w_t::get_module_filename(hmKernel, buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(15, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
+    }
+
+    // sufficient memory
+    {
+        // passing character array (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            char            buff[1001];
+            ss_size_t const n = system_traits_m_t::get_module_filename(hmKernel, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(15, n);
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+        }
+
+        // passing character array (wchar_t)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            wchar_t         buff[1001];
+            ss_size_t const n = system_traits_w_t::get_module_filename(hmKernel, &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(15, n);
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_m_t          buff(1001);
+            ss_size_t const n = system_traits_m_t::get_module_filename(hmKernel, buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(15, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (wchar_t)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_w_t          buff(1001);
+            ss_size_t const n = system_traits_w_t::get_module_filename(hmKernel, buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(15, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
     }
 }
 
