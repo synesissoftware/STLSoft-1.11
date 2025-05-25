@@ -42,9 +42,12 @@
 
 namespace {
 
+    static void TEST_get_home_directory();
+
     static void TEST_get_system_directory();
 
     static void TEST_get_windows_directory();
+
 } // anonymous namespace
 
 
@@ -61,9 +64,12 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.winstl.system.system_traits", verbosity))
     {
+        XTESTS_RUN_CASE(TEST_get_home_directory);
+
         XTESTS_RUN_CASE(TEST_get_system_directory);
 
         XTESTS_RUN_CASE(TEST_get_windows_directory);
+
 
         XTESTS_PRINT_RESULTS();
 
@@ -87,11 +93,97 @@ namespace {
     typedef winstl::system_traits<wchar_t>                  system_traits_w_t;
 
 
+static void TEST_get_home_directory()
+{
+    // insufficient memory
+    {
+        // passing character array (char) - 0
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            char            buff[1] = { '~' };
+            ss_size_t const n = system_traits_m_t::get_home_directory(&buff[0], 0);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(8, n);
+            TEST_CHAR_EQ('~', buff[0]);
+        }
+
+        // passing character array (wchar_t) - 0
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            wchar_t         buff[1] = { '~' };
+            ss_size_t const n = system_traits_w_t::get_home_directory(&buff[0], 0);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(8, n);
+            TEST_CHAR_EQ(L'~', buff[0]);
+        }
+
+        // passing character array (char) - 1
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            char            buff[1] = { '~' };
+            ss_size_t const n = system_traits_m_t::get_home_directory(&buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, ::GetLastError());
+            TEST_INT_GE(8, n);
+            TEST_CHAR_EQ('\0', buff[0]);
+        }
+
+        // passing character array (wchar_t) - 1
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            wchar_t         buff[1] = { '~' };
+            ss_size_t const n = system_traits_w_t::get_home_directory(&buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, ::GetLastError());
+            TEST_INT_GE(8, n);
+            TEST_CHAR_EQ(L'\0', buff[0]);
+        }
+
+        // passing resizeable buffer (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_m_t          buff(1);
+            ss_size_t const n = system_traits_m_t::get_home_directory(buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(8, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (wchar_t)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_w_t          buff(1);
+            ss_size_t const n = system_traits_w_t::get_home_directory(buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(8, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
+    }
+
+    // sufficient memory
+    {
+    }
+}
+
 static void TEST_get_system_directory()
 {
     // insufficient memory
     {
-        // 0 character array (char)
+        // passing character array (char) - 0
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -103,7 +195,7 @@ static void TEST_get_system_directory()
             TEST_CHAR_EQ('~', buff[0]);
         }
 
-        // 0 character array (wchar_t)
+        // passing  character array (wchar_t) - 0
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -115,7 +207,7 @@ static void TEST_get_system_directory()
             TEST_CHAR_EQ(L'~', buff[0]);
         }
 
-        // passing character array (char)
+        // passing character array (char) - 1
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -127,7 +219,7 @@ static void TEST_get_system_directory()
             TEST_CHAR_EQ('\0', buff[0]);
         }
 
-        // passing character array (wchar_t)
+        // passing character array (wchar_t) - 1
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -230,7 +322,7 @@ static void TEST_get_windows_directory()
 {
     // insufficient memory
     {
-        // 0 character array (char)
+        // passing character array (char) - 0
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -242,7 +334,7 @@ static void TEST_get_windows_directory()
             TEST_CHAR_EQ('~', buff[0]);
         }
 
-        // 0 character array (wchar_t)
+        // passing character array (wchar_t) - 0
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -254,7 +346,7 @@ static void TEST_get_windows_directory()
             TEST_CHAR_EQ(L'~', buff[0]);
         }
 
-        // passing character array (char)
+        // passing character array (char) - 1
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -266,7 +358,7 @@ static void TEST_get_windows_directory()
             TEST_CHAR_EQ('\0', buff[0]);
         }
 
-        // passing character array (wchar_t)
+        // passing character array (wchar_t) - 1
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -302,6 +394,63 @@ static void TEST_get_windows_directory()
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
             TEST_INT_GE(4, n);
             TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
+    }
+
+    // sufficient memory
+    {
+        // passing character array (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            char            buff[265];
+            ss_size_t const n = system_traits_m_t::get_windows_directory(&buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(11, n);
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+        }
+
+        // passing character array (wchar_t)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            wchar_t         buff[265];
+            ss_size_t const n = system_traits_w_t::get_windows_directory(&buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(11, n);
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_m_t          buff(265);
+            ss_size_t const n = system_traits_m_t::get_windows_directory(buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(11, n);
+            TEST_INT_EQ(265, buff.size());
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (wchar_t)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_w_t          buff(265);
+            ss_size_t const n = system_traits_w_t::get_windows_directory(buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(11, n);
+            TEST_INT_EQ(265, buff.size());
             TEST_CHAR_EQ(L'\0', buff[n]);
             TEST_CHAR_NE(L'\0', buff[n - 1]);
         }

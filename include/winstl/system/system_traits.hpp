@@ -893,7 +893,24 @@ public:
     {
         size_type const cchRequired = get_home_directory(static_cast<char_type*>(NULL), 0);
 
-        rb.resize(cchRequired);
+        if (rb.size() < cchRequired)
+        {
+            error_type const le = get_last_error();
+
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_home_directory(&rb[0], rb.size());
     }
@@ -1421,7 +1438,24 @@ public:
     {
         size_type const cchRequired = get_home_directory(static_cast<char_type*>(NULL), 0);
 
-        rb.resize(cchRequired);
+        if (rb.size() < cchRequired)
+        {
+            error_type const le = get_last_error();
+
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_home_directory(&rb[0], rb.size());
     }
