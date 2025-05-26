@@ -75,6 +75,9 @@
  * Windows' System Information Functions
  */
 
+/** Invokes the underlying `GetSystemDirectoryA()` and applies last-error
+ * and contingent buffer adjustment accordingly.
+ */
 STLSOFT_INLINE
 DWORD
 WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(
@@ -104,6 +107,9 @@ WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryA(
     return n;
 }
 
+/** Invokes the underlying `GetSystemDirectoryW()` and applies last-error
+ * and contingent buffer adjustment accordingly.
+ */
 STLSOFT_INLINE
 DWORD
 WINSTL_API_INTERNAL_SystemInformation_GetSystemDirectoryW(
