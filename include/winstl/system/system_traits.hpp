@@ -908,7 +908,7 @@ public:
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_home_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_home_directory(static_cast<char_type*>(NULL), 0) : get_home_directory(&rb[0], rb.size());
 
         if (rb.size() < cchRequired)
         {
@@ -1482,7 +1482,7 @@ public:
         T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_home_directory(static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_home_directory(static_cast<char_type*>(NULL), 0) : get_home_directory(&rb[0], rb.size());
 
         if (rb.size() < cchRequired)
         {
