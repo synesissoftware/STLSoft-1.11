@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::system_traits`.
  *
  * Created: 22nd May 2025
- * Updated: 25th May 2025
+ * Updated: 26th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,6 +42,8 @@
 
 namespace {
 
+    static void TEST_get_environment_variable();
+
     static void TEST_get_home_directory();
 
     static void TEST_get_module_filename();
@@ -65,6 +67,8 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.winstl.system.system_traits", verbosity))
     {
+        XTESTS_RUN_CASE(TEST_get_environment_variable);
+
         XTESTS_RUN_CASE(TEST_get_home_directory);
 
         XTESTS_RUN_CASE(TEST_get_module_filename);
@@ -94,6 +98,151 @@ namespace {
     typedef winstl::system_traits<char>                     system_traits_m_t;
     typedef winstl::system_traits<wchar_t>                  system_traits_w_t;
 
+
+static void TEST_get_environment_variable()
+{
+    platformstl::environment_variable_scope scope_X("XYZ", "xyz");
+
+    // insufficient memory
+    {
+        // passing character array (char) - 0
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            char            buff[1] = { '~' };
+            ss_size_t const r = system_traits_m_t::get_environment_variable("XYZ", &buff[0], 0);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_EQ(4, r);
+            TEST_CHAR_EQ('~', buff[0]);
+        }
+
+        // passing character array (wchar_t) - 0
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            wchar_t         buff[1] = { '~' };
+            ss_size_t const r = system_traits_w_t::get_environment_variable(L"XYZ", &buff[0], 0);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_EQ(4, r);
+            TEST_CHAR_EQ(L'~', buff[0]);
+        }
+
+        // passing character array (char) - 1
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            char            buff[1] = { '~' };
+            ss_size_t const r = system_traits_m_t::get_environment_variable("XYZ", &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, ::GetLastError());
+            TEST_INT_EQ(4, r);
+            TEST_CHAR_EQ('\0', buff[0]);
+        }
+
+        // passing character array (wchar_t) - 0
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            wchar_t         buff[1] = { '~' };
+            ss_size_t const r = system_traits_w_t::get_environment_variable(L"XYZ", &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, ::GetLastError());
+            TEST_INT_EQ(4, r);
+            TEST_CHAR_EQ(L'\0', buff[0]);
+        }
+
+        // passing resizeable buffer (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_m_t          buff(1);
+            ss_size_t const n = system_traits_m_t::get_environment_variable("XYZ", buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(3, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+            TEST_MS_EQ("xyz", buff.data());
+        }
+
+        // passing resizeable buffer (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_w_t          buff(1);
+            ss_size_t const n = system_traits_w_t::get_environment_variable(L"XYZ", buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(3, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+            TEST_WS_EQ(L"xyz", buff.data());
+        }
+    }
+
+    // sufficient memory
+    {
+        // passing character array (char) - 4
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            char            buff[4] = { '~' };
+            ss_size_t const r = system_traits_m_t::get_environment_variable("XYZ", &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_EQ(3, r);
+            TEST_CHAR_EQ('\0', buff[r]);
+            TEST_MS_EQ("xyz", buff);
+        }
+
+        // passing character array (wchar_t) - 4
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            wchar_t         buff[4] = { '~' };
+            ss_size_t const r = system_traits_w_t::get_environment_variable(L"XYZ", &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_EQ(3, r);
+            TEST_CHAR_EQ(L'\0', buff[r]);
+            TEST_WS_EQ(L"xyz", buff);
+        }
+
+        // passing resizeable buffer (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_m_t          buff(4);
+            ss_size_t const n = system_traits_m_t::get_environment_variable("XYZ", buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(3, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+            TEST_MS_EQ("xyz", buff.data());
+        }
+
+        // passing resizeable buffer (char)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            ab_w_t          buff(4);
+            ss_size_t const n = system_traits_w_t::get_environment_variable(L"XYZ", buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(3, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+            TEST_WS_EQ(L"xyz", buff.data());
+        }
+    }
+}
 
 static void TEST_get_home_directory()
 {

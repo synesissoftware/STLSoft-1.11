@@ -75,6 +75,72 @@
  * Windows' System Information Functions
  */
 
+/** Invokes the underlying `GetEnvironmentVariableA()` and applies last-error
+ * and contingent buffer adjustment accordingly.
+ */
+STLSOFT_INLINE
+DWORD
+WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableA(
+    LPCSTR  lpName
+,   LPSTR   lpBuffer
+,   DWORD   nSize
+) STLSOFT_NOEXCEPT
+{
+    DWORD const n = WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableA(lpName, lpBuffer, nSize);
+
+    if (n > nSize)
+    {
+        if (0 == nSize)
+        {
+            if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+            {
+                WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+            }
+        }
+        else
+        {
+            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+
+            lpBuffer[0] = '\0';
+        }
+    }
+
+    return n;
+}
+
+/** Invokes the underlying `GetEnvironmentVariableW()` and applies last-error
+ * and contingent buffer adjustment accordingly.
+ */
+STLSOFT_INLINE
+DWORD
+WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableW(
+    LPCWSTR lpName
+,   LPWSTR  lpBuffer
+,   DWORD   nSize
+) STLSOFT_NOEXCEPT
+{
+    DWORD const n = WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableW(lpName, lpBuffer, nSize);
+
+    if (n > nSize)
+    {
+        if (0 == nSize)
+        {
+            if (ERROR_INSUFFICIENT_BUFFER == WINSTL_API_EXTERNAL_ErrorHandling_GetLastError())
+            {
+                WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_SUCCESS);
+            }
+        }
+        else
+        {
+            WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_INSUFFICIENT_BUFFER);
+
+            lpBuffer[0] = L'\0';
+        }
+    }
+
+    return n;
+}
+
 /** Invokes the underlying `GetSystemDirectoryA()` and applies last-error
  * and contingent buffer adjustment accordingly.
  */

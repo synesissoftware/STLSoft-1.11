@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 25th May 2025
+ * Updated: 26th May 2025
  *
  * Thanks:  Austin Ziegler for spotting the defective pre-condition
  *          enforcement of expand_environment_strings().
@@ -1014,14 +1014,26 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_environment_variable(name, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_environment_variable(name, static_cast<char_type*>(NULL), 0) : get_environment_variable(name, &rb[0], rb.size());
 
-        if (0 == cchRequired)
+        if (rb.size() < cchRequired)
         {
-            return 0;
-        }
+            error_type const le = get_last_error();
 
-        rb.resize(cchRequired);
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_environment_variable(name, &rb[0], rb.size());
     }
@@ -1121,16 +1133,16 @@ private:
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableA(name, buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableA(name, buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         WINSTL_MESSAGE_ASSERT("buffer size out of range", STLSOFT_NS_QUAL(truncation_test)<DWORD>(cchBuffer));
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableA(name, buffer, static_cast<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableA(name, buffer, static_cast<DWORD>(cchBuffer));
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableA(name, buffer, cchBuffer);
+        return WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableA(name, buffer, cchBuffer);
 #endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 
@@ -1576,14 +1588,26 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = get_environment_variable(name, static_cast<char_type*>(NULL), 0);
+        size_type const cchRequired = (0 == rb.size()) ? get_environment_variable(name, static_cast<char_type*>(NULL), 0) : get_environment_variable(name, &rb[0], rb.size());
 
-        if (0 == cchRequired)
+        if (rb.size() < cchRequired)
         {
-            return 0;
-        }
+            error_type const le = get_last_error();
 
-        rb.resize(cchRequired);
+            if (rb.resize(cchRequired))
+            {
+                if (ERROR_INSUFFICIENT_BUFFER == le)
+                {
+                    set_last_error(ERROR_SUCCESS);
+                }
+            }
+            else
+            {
+                set_last_error(ERROR_OUTOFMEMORY);
+
+                return 0;
+            }
+        }
 
         return get_environment_variable(name, &rb[0], rb.size());
     }
@@ -1683,16 +1707,16 @@ private:
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableW(name, buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableW(name, buffer, STLSOFT_NS_QUAL(truncation_cast)<DWORD>(cchBuffer));
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
 
         WINSTL_MESSAGE_ASSERT("buffer size out of range", STLSOFT_NS_QUAL(truncation_test)<DWORD>(cchBuffer));
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableW(name, buffer, static_cast<DWORD>(cchBuffer));
+        return WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableW(name, buffer, static_cast<DWORD>(cchBuffer));
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #else /* ? _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
 
-        return WINSTL_API_EXTERNAL_SystemInformation_GetEnvironmentVariableW(name, buffer, cchBuffer);
+        return WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableW(name, buffer, cchBuffer);
 #endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
     }
 

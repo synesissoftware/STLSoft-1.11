@@ -2,7 +2,7 @@
  * File:    test.unit.winstl.api.internal.SystemInformation/entry.c
  *
  * Created: 25th May 2025
- * Updated: 25th May 2025
+ * Updated: 26th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,6 +43,7 @@
  * forward declarations
  */
 
+static void TEST_GetEnvironmentVariable(void);
 static void TEST_GetSystemDirectory(void);
 static void TEST_GetWindowsDirectory(void);
 
@@ -60,6 +61,7 @@ int main(int argc, char *argv[])
 
     if (XTESTS_START_RUNNER("test.unit.winstl.api.internal.SystemInformation", verbosity))
     {
+        XTESTS_RUN_CASE(TEST_GetEnvironmentVariable);
         XTESTS_RUN_CASE(TEST_GetSystemDirectory);
         XTESTS_RUN_CASE(TEST_GetWindowsDirectory);
 
@@ -75,6 +77,93 @@ int main(int argc, char *argv[])
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
+
+static void TEST_GetEnvironmentVariable(void)
+{
+    SetEnvironmentVariableA("MY_CUSTOM_VARIABLE", "MyCustomVariable");
+
+    /* 0 buffer */
+    {
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            CHAR        szBuff[1] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableA( "MY_CUSTOM_VARIABLE", &szBuff[0], 0);
+
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
+            TEST_INT_GE(17, n);
+            TEST_CHAR_EQ('~', szBuff[0]);
+        }
+
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            WCHAR       szBuff[1] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableW(L"MY_CUSTOM_VARIABLE", &szBuff[0], 0);
+
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
+            TEST_INT_GE(17, n);
+            TEST_CHAR_EQ(L'~', szBuff[0]);
+        }
+    }
+
+    /* 1 buffer */
+    {
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            CHAR        szBuff[1] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableA( "MY_CUSTOM_VARIABLE", &szBuff[0], STLSOFT_NUM_ELEMENTS(szBuff));
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_GE(17, n);
+            TEST_CHAR_EQ('\0', szBuff[0]);
+        }
+
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            WCHAR       szBuff[1] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableW(L"MY_CUSTOM_VARIABLE", &szBuff[0], STLSOFT_NUM_ELEMENTS(szBuff));
+
+
+            TEST_INT_EQ(ERROR_INSUFFICIENT_BUFFER, GetLastError());
+            TEST_INT_GE(17, n);
+            TEST_CHAR_EQ(L'\0', szBuff[0]);
+        }
+    }
+
+    /* sufficient buffer */
+    {
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            CHAR        szBuff[101] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableA( "MY_CUSTOM_VARIABLE", &szBuff[0], STLSOFT_NUM_ELEMENTS(szBuff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
+            TEST_INT_GE(16, n);
+            TEST_CHAR_NE('\0', szBuff[0]);
+            TEST_CHAR_NE('\0', szBuff[n - 1]);
+            TEST_CHAR_EQ('\0', szBuff[n]);
+            TEST_MS_EQ("MyCustomVariable", szBuff);
+        }
+
+        {
+            SetLastError(ERROR_SUCCESS);
+
+            WCHAR       szBuff[101] = { '~' };
+            DWORD const n = WINSTL_API_INTERNAL_SystemInformation_GetEnvironmentVariableW(L"MY_CUSTOM_VARIABLE", &szBuff[0], STLSOFT_NUM_ELEMENTS(szBuff));
+
+            TEST_INT_EQ(ERROR_SUCCESS, GetLastError());
+            TEST_INT_GE(16, n);
+            TEST_CHAR_NE(L'\0', szBuff[0]);
+            TEST_CHAR_NE(L'\0', szBuff[n - 1]);
+            TEST_CHAR_EQ(L'\0', szBuff[n]);
+            TEST_WS_EQ(L"MyCustomVariable", szBuff);
+        }
+    }
+}
 
 static void TEST_GetSystemDirectory(void)
 {

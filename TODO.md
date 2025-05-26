@@ -80,6 +80,7 @@
  * [x] `unixstl::glob_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
  * [x] `unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
  * [ ] standardise (via **INTERNAL**) of following:
+  * [ ] `GetEnvironmentVariableA/W()`:
   * [ ] `GetModuleFileNameA/W()`:
   * [ ] `GetSystemDirectoryA/W()`:
    * [x] needs to set `ERROR_INSUFFICIENT_BUFFER`;
