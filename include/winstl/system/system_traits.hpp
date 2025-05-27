@@ -1721,7 +1721,7 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = (0 == rb.size()) ? expand_environment_strings(src, static_cast<char_type*>(NULL), 0) : expand_environment_strings(src, &rb[0], rb.size());
+        size_type const cchRequired = expand_environment_strings(src, 0 == rb.size() ? static_cast<char_type*>(NULL) : &rb[0], rb.size());
 
         if (0 == cchRequired)
         {
