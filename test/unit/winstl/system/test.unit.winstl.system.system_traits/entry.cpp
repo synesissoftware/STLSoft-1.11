@@ -107,6 +107,8 @@ int main(int argc, char *argv[])
 namespace {
 
     using stlsoft::ss_size_t;
+    typedef std::vector<char>                               vec_m_t;
+    typedef std::vector<wchar_t>                            vec_w_t;
     typedef stlsoft::auto_buffer<char>                      ab_m_t;
     typedef stlsoft::auto_buffer<wchar_t>                   ab_w_t;
     typedef winstl::system_traits<char>                     system_traits_m_t;
@@ -158,6 +160,30 @@ static void TEST_expand_environment_string_EMPTY_INPUT()
             ::SetLastError(ERROR_SUCCESS);
 
             ab_w_t          buff(1);
+            ss_size_t const r = system_traits_w_t::expand_environment_strings(L"", buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_EQ(1, r);
+            TEST_WS_EQ(L"", buff.data());
+        }
+
+        // passing resizeable buffer (vector<char>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            vec_m_t         buff(0);
+            ss_size_t const r = system_traits_m_t::expand_environment_strings("", buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_EQ(1, r);
+            TEST_MS_EQ("", buff.data());
+        }
+
+        // passing resizeable buffer (vector<wchar_t>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            vec_w_t         buff(0);
             ss_size_t const r = system_traits_w_t::expand_environment_strings(L"", buff);
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
@@ -221,6 +247,30 @@ static void TEST_expand_environment_string_NONEXISTING_VARIABLE()
                 TEST_INT_EQ(7, r);
                 TEST_WS_EQ(L"%NONE%", buff.data());
             }
+
+            // passing resizeable buffer (vector<char>)
+            {
+                ::SetLastError(ERROR_SUCCESS);
+
+                vec_m_t         buff(0);
+                ss_size_t const r = system_traits_m_t::expand_environment_strings("%NONE%", buff);
+
+                TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+                TEST_INT_EQ(7, r);
+                TEST_MS_EQ("%NONE%", buff.data());
+            }
+
+            // passing resizeable buffer (vector<wchar_t>)
+            {
+                ::SetLastError(ERROR_SUCCESS);
+
+                vec_w_t         buff(0);
+                ss_size_t const r = system_traits_w_t::expand_environment_strings(L"%NONE%", buff);
+
+                TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+                TEST_INT_EQ(7, r);
+                TEST_WS_EQ(L"%NONE%", buff.data());
+            }
         }
 
         // sufficient buffer
@@ -237,14 +287,70 @@ static void TEST_expand_environment_string_NONEXISTING_VARIABLE()
                 TEST_MS_EQ("%NONE%", buff);
             }
 
+            // passing character array (wchar_t)
+            {
+                ::SetLastError(ERROR_SUCCESS);
 
+                wchar_t         buff[8] = { '~', '~', '~', '~', '~', '~', '~', '~' };
+                ss_size_t const r = system_traits_w_t::expand_environment_strings(L"%NONE%", &buff[0], STLSOFT_NUM_ELEMENTS(buff));
+
+                TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+                TEST_INT_EQ(7, r);
+                TEST_WS_EQ(L"%NONE%", buff);
+            }
+
+            // passing resizeable buffer (auto_buffer<char>)
+            {
+                ::SetLastError(ERROR_SUCCESS);
+
+                ab_m_t          buff(8);
+                ss_size_t const r = system_traits_m_t::expand_environment_strings( "%NONE%", buff);
+
+                TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+                TEST_INT_EQ(7, r);
+                TEST_INT_EQ(8u, buff.size());
+                TEST_MS_EQ("%NONE%", buff.data());
+            }
+
+            // passing resizeable buffer (auto_buffer<wchar_t>)
+            {
+                ::SetLastError(ERROR_SUCCESS);
+
+                ab_w_t          buff(8);
+                ss_size_t const r = system_traits_w_t::expand_environment_strings(L"%NONE%", buff);
+
+                TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+                TEST_INT_EQ(7, r);
+                TEST_INT_EQ(8u, buff.size());
+                TEST_WS_EQ(L"%NONE%", buff.data());
+            }
+
+            // passing resizeable buffer (vector<char>)
+            {
+                ::SetLastError(ERROR_SUCCESS);
+
+                vec_m_t         buff(8);
+                ss_size_t const r = system_traits_m_t::expand_environment_strings("%NONE%", buff);
+
+                TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+                TEST_INT_EQ(7, r);
+                TEST_INT_EQ(8u, buff.size());
+                TEST_MS_EQ("%NONE%", buff.data());
+            }
+
+            // passing resizeable buffer (vector<wchar_t>)
+            {
+                ::SetLastError(ERROR_SUCCESS);
+
+                vec_w_t         buff(8);
+                ss_size_t const r = system_traits_w_t::expand_environment_strings(L"%NONE%", buff);
+
+                TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+                TEST_INT_EQ(7, r);
+                TEST_INT_EQ(8u, buff.size());
+                TEST_WS_EQ(L"%NONE%", buff.data());
+            }
         }
-
-        // excess buffer
-        {
-
-        }
-
     }
 }
 
@@ -355,6 +461,30 @@ static void TEST_expand_environment_string_1()
         TEST_WS_EQ(ws_TempDir, buff.data());
         TEST_CHAR_EQ(L'\0', buff[r - 1]);
         TEST_CHAR_NE(L'\0', buff[r - 2]);
+    }
+
+    // passing resizeable buffer (vector<char>)
+    {
+        ::SetLastError(ERROR_SUCCESS);
+
+        vec_m_t         buff(0);
+        ss_size_t const r = system_traits_m_t::expand_environment_strings("%MYTEMP%", buff);
+
+        TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+        TEST_INT_EQ(35, r);
+        TEST_MS_EQ(ms_TempDir, buff.data());
+    }
+
+    // passing resizeable buffer (vector<wchar_t>)
+    {
+        ::SetLastError(ERROR_SUCCESS);
+
+        vec_w_t         buff(0);
+        ss_size_t const r = system_traits_w_t::expand_environment_strings(L"%MYTEMP%", buff);
+
+        TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+        TEST_INT_EQ(35, r);
+        TEST_WS_EQ(ws_TempDir, buff.data());
     }
 }
 

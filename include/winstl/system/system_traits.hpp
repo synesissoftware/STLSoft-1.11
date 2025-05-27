@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 26th May 2025
+ * Updated: 27th May 2025
  *
  * Thanks:  Austin Ziegler for spotting the defective pre-condition
  *          enforcement of expand_environment_strings().
@@ -99,6 +99,9 @@
 #  endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST */
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #endif /* _WINSTL_SYSTEM_TRAITS_USE_TRUNCATION_TESTING */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS
+# include <stlsoft/util/resizeable_buffer_helpers.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_RESIZEABLE_BUFFER_HELPERS */
 
 #if STLSOFT_LEAD_VER >= 0x010a0000
 # ifndef WINSTL_INCL_WINSTL_SYSTEM_H_DIRECTORY_FUNCTIONS
@@ -1062,13 +1065,13 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = (0 == rb.size()) ? expand_environment_strings(src, static_cast<char_type*>(NULL), 0) : expand_environment_strings(src, &rb[0], rb.size());
+        size_type const cchRequired = expand_environment_strings(src, 0 == rb.size() ? static_cast<char_type*>(NULL) : &rb[0], rb.size());
 
         if (rb.size() < cchRequired)
         {
             error_type const le = get_last_error();
 
-            if (rb.resize(cchRequired))
+            if (STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
             {
                 if (ERROR_INSUFFICIENT_BUFFER == le)
                 {
@@ -1669,7 +1672,7 @@ public:
         {
             error_type const le = get_last_error();
 
-            if (rb.resize(cchRequired))
+            if (STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
             {
                 if (ERROR_INSUFFICIENT_BUFFER == le)
                 {
