@@ -1017,13 +1017,13 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = (0 == rb.size()) ? get_environment_variable(name, static_cast<char_type*>(NULL), 0) : get_environment_variable(name, &rb[0], rb.size());
+        size_type const cchRequired = get_environment_variable(name, 0 == rb.size() ? static_cast<char_type*>(NULL) : &rb[0], rb.size());
 
         if (rb.size() < cchRequired)
         {
             error_type const le = get_last_error();
 
-            if (rb.resize(cchRequired))
+            if (STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
             {
                 if (ERROR_INSUFFICIENT_BUFFER == le)
                 {
@@ -1608,13 +1608,13 @@ public:
     ,   T_resizeableBuffer& rb
     )
     {
-        size_type const cchRequired = (0 == rb.size()) ? get_environment_variable(name, static_cast<char_type*>(NULL), 0) : get_environment_variable(name, &rb[0], rb.size());
+        size_type const cchRequired = get_environment_variable(name, 0 == rb.size() ? static_cast<char_type*>(NULL) : &rb[0], rb.size());
 
         if (rb.size() < cchRequired)
         {
             error_type const le = get_last_error();
 
-            if (rb.resize(cchRequired))
+            if (STLSOFT_NS_QUAL(resizeable_buffer_resize)(rb, cchRequired))
             {
                 if (ERROR_INSUFFICIENT_BUFFER == le)
                 {
