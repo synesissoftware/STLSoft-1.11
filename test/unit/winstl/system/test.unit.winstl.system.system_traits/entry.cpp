@@ -1234,6 +1234,34 @@ static void TEST_get_system_directory()
             TEST_CHAR_EQ(L'\0', buff[n]);
             TEST_CHAR_NE(L'\0', buff[n - 1]);
         }
+
+        // passing resizeable buffer (vector<char>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            vec_m_t         buff(0);
+            ss_size_t const n = system_traits_m_t::get_system_directory(buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(11, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (vector<wchar_t>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            vec_w_t         buff(0);
+            ss_size_t const n = system_traits_w_t::get_system_directory(buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(11, n);
+            TEST_INT_GT(n, buff.size());
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
     }
 
     // sufficient memory
@@ -1283,6 +1311,34 @@ static void TEST_get_system_directory()
             ::SetLastError(ERROR_SUCCESS);
 
             ab_w_t          buff(265);
+            ss_size_t const n = system_traits_w_t::get_system_directory(buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(11, n);
+            TEST_INT_EQ(265, buff.size());
+            TEST_CHAR_EQ(L'\0', buff[n]);
+            TEST_CHAR_NE(L'\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (vector<char>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            vec_m_t          buff(265);
+            ss_size_t const n = system_traits_m_t::get_system_directory(buff);
+
+            TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
+            TEST_INT_GE(11, n);
+            TEST_INT_EQ(265, buff.size());
+            TEST_CHAR_EQ('\0', buff[n]);
+            TEST_CHAR_NE('\0', buff[n - 1]);
+        }
+
+        // passing resizeable buffer (vector<wchar_t>)
+        {
+            ::SetLastError(ERROR_SUCCESS);
+
+            vec_w_t         buff(265);
             ss_size_t const n = system_traits_w_t::get_system_directory(buff);
 
             TEST_INT_EQ(ERROR_SUCCESS, ::GetLastError());
