@@ -141,7 +141,7 @@ static void TEST_expand_environment_string_EMPTY_INPUT()
             TEST_WS_EQ(L"", buff);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -153,7 +153,7 @@ static void TEST_expand_environment_string_EMPTY_INPUT()
             TEST_MS_EQ("", buff.data());
         }
 
-        // passing resizeable buffer (wchar_t)
+        // passing resizeable buffer (auto_buffer<wchar_t>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -198,7 +198,7 @@ static void TEST_expand_environment_string_NONEXISTING_VARIABLE()
                 TEST_WS_EQ(L"", buff);
             }
 
-            // passing resizeable buffer (char)
+            // passing resizeable buffer (auto_buffer<char>)
             {
                 ::SetLastError(ERROR_SUCCESS);
 
@@ -210,7 +210,7 @@ static void TEST_expand_environment_string_NONEXISTING_VARIABLE()
                 TEST_MS_EQ("%NONE%", buff.data());
             }
 
-            // passing resizeable buffer (wchar_t)
+            // passing resizeable buffer (auto_buffer<wchar_t>)
             {
                 ::SetLastError(ERROR_SUCCESS);
 
@@ -329,7 +329,7 @@ static void TEST_expand_environment_string_1()
         TEST_CHAR_NE(L'\0', buff[r - 2]);
     }
 
-    // passing resizeable buffer (char)
+    // passing resizeable buffer (auto_buffer<char>)
     {
         ::SetLastError(ERROR_SUCCESS);
 
@@ -343,7 +343,7 @@ static void TEST_expand_environment_string_1()
         TEST_CHAR_NE('\0', buff[r - 2]);
     }
 
-    // passing resizeable buffer (wchar_t)
+    // passing resizeable buffer (auto_buffer<wchar_t>)
     {
         ::SetLastError(ERROR_SUCCESS);
 
@@ -412,7 +412,7 @@ static void TEST_get_environment_variable()
             TEST_CHAR_EQ(L'\0', buff[0]);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -427,7 +427,7 @@ static void TEST_get_environment_variable()
             TEST_MS_EQ("xyz", buff.data());
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -471,7 +471,7 @@ static void TEST_get_environment_variable()
             TEST_WS_EQ(L"xyz", buff);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -486,7 +486,7 @@ static void TEST_get_environment_variable()
             TEST_MS_EQ("xyz", buff.data());
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -555,7 +555,7 @@ static void TEST_get_home_directory()
             TEST_CHAR_EQ(L'\0', buff[0]);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -569,7 +569,7 @@ static void TEST_get_home_directory()
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (wchar_t)
+        // passing resizeable buffer (auto_buffer<wchar_t>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -714,7 +714,7 @@ static void TEST_get_module_filename()
             TEST_CHAR_EQ(L'~', buff[STLSOFT_NUM_ELEMENTS(buff) - 1]);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -727,7 +727,7 @@ static void TEST_get_module_filename()
             TEST_CHAR_EQ('~', buff[n]);
         }
 
-        // passing resizeable buffer (wchar_t)
+        // passing resizeable buffer (auto_buffer<wchar_t>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -770,7 +770,7 @@ static void TEST_get_module_filename()
             TEST_CHAR_EQ(L'\0', buff[0]);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -784,7 +784,7 @@ static void TEST_get_module_filename()
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (wchar_t)
+        // passing resizeable buffer (auto_buffer<wchar_t>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -827,7 +827,7 @@ static void TEST_get_module_filename()
             TEST_CHAR_NE(L'\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -841,7 +841,7 @@ static void TEST_get_module_filename()
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (wchar_t)
+        // passing resizeable buffer (auto_buffer<wchar_t>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -909,7 +909,7 @@ static void TEST_get_system_directory()
             TEST_CHAR_EQ(L'\0', buff[0]);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -923,7 +923,7 @@ static void TEST_get_system_directory()
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (wchar_t)
+        // passing resizeable buffer (auto_buffer<wchar_t>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -966,7 +966,7 @@ static void TEST_get_system_directory()
             TEST_CHAR_NE(L'\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -980,7 +980,7 @@ static void TEST_get_system_directory()
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (wchar_t)
+        // passing resizeable buffer (auto_buffer<wchar_t>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -1048,7 +1048,7 @@ static void TEST_get_windows_directory()
             TEST_CHAR_EQ(L'\0', buff[0]);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -1062,7 +1062,7 @@ static void TEST_get_windows_directory()
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (wchar_t)
+        // passing resizeable buffer (auto_buffer<wchar_t>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -1105,7 +1105,7 @@ static void TEST_get_windows_directory()
             TEST_CHAR_NE(L'\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (char)
+        // passing resizeable buffer (auto_buffer<char>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
@@ -1119,7 +1119,7 @@ static void TEST_get_windows_directory()
             TEST_CHAR_NE('\0', buff[n - 1]);
         }
 
-        // passing resizeable buffer (wchar_t)
+        // passing resizeable buffer (auto_buffer<wchar_t>)
         {
             ::SetLastError(ERROR_SUCCESS);
 
