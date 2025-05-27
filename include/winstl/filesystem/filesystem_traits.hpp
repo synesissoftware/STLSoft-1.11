@@ -5,7 +5,7 @@
  *          Unicode specialisations thereof.
  *
  * Created: 15th November 2002
- * Updated: 20th March 2025
+ * Updated: 27th May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       21
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    10
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        192
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        193
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -654,7 +654,7 @@ public:
     ,   T_resizeableBuffer& rb
     );
 
-    /// Gets the full path name into the given buffer
+    /// [DEPRECATED] Gets the full path name into the given buffer
     ///
     /// \deprecated The other overload is now the preferred form
     static
@@ -665,7 +665,7 @@ public:
     ,   char_type           buffer[]
     );
 
-    /// Gets the short path name into the given buffer
+    /// [DEPRECATED] Gets the short path name into the given buffer
     ///
     /// \deprecated The other overload is now the preferred form
     static
@@ -742,7 +742,8 @@ public:
     set_current_directory(
         char_type const*    dir
     );
-    /// Retrieves the name of the current directory into \c buffer up to a maximum of \c cchBuffer characters
+    /// [DEPRECATED] Retrieves the name of the current directory into the
+    ///  given \c buffer up to a maximum of \c cchBuffer characters
     ///
     /// \deprecated The other overload is now the preferred form
     static
@@ -751,7 +752,8 @@ public:
         size_type   cchBuffer
     ,   char_type   buffer[]
     );
-    /// Retrieves the name of the current directory into \c buffer up to a maximum of \c cchBuffer characters
+    /// Retrieves the name of the current directory into the given \c buffer
+    ///  up to a maximum of \c cchBuffer characters
     static
     size_type
     get_current_directory(
@@ -832,7 +834,7 @@ public:
 
     /// Delete a file
     static bool_type    unlink_file(char_type const* file);
-    /// Delete a file
+    /// [DEPRECATED] Delete a file
     ///
     /// \deprecated Users should use unlink_file()
     static bool_type    delete_file(char_type const* file);
@@ -866,7 +868,6 @@ private:
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /// @}
 };
-
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 template <ss_typename_param_k C>
