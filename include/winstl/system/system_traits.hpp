@@ -828,6 +828,11 @@ public:
     {
         size_type const cchRequired = (0 == rb.size()) ? get_system_directory(static_cast<char_type*>(NULL), 0) : get_system_directory(&rb[0], rb.size());
 
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
         if (rb.size() < cchRequired)
         {
             error_type const le = get_last_error();
@@ -867,6 +872,11 @@ public:
     )
     {
         size_type const cchRequired = (0 == rb.size()) ? get_windows_directory(static_cast<char_type*>(NULL), 0) : get_windows_directory(&rb[0], rb.size());
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
 
         if (rb.size() < cchRequired)
         {
@@ -912,6 +922,11 @@ public:
     )
     {
         size_type const cchRequired = get_home_directory(0 == rb.size() ? static_cast<char_type*>(NULL) : &rb[0], rb.size());
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
 
         if (rb.size() < cchRequired)
         {
@@ -1019,6 +1034,11 @@ public:
     {
         size_type const cchRequired = get_environment_variable(name, 0 == rb.size() ? static_cast<char_type*>(NULL) : &rb[0], rb.size());
 
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
         if (rb.size() < cchRequired)
         {
             error_type const le = get_last_error();
@@ -1066,6 +1086,11 @@ public:
     )
     {
         size_type const cchRequired = expand_environment_strings(src, 0 == rb.size() ? static_cast<char_type*>(NULL) : &rb[0], rb.size());
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
 
         if (rb.size() < cchRequired)
         {
@@ -1419,6 +1444,11 @@ public:
     {
         size_type const cchRequired = (0 == rb.size()) ? get_system_directory(static_cast<char_type*>(NULL), 0) : get_system_directory(&rb[0], rb.size());
 
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
         if (rb.size() < cchRequired)
         {
             error_type const le = get_last_error();
@@ -1458,6 +1488,11 @@ public:
     )
     {
         size_type const cchRequired = (0 == rb.size()) ? get_windows_directory(static_cast<char_type*>(NULL), 0) : get_windows_directory(&rb[0], rb.size());
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
 
         if (rb.size() < cchRequired)
         {
@@ -1503,6 +1538,11 @@ public:
     )
     {
         size_type const cchRequired = get_home_directory(0 == rb.size() ? static_cast<char_type*>(NULL) : &rb[0], rb.size());
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
 
         if (rb.size() < cchRequired)
         {
@@ -1610,6 +1650,11 @@ public:
     {
         size_type const cchRequired = get_environment_variable(name, 0 == rb.size() ? static_cast<char_type*>(NULL) : &rb[0], rb.size());
 
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
+
         if (rb.size() < cchRequired)
         {
             error_type const le = get_last_error();
@@ -1667,6 +1712,11 @@ public:
     )
     {
         size_type const cchRequired = (0 == rb.size()) ? expand_environment_strings(src, static_cast<char_type*>(NULL), 0) : expand_environment_strings(src, &rb[0], rb.size());
+
+        if (0 == cchRequired)
+        {
+            return 0;
+        }
 
         if (rb.size() < cchRequired)
         {
