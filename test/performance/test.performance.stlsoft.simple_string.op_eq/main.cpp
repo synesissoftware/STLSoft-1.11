@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::basic_simple_string#operator ==()`.
  *
  * Created: 15th March 2024
- * Updated: 5th May 2024
+ * Updated: 28th May 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -205,7 +205,7 @@ display_results(
 
 int main(int argc, char* argv[])
 {
-    auto const program_name = platformstl::get_executable_name_from_path(argv[0]);
+    stlsoft::string_slice_m_t const program_name = platformstl::get_executable_name_from_path(argv[0]);
 
     // FOOLING THE OPTIMISER:
     //
