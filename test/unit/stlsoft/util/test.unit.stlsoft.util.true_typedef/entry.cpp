@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::true_typedef`.
  *
  * Created: 27th February 2024
- * Updated: 21st March 2025
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -139,6 +139,16 @@ namespace {
         return stm;
     }
 # endif
+#endif
+
+#if __cplusplus < 201103L
+
+STLSOFT_GEN_OPAQUE(h_int_tt)
+STLSOFT_GEN_OPAQUE(h_double_tt)
+STLSOFT_GEN_OPAQUE(h_string_tt)
+
+# undef STLSOFT_GEN_OPAQUE
+# define STLSOFT_GEN_OPAQUE(x)
 #endif
 
 

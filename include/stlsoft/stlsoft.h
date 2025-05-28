@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 28th May 2025
+ * Updated: 29th May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 13
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     599
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 14
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     600
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -3140,6 +3140,7 @@ public: // attributes
 
 #  define STLSOFT_IS_CONSTANT_EVALUATED()                   std::is_constant_evaluated()
 # elif defined(STLSOFT_COMPILER_IS_GCC) &&\
+       __cplusplus >= 201103L &&\
        STLSOFT_GCC_VER >= 90000
 
 #  define STLSOFT_IS_CONSTANT_EVALUATED()                   __builtin_is_constant_evaluated()
