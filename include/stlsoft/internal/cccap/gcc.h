@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      34
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       119
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -270,7 +270,14 @@
 
 #ifndef __cplusplus
 
-# define STLSOFT_CUSTOM_C_INLINE                            static inline
+# if defined(__STDC_VERSION__) &&\
+     __STDC_VERSION__ >= 201112L
+
+#  define STLSOFT_CUSTOM_C_INLINE                           static inline
+# else /* ? C version */
+
+#  define STLSOFT_CUSTOM_C_INLINE                           __inline__
+# endif /* C version */
 #endif
 
 

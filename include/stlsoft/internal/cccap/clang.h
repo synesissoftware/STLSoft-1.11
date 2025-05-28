@@ -477,6 +477,22 @@
 #elif 0 ||\
       defined(STLSOFT_LONGLONG_SUPPORT) ||\
       0 ||\
+      defined(__aarch64__) ||\
+      defined(_M_ARM64) ||\
+      0 ||\
+      defined(__ia64__) ||\
+      defined(__ia64) ||\
+      defined(_IA64_) ||\
+      defined(_M_IA64) ||\
+      0 ||\
+      defined(__amd64__) ||\
+      defined(__amd64) ||\
+      defined(__x86_64__) ||\
+      defined(__x86_64) ||\
+      defined(_AMD64_) ||\
+      defined(_M_AMD64) ||\
+      defined(_M_X64) ||\
+      0 ||\
       0
 
 # define STLSOFT_CF_64BIT_INT_SUPPORT
