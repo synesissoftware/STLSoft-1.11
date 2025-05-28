@@ -4,11 +4,11 @@
  * Purpose: Compiler feature discrimination for Clang C/C++.
  *
  * Created: 14th March 2015
- * Updated: 27th December 2024
+ * Updated: 28th May 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,9 +59,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MAJOR    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MINOR    10
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     30
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MINOR    11
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 0
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -228,7 +228,14 @@
 
 #ifndef __cplusplus
 
-# define STLSOFT_CUSTOM_C_INLINE                            static inline
+# if defined(__STDC_VERSION__) &&\
+     __STDC_VERSION__ >= 201112L
+
+#  define STLSOFT_CUSTOM_C_INLINE                           static inline
+# else /* ? C version */
+
+#  define STLSOFT_CUSTOM_C_INLINE                           __inline__
+# endif /* C version */
 #endif
 
 
@@ -466,10 +473,20 @@
 #define STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 
 /* 64-bit integer */
-#define STLSOFT_CF_64BIT_INT_SUPPORT
-#define STLSOFT_CF_64BIT_INT_IS_long_long
-#define STLSOFT_SI64_T_BASE_TYPE                            __INT64_TYPE__
-#define STLSOFT_UI64_T_BASE_TYPE                            __UINT64_TYPE__
+#if 0
+#elif 0 ||\
+      defined(STLSOFT_LONGLONG_SUPPORT) ||\
+      0 ||\
+      0
+
+# define STLSOFT_CF_64BIT_INT_SUPPORT
+# ifdef STLSOFT_LONGLONG_SUPPORT
+#  define STLSOFT_CF_64BIT_INT_IS_long_long
+# endif /* STLSOFT_LONGLONG_SUPPORT */
+
+# define STLSOFT_SI64_T_BASE_TYPE                           __INT64_TYPE__
+# define STLSOFT_UI64_T_BASE_TYPE                           __UINT64_TYPE__
+#endif /* STLSOFT_LONGLONG_SUPPORT */
 
 /* ptr-bit integer */
 #define STLSOFT_SPTR_T_BASE_TYPE                            __INTPTR_TYPE__

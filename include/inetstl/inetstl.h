@@ -796,67 +796,66 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-typedef STLSOFT_NS_QUAL(ss_char_a_t)        is_char_a_t;    /*!< Ansi char type */
-typedef STLSOFT_NS_QUAL(ss_char_w_t)        is_char_w_t;    /*!< Unicode char type */
-typedef STLSOFT_NS_QUAL(ss_sint8_t)         is_sint8_t;     /*!< 8-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint8_t)         is_uint8_t;     /*!< 8-bit unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_int16_t)         is_int16_t;     /*!< 16-bit integer */
-typedef STLSOFT_NS_QUAL(ss_sint16_t)        is_sint16_t;    /*!< 16-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint16_t)        is_uint16_t;    /*!< 16-bit unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_int32_t)         is_int32_t;     /*!< 32-bit integer */
-typedef STLSOFT_NS_QUAL(ss_sint32_t)        is_sint32_t;    /*!< 32-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint32_t)        is_uint32_t;    /*!< 32-bit unsigned integer */
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef STLSOFT_NS_QUAL(ss_int64_t)        is_int64_t;     /*!< 64-bit integer */
- typedef STLSOFT_NS_QUAL(ss_sint64_t)       is_sint64_t;    /*!< 64-bit signed integer */
- typedef STLSOFT_NS_QUAL(ss_uint64_t)       is_uint64_t;    /*!< 64-bit unsigned integer */
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef STLSOFT_NS_QUAL(ss_int_t)           is_int_t;       /*!< integer */
-typedef STLSOFT_NS_QUAL(ss_sint_t)          is_sint_t;      /*!< signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint_t)          is_uint_t;      /*!< unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_long_t)          is_long_t;      /*!< long */
-typedef STLSOFT_NS_QUAL(ss_byte_t)          is_byte_t;      /*!< byte type */
-#ifdef __cplusplus
-typedef STLSOFT_NS_QUAL(ss_bool_t)          is_bool_t;      /*!< Boolean type */
-#endif /* __cplusplus */
+typedef STLSOFT_NS_QUAL(ss_char_a_t)                        is_char_a_t;    /*!< Ansi char type */
+typedef STLSOFT_NS_QUAL(ss_char_w_t)                        is_char_w_t;    /*!< Unicode char type */
+typedef STLSOFT_NS_QUAL(ss_sint8_t)                         is_sint8_t;     /*!< 8-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint8_t)                         is_uint8_t;     /*!< 8-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_int16_t)                         is_int16_t;     /*!< 16-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint16_t)                        is_sint16_t;    /*!< 16-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint16_t)                        is_uint16_t;    /*!< 16-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_int32_t)                         is_int32_t;     /*!< 32-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint32_t)                        is_sint32_t;    /*!< 32-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint32_t)                        is_uint32_t;    /*!< 32-bit unsigned integer */
+# ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+typedef STLSOFT_NS_QUAL(ss_int64_t)                         is_int64_t;     /*!< 64-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint64_t)                        is_sint64_t;    /*!< 64-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint64_t)                        is_uint64_t;    /*!< 64-bit unsigned integer */
+# endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+typedef STLSOFT_NS_QUAL(ss_int_t)                           is_int_t;       /*!< integer */
+typedef STLSOFT_NS_QUAL(ss_sint_t)                          is_sint_t;      /*!< signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint_t)                          is_uint_t;      /*!< unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_long_t)                          is_long_t;      /*!< long */
+typedef STLSOFT_NS_QUAL(ss_byte_t)                          is_byte_t;      /*!< byte type */
+# ifdef __cplusplus
+typedef STLSOFT_NS_QUAL(ss_bool_t)                          is_bool_t;      /*!< Boolean type */
+# endif /* __cplusplus */
 # ifdef INETSTL_OS_IS_WINDOWS
-typedef DWORD                               is_dword_t;     /*!< dword */
+typedef DWORD                                               is_dword_t;     /*!< dword */
 # endif /* INETSTL_OS_IS_WINDOWS */
-typedef STLSOFT_NS_QUAL(ss_size_t)          is_size_t;      /*!< size */
-typedef STLSOFT_NS_QUAL(ss_ptrdiff_t)       is_ptrdiff_t;   /*!< ptr diff */
-typedef STLSOFT_NS_QUAL(ss_streampos_t)     is_streampos_t; /*!< streampos */
-typedef STLSOFT_NS_QUAL(ss_streamoff_t)     is_streamoff_t; /*!< streamoff */
+typedef STLSOFT_NS_QUAL(ss_size_t)                          is_size_t;      /*!< size */
+typedef STLSOFT_NS_QUAL(ss_ptrdiff_t)                       is_ptrdiff_t;   /*!< ptr diff */
+typedef STLSOFT_NS_QUAL(ss_streampos_t)                     is_streampos_t; /*!< streampos */
+typedef STLSOFT_NS_QUAL(ss_streamoff_t)                     is_streamoff_t; /*!< streamoff */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef INETSTL_NO_NAMESPACE
-typedef is_char_a_t         char_a_t;           /*!< Ansi char type */
-typedef is_char_w_t         char_w_t;           /*!< Unicode char type */
-typedef is_sint8_t          sint8_t;            /*!< 8-bit signed integer */
-typedef is_uint8_t          uint8_t;            /*!< 8-bit unsigned integer */
-typedef is_int16_t          int16_t;            /*!< 16-bit integer */
-typedef is_sint16_t         sint16_t;           /*!< 16-bit signed integer */
-typedef is_uint16_t         uint16_t;           /*!< 16-bit unsigned integer */
-typedef is_int32_t          int32_t;            /*!< 32-bit integer */
-typedef is_sint32_t         sint32_t;           /*!< 32-bit signed integer */
-typedef is_uint32_t         uint32_t;           /*!< 32-bit unsigned integer */
+typedef is_char_a_t                                         char_a_t;       /*!< Ansi char type */
+typedef is_char_w_t                                         char_w_t;       /*!< Unicode char type */
+typedef is_sint8_t                                          sint8_t;        /*!< 8-bit signed integer */
+typedef is_uint8_t                                          uint8_t;        /*!< 8-bit unsigned integer */
+typedef is_int16_t                                          int16_t;        /*!< 16-bit integer */
+typedef is_sint16_t                                         sint16_t;       /*!< 16-bit signed integer */
+typedef is_uint16_t                                         uint16_t;       /*!< 16-bit unsigned integer */
+typedef is_int32_t                                          int32_t;        /*!< 32-bit integer */
+typedef is_sint32_t                                         sint32_t;       /*!< 32-bit signed integer */
+typedef is_uint32_t                                         uint32_t;       /*!< 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef is_int64_t         int64_t;            /*!< 64-bit integer */
- typedef is_sint64_t        sint64_t;           /*!< 64-bit signed integer */
- typedef is_uint64_t        uint64_t;           /*!< 64-bit unsigned integer */
+typedef is_int64_t                                          int64_t;        /*!< 64-bit integer */
+typedef is_sint64_t                                         sint64_t;       /*!< 64-bit signed integer */
+typedef is_uint64_t                                         uint64_t;       /*!< 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef is_int_t            int_t;              /*!< integer */
-typedef is_sint_t           sint_t;             /*!< signed integer */
-typedef is_uint_t           uint_t;             /*!< unsigned integer */
-typedef is_long_t           long_t;             /*!< long integer */
-typedef is_byte_t           byte_t;             /*!< byte type */
-typedef is_bool_t           bool_t;             /*!< Boolean type */
+typedef is_int_t                                            int_t;          /*!< integer */
+typedef is_sint_t                                           sint_t;         /*!< signed integer */
+typedef is_uint_t                                           uint_t;         /*!< unsigned integer */
+typedef is_long_t                                           long_t;         /*!< long integer */
+typedef is_byte_t                                           byte_t;         /*!< byte type */
+typedef is_bool_t                                           bool_t;         /*!< Boolean type */
 # ifdef INETSTL_OS_IS_WINDOWS
-typedef is_dword_t          dword_t;            /*!< dword */
+typedef is_dword_t                                          dword_t;        /*!< dword */
 # endif /* INETSTL_OS_IS_WINDOWS */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-typedef is_streampos_t      streampos_t;        /*!< streampos */
-typedef is_streamoff_t      streamoff_t;        /*!< streamoff */
+typedef is_streampos_t                                      streampos_t;    /*!< streampos */
+typedef is_streamoff_t                                      streamoff_t;    /*!< streamoff */
 # endif /* compiler */
 #endif /* !INETSTL_NO_NAMESPACE */
 
