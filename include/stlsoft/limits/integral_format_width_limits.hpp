@@ -4,7 +4,7 @@
  * Purpose: integral_format_width_limits traits class template.
  *
  * Created: 10th July 2012
- * Updated: 20th March 2025
+ * Updated: 28th May 2025
  *
  * Thanks:  To Jonathan Wakely for help with Solaris compatibility.
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_MINOR      1
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_EDIT       15
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_REVISION   2
+# define STLSOFT_VER_STLSOFT_LIMITS_HPP_INTEGRAL_FORMAT_WIDTH_LIMITS_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -258,6 +258,8 @@ struct integral_format_width_limits<ss_uint32_t>
     };
 };
 
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+
 STLSOFT_TEMPLATE_SPECIALISATION
 struct integral_format_width_limits<ss_sint64_t>
 {
@@ -293,6 +295,7 @@ struct integral_format_width_limits<ss_uint64_t>
         ,   maxHexatridecimalWidthWithoutSign   =   13
     };
 };
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 STLSOFT_OPEN_WORKER_NS_(ximpl_stlsoft_integral_format_width_limits)
 
@@ -335,6 +338,8 @@ struct integral_format_width_limits_selector<4, false>
     typedef integral_format_width_limits<ss_uint32_t>   type;
 };
 
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+
 STLSOFT_TEMPLATE_SPECIALISATION
 struct integral_format_width_limits_selector<8, true>
 {
@@ -345,7 +350,7 @@ struct integral_format_width_limits_selector<8, false>
 {
     typedef integral_format_width_limits<ss_uint64_t>   type;
 };
-
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
 
 STLSOFT_CLOSE_WORKER_NS_(ximpl_stlsoft_integral_format_width_limits)
@@ -413,7 +418,6 @@ struct integral_format_width_limits<unsigned long>
     : public STLSOFT_WORKER_NS_QUAL_(ximpl_stlsoft_integral_format_width_limits, integral_format_width_limits_selector)<sizeof(unsigned long), false>::type
 {};
 #endif /* !STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
-
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
