@@ -4,7 +4,7 @@
  * Purpose: String-switch functions.
  *
  * Created: 10th May 2010
- * Updated: 20th March 2025
+ * Updated: 28th May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -51,10 +51,10 @@
 #define STLSOFT_INCL_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR    3
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION 6
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT     36
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MAJOR      1
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR      3
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION   7
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT       37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -146,6 +146,9 @@ namespace ximpl {
                 ptr[i].value  = p->value;
             }}
         }
+#if __cplusplus >= 201103L
+        string_case_item_array_t(class_type const& rhs);
+#endif
     protected:
         void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 

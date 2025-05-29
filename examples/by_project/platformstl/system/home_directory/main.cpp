@@ -10,7 +10,7 @@
 
 int main(int /* argc */, char* argv[])
 {
-    auto const program_name = platformstl::get_executable_name_from_path(argv[0]);
+    stlsoft::string_slice_m_t const program_name = platformstl::get_executable_name_from_path(argv[0]);
 
     try
     {
