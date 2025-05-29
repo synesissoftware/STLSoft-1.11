@@ -972,7 +972,11 @@ static void test_copy_from()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1286,7 +1290,11 @@ static void test_subscript()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1308,7 +1316,11 @@ static void test_data()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1327,7 +1339,11 @@ static void test_front_and_back()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1349,7 +1365,11 @@ static void test_begin_and_end()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1369,7 +1389,11 @@ static void test_rbegin_and_rend()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 

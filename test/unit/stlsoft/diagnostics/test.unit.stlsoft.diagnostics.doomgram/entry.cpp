@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::doomgram`.
  *
  * Created: 13th May 2013
- * Updated: 20th March 2025
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,8 +34,9 @@
 #include <numeric>
 #include <stdexcept>
 #include <string>
-#include <type_traits>
-#include <vector> // for `std::begin()`, `std::end()`
+#if __cplusplus >= 201103L
+# include <type_traits>
+#endif
 
 /* Standard C header files */
 #include <stdlib.h>
