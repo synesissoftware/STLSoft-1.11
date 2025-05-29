@@ -1,2 +1,5 @@
-# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED
+
+	missing-field-initializers
+)
 define_example_program(test.scratch.stlsoft.member_selector_view main.cpp)
