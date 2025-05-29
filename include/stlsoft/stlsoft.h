@@ -3144,6 +3144,7 @@ public: // attributes
 
 #  define STLSOFT_IS_CONSTANT_EVALUATED()                   std::is_constant_evaluated()
 # elif defined(STLSOFT_COMPILER_IS_GCC) &&\
+       __cplusplus >= 201103L &&\
        STLSOFT_GCC_VER >= 90000
 
 #  define STLSOFT_IS_CONSTANT_EVALUATED()                   __builtin_is_constant_evaluated()

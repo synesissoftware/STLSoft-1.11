@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::unicode_point_map`.
  *
  * Created: 5th November 2024
- * Updated: 20th March 2025
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,8 +36,10 @@
 #endif
 #include <numeric>
 #include <stdexcept>
+#if __cplusplus >= 201103L
+# include <type_traits>
+#endif
 #include <string>
-#include <type_traits>
 #include <vector>
 
 /* Standard C header files */

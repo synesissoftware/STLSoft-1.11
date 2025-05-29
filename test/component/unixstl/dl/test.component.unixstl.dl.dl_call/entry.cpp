@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 20th March 2025
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -156,7 +156,7 @@ namespace {
             }
         }
 
-        return nullptr;
+        return ss_nullptr_k;
     }
 } // anonymous namespace
 

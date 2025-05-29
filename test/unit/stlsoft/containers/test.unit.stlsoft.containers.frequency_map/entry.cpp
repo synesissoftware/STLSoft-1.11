@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 20th March 2025
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,7 +37,9 @@
 #include <numeric>
 #include <stdexcept>
 #include <string>
-#include <type_traits>
+#if __cplusplus >= 201103L
+# include <type_traits>
+#endif
 #include <vector>
 
 /* Standard C header files */
