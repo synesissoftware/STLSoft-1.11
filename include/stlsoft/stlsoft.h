@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 28th May 2025
+ * Updated: 29th May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 13
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     599
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 14
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     600
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -386,7 +386,7 @@
 # define _STLSOFT_VER_1_11_1_B8     0x010b0188  /*!< Version 1.11.1 beta 8 (3rd May 2025) */
 # define _STLSOFT_VER_1_11_1_B9     0x010b0189  /*!< Version 1.11.1 beta 9 (5th May 2025) */
 # define _STLSOFT_VER_1_11_1_RC1    0x010b01c1  /*!< Version 1.11.1 rc 1 (6th May 2025) */
-# define _STLSOFT_VER_1_11_1_RC2    0x010b01c2  /*!< Version 1.11.1 rc 1 (28th May 2025) */
+# define _STLSOFT_VER_1_11_1_RC2    0x010b01c2  /*!< Version 1.11.1 rc 1 (29th May 2025) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
@@ -836,7 +836,7 @@
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 15.x"
 #  elif _MSC_VER <= 1929
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 16.x"
-#  elif _MSC_VER <= 1943
+#  elif _MSC_VER <= 1944
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 17.x"
 #  else
 #   error Visual C++ version that is > vc17 is not recognised
@@ -2829,6 +2829,10 @@ template <ss_typename_param_k X>
        defined(STLSOFT_COMPILER_IS_GCC) || \
        0
 __attribute__((noreturn))
+# elif 0 || \
+       defined(STLSOFT_COMPILER_IS_MSVC) || \
+       0
+__declspec(noreturn)
 # endif
 inline
 void
@@ -3140,6 +3144,7 @@ public: // attributes
 
 #  define STLSOFT_IS_CONSTANT_EVALUATED()                   std::is_constant_evaluated()
 # elif defined(STLSOFT_COMPILER_IS_GCC) &&\
+       __cplusplus >= 201103L &&\
        STLSOFT_GCC_VER >= 90000
 
 #  define STLSOFT_IS_CONSTANT_EVALUATED()                   __builtin_is_constant_evaluated()

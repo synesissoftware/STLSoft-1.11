@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_limits`.
  *
  * Created: 21st November 2024
- * Updated: 20th March 2025
+ * Updated: 28th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,7 @@
 #endif
 
 /* Standard C header files */
+#include <limits.h>
 #include <stdlib.h>
 
 

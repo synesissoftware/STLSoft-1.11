@@ -61,27 +61,28 @@
 
 ### Building/executing automated tests
 
-  | C++   | C   | Clang (macOS) | GCC (Linux) | GCC(MinGW) (Windows)  | Visual C++ (Windows)  |
-  | ----- | --- | :---: | :---------: | :---------: | :-------------------: |
-  | 23    | 23  | ✅     |             |             |                       |
-  | 23    | 17  | ✅     |             |             |                       |
-  | 20    | 23  | ✅     |             |             |                       |
-  | 20    | 17  | ✅     | ✅           | ✅           |                       |
-  | 20    | 11  | ✅     |             |             |                       |
-  | 20    | 99  | ✅     |             |             |                       |
-  | 20    | 90  | ✅     |             |             |                       |
-  | 17    | 17  | ✅     | ✅           |             |                       |
-  | 17    | 11  | ✅     |             | ✅           |                       |
-  | 17    | 99  | ✅     |             |             |                       |
-  | 17    | 90  | ✅     |             |             |                       |
-  | 14    | 11  | ✅     |             |             |                       |
-  | 14    | 99  | ✅     |             |             |                       |
-  | 14    | 90  | ✅     |             |             |                       |
-  | 11    | 11  | ✅     | ✅           |             |                       |
-  | 11    | 99  | ✅     |             |             |                       |
-  | 11    | 90  | ✅     |             |             |                       |
-  | 98    | 99  | ✅     | ✅           |             |                       |
-  | 98    | 90  | ✅     |             |             |                       |
+  | C++   | C   | Clang (macOS) | GCC (Linux) | GCC(MinGW) (Windows)  | Visual C++ 17.x (Windows) |
+  | ----- | --- | :-----------: | :---------: | :-------------------: | :-----------------------: |
+  | 23    | 23  | ✅             |             |                     |                             |
+  | 23    | 17  | ✅             |             |             | ✅                            |
+  | 20    | 23  | ✅             |             |                     |                             |
+  | 20    | 17  | ✅             | ✅           | ✅           | ✅                            |
+  | 20    | 17  | ✅             | ✅           | ✅           |                       |
+  | 20    | 11  | ✅             |             |                     |                             |
+  | 20    | 99  | ✅             |             |                     |                             |
+  | 20    | 90  | ✅             |             |                     |                             |
+  | 17    | 17  | ✅             | ✅          |             |                             |
+  | 17    | 11  | ✅             |             | ✅           |                       |
+  | 17    | 99  | ✅             |             |                     |                             |
+  | 17    | 90  | ✅             |             |                     |                             |
+  | 14    | 11  | ✅             |             |             | ✅                            |
+  | 14    | 99  | ✅             |             |                     |                             |
+  | 14    | 90  | ✅             |             |             | ✅                            |
+  | 11    | 11  | ✅             | ✅           |             | ✅                            |
+  | 11    | 99  | ✅             |             |                     |                             |
+  | 11    | 90  | ✅             |             |                     |                             |
+  | 98    | 99  | ✅             | ✅          |             |                              |
+  | 98    | 90  | ✅             |             |             | ✅                            |
 
 
 ### Code changes
@@ -105,6 +106,14 @@
  * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
  * [x] `unixstl::glob_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
  * [x] `unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
+ * [ ] standardise (via **INTERNAL**) of following:
+  * [x] `ExpandEnvironmentStringsA/W()`:
+  * [x] `GetEnvironmentVariableA/W()`:
+  * [x] `GetModuleFileNameA/W()`:
+  * [x] `GetSystemDirectoryA/W()`:
+   * [x] needs to set `ERROR_INSUFFICIENT_BUFFER`;
+  * [x] `GetWindowsDirectoryA/W()`:
+   * [x] needs to set `ERROR_INSUFFICIENT_BUFFER`;
 
 
 ## STLSoft 1.12+ TODOs:
