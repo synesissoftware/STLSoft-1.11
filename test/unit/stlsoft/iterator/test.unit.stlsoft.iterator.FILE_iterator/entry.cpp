@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::FILE_iterator`.
  *
  * Created: 24th March 2025
- * Updated: 15th April 2025
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -109,8 +109,11 @@ static void test_1()
         platformstl::FILE_stream    stm(f.c_str(), "w");
 
         std::copy(
-            std::begin(strings)
-        ,   std::end(strings)
+#if __cplusplus >= 201103L
+            std::begin(strings), std::end(strings)
+#else
+            &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
+#endif
         ,   FILE_iterator<char const*>(stlsoft::get_FILE_ptr(stm), "%s\n")
         );
     }

@@ -10,6 +10,7 @@
   - [Code changes](#code-changes)
 - [STLSoft 1.11.x TODOs:](#stlsoft-111x-todos)
   - [Administrative changes](#administrative-changes-1)
+  - [Building/executing automated tests](#buildingexecuting-automated-tests)
   - [Code changes](#code-changes-1)
 - [STLSoft 1.12+ TODOs:](#stlsoft-112-todos)
   - [Administrative changes](#administrative-changes-2)
@@ -56,6 +57,31 @@
  * [ ] STLSoft 1.11-related blog posts (focusing on new components);
  * [ ] Website - currenty http://stlsoft.org/ is *VERY* out of date;
  * [ ] Set-up donation;
+ * [ ] Ensure all permutations (in below table) work;
+
+### Building/executing automated tests
+
+  | C++   | C   | Clang | GCC (Linux) | GCC (MinGW) | Visual C++ 17.x (Windows)   |
+  | ----- | --- | ----- | ----------- | ----------- | --------------------------- |
+  | 23    | 23  | ✅     |             |             |                             |
+  | 23    | 17  | ✅     |             |             | ✅                            |
+  | 20    | 23  | ✅     |             |             |                             |
+  | 20    | 17  | ✅     | ✅           |             | ✅                            |
+  | 20    | 11  | ✅     |             |             |                             |
+  | 20    | 99  | ✅     |             |             |                             |
+  | 20    | 90  | ✅     |             |             |                             |
+  | 17    | 17  | ✅     | ✅          |             |                             |
+  | 17    | 11  | ✅     |             |             |                             |
+  | 17    | 99  | ✅     |             |             |                             |
+  | 17    | 90  | ✅     |             |             |                             |
+  | 14    | 11  | ✅     |             |             | ✅                            |
+  | 14    | 99  | ✅     |             |             |                             |
+  | 14    | 90  | ✅     |             |             | ✅                            |
+  | 11    | 11  | ✅     | ✅           |             | ✅                            |
+  | 11    | 99  | ✅     |             |             |                             |
+  | 11    | 90  | ✅     |             |             |                             |
+  | 98    | 99  | ✅     | ✅          |             |                              |
+  | 98    | 90  | ✅     |             |             | ✅                            |
 
 
 ### Code changes

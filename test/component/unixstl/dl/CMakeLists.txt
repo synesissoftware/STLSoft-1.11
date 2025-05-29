@@ -1,4 +1,7 @@
-if(UNIX)
+if(X_CMAKE_CXX_FULLSTANDARD GREATER_EQUAL 2011)
 
-	add_subdirectory(test.component.unixstl.dl.dl_call)
-endif(UNIX)
+	if(UNIX)
+
+		add_subdirectory(test.component.unixstl.dl.dl_call)
+	endif(UNIX)
+endif()

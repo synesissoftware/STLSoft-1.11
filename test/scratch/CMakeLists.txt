@@ -1,5 +1,6 @@
 
 add_subdirectory(platformstl)
+add_subdirectory(stlsoft)
 if(_BUILD_AS_UNIX)
 	add_subdirectory(unixstl)
 endif(_BUILD_AS_UNIX)
