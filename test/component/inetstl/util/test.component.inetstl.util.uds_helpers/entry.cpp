@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `inetstl::environment_variable`.
  *
  * Created: 21st February 2025
- * Updated: 20th March 2025
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -77,6 +77,13 @@ int main(int argc, char *argv[])
  */
 
 namespace {
+
+static
+size_t
+sun_path_num_bytes()
+{
+    return sizeof(((struct sockaddr_un*)0)->sun_path);
+}
 
 static void TEST_INSUFFICIENT_SPACE()
 {
@@ -211,6 +218,8 @@ static void TEST_EMPTY_path()
 
 static void TEST_VALID_paths()
 {
+    size_t const cb_sun_path = sun_path_num_bytes();
+
     {
         struct sockaddr_un  sa_un;
 
@@ -261,6 +270,7 @@ static void TEST_VALID_paths()
         TEST_MS_EQ("/tmp/sock/my_socket", sa_un.sun_path);
     }
 
+    if (cb_sun_path > 100)
     {
         struct sockaddr_un  sa_un;
 
@@ -270,7 +280,7 @@ static void TEST_VALID_paths()
         int const   r           =   inetstl_c_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
-                                    ,   "/tmp/sock/012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
+                                    ,   "/tmp/sock/012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789" /* 100 characters */
                                     ,   &cb_actual
                                     );
 
@@ -286,6 +296,7 @@ static void TEST_VALID_paths()
         TEST_MS_EQ("/tmp/sock/012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789", sa_un.sun_path);
     }
 
+    if (cb_sun_path > 102)
     {
         struct sockaddr_un  sa_un;
 
@@ -295,7 +306,33 @@ static void TEST_VALID_paths()
         int const   r           =   inetstl_c_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
-                                    ,   "/tmp/sock/012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012"
+                                    ,   "/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901" /* 102 characters */
+                                    ,   &cb_actual
+                                    );
+
+        TEST_INT_EQ(0, r);
+        TEST_INT_EQ(0, errno);
+        TEST_INT_EQ(105, cb_actual);
+
+#if defined(INETSTL_OS_IS_MACOSX)
+
+        TEST_INT_EQ(105, sa_un.sun_len);
+#endif
+        TEST_INT_EQ(AF_UNIX, sa_un.sun_family);
+        TEST_MS_EQ("/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901", sa_un.sun_path);
+    }
+
+    if (cb_sun_path > 103)
+    {
+        struct sockaddr_un  sa_un;
+
+        errno = 0;
+
+        size_t      cb_actual   =   std::numeric_limits<size_t>::max();
+        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+                                        &sa_un
+                                    ,   sizeof(sa_un)
+                                    ,   "/tmp/sock/012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" /* 103 characters */
                                     ,   &cb_actual
                                     );
 
@@ -311,6 +348,7 @@ static void TEST_VALID_paths()
         TEST_MS_EQ("/tmp/sock/012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012", sa_un.sun_path);
     }
 
+    if (cb_sun_path >= 104)
     {
         struct sockaddr_un  sa_un;
 
@@ -320,22 +358,71 @@ static void TEST_VALID_paths()
         int const   r           =   inetstl_c_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
-                                    ,   "/tmp/sock/0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123"
+                                    ,   "/tmp/sock/0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" /* 104 characters */
                                     ,   &cb_actual
                                     );
 
         TEST_INT_EQ(0, r);
         TEST_INT_EQ(0, errno);
+#if 0
+#elif defined(INETSTL_OS_IS_LINUX)
+
+        TEST_INT_EQ(107, cb_actual);
+#elif defined(INETSTL_OS_IS_MACOSX)
+
         TEST_INT_EQ(106, cb_actual);
+#endif
 
 #if defined(INETSTL_OS_IS_MACOSX)
 
         TEST_INT_EQ(106, sa_un.sun_len);
 #endif
         TEST_INT_EQ(AF_UNIX, sa_un.sun_family);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("/tmp/sock/0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123", sa_un.sun_path, 104);
+
+        if (104 == cb_sun_path)
+        {
+            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("/tmp/sock/0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123", sa_un.sun_path, 104);
+        }
+        else
+        {
+            TEST_MS_EQ("/tmp/sock/0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123", sa_un.sun_path);
+        }
     }
 
+    if (cb_sun_path >= 108)
+    {
+        struct sockaddr_un  sa_un;
+
+        errno = 0;
+
+        size_t      cb_actual   =   std::numeric_limits<size_t>::max();
+        int const   r           =   inetstl_c_sockaddr_un_init_from_path(
+                                        &sa_un
+                                    ,   sizeof(sa_un)
+                                    ,   "/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" /* 108 characters */
+                                    ,   &cb_actual
+                                    );
+
+        TEST_INT_EQ(0, r);
+        TEST_INT_EQ(0, errno);
+        TEST_INT_EQ(110, cb_actual);
+
+#if defined(INETSTL_OS_IS_MACOSX)
+
+        TEST_INT_EQ(110, sa_un.sun_len);
+#endif
+        TEST_INT_EQ(AF_UNIX, sa_un.sun_family);
+
+        if (104 == cb_sun_path)
+        {
+            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N("/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567", sa_un.sun_path, 108);
+        }
+        else
+        {
+            TEST_MS_EQ("/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567", sa_un.sun_path);
+        }
+    }
+    else
     {
         struct sockaddr_un  sa_un;
 
@@ -347,7 +434,7 @@ static void TEST_VALID_paths()
         int const   r           =   inetstl_c_sockaddr_un_init_from_path(
                                         &sa_un
                                     ,   sizeof(sa_un)
-                                    ,   "/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234"
+                                    ,   "/tmp/sock/01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" /* 108 characters */
                                     ,   &cb_actual
                                     );
 
