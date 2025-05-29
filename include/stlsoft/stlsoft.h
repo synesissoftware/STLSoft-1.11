@@ -836,7 +836,7 @@
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 15.x"
 #  elif _MSC_VER <= 1929
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 16.x"
-#  elif _MSC_VER <= 1943
+#  elif _MSC_VER <= 1944
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 17.x"
 #  else
 #   error Visual C++ version that is > vc17 is not recognised
@@ -2829,6 +2829,10 @@ template <ss_typename_param_k X>
        defined(STLSOFT_COMPILER_IS_GCC) || \
        0
 __attribute__((noreturn))
+# elif 0 || \
+       defined(STLSOFT_COMPILER_IS_MSVC) || \
+       0
+__declspec(noreturn)
 # endif
 inline
 void
