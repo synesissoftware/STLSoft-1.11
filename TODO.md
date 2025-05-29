@@ -105,6 +105,14 @@
  * [ ] `platformstl::FILE_stream` implemented in terms of **stlsoft/api/internal/memfns.h**;
  * [x] `unixstl::glob_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
  * [x] `unixstl::readdir_sequence` add `skipHiddenFiles` and `skipHiddenDirs`;
+ * [ ] standardise (via **INTERNAL**) of following:
+  * [x] `ExpandEnvironmentStringsA/W()`:
+  * [x] `GetEnvironmentVariableA/W()`:
+  * [x] `GetModuleFileNameA/W()`:
+  * [x] `GetSystemDirectoryA/W()`:
+   * [x] needs to set `ERROR_INSUFFICIENT_BUFFER`;
+  * [x] `GetWindowsDirectoryA/W()`:
+   * [x] needs to set `ERROR_INSUFFICIENT_BUFFER`;
 
 
 ## STLSoft 1.12+ TODOs:
