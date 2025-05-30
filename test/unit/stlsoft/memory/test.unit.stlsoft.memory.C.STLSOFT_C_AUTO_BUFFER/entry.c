@@ -79,6 +79,8 @@ int main(int argc, char **argv)
  * Hacking around
  */
 
+#if 0
+
 typedef int         pan_sev_t;
 typedef char        pan_char_t;
 typedef struct
@@ -162,13 +164,14 @@ int pantheios_log_n(
         return r2;
     }
 }
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-static void test_value_type_of_char_internal_1()
+static void test_value_type_of_char_internal_1(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, buff);
 
@@ -185,10 +188,10 @@ static void test_value_type_of_char_internal_1()
     }
 }
 
-static void test_value_type_of_char_internal_2()
+static void test_value_type_of_char_internal_2(void)
 {
     char    buff[10];
-    char*   ptr;
+    void*   ptr;
     size_t  size;
     int     r = stlsoft_C_auto_buffer_initialise(sizeof(char), &buff[0], sizeof(buff) / sizeof(char), 8, &size, &ptr);
 
@@ -206,10 +209,10 @@ static void test_value_type_of_char_internal_2()
     }
 }
 
-static void test_value_type_of_char_external_1()
+static void test_value_type_of_char_external_1(void)
 {
     char    buff[10];
-    char*   ptr;
+    void*   ptr;
     size_t  size;
     int     r = stlsoft_C_auto_buffer_initialise(sizeof(char), &buff[0], sizeof(buff) / sizeof(char), 16, &size, &ptr);
 
@@ -226,7 +229,7 @@ static void test_value_type_of_char_external_1()
     }
 }
 
-static void test_value_type_of_char_internal_3()
+static void test_value_type_of_char_internal_3(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, XXXX);
 
@@ -243,7 +246,7 @@ static void test_value_type_of_char_internal_3()
     }
 }
 
-static void test_value_type_of_char_external_2()
+static void test_value_type_of_char_external_2(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, buff1);
 
@@ -260,7 +263,7 @@ static void test_value_type_of_char_external_2()
     }
 }
 
-static void test_value_type_of_char_external_then_internal_1()
+static void test_value_type_of_char_external_then_internal_1(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, buff1);
     int i;
@@ -293,7 +296,7 @@ static void test_value_type_of_char_external_then_internal_1()
     }
 }
 
-static void test_value_type_of_int_internal_1()
+static void test_value_type_of_int_internal_1(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(int, 10, buff);
 
@@ -310,7 +313,7 @@ static void test_value_type_of_int_internal_1()
     }
 }
 
-static void test_value_type_of_int_external_1()
+static void test_value_type_of_int_external_1(void)
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(int, 10, buff1);
 
