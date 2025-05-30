@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       8
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    4
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        227
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    5
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        228
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -627,7 +627,7 @@ private:
     {
         m_buffer    =   &m_internal[0];
         m_cItems    =   space;
-        m_bExternal =   false;
+        m_cExternal =   0;
 
         size_type n = 0;
 
@@ -641,7 +641,7 @@ private:
                 // performance in tests
                 size_type new_size = m_cItems * 4;
 
-                if (m_bExternal)
+                if (0 != m_cExternal)
                 {
                     // already in external, so need to reallocate
 
@@ -661,7 +661,7 @@ private:
 
                     m_cItems = new_size;
 
-                    m_bExternal = true;
+                    m_cExternal = new_size;
                 }
             }
 
@@ -690,13 +690,13 @@ private:
         {
             m_buffer = allocate_(d);
 
-            m_bExternal = true;
+            m_cExternal = d;
         }
         else
         {
             m_buffer = const_cast<pointer>(&m_internal[0]);
 
-            m_bExternal = false;
+            m_cExternal = 0;
         }
         m_cItems = d;
 
@@ -720,13 +720,13 @@ private:
         {
             m_buffer = allocate_(d);
 
-            m_bExternal = true;
+            m_cExternal = d;
         }
         else
         {
             m_buffer = const_cast<pointer>(&m_internal[0]);
 
-            m_bExternal = false;
+            m_cExternal = 0;
         }
         m_cItems = d;
 
@@ -758,7 +758,7 @@ public: // construction
     )
         : m_buffer((space < cItems) ? allocate_(cItems) : const_cast<pointer>(&m_internal[0]))
         , m_cItems((NULL != m_buffer) ? cItems : 0)
-        , m_bExternal(space < cItems)
+        , m_cExternal((space < cItems) ? cItems : 0)
     {
         // initialise `m_internal` iff we are being used constexpr, ...
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
@@ -839,7 +839,7 @@ public: // construction
     )
         : m_buffer((space < cItems) ? allocate_(cItems) : const_cast<pointer>(&m_internal[0]))
         , m_cItems((NULL != m_buffer) ? cItems : 0)
-        , m_bExternal(space < cItems)
+        , m_cExternal((space < cItems) ? cItems : 0)
     {
         // initialise `m_internal` iff we are being used constexpr, ...
 #ifdef STLSOFT_IS_CONSTANT_EVALUATED
@@ -920,7 +920,7 @@ public: // construction
     )
         : m_buffer()
         , m_cItems()
-        , m_bExternal()
+        , m_cExternal(0)
     {
 # ifdef STLSOFT_COMPILER_IS_GCC
 
@@ -952,7 +952,7 @@ public: // construction
     )
         : m_buffer()
         , m_cItems()
-        , m_bExternal()
+        , m_cExternal(0)
     {
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be
@@ -982,7 +982,7 @@ public: // construction
         // TODO: determine if any performance advantage if use `init_list.size()`
         : m_buffer()
         , m_cItems()
-        , m_bExternal()
+        , m_cExternal(0)
     {
         // Can't create one with an empty buffer. Though such is not legal
         // it is supported by some compilers, so we must ensure it cannot be
@@ -1009,13 +1009,13 @@ public: // construction
     auto_buffer(class_type&& rhs) STLSOFT_NOEXCEPT
         : m_buffer(ss_nullptr_k)
         , m_cItems(rhs.m_cItems)
-        , m_bExternal(rhs.m_bExternal)
+        , m_cExternal(rhs.m_cExternal)
     {
-        if (rhs.m_bExternal)
+        if (0 != rhs.m_cExternal)
         {
             m_buffer        =   rhs.m_buffer;
             rhs.m_buffer    =   &rhs.m_internal[0];
-            rhs.m_bExternal =   false;
+            rhs.m_cExternal =   0;
         }
         else
         {
@@ -1045,7 +1045,7 @@ public: // construction
         if (is_in_external_array_())
         {
             STLSOFT_ASSERT(NULL != m_buffer);
-            STLSOFT_ASSERT(m_bExternal);
+            STLSOFT_ASSERT(0 != m_cExternal);
             STLSOFT_ASSERT(&m_internal[0] != m_buffer);
 
             deallocate_(m_buffer, m_cItems);
@@ -1069,10 +1069,10 @@ private: // operations
         return space < m_cItems;
 #else /* ? STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK */
 
-        STLSOFT_ASSERT((m_buffer != &m_internal[0]) == m_bExternal);
-        STLSOFT_ASSERT(m_bExternal || !(space < m_cItems));
+        STLSOFT_ASSERT((m_buffer != &m_internal[0]) == 0 != m_cExternal);
+        STLSOFT_ASSERT(0 != m_cExternal || !(space < m_cItems));
 
-        return m_bExternal;
+        return 0 != m_cExternal;
 #endif /* STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK */
     }
 
@@ -1125,7 +1125,7 @@ public:
             if (is_in_external_array_())
             {
                 // Current buffer is allocated: case 5
-                pointer new_buffer  =   reallocate_(m_buffer, m_cItems, cItems);
+                pointer const new_buffer = reallocate_(m_buffer, m_cItems, cItems);
 
                 // Still test for NULL here, since some allocators will
                 // not throw bad_alloc.
@@ -1158,7 +1158,7 @@ public:
 
                     m_buffer = new_buffer;
 
-                    m_bExternal = true;
+                    m_cExternal = cItems;
                 }
                 else
                 {
@@ -1198,7 +1198,7 @@ public:
 
                     m_buffer = const_cast<pointer>(&m_internal[0]);
 
-                    m_bExternal = false;
+                    m_cExternal = 0;
                 }
             }
             else
@@ -1332,7 +1332,7 @@ public:
         }
 
         std_swap(m_cItems,      rhs.m_cItems);
-        std_swap(m_bExternal,   rhs.m_bExternal);
+        std_swap(m_cExternal,   rhs.m_cExternal);
 
         STLSOFT_ASSERT(is_valid());
     }
@@ -1665,25 +1665,25 @@ private: // implementation
 
 #if defined(STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK)
         if (space < m_cItems &&
-            !m_bExternal)
+            0 == m_cExternal)
         {
             bRet = false;
         }
         if (!(space < m_cItems) &&
-            m_bExternal)
+            0 != m_cExternal)
         {
             bRet = false;
         }
 #else /* ? STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK */
 
         if (space < m_cItems &&
-            !m_bExternal)
+            0 == m_cExternal)
         {
             bRet = false;
         }
 #endif /* STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK */
 
-        if (m_bExternal)
+        if (0 != m_cExternal)
         {
             if (m_buffer == &m_internal[0])
             {
@@ -1704,7 +1704,7 @@ private: // implementation
 private: // fields
     pointer     m_buffer;           // Pointer to used buffer
     size_type   m_cItems;           // Number of items in buffer
-    ss_bool_t   m_bExternal;        // This is required, since not allowed to compare m_buffer with &m_internal[0] - can't remember why; // NOTE: Check std
+    size_type   m_cExternal;        // Number of items in allocated storage
     value_type  m_internal[space];  // Internal storage
 };
 
