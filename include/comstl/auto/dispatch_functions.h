@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/auto/dispatch_functions.h (formerly comstl/auto/functions.h)
+ * File:    comstl/auto/dispatch_functions.h (formerly comstl/auto/functions.h)
  *
- * Purpose:     Automation (IDispatch) helper functions.
+ * Purpose: Automation (IDispatch) helper functions.
  *
- * Created:     24th May 2002
- * Updated:     11th March 2024
+ * Created: 24th May 2002
+ * Updated: 30th May 2025
  *
- * Home:        http://stlsoft.org/
+ * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_AUTO_H_DISPATCH_FUNCTIONS_MAJOR      2
 # define COMSTL_VER_COMSTL_AUTO_H_DISPATCH_FUNCTIONS_MINOR      0
 # define COMSTL_VER_COMSTL_AUTO_H_DISPATCH_FUNCTIONS_REVISION   1
-# define COMSTL_VER_COMSTL_AUTO_H_DISPATCH_FUNCTIONS_EDIT       15
+# define COMSTL_VER_COMSTL_AUTO_H_DISPATCH_FUNCTIONS_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -199,7 +199,6 @@ IDispatch_get_property(
 {
     return comstl_C_IDispatch_get_property(pobj, dispid, presult, xi, lcid);
 }
-
 #endif /* __cplusplus */
 
 
@@ -225,8 +224,6 @@ IDispatch_get_property(
 #ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !COMSTL_INCL_COMSTL_AUTO_H_DISPATCH_FUNCTIONS */
 

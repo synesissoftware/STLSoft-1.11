@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 29th May 2025
+ * Updated: 30th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -147,7 +147,7 @@ namespace {
 
 namespace {
 
-	using stlsoft::ss_uintptr_t;
+    using stlsoft::ss_uintptr_t;
 
     typedef stlsoft::frequency_map<
         int
