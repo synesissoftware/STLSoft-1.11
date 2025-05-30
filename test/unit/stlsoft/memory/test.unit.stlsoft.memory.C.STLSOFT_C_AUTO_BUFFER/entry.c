@@ -4,7 +4,7 @@
  * Purpose: Scratch test for `STLSOFT_C_AUTO_BUFFER()`, etc.
  *
  * Created: 5th August 2011
- * Updated: 20th May 2025
+ * Updated: 30th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.stlsoft.memory.C.STLSOFT_C_AUTO_BUFFER", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.memory.C.STLSOFT_C_AUTO_BUFFER", verbosity))
     {
         XTESTS_RUN_CASE(test_value_type_of_char_internal_1);
         XTESTS_RUN_CASE(test_value_type_of_char_internal_2);
@@ -123,14 +123,14 @@ int pantheios_log_n(
 
     /* Calculate the total size of the log statement, by summation of the slice array */
 
-    { size_t i; for(i = 0; i != numSlices; ++i)
+    { size_t i; for (i = 0; i != numSlices; ++i)
     {
         n += slices[i].len;
     }}
 
     r = STLSOFT_C_AUTO_BUFFER_INITIALISE(buff, 8);
 
-    if(0 != r)
+    if (0 != r)
     {
 #ifdef _DEBUG
 #else /* ? _DEBUG */
@@ -144,7 +144,7 @@ int pantheios_log_n(
         int   r2;
         char* p = buff.ptr;
 
-        { size_t i; for(i = 0; i != numSlices; ++i)
+        { size_t i; for (i = 0; i != numSlices; ++i)
         {
             memcpy(p, slices[i].ptr, sizeof(pan_char_t) * slices[i].len);
             p += slices[i].len;
@@ -172,7 +172,7 @@ static void test_value_type_of_char_internal_1()
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, buff);
 
-    if(0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff, 8))
+    if (0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff, 8))
     {
         XTESTS_TEST_FAIL("unexpected failure");
     }
@@ -192,7 +192,7 @@ static void test_value_type_of_char_internal_2()
     size_t  size;
     int     r = stlsoft_C_auto_buffer_initialise(sizeof(char), &buff[0], sizeof(buff) / sizeof(char), 8, &size, &ptr);
 
-    if(0 != r)
+    if (0 != r)
     {
         XTESTS_TEST_FAIL("unexpected failure");
     }
@@ -213,7 +213,7 @@ static void test_value_type_of_char_external_1()
     size_t  size;
     int     r = stlsoft_C_auto_buffer_initialise(sizeof(char), &buff[0], sizeof(buff) / sizeof(char), 16, &size, &ptr);
 
-    if(0 != r)
+    if (0 != r)
     {
     }
     else
@@ -230,7 +230,7 @@ static void test_value_type_of_char_internal_3()
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, XXXX);
 
-    if(0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(XXXX, 8))
+    if (0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(XXXX, 8))
     {
         XTESTS_TEST_FAIL("unexpected failure");
     }
@@ -247,7 +247,7 @@ static void test_value_type_of_char_external_2()
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, buff1);
 
-    if(0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff1, 16))
+    if (0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff1, 16))
     {
     }
     else
@@ -267,7 +267,7 @@ static void test_value_type_of_char_external_then_internal_1()
     STLSOFT_C_AUTO_BUFFER_DECLARE(char, 10, buff2);
     int j;
 
-    if(0 != (i = STLSOFT_C_AUTO_BUFFER_INITIALISE(buff1, 16)))
+    if (0 != (i = STLSOFT_C_AUTO_BUFFER_INITIALISE(buff1, 16)))
     {
     }
     else
@@ -279,7 +279,7 @@ static void test_value_type_of_char_external_then_internal_1()
         STLSOFT_C_AUTO_BUFFER_FREE(buff1);
     }
 
-    if(0 != (j = STLSOFT_C_AUTO_BUFFER_INITIALISE(buff2, 10)))
+    if (0 != (j = STLSOFT_C_AUTO_BUFFER_INITIALISE(buff2, 10)))
     {
         XTESTS_TEST_FAIL("unexpected failure");
     }
@@ -297,7 +297,7 @@ static void test_value_type_of_int_internal_1()
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(int, 10, buff);
 
-    if(0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff, 8))
+    if (0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff, 8))
     {
         XTESTS_TEST_FAIL("unexpected failure");
     }
@@ -314,7 +314,7 @@ static void test_value_type_of_int_external_1()
 {
     STLSOFT_C_AUTO_BUFFER_DECLARE(int, 10, buff1);
 
-    if(0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff1, 16))
+    if (0 != STLSOFT_C_AUTO_BUFFER_INITIALISE(buff1, 16))
     {
     }
     else

@@ -68,7 +68,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.unit.winstl.diagnostics.output_debug_line.C", verbosity, setup, teardown, setupParam))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.unit.winstl.diagnostics.output_debug_line.C", verbosity, setup, teardown, setupParam))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -99,7 +99,7 @@ static void winstl_C_call_OutputDebugStringA_(char const* s)
 {
     CSTRING_RC rc = cstring_append(&string, s);
 
-    if(CSTRING_RC_SUCCESS != rc)
+    if (CSTRING_RC_SUCCESS != rc)
     {
         fprintf(stderr, "CSTRING append failed: %s (%d)\n", cstring_getStatusCodeString(rc), rc);
         exit(EXIT_FAILURE);
@@ -149,11 +149,11 @@ static void test_1_2()
 
 static void test_1_3()
 {
-    { size_t i; for(i = 1; i != 10000000; i *= 10)
+    { size_t i; for (i = 1; i != 10000000; i *= 10)
     {
         char* s = malloc(i + 1);
 
-        if(NULL != s)
+        if (NULL != s)
         {
             memset(s, '~', i);
             s[i] = '\0';
@@ -221,11 +221,11 @@ static void test_1_10()
 
 static void test_1_11()
 {
-    { size_t i; for(i = 1; i != 10000000; i *= 10)
+    { size_t i; for (i = 1; i != 10000000; i *= 10)
     {
         char* s = malloc(i + 1);
 
-        if(NULL != s)
+        if (NULL != s)
         {
             memset(s, '~', i);
             s[i] = '\0';

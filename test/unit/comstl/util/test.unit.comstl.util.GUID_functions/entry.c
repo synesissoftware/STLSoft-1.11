@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.comstl.util.GUID_functions.GUID_equal", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.comstl.util.GUID_functions.GUID_equal", verbosity))
     {
         XTESTS_RUN_CASE(test_equal);
         XTESTS_RUN_CASE(test_compare);

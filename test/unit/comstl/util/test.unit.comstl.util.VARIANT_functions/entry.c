@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.comstl.util.VARIANT_functions.VARIANT_equal", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.comstl.util.VARIANT_functions.VARIANT_equal", verbosity))
     {
         XTESTS_RUN_CASE(test_VARIANT_equal_VT_EMPTY);
         XTESTS_RUN_CASE(test_VARIANT_equal_VT_NULL);
@@ -131,7 +131,7 @@ HRESULT setup_VARIANTs(VARIANT* pvarEMPTY, VARIANT* pvarNULL, VARIANT* pvarI4, V
     COMSTL_ACCESS_VARIANT_vt_BYPTR(pvarBSTR)            =   VT_BSTR;
     COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarBSTR, bstrVal)  =   SysAllocString(VT_BSTR_VALUE);
 
-    if(NULL == COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarBSTR, bstrVal))
+    if (NULL == COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarBSTR, bstrVal))
     {
         hr = E_OUTOFMEMORY;
     }
@@ -148,11 +148,11 @@ HRESULT setup_VARIANTs(VARIANT* pvarEMPTY, VARIANT* pvarNULL, VARIANT* pvarI4, V
 
         hr = VariantChangeType(pvarDECIMAL, &varDecimal_, 0, VT_DECIMAL);
 
-        if(SUCCEEDED(hr))
+        if (SUCCEEDED(hr))
         {
             hr = CoCreateInstance(&clsidSynesisValue, NULL, CLSCTX_ALL, &IID_IDispatch, (void**)&COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarDISPATCH, pdispVal));
 
-            if(FAILED(hr))
+            if (FAILED(hr))
             {
                 hr = S_FALSE;
             }
@@ -167,17 +167,17 @@ HRESULT setup_VARIANTs(VARIANT* pvarEMPTY, VARIANT* pvarNULL, VARIANT* pvarI4, V
 
                 hr = comstl_C_IDispatch_put_property(COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarDISPATCH, pdispVal), 1, 1, &varDISPATCH_, NULL, NULL, LOCALE_USER_DEFAULT);
 
-                if(SUCCEEDED(hr))
+                if (SUCCEEDED(hr))
                 {
                     COMSTL_ACCESS_VARIANT_vt_BYPTR(pvarDISPATCH) = VT_DISPATCH;
 
-                    if(SUCCEEDED(hr))
+                    if (SUCCEEDED(hr))
                     {
                         LPDISPATCH  pdispUnk;
 
                         hr = CoCreateInstance(&clsidSynesisValue, NULL, CLSCTX_ALL, &IID_IUnknown, (void**)&pdispUnk);
 
-                        if(FAILED(hr))
+                        if (FAILED(hr))
                         {
                             hr = S_FALSE;
                         }
@@ -192,7 +192,7 @@ HRESULT setup_VARIANTs(VARIANT* pvarEMPTY, VARIANT* pvarNULL, VARIANT* pvarI4, V
 
                             COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarUNKNOWN, punkVal)   =   (LPUNKNOWN)pdispUnk;
 
-                            if(NULL == COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWN_, bstrVal))
+                            if (NULL == COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWN_, bstrVal))
                             {
                                 hr = E_OUTOFMEMORY;
                             }
@@ -211,7 +211,7 @@ HRESULT setup_VARIANTs(VARIANT* pvarEMPTY, VARIANT* pvarNULL, VARIANT* pvarI4, V
         }
     }
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         VariantClear(pvarEMPTY);
         VariantClear(pvarNULL);
@@ -250,7 +250,7 @@ static void test_VARIANT_equal_VT_EMPTY()
     VARIANT varUNKNOWN;
     HRESULT hr = setup_VARIANTs(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         ; /* Issue warning */
     }
@@ -262,11 +262,11 @@ static void test_VARIANT_equal_VT_EMPTY()
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varBSTR, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varR8, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDECIMAL, NULL));
-        if(VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
+        if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
-        if(VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
+        if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
@@ -287,7 +287,7 @@ static void test_VARIANT_equal_VT_NULL()
     VARIANT varUNKNOWN;
     HRESULT hr = setup_VARIANTs(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         ; /* Issue warning */
     }
@@ -299,11 +299,11 @@ static void test_VARIANT_equal_VT_NULL()
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varNULL, &varBSTR, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varNULL, &varR8, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varNULL, &varDECIMAL, NULL));
-        if(VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
+        if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
-        if(VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
+        if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
@@ -324,7 +324,7 @@ static void test_VARIANT_equal_VT_I4()
     VARIANT varUNKNOWN;
     HRESULT hr = setup_VARIANTs(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         ; /* Issue warning */
     }
@@ -336,11 +336,11 @@ static void test_VARIANT_equal_VT_I4()
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varI4, &varBSTR, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varI4, &varR8, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varI4, &varDECIMAL, NULL));
-        if(VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
+        if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
-        if(VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
+        if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
@@ -361,7 +361,7 @@ static void test_VARIANT_equal_VT_BSTR()
     VARIANT varUNKNOWN;
     HRESULT hr = setup_VARIANTs(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         ; /* Issue warning */
     }
@@ -373,11 +373,11 @@ static void test_VARIANT_equal_VT_BSTR()
         XTESTS_TEST_BOOLEAN_EQUAL(1, comstl_C_VARIANT_equal(&varBSTR, &varBSTR, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varBSTR, &varR8, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varBSTR, &varDECIMAL, NULL));
-        if(VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
+        if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
-        if(VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
+        if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
@@ -398,7 +398,7 @@ static void test_VARIANT_equal_VT_R8()
     VARIANT varUNKNOWN;
     HRESULT hr = setup_VARIANTs(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         ; /* Issue warning */
     }
@@ -410,11 +410,11 @@ static void test_VARIANT_equal_VT_R8()
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varR8, &varBSTR, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(1, comstl_C_VARIANT_equal(&varR8, &varR8, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varR8, &varDECIMAL, NULL));
-        if(VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
+        if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
-        if(VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
+        if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
@@ -435,7 +435,7 @@ static void test_VARIANT_equal_VT_DECIMAL()
     VARIANT varUNKNOWN;
     HRESULT hr = setup_VARIANTs(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         ; /* Issue warning */
     }
@@ -447,11 +447,11 @@ static void test_VARIANT_equal_VT_DECIMAL()
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varDECIMAL, &varBSTR, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varDECIMAL, &varR8, NULL));
         XTESTS_TEST_BOOLEAN_EQUAL(1, comstl_C_VARIANT_equal(&varDECIMAL, &varDECIMAL, NULL));
-        if(VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
+        if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varDISPATCH, NULL));
         }
-        if(VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
+        if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(0, comstl_C_VARIANT_equal(&varEMPTY, &varUNKNOWN, NULL));
         }
@@ -472,7 +472,7 @@ static void test_VARIANT_change_type_VT_I4(void)
     VARIANT varUNKNOWN;
     HRESULT hr = setup_VARIANTs(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         ; /* Issue warning */
     }
@@ -499,12 +499,12 @@ static void test_VARIANT_change_type_VT_I4(void)
         XTESTS_TEST_INTEGER_EQUAL(ceil(VT_R8_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varR8X, lVal));
         XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDECIMALX, &varDECIMAL, LOCALE_USER_DEFAULT, 0, VT_I4)));
         XTESTS_TEST_INTEGER_EQUAL(VT_DECIMAL_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDECIMALX, lVal));
-        if(VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
+        if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDISPATCHX, &varDISPATCH, LOCALE_USER_DEFAULT, 0, VT_I4)));
             XTESTS_TEST_INTEGER_EQUAL(VT_DISPATCH_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCHX, lVal));
         }
-        if(VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
+        if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varUNKNOWNX, &varUNKNOWN, LOCALE_USER_DEFAULT, 0, VT_I4)));
             XTESTS_TEST_INTEGER_EQUAL(wcstol(VT_UNKNOWN_VALUE, NULL, 0), COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWNX, lVal));
@@ -526,7 +526,7 @@ static void test_VARIANT_change_type_VT_R8(void)
     VARIANT varUNKNOWN;
     HRESULT hr = setup_VARIANTs(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         ; /* Issue warning */
     }
@@ -553,12 +553,12 @@ static void test_VARIANT_change_type_VT_R8(void)
         XTESTS_TEST_FLOATINGPOINT_EQUAL(VT_R8_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varR8X, dblVal));
         XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDECIMALX, &varDECIMAL, LOCALE_USER_DEFAULT, 0, VT_R8)));
         XTESTS_TEST_FLOATINGPOINT_EQUAL((double)VT_DECIMAL_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDECIMALX, dblVal));
-        if(VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
+        if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDISPATCHX, &varDISPATCH, LOCALE_USER_DEFAULT, 0, VT_R8)));
             XTESTS_TEST_FLOATINGPOINT_EQUAL((double)VT_DISPATCH_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCHX, dblVal));
         }
-        if(VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
+        if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varUNKNOWNX, &varUNKNOWN, LOCALE_USER_DEFAULT, 0, VT_R8)));
             XTESTS_TEST_FLOATINGPOINT_EQUAL((double)wcstol(VT_UNKNOWN_VALUE, NULL, 0), COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWNX, dblVal));
@@ -580,7 +580,7 @@ static void test_VARIANT_change_type_VT_BSTR(void)
     VARIANT varUNKNOWN;
     HRESULT hr = setup_VARIANTs(&varEMPTY, &varNULL, &varI4, &varBSTR, &varR8, &varDECIMAL, &varDISPATCH, &varUNKNOWN);
 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         ; /* Issue warning */
     }
@@ -607,12 +607,12 @@ static void test_VARIANT_change_type_VT_BSTR(void)
         XTESTS_TEST_WIDE_STRING_EQUAL(STLSOFT_STRINGIZE_w(VT_R8_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varBSTRX, bstrVal));
         XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDECIMALX, &varDECIMAL, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
         XTESTS_TEST_WIDE_STRING_EQUAL(STLSOFT_STRINGIZE_w(VT_DECIMAL_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varDECIMALX, bstrVal));
-        if(VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
+        if (VT_DISPATCH == COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varDISPATCHX, &varDISPATCH, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
             XTESTS_TEST_WIDE_STRING_EQUAL(STLSOFT_STRINGIZE_w(VT_DISPATCH_VALUE), COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCHX, bstrVal));
         }
-        if(VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
+        if (VT_UNKNOWN == COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN))
         {
             XTESTS_TEST_BOOLEAN_EQUAL(1, SUCCEEDED(comstl_C_VARIANT_change_type(&varUNKNOWNX, &varUNKNOWN, LOCALE_USER_DEFAULT, 0, VT_BSTR)));
             XTESTS_TEST_WIDE_STRING_EQUAL(VT_UNKNOWN_VALUE, COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWNX, bstrVal));

@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.filesystem.memory_map_functions.C", verbosity, setup, teardown, NULL))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.filesystem.memory_map_functions.C", verbosity, setup, teardown, NULL))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -98,6 +98,8 @@ static size_t const TEST_FILE_SIZE      =   TEST_BUFFER_SIZE * TEST_NUM_BUFFERS;
 
 static int setup(void* param)
 {
+    STLSOFT_SUPPRESS_UNUSED(param);
+
     HANDLE h = CreateFile(
             TEST_FILE_NAME
         ,   GENERIC_WRITE
@@ -108,7 +110,7 @@ static int setup(void* param)
         ,   NULL
         );
 
-    if(INVALID_HANDLE_VALUE == h)
+    if (INVALID_HANDLE_VALUE == h)
     {
         xtests_abend("could not create test file\n");
 
@@ -120,11 +122,11 @@ static int setup(void* param)
         int         i;
         DWORD       numWritten;
 
-        for(i = 0; i != TEST_NUM_BUFFERS; ++i)
+        for (i = 0; i != TEST_NUM_BUFFERS; ++i)
         {
             memset(buffer, i, sizeof(buffer));
 
-            if(!WriteFile(h, buffer, sizeof(buffer), &numWritten, NULL))
+            if (!WriteFile(h, buffer, sizeof(buffer), &numWritten, NULL))
             {
                 xtests_abend("could not write to test file");
 
@@ -140,7 +142,9 @@ static int setup(void* param)
 
 static int teardown(void* param)
 {
-    if(!DeleteFile(TEST_FILE_NAME))
+    STLSOFT_SUPPRESS_UNUSED(param);
+
+    if (!DeleteFile(TEST_FILE_NAME))
     {
         xtests_abend("could not delete test file\n");
 
@@ -158,17 +162,17 @@ static void test_1_0()
 
     XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
 
-    if(NULL != view)
+    if (NULL != view)
     {
         ss_uint8_t      buffer[TEST_BUFFER_SIZE];
         int             i;
         ws_uintptr_t    base;
 
-        for(i = 0, base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
+        for (i = 0, base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
         {
             memset(buffer, i, sizeof(buffer));
 
-            { size_t j; for(j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
+            { size_t j; for (j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
             {
                 ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
 
@@ -176,7 +180,7 @@ static void test_1_0()
             }}
         }
 
-        winstl_C_unmap_view_of_file(view);
+        winstl_C_unmap_view_of_file(view, 0);
     }
 }
 
@@ -188,20 +192,22 @@ static void test_1_1()
     void*           view        =   winstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, offset, requestSize, &viewSize);
     DWORD           err         =   GetLastError();
 
+    STLSOFT_SUPPRESS_UNUSED(err);
+
     XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
     XTESTS_TEST_INTEGER_EQUAL(requestSize, viewSize);
 
-    if(NULL != view)
+    if (NULL != view)
     {
         ss_uint8_t      buffer[TEST_BUFFER_SIZE];
         int             i;
         ws_uintptr_t    base;
 
-        for(i = (int)(offset / TEST_BUFFER_SIZE), base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
+        for (i = (int)(offset / TEST_BUFFER_SIZE), base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
         {
             memset(buffer, i, sizeof(buffer));
 
-            { size_t j; for(j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
+            { size_t j; for (j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
             {
                 ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
 
@@ -209,26 +215,28 @@ static void test_1_1()
             }}
         }
 
-        winstl_C_unmap_view_of_file(view);
+        winstl_C_unmap_view_of_file(view, 0);
     }
 }
 
 static void test_1_2()
 {
     ws_uint32_t requestSize;
-    for(requestSize = 0; requestSize <= (65536 * 1024); requestSize = (0 == requestSize) ? 0x1 : (requestSize << 1))
+    for (requestSize = 0; requestSize <= (65536 * 1024); requestSize = (0 == requestSize) ? 0x1 : (requestSize << 1))
     {
         ws_uintptr_t    viewSize;
         ws_uintptr_t    offset      =   65536;
         void*           view        =   winstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, offset, requestSize, &viewSize);
         DWORD           err         =   GetLastError();
 
+        STLSOFT_SUPPRESS_UNUSED(err);
+
         XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
-        if(0 == requestSize)
+        if (0 == requestSize)
         {
             XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
         }
-        else if(requestSize <= TEST_FILE_SIZE - offset)
+        else if (requestSize <= TEST_FILE_SIZE - offset)
         {
             XTESTS_TEST_INTEGER_EQUAL(requestSize, viewSize);
         }
@@ -237,17 +245,17 @@ static void test_1_2()
             XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
         }
 
-        if(NULL != view)
+        if (NULL != view)
         {
             ss_uint8_t      buffer[TEST_BUFFER_SIZE];
             int             i;
             ws_uintptr_t    base;
 
-            for(i = (int)(offset / TEST_BUFFER_SIZE), base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
+            for (i = (int)(offset / TEST_BUFFER_SIZE), base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
             {
                 memset(buffer, i, sizeof(buffer));
 
-                { size_t j; for(j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
+                { size_t j; for (j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
                 {
                     ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
 
@@ -255,7 +263,7 @@ static void test_1_2()
                 }}
             }
 
-            winstl_C_unmap_view_of_file(view);
+            winstl_C_unmap_view_of_file(view, 0);
         }
     }
 }
@@ -268,24 +276,24 @@ static void test_1_3()
 
     STLSOFT_STATIC_ASSERT(STLSOFT_NUM_ELEMENTS(viewSizes) == STLSOFT_NUM_ELEMENTS(views));
 
-    { size_t i; for(i = 0; i != STLSOFT_NUM_ELEMENTS(viewSizes); ++i, ++j)
+    { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(viewSizes); ++i, ++j)
     {
         views[i] = winstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, 0, 0, &viewSizes[i]);
 
-        if(NULL == views[i])
+        if (NULL == views[i])
         {
             break;
         }
     }}
 
-    { size_t i; for(i = 1; i < j; ++i)
+    { size_t i; for (i = 1; i < j; ++i)
     {
         XTESTS_TEST_BOOLEAN_TRUE(0 == memcmp(views[i], views[i-1], viewSizes[i]));
     }}
 
-    { size_t i; for(i = 0; i != j; ++i)
+    { size_t i; for (i = 0; i != j; ++i)
     {
-        winstl_C_unmap_view_of_file(views[i]);
+        winstl_C_unmap_view_of_file(views[i], 0);
     }}
 }
 

@@ -54,7 +54,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.comstl.string.BSTR_functions.C", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.comstl.string.BSTR_functions.C", verbosity))
     {
         XTESTS_RUN_CASE(test_comstl_C_BSTR_create_w_1);
         XTESTS_RUN_CASE(test_comstl_C_BSTR_create_w_2);
@@ -124,7 +124,7 @@ static void test_comstl_C_BSTR_create_w_2()
         ,   L"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     };
 
-    { size_t i; for(i = 0; i != dimensionof(strings); ++i)
+    { size_t i; for (i = 0; i != dimensionof(strings); ++i)
     {
         BSTR const s = comstl_C_BSTR_create_w(strings[i]);
 
@@ -165,7 +165,7 @@ static void test_comstl_C_BSTR_create_a_2()
         ,   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     };
 
-    { size_t i; for(i = 0; i != dimensionof(strings); ++i)
+    { size_t i; for (i = 0; i != dimensionof(strings); ++i)
     {
         BSTR const s = comstl_C_BSTR_create_a(strings[i]);
 
@@ -181,7 +181,7 @@ static void test_comstl_C_BSTR_create_len_w(void)
 {
     wchar_t const alphabet[] = L"abcdefghijklmnopqrstuvwxyz";
 
-    { size_t i; for(i = 0; i != dimensionof(alphabet); ++i)
+    { size_t i; for (i = 0; i != dimensionof(alphabet); ++i)
     {
         BSTR const s = comstl_C_BSTR_create_len_w(alphabet, i);
 
@@ -197,7 +197,7 @@ static void test_comstl_C_BSTR_create_len_a(void)
 {
     char const alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 
-    { size_t i; for(i = 0; i != dimensionof(alphabet); ++i)
+    { size_t i; for (i = 0; i != dimensionof(alphabet); ++i)
     {
         BSTR const s = comstl_C_BSTR_create_len_a(alphabet, i);
 
