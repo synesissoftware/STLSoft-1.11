@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 20th March 2025
+ * Updated: 30th May 2025
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       8
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    4
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        226
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        227
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -625,9 +625,9 @@ private:
     void init_from_range_(I2 first, I2 last, STLSOFT_NS_QUAL_STD(input_iterator_tag))
 # endif /* compiler */
     {
-        m_buffer = &m_internal[0];
-        m_cItems = space;
-        m_bExternal = false;
+        m_buffer    =   &m_internal[0];
+        m_cItems    =   space;
+        m_bExternal =   false;
 
         size_type n = 0;
 
@@ -1109,14 +1109,14 @@ public:
 
         // There are six changes possible:
         //
-        // 1. Expansion within the internal buffer
-        // 2. Contraction within the internal buffer
-        // 3. Expansion from the internal buffer to an allocated buffer
-        // 4. Contraction from an allocated buffer to the internal buffer
-        //  4.a Where n is 0, or when STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK is defined
-        //  4.b Where 0 < n <= internal_size() - this is new behaviour - we do not go to the internal array
-        // 5. Expansion from the allocated buffer to another allocated buffer
-        // 6. Contraction from the allocated buffer to another allocated buffer
+        // 1. Expansion within the internal buffer;
+        // 2. Contraction within the internal buffer;
+        // 3. Expansion from the internal buffer to an allocated buffer;
+        // 4. Contraction from an allocated buffer to the internal buffer:
+        //  4.a Where n is 0, or when STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK is defined;
+        //  4.b Where 0 < n <= internal_size() - this is new behaviour - we do not go to the internal array;
+        // 5. Expansion from the allocated buffer to another allocated buffer;
+        // 6. Contraction from the allocated buffer to another allocated buffer;
 
         if (m_cItems < cItems)
         {
