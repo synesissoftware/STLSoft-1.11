@@ -24,7 +24,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <comstl/auto/functions.h>
+#include <comstl/auto/dispatch_functions.h>
 #include <platformstl/platformstl.h>
 
 /* Standard C header files */
