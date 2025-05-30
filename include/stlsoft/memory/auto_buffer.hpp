@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       8
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        228
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       9
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    0
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        229
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -645,6 +645,9 @@ private:
                 {
                     // already in external, so need to reallocate
 
+# ifndef STLSOFT_CF_THROW_BAD_ALLOC
+#  error This code is not compatible with translation that does not support throwing bad_alloc
+# endif
                     m_buffer = reallocate_(m_buffer, m_cItems, new_size);
 
                     m_cItems = new_size;
@@ -1114,7 +1117,7 @@ public:
         // 3. Expansion from the internal buffer to an allocated buffer;
         // 4. Contraction from an allocated buffer to the internal buffer:
         //  4.a Where n is 0, or when STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK is defined;
-        //  4.b Where 0 < n <= internal_size() - this is new behaviour - we do not go to the internal array;
+        //  4.b Where 0 < n <= internal_size() we do not go to the internal array;
         // 5. Expansion from the allocated buffer to another allocated buffer;
         // 6. Contraction from the allocated buffer to another allocated buffer;
 
@@ -1124,18 +1127,23 @@ public:
 
             if (is_in_external_array_())
             {
-                // Current buffer is allocated: case 5
-                pointer const new_buffer = reallocate_(m_buffer, m_cItems, cItems);
-
-                // Still test for NULL here, since some allocators will
-                // not throw bad_alloc.
-                if (NULL == new_buffer)
+                if (m_cExternal < cItems)
                 {
-                    return false;
-                }
+                    // Current buffer is allocated: case 5
+                    pointer const new_buffer = reallocate_(m_buffer, m_cItems, cItems);
 
-                // Now repoint to the new buffer
-                m_buffer = new_buffer;
+                    // Still test for NULL here, since some allocators will
+                    // not throw bad_alloc.
+                    if (NULL == new_buffer)
+                    {
+                        return false;
+                    }
+
+                    // Now repoint to the new buffer
+                    m_buffer = new_buffer;
+
+                    m_cExternal = cItems;
+                }
             }
             else
             {

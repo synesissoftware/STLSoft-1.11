@@ -105,12 +105,23 @@ int main()
         do_a_gazillion_allocations();
 
 
-        // Resize again outside the bounds of the internal buffer, and go to the heap
+        // Resize again outside the bounds of the internal buffer but within the previous external allocation, which will not require another trip to the heap
         buff.resize(10000, 'e');
 
         char* const p4 = buff.data();
 
         ::memset(&buff[0], '5', buff.size());
+
+
+        do_a_gazillion_allocations();
+
+
+        // Resize again outside the bounds of the internal buffer, and go to the heap
+        buff.resize(10001, 'f');
+
+        char* const p5 = buff.data();
+
+        ::memset(&buff[0], '6', buff.size());
 
 
         do_a_gazillion_allocations();
