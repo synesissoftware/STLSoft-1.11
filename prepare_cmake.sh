@@ -12,6 +12,7 @@ Configuration=Release
 ExamplesDisabled=0
 MSVC_MT=0
 MinGW=0
+NO_cstring=0
 NO_shwild=0
 RunMake=0
 TestingDisabled=0
@@ -48,6 +49,10 @@ while [[ $# -gt 0 ]]; do
     --msvc-mt)
 
       MSVC_MT=1
+      ;;
+    --no-cstring)
+
+      NO_cstring=1
       ;;
     --no-shwild)
 
@@ -152,10 +157,11 @@ cd $CMakeDir
 echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
-if [ $USE_UNIXem -ne 0 ]; then CMakeUSE_UNIXem="ON" ; else CMakeUSE_UNIXem="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
+if [ $NO_cstring -eq 0 ]; then CMakeNoCstring="OFF" ; else CMakeNoCstring="ON" ; fi
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $USE_UNIXem -ne 0 ]; then CMakeUSE_UNIXem="ON" ; else CMakeUSE_UNIXem="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 if [ $MinGW -ne 0 ]; then
@@ -164,6 +170,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
+    -DNO_CSTRING:BOOL=$CMakeNoCstring \
     -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -G "MinGW Makefiles" \
@@ -176,10 +183,11 @@ else
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
-    -DNO_SHWILD:BOOL=$CMakeNoShwild \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
-    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+    -DNO_CSTRING:BOOL=$CMakeNoCstring \
+    -DNO_SHWILD:BOOL=$CMakeNoShwild \
+    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -S $Dir \
     -B $CMakeDir \
     || (cd ->/dev/null ; exit 1)

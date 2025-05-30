@@ -118,6 +118,7 @@ option(BUILD_EXAMPLES "Build examples" ON)
 # - xTests - required for testing;
 #
 # optional:
+# - cstring - facilitates some C tests;
 # - shwild - enhances xTests for testing;
 # - UNIXem - required for examples/testing on Windows if USE_UNIXEM and WIN32 are defined;
 
@@ -166,6 +167,27 @@ if(NOT (NO_SHWILD))
 
 			add_compile_definitions(XTESTS_USE_SHWILD)
 		endif(shwild_FOUND)
+	endif(BUILD_TESTING)
+endif()
+
+
+# ############################
+# cstring
+
+if(NOT (NO_CSTRING))
+
+	if(BUILD_TESTING)
+
+		set(cstring_REQUIRED_VERSION_ 4.0)
+
+		find_package(cstring ${cstring_REQUIRED_VERSION_} QUIET)
+
+		if(cstring_FOUND)
+
+			message("-- CMake package cstring found (version ${cstring_VERSION}; ${cstring_REQUIRED_VERSION_} requested)")
+
+			add_compile_definitions(STLSOFT_HAS_CSTRING)
+		endif(cstring_FOUND)
 	endif(BUILD_TESTING)
 endif()
 

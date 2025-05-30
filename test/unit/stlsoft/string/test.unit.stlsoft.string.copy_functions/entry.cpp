@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test.unit.stlsoft.string.copy_functions/entry.cpp
  *
- * Purpose: Implementation file for the copy_functions project.
+ * Purpose: Scratch test for string copy functions.
  *
  * Created: 29th September 2016
  * Updated: 26th April 2025
@@ -38,7 +38,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -56,7 +56,7 @@ namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main()
  */
 
 int main(int argc, char **argv)
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 namespace
