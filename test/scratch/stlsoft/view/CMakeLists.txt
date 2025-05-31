@@ -1,2 +1,4 @@
-# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(member_selector_view)
+if(X_CMAKE_CXX_FULLSTANDARD GREATER_EQUAL 2011)
+
+	add_subdirectory(member_selector_view)
+endif()

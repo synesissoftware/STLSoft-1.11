@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       9
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        230
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        232
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -755,7 +755,7 @@ public: // construction
     ///
     /// \see \link #size size() \endlink
     ss_explicit_k
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     auto_buffer(
         size_type   cItems
     )
@@ -835,7 +835,7 @@ public: // construction
     /// \param v The value to which the items will be initialised
     ///
     /// \see \link #size size() \endlink
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     auto_buffer(
         size_type           cItems
     ,   value_type const&   v
@@ -1008,7 +1008,7 @@ public: // construction
     /// \note When \c rhs is using external memory, this is a (fast)
     ///   constant-time operation; when using internal memory, a memory copy
     ///   operation is required
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     auto_buffer(class_type&& rhs) STLSOFT_NOEXCEPT
         : m_buffer(ss_nullptr_k)
         , m_cItems(rhs.m_cItems)
@@ -1060,7 +1060,7 @@ private:
 
 private: // operations
     // Policy functions
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     ss_bool_t is_in_external_array_() const
     {
 #if defined(STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK)
@@ -1072,7 +1072,7 @@ private: // operations
         return space < m_cItems;
 #else /* ? STLSOFT_AUTO_BUFFER_AGGRESSIVE_SHRINK */
 
-        STLSOFT_ASSERT((m_buffer != &m_internal[0]) == 0 != m_cExternal);
+        STLSOFT_ASSERT((m_buffer != &m_internal[0]) == (0 != m_cExternal));
         STLSOFT_ASSERT(0 != m_cExternal || !(space < m_cItems));
 
         return 0 != m_cExternal;
@@ -1404,7 +1404,7 @@ public: // operators
 
 public: // accessors
     /// Returns a pointer to the element array
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     pointer data()
     {
         STLSOFT_ASSERT(is_valid());
@@ -1412,7 +1412,7 @@ public: // accessors
         return m_buffer;
     }
     /// Returns a pointer-to-const to the element array
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_pointer data() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1423,7 +1423,7 @@ public: // accessors
     /// Returns a reference to the last element in the buffer
     ///
     /// \pre The buffer instance must not be empty
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     reference front()
     {
         STLSOFT_ASSERT(is_valid());
@@ -1435,7 +1435,7 @@ public: // accessors
     /// Returns a reference to the last element in the buffer
     ///
     /// \pre The buffer instance must not be empty
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     reference back()
     {
         STLSOFT_ASSERT(is_valid());
@@ -1448,7 +1448,7 @@ public: // accessors
     ///   in the buffer
     ///
     /// \pre The buffer instance must not be empty
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_reference front() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1461,7 +1461,7 @@ public: // accessors
     ///   in the buffer
     ///
     /// \pre The buffer instance must not be empty
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_reference back() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1474,7 +1474,7 @@ public: // accessors
 public: // iteration
     /// Returns a non-mutating iterator representing the start of the
     /// sequence
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_iterator begin() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1488,7 +1488,7 @@ public: // iteration
     /// will return the same value as begin(). Hence, operations on the
     /// <i>empty</i> auto_buffer<> instance will be safe if made in respect
     /// of the range defined by [begin(), end()).
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_iterator end() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1498,7 +1498,7 @@ public: // iteration
 
     /// Returns a non-mutating iterator representing the start of the
     /// sequence
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_iterator cbegin() const
     {
         return begin();
@@ -1510,14 +1510,14 @@ public: // iteration
     /// will return the same value as cbegin(). Hence, operations on the
     /// <i>empty</i> auto_buffer<> instance will be safe if made in respect
     /// of the range defined by [cbegin(), cend()).
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_iterator cend() const
     {
         return end();
     }
 
     /// Returns a mutating iterator representing the start of the sequence
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     iterator begin()
     {
         STLSOFT_ASSERT(is_valid());
@@ -1531,7 +1531,7 @@ public: // iteration
     /// will return the same value as begin(). Hence, operations on the
     /// <i>empty</i> auto_buffer<> instance will be safe if made in respect
     /// of the range defined by [begin(), end()).
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     iterator end()
     {
         STLSOFT_ASSERT(is_valid());
@@ -1543,7 +1543,7 @@ public: // iteration
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_reverse_iterator rbegin() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1553,7 +1553,7 @@ public: // iteration
     /// Ends the reverse iteration
     ///
     /// \return An iterator representing the end of the reverse sequence
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_reverse_iterator rend() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1564,7 +1564,7 @@ public: // iteration
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_reverse_iterator crbegin() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1574,7 +1574,7 @@ public: // iteration
     /// Ends the reverse iteration
     ///
     /// \return An iterator representing the end of the reverse sequence
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     const_reverse_iterator crend() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1585,7 +1585,7 @@ public: // iteration
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     reverse_iterator  rbegin()
     {
         STLSOFT_ASSERT(is_valid());
@@ -1595,7 +1595,7 @@ public: // iteration
     /// Ends the reverse iteration
     ///
     /// \return An iterator representing the end of the reverse sequence
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     reverse_iterator  rend()
     {
         STLSOFT_ASSERT(is_valid());
@@ -1612,7 +1612,7 @@ public: // attributes
     /// constructor, this method will return 0. Hence, operations on the
     /// <i>empty</i> auto_buffer<> instance will be safe if made in respect
     /// of the value returned by this method.
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     size_type size() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1621,14 +1621,14 @@ public: // attributes
     }
 
     /// Returns the number of elements in the auto_buffer's internal buffer
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     static size_type internal_size()
     {
         return space;
     }
 
     /// Indicates whether the buffer has any contents
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     ss_bool_t empty() const
     {
         STLSOFT_ASSERT(is_valid());
@@ -1672,7 +1672,7 @@ public: // attributes
 #endif /* STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE */
 
 private: // implementation
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     ss_bool_t is_valid() const
     {
         ss_bool_t   bRet    =   true;
@@ -1796,7 +1796,7 @@ public:
 
 public: // construction
     ss_explicit_k
-    ss_constexpr_2017_k
+    ss_constexpr_2014_k
     auto_buffer_old(
         size_type   cItems
     )
@@ -1825,7 +1825,7 @@ template <
 # endif /* STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
 >
 inline
-ss_constexpr_2017_k
+ss_constexpr_2014_k
 void
 # ifdef STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS
 swap(
@@ -1912,7 +1912,7 @@ template <
 # endif /* STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
 >
 inline
-ss_constexpr_2017_k
+ss_constexpr_2014_k
 ss_bool_t
 # ifdef STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS
 is_empty(

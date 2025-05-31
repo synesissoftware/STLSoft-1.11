@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::system_traits`.
  *
  * Created: 22nd May 2025
- * Updated: 27th May 2025
+ * Updated: 31st May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,6 +31,9 @@
 #include <stlsoft/memory/auto_buffer.hpp>
 #include <stlsoft/smartptr/scoped_handle.hpp>
 #include <platformstl/system/environment_variable_scope.hpp>
+
+/* Standard C++ header files */
+#include <vector>
 
 /* Standard C header files */
 #include <stdlib.h>
