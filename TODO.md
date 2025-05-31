@@ -61,35 +61,34 @@
 
 ### Building/executing automated tests
 
-  | C++   | C   | Clang (macOS) | GCC (Linux) | GCC(MinGW) (Windows)  | Visual C++ 17.x (Windows) |
-  | ----- | --- | :-----------: | :---------: | :-------------------: | :-----------------------: |
-  | 23    | 23  | ✅             |             |                     |                             |
-  | 23    | 17  | ✅             |             |             | ✅                            |
-  | 20    | 23  | ✅             |             |                     |                             |
-  | 20    | 17  | ✅             | ✅           | ✅           | ✅                            |
-  | 20    | 17  | ✅             | ✅           | ✅           |                       |
-  | 20    | 11  | ✅             |             |                     |                             |
-  | 20    | 99  | ✅             |             |                     |                             |
-  | 20    | 90  | ✅             |             |                     |                             |
-  | 17    | 17  | ✅             | ✅          |             |                             |
-  | 17    | 11  | ✅             |             | ✅           |                       |
-  | 17    | 99  | ✅             |             |                     |                             |
-  | 17    | 90  | ✅             |             |                     |                             |
-  | 14    | 11  | ✅             |             |             | ✅                            |
-  | 14    | 99  | ✅             |             |                     |                             |
-  | 14    | 90  | ✅             |             |             | ✅                            |
-  | 11    | 11  | ✅             | ✅           |             | ✅                            |
-  | 11    | 99  | ✅             |             |                     |                             |
-  | 11    | 90  | ✅             |             |                     |                             |
-  | 98    | 99  | ✅             | ✅          |             |                              |
-  | 98    | 90  | ✅             |             |             | ✅                            |
+  | C++   | C   | Clang 15.0 (macOS, x64) | Clang 17.0 (macOS, x64) | GCC 11.4 (Linux)  | GCC 13.2 (Linux)  | GCC 14.2 (Linux)  | GCC 14.2 (MinGW, Windows) | Visual C++ 17.x (Windows) |
+  | ----- | --- | :---------------------: | :---------------------: | :---------------: | :---------------: | :---------------: | :-----------------------: | :-----------------------: |
+  | 23    | 23  |                         | ✅                       |                   | ✅                 | ✅                 |                           |                           |
+  | 23    | 17  |                         | ✅                       |                   |                   |                   |                           |                              |
+  | 20    | 23  |                         | ✅                       |                   |                   |                   |                           |                             |
+  | 20    | 17  |                         | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                            |
+  | 20    | 11  |                         | ✅                       |                   |                   |                   |                           |                             |
+  | 20    | 99  |                         | ✅                       |                   |                   |                   |                           |                             |
+  | 20    | 90  |                         | ✅                       |                   |                   |                   |                           |                             |
+  | 17    | 17  |                         | ✅                       | ✅                | ✅                 | ✅                 |                            | ✅                           |
+  | 17    | 11  |                         | ✅                       |                   |                   |                   | ✅                         |                       |
+  | 17    | 99  |                         | ✅                       |                   |                   |                   |                           |                             |
+  | 17    | 90  |                         | ✅                       |                   |                   |                   |                           |                             |
+  | 14    | 11  |                         | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                            |
+  | 14    | 99  |                         | ✅                       |                   |                   |                   |                           |                             |
+  | 14    | 90  |                         | ✅                       |                   |                   |                   |                           | ✅                            |
+  | 11    | 11  |                         | ✅                       | ✅                 | ✅                 | ✅                 | ✅                         | ✅                            |
+  | 11    | 99  |                         | ✅                       |                   |                   | ✅                 |                           |                             |
+  | 11    | 90  |                         | ✅                       |                   |                   |                   |                           |                             |
+  | 98    | 99  |                         | ✅                       | ✅                | ✅                 | ✅                 | ✅                          | ✅                            |
+  | 98    | 90  |                         | ✅                       |                   | ❌                 | ❌                 |                           | ✅                            |
 
 
 ### Code changes
 
  * [ ] find all `STLSOFT_USING_SAFE_STR_FUNCTIONS` and abstract all code to worker functions;
  * [ ] integrate **STLSoft**'s exception-hierarchies with new standard exception design;
- * [ ] C++ 11/14/17/20 compatibility - partial; further coming in 1.12;
+ * [ ] C++ 11/14/17/20/23 compatibility - partial; further coming in 1.12;
  * [ ] further system_traits refactoring:
    - [ ] joining common code via **CRTP**;
    - [ ] abstracting out string stuff (into `stlsoft::`);
