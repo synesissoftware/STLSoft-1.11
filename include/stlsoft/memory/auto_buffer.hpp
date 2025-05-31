@@ -4,7 +4,7 @@
  * Purpose: Contains the auto_buffer template class.
  *
  * Created: 19th January 2002
- * Updated: 30th May 2025
+ * Updated: 31st May 2025
  *
  * Thanks:  To Magnificent Imbecil for pointing out error in documentation,
  *          and for suggesting swap() optimisation. To Thorsten Ottosen for
@@ -58,7 +58,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       9
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        229
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        230
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1202,7 +1202,13 @@ public:
 
                     block_copy(const_cast<pointer>(&m_internal[0]), m_buffer, cItems);
 
-                    deallocate_(m_buffer, m_cItems);
+                    // TODO: must nail down whether this is an over-eager GCC (14.2 MinGW x64) or a defect in `auto_buffer`
+#ifdef STLSOFT_MINGW
+                    if (m_buffer != &m_internal[0])
+#endif
+                    {
+                        deallocate_(m_buffer, m_cItems);
+                    }
 
                     m_buffer = const_cast<pointer>(&m_internal[0]);
 
