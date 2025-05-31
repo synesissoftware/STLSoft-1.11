@@ -4,7 +4,7 @@
  * Purpose: Component test for WinSTL atomic_functions.
  *
  * Created: sometime in 2015
- * Updated: 25th May 2025
+ * Updated: 31st May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,10 +28,6 @@
 
 /* STLSoft header files */
 #include <platformstl/system/environment_variable_scope.hpp>
-
-/* Standard C++ header files */
-// #include <thread>
-// #include <vector>
 
 /* Standard C header files */
 #include <stdlib.h>
