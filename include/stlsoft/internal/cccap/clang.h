@@ -4,7 +4,7 @@
  * Purpose: Compiler feature discrimination for Clang C/C++.
  *
  * Created: 14th March 2015
- * Updated: 28th May 2025
+ * Updated: 31st May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MAJOR    1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MINOR    11
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 0
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     31
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -234,7 +234,7 @@
 #  define STLSOFT_CUSTOM_C_INLINE                           static inline
 # else /* ? C version */
 
-#  define STLSOFT_CUSTOM_C_INLINE                           __inline__
+#  define STLSOFT_CUSTOM_C_INLINE                           extern inline
 # endif /* C version */
 #endif
 
