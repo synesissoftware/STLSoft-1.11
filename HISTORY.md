@@ -7,11 +7,15 @@
 31st May 2025 - 1.11.1-rc2 released
 -----------------------------------
 
- * ;
- * ;
- * ;
- * ;
- * ;
+ * Added `stlsoft::member_selector_view<>` (alpha version), for span-compatibility in **recls**;
+ * Change semantics of `stlsoft::auto_buffer<>#resize()` the size of external allocation is maintained such that shrinking and then regrowing may be done within the existing allocation;
+ * InetSTL / UNIXSTL / WinSTL architecture discrimination  canonicalised, expanded, and corrected;
+ * Substantial refactoring and testing of `winstl::filesystem_traits<>`;
+ * Significant improvements to compatibility with different C and C++ language versions (C90, C99, C11, C17, C23, C++98, C++11, C++14, C++17, C++20, C++23) - detailed in TODO.md;
+ * Added compatibility with latest Visual C++ (`_MSC_VER` == 1944);
+ * **test.component.inetstl.util.uds_helpers** now works correctly for both Linux and macOS;
+ * Brought over several test programs exercising C APIs;
+ * **run_all_scratch_tests.sh** now accepts '--verbosity' option;
 
 
 6th May 2025 - 1.11.1-rc1 released
