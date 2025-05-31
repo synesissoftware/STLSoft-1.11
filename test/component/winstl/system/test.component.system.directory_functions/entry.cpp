@@ -4,7 +4,7 @@
  * Purpose: Component test for WinSTL atomic_functions.
  *
  * Created: sometime in 2015
- * Updated: 20th March 2025
+ * Updated: 31st May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,10 +28,6 @@
 
 /* STLSoft header files */
 #include <platformstl/system/environment_variable_scope.hpp>
-
-/* Standard C++ header files */
-// #include <thread>
-// #include <vector>
 
 /* Standard C header files */
 #include <stdlib.h>
@@ -275,7 +271,7 @@ void TEST_get_home_directory_INSUFFICIENT_SPACE()
             size_t const    cch =   winstl::get_home_directory(buff, STLSOFT_NUM_ELEMENTS(buff));
 
             TEST_INT_EQ(12, cch);
-            TEST_CHAR_EQ('~', buff[0]);
+            TEST_CHAR_EQ('\0', buff[0]);
         }
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 
@@ -284,7 +280,7 @@ void TEST_get_home_directory_INSUFFICIENT_SPACE()
             size_t const    cch =   winstl::get_home_directory(buff);
 
             TEST_INT_EQ(12, cch);
-            TEST_CHAR_EQ('~', buff[0]);
+            TEST_CHAR_EQ('\0', buff[0]);
         }
 #endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
     }
@@ -295,7 +291,7 @@ void TEST_get_home_directory_INSUFFICIENT_SPACE()
             size_t const    cch =   winstl::get_home_directory(buff, STLSOFT_NUM_ELEMENTS(buff));
 
             TEST_INT_EQ(12, cch);
-            TEST_CHAR_EQ('~', buff[0]);
+            TEST_CHAR_EQ('\0', buff[0]);
         }
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 
@@ -304,7 +300,7 @@ void TEST_get_home_directory_INSUFFICIENT_SPACE()
             size_t const    cch =   winstl::get_home_directory(buff);
 
             TEST_INT_EQ(12, cch);
-            TEST_CHAR_EQ('~', buff[0]);
+            TEST_CHAR_EQ('\0', buff[0]);
         }
 #endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
     }

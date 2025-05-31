@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::environment_variable_scope`.
  *
  * Created: 26th April 2025
- * Updated: 26th April 2025
+ * Updated: 31st April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,8 +28,6 @@
 
 /* STLSoft header files */
 #include <platformstl/system/environment_variable.hpp>
-
-/* Standard C++ header files */
 
 /* Standard C header files */
 #include <stdlib.h>

@@ -5,7 +5,7 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 21st February 2025
+ * Updated: 28th May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     575
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 2
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     576
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -134,12 +134,13 @@
 # define _INETSTL_VER_1_4_1      0x010401ff  /*!< Version 1.4.1 (with STLSoft 1.10.3) */
 # define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1 alpha 8) */
 # define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0 alpha 1 (with STLSoft 1.11.1 beta 2) */
+# define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0 alpha 2 (with STLSoft 1.11.1 release candidate 2) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
 #define _INETSTL_VER_MINOR       5
 #define _INETSTL_VER_REVISION    0
-#define _INETSTL_VER             _INETSTL_VER_1_5_0_A01
+#define _INETSTL_VER             _INETSTL_VER_1_5_0_A02
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -304,79 +305,94 @@
 # undef INETSTL_ARCH_IS_UNKNOWN
 #endif /* INETSTL_ARCH_IS_UNKNOWN */
 
+/*
+Alpha
+ARM64
+HP/PA
+IA-64
+PowerPC
+Sparc
+x86-64
+
+80x86
+*/
+
 #if 0
 #elif 0 ||\
-      defined(_M_ARM64) ||\
+      defined(__alpha__) || \
+      defined(__alpha) || \
+      defined(_M_ALPHA) ||\
+      0
+
+# define INETSTL_ARCH_IS_ALPHA
+# define INETSTL_ARCH_LABEL_STRING                          "Alpha"
+#elif 0 ||\
       defined(__aarch64__) ||\
+      defined(_M_ARM64) ||\
       0
 
 # define INETSTL_ARCH_IS_INTEL
 # define INETSTL_ARCH_IS_ARM64
 # define INETSTL_ARCH_LABEL_STRING                          "ARM64"
 #elif 0 ||\
-      defined(_AMD64_) || \
-      defined(_M_AMD64) || \
-      defined(_M_X64) || \
-      defined(__amd64) || \
-      defined(__amd64__) || \
+      defined(__hppa__) || \
+      defined(__hppa) ||\
+      0
+
+# define INETSTL_ARCH_IS_HPPA
+# define INETSTL_ARCH_LABEL_STRING                          "HP/PA"
+#elif 0 ||\
+      defined(__ia64__) || \
+      defined(__ia64) || \
+      defined(_IA64_) || \
+      defined(_M_IA64) ||\
       0
 
 # define INETSTL_ARCH_IS_INTEL
 # define INETSTL_ARCH_IS_IA64
 # define INETSTL_ARCH_LABEL_STRING                          "IA-64"
 #elif 0 ||\
-      defined(_M_IX86) ||\
-      defined(_X86_) || \
-      defined(__i386) || \
-      defined(__i386__) || \
-      0
-
-# define INETSTL_ARCH_IS_INTEL
-# define INETSTL_ARCH_IS_X64
-# define INETSTL_ARCH_LABEL_STRING                          "ARM64"
-#elif 0 ||\
-      defined(_IA64_) || \
-      defined(_M_IA64) ||\
-      defined(__ia64) || \
-      defined(__ia64__) || \
-      0
-
-# define INETSTL_ARCH_IS_INTEL
-# define INETSTL_ARCH_IS_X86
-# define INETSTL_ARCH_LABEL_STRING                          "80x86"
-#elif 0 ||\
-      defined(_M_ALPHA) ||\
-      defined(__alpha) || \
-      defined(__alpha__) || \
-      0
-
-# define INETSTL_ARCH_IS_ALPHA
-# define INETSTL_ARCH_LABEL_STRING                          "Alpha"
-#elif 0 ||\
-      defined(__hppa) ||\
-      defined(__hppa__) || \
-      0
-
-# define INETSTL_ARCH_IS_HPPA
-# define INETSTL_ARCH_LABEL_STRING                          "HP/PA"
-#elif 0 ||\
+      defined(__POWERPC__) || \
+      defined(__ppc__) || \
+      defined(__ppc) || \
       defined(_M_PPC) ||\
       defined(_POWER) || \
-      defined(__POWERPC__) || \
-      defined(__ppc) || \
-      defined(__ppc__) || \
       0
 
 # define INETSTL_ARCH_IS_POWERPC
 # define INETSTL_ARCH_LABEL_STRING                          "PowerPC"
 #elif 0 ||\
-      defined(__sparc) ||\
       defined(__sparc__) || \
+      defined(__sparc) ||\
       0
 
  /* TODO: Separate out arch-family and archs (incl. Sparc32 and Sparc64) */
 # define INETSTL_ARCH_IS_SPARC
 # define INETSTL_ARCH_LABEL_STRING                          "Sparc"
+#elif 0 ||\
+      defined(__amd64__) || \
+      defined(__amd64) || \
+      defined(__x86_64__) ||\
+      defined(__x86_64) ||\
+      defined(_AMD64_) || \
+      defined(_M_AMD64) || \
+      defined(_M_X64) || \
+      0
+
+# define INETSTL_ARCH_IS_INTEL
+# define INETSTL_ARCH_IS_X64
+# define INETSTL_ARCH_LABEL_STRING                          "x86-64"
+#elif 0 ||\
+      defined(__i386__) || \
+      defined(__i386) || \
+      defined(__X86__) || \
+      defined(_M_IX86) ||\
+      defined(_X86_) || \
+      0
+
+# define INETSTL_ARCH_IS_INTEL
+# define INETSTL_ARCH_IS_X86
+# define INETSTL_ARCH_LABEL_STRING                          "80x86"
 #else /* ? arch */
 
 # define INETSTL_ARCH_IS_UNKNOWN
@@ -780,67 +796,66 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-typedef STLSOFT_NS_QUAL(ss_char_a_t)        is_char_a_t;    /*!< Ansi char type */
-typedef STLSOFT_NS_QUAL(ss_char_w_t)        is_char_w_t;    /*!< Unicode char type */
-typedef STLSOFT_NS_QUAL(ss_sint8_t)         is_sint8_t;     /*!< 8-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint8_t)         is_uint8_t;     /*!< 8-bit unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_int16_t)         is_int16_t;     /*!< 16-bit integer */
-typedef STLSOFT_NS_QUAL(ss_sint16_t)        is_sint16_t;    /*!< 16-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint16_t)        is_uint16_t;    /*!< 16-bit unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_int32_t)         is_int32_t;     /*!< 32-bit integer */
-typedef STLSOFT_NS_QUAL(ss_sint32_t)        is_sint32_t;    /*!< 32-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint32_t)        is_uint32_t;    /*!< 32-bit unsigned integer */
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef STLSOFT_NS_QUAL(ss_int64_t)        is_int64_t;     /*!< 64-bit integer */
- typedef STLSOFT_NS_QUAL(ss_sint64_t)       is_sint64_t;    /*!< 64-bit signed integer */
- typedef STLSOFT_NS_QUAL(ss_uint64_t)       is_uint64_t;    /*!< 64-bit unsigned integer */
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef STLSOFT_NS_QUAL(ss_int_t)           is_int_t;       /*!< integer */
-typedef STLSOFT_NS_QUAL(ss_sint_t)          is_sint_t;      /*!< signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint_t)          is_uint_t;      /*!< unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_long_t)          is_long_t;      /*!< long */
-typedef STLSOFT_NS_QUAL(ss_byte_t)          is_byte_t;      /*!< byte type */
-#ifdef __cplusplus
-typedef STLSOFT_NS_QUAL(ss_bool_t)          is_bool_t;      /*!< Boolean type */
-#endif /* __cplusplus */
+typedef STLSOFT_NS_QUAL(ss_char_a_t)                        is_char_a_t;    /*!< Ansi char type */
+typedef STLSOFT_NS_QUAL(ss_char_w_t)                        is_char_w_t;    /*!< Unicode char type */
+typedef STLSOFT_NS_QUAL(ss_sint8_t)                         is_sint8_t;     /*!< 8-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint8_t)                         is_uint8_t;     /*!< 8-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_int16_t)                         is_int16_t;     /*!< 16-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint16_t)                        is_sint16_t;    /*!< 16-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint16_t)                        is_uint16_t;    /*!< 16-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_int32_t)                         is_int32_t;     /*!< 32-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint32_t)                        is_sint32_t;    /*!< 32-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint32_t)                        is_uint32_t;    /*!< 32-bit unsigned integer */
+# ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+typedef STLSOFT_NS_QUAL(ss_int64_t)                         is_int64_t;     /*!< 64-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint64_t)                        is_sint64_t;    /*!< 64-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint64_t)                        is_uint64_t;    /*!< 64-bit unsigned integer */
+# endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+typedef STLSOFT_NS_QUAL(ss_int_t)                           is_int_t;       /*!< integer */
+typedef STLSOFT_NS_QUAL(ss_sint_t)                          is_sint_t;      /*!< signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint_t)                          is_uint_t;      /*!< unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_long_t)                          is_long_t;      /*!< long */
+typedef STLSOFT_NS_QUAL(ss_byte_t)                          is_byte_t;      /*!< byte type */
+# ifdef __cplusplus
+typedef STLSOFT_NS_QUAL(ss_bool_t)                          is_bool_t;      /*!< Boolean type */
+# endif /* __cplusplus */
 # ifdef INETSTL_OS_IS_WINDOWS
-typedef DWORD                               is_dword_t;     /*!< dword */
+typedef DWORD                                               is_dword_t;     /*!< dword */
 # endif /* INETSTL_OS_IS_WINDOWS */
-typedef STLSOFT_NS_QUAL(ss_size_t)          is_size_t;      /*!< size */
-typedef STLSOFT_NS_QUAL(ss_ptrdiff_t)       is_ptrdiff_t;   /*!< ptr diff */
-typedef STLSOFT_NS_QUAL(ss_streampos_t)     is_streampos_t; /*!< streampos */
-typedef STLSOFT_NS_QUAL(ss_streamoff_t)     is_streamoff_t; /*!< streamoff */
+typedef STLSOFT_NS_QUAL(ss_size_t)                          is_size_t;      /*!< size */
+typedef STLSOFT_NS_QUAL(ss_ptrdiff_t)                       is_ptrdiff_t;   /*!< ptr diff */
+typedef STLSOFT_NS_QUAL(ss_streampos_t)                     is_streampos_t; /*!< streampos */
+typedef STLSOFT_NS_QUAL(ss_streamoff_t)                     is_streamoff_t; /*!< streamoff */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef INETSTL_NO_NAMESPACE
-typedef is_char_a_t         char_a_t;           /*!< Ansi char type */
-typedef is_char_w_t         char_w_t;           /*!< Unicode char type */
-typedef is_sint8_t          sint8_t;            /*!< 8-bit signed integer */
-typedef is_uint8_t          uint8_t;            /*!< 8-bit unsigned integer */
-typedef is_int16_t          int16_t;            /*!< 16-bit integer */
-typedef is_sint16_t         sint16_t;           /*!< 16-bit signed integer */
-typedef is_uint16_t         uint16_t;           /*!< 16-bit unsigned integer */
-typedef is_int32_t          int32_t;            /*!< 32-bit integer */
-typedef is_sint32_t         sint32_t;           /*!< 32-bit signed integer */
-typedef is_uint32_t         uint32_t;           /*!< 32-bit unsigned integer */
+typedef is_char_a_t                                         char_a_t;       /*!< Ansi char type */
+typedef is_char_w_t                                         char_w_t;       /*!< Unicode char type */
+typedef is_sint8_t                                          sint8_t;        /*!< 8-bit signed integer */
+typedef is_uint8_t                                          uint8_t;        /*!< 8-bit unsigned integer */
+typedef is_int16_t                                          int16_t;        /*!< 16-bit integer */
+typedef is_sint16_t                                         sint16_t;       /*!< 16-bit signed integer */
+typedef is_uint16_t                                         uint16_t;       /*!< 16-bit unsigned integer */
+typedef is_int32_t                                          int32_t;        /*!< 32-bit integer */
+typedef is_sint32_t                                         sint32_t;       /*!< 32-bit signed integer */
+typedef is_uint32_t                                         uint32_t;       /*!< 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef is_int64_t         int64_t;            /*!< 64-bit integer */
- typedef is_sint64_t        sint64_t;           /*!< 64-bit signed integer */
- typedef is_uint64_t        uint64_t;           /*!< 64-bit unsigned integer */
+typedef is_int64_t                                          int64_t;        /*!< 64-bit integer */
+typedef is_sint64_t                                         sint64_t;       /*!< 64-bit signed integer */
+typedef is_uint64_t                                         uint64_t;       /*!< 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef is_int_t            int_t;              /*!< integer */
-typedef is_sint_t           sint_t;             /*!< signed integer */
-typedef is_uint_t           uint_t;             /*!< unsigned integer */
-typedef is_long_t           long_t;             /*!< long integer */
-typedef is_byte_t           byte_t;             /*!< byte type */
-typedef is_bool_t           bool_t;             /*!< Boolean type */
+typedef is_int_t                                            int_t;          /*!< integer */
+typedef is_sint_t                                           sint_t;         /*!< signed integer */
+typedef is_uint_t                                           uint_t;         /*!< unsigned integer */
+typedef is_long_t                                           long_t;         /*!< long integer */
+typedef is_byte_t                                           byte_t;         /*!< byte type */
+typedef is_bool_t                                           bool_t;         /*!< Boolean type */
 # ifdef INETSTL_OS_IS_WINDOWS
-typedef is_dword_t          dword_t;            /*!< dword */
+typedef is_dword_t                                          dword_t;        /*!< dword */
 # endif /* INETSTL_OS_IS_WINDOWS */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-typedef is_streampos_t      streampos_t;        /*!< streampos */
-typedef is_streamoff_t      streamoff_t;        /*!< streamoff */
+typedef is_streampos_t                                      streampos_t;    /*!< streampos */
+typedef is_streamoff_t                                      streamoff_t;    /*!< streamoff */
 # endif /* compiler */
 #endif /* !INETSTL_NO_NAMESPACE */
 

@@ -4,7 +4,7 @@
  * Purpose: Internal adaptations for obtaining home directory.
  *
  * Created: 27th April 2025
- * Updated: 30th April 2025
+ * Updated: 25th May 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -108,8 +108,17 @@ int WINSTL_API_INTERNAL_System_get_home_directory_a_(
                     return 0;
                 }
 
+                STLSOFT_NS_GLOBAL_(SetLastError)(ERROR_SUCCESS);
+
                 if (cchBuffer <= cchDrive + cchDirectory)
                 {
+                    if (0 != cchBuffer)
+                    {
+                        STLSOFT_NS_GLOBAL_(SetLastError)(ERROR_INSUFFICIENT_BUFFER);
+
+                        buffer[0] = '\0';
+                    }
+
                     return cchDrive + cchDirectory + 1;
                 }
                 else
@@ -128,6 +137,16 @@ int WINSTL_API_INTERNAL_System_get_home_directory_a_(
         }
         else
         {
+            if (cchBuffer < dw_up)
+            {
+                if (0 != cchBuffer)
+                {
+                    STLSOFT_NS_GLOBAL_(SetLastError)(ERROR_INSUFFICIENT_BUFFER);
+
+                    buffer[0] = '\0';
+                }
+            }
+
             return dw_up;
         }
     }
@@ -173,14 +192,24 @@ int WINSTL_API_INTERNAL_System_get_home_directory_w_(
                     return 0;
                 }
 
+                STLSOFT_NS_GLOBAL_(SetLastError)(ERROR_SUCCESS);
+
                 if (cchBuffer <= cchDrive + cchDirectory)
                 {
+                    if (0 != cchBuffer)
+                    {
+                        STLSOFT_NS_GLOBAL_(SetLastError)(ERROR_INSUFFICIENT_BUFFER);
+
+                        buffer[0] = '\0';
+                    }
+
                     return cchDrive + cchDirectory + 1;
                 }
                 else
                 {
                     STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + 0, drive, sizeof(WCHAR) * cchDrive);
                     STLSOFT_API_EXTERNAL_memfns_memcpy(&buffer[0] + cchDrive, directory, sizeof(WCHAR) * cchDirectory);
+                    buffer[cchDrive + cchDirectory] = L'\0';
 
                     return cchDrive + cchDirectory;
                 }
@@ -192,6 +221,16 @@ int WINSTL_API_INTERNAL_System_get_home_directory_w_(
         }
         else
         {
+            if (cchBuffer < dw_up)
+            {
+                if (0 != cchBuffer)
+                {
+                    STLSOFT_NS_GLOBAL_(SetLastError)(ERROR_INSUFFICIENT_BUFFER);
+
+                    buffer[0] = '\0';
+                }
+            }
+
             return dw_up;
         }
     }

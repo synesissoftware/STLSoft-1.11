@@ -7,6 +7,7 @@ function(define_automated_test_program program_name entry_point_source_name)
 	)
 
 	target_link_libraries(${program_name}
+		$<$<BOOL:${cstring_FOUND}>:cstring::core>
 		$<$<BOOL:${shwild_FOUND}>:shwild::core>
 		$<$<BOOL:${UNIXem_FOUND}>:UNIXem::UNIXem>
 		$<$<BOOL:${xTests_FOUND}>:xTests::core>
@@ -66,6 +67,7 @@ function(define_example_program program_name entry_point_source_name)
 
 	target_link_libraries(${program_name}
 		$<$<BOOL:${shwild_FOUND}>:shwild::core>
+		$<$<BOOL:${cstring_FOUND}>:cstring::core>
 		$<$<BOOL:${UNIXem_FOUND}>:UNIXem::UNIXem>
 	)
 

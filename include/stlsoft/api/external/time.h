@@ -5,11 +5,11 @@
  *          time functions.
  *
  * Created: 30th September 2024
- * Updated: 8th October 2024
+ * Updated: 29th May 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -159,8 +159,10 @@
 #elif defined(__cplusplus) &&\
       __cplusplus >= 202302L
 
-# define STLSOFT_LF_SUPPORT_STD_gmtime_r
-# define STLSOFT_LF_SUPPORT_STD_localtime_r
+# ifndef _MSC_VER
+#  define STLSOFT_LF_SUPPORT_STD_gmtime_r
+#  define STLSOFT_LF_SUPPORT_STD_localtime_r
+# endif
 #endif
 
 

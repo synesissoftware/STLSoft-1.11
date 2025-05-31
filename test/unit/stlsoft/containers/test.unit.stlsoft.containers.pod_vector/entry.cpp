@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::pod_vector`
  *
  * Created: 1st December 2008
- * Updated: 20th March 2025
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -218,7 +218,13 @@ static void test_assign()
     XTESTS_TEST_INTEGER_EQUAL(7u, v.size());
     XTESTS_TEST_INTEGER_EQUAL(-7, std::accumulate(v.begin(), v.end(), 0));
 
+#if __cplusplus >= 201103L
+
     v.assign(std::begin(ints), std::end(ints));
+#else
+
+    v.assign(&ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints));
+#endif
 
     XTESTS_TEST_BOOLEAN_FALSE(v.empty());
     XTESTS_TEST_INTEGER_EQUAL(10u, v.size());
@@ -276,7 +282,13 @@ static void test_erase()
 
     // { -4, -3, -2, -1, 0, 1, 2, 3, 4, 5 }
 
+#if __cplusplus >= 201103L
+
     int_vector_t v(std::begin(ints), std::end(ints));
+#else
+
+    int_vector_t v(&ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints));
+#endif
 
     XTESTS_TEST_BOOLEAN_FALSE(v.empty());
     XTESTS_TEST_INTEGER_EQUAL(10u, v.size());
@@ -400,7 +412,14 @@ static void test_insert()
 
     // { -8, -7, -6, -5, 0, 1, 2 }
 
+#if __cplusplus >= 201103L
+
     v.insert(v.begin(), std::begin(ints_neg8_to_neg5), std::end(ints_neg8_to_neg5));
+#else
+
+    v.insert(v.begin(), &ints_neg8_to_neg5[0], &ints_neg8_to_neg5[0] + STLSOFT_NUM_ELEMENTS(ints_neg8_to_neg5));
+#endif
+
 
     XTESTS_TEST_INTEGER_EQUAL(7u, v.size());
     XTESTS_TEST_INTEGER_EQUAL(-23, std::accumulate(v.begin(), v.end(), 0));
@@ -422,7 +441,14 @@ static void test_insert()
 
     // { -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2 }
 
+#if __cplusplus >= 201103L
+
     v.insert(v.begin() + 5, std::begin(ints_neg3_to_neg1), std::end(ints_neg3_to_neg1));
+#else
+
+    v.insert(v.begin() + 5, &ints_neg3_to_neg1[0], &ints_neg3_to_neg1[0] + STLSOFT_NUM_ELEMENTS(ints_neg3_to_neg1));
+#endif
+
 
     XTESTS_TEST_INTEGER_EQUAL(11u, v.size());
     XTESTS_TEST_INTEGER_EQUAL(-33, std::accumulate(v.begin(), v.end(), 0));

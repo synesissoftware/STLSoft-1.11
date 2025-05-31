@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 20th March 2025
+ * Updated: 30th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,9 +37,9 @@
  */
 
 #ifdef STLSOFT_DEBUG
-size_t const NUM_ITERATIONS	=	1000u;
+size_t const NUM_ITERATIONS =   1000u;
 #else /* ? STLSOFT_DEBUG */
-size_t const NUM_ITERATIONS	=	1000000u;
+size_t const NUM_ITERATIONS =   1000000u;
 #endif /* STLSOFT_DEBUG */
 
 

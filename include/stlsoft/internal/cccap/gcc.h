@@ -4,14 +4,14 @@
  * Purpose: Compiler feature discrimination for GNU C/C++.
  *
  * Created: 7th February 2003
- * Updated: 27th December 2024
+ * Updated: 31st May 2025
  *
  * Thanks:  To Sergey Nikulov, for PowerPC (BSD) compatibility fixes;
  *          wiluite for MinGW 64-bit compatibility.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -63,8 +63,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      34
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       118
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   3
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -270,7 +270,14 @@
 
 #ifndef __cplusplus
 
-# define STLSOFT_CUSTOM_C_INLINE                            static inline
+# if defined(__STDC_VERSION__) &&\
+     __STDC_VERSION__ >= 201112L
+
+#  define STLSOFT_CUSTOM_C_INLINE                           static inline
+# else /* ? C version */
+
+#  define STLSOFT_CUSTOM_C_INLINE                           extern inline
+# endif /* C version */
 #endif
 
 
@@ -553,11 +560,16 @@
 
 #define _STLSOFT_SIZEOF_CHAR                                (1)
 
-#if defined(__ILP64__) || \
-    defined(_ILP64)
+#if 0
+#elif 0 ||\
+      defined(__ILP64__) ||\
+      defined(_ILP64) ||\
+      0
 # error Currently the STLSoft libraries are not compatible with the ILP64 memory model
-#elif defined(__LP64__) || \
-      defined(_LP64)
+#elif 0 ||\
+      defined(__LP64__) ||\
+      defined(_LP64) ||\
+      0
  /* LP64 */
 # define _STLSOFT_SIZEOF_SHORT                              (2)
 # define _STLSOFT_SIZEOF_INT                                (4)
