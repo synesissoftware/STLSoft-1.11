@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 20th March 2025
+ * Updated: 29th June 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -190,7 +190,7 @@ namespace {
     static void test_ctor_range_pointers_1();
     static void test_ctor_range_pointers_2();
     static void test_ctor_range_pointers_3();
-#if __cplusplus >= 201702L
+#if __cplusplus >= 201703L
 
     static void test_ctor_range_vec_iters_1();
     static void test_ctor_range_vec_iters_2();
@@ -282,7 +282,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_ctor_range_pointers_1);
         XTESTS_RUN_CASE(test_ctor_range_pointers_2);
         XTESTS_RUN_CASE(test_ctor_range_pointers_3);
-#if __cplusplus >= 201702L
+#if __cplusplus >= 201703L
 
         XTESTS_RUN_CASE(test_ctor_range_vec_iters_1);
         XTESTS_RUN_CASE(test_ctor_range_vec_iters_2);
@@ -569,7 +569,7 @@ static void test_ctor_range_pointers_3()
     XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-#if __cplusplus >= 201702L
+#if __cplusplus >= 201703L
 
 static void test_ctor_range_vec_iters_1()
 {
