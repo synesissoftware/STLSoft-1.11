@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 31st May 2025
+ * Updated: 29th June 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 14
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     601
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 15
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     602
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -391,8 +391,18 @@
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
-#define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_RC2
+#define _STLSOFT_VER_PATCH          1
+#define _STLSOFT_VER_ALPHABETA      0xc3
+
+#define _STLSOFT_VER \
+    (0\
+        |   (   _STLSOFT_VER_MAJOR      << 24   )\
+        |   (   _STLSOFT_VER_MINOR      << 16   )\
+        |   (   _STLSOFT_VER_PATCH      <<  8   )\
+        |   (   _STLSOFT_VER_ALPHABETA  <<  0   )\
+    )
+
+#define _STLSOFT_VER_REVISION       _STLSOFT_VER_PATCH
 
 
 /* /////////////////////////////////////
@@ -1055,7 +1065,7 @@
 # if 0
 # elif 1 &&\
        defined(__cplusplus) &&\
-       __cplusplus >= 201702L &&\
+       __cplusplus >= 201703L &&\
        1
 
    /* C++17 (or later) */
