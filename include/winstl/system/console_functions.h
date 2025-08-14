@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     6
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  0
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      53
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -354,7 +354,7 @@ winstl_C_console_read_silent_character_from_stdin(void)
 
 STLSOFT_INLINE
 long
-winstl_C_console_read_silent_character_from_CONIO(void)
+winstl_C_console_read_silent_character_from_CONIN(void)
 {
     HANDLE hConin = WINSTL_API_EXTERNAL_FileManagement_CreateFileA(
                         "CONIN$"
@@ -381,6 +381,14 @@ winstl_C_console_read_silent_character_from_CONIO(void)
 
         return l;
     }
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl_C_console_read_silent_character_from_CONIO, winstl_C_console_read_silent_character_from_CONIN)
+STLSOFT_INLINE
+long
+winstl_C_console_read_silent_character_from_CONIO(void)
+{
+    return winstl_C_console_read_silent_character_from_CONIN();
 }
 
 STLSOFT_INLINE
@@ -624,9 +632,17 @@ console_read_silent_character_from_stdin()
 
 inline
 long
+console_read_silent_character_from_CONIN()
+{
+    return winstl_C_console_read_silent_character_from_CONIN();
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(console_read_silent_character_from_CONIO, console_read_silent_character_from_CONIN)
+inline
+long
 console_read_silent_character_from_CONIO()
 {
-    return winstl_C_console_read_silent_character_from_CONIO();
+    return winstl_C_console_read_silent_character_from_CONIN();
 }
 
 inline
