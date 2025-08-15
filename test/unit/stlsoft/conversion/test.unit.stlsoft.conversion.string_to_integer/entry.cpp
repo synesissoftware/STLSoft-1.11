@@ -79,7 +79,7 @@ namespace
     static void test_increasing_length(void);
     static void test_decimal_leading_plus(void);
     static void test_endptr(void);
-    static void test_hexadecimal_1(void);
+    static void TEST_POLLUTED_STRINGS(void);
 } // anonymous namespace
 
 
@@ -113,7 +113,7 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_increasing_length);
         XTESTS_RUN_CASE(test_decimal_leading_plus);
         XTESTS_RUN_CASE(test_endptr);
-        XTESTS_RUN_CASE(test_hexadecimal_1);
+        XTESTS_RUN_CASE(TEST_POLLUTED_STRINGS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -614,20 +614,27 @@ static void test_endptr()
     }
 }
 
-static void test_hexadecimal_1()
+static void TEST_POLLUTED_STRINGS()
 {
-#if 0
     char const* endptr = NULL;
+
+    XTESTS_TEST_INTEGER_EQUAL(-123, stlsoft::string_to_integer(" -123abc", 8, &endptr));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", endptr);
 
     XTESTS_TEST_INTEGER_EQUAL(123, stlsoft::string_to_integer(" +123abc", 8, &endptr));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", endptr);
 
+    XTESTS_TEST_INTEGER_EQUAL(123, stlsoft::string_to_integer(" 123abc", 8, &endptr));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", endptr);
+
+    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(" -abc123", 8, &endptr));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-abc123", endptr);
+
     XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(" +abc123", 8, &endptr));
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc123", endptr);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("+abc123", endptr);
 
     XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(" abc123", 7, &endptr));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc123", endptr);
-#endif /* 0 */
 }
 } // anonymous namespace
 
