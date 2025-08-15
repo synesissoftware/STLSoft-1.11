@@ -65,6 +65,7 @@ namespace
     static void test_specialisations_1(void);
     static void test_specialisations_2(void);
     static void test_0(void);
+    static void TEST_EMPTY(void);
     static void test_positives_implicit(void);
     static void test_positives_explicit(void);
     static void test_negatives(void);
@@ -98,6 +99,7 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_specialisations_1);
         XTESTS_RUN_CASE(test_specialisations_2);
         XTESTS_RUN_CASE(test_0);
+        XTESTS_RUN_CASE(TEST_EMPTY);
         XTESTS_RUN_CASE(test_positives_implicit);
         XTESTS_RUN_CASE(test_positives_explicit);
         XTESTS_RUN_CASE(test_negatives);
@@ -267,9 +269,26 @@ static void test_specialisations_2()
 
 static void test_0()
 {
-    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer("0", static_cast<char const**>(0)));
+    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer( "0", static_cast<char const**>(0)));
 
     XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(L"0", static_cast<wchar_t const**>(0)));
+}
+
+static void TEST_EMPTY()
+{
+    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer( "", static_cast<char const**>(0)));
+
+    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(L"", static_cast<wchar_t const**>(0)));
+
+    {
+        char const  input[] = "";
+        char const* endptr;
+
+        int const   r   =   stlsoft::string_to_integer(input, &endptr);
+
+        TEST_INT_EQ(0, r);
+        TEST_PTR_EQ(input, endptr);
+    }
 }
 
 static void test_positives_implicit()
