@@ -1,5 +1,5 @@
 
-#include <unixstl/system/pid_sequence.hpp>
+#include <platformstl/system/pid_sequence.hpp>
 #include <platformstl/filesystem/path_functions.h>
 
 #include <iostream>
@@ -14,14 +14,26 @@ int main(int /* argc */, char* argv[])
 
     try
     {
-        unixstl::pid_sequence const pids(unixstl::pid_sequence::sort | unixstl::pid_sequence::elideInit | unixstl::pid_sequence::elideSched);
+        unsigned const flags    =   0
+#ifdef PLATFORMSTL_OS_IS_UNIX
+                                |   platformstl::pid_sequence::elideInit
+                                |   platformstl::pid_sequence::elideSched
+#endif
+#ifdef PLATFORMSTL_OS_IS_WINDOWS
+                                |   platformstl::pid_sequence::elideIdle
+                                |   platformstl::pid_sequence::elideSystem
+#endif
+                                |   platformstl::pid_sequence::sort
+                                ;
+
+        platformstl::pid_sequence const pids(flags);
 
         std::cout
             << "process ids:"
             << std::endl
             ;
 
-        for (unixstl::pid_sequence::const_iterator i = pids.cbegin(); pids.cend() != i; ++i)
+        for (platformstl::pid_sequence::const_iterator i = pids.cbegin(); pids.cend() != i; ++i)
         {
             std::cout
                 << "\t"
