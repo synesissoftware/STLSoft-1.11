@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 24th June 2005
- * Updated: 20th March 2025
+ * Updated: 17th August 2025
  *
  * Thanks:  Adi Shavit for spotting a small inefficiency in the
  *          resize()-ing, during the review of Extended STL volume 1
@@ -57,8 +57,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 14
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     75
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 15
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -175,16 +175,16 @@ public:
 private:
     typedef STLSOFT_NS_QUAL(auto_buffer)<
         value_type
-    ,   64
+    ,   256
     ,   allocator_type
     >                                                       buffer_type_;
 public:
 
     enum
     {
-            elideIdle   =   0x0001
-        ,   elideSystem =   0x0002
-        ,   sort        =   0x0004
+            elideIdle   =   0x0001  //!< causes the idle process to be elided from the list
+        ,   elideSystem =   0x0002  //!< causes the system process to be elided from the list
+        ,   sort        =   0x0004  //!< causes the process ids to be sorted
     };
 /// @}
 
