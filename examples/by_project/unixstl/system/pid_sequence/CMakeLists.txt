@@ -1,3 +1,3 @@
 # SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(home_directory)
-add_subdirectory(pid_sequence)
+define_example_program(example.unixstl.system.pid_sequence main.cpp)
+
