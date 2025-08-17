@@ -246,9 +246,9 @@ public:
 /// @{
 public:
     /// Indicates whether the sequence is empty
-    ws_bool_t   empty() const;
+    ws_bool_t   empty() const STLSOFT_NOEXCEPT;
     /// Returns the number of identifiers in the sequence
-    size_type   size() const;
+    size_type   size() const STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name System Traits
@@ -467,14 +467,14 @@ pid_sequence::operator [](pid_sequence::size_type index) const
 
 inline
 ws_bool_t
-pid_sequence::empty() const
+pid_sequence::empty() const STLSOFT_NOEXCEPT
 {
     return m_pids.empty();
 }
 
 inline
 pid_sequence::size_type
-pid_sequence::size() const
+pid_sequence::size() const STLSOFT_NOEXCEPT
 {
     return m_pids.size();
 }
