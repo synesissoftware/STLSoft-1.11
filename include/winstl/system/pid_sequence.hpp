@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 24th June 2005
- * Updated: 17th August 2025
+ * Updated: 18th August 2025
  *
  * Thanks:  Adi Shavit for spotting a small inefficiency in the
  *          resize()-ing, during the review of Extended STL volume 1
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 15
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     76
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -204,6 +204,14 @@ private:
 /// \name Iteration
 /// @{
 public:
+    /// Begins the iteration
+    ///
+    /// \return An iterator representing the start of the sequence
+    const_iterator  cbegin() const;
+    /// Ends the iteration
+    ///
+    /// \return An iterator representing the end of the sequence
+    const_iterator  cend() const;
     /// Begins the iteration
     ///
     /// \return An iterator representing the start of the sequence
@@ -405,16 +413,30 @@ pid_sequence::~pid_sequence() STLSOFT_NOEXCEPT
 
 inline
 pid_sequence::const_iterator
-pid_sequence::begin() const
+pid_sequence::cbegin() const
 {
     return &*m_pids.begin();
 }
 
 inline
 pid_sequence::const_iterator
-pid_sequence::end() const
+pid_sequence::cend() const
 {
     return &*m_pids.end();
+}
+
+inline
+pid_sequence::const_iterator
+pid_sequence::begin() const
+{
+    return cbegin();
+}
+
+inline
+pid_sequence::const_iterator
+pid_sequence::end() const
+{
+    return cend();
 }
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
