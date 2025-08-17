@@ -97,6 +97,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
 # include <stlsoft/smartptr/scoped_handle.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
@@ -431,20 +434,26 @@ pid_sequence::pid_sequence(us_uint32_t flags)
 
     if (flags & (elideInit | elideSched))
     {
-        value_type* begin   =   &*m_pids.begin();
-        value_type* end     =   &*m_pids.end();
-        value_type* pInit   =   (flags & elideInit) ? STLSOFT_NS_QUAL_STD(find)(begin, end, initProcessId()) : end;
-        value_type* pSched  =   (flags & elideSched) ? STLSOFT_NS_QUAL_STD(find)(begin, end, schedProcessId()) : end;
+        if (flags & elideInit)
+        {
+            value_type* pInit = STLSOFT_NS_QUAL_STD(find)(m_pids.begin(), m_pids.end(), initProcessId());
 
-        if (end != pInit)
-        {
-            std_swap(*pInit, *(end - 1));
-            m_pids.resize(m_pids.size() - 1);
+            if (m_pids.end() != pInit)
+            {
+                std_swap(*pInit, m_pids[m_pids.size() - 1]);
+                m_pids.resize(m_pids.size() - 1);
+            }
         }
-        if (end != pSched)
+
+        if (flags & elideSched)
         {
-            std_swap(*pSched, *(end - 1));
-            m_pids.resize(m_pids.size() - 1);
+            value_type* pSched = STLSOFT_NS_QUAL_STD(find)(m_pids.begin(), m_pids.end(), schedProcessId());
+
+            if (m_pids.end() != pSched)
+            {
+                std_swap(*pSched, m_pids[m_pids.size() - 1]);
+                m_pids.resize(m_pids.size() - 1);
+            }
         }
     }
 
