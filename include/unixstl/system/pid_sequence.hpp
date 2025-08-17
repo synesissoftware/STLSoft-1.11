@@ -106,6 +106,19 @@
 # include <errno.h>
 #endif /* !STLSOFT_INCL_H_ERRNO */
 
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+
+# ifndef STLSOFT_INCL_H_LIBPROC
+#  define STLSOFT_INCL_H_LIBPROC
+#  include <libproc.h>
+# endif /* !STLSOFT_INCL_H_LIBPROC */
+#else
+
+# error Operating system not currently supported
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -174,7 +187,14 @@ public:
 private:
     typedef STLSOFT_NS_QUAL(auto_buffer)<
         value_type
-    ,   64
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
+    ,   256
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+    ,   512
+#else
+# error Operating system not currently supported
+#endif
     ,   allocator_type
     >                                                       buffer_type_;
     typedef char                                            char_type_;
@@ -183,7 +203,9 @@ public:
 
     enum
     {
-            sort        =   0x0004
+            elideSched  =   0x0001  //!< causes the scheduler process to be elided from the list
+        ,   elideInit   =   0x0002  //!< causes the init process to be elided from the list
+        ,   sort        =   0x0004  //!< causes the process ids to be sorted
     };
 /// @}
 
@@ -191,7 +213,7 @@ public:
 /// @{
 public:
     /// Constructs a sequence from the current processes in the host system
-    ss_explicit_k pid_sequence(us_uint32_t flags = 0);
+    ss_explicit_k pid_sequence(us_uint32_t flags = elideSched | elideInit);
     /// Copies the contents of the sequence
     pid_sequence(class_type const& rhs);
     /// Releases the storage associated with the process id list
@@ -245,9 +267,50 @@ public:
 /// @{
 public:
     /// Indicates whether the sequence is empty
-    us_bool_t   empty() const;
+    us_bool_t   empty() const STLSOFT_NOEXCEPT;
     /// Returns the number of identifiers in the sequence
-    size_type   size() const;
+    size_type   size() const STLSOFT_NOEXCEPT;
+/// @}
+
+/// \name System Traits
+/// @{
+public:
+    /// The process identifier of the Idle process
+    ///
+    /// \note The Idle process is a pseudo-process. You should not attempt to
+    ///        manipulate it using the process control functions
+    static value_type   schedProcessId()
+    {
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
+
+        return 0;
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+
+        return 0;
+#else
+
+# error Operating system not currently supported
+#endif
+    }
+    /// The process identifier of the System process
+    ///
+    /// \note The System process is a pseudo-process. You should not attempt to
+    ///        manipulate it using the process control functions
+    static value_type   initProcessId()
+    {
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
+
+        return 1;
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+
+        return 1;
+#else
+
+# error Operating system not currently supported
+#endif
+    }
 /// @}
 
 /// \name Members
@@ -268,6 +331,9 @@ inline
 pid_sequence::pid_sequence(us_uint32_t flags)
     : m_pids(buffer_type_::internal_size())
 {
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
+
     DIR* const dir = traits_type_::open_dir("/proc");
 
     if (NULL == dir)
@@ -326,6 +392,60 @@ pid_sequence::pid_sequence(us_uint32_t flags)
         }
 
         m_pids.resize(n);
+    }
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+
+    for (;;)
+    {
+        int const n = proc_listallpids(&m_pids[0], m_pids.size() * sizeof(value_type));
+
+        // int const e = errno;
+
+        // fprintf(stderr, "%s:%d:%s: n=%d, m_pids.size()=%zu; errno=%d\n", __STLSOFT_FILE_LINE_FUNCTION__, n, m_pids.size(), e);
+
+        if (n < 1)
+        {
+            break;
+        }
+        else
+        {
+            if (n < (int)m_pids.size())
+            {
+                m_pids.resize((size_t)n);
+
+                break;
+            }
+            else
+            {
+                if (!m_pids.resize(2 * m_pids.size()))
+                {
+                    break;
+                }
+            }
+        }
+    }
+#else
+
+# error Operating system not currently supported
+#endif
+
+    if (flags & (elideInit | elideSched))
+    {
+        value_type* begin   =   &*m_pids.begin();
+        value_type* end     =   &*m_pids.end();
+        value_type* pInit   =   (flags & elideInit) ? STLSOFT_NS_QUAL_STD(find)(begin, end, initProcessId()) : end;
+        value_type* pSched  =   (flags & elideSched) ? STLSOFT_NS_QUAL_STD(find)(begin, end, schedProcessId()) : end;
+
+        if (end != pInit)
+        {
+            std_swap(*pInit, *(end - 1));
+            m_pids.resize(m_pids.size() - 1);
+        }
+        if (end != pSched)
+        {
+            std_swap(*pSched, *(end - 1));
+            m_pids.resize(m_pids.size() - 1);
+        }
     }
 
     if (flags & sort)
@@ -401,14 +521,14 @@ pid_sequence::operator [](pid_sequence::size_type index) const
 
 inline
 us_bool_t
-pid_sequence::empty() const
+pid_sequence::empty() const STLSOFT_NOEXCEPT
 {
     return m_pids.empty();
 }
 
 inline
 pid_sequence::size_type
-pid_sequence::size() const
+pid_sequence::size() const STLSOFT_NOEXCEPT
 {
     return m_pids.size();
 }
@@ -441,5 +561,4 @@ pid_sequence::size() const
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
-
 

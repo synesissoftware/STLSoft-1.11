@@ -14,7 +14,7 @@ int main(int /* argc */, char* argv[])
 
     try
     {
-        unixstl::pid_sequence const pids;
+        unixstl::pid_sequence const pids(unixstl::pid_sequence::sort | unixstl::pid_sequence::elideInit | unixstl::pid_sequence::elideSched);
 
         std::cout
             << "process ids:"
