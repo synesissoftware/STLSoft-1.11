@@ -4,11 +4,11 @@
  * Purpose: Windows console functions.
  *
  * Created: 3rd December 2005
- * Updated: 27th November 2024
+ * Updated: 14th August 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     5
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  7
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      52
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     6
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,6 +98,17 @@
 #ifndef WINSTL_INCL_WINSTL_API_external_h_HandleAndObject
 # include <winstl/api/external/HandleAndObject.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_HandleAndObject */
+
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.h>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_H_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE
+# include <stlsoft/string/string_slice.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE */
+
+#ifndef STLSOFT_INCL_STLSOFT_API_external_h_memfns
+# include <stlsoft/api/external/memfns.h>
+#endif /* !STLSOFT_INCL_STLSOFT_API_external_h_memfns */
 
 #ifndef WINSTL_INCL_WINSTL_API_H_winstl_win32_winnt_
 # include <winstl/api/winstl_win32_winnt_.h>
@@ -343,7 +354,7 @@ winstl_C_console_read_silent_character_from_stdin(void)
 
 STLSOFT_INLINE
 long
-winstl_C_console_read_silent_character_from_CONIO(void)
+winstl_C_console_read_silent_character_from_CONIN(void)
 {
     HANDLE hConin = WINSTL_API_EXTERNAL_FileManagement_CreateFileA(
                         "CONIN$"
@@ -372,6 +383,14 @@ winstl_C_console_read_silent_character_from_CONIO(void)
     }
 }
 
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(winstl_C_console_read_silent_character_from_CONIO, winstl_C_console_read_silent_character_from_CONIN)
+STLSOFT_INLINE
+long
+winstl_C_console_read_silent_character_from_CONIO(void)
+{
+    return winstl_C_console_read_silent_character_from_CONIN();
+}
+
 STLSOFT_INLINE
 ss_truthy_t
 winstl_C_isatty_fd(
@@ -388,6 +407,150 @@ winstl_C_isatty_stm(
 )
 {
     return winstl_C_isatty_stm_(stm);
+}
+
+/** Writes a multibyte string to the given console.
+ *
+ * \param hConsole T.B.C.
+ * \param slice Pointer to the multibyte slice to be written;
+ *
+ * \pre NULL != slice
+ */
+STLSOFT_INLINE
+ss_truthy_t
+winstl_C_write_console_string_m(
+    HANDLE                              hConsole
+,   stlsoft_C_string_slice_m_t const*   slice
+) STLSOFT_NOEXCEPT
+{
+    DWORD numWritten;
+
+    WINSTL_ASSERT(NULL != slice);
+
+    return WINSTL_API_EXTERNAL_Console_WriteConsoleA(
+        hConsole
+    ,   slice->ptr, STLSOFT_STATIC_CAST(DWORD, slice->len)
+    ,   &numWritten
+    ,   NULL
+    );
+}
+
+/** Writes a wide string to the given console.
+ *
+ * \param hConsole T.B.C.
+ * \param slice Pointer to the wide slice to be written;
+ *
+ * \pre NULL != slice
+ */
+STLSOFT_INLINE
+ss_truthy_t
+winstl_C_write_console_string_w(
+    HANDLE                              hConsole
+,   stlsoft_C_string_slice_w_t const*   slice
+) STLSOFT_NOEXCEPT
+{
+    DWORD numWritten;
+
+    WINSTL_ASSERT(NULL != slice);
+
+    return WINSTL_API_EXTERNAL_Console_WriteConsoleW(
+        hConsole
+    ,   slice->ptr, STLSOFT_STATIC_CAST(DWORD, slice->len)
+    ,   &numWritten
+    ,   NULL
+    );
+}
+
+/** Writes a multibyte string to the given console along with an end-of-line
+ * sequence.
+ *
+ * \param hConsole T.B.C.
+ * \param slice Pointer to the multibyte slice to be written;
+ *
+ * \pre NULL != slice
+ */
+STLSOFT_INLINE
+ss_truthy_t
+winstl_C_write_console_line_m(
+    HANDLE                              hConsole
+,   stlsoft_C_string_slice_m_t const*   slice
+) STLSOFT_NOEXCEPT
+{
+    typedef ws_char_a_t                                     char_t_;
+
+    WINSTL_ASSERT(NULL != slice);
+
+    STLSOFT_C_AUTO_BUFFER_DECLARE(char_t_, 100, buff);
+
+    STLSOFT_C_AUTO_BUFFER_INITIALISE_FROM_INTERNAL(buff);
+
+    if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(buff, 2 + slice->len))
+    {
+        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_OUTOFMEMORY);
+
+        errno = ENOMEM;
+
+        return 0;
+    }
+    else
+    {
+        STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + 0, slice->ptr, sizeof(char_t_) * slice->len);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + slice->len, "\r\n", sizeof(char_t_) * 2);
+
+        stlsoft_C_string_slice_m_t const slice2 = { 2 + slice->len, buff.ptr };
+
+        ss_truthy_t r = winstl_C_write_console_string_m(hConsole, &slice2);
+
+        STLSOFT_C_AUTO_BUFFER_FREE(buff);
+
+        return r;
+    }
+}
+
+/** Writes a wide string to the given console along with an end-of-line
+ * sequence.
+ *
+ * \param hConsole T.B.C.
+ * \param slice Pointer to the wide slice to be written;
+ *
+ * \pre NULL != slice
+ */
+STLSOFT_INLINE
+ss_truthy_t
+winstl_C_write_console_line_w(
+    HANDLE                              hConsole
+,   stlsoft_C_string_slice_w_t const*   slice
+) STLSOFT_NOEXCEPT
+{
+    typedef ws_char_w_t                                     char_t_;
+
+    WINSTL_ASSERT(NULL != slice);
+
+    STLSOFT_C_AUTO_BUFFER_DECLARE(char_t_, 100, buff);
+
+    STLSOFT_C_AUTO_BUFFER_INITIALISE_FROM_INTERNAL(buff);
+
+    if (0 != STLSOFT_C_AUTO_BUFFER_RESIZE(buff, 2 + slice->len))
+    {
+        WINSTL_API_EXTERNAL_ErrorHandling_SetLastError(ERROR_OUTOFMEMORY);
+
+        errno = ENOMEM;
+
+        return 0;
+    }
+    else
+    {
+        STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + 0, slice->ptr, sizeof(char_t_) * slice->len);
+        STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + slice->len, L"\r\n", sizeof(char_t_) * 2);
+
+        stlsoft_C_string_slice_w_t const slice2 = { 2 + slice->len, buff.ptr };
+
+        ss_truthy_t r = winstl_C_write_console_string_w(hConsole, &slice2);
+
+        STLSOFT_C_AUTO_BUFFER_FREE(buff);
+
+        return r;
+    }
 }
 
 
@@ -469,9 +632,17 @@ console_read_silent_character_from_stdin()
 
 inline
 long
+console_read_silent_character_from_CONIN()
+{
+    return winstl_C_console_read_silent_character_from_CONIN();
+}
+
+STLSOFT_DECLARE_FUNCTION_DEPRECATION_IN_FAVOUR_OF(console_read_silent_character_from_CONIO, console_read_silent_character_from_CONIN)
+inline
+long
 console_read_silent_character_from_CONIO()
 {
-    return winstl_C_console_read_silent_character_from_CONIO();
+    return winstl_C_console_read_silent_character_from_CONIN();
 }
 
 inline
@@ -490,6 +661,92 @@ isatty(
 )
 {
     return 0 != winstl_C_isatty_stm(stm);
+}
+
+/** Writes a multibyte string to the given console.
+ *
+ * \param hConsole T.B.C.
+ * \param s Pointer to the first character in the multibyte string;
+ * \param n Number of characters in the string;
+ *
+ * \pre NULL != s || 0 == n
+ */
+inline
+bool
+write_console_string(
+    HANDLE              hConsole
+,   ws_char_a_t const*  s
+,   ws_size_t           n
+) STLSOFT_NOEXCEPT
+{
+    stlsoft_C_string_slice_m_t const slice { n, s };
+
+    return 0 != winstl_C_write_console_string_m(hConsole, &slice);
+}
+
+/** Writes a wide string to the given console.
+ *
+ * \param hConsole T.B.C.
+ * \param s Pointer to the first character in the wide string;
+ * \param n Number of characters in the string;
+ *
+ * \pre NULL != s || 0 == n
+ */
+inline
+bool
+write_console_string(
+    HANDLE              hConsole
+,   ws_char_w_t const*  s
+,   ws_size_t           n
+) STLSOFT_NOEXCEPT
+{
+    stlsoft_C_string_slice_w_t const slice { n, s };
+
+    return 0 != winstl_C_write_console_string_w(hConsole, &slice);
+}
+
+/** Writes a multibyte string to the given console along with an end-of-line
+ * sequence.
+ *
+ * \param hConsole T.B.C.
+ * \param s Pointer to the first character in the multibyte string;
+ * \param n Number of characters in the string;
+ *
+ * \pre NULL != s || 0 == n
+ */
+inline
+bool
+write_console_line(
+    HANDLE              hConsole
+,   ws_char_a_t const*  s
+,   ws_size_t           n
+) STLSOFT_NOEXCEPT
+{
+    stlsoft_C_string_slice_m_t const slice { n, s };
+
+    return 0 != winstl_C_write_console_line_m(hConsole, &slice);
+}
+
+/** Writes a wide string to the given console along with an end-of-line
+ * sequence.
+ *
+ * \param hConsole T.B.C.
+ * \param s Pointer to the first character in the wide string;
+ * \param n Number of characters in the string;
+ *
+ * \pre NULL != s || 0 == n
+ */
+inline
+bool
+write_console_line(
+    HANDLE              hConsole
+,   ws_char_w_t const*  s
+,   ws_size_t           n
+) STLSOFT_NOEXCEPT
+{
+    stlsoft_C_string_slice_w_t const slice { n, s };
+
+    return 0 != winstl_C_write_console_line_w(hConsole, &slice);
 }
 #endif /* __cplusplus */
 

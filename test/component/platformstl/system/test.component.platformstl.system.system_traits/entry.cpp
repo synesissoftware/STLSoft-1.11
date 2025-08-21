@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `platformstl::system_traits`.
  *
  * Created: 29th January 2013
- * Updated: 26th April 2025
+ * Updated: 15th August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,9 +44,6 @@ namespace
 
     static void TEST_INSUFFICIENT_SPACE(void);
     static void TEST_get_home_directory(void);
-    static void test_1_2(void);
-    static void test_1_3(void);
-    static void test_1_4(void);
 } // anonymous namespace
 
 
@@ -61,13 +58,10 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.platformstl.system.system_traits", verbosity))
+    if (XTESTS_START_RUNNER("test.component.platformstl.system.system_traits", verbosity))
     {
         XTESTS_RUN_CASE(TEST_INSUFFICIENT_SPACE);
         XTESTS_RUN_CASE(TEST_get_home_directory);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
-        XTESTS_RUN_CASE(test_1_4);
 
         XTESTS_PRINT_RESULTS();
 
@@ -94,9 +88,9 @@ static void TEST_INSUFFICIENT_SPACE()
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
-    if(0 != required)
+    if (0 != required)
     {
-        { for(size_t i = 1; i != required; ++i)
+        { for (size_t i = 1; i != required; ++i)
         {
             stlsoft::auto_buffer<char>  buff(i);
 
@@ -107,9 +101,9 @@ static void TEST_INSUFFICIENT_SPACE()
     }
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
-    if(0 != required)
+    if (0 != required)
     {
-        { for(size_t i = 1; i != required; ++i)
+        { for (size_t i = 1; i != required; ++i)
         {
             stlsoft::auto_buffer<char>  buff(i);
 
@@ -150,18 +144,6 @@ static void TEST_get_home_directory()
     XTESTS_TEST_INTEGER_EQUAL(HOMEDRIVE.size() + HOMEPATH.size(), cch);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL(std::string(HOMEDRIVE) + std::string(HOMEPATH), buff.data());
 #endif
-}
-
-static void test_1_2()
-{
-}
-
-static void test_1_3()
-{
-}
-
-static void test_1_4()
-{
 }
 } // anonymous namespace
 
