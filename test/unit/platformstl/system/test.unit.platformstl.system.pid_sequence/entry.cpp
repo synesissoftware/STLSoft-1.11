@@ -122,7 +122,7 @@ static void TEST_CONTAINS_THIS_PROCESS_PID()
     TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid));
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
-    DWORD const pid = ::GetCurrentProcessId;
+    DWORD const pid = ::GetCurrentProcessId();
 
     TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid));
 #else
