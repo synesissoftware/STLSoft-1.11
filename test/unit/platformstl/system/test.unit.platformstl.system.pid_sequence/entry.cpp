@@ -81,6 +81,7 @@ int main(int argc, char *argv[])
 
 namespace {
 
+    using platformstl::pid_sequence;
 } // anonymous namespace
 
 
@@ -92,27 +93,45 @@ namespace {
 
 static void TEST_CONTAINS_SYSTEM_PIDS()
 {
-    platformstl::pid_sequence pids(0);
+    pid_sequence pids(0);
 
-    TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), 0));
-    TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), 1));
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
-    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), std::numeric_limits<platformstl::pid_sequence::value_type>::max()));
+    TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid_sequence::schedProcessId()));
+    TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid_sequence::initProcessId()));
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid_sequence::idleProcessId()));
+    TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid_sequence::systemProcessId()));
+#else
+#endif
+
+    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), std::numeric_limits<pid_sequence::value_type>::max()));
 }
 
 static void TEST_NOT_CONTAINS_SYSTEM_PIDS()
 {
-    platformstl::pid_sequence pids;
+    pid_sequence pids;
 
-    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), 0));
-    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), 1));
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
-    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), std::numeric_limits<platformstl::pid_sequence::value_type>::max()));
+    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), pid_sequence::schedProcessId()));
+    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), pid_sequence::initProcessId()));
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), pid_sequence::idleProcessId()));
+    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), pid_sequence::systemProcessId()));
+#else
+#endif
+
+    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), std::numeric_limits<pid_sequence::value_type>::max()));
 }
 
 static void TEST_CONTAINS_THIS_PROCESS_PID()
 {
-    platformstl::pid_sequence pids;
+    pid_sequence pids;
 
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
@@ -126,7 +145,6 @@ static void TEST_CONTAINS_THIS_PROCESS_PID()
 
     TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid));
 #else
-
 #endif
 }
 } // anonymous namespace
