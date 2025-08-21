@@ -1,19 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    winstl/system/pid_sequence.hpp
+ * File:    unixstl/system/pid_sequence.hpp
  *
  * Purpose: Process Id sequence class.
  *
- * Created: 24th June 2005
- * Updated: 18th August 2025
- *
- * Thanks:  Adi Shavit for spotting a small inefficiency in the
- *          resize()-ing, during the review of Extended STL volume 1
- *          (see http://extendedstl.com/).
+ * Created: 16th August 2025
+ * Updated: 17th August 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
- * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
+ * Copyright (c) 2025, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,20 +40,20 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file winstl/system/pid_sequence.hpp
+/** \file unixstl/system/pid_sequence.hpp
  *
- * \brief [C++] Definition of the winstl::pid_sequence class
+ * \brief [C++] Definition of the unixstl::pid_sequence class
  *   (\ref group__library__System "System" Library).
  */
 
-#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_PID_SEQUENCE
-#define WINSTL_INCL_WINSTL_SYSTEM_HPP_PID_SEQUENCE
+#ifndef UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE
+#define UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    3
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     77
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR      0
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR      0
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT       1
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -66,66 +61,86 @@
  * includes
  */
 
-#ifndef WINSTL_INCL_WINSTL_H_WINSTL
-# include <winstl/winstl.h>
-#endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
+# include <unixstl/unixstl.h>
+#endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifdef STLSOFT_TRACE_INCLUDE
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef WINSTL_INCL_WINSTL_EXCEPTION_HPP_WINSTL_EXCEPTION
-#  include <winstl/exception/winstl_exception.hpp>
-# endif /* !WINSTL_INCL_WINSTL_EXCEPTION_HPP_WINSTL_EXCEPTION */
+# ifndef UNIXSTL_INCL_UNIXSTL_EXCEPTION_HPP_ACCESS_EXCEPTION
+#  include <unixstl/exception/access_exception.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_EXCEPTION_HPP_ACCESS_EXCEPTION */
+# ifndef UNIXSTL_INCL_UNIXSTL_EXCEPTION_HPP_FILESYSTEM_EXCEPTION
+#  include <unixstl/exception/filesystem_exception.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_EXCEPTION_HPP_FILESYSTEM_EXCEPTION */
+# ifndef UNIXSTL_INCL_UNIXSTL_EXCEPTION_HPP_FILE_NOT_FOUND_EXCEPTION
+#  include <unixstl/exception/file_not_found_exception.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_EXCEPTION_HPP_FILE_NOT_FOUND_EXCEPTION */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
-# include <winstl/memory/processheap_allocator.hpp>
-#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_VERSION
-# include <winstl/system/system_version.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_VERSION */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
-# include <stlsoft/memory/auto_buffer.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
+#ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
+# include <unixstl/filesystem/filesystem_traits.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
 # include <stlsoft/algorithms/pod.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD */
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
-# include <stlsoft/util/std/iterator_helper.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
-#if !defined(_PSAPI_H_) && \
-    !defined(_PSAPI_H)
-# ifndef WINSTL_INCL_WINSTL_DL_HPP_DL_CALL
-#  include <winstl/dl/dl_call.hpp>
-# endif /* !WINSTL_INCL_WINSTL_DL_HPP_DL_CALL */
-#endif /* psapi */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
+# include <stlsoft/memory/auto_buffer.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR
+# include <stlsoft/memory/malloc_allocator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
+# include <stlsoft/smartptr/scoped_handle.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 
-#ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
-# include <winstl/api/external/ErrorHandling.h>
-#endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */
+#ifndef STLSOFT_INCL_H_ERRNO
+# define STLSOFT_INCL_H_ERRNO
+# include <errno.h>
+#endif /* !STLSOFT_INCL_H_ERRNO */
+
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+
+# ifndef STLSOFT_INCL_H_LIBPROC
+#  define STLSOFT_INCL_H_LIBPROC
+#  include <libproc.h>
+# endif /* !STLSOFT_INCL_H_LIBPROC */
+#else
+
+# error Operating system not currently supported
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
-#ifndef WINSTL_NO_NAMESPACE
+#ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-/* There is no stlsoft namespace, so must define ::winstl */
-namespace winstl
+/* There is no stlsoft namespace, so must define ::unixstl */
+namespace unixstl
 {
 # else
-/* Define stlsoft::winstl_project */
+/* Define stlsoft::unixstl_project */
 namespace stlsoft
 {
-namespace winstl_project
+namespace unixstl_project
 {
 # endif /* STLSOFT_NO_NAMESPACE */
-#endif /* !WINSTL_NO_NAMESPACE */
+#endif /* !UNIXSTL_NO_NAMESPACE */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -143,9 +158,9 @@ class pid_sequence
 /// @{
 public:
     /// The value type
-    typedef DWORD                                           value_type;
+    typedef int                                             value_type;
     /// The allocator type
-    typedef processheap_allocator<value_type>               allocator_type;
+    typedef malloc_allocator<value_type>                    allocator_type;
     /// The class type
     typedef pid_sequence                                    class_type;
     /// The non-mutating (const) pointer type
@@ -159,9 +174,9 @@ public:
     ,   const_reference
     >::type                                                 const_iterator;
     /// The size type
-    typedef ws_size_t                                       size_type;
+    typedef us_size_t                                       size_type;
     /// The difference type
-    typedef ws_ptrdiff_t                                    difference_type;
+    typedef us_ptrdiff_t                                    difference_type;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The non-mutating (const) reverse iterator type
     typedef STLSOFT_NS_QUAL(const_reverse_bidirectional_iterator_base)<
@@ -175,15 +190,24 @@ public:
 private:
     typedef STLSOFT_NS_QUAL(auto_buffer)<
         value_type
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
     ,   256
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+    ,   512
+#else
+# error Operating system not currently supported
+#endif
     ,   allocator_type
     >                                                       buffer_type_;
+    typedef char                                            char_type_;
+    typedef filesystem_traits<char_type_>                   traits_type_;
 public:
 
     enum
     {
-            elideIdle   =   0x0001  //!< causes the idle process to be elided from the list
-        ,   elideSystem =   0x0002  //!< causes the system process to be elided from the list
+            elideSched  =   0x0001  //!< causes the scheduler process to be elided from the list
+        ,   elideInit   =   0x0002  //!< causes the init process to be elided from the list
         ,   sort        =   0x0004  //!< causes the process ids to be sorted
     };
 /// @}
@@ -192,7 +216,7 @@ public:
 /// @{
 public:
     /// Constructs a sequence from the current processes in the host system
-    ss_explicit_k pid_sequence(ws_uint32_t flags = elideIdle | elideSystem);
+    ss_explicit_k pid_sequence(us_uint32_t flags = elideSched | elideInit);
     /// Copies the contents of the sequence
     pid_sequence(class_type const& rhs);
     /// Releases the storage associated with the process id list
@@ -246,7 +270,7 @@ public:
 /// @{
 public:
     /// Indicates whether the sequence is empty
-    ws_bool_t   empty() const STLSOFT_NOEXCEPT;
+    us_bool_t   empty() const STLSOFT_NOEXCEPT;
     /// Returns the number of identifiers in the sequence
     size_type   size() const STLSOFT_NOEXCEPT;
 /// @}
@@ -258,40 +282,37 @@ public:
     ///
     /// \note The Idle process is a pseudo-process. You should not attempt to
     ///        manipulate it using the process control functions
-    static value_type   idleProcessId()
+    static value_type   schedProcessId()
     {
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
+
         return 0;
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+
+        return 0;
+#else
+
+# error Operating system not currently supported
+#endif
     }
     /// The process identifier of the System process
     ///
     /// \note The System process is a pseudo-process. You should not attempt to
     ///        manipulate it using the process control functions
-    static value_type   systemProcessId()
+    static value_type   initProcessId()
     {
-        ws_uint32_t major   =   system_version::major();
-        ws_uint32_t minor   =   system_version::minor();
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
 
-        if (4 == major)
-        {
-            return 2;   // NT 4
-        }
-        else
-        {
-            if (5 == major &&
-                0 == minor)
-            {
-                return 8; // Win2K
-            }
-            else if (5 == major &&
-                    1 == minor)
-            {
-                return 4; // WinXP
-            }
-            else
-            {
-                return 4; // Longhorn and above - this value is a guess!!
-            }
-        }
+        return 1;
+#elif defined(UNIXSTL_OS_IS_MACOSX)
+
+        return 1;
+#else
+
+# error Operating system not currently supported
+#endif
     }
 /// @}
 
@@ -310,85 +331,127 @@ private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 inline
-pid_sequence::pid_sequence(ws_uint32_t flags)
+pid_sequence::pid_sequence(us_uint32_t flags)
     : m_pids(buffer_type_::internal_size())
 {
-    DWORD   cbReturned;
+#if 0
+#elif defined(UNIXSTL_OS_IS_LINUX)
+
+    DIR* const dir = traits_type_::open_dir("/proc");
+
+    if (NULL == dir)
+    {
+        int const e = errno;
+
+        char const* const message = "could not open '/proc'";
+
+        switch (e)
+        {
+        case EACCES:
+# ifdef EPERM
+        case EPERM:
+# endif // EPERM
+
+            STLSOFT_THROW_X(access_exception(message, e));
+
+        case ENOENT:
+# ifdef ENOTDIR
+        case ENOTDIR:
+# endif // ENOTDIR
+
+            STLSOFT_THROW_X(file_not_found_exception(message, e));
+
+        default:
+
+            STLSOFT_THROW_X(filesystem_exception(message, e));
+        }
+    }
+    else
+    {
+        stlsoft::scoped_handle<DIR*> scoper_dir(dir, traits_type_::close_dir);
+
+        size_type n = 0;
+
+        for (struct dirent const* de; NULL != (de = traits_type_::read_dir(dir)); )
+        {
+            int const pid = atoi(de->d_name);
+
+            if (0 == pid)
+            {
+                continue;
+            }
+
+            if (n == m_pids.size())
+            {
+                if (!m_pids.resize(2 * m_pids.size()))
+                {
+                    break;
+                }
+            }
+
+            m_pids[n] = pid;
+
+            ++n;
+        }
+
+        m_pids.resize(n);
+    }
+#elif defined(UNIXSTL_OS_IS_MACOSX)
 
     for (;;)
     {
-#if defined(_PSAPI_H_) || \
-    defined(_PSAPI_H)
-        if (!::EnumProcesses(&m_pids[0], sizeof(value_type) * m_pids.size(), &cbReturned))
-#else /* ? psapi */
-        if (!dl_call<BOOL>( "PSAPI.DLL"
-                        ,   WINSTL_DL_CALL_WINx_STDCALL_LITERAL("EnumProcesses")
-                        ,   &m_pids[0]
-                        ,   sizeof(value_type) * m_pids.size()
-                        ,   &cbReturned))
-#endif /* psapi */
-        {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(winstl_exception("Failed to enumerate processes", WINSTL_API_EXTERNAL_ErrorHandling_GetLastError()));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            m_pids.resize(0);
+        int const n = proc_listallpids(&m_pids[0], m_pids.size() * sizeof(value_type));
 
+        // int const e = errno;
+
+        // fprintf(stderr, "%s:%d:%s: n=%d, m_pids.size()=%zu; errno=%d\n", __STLSOFT_FILE_LINE_FUNCTION__, n, m_pids.size(), e);
+
+        if (n < 1)
+        {
             break;
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
         {
-            const size_type n = cbReturned / sizeof(value_type);
-
-            if (n < m_pids.size())
+            if (n < (int)m_pids.size())
             {
-                m_pids.resize(n);
+                m_pids.resize((size_t)n);
 
                 break;
             }
             else
             {
-                const size_type size = m_pids.size();
-
-                m_pids.resize(1); // Read "Extended STL, volume 1" to find out what this is for
-
-                if (!m_pids.resize(2 * size))
+                if (!m_pids.resize(2 * m_pids.size()))
                 {
-                    // This will only ever be executed when compiled in the
-                    // absence of throwing bad_alloc on memory exhaustion
-                    m_pids.resize(0);
-
                     break;
                 }
             }
         }
     }
+#else
 
-    if (flags & (elideIdle | elideSystem))
+# error Operating system not currently supported
+#endif
+
+    if (flags & (elideInit | elideSched))
     {
-        value_type* begin   =   &*m_pids.begin();
-        value_type* end     =   &*m_pids.end();
-        value_type* pIdle   =   (flags & elideIdle) ? STLSOFT_NS_QUAL_STD(find)(begin, end, idleProcessId()) : end;
-        value_type* pSystem =   (flags & elideSystem) ? STLSOFT_NS_QUAL_STD(find)(begin, end, systemProcessId()) : end;
+        if (flags & elideInit)
+        {
+            value_type* pInit = STLSOFT_NS_QUAL_STD(find)(m_pids.begin(), m_pids.end(), initProcessId());
 
-        // Optimise for the special case where idle is [0] and system is [1]
-        if (end != pIdle &&
-            end != pSystem &&
-            pSystem == pIdle + 1)
-        {
-            pod_move(pSystem + 1, end, begin);
-            m_pids.resize(m_pids.size() - 2);
-        }
-        else
-        {
-            if (end != pIdle)
+            if (m_pids.end() != pInit)
             {
-                pod_move(pIdle + 1, end, pIdle);
+                std_swap(*pInit, m_pids[m_pids.size() - 1]);
                 m_pids.resize(m_pids.size() - 1);
             }
-            if (end != pSystem)
+        }
+
+        if (flags & elideSched)
+        {
+            value_type* pSched = STLSOFT_NS_QUAL_STD(find)(m_pids.begin(), m_pids.end(), schedProcessId());
+
+            if (m_pids.end() != pSched)
             {
-                pod_move(pSystem + 1, end, pSystem);
+                std_swap(*pSched, m_pids[m_pids.size() - 1]);
                 m_pids.resize(m_pids.size() - 1);
             }
         }
@@ -460,13 +523,13 @@ inline
 pid_sequence::const_reference
 pid_sequence::operator [](pid_sequence::size_type index) const
 {
-    WINSTL_MESSAGE_ASSERT("Index out of range", index < size());
+    UNIXSTL_MESSAGE_ASSERT("Index out of range", index < size());
 
     return m_pids[index];
 }
 
 inline
-ws_bool_t
+us_bool_t
 pid_sequence::empty() const STLSOFT_NOEXCEPT
 {
     return m_pids.empty();
@@ -485,15 +548,15 @@ pid_sequence::size() const STLSOFT_NOEXCEPT
  * namespace
  */
 
-#ifndef WINSTL_NO_NAMESPACE
+#ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} // namespace unixstl
 # else
-} // namespace winstl_project
+} // namespace unixstl_project
 } // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
-#endif /* !WINSTL_NO_NAMESPACE */
+#endif /* !UNIXSTL_NO_NAMESPACE */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -504,7 +567,7 @@ pid_sequence::size() const STLSOFT_NOEXCEPT
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_PID_SEQUENCE */
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
