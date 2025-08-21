@@ -1,11 +1,11 @@
 
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.component.platformstl.commandline_parser/entry.cpp
+ * File:    test.unit.platformstl.system.commandline_parser/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::commandline_parser` / `winstl::commandline_parser`.
  *
  * Created: 29th December 2024
- * Updated: 20th March 2025
+ * Updated: 22nd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.component.platformstl.diagnostics.stopwatch", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.platformstl.system.commandline_parser", verbosity))
     {
         XTESTS_RUN_CASE(TEST_EMPTY_STRING);
         XTESTS_RUN_CASE(TEST_WHITESPACE_ONLY_STRING);
