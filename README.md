@@ -4,10 +4,10 @@
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/STLSoft-1.11.svg)](https://github.com/synesissoftware/STLSoft-1.11/releases/latest)
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/STLSoft-1.11)](https://github.com/synesissoftware/STLSoft-1.11/commits/master)
 
+*... robust, lightweight, cross-platform, template software ...*
+
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
-
->**NOTE**: until such time as **1.11.0** is released, this repository is considered beta-only, and you should consider [STLSoft-1.10](http://github.com/synesissoftware/STLSoft-1.10/) to be the definitive **STLSoft** repository.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -62,6 +62,7 @@ See [INSTALL.md](./INSTALL.md) for details of these options, and also for an exp
 
 The components in **STLSoft** are provided in _sub-projects_, and in _libraries_.
 
+
 ### Subprojects
 
 The following significant sub-projects are provided:
@@ -72,6 +73,7 @@ The following significant sub-projects are provided:
 * **MFCSTL** - components to do with **Microsoft Foundation Classes (MFC)**;
 * **UnixSTL** - components to do with **Unix** operating system APIs;
 * **WinSTL** - components to do with **Windows** operating system APIs;
+
 
 ### Libraries
 
@@ -117,7 +119,7 @@ As **STLSoft-1.11** approaches an official release we will provide increasing in
 
 ## Examples
 
-T.B.C.
+Examples are provided in the ```examples``` directory, along with a markdown description for each. A detailed list TOC of them is provided in [EXAMPLES.md](./EXAMPLES.md).
 
 
 ## Project Information
