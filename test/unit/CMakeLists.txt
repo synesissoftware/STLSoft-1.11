@@ -7,10 +7,10 @@ if(_BUILD_AS_UNIX OR _BUILD_AS_WIN32)
 
 	add_subdirectory(inetstl)
 endif(_BUILD_AS_UNIX OR _BUILD_AS_WIN32)
-if(HAS_MFC)
+if(MFC_FOUND)
 
 	add_subdirectory(mfcstl)
-endif(HAS_MFC)
+endif(MFC_FOUND)
 add_subdirectory(platformstl)
 add_subdirectory(stlsoft)
 if(_BUILD_AS_UNIX)

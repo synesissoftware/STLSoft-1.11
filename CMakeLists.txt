@@ -90,10 +90,15 @@ else(MSVC)
 	endif(MSVC_USE_MT)
 endif(MSVC)
 
-if(HAS_MFC)
+if(WIN32)
+
+	find_package(MFC QUIET)
+endif(WIN32)
+
+if(MFC_FOUND)
 
 	add_compile_definitions(STLSOFT_HAS_MFC)
-endif(HAS_MFC)
+endif(MFC_FOUND)
 
 
 # ##########################################################
