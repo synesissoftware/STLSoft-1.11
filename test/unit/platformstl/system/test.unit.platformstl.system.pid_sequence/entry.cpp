@@ -126,9 +126,6 @@ static void TEST_NOT_CONTAINS_SYSTEM_PIDS()
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
-#if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
-
 # if 0
 # elif defined(UNIXSTL_OS_IS_LINUX)
 
