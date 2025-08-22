@@ -152,6 +152,7 @@ Projects that depend on **STLSoft** - though for some it is only for test - incl
 
 * [**b64**](https://github.com/synesissoftware/b64)
 * [**cstring**](https://github.com/synesissoftware/cstring)
+* [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism)
 * [**FastFormat**](https://github.com/synesissoftware/FastFormat)
 * [**libpath**](https://github.com/synesissoftware/libpath)
 * [**Pantheios**](https://github.com/synesissoftware/Pantheios)
