@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  22nd August 2025
+# Updated:  23rd August 2025
 #
 # ######################################################################## #
 
@@ -89,6 +89,11 @@ else(MSVC)
 		# enable **prepare_cmake.sh** to be simple)
 	endif(MSVC_USE_MT)
 endif(MSVC)
+
+if(HAS_MFC)
+
+	add_compile_definitions(STLSOFT_HAS_MFC)
+endif(HAS_MFC)
 
 
 # ##########################################################
