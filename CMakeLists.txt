@@ -66,7 +66,7 @@ set(CMAKE_CXX_EXTENSIONS ON)
 
 if(MSVC)
 
-	if(MSVC_VERSION LESS 1700)
+	if(MSVC_VERSION LESS 1800)
 
 		add_compile_options("/wd4996")
 	endif()
