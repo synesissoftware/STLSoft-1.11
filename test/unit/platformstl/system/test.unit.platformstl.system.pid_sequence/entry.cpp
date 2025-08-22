@@ -101,9 +101,9 @@ static void TEST_CONTAINS_SYSTEM_PIDS()
 # if 0
 # elif defined(UNIXSTL_OS_IS_LINUX)
 
-    TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid_sequence::schedProcessId()));
 # elif defined(UNIXSTL_OS_IS_MACOSX)
 
+    TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid_sequence::schedProcessId()));
 # else
 
 #  error Operating system not currently supported
@@ -129,9 +129,9 @@ static void TEST_NOT_CONTAINS_SYSTEM_PIDS()
 # if 0
 # elif defined(UNIXSTL_OS_IS_LINUX)
 
-    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), pid_sequence::schedProcessId()));
 # elif defined(UNIXSTL_OS_IS_MACOSX)
 
+    TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), pid_sequence::schedProcessId()));
 # else
 
 #  error Operating system not currently supported
