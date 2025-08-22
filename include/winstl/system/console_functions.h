@@ -494,7 +494,7 @@ winstl_C_write_console_line_m(
     }
     else
     {
-        stlsoft_C_string_slice_w_t slice2;
+        stlsoft_C_string_slice_m_t slice2;
 
         STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + 0, slice->ptr, sizeof(char_t_) * slice->len);
         STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + slice->len, "\r\n", sizeof(char_t_) * 2);
