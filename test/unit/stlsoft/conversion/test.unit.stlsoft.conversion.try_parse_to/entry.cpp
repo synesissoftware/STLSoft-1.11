@@ -475,10 +475,11 @@ static void TEST_3PARAM_ccs_n_pi_WITH_TRAILING_ALPHA()
 static void test_try_5_int()
 {
     int i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", 2u, "", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 }
 
 static void test_try_6_int()
@@ -516,10 +517,11 @@ static void test_try_9_int()
 static void test_try_10_int()
 {
     int i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("10a", 3, "endptr", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", endptr);
 }
 
 static void test_try_11_int()
@@ -669,16 +671,17 @@ static void test_try_6_uint64()
 static void test_try_7_uint64()
 {
     uint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", 2u, "", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 }
 
 static void test_try_8_uint64()
 {
     uint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<uint64_t>("10a", 3, "", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(10, i);
@@ -689,19 +692,21 @@ static void test_try_8_uint64()
 static void test_try_9_uint64()
 {
     uint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10a", 3, "a", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", endptr);
 }
 
 static void test_try_10_uint64()
 {
     uint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<uint64_t>("10a", 3, "endptr", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", endptr);
 }
 
 
@@ -709,59 +714,71 @@ static void test_try_10_uint64()
 static void test_try_hex_1_int()
 {
     uint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("0", 1, "", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(0u, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 }
 
 static void test_try_hex_2_int()
 {
     uint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("0x0", 3, "", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(0u, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 }
 
 static void test_try_hex_3_int()
 {
     uint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("+0x0", 4, "", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(0u, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 }
 
 static void test_try_hex_4_int()
 {
     sint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<sint64_t>("-0x0", 4, "", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(0, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 }
 
 static void test_try_hex_5_int()
 {
     uint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("0x10", 4, "", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(16u, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 }
 
 static void test_try_hex_6_int()
 {
     sint64_t i;
-    char const* endptr;
+    char const* endptr = NULL;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<sint64_t>("-0x0a", 5, "", &i, &endptr)));
     XTESTS_TEST_INTEGER_EQUAL(-10, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 }
 
 static void test_try_hex_7_int()
 {
+    sint64_t i;
+    char const* endptr = NULL;
+
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<sint64_t>("-0x0aZ", 5, "", &i, &endptr)));
+    XTESTS_TEST_INTEGER_EQUAL(-10, i);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("Z", endptr);
 }
 
 static void test_try_hex_8_int()
