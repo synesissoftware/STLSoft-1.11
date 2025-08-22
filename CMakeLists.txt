@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  6th May 2025
+# Updated:  23rd August 2025
 #
 # ######################################################################## #
 
@@ -13,7 +13,7 @@
 # ##########################################################
 # CMake
 
-cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
 # require out-of-source builds
 file(TO_CMAKE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
@@ -46,7 +46,7 @@ string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MAJOR${RX_WS}+
 set(_VERSION_MAJOR ${CMAKE_MATCH_1})
 string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MINOR${RX_WS}+([0-9]+)" MINOR_DUMMY ${_header_file})
 set(_VERSION_MINOR ${CMAKE_MATCH_1})
-string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_REVISION${RX_WS}+([0-9]+)" PATCH_DUMMY ${_header_file})
+string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_PATCH${RX_WS}+([0-9]+)" PATCH_DUMMY ${_header_file})
 set(_VERSION_PATCH ${CMAKE_MATCH_1})
 
 # set project version number here
@@ -66,6 +66,11 @@ set(CMAKE_CXX_EXTENSIONS ON)
 
 if(MSVC)
 
+	if(MSVC_VERSION LESS 1800)
+
+		add_compile_options("/wd4996")
+	endif()
+
 	if(MSVC_VERSION LESS 1930)
 
 		set(CMAKE_C_STANDARD 90)
@@ -84,6 +89,18 @@ else(MSVC)
 		# enable **prepare_cmake.sh** to be simple)
 	endif(MSVC_USE_MT)
 endif(MSVC)
+
+if(WIN32)
+
+	find_package(MFC QUIET)
+endif(WIN32)
+
+if(MFC_FOUND)
+
+	add_compile_definitions(STLSOFT_HAS_MFC)
+
+	message("-- using Microsoft Foundation Classes")
+endif(MFC_FOUND)
 
 
 # ##########################################################
@@ -157,7 +174,7 @@ if(NOT (NO_SHWILD))
 
 	if(BUILD_TESTING)
 
-		set(shwild_REQUIRED_VERSION_ 0.12)
+		set(shwild_REQUIRED_VERSION_ 0.12.6)
 
 		find_package(shwild ${shwild_REQUIRED_VERSION_} QUIET)
 
@@ -216,7 +233,7 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.26)
+	set(xTests_REQUIRED_VERSION_ 0.26.4)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

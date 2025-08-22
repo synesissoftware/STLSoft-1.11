@@ -5,7 +5,7 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 31st May 2025
+ * Updated: 23rd August 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 14
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     601
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 16
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     604
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -386,13 +386,24 @@
 # define _STLSOFT_VER_1_11_1_B8     0x010b0188  /*!< Version 1.11.1 beta 8 (3rd May 2025) */
 # define _STLSOFT_VER_1_11_1_B9     0x010b0189  /*!< Version 1.11.1 beta 9 (5th May 2025) */
 # define _STLSOFT_VER_1_11_1_RC1    0x010b01c1  /*!< Version 1.11.1 rc 1 (6th May 2025) */
-# define _STLSOFT_VER_1_11_1_RC2    0x010b01c2  /*!< Version 1.11.1 rc 1 (31st May 2025) */
+# define _STLSOFT_VER_1_11_1_RC2    0x010b01c2  /*!< Version 1.11.1 rc 2 (31st May 2025) */
+# define _STLSOFT_VER_1_11_1_RC3    0x010b01c3  /*!< Version 1.11.1 rc 3 (23rd August 2025) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
-#define _STLSOFT_VER_REVISION       1
-#define _STLSOFT_VER                _STLSOFT_VER_1_11_1_RC2
+#define _STLSOFT_VER_PATCH          1
+#define _STLSOFT_VER_ALPHABETA      0xc3
+
+#define _STLSOFT_VER \
+    (0\
+        |   (   _STLSOFT_VER_MAJOR      << 24   )\
+        |   (   _STLSOFT_VER_MINOR      << 16   )\
+        |   (   _STLSOFT_VER_PATCH      <<  8   )\
+        |   (   _STLSOFT_VER_ALPHABETA  <<  0   )\
+    )
+
+#define _STLSOFT_VER_REVISION       _STLSOFT_VER_PATCH
 
 
 /* /////////////////////////////////////
@@ -1055,7 +1066,7 @@
 # if 0
 # elif 1 &&\
        defined(__cplusplus) &&\
-       __cplusplus >= 201702L &&\
+       __cplusplus >= 201703L &&\
        1
 
    /* C++17 (or later) */

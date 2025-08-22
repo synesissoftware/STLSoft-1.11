@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  31st May 2025
+; Updated:  23rd August 2025
 
 ============================================================================
 
@@ -16,6 +16,62 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+Changes for 1.11.1-rc3 (23rd August 2025)
+
+General:
+========
+
+ * Added `platformstl::pid_sequence` / `unixstl::pid_sequence`;
+ * Added `winstl_C_printf_debug_string()` in **winstl/diagnostics/printf_debug_line.h**;
+ * Added `winstl::codepage_sequence`;
+ * Added Window write-to-console functions;
+ * More examples;
+ * More tests;
+ * Corrected some minor defects around language version detection;
+ * Compatibility/corrections in string-to-integer functions;
+ * Canonicalise example programs source names;
+ * Backwards compatibility (partial) for Visual C++ back to v10;
+ * Project boilerplate;
+
+Details:
+========
+
+Added `platformstl::pid_sequence` / `unixstl::pid_sequence`:
+ * aded **platformstl/system/pid_sequence.hpp**;
+ * aded **unixstl/system/pid_sequence.hpp** with support for Linux and macOS;
+
+Added Window write-to-console functions:
+ * `winstl_C_write_console_string_m()`;
+ * `winstl_C_write_console_string_w()`;
+ * `winstl_C_write_console_line_m()`;
+ * `winstl_C_write_console_line_w()`;
+
+More examples:
+ * added **examples/by_library/system/pid_sequence**;
+ * added **example.winstl.diagnostics.output_debug_line.C**;
+ * added **example.winstl.diagnostics.output_debug_line**;
+ * added **printf_debug_string**;
+ * added **example.winstl.i18n.codepages**;
+
+More tests:
+ * added **test.scratch.winstl.system.console_functions.C**;
+ * added **test.unit.platformstl.system.pid_sequence**;
+ * brought over **test.unit.stlsoft.conversion.string_to_integer**;
+ * brought over **test.unit.stlsoft.conversion.try_parse_to **;
+
+Corrected some minor defects around language version detection:
+ * Some tests on `__cplusplus` were against 201702L => corrected to 201703L;
+
+Compatibility/corrections in string-to-integer functions:
+ * `stlsoft::try_parse_to<>()` overloads reduced to avoid ambiguity;
+
+Project boilerplate:
+ * added EXAMPLES.md file;
+ * badges in README.md;
+
+
+============================================================================
 
 Changes for 1.11.1-rc2 (31st May 2025)
 

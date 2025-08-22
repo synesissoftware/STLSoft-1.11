@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *
  * Created: ... mid 2010s ...
- * Updated: 28th May 2025
+ * Updated: 29th JuneMay 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -666,7 +666,7 @@ int main(int argc, char* argv[])
 
         // stlsoft::auto_buffer<...>::auto_buffer :
         {
-#if __cplusplus >= 201702L
+#if __cplusplus >= 201703L
 
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
@@ -756,7 +756,7 @@ int main(int argc, char* argv[])
             }}
 #endif
         }
-#if __cplusplus < 201702L
+#if __cplusplus < 201703L
 
         {
             STLSOFT_SUPPRESS_UNUSED(tm_vec);
@@ -804,7 +804,7 @@ int main(int argc, char* argv[])
                     tm_vec = duration;
                 }
             }}
-#if __cplusplus < 201702L
+#if __cplusplus < 201703L
 
             {
                 STLSOFT_SUPPRESS_UNUSED(tm_vec);
@@ -814,7 +814,7 @@ int main(int argc, char* argv[])
 
         // stlsoft::auto_buffer<...>::auto_buffer :
         {
-#if __cplusplus >= 201702L
+#if __cplusplus >= 201703L
 
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
@@ -1093,7 +1093,7 @@ int main(int argc, char* argv[])
                 }
             }}
         }
-#if __cplusplus < 201702L
+#if __cplusplus < 201703L
 
         {
             STLSOFT_SUPPRESS_UNUSED(tm_vec);
@@ -1101,7 +1101,7 @@ int main(int argc, char* argv[])
 #endif
 
         // stlsoft::auto_buffer<...>::auto_buffer :
-#if __cplusplus >= 201702L
+#if __cplusplus >= 201703L
 
         {
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)

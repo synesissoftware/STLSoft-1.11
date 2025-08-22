@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::truncation_test<>`.
  *
  * Created: 7th November 2008
- * Updated: 20th March 2025
+ * Updated: 15th August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -326,7 +326,7 @@ static void test_edge_to_sint8()
 static void test_to_sint8()
 {
     // All in range
-    { for(sint8_t from = stlsoft::integral_limits<sint8_t>::minimum(); ; ++from)
+    { for (sint8_t from = stlsoft::integral_limits<sint8_t>::minimum(); ; ++from)
     {
         XTESTS_TEST_BOOLEAN_EQUAL(true, stlsoft::truncation_test<sint8_t>(from));
 
@@ -337,13 +337,13 @@ static void test_to_sint8()
     }}
 
     // < lower bound
-    { for(sint16_t from = stlsoft::integral_limits<sint16_t>::minimum(); from != stlsoft::integral_limits<sint8_t>::minimum(); ++from)
+    { for (sint16_t from = stlsoft::integral_limits<sint16_t>::minimum(); from != stlsoft::integral_limits<sint8_t>::minimum(); ++from)
     {
         XTESTS_TEST_BOOLEAN_EQUAL(false, stlsoft::truncation_test<sint8_t>(from));
     }}
 
     // > upper bound
-    { for(sint16_t from = sint16_t(1 + stlsoft::integral_limits<sint8_t>::maximum()); from != stlsoft::integral_limits<sint16_t>::maximum(); ++from)
+    { for (sint16_t from = sint16_t(1 + stlsoft::integral_limits<sint8_t>::maximum()); from != stlsoft::integral_limits<sint16_t>::maximum(); ++from)
     {
         XTESTS_TEST_BOOLEAN_EQUAL(false, stlsoft::truncation_test<sint8_t>(from));
     }}
@@ -352,7 +352,7 @@ static void test_to_sint8()
 static void test_to_uint8()
 {
     // All in range
-    { for(uint8_t from = stlsoft::integral_limits<uint8_t>::minimum(); ; ++from)
+    { for (uint8_t from = stlsoft::integral_limits<uint8_t>::minimum(); ; ++from)
     {
         XTESTS_TEST_BOOLEAN_EQUAL(true, stlsoft::truncation_test<uint8_t>(from));
 
@@ -363,13 +363,13 @@ static void test_to_uint8()
     }}
 
     // < lower bound
-    { for(sint16_t from = stlsoft::integral_limits<sint16_t>::minimum(); from != stlsoft::integral_limits<uint8_t>::minimum(); ++from)
+    { for (sint16_t from = stlsoft::integral_limits<sint16_t>::minimum(); from != stlsoft::integral_limits<uint8_t>::minimum(); ++from)
     {
         XTESTS_TEST_BOOLEAN_EQUAL(false, stlsoft::truncation_test<uint8_t>(from));
     }}
 
     // > upper bound
-    { for(sint16_t from = sint16_t(1 + stlsoft::integral_limits<uint8_t>::maximum()); from != stlsoft::integral_limits<sint16_t>::maximum(); ++from)
+    { for (sint16_t from = sint16_t(1 + stlsoft::integral_limits<uint8_t>::maximum()); from != stlsoft::integral_limits<sint16_t>::maximum(); ++from)
     {
         XTESTS_TEST_BOOLEAN_EQUAL(false, stlsoft::truncation_test<uint8_t>(from));
     }}
@@ -378,7 +378,7 @@ static void test_to_uint8()
 static void test_to_sint16()
 {
     // All in range
-    { for(sint16_t from = stlsoft::integral_limits<sint16_t>::minimum(); ; ++from)
+    { for (sint16_t from = stlsoft::integral_limits<sint16_t>::minimum(); ; ++from)
     {
         XTESTS_TEST_BOOLEAN_EQUAL(true, stlsoft::truncation_test<sint16_t>(from));
 
@@ -389,13 +389,13 @@ static void test_to_sint16()
     }}
 
     // < lower bound
-    { for(sint32_t from = stlsoft::integral_limits<sint32_t>::minimum(); from < stlsoft::integral_limits<sint16_t>::minimum(); from /= 10)
+    { for (sint32_t from = stlsoft::integral_limits<sint32_t>::minimum(); from < stlsoft::integral_limits<sint16_t>::minimum(); from /= 10)
     {
         XTESTS_TEST_BOOLEAN_EQUAL(false, stlsoft::truncation_test<sint16_t>(from));
     }}
 
     // > upper bound
-    { for(sint32_t from = 1 + sint32_t(stlsoft::integral_limits<sint16_t>::maximum()); from > stlsoft::integral_limits<sint32_t>::maximum(); from *= 10)
+    { for (sint32_t from = 1 + sint32_t(stlsoft::integral_limits<sint16_t>::maximum()); from > stlsoft::integral_limits<sint32_t>::maximum(); from *= 10)
     {
         XTESTS_TEST_BOOLEAN_EQUAL(false, stlsoft::truncation_test<sint16_t>(from));
     }}
