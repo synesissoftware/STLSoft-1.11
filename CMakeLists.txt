@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for STLSoft
 #
 # Created:  31st March 2021
-# Updated:  29th June 2025
+# Updated:  22nd August 2025
 #
 # ######################################################################## #
 
@@ -157,7 +157,7 @@ if(NOT (NO_SHWILD))
 
 	if(BUILD_TESTING)
 
-		set(shwild_REQUIRED_VERSION_ 0.12)
+		set(shwild_REQUIRED_VERSION_ 0.12.6)
 
 		find_package(shwild ${shwild_REQUIRED_VERSION_} QUIET)
 
@@ -216,7 +216,7 @@ endif()
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.26)
+	set(xTests_REQUIRED_VERSION_ 0.26.4)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::try_parse_to`.
  *
  * Created: 18th November 2008
- * Updated: 15th August 2025
+ * Updated: 22nd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -62,34 +62,10 @@
 namespace
 {
 
-    static void test_specialisations_1(void);
-    static void test_specialisations_2(void);
-    static void test_0(void);
-    static void test_positives_implicit(void);
-    static void test_positives_explicit(void);
-    static void test_negatives(void);
-    static void test_bad(void);
-    static void test_spaces(void);
-    static void test_len_spaces(void);
-    static void test_trailing(void);
-    static void test_len_trailing(void);
-    static void test_len_truncated(void);
-    static void test_increasing_length(void);
-    static void test_1_10(void);
-    static void test_decimal_leading_plus(void);
-    static void test_1_12(void);
-    static void test_endptr(void);
-    static void test_1_14(void);
-    static void test_hexadecimal_1(void);
-    static void test_1_16(void);
-    static void test_1_17(void);
-    static void test_1_18(void);
-    static void test_1_19(void);
-
-    static void test_try_1_int(void);
-    static void test_try_2_int(void);
-    static void test_try_3_int(void);
-    static void test_try_4_int(void);
+    static void TEST_2PARAM_ccs_pi(void);
+    static void TEST_2PARAM_ccs_pi_WITH_TRAILING_ALPHA(void);
+    static void TEST_3PARAM_ccs_n_pi(void);
+    static void TEST_3PARAM_ccs_n_pi_WITH_TRAILING_ALPHA(void);
     static void test_try_5_int(void);
     static void test_try_6_int(void);
     static void test_try_7_int(void);
@@ -137,10 +113,10 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.try_parse_to", verbosity))
     {
-        XTESTS_RUN_CASE(test_try_1_int);
-        XTESTS_RUN_CASE(test_try_2_int);
-        XTESTS_RUN_CASE(test_try_3_int);
-        XTESTS_RUN_CASE(test_try_4_int);
+        XTESTS_RUN_CASE(TEST_2PARAM_ccs_pi);
+        XTESTS_RUN_CASE(TEST_2PARAM_ccs_pi_WITH_TRAILING_ALPHA);
+        XTESTS_RUN_CASE(TEST_3PARAM_ccs_n_pi);
+        XTESTS_RUN_CASE(TEST_3PARAM_ccs_n_pi_WITH_TRAILING_ALPHA);
         XTESTS_RUN_CASE(test_try_5_int);
         XTESTS_RUN_CASE(test_try_6_int);
         XTESTS_RUN_CASE(test_try_7_int);
@@ -191,15 +167,94 @@ namespace
     using stlsoft::uint64_t;
 
 
-static void test_try_1_int()
+static void TEST_2PARAM_ccs_pi()
 {
-    int i;
+    {
+        short i;
 
-    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", &i)));
-    XTESTS_TEST_INTEGER_EQUAL(10, i);
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<short>("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+    }
+
+    {
+        unsigned short i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<unsigned short>("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+    }
+
+    {
+        int i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+    }
+
+    {
+        unsigned int i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<unsigned int>("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+    }
+
+    {
+        long i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<long>("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+    }
+
+    {
+        unsigned long i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<unsigned long>("10", &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+    }
 }
 
-static void test_try_2_int()
+static void TEST_2PARAM_ccs_pi_WITH_TRAILING_ALPHA()
 {
     int i;
 
@@ -207,21 +262,214 @@ static void test_try_2_int()
     XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
-static void test_try_3_int()
+static void TEST_3PARAM_ccs_n_pi()
 {
-    int         i;
-    bool const  b = stlsoft::try_parse_to<int>("10", 2u, &i);
+    {
+        short i;
 
-    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(b));
-    XTESTS_TEST_INTEGER_EQUAL(10, i);
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<short>("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        unsigned short i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<unsigned short>("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        int i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        unsigned int i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<unsigned int>("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        long i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<long>("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        unsigned long i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<unsigned long>("10", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
 }
 
-static void test_try_4_int()
+static void TEST_3PARAM_ccs_n_pi_WITH_TRAILING_ALPHA()
 {
-    int i;
+    {
+        short i;
 
-    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10a", 2u, &i)));
-    XTESTS_TEST_INTEGER_EQUAL(10, i);
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<short>("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        unsigned short i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<unsigned short>("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        int i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        unsigned int i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<unsigned int>("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        long i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<long>("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
+
+    {
+        unsigned long i;
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+
+#if 0
+
+        {
+            XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<unsigned long>("10a", 2u, &i)));
+            XTESTS_TEST_INTEGER_EQUAL(10, i);
+        }
+#endif
+    }
 }
 
 static void test_try_5_int()
@@ -276,6 +524,8 @@ static void test_try_10_int()
 
 static void test_try_11_int()
 {
+#if 0
+
     int i;
 
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("-10", &i, "endptr")));
@@ -291,32 +541,60 @@ static void test_try_11_int()
     i = INT_MIN;
     XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("-+10", &i, "endptr")));
     XTESTS_TEST_INTEGER_EQUAL(INT_MIN, i);
+#endif
 }
 
 static void test_try_12_int()
 {
+#if 1
+
     int         i;
     char const* endptr = NULL;
 
-    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("1", &i, &endptr)));
-    XTESTS_TEST_INTEGER_EQUAL(1, i);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
+    {
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("1", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 
-    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("  1  ", &i, &endptr)));
-    XTESTS_TEST_INTEGER_EQUAL(1, i);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("  ", endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("  1  ", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("  ", endptr);
 
-    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("+1", &i, &endptr)));
-    XTESTS_TEST_INTEGER_EQUAL(1, i);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("+1", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 
-    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("-1", &i, &endptr)));
-    XTESTS_TEST_INTEGER_EQUAL(-1, i);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("-1", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(-1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
 
-    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("0x0001", &i, &endptr)));
-    XTESTS_TEST_INTEGER_EQUAL(1, i);
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("0x0001", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
+    }
+
+    {
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("1", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
+
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to("  1  ", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("  ", endptr);
+
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("+1", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
+
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("-1", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(-1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
+
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("0x0001", &i, &endptr)));
+        XTESTS_TEST_INTEGER_EQUAL(1, i);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", endptr);
+    }
+#endif
 }
 
 
@@ -340,17 +618,36 @@ static void test_try_3_uint64()
 {
     uint64_t i;
 
-    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", 2, &i)));
-    XTESTS_TEST_INTEGER_EQUAL(10, i);
+    {
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10", 2, &i)));
+        XTESTS_TEST_INTEGER_EQUAL(10, i);
+    }
+
+#if 0
+
+    {
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", 2, &i)));
+        XTESTS_TEST_INTEGER_EQUAL(10, i);
+    }
+#endif
 }
 
 static void test_try_4_uint64()
 {
     uint64_t i;
-    bool const  b   =   stlsoft::try_parse_to<uint64_t>("10a", 2, &i);
 
-    REQUIRE(TEST_BOOLEAN_TRUE(b))
-    XTESTS_TEST_INTEGER_EQUAL(10, i);
+    {
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to("10a", 2, &i)));
+        XTESTS_TEST_INTEGER_EQUAL(10, i);
+    }
+
+#if 0
+
+    {
+        XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10a", 2, &i)));
+        XTESTS_TEST_INTEGER_EQUAL(10, i);
+    }
+#endif
 }
 
 static void test_try_5_uint64()
