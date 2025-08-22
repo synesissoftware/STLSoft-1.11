@@ -98,7 +98,16 @@ static void TEST_CONTAINS_SYSTEM_PIDS()
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
+# if 0
+# elif defined(UNIXSTL_OS_IS_LINUX)
+
     TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid_sequence::schedProcessId()));
+# elif defined(UNIXSTL_OS_IS_MACOSX)
+
+# else
+
+#  error Operating system not currently supported
+# endif
     TEST(pids.end() != std::find(pids.cbegin(), pids.cend(), pid_sequence::initProcessId()));
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
@@ -117,7 +126,19 @@ static void TEST_NOT_CONTAINS_SYSTEM_PIDS()
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+# if 0
+# elif defined(UNIXSTL_OS_IS_LINUX)
+
     TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), pid_sequence::schedProcessId()));
+# elif defined(UNIXSTL_OS_IS_MACOSX)
+
+# else
+
+#  error Operating system not currently supported
+# endif
     TEST(pids.end() == std::find(pids.cbegin(), pids.cend(), pid_sequence::initProcessId()));
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
