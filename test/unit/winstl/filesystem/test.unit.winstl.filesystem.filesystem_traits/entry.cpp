@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `winstl::filesystem_traits`.
  *
  * Created: 31st December 2008
- * Updated: 28th May 2025
+ * Updated: 22nd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -327,6 +327,8 @@ static void TEST_ensure_dir_end_1()
             TEST_PTR_EQ(dirname + 0, r);
         }
 
+#if __cplusplus >= 201103L
+
         // passing resizeable buffer (auto_buffer<char>)
         {
             ab_m_t          buff = { 'a', 'b', 'c', '\0' };
@@ -362,6 +364,7 @@ static void TEST_ensure_dir_end_1()
             TEST_WS_EQ(L"abc\\", buff.data());
             TEST_INT_EQ(4, r);
         }
+#endif
     }
 
     // does not need a slash
@@ -383,6 +386,8 @@ static void TEST_ensure_dir_end_1()
             TEST_WS_EQ(L"abc\\", dirname);
             TEST_PTR_EQ(dirname + 0, r);
         }
+
+#if __cplusplus >= 201103L
 
         // passing resizeable buffer (auto_buffer<char>)
         {
@@ -419,6 +424,7 @@ static void TEST_ensure_dir_end_1()
             TEST_WS_EQ(L"abc\\", buff.data());
             TEST_INT_EQ(4, r);
         }
+#endif
     }
 
     // has excess slash
@@ -440,6 +446,8 @@ static void TEST_ensure_dir_end_1()
             TEST_WS_EQ(L"abc\\\\", dirname);
             TEST_PTR_EQ(dirname + 0, r);
         }
+
+#if __cplusplus >= 201103L
 
         // passing resizeable buffer (auto_buffer<char>)
         {
@@ -476,6 +484,7 @@ static void TEST_ensure_dir_end_1()
             TEST_WS_EQ(L"abc\\\\", buff.data());
             TEST_INT_EQ(5, r);
         }
+#endif
     }
 }
 
@@ -562,6 +571,8 @@ static void TEST_has_dir_end_1()
             TEST_BOOLEAN_FALSE(filesystem_traits_w_t::has_dir_end(dirname));
         }
 
+#if __cplusplus >= 201103L
+
         // passing resizeable buffer (auto_buffer<char>)
         {
             ab_m_t  buff = { 'a', 'b', 'c', '\0' };
@@ -589,6 +600,7 @@ static void TEST_has_dir_end_1()
 
             TEST_BOOLEAN_FALSE(filesystem_traits_w_t::has_dir_end(buff));
         }
+#endif
     }
 
     // does not need a slash
@@ -606,6 +618,8 @@ static void TEST_has_dir_end_1()
 
             TEST_BOOLEAN_TRUE(filesystem_traits_w_t::has_dir_end(dirname));
         }
+
+#if __cplusplus >= 201103L
 
         // passing resizeable buffer (auto_buffer<char>)
         {
@@ -634,6 +648,7 @@ static void TEST_has_dir_end_1()
 
             TEST_BOOLEAN_TRUE(filesystem_traits_w_t::has_dir_end(buff));
         }
+#endif
     }
 
     // has excess slash
@@ -651,6 +666,8 @@ static void TEST_has_dir_end_1()
 
             TEST_BOOLEAN_TRUE(filesystem_traits_w_t::has_dir_end(dirname));
         }
+
+#if __cplusplus >= 201103L
 
         // passing resizeable buffer (auto_buffer<char>)
         {
@@ -679,6 +696,7 @@ static void TEST_has_dir_end_1()
 
             TEST_BOOLEAN_TRUE(filesystem_traits_w_t::has_dir_end(buff));
         }
+#endif
     }
 }
 
@@ -785,6 +803,8 @@ static void TEST_remove_dir_end_1()
             TEST_PTR_EQ(dirname + 0, r);
         }
 
+#if __cplusplus >= 201103L
+
         // passing resizeable buffer (auto_buffer<char>)
         {
             ab_m_t          buff = { 'a', 'b', 'c', '\0' };
@@ -820,6 +840,7 @@ static void TEST_remove_dir_end_1()
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
         }
+#endif
     }
 
     // does not need a slash
@@ -841,6 +862,8 @@ static void TEST_remove_dir_end_1()
             TEST_WS_EQ(L"abc", dirname);
             TEST_PTR_EQ(dirname + 0, r);
         }
+
+#if __cplusplus >= 201103L
 
         // passing resizeable buffer (auto_buffer<char>)
         {
@@ -877,6 +900,7 @@ static void TEST_remove_dir_end_1()
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
         }
+#endif
     }
 
     // has excess slash
@@ -898,6 +922,8 @@ static void TEST_remove_dir_end_1()
             TEST_WS_EQ(L"abc", dirname);
             TEST_PTR_EQ(dirname + 0, r);
         }
+
+#if __cplusplus >= 201103L
 
         // passing resizeable buffer (auto_buffer<char>)
         {
@@ -934,6 +960,7 @@ static void TEST_remove_dir_end_1()
             TEST_WS_EQ(L"abc", buff.data());
             TEST_INT_EQ(3, r);
         }
+#endif
     }
 }
 
