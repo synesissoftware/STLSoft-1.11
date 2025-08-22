@@ -4,6 +4,22 @@
 ----
 
 
+23rd August 2025 - 1.11.1-rc3 released
+---------------------------------------
+
+ * Added `platformstl::pid_sequence` / `unixstl::pid_sequence`;
+ * Added `winstl_C_printf_debug_string()` in **winstl/diagnostics/printf_debug_line.h**;
+ * Added `winstl::codepage_sequence`;
+ * Added Window write-to-console functions;
+ * More examples;
+ * More tests;
+ * Corrected some minor defects around language version detection;
+ * Compatibility/corrections in string-to-integer functions;
+ * Canonicalise example programs source names;
+ * Backwards compatibility (partial) for Visual C++ back to v10;
+ * Project boilerplate;
+
+
 31st May 2025 - 1.11.1-rc2 released
 -----------------------------------
 
