@@ -20,6 +20,8 @@ if(_BUILD_AS_WIN32)
 	add_subdirectory(winstl)
 endif(_BUILD_AS_WIN32)
 
+add_subdirectory(test.unit.versions)
+
 
 # ############################## end of file ############################# #
 

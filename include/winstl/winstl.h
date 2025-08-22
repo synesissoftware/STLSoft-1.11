@@ -174,13 +174,13 @@
 # define _WINSTL_VER_1_13_0_A04 0x010d0044  /*!< Version 1.13.0 alpha 4 (with STLSoft 1.11.1 alpha 28) */
 # define _WINSTL_VER_1_13_0_A05 0x010d0045  /*!< Version 1.13.0 alpha 5 (with STLSoft 1.11.1 beta 3) */
 # define _WINSTL_VER_1_13_0_A06 0x010d0046  /*!< Version 1.13.0 alpha 6 (with STLSoft 1.11.1 rc 2) */
-# define _WINSTL_VER_1_13_0_A07 0x010d0047  /*!< Version 1.13.0 alpha 7 (with STLSoft 1.11.1 rc 3) */
+# define _WINSTL_VER_1_13_0_B01 0x010d0081  /*!< Version 1.13.0 beta 1 (with STLSoft 1.11.1 rc 3) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       13
 #define _WINSTL_VER_REVISION    0
-#define _WINSTL_VER             _WINSTL_VER_1_13_0_A07
+#define _WINSTL_VER             _WINSTL_VER_1_13_0_B01
 
 
 /* /////////////////////////////////////////////////////////////////////////
