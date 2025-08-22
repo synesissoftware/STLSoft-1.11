@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 16th August 2025
- * Updated: 17th August 2025
+ * Updated: 22nd August 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR      0
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT       1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -401,10 +401,6 @@ pid_sequence::pid_sequence(us_uint32_t flags)
     for (;;)
     {
         int const n = proc_listallpids(&m_pids[0], m_pids.size() * sizeof(value_type));
-
-        // int const e = errno;
-
-        // fprintf(stderr, "%s:%d:%s: n=%d, m_pids.size()=%zu; errno=%d\n", __STLSOFT_FILE_LINE_FUNCTION__, n, m_pids.size(), e);
 
         if (n < 1)
         {

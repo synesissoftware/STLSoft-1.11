@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  31st May 2025
+; Updated:  22nd August 2025
 
 ============================================================================
 
@@ -16,6 +16,22 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+Changes for 1.11.1-rc3 (22nd August 2025)
+
+General:
+========
+
+ * Added `platformstl::pid_sequence` / `unixstl::pid_sequence`;
+ * Corrected some minor defects around language version detection;
+
+Details:
+========
+
+
+
+
+============================================================================
 
 Changes for 1.11.1-rc2 (31st May 2025)
 
