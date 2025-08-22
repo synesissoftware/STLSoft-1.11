@@ -98,6 +98,8 @@ endif(WIN32)
 if(MFC_FOUND)
 
 	add_compile_definitions(STLSOFT_HAS_MFC)
+
+	message("-- using Microsoft Foundation Classes")
 endif(MFC_FOUND)
 
 

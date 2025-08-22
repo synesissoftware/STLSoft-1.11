@@ -28,6 +28,9 @@
 # include <comstl/comstl.h>
 # include <winstl/winstl.h>
 #endif
+#ifdef STLSOFT_HAS_MFC
+# include <mfcstl/mfcstl.hpp>
+#endif
 
 /* /////////////////////////////////////
  * general includes
@@ -60,6 +63,9 @@ namespace {
     static void TEST__COMSTL_VER();
     static void TEST__WINSTL_VER();
 #endif
+#ifdef STLSOFT_HAS_MFC
+    static void TEST__MFCSTL_VER();
+#endif
 } // anonymous namespace
 
 
@@ -86,6 +92,9 @@ int main(int argc, char **argv)
 
         XTESTS_RUN_CASE(TEST__COMSTL_VER);
         XTESTS_RUN_CASE(TEST__WINSTL_VER);
+#endif
+#ifdef STLSOFT_HAS_MFC
+        XTESTS_RUN_CASE(TEST__MFCSTL_VER);
 #endif
 
         XTESTS_PRINT_RESULTS();
@@ -131,8 +140,15 @@ static void TEST__WINSTL_VER()
 {
 	TEST_INT_EQ(_WINSTL_VER_1_13_0_B01, _WINSTL_VER);
 }
-
 #endif
+
+#ifdef STLSOFT_HAS_MFC
+static void TEST__MFCSTL_VER()
+{
+    TEST_INT_EQ(_MFCSTL_VER_1_6_1, MFCSTL_VER);
+}
+#endif
+
 } // anonymous namespace
 
 
