@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 15th August 2025
- * Updated: 15th August 2025
+ * Updated: 22nd August 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_MAJOR     1
 # define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_MINOR     0
-# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_REVISION  0
-# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_EDIT      1
+# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_REVISION  1
+# define WINSTL_VER_WINSTL_I18N_HPP_CODEPAGE_SEQUENCE_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -312,7 +312,7 @@ codepage_sequence::codepage_sequence()
                 UINT const  cp = STLSOFT_NS_QUAL(string_to_integer)(value, (size_t)cchValue, &endptr);
 
                 if (0 != cp ||
-                    cchValue == (endptr - value))
+                    static_cast<difference_type>(cchValue) == (endptr - value))
                 {
                     m_cpids.resize(1 + m_cpids.size());
 
