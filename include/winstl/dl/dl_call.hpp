@@ -270,7 +270,7 @@ public:
     ss_explicit_k
     invalid_calling_convention_exception(stlsoft::basic_string_view<char> callingConventionSpecifier)
         : parent_class_type(class_type::create_reason_(callingConventionSpecifier.data(), callingConventionSpecifier.size()), ERROR_INVALID_FUNCTION)
-        , m_ccs(callingConventionSpecifier)
+        , m_ccs(callingConventionSpecifier.data(), callingConventionSpecifier.size())
     {}
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     virtual ~invalid_calling_convention_exception() STLSOFT_NOEXCEPT_STDOVR
