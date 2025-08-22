@@ -4,11 +4,11 @@
  * Purpose:     Mixin class providing enhanced functions for ATL windows.
  *
  * Created:     30th November 2000
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2000-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MAJOR    4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_MINOR    0
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_REVISION 5
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     42
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ENHANCED_WINDOW_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -215,10 +215,10 @@ private:
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace atlstl */
+} // namespace atlstl
 # else
-} /* namespace atlstl_project */
-} /* namespace stlsoft */
+} // namespace atlstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
 

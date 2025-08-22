@@ -4,7 +4,7 @@
  * Purpose: Unit-test
  *
  * Created: 11th August 2008
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,8 +40,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     // LF-only
     static void test_1_0();
@@ -351,7 +350,6 @@ namespace
     static void test_14_17();
     static void test_14_18();
     static void test_14_19();
-
 } // anonymous namespace
 
 
@@ -675,8 +673,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using stlsoft::readers::read_from_char_buffer;
     using stlsoft::readers::read_from_iterator_range;
     using stlsoft::read_line_flags;
@@ -4691,7 +4689,6 @@ static void test_14_18()
 static void test_14_19()
 {
 }
-
 } // anonymous namespace
 
 

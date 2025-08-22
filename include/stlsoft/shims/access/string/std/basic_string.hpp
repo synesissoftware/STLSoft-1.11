@@ -5,14 +5,14 @@
  *          and c_str_size accessors.
  *
  * Created: 16th January 2002
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Robert Kreger for spotting a defect in the discrimination of
  *          wide character support on GCC 3.3.3.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_REVISION  9
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      109
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -905,7 +905,7 @@ c_str_ptr_null_w(S const& s)
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

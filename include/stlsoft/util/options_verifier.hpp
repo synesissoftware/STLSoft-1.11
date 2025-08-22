@@ -4,11 +4,11 @@
  * Purpose: Options verification.
  *
  * Created: 9th November 2004
- * Updated: 10th October 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_REVISION  12
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      62
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -174,8 +174,7 @@ public:
 };
 
 #ifdef STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS
-namespace options_verifier_internal_ns
-{
+namespace options_verifier_internal_ns {
 #endif /* STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS */
 
 
@@ -295,13 +294,13 @@ private:
 };
 
 #ifdef STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS
-} /* namespace options_verifier_internal_ns */
+} // namespace options_verifier_internal_ns
 
 using options_verifier_internal_ns::options_verifier;
 #endif /* STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS */
 
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 options_verifier<T> verify_options(T const& value, char const* failureMessage)
 {
     return options_verifier<T>(value, failureMessage);
@@ -316,8 +315,7 @@ options_verifier<T, XP> verify_options(T const& value, XP const& policy, char co
 }
 
 #ifdef STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS
-namespace options_verifier_internal_ns
-{
+namespace options_verifier_internal_ns {
 #endif /* STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS */
 
 template<   ss_typename_param_k T
@@ -388,13 +386,13 @@ inline options_verifier_comparison_ref<T, U1>& operator ||(options_verifier_comp
 #endif /* 0 */
 
 #ifdef STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS
-} /* namespace options_verifier_internal_ns */
+} // namespace options_verifier_internal_ns
 #endif /* STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

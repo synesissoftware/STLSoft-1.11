@@ -4,11 +4,11 @@
  * Purpose: Definition of the environment_map class.
  *
  * Created: 14th November 2005
- * Updated: 6th November 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_MINOR       5
 # define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_REVISION    3
-# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        78
+# define PLATFORMSTL_VER_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_MAP_EDIT        79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -475,10 +475,10 @@ private:
 
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace platformstl */
+} // namespace platformstl
 # else
-} /* namespace platformstl_project */
-} /* namespace stlsoft */
+} // namespace platformstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 
 #endif /* compiler */
@@ -1050,10 +1050,10 @@ environment_map::snapshot::lookup(
 
 #if defined(STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace platformstl */
+} // namespace platformstl
 #else
-} /* namespace platformstl_project */
-} /* namespace stlsoft */
+} // namespace platformstl_project
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

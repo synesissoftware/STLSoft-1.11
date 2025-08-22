@@ -4,11 +4,11 @@
  * Purpose: Contains the c_string_traits class template.
  *
  * Created: 15th November 2002
- * Updated: 5th November 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_MAJOR       6
 # define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_EDIT        164
+# define STLSOFT_VER_STLSOFT_STRING_HPP_C_STRING_TRAITS_EDIT        165
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -443,7 +443,7 @@ public:
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

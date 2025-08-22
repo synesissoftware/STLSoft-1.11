@@ -5,11 +5,11 @@
  *          CString_iadaptor class templates.
  *
  * Created: 1st October 2002
- * Updated: 20th February 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MAJOR       4
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MINOR       1
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    10
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        106
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -128,7 +128,7 @@ namespace mfcstl_project
  *
  * \ingroup concepts_veneer
  */
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 class CString_adaptor_base
     : public STLSOFT_NS_QUAL(stl_collection_tag)
 {
@@ -1200,9 +1200,9 @@ inline ms_bool_t operator >=(unsigned char const* lhs, const_CString_iadaptor co
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
+} // namespace mfcstl_project
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 
@@ -1268,34 +1268,34 @@ namespace mfcstl_project
 
 // CString_adaptor_base
 
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::allocator_type CString_adaptor_base<I>::get_allocator() const
 {
     return allocator_type();
 }
 
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(LPCSTR s)
 {
     get_CString() = s;
 
     return *this;
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(LPCWSTR s)
 {
     get_CString() = s;
 
     return *this;
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(unsigned char const* s)
 {
     get_CString() = s;
 
     return *this;
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(LPCSTR s, size_type n)
 {
 #ifdef UNICODE
@@ -1306,7 +1306,7 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adapt
 
     return *this;
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(LPCWSTR s, size_type n)
 {
 #ifdef UNICODE
@@ -1317,21 +1317,21 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adapt
 
     return *this;
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(unsigned char const* s, size_type n)
 {
     get_CString() = CString(s).Left(n);
 
     return *this;
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(class_type const& s)
 {
     get_CString() = s.get_CString();
 
     return *this;
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(class_type const& s, size_type pos, size_type index)
 {
     MFCSTL_MESSAGE_ASSERT("invalid index", index + pos <= s.size());
@@ -1340,7 +1340,7 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adapt
 
     return *this;
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(size_type n, value_type ch)
 {
     get_CString() = CString(ch, static_cast<int>(n));
@@ -1348,7 +1348,7 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adapt
     return *this;
 }
 
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 #if defined(STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION) && \
     STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION == STLSOFT_CF_DINKUMWARE_VC_VERSION_7_0
 inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adaptor_base<I>::assign(LPCTSTR first, LPCTSTR last)
@@ -1361,44 +1361,44 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::class_type& CString_adapt
     return *this;
 }
 
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::iterator CString_adaptor_base<I>::begin()
 {
     return const_cast<pointer>(this->c_str());
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::iterator CString_adaptor_base<I>::end()
 {
     return this->begin() + this->size();
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::const_iterator CString_adaptor_base<I>::begin() const
 {
     return this->c_str();
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::const_iterator CString_adaptor_base<I>::end() const
 {
     return this->begin() + this->size();
 }
 
 #ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::reverse_iterator CString_adaptor_base<I>::rbegin()
 {
     return reverse_iterator(end());
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::reverse_iterator CString_adaptor_base<I>::rend()
 {
     return reverse_iterator(begin());
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reverse_iterator  CString_adaptor_base<I>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reverse_iterator CString_adaptor_base<I>::rend() const
 {
     return const_reverse_iterator(begin());
@@ -1407,21 +1407,21 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reverse_iterator CS
 
 
 
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::reference CString_adaptor_base<I>::subscript_(size_type index)
 {
     MFCSTL_MESSAGE_ASSERT("invalid index", index < size());
 
     return const_cast<pointer>(this->data())[index];
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reference CString_adaptor_base<I>::subscript_(size_type index) const
 {
     MFCSTL_MESSAGE_ASSERT("invalid index", index < size());
 
     return this->data()[index];
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::reference CString_adaptor_base<I>::at(size_type index)
 {
     if (index >= size())
@@ -1431,7 +1431,7 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::reference CString_adaptor
 
     return subscript_(index);
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reference CString_adaptor_base<I>::at(size_type index) const
 {
     if (index >= size())
@@ -1441,28 +1441,28 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reference CString_a
 
     return subscript_(index);
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::size_type CString_adaptor_base<I>::length() const
 {
     return get_CString().GetLength();
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::size_type CString_adaptor_base<I>::size() const
 {
     return this->length();
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::bool_type CString_adaptor_base<I>::empty() const
 {
     return 0 == size();
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::const_pointer CString_adaptor_base<I>::c_str() const
 {
 //      return empty() ? _T("") : static_cast<const_pointer>(get_CString());
     return get_CString();
 }
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::const_pointer CString_adaptor_base<I>::data() const
 {
     return this->c_str();
@@ -1603,10 +1603,10 @@ inline const_CString_iadaptor::const_reference const_CString_iadaptor::operator 
 #ifndef MFCSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace mfcstl */
+} // namespace mfcstl
 # else
-} /* namespace mfcstl_project */
-} /* namespace stlsoft */
+} // namespace mfcstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !MFCSTL_NO_NAMESPACE */
 

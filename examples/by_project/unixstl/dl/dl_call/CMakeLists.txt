@@ -1,3 +1,4 @@
-# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-define_example_program(dl_call main.cpp)
-
+list(APPEND X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED
+	4996
+)
+define_example_program(example.unixstl.dl.dl_call main.cpp)

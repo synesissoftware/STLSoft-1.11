@@ -3,6 +3,17 @@
 
 | Date                  | News Item                                                 |
 | --------------------- | --------------------------------------------------------- |
+| 23rd August 2025      |   Release of [STLSoft 1.11.1 (release candidate 3)](https://github.com/synesissoftware/STLSoft-1.11/releases/tag/1.11.1-rc3)  |
+| 31st May 2025         |   Release of [STLSoft 1.11.1 (release candidate 2)](https://github.com/synesissoftware/STLSoft-1.11/releases/tag/1.11.1-rc2)  |
+| 6th May 2025          |   Release of STLSoft 1.11.1 (release candidate 1)         |
+| 5th May 2025          |   Release of STLSoft 1.11.1-beta9                         |
+| 3rd May 2025          |   Release of STLSoft 1.11.1-beta8                         |
+| 30th April 2025       |   Release of STLSoft 1.11.1-beta7                         |
+| 28th April 2025       |   Release of STLSoft 1.11.1-beta6                         |
+| 26th April 2025       |   Release of STLSoft 1.11.1-beta5                         |
+| 22nd April 2025       |   Release of STLSoft 1.11.1-beta4                         |
+| 16th April 2025       |   Release of STLSoft 1.11.1-beta3                         |
+| 23rd February 2025    |   Release of STLSoft 1.11.1-beta2                         |
 | 31st December 2024    |   Release of STLSoft 1.11.1-beta1                         |
 | 28th December 2024    |   Release of STLSoft 1.11.1-alpha28                       |
 | 19th December 2024    |   Release of STLSoft 1.11.1-alpha27                       |

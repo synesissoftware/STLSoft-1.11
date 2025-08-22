@@ -90,11 +90,6 @@
 # include <wchar.h>              /* for wcscmp() */
 #endif /* !STLSOFT_INCL_H_WCHAR */
 
-#ifndef STLSOFT_INCL_H_WCHAR
-# define STLSOFT_INCL_H_WCHAR
-# include <wchar.h>              /* for wcscmp() */
-#endif /* !STLSOFT_INCL_H_WCHAR */
-
 #ifndef WINSTL_INCL_WINSTL_API_external_h_ErrorHandling
 # include <winstl/api/external/ErrorHandling.h>
 #endif /* !WINSTL_INCL_WINSTL_API_external_h_ErrorHandling */

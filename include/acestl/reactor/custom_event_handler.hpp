@@ -4,11 +4,11 @@
  * Purpose: Event handler class for custom event notifications.
  *
  * Created: 1st October 2004
- * Updated: 24th December 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MAJOR       2
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_MINOR       1
 # define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_REVISION    13
-# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        45
+# define ACESTL_VER_ACESTL_REACTOR_HPP_CUSTOM_EVENT_HANDLER_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -140,7 +140,7 @@ public:
  *    template.
  * \ingroup group__library__ACE_Reactor
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 struct cancel_adapter
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     : public ceh_root
@@ -427,7 +427,7 @@ public:
 #if 0
     /// Some compilers (i.e. VC++ 6) have a big cry here, so we define this out
     /// of the class, and use the private base type trick
-    template<ss_typename_param_k C>
+    template <ss_typename_param_k C>
     struct cancel_adapter
     {
         typedef cancel_adapter<C>   class_type;
@@ -487,7 +487,7 @@ public:
   mh->cancel_custom_events(100, &ch, &CancelHandler::report);
 \endcode
      */
-    template<ss_typename_param_k C>
+    template <ss_typename_param_k C>
     int cancel_custom_events(long code, C* obj, void (C::*pfn)(long code, event_id id, void* arg))
     {
         cancel_adapter<C>   adapter(obj, pfn);
@@ -953,10 +953,10 @@ inline int custom_event_handler::handle_callback_timeout(ACE_Time_Value const& c
 #ifndef ACESTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace acestl */
+} // namespace acestl
 # else
-} /* namespace acestl_project */
-} /* namespace stlsoft */
+} // namespace acestl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ACESTL_NO_NAMESPACE */
 

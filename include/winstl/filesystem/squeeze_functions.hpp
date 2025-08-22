@@ -4,11 +4,11 @@
  * Purpose: Path squeeze functions
  *
  * Created: 6th June 2006
- * Updated: 24th December 2024
+ * Updated: 15th April 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION    5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT        37
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION    6
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,7 +139,9 @@ path_squeeze_impl(
         {
             // Room for all
 
-            p.copy(buffer, cchBuffer);
+            p.copy(buffer, pathLen);
+
+            buffer[pathLen] = '\0';
 
             cchBuffer = pathLen + 1u;
         }
@@ -327,10 +329,10 @@ path_squeeze(
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

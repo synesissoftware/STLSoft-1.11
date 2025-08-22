@@ -4,11 +4,11 @@
  * Purpose:     Iterator range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     11th March 2024
+ * Updated:     21st March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 9
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     56
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -265,7 +265,7 @@ struct const_pointer_iterator_range_traits
  *
  * It could be used as follows
 \code
-template<typename I>
+template <typename I>
 void dump_elements(I from, I to)
 {
   for (iterator_range<I> r(from, to); r; ++r)
@@ -451,7 +451,7 @@ private:
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline iterator_range<I> make_iterator_range(I &first, I &last)
 {
     return iterator_range<I>(first, last);
@@ -459,21 +459,21 @@ inline iterator_range<I> make_iterator_range(I &first, I &last)
 
 #else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-template<ss_typename_param_k I>
+template <ss_typename_param_k I>
 inline iterator_range<I, iterator_range_traits<I> > make_iterator_range(I &first, I &last)
 {
     return iterator_range<I, iterator_range_traits<I> >(first, last);
 }
 
 #if 0
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline iterator_range<T*, iterator_range_traits<T> > make_iterator_range(T *first, T* last)
 {
     return iterator_range<T*, iterator_range_traits<T> >(first, last);
 }
 #endif /* 0 */
 
-template<ss_typename_param_k T>
+template <ss_typename_param_k T>
 inline iterator_range<T const*, const_pointer_iterator_range_traits<const T> > make_iterator_range(T const* first, T const* last)
 {
     return iterator_range<T const*, const_pointer_iterator_range_traits<const T> >(first, last);
@@ -488,10 +488,10 @@ inline iterator_range<T const*, const_pointer_iterator_range_traits<const T> > m
 #ifndef RANGELIB_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace rangelib */
+} // namespace rangelib
 # else
-} /* namespace rangelib_project */
-} /* namespace stlsoft */
+} // namespace rangelib_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
 

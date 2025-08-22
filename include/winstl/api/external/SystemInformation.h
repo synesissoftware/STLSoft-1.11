@@ -5,11 +5,11 @@
  *          Information Functions API.
  *
  * Created: 24th December 2016
- * Updated: 27th December 2024
+ * Updated: 25th May 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -114,7 +114,6 @@
 /* *************************************
  * XXXX functions
  */
-
 
 #ifndef WINSTL_API_EXTERNAL_SystemInformation_GetComputerNameA
 # define WINSTL_API_EXTERNAL_SystemInformation_GetComputerNameA             STLSOFT_NS_GLOBAL_(GetComputerNameA)

@@ -4,7 +4,7 @@
  * Purpose: Component test for `winstl::dl_call`.
  *
  * Created: 9th October 2024
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,8 +44,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     // 0 parameters
     static void test_Kernel32_GetTickCount();
@@ -102,8 +101,8 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     inline
     void
     full_fence()
@@ -263,8 +262,6 @@ static void test_SystemParametersInfo()
         XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to load function", x.what());
     }
 }
-
-
 } // anonymous namespace
 
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 28th December 2024
+ * Updated: 30th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,9 +37,9 @@
  */
 
 #ifdef STLSOFT_DEBUG
-size_t const NUM_ITERATIONS	=	1000u;
+size_t const NUM_ITERATIONS =   1000u;
 #else /* ? STLSOFT_DEBUG */
-size_t const NUM_ITERATIONS	=	1000000u;
+size_t const NUM_ITERATIONS =   1000000u;
 #endif /* STLSOFT_DEBUG */
 
 
@@ -47,8 +47,7 @@ size_t const NUM_ITERATIONS	=	1000000u;
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_default_instance();
     static void test_ctor_1();
@@ -133,8 +132,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using stlsoft::exception_string;
 
 
@@ -438,7 +437,6 @@ static void test_ctor_16()
 # endif /* 0 */
 }
 #endif
-
 } // anonymous namespace
 
 

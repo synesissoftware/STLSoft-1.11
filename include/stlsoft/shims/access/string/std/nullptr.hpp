@@ -4,11 +4,11 @@
  * Purpose:     Primary include file for string access shims for nullptr.
  *
  * Created:     12th November 2020
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_MAJOR      1
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_MINOR      0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_REVISION   3
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_EDIT       4
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_NULLPTR_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -201,7 +201,7 @@ c_str_ptr_null_w(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

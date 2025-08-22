@@ -4,11 +4,11 @@
  * Purpose: Defines the locale_scope class.
  *
  * Created: 23rd December 2018
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2018-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_MINOR      0
 # define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_REVISION   3
-# define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_EDIT       8
+# define STLSOFT_VER_STLSOFT_LOCALE_HPP_LOCALE_SCOPE_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -199,7 +199,7 @@ private: // fields
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

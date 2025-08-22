@@ -6,11 +6,11 @@
  *          some compilers.
  *
  * Created: 2nd May 1997
- * Updated: 10th October 2024
+ * Updated: 29th June 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1997-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 13
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     84
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 14
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -196,7 +196,7 @@ private:
     // union_caster(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
 #if 0 ||\
     __cplusplus < 201103L ||\
-    __cplusplus >= 201702L ||\
+    __cplusplus >= 201703L ||\
     0
 
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
@@ -435,7 +435,7 @@ operator <(
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

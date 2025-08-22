@@ -4,13 +4,13 @@
  * Purpose: Simple class that provides access to an environment variable.
  *
  * Created: 20th December 2002
- * Updated: 10th October 2024
+ * Updated: 26th April 2025
  *
  * Thanks:  Pablo Aguilar for requesting size() and empty().
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 6
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     90
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,7 +160,7 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
 
     /// Create an instance representing the given environment variable
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k basic_environment_variable(S const& name)
         : m_buffer(1)
         , m_exists(obtain_(STLSOFT_NS_QUAL(c_str_ptr)(name), m_buffer))
@@ -327,17 +327,26 @@ private:
  *
  * \ingroup group__library__System
  */
-typedef basic_environment_variable<ws_char_a_t, system_traits<ws_char_a_t> >    environment_variable_a;
+typedef basic_environment_variable<
+    ws_char_a_t
+,   system_traits<ws_char_a_t>
+>                                                           environment_variable_a;
 /** Specialisation of the basic_environment_variable template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__System
  */
-typedef basic_environment_variable<ws_char_w_t, system_traits<ws_char_w_t> >    environment_variable_w;
+typedef basic_environment_variable<
+    ws_char_w_t
+,   system_traits<ws_char_w_t>
+>                                                           environment_variable_w;
 /** Specialisation of the basic_environment_variable template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__System
  */
-typedef basic_environment_variable<TCHAR, system_traits<TCHAR> >                environment_variable;
+typedef basic_environment_variable<
+    TCHAR
+,   system_traits<TCHAR>
+>                                                           environment_variable;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -445,7 +454,7 @@ operator !=(
  *
  * \ingroup group__library__System
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline
 basic_environment_variable<C>
 make_environment_variable(
@@ -454,18 +463,20 @@ make_environment_variable(
 {
     return basic_environment_variable<C>(path);
 }
-
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

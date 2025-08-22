@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_traits`.
  *
  * Created: 21st November 2024
- * Updated: 31st December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,8 +44,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_1();
 } // anonymous namespace
@@ -122,8 +121,8 @@ namespace stlsoft {
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using stlsoft::ss_sint32_t;
     using stlsoft::ss_uint64_t;
 

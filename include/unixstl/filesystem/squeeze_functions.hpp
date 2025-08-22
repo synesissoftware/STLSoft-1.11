@@ -4,11 +4,11 @@
  * Purpose: Path squeeze functions
  *
  * Created: 13th June 2006
- * Updated: 24th December 2024
+ * Updated: 15th April 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MAJOR     2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION  4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      30
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_REVISION  5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_SQUEEZE_FUNCTIONS_EDIT      34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -78,6 +78,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
+
 #if defined(_WIN32) || \
     defined(_WIN64)
 # include <ctype.h>
@@ -143,7 +144,9 @@ path_squeeze_impl(
         {
             // Room for all
 
-            p.copy(buffer, cchBuffer);
+            p.copy(buffer, pathLen);
+
+            buffer[pathLen] = '\0';
 
             cchBuffer = pathLen + 1u;
         }
@@ -160,6 +163,8 @@ path_squeeze_impl(
 
             if (p.is_rooted())
             {
+#if defined(_WIN32) || \
+    defined(_WIN64)
                 if (p.is_absolute())
                 {
                     if (traits_t::is_path_UNC(path_ptr))
@@ -170,15 +175,12 @@ path_squeeze_impl(
 
                         rootLen = 1 + static_cast<size_t>(p1 - path_ptr);
                     }
-#if defined(_WIN32) || \
-    defined(_WIN64)
                     else if (isalpha(path_ptr[0]) &&
                             ':' == path_ptr[1])
                     {
                         // 2. drive
                         rootLen = 3;
                     }
-#endif /* Windows */
                     else
                     {
                         // 3. rooted - begins with \ or /
@@ -186,6 +188,7 @@ path_squeeze_impl(
                     }
                 }
                 else
+#endif /* Windows */
                 {
                     // 3. rooted - begins with \ or /
                     rootLen = 1;
@@ -299,6 +302,9 @@ STLSOFT_CLOSE_WORKER_NS_(ximpl_unixstl_squeeze_functions_)
  * \param cchBuffer The number of available characters inc buffer. This
  *   value in inclusive of the required <code>nul</code>-terminator
  *
+ * \return If \c buffer is NULL, then returns the number required, including
+ *  the NUL character; otherwise, returns the number of characters written
+ *  into \c buffer including NUL character.
  */
 
 template<
@@ -323,10 +329,10 @@ path_squeeze(
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

@@ -1,13 +1,14 @@
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-if(UNIX)
+
+if(_BUILD_AS_UNIX)
 
 	add_definitions(-DUNIX)
 	add_definitions(-Dunix)
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 
@@ -22,7 +23,7 @@ if(WIN32)
 	endif()
 
 	add_definitions(-DNOMINMAX)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 
 if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
@@ -32,9 +33,13 @@ endif()
 
 
 set(GCC_WARN_NO_cxx11_long_long "")
+if(X_CMAKE_C_FULLSTANDARD LESS 2011)
+
+	list(APPEND GCC_WARN_NO_cxx11_long_long -Wno-long-long)
+endif()
 if(X_CMAKE_CXX_FULLSTANDARD LESS 2011)
 
-	set(GCC_WARN_NO_cxx11_long_long -Wno-c++11-long-long)
+	list(APPEND GCC_WARN_NO_cxx11_long_long -Wno-c++11-long-long)
 endif()
 
 

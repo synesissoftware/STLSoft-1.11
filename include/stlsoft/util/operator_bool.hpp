@@ -4,11 +4,11 @@
  * Purpose:     A robust and portable operator bool generator class.
  *
  * Created:     5th November 2003
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_REVISION 6
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_EDIT     50
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPERATOR_BOOL_EDIT     51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -199,7 +199,7 @@ private:
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

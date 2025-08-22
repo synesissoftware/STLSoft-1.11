@@ -1,17 +1,20 @@
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
+
 	add_subdirectory(comstl)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 add_subdirectory(platformstl)
 
-if(UNIX)
-	add_subdirectory(unixstl)
-endif(UNIX)
+if(_BUILD_AS_UNIX)
 
-if(WIN32)
+	add_subdirectory(unixstl)
+endif(_BUILD_AS_UNIX)
+
+if(_BUILD_AS_WIN32)
+
 	add_subdirectory(winstl)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 
 # ############################## end of file ############################# #

@@ -1,12 +1,13 @@
 
 add_subdirectory(platformstl)
-if(UNIX)
+add_subdirectory(stlsoft)
+if(_BUILD_AS_UNIX)
 	add_subdirectory(unixstl)
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 add_subdirectory(versions)
-if(WIN32)
+if(_BUILD_AS_WIN32)
 	add_subdirectory(winstl)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 
 # ############################## end of file ############################# #

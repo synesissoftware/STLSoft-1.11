@@ -4,11 +4,11 @@
  * Purpose: Invocation of functions in dynamic libraries.
  *
  * Created: sometime in 1998
- * Updated: 13th October 2024
+ * Updated: 22nd August 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1998-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     8
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  10
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      77
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  11
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -253,6 +253,7 @@ public:
     typedef invalid_calling_convention_exception            class_type;
 private:
     typedef parent_class_type::string_type                  string_type;
+    typedef ws_size_t                                       size_type;
 public:
     /// The status code type
     typedef parent_class_type::status_code_type             status_code_type;
@@ -267,9 +268,9 @@ public:
     /// Constructs an instance of the exception based on the given
     /// function name, and Windows error code.
     ss_explicit_k
-    invalid_calling_convention_exception(char const* callingConventionSpecifier)
-        : parent_class_type(class_type::create_reason_(callingConventionSpecifier), ERROR_INVALID_FUNCTION)
-        , m_ccs(callingConventionSpecifier)
+    invalid_calling_convention_exception(stlsoft::basic_string_view<char> callingConventionSpecifier)
+        : parent_class_type(class_type::create_reason_(callingConventionSpecifier.data(), callingConventionSpecifier.size()), ERROR_INVALID_FUNCTION)
+        , m_ccs(callingConventionSpecifier.data(), callingConventionSpecifier.size())
     {}
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     virtual ~invalid_calling_convention_exception() STLSOFT_NOEXCEPT_STDOVR
@@ -293,9 +294,12 @@ public:
 private:
     static
     string_type
-    create_reason_(char const* callingConventionSpecifier)
+    create_reason_(
+        char const* callingConventionSpecifier
+    ,   size_type   cchCallingConventionSpecifier
+    )
     {
-        return "Unrecognised or unsupported calling convention \"" + string_type(callingConventionSpecifier) + '"';
+        return "Unrecognised or unsupported calling convention \"" + string_type(callingConventionSpecifier, cchCallingConventionSpecifier) + '"';
     }
 /// @}
 
@@ -311,8 +315,8 @@ private:
  * enumerations
  */
 
-namespace calling_convention
-{
+namespace calling_convention {
+
     /** Calling conventions supported by winstl::dl_call()
      */
     enum calling_convention
@@ -355,8 +359,8 @@ namespace calling_convention
 #endif // STLSOFT_CF_STDCALL_SUPPORTED
         }
     }
+} // namespace calling_convention
 
-} /* namespace calling_convention */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -704,7 +708,7 @@ dl_determine_calling_convention_(C const*& functionName)
         } else
 # endif // STLSOFT_CF_STDCALL_SUPPORTED
         {
-            STLSOFT_THROW_X(invalid_calling_convention_exception(s0.c_str()));
+            STLSOFT_THROW_X(invalid_calling_convention_exception(s0));
         }
 
         functionName = s1.base();
@@ -5992,10 +5996,10 @@ inline R dl_call(L const& library, FD const& fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

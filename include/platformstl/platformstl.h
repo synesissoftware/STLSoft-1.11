@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 20th March 2005
- * Updated: 2nd September 2024
+ * Updated: 22nd August 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    15
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 6
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     61
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 7
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -111,35 +111,36 @@
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define _PLATFORMSTL_VER_1_0_1     0x00010001  /*!< Version 1.0.1 */
-# define _PLATFORMSTL_VER_1_1_1     0x00010101  /*!< Version 1.1.1 */
-# define _PLATFORMSTL_VER_1_1_2     0x00010102  /*!< Version 1.1.2 */
-# define _PLATFORMSTL_VER_1_2_1     0x00010201  /*!< Version 1.2.1 */
-# define _PLATFORMSTL_VER_1_3_1     0x00010301  /*!< Version 1.3.1 */
-# define _PLATFORMSTL_VER_1_4_1     0x00010401  /*!< Version 1.4.1 */
-# define _PLATFORMSTL_VER_1_4_2     0x00010402  /*!< Version 1.4.2 */
-# define _PLATFORMSTL_VER_1_5_1     0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
-# define _PLATFORMSTL_VER_1_6_1     0x00010601  /*!< Version 1.6.1 (with STLSoft 1.9.16) */
-# define _PLATFORMSTL_VER_1_6_2     0x00010602  /*!< Version 1.6.2 (with STLSoft 1.9.25) */
-# define _PLATFORMSTL_VER_1_7_1     0x00010701  /*!< Version 1.7.1 (with STLSoft 1.9.38) */
-# define _PLATFORMSTL_VER_1_7_2     0x010702ff  /*!< Version 1.7.2 (with STLSoft 1.9.64) */
-# define _PLATFORMSTL_VER_1_8_1     0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.9.86) */
-# define _PLATFORMSTL_VER_1_8_2     0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.9.90) */
-# define _PLATFORMSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.9.110) */
-# define _PLATFORMSTL_VER_1_8_4     0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.9.119) */
-# define _PLATFORMSTL_VER_1_9_1_B01 0x01090181  /*!< Version 1.9.1 beta 1 (with STLSoft 1.10.1 beta 1) */
-# define _PLATFORMSTL_VER_1_9_1_B02 0x01090182  /*!< Version 1.9.1 beta 2 (with STLSoft 1.10.1 beta 16) */
-# define _PLATFORMSTL_VER_1_9_1_B03 0x01090183  /*!< Version 1.9.1 beta 3 (with STLSoft 1.10.1 beta 23) */
-# define _PLATFORMSTL_VER_1_9_1_B04 0x01090184  /*!< Version 1.9.1 beta 4 (with STLSoft 1.10.1 beta 26) */
-# define _PLATFORMSTL_VER_1_9_2     0x010902ff  /*!< Version 1.9.2 (with STLSoft 1.10.5) */
-# define _PLATFORMSTL_VER_1_9_3     0x010903ff  /*!< Version 1.9.3 (with STLSoft 1.11.1 alpha 8) */
+# define _PLATFORMSTL_VER_1_0_1         0x00010001  /*!< Version 1.0.1 */
+# define _PLATFORMSTL_VER_1_1_1         0x00010101  /*!< Version 1.1.1 */
+# define _PLATFORMSTL_VER_1_1_2         0x00010102  /*!< Version 1.1.2 */
+# define _PLATFORMSTL_VER_1_2_1         0x00010201  /*!< Version 1.2.1 */
+# define _PLATFORMSTL_VER_1_3_1         0x00010301  /*!< Version 1.3.1 */
+# define _PLATFORMSTL_VER_1_4_1         0x00010401  /*!< Version 1.4.1 */
+# define _PLATFORMSTL_VER_1_4_2         0x00010402  /*!< Version 1.4.2 */
+# define _PLATFORMSTL_VER_1_5_1         0x00010501  /*!< Version 1.5.1 (with STLSoft 1.9.1) */
+# define _PLATFORMSTL_VER_1_6_1         0x00010601  /*!< Version 1.6.1 (with STLSoft 1.9.16) */
+# define _PLATFORMSTL_VER_1_6_2         0x00010602  /*!< Version 1.6.2 (with STLSoft 1.9.25) */
+# define _PLATFORMSTL_VER_1_7_1         0x00010701  /*!< Version 1.7.1 (with STLSoft 1.9.38) */
+# define _PLATFORMSTL_VER_1_7_2         0x010702ff  /*!< Version 1.7.2 (with STLSoft 1.9.64) */
+# define _PLATFORMSTL_VER_1_8_1         0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.9.86) */
+# define _PLATFORMSTL_VER_1_8_2         0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.9.90) */
+# define _PLATFORMSTL_VER_1_8_3         0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.9.110) */
+# define _PLATFORMSTL_VER_1_8_4         0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.9.119) */
+# define _PLATFORMSTL_VER_1_9_1_B01     0x01090181  /*!< Version 1.9.1 beta 1 (with STLSoft 1.10.1 beta 1) */
+# define _PLATFORMSTL_VER_1_9_1_B02     0x01090182  /*!< Version 1.9.1 beta 2 (with STLSoft 1.10.1 beta 16) */
+# define _PLATFORMSTL_VER_1_9_1_B03     0x01090183  /*!< Version 1.9.1 beta 3 (with STLSoft 1.10.1 beta 23) */
+# define _PLATFORMSTL_VER_1_9_1_B04     0x01090184  /*!< Version 1.9.1 beta 4 (with STLSoft 1.10.1 beta 26) */
+# define _PLATFORMSTL_VER_1_9_2         0x010902ff  /*!< Version 1.9.2 (with STLSoft 1.10.5) */
+# define _PLATFORMSTL_VER_1_9_3         0x010903ff  /*!< Version 1.9.3 (with STLSoft 1.11.1 alpha 8) */
 # define _PLATFORMSTL_VER_1_10_0_A01    0x010a0041  /*!< Version 1.10.0 alpha 1 (with STLSoft 1.11.1 alpha 15) */
+# define _PLATFORMSTL_VER_1_10_0_B01    0x010a0081  /*!< Version 1.10.0 alpha 2 (with STLSoft 1.11.1 rc 3) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      10
 #define _PLATFORMSTL_VER_REVISION   0
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_10_0_A01
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_10_0_B01
 
 
 /* /////////////////////////////////////////////////////////////////////////

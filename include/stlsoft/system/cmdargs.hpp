@@ -4,11 +4,11 @@
  * Purpose: Command-line sequences class.
  *
  * Created: 25th June 2005
- * Updated: 29th December 2024
+ * Updated: 4th May 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       2
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        54
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    2
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -122,6 +122,8 @@ namespace stlsoft
 class cmdargs
 {
 public:
+    /// This type
+    typedef cmdargs                                         class_type;
     /// The char type
     typedef char                                            char_type;
     /// The string type
@@ -228,6 +230,9 @@ public: // construction
     cmdargs(int argc, char* argv[]);
     /// Releases any resources
     ~cmdargs() STLSOFT_NOEXCEPT;
+private:
+    cmdargs(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
 public: // attributes
     /// The program name
@@ -608,7 +613,7 @@ operator <<(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

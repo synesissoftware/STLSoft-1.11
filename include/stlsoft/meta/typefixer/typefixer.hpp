@@ -4,11 +4,11 @@
  * Purpose:     Root header file for STLSoft's TypeFixer utility components.
  *
  * Created:     9th February 2004
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_REVISION  4
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_EDIT      25
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_TYPEFIXER_EDIT      26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,9 +114,9 @@ namespace typefixer
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace typefixer */
+} // namespace typefixer
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

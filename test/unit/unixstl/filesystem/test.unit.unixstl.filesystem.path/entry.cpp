@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::basic_path`.
  *
  * Created: 16th February 2024
- * Updated: 28th December 2024
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,14 +45,11 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_construct_default();
     static void test_construct_filename();
     static void test_construct_relative_directory_and_file();
-
-
 } // anonymous namespace
 
 
@@ -92,16 +89,14 @@ namespace {
 
     typedef unixstl::path_a                                 path_a_t;
     typedef unixstl::path_a                                 path_t;
-
-} /* anonymous namespace */
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void test_construct_default()
 {
@@ -117,10 +112,10 @@ static void test_construct_default()
     XTESTS_TEST(p1.end() == p1.begin());
     XTESTS_TEST(p1.rend() == p1.rbegin());
 #endif
-    XTESTS_REQUIRE(XTESTS_TEST(nullptr != p1.c_str()));
+    XTESTS_REQUIRE(XTESTS_TEST(ss_nullptr_k != p1.c_str()));
     XTESTS_TEST('\0' == *p1.c_str());
     XTESTS_TEST_INTEGER_EQUAL(0, ::strcmp("", p1.c_str()));
-    XTESTS_REQUIRE(XTESTS_TEST(nullptr != p1.data()));
+    XTESTS_REQUIRE(XTESTS_TEST(ss_nullptr_k != p1.data()));
     XTESTS_TEST('\0' == *p1.data());
 
     buffer[0] = '~';
@@ -130,8 +125,8 @@ static void test_construct_default()
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::sas_to_string(p1));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", stlsoft::sas_to_string_m(p1));
-    XTESTS_TEST_POINTER_EQUAL(nullptr, stlsoft::c_str_ptr_null(buffer));
-    XTESTS_TEST_POINTER_EQUAL(nullptr, stlsoft::c_str_ptr_null_a(buffer));
+    XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, stlsoft::c_str_ptr_null(buffer));
+    XTESTS_TEST_POINTER_EQUAL(ss_nullptr_k, stlsoft::c_str_ptr_null_a(buffer));
 
     XTESTS_TEST_INTEGER_EQUAL(0, p1.get_location().len);
     XTESTS_TEST_INTEGER_EQUAL(0, p1.get_file().len);
@@ -224,10 +219,10 @@ static void test_construct_filename()
     XTESTS_TEST(p1.end() == p1.begin());
     XTESTS_TEST(p1.rend() == p1.rbegin());
 #endif
-    XTESTS_TEST_POINTER_NOT_EQUAL(nullptr, p1.c_str());
+    XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, p1.c_str());
     XTESTS_TEST('\0' != *p1.c_str());
     XTESTS_TEST(0 == ::strcmp("file.ext", p1.c_str()));
-    XTESTS_TEST_POINTER_NOT_EQUAL(nullptr, p1.data());
+    XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, p1.data());
     XTESTS_TEST('\0' != *p1.data());
 
     buffer[0] = '~';
@@ -237,8 +232,8 @@ static void test_construct_filename()
 
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("file.ext", stlsoft::sas_to_string(p1));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("file.ext", stlsoft::sas_to_string_m(p1));
-    XTESTS_TEST_POINTER_NOT_EQUAL(nullptr, stlsoft::c_str_ptr_null(buffer));
-    XTESTS_TEST_POINTER_NOT_EQUAL(nullptr, stlsoft::c_str_ptr_null_a(buffer));
+    XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, stlsoft::c_str_ptr_null(buffer));
+    XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, stlsoft::c_str_ptr_null_a(buffer));
 
     XTESTS_TEST(0 == p1.get_location().len);
     XTESTS_TEST("file.ext" == p1.get_file());
@@ -337,10 +332,10 @@ static void test_construct_relative_directory_and_file()
     XTESTS_TEST(p1.end() == p1.begin());
     XTESTS_TEST(p1.rend() == p1.rbegin());
 #endif
-    XTESTS_TEST_POINTER_NOT_EQUAL(nullptr, p1.c_str());
+    XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, p1.c_str());
     XTESTS_TEST('\0' != *p1.c_str());
     XTESTS_TEST(0 == ::strcmp("dir-1/file.ext", p1.c_str()));
-    XTESTS_TEST_POINTER_NOT_EQUAL(nullptr, p1.data());
+    XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, p1.data());
     XTESTS_TEST('\0' != *p1.data());
 
     buffer[0] = '~';
@@ -352,8 +347,8 @@ static void test_construct_relative_directory_and_file()
     XTESTS_TEST(14 == stlsoft::c_str_len_a(p1));
     XTESTS_TEST(0 == ::strcmp("dir-1/file.ext", stlsoft::c_str_ptr(buffer)));
     XTESTS_TEST(0 == ::strcmp("dir-1/file.ext", stlsoft::c_str_ptr_a(buffer)));
-    XTESTS_TEST_POINTER_NOT_EQUAL(nullptr, stlsoft::c_str_ptr_null(buffer));
-    XTESTS_TEST_POINTER_NOT_EQUAL(nullptr, stlsoft::c_str_ptr_null_a(buffer));
+    XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, stlsoft::c_str_ptr_null(buffer));
+    XTESTS_TEST_POINTER_NOT_EQUAL(ss_nullptr_k, stlsoft::c_str_ptr_null_a(buffer));
 
     XTESTS_TEST("dir-1/" == p1.get_location());
     XTESTS_TEST("file.ext" == p1.get_file());
@@ -493,7 +488,6 @@ static void test_construct_relative_directory_and_file()
     XTESTS_TEST(p1.equivalent(p3));
     XTESTS_TEST(p3.equivalent(p1));
 }
-
 } // anonymous namespace
 
 

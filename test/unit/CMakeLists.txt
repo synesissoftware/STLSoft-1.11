@@ -1,20 +1,26 @@
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	add_subdirectory(comstl)
-	if(HAS_MFC)
+endif(_BUILD_AS_WIN32)
+if(_BUILD_AS_UNIX OR _BUILD_AS_WIN32)
 
-		add_subdirectory(mfcstl)
-	endif(HAS_MFC)
-endif(WIN32)
+	add_subdirectory(inetstl)
+endif(_BUILD_AS_UNIX OR _BUILD_AS_WIN32)
+if(MFC_FOUND)
+
+	add_subdirectory(mfcstl)
+endif(MFC_FOUND)
 add_subdirectory(platformstl)
 add_subdirectory(stlsoft)
-if(UNIX)
+if(_BUILD_AS_UNIX)
 	add_subdirectory(unixstl)
-endif(UNIX)
-if(WIN32)
+endif(_BUILD_AS_UNIX)
+if(_BUILD_AS_WIN32)
 	add_subdirectory(winstl)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
+
+add_subdirectory(test.unit.versions)
 
 
 # ############################## end of file ############################# #

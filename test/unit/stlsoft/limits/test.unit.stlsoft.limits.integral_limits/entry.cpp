@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integral_limits`.
  *
  * Created: 21st November 2024
- * Updated: 29th December 2024
+ * Updated: 28th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,7 @@
 #endif
 
 /* Standard C header files */
+#include <limits.h>
 #include <stdlib.h>
 
 
@@ -43,8 +44,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_min_max();
 } // anonymous namespace
@@ -115,11 +115,10 @@ namespace stlsoft {
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using stlsoft::ss_sint32_t;
     using stlsoft::ss_uint64_t;
-
 
 
 static void test_min_max()
@@ -163,7 +162,6 @@ static void test_min_max()
         XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t::value_type>::min(), limits_t::minimum().value);
         XTESTS_TEST_INTEGER_EQUAL(std::numeric_limits<int_t::value_type>::max(), limits_t::maximum().value);
     }
-
 }
 } // anonymous namespace
 

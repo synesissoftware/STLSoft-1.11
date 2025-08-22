@@ -4,7 +4,7 @@
  * Purpose: Component test for `unixstl::glob_sequence`.
  *
  * Created: 24th January 2009
- * Updated: 28th December 2024
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,11 +21,26 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
+
+# ifndef _WIN32
+#  define PLATFORM_SUPPORTS_SOCKETS_
+# endif
+#endif
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
+#include <platformstl/filesystem/path.hpp>
+
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 #include <xtests/util/temp_directory.hpp>
 
 /* STLSoft header files */
@@ -34,14 +49,18 @@
 
 /* Standard C header files */
 #include <stdlib.h>
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
+
+# include <sys/socket.h>
+# include <sys/un.h>
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_empty_directory();
 
@@ -78,6 +97,10 @@ namespace
     static void test_dot_and_stardotstar_and_directories_absolutePath();
     static void test_dotdot_and_stardotstar_and_files_absolutePath();
     static void test_dotdot_and_stardotstar_and_directories_absolutePath();
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
+
+    static void TEST_is_socket();
+#endif
 } // anonymous namespace
 
 
@@ -129,6 +152,10 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_dot_and_stardotstar_and_directories_absolutePath);
         XTESTS_RUN_CASE(test_dotdot_and_stardotstar_and_files_absolutePath);
         XTESTS_RUN_CASE(test_dotdot_and_stardotstar_and_directories_absolutePath);
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
+
+        XTESTS_RUN_CASE(TEST_is_socket);
+#endif
 
         XTESTS_PRINT_RESULTS();
 
@@ -143,8 +170,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
     typedef unixstl::glob_sequence                          glob_sequence_t;
     typedef unixstl::filesystem_traits<char>                traits_m_t;
@@ -607,7 +633,84 @@ static void test_dotdot_and_stardotstar_and_directories_absolutePath()
 
     XTESTS_TEST_PASSED();
 }
+#ifdef PLATFORM_SUPPORTS_SOCKETS_
 
+static void TEST_is_socket()
+{
+    typedef platformstl::path                               path_t;
+
+
+    path_t  td_path;
+
+    {
+        temp_directory  td(temp_directory::EmptyOnOpen | temp_directory::EmptyOnClose | temp_directory::RemoveOnClose);
+
+        path_t          path(td.c_str());
+        path_t          sk_path = path / "tmp.sock";
+
+        td_path = td.c_str();
+
+        int sk = socket(AF_UNIX, SOCK_STREAM, 0);
+
+        if (-1 == sk)
+        {
+            int const e = errno;
+
+            TEST_FAIL_WITH_QUALIFIER("failed to create socket", strerror(e));
+        }
+        else
+        {
+            stlsoft::scoped_handle<int> scoper_sk(sk, close);
+
+            struct sockaddr_un sa;
+
+            if (sk_path.length() >= STLSOFT_NUM_ELEMENTS(sa.sun_path))
+            {
+                TEST_FAIL_WITH_QUALIFIER("socket_path is too long to test", sk_path);
+            }
+            else
+            {
+#ifdef UNIXSTL_OS_IS_MACOSX
+                sa.sun_len = sizeof(sa);
+#endif
+                sa.sun_family = AF_UNIX;
+                strcpy(sa.sun_path, sk_path.c_str());
+
+                int const r = bind(sk, (struct sockaddr*)&sa, sizeof(sa));
+
+                if (0 != r)
+                {
+                    int const e = errno;
+
+                    TEST_FAIL_WITH_QUALIFIER("failed to bind socket", strerror(e));
+                }
+                else
+                {
+                    stlsoft::scoped_handle<char const*> scoper_file(sk_path.c_str(), unlink);
+
+                    glob_sequence_t rds(td.c_str(), "tmp.sock", glob_sequence_t::sockets | glob_sequence_t::absolutePath);
+                    size_t          n   =   0;
+                    path_t          first;
+
+                    for (glob_sequence_t::const_iterator i = rds.begin(); rds.end() != i; ++i, ++n)
+                    {
+                        if (first.empty())
+                        {
+                            first = *i;
+                        }
+                    }
+
+                    TEST_INT_EQ(1u, n);
+
+                    TEST_MULTIBYTE_STRING_EQUAL(sk_path, first);
+                }
+            }
+        }
+    }
+
+    TEST_BOOLEAN_FALSE(traits_m_t::file_exists(td_path.c_str()));
+}
+#endif
 } // anonymous namespace
 
 

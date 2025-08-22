@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 24th June 2005
- * Updated: 13th October 2024
+ * Updated: 18th August 2025
  *
  * Thanks:  Adi Shavit for spotting a small inefficiency in the
  *          resize()-ing, during the review of Extended STL volume 1
@@ -12,7 +12,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 14
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     74
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR    3
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION 1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT     77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -175,16 +175,16 @@ public:
 private:
     typedef STLSOFT_NS_QUAL(auto_buffer)<
         value_type
-    ,   64
+    ,   256
     ,   allocator_type
     >                                                       buffer_type_;
 public:
 
     enum
     {
-            elideIdle   =   0x0001
-        ,   elideSystem =   0x0002
-        ,   sort        =   0x0004
+            elideIdle   =   0x0001  //!< causes the idle process to be elided from the list
+        ,   elideSystem =   0x0002  //!< causes the system process to be elided from the list
+        ,   sort        =   0x0004  //!< causes the process ids to be sorted
     };
 /// @}
 
@@ -204,6 +204,14 @@ private:
 /// \name Iteration
 /// @{
 public:
+    /// Begins the iteration
+    ///
+    /// \return An iterator representing the start of the sequence
+    const_iterator  cbegin() const;
+    /// Ends the iteration
+    ///
+    /// \return An iterator representing the end of the sequence
+    const_iterator  cend() const;
     /// Begins the iteration
     ///
     /// \return An iterator representing the start of the sequence
@@ -238,9 +246,9 @@ public:
 /// @{
 public:
     /// Indicates whether the sequence is empty
-    ws_bool_t   empty() const;
+    ws_bool_t   empty() const STLSOFT_NOEXCEPT;
     /// Returns the number of identifiers in the sequence
-    size_type   size() const;
+    size_type   size() const STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name System Traits
@@ -405,16 +413,30 @@ pid_sequence::~pid_sequence() STLSOFT_NOEXCEPT
 
 inline
 pid_sequence::const_iterator
-pid_sequence::begin() const
+pid_sequence::cbegin() const
 {
     return &*m_pids.begin();
 }
 
 inline
 pid_sequence::const_iterator
-pid_sequence::end() const
+pid_sequence::cend() const
 {
     return &*m_pids.end();
+}
+
+inline
+pid_sequence::const_iterator
+pid_sequence::begin() const
+{
+    return cbegin();
+}
+
+inline
+pid_sequence::const_iterator
+pid_sequence::end() const
+{
+    return cend();
 }
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
@@ -445,14 +467,14 @@ pid_sequence::operator [](pid_sequence::size_type index) const
 
 inline
 ws_bool_t
-pid_sequence::empty() const
+pid_sequence::empty() const STLSOFT_NOEXCEPT
 {
     return m_pids.empty();
 }
 
 inline
 pid_sequence::size_type
-pid_sequence::size() const
+pid_sequence::size() const STLSOFT_NOEXCEPT
 {
     return m_pids.size();
 }
@@ -466,10 +488,10 @@ pid_sequence::size() const
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for string-access-shims for UNIX `timeval`.
  *
  * Created: 5th May 2014
- * Updated: 28th December 2024
+ * Updated: 28th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,6 +34,10 @@
 #include <stdlib.h>
 #include <time.h>
 
+#ifdef _WIN32
+# include <unixem/time.h>
+#endif
+
 
 #ifdef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_TIME
 # error Cannot include stlsoft/shims/access/string/std/time.hpp
@@ -44,8 +48,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_calls_possible();
     static void test_c_str_len();
@@ -84,8 +87,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     char const* get_fixed_date_string()
     {
         return "May 05 05:03:02.013987 2014";
@@ -110,7 +113,11 @@ namespace
 
         struct timeval  tv;
 
+#ifdef _WIN32
+        tv.tv_sec   =   static_cast<long>(::timegm(&tm));
+#else
         tv.tv_sec   =   ::timegm(&tm);
+#endif
         tv.tv_usec  =   13987;
 
         // ((void)&s1);

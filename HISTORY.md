@@ -4,6 +4,112 @@
 ----
 
 
+23rd August 2025 - 1.11.1-rc3 released
+---------------------------------------
+
+ * Added `platformstl::pid_sequence` / `unixstl::pid_sequence`;
+ * Added `winstl_C_printf_debug_string()` in **winstl/diagnostics/printf_debug_line.h**;
+ * Added `winstl::codepage_sequence`;
+ * Added Window write-to-console functions;
+ * More examples;
+ * More tests;
+ * Corrected some minor defects around language version detection;
+ * Compatibility/corrections in string-to-integer functions;
+ * Canonicalise example programs source names;
+ * Backwards compatibility (partial) for Visual C++ back to v10;
+ * Project boilerplate;
+
+
+31st May 2025 - 1.11.1-rc2 released
+-----------------------------------
+
+ * Added `stlsoft::member_selector_view<>` (alpha version), for span-compatibility in **recls**;
+ * Change semantics of `stlsoft::auto_buffer<>#resize()` the size of external allocation is maintained such that shrinking and then regrowing may be done within the existing allocation;
+ * InetSTL / UNIXSTL / WinSTL architecture discrimination  canonicalised, expanded, and corrected;
+ * Substantial refactoring and testing of `winstl::filesystem_traits<>`;
+ * Significant improvements to compatibility with different C and C++ language versions (C90, C99, C11, C17, C23, C++98, C++11, C++14, C++17, C++20, C++23) - detailed in TODO.md;
+ * Added compatibility with latest Visual C++ (`_MSC_VER` == 1944);
+ * **test.component.inetstl.util.uds_helpers** now works correctly for both Linux and macOS;
+ * Brought over several test programs exercising C APIs;
+ * **run_all_scratch_tests.sh** now accepts '--verbosity' option;
+
+
+6th May 2025 - 1.11.1-rc1 released
+----------------------------------
+
+ * Various CMake improvements;
+ * MinGW compatibility;
+ * **UNIXem** compatibility;
+ * Windows compatibility;
+
+
+5th May 2025 - 1.11.1-beta9 released
+------------------------------------
+
+ * `stlsoft::basic_string_view` fixed defect in comparison;
+ * **example.platformstl.filesystem.readdir_sequence** minor fix;
+
+
+3rd May 2025 - 1.11.1-beta8 released
+------------------------------------
+
+ * Added skipping of hidden directories and files to `unixstl::glob_sequence` and `unixstl::readdir_sequence`;
+ * Various example improvements;
+ * Updated **TODO.md** with structure and items;
+
+
+30th April 2025 - 1.11.1-beta7 released
+---------------------------------------
+
+ * Support for searching of devices on the file system, primarily concerning `unixstl::glob_sequence` and `unixstl::readdir_sequence`;
+
+
+28th April 2025 - 1.11.1-beta6 released
+---------------------------------------
+
+ * Visual C++ compatibility (including _MSC_VER 1943);
+ * CMake / UNIXem compatibility;
+ * Refactored / enhanced retrieval of home-directory, including, for Windows, trying first for `"USERPROFILE"` and then falls back to `"HOMEDRIVE"` and `"HOMEPATH"`;
+ * **prepare_cmake.sh** / **CMakeLists.txt** : + added '--no-shwild' / `CMAKE_NO_SHWILD`;
+ * Added **test.component.winstl.system.directory_functions**;
+
+
+26th April 2025 - 1.11.1-beta5 released
+---------------------------------------
+
+ * Added `platformstl::environment_variable_scope`;
+ * Added more unit-tests;
+ * MinGW compatibility;
+ * `stlsoft::basic_static_string<>` minor fix;
+ * Miscellaneous fixes;
+
+
+22nd April 2025 - 1.11.1-beta4 released
+---------------------------------------
+
+ * `unixstl::glob_sequence` now can search for sockets, in addition to files and directories;
+ * `stlsoft::cmdargs` added missing member types;
+
+
+16th April 2025 - 1.11.1-beta3 released
+-----------------------------------------
+
+ * Added specialisations of `integral_traits<>` for integer specialisations of `true_typedef<>`;
+ * Applied `printf()` format attributes throughout;
+ * Defect fix(es) to `unixstl::path_squeeze<>()` / `winstl::path_squeeze<>()`;
+ * MinGW compatibility;
+ * Wholesale trivial/minor tidying;
+
+
+23rd February 2025 - 1.11.1-beta2 released
+-----------------------------------------
+
+ * `unixstl::readdir_sequence` now can search for sockets, in addition to files and directories;
+ * **InetSTL** newly released functionality;
+ * GCC (11) compatibility around use of `__builtin_is_constant_evaluated` (when not C++20);
+ * **InetSTL** improved compatibility with macOS / Linux;
+
+
 31st December 2024 - 1.11.1-beta1 released
 ------------------------------------------
 

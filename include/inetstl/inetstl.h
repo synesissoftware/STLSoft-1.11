@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 24th April 2004
- * Updated: 27th December 2024
+ * Updated: 22nd August 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -49,9 +49,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
-# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    10
-# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 4
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     573
+# define INETSTL_VER_INETSTL_H_INETSTL_MINOR    11
+# define INETSTL_VER_INETSTL_H_INETSTL_REVISION 2
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     577
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h
@@ -133,16 +133,18 @@
 # define _INETSTL_VER_1_4_1_B03  0x01040183  /*!< Version 1.4.1 beta 3 (with STLSoft 1.10.1 beta 26) */
 # define _INETSTL_VER_1_4_1      0x010401ff  /*!< Version 1.4.1 (with STLSoft 1.10.3) */
 # define _INETSTL_VER_1_4_2      0x010402ff  /*!< Version 1.4.2 (with STLSoft 1.11.1 alpha 8) */
+# define _INETSTL_VER_1_5_0_A01  0x01050041  /*!< Version 1.5.0 alpha 1 (with STLSoft 1.11.1 beta 2) */
+# define _INETSTL_VER_1_5_0_A02  0x01050042  /*!< Version 1.5.0 alpha 2 (with STLSoft 1.11.1 rc 2) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _INETSTL_VER_MAJOR       1
-#define _INETSTL_VER_MINOR       4
-#define _INETSTL_VER_REVISION    2
-#define _INETSTL_VER             _INETSTL_VER_1_4_2
+#define _INETSTL_VER_MINOR       5
+#define _INETSTL_VER_REVISION    0
+#define _INETSTL_VER             _INETSTL_VER_1_5_0_A02
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * includes
+ * includes - 1
  */
 
 /* Strict */
@@ -165,39 +167,13 @@
 # pragma message(__FILE__)
 #endif /* STLSOFT_TRACE_INCLUDE */
 
-#if 0
-#elif defined(unix) || \
-      defined(UNIX) || \
-      defined(__unix__) || \
-      defined(__unix)
-
-# define INETSTL_OS_IS_UNIX
-#elif defined(WIN32) || \
-      defined(WIN64)
-
-# define INETSTL_OS_IS_WINDOWS
-
-# ifndef STLSOFT_INCL_H_WINDOWS
-#  define STLSOFT_INCL_H_WINDOWS
-#  include <windows.h>   /* Windows base header */
-# endif /* !STLSOFT_INCL_H_WINDOWS */
-# ifndef STLSOFT_INCL_H_WININET
-#  define STLSOFT_INCL_H_WININET
-#  include <wininet.h>
-# endif /* !STLSOFT_INCL_H_WININET */
-
-#else /* ? OS */
-
-# error Platform not (currently) supported
-#endif /* OS */
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility check(s)
  */
 
-#if _STLSOFT_VER < 0x010a019a
-# error This version of the InetSTL libraries requires STLSoft version 1.10.1 beta 26, or later
+#if _STLSOFT_VER < 0x010b0182
+# error This version of the InetSTL libraries requires STLSoft version 1.11.1 beta 2, or later
 #endif /* _STLSOFT_VER */
 
 
@@ -220,13 +196,20 @@
  * Watcom C/C++ 11.0
  */
 
-#if defined(STLSOFT_COMPILER_IS_BORLAND)
+#if 0
+
+#elif defined(STLSOFT_COMPILER_IS_BORLAND)
 /* Borland C++ */
 # if __BORLANDC__ < 0x0550
 #  error Versions of Borland C++ prior to 5.5 are not supported by the InetSTL libraries
 # endif /* __BORLANDC__ */
 
 #elif defined(STLSOFT_COMPILER_IS_CLANG)
+ /* ******************************* Clang ****************************** */
+# if __clang_major__ < 6
+#  error Versions of Clang C++ prior to 6 are not supported by the InetSTL libraries
+# endif /* __COMO_VERSION__ */
+
 
 #elif defined(STLSOFT_COMPILER_IS_COMO)
 /* Comeau C++ */
@@ -241,17 +224,15 @@
 # endif /* __DMC__ */
 
 #elif defined(STLSOFT_COMPILER_IS_GCC)
-/* GNU C/C++ */
-# if __GNUC__ < 2 || \
-     (  __GNUC__ == 2 && \
-        __GNUC_MINOR__ < 95)
-#  error Versions of GNU C/C++ prior to 2.95 are not supported by the InetSTL libraries
+ /* ******************************** GCC ******************************** */
+# if __GNUC__ < 4
+#  error Versions of GNU C/C++ prior to 4.0 are not supported by the InetSTL libraries
 # endif /* __GNUC__ */
 
 #elif defined(STLSOFT_COMPILER_IS_INTEL)
-/* Intel C++ */
-# if (__INTEL_COMPILER < 600)
-#  error Versions of Intel C++ prior to 6.0 are not supported by the InetSTL libraries
+ /* ******************************* Intel ******************************* */
+ # if (__INTEL_COMPILER < 700)
+#  error Versions of Intel C++ prior to 7.0 are not supported by the InetSTL libraries
 # endif /* __INTEL_COMPILER */
 
 #elif defined(STLSOFT_COMPILER_IS_MWERKS)
@@ -286,6 +267,313 @@
 #  error Currently only Borland C++, Clang, Digital Mars C/C++, GCC, Intel C/C++, Metrowerks CodeWarrior and Visual C++ compilers are supported by the InetSTL libraries
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * architecture
+ */
+
+#ifdef INETSTL_ARCH_IS_ARM64
+# undef INETSTL_ARCH_IS_ARM64
+#endif /* INETSTL_ARCH_IS_ARM64 */
+#ifdef INETSTL_ARCH_IS_IA64
+# undef INETSTL_ARCH_IS_IA64
+#endif /* INETSTL_ARCH_IS_IA64 */
+#ifdef INETSTL_ARCH_IS_X86
+# undef INETSTL_ARCH_IS_X86
+#endif /* INETSTL_ARCH_IS_X86 */
+#ifdef INETSTL_ARCH_IS_X64
+# undef INETSTL_ARCH_IS_X64
+#endif /* INETSTL_ARCH_IS_X64 */
+
+#ifdef INETSTL_ARCH_IS_INTEL
+# undef INETSTL_ARCH_IS_INTEL
+#endif /* INETSTL_ARCH_IS_INTEL */
+#ifdef INETSTL_ARCH_IS_POWERPC
+# undef INETSTL_ARCH_IS_POWERPC
+#endif /* INETSTL_ARCH_IS_POWERPC */
+#ifdef INETSTL_ARCH_IS_ALPHA
+# undef INETSTL_ARCH_IS_ALPHA
+#endif /* INETSTL_ARCH_IS_ALPHA */
+#ifdef INETSTL_ARCH_IS_HPPA
+# undef INETSTL_ARCH_IS_HPPA
+#endif /* INETSTL_ARCH_IS_HPPA */
+#ifdef INETSTL_ARCH_IS_SPARC
+# undef INETSTL_ARCH_IS_SPARC
+#endif /* INETSTL_ARCH_IS_SPARC */
+#ifdef INETSTL_ARCH_IS_UNKNOWN
+# undef INETSTL_ARCH_IS_UNKNOWN
+#endif /* INETSTL_ARCH_IS_UNKNOWN */
+
+/*
+Alpha
+ARM64
+HP/PA
+IA-64
+PowerPC
+Sparc
+x86-64
+
+80x86
+*/
+
+#if 0
+#elif 0 ||\
+      defined(__alpha__) || \
+      defined(__alpha) || \
+      defined(_M_ALPHA) ||\
+      0
+
+# define INETSTL_ARCH_IS_ALPHA
+# define INETSTL_ARCH_LABEL_STRING                          "Alpha"
+#elif 0 ||\
+      defined(__aarch64__) ||\
+      defined(_M_ARM64) ||\
+      0
+
+# define INETSTL_ARCH_IS_INTEL
+# define INETSTL_ARCH_IS_ARM64
+# define INETSTL_ARCH_LABEL_STRING                          "ARM64"
+#elif 0 ||\
+      defined(__hppa__) || \
+      defined(__hppa) ||\
+      0
+
+# define INETSTL_ARCH_IS_HPPA
+# define INETSTL_ARCH_LABEL_STRING                          "HP/PA"
+#elif 0 ||\
+      defined(__ia64__) || \
+      defined(__ia64) || \
+      defined(_IA64_) || \
+      defined(_M_IA64) ||\
+      0
+
+# define INETSTL_ARCH_IS_INTEL
+# define INETSTL_ARCH_IS_IA64
+# define INETSTL_ARCH_LABEL_STRING                          "IA-64"
+#elif 0 ||\
+      defined(__POWERPC__) || \
+      defined(__ppc__) || \
+      defined(__ppc) || \
+      defined(_M_PPC) ||\
+      defined(_POWER) || \
+      0
+
+# define INETSTL_ARCH_IS_POWERPC
+# define INETSTL_ARCH_LABEL_STRING                          "PowerPC"
+#elif 0 ||\
+      defined(__sparc__) || \
+      defined(__sparc) ||\
+      0
+
+ /* TODO: Separate out arch-family and archs (incl. Sparc32 and Sparc64) */
+# define INETSTL_ARCH_IS_SPARC
+# define INETSTL_ARCH_LABEL_STRING                          "Sparc"
+#elif 0 ||\
+      defined(__amd64__) || \
+      defined(__amd64) || \
+      defined(__x86_64__) ||\
+      defined(__x86_64) ||\
+      defined(_AMD64_) || \
+      defined(_M_AMD64) || \
+      defined(_M_X64) || \
+      0
+
+# define INETSTL_ARCH_IS_INTEL
+# define INETSTL_ARCH_IS_X64
+# define INETSTL_ARCH_LABEL_STRING                          "x86-64"
+#elif 0 ||\
+      defined(__i386__) || \
+      defined(__i386) || \
+      defined(__X86__) || \
+      defined(_M_IX86) ||\
+      defined(_X86_) || \
+      0
+
+# define INETSTL_ARCH_IS_INTEL
+# define INETSTL_ARCH_IS_X86
+# define INETSTL_ARCH_LABEL_STRING                          "80x86"
+#else /* ? arch */
+
+# define INETSTL_ARCH_IS_UNKNOWN
+# define INETSTL_ARCH_LABEL_STRING                          "Unknown"
+#endif /* ? arch */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * operating system identification
+ */
+
+#if 0
+#elif 0 || \
+      defined(unix) || \
+      defined(UNIX) || \
+      defined(__unix__) || \
+      defined(__unix) || \
+      defined(__MACH__) || \
+      0
+# define INETSTL_OS_IS_UNIX
+#elif 0 || \
+      defined(WIN64) || \
+      defined(_WIN64) || \
+      defined(__WIN64__) || \
+      0
+# define INETSTL_OS_IS_WIN64
+#elif 0 || \
+      defined(WIN32) || \
+      defined(_WIN32) || \
+      defined(__WIN32__) || \
+      0
+# define INETSTL_OS_IS_WIN32
+#else /* ? operating system */
+# error Operating system not discriminated. Only UNIX, Win32 and Win64 are currently recognised by PlatformSTL
+#endif /* operating system */
+
+#if defined(INETSTL_OS_IS_WIN32) || \
+    defined(INETSTL_OS_IS_WIN64)
+# define INETSTL_OS_IS_WINDOWS
+#endif /* INETSTL_OS_IS_WIN32 || INETSTL_OS_IS_WIN64 */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * operating system family
+ *
+ * In some circumstances more than one of these may be defined.
+ *
+ * Some of this os-discrimination is provided by SourceForge (http://predef.sourceforge.net/preos.html)
+ */
+
+#ifdef INETSTL_OSFAMILY_IS_BSD
+# undef INETSTL_OSFAMILY_IS_BSD
+#endif /* INETSTL_OSFAMILY_IS_BSD */
+#ifdef INETSTL_OSFAMILY_IS_SVR4
+# undef INETSTL_OSFAMILY_IS_SVR4
+#endif /* INETSTL_OSFAMILY_IS_SVR4 */
+
+
+#if 0 ||\
+    defined(__FreeBSD__) || \
+    defined(__NetBSD__) || \
+    defined(__OpenBSD__) || \
+    defined(__bsdi__) || \
+    defined(_SYSTYPE_BSD) ||\
+    0
+# define INETSTL_OSFAMILY_IS_BSD
+#endif /* bsd */
+
+#if 0 ||\
+    defined(__sysv__) || \
+    defined(__SVR4) || \
+    defined(__svr4__) || \
+    defined(_SYSTYPE_SVR4) ||\
+    0
+# define INETSTL_OSFAMILY_IS_SVR4
+#endif /* SVR4 */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * operating system
+ *
+ * Some of this os-discrimination is provided by SourceForge (http://predef.sourceforge.net/preos.html)
+ */
+
+#ifdef INETSTL_OS_IS_APPLE
+# undef INETSTL_OS_IS_APPLE
+#endif /* INETSTL_OS_IS_APPLE */
+#ifdef INETSTL_OS_IS_AIX
+# undef INETSTL_OS_IS_AIX
+#endif /* INETSTL_OS_IS_AIX */
+#ifdef INETSTL_OS_IS_FREEBSD
+# undef INETSTL_OS_IS_FREEBSD
+#endif /* INETSTL_OS_IS_FREEBSD */
+#ifdef INETSTL_OS_IS_HPUX
+# undef INETSTL_OS_IS_HPUX
+#endif /* INETSTL_OS_IS_HPUX */
+#ifdef INETSTL_OS_IS_LINUX
+# undef INETSTL_OS_IS_LINUX
+#endif /* INETSTL_OS_IS_LINUX */
+#ifdef INETSTL_OS_IS_MACOSX
+# undef INETSTL_OS_IS_MACOSX
+#endif /* INETSTL_OS_IS_MACOSX */
+#ifdef INETSTL_OS_IS_NETBSD
+# undef INETSTL_OS_IS_NETBSD
+#endif /* INETSTL_OS_IS_NETBSD */
+#ifdef INETSTL_OS_IS_OPENBSD
+# undef INETSTL_OS_IS_OPENBSD
+#endif /* INETSTL_OS_IS_OPENBSD */
+#ifdef INETSTL_OS_IS_SOLARIS
+# undef INETSTL_OS_IS_SOLARIS
+#endif /* INETSTL_OS_IS_SOLARIS */
+#ifdef INETSTL_OS_IS_FREEBSD
+# undef INETSTL_OS_IS_FREEBSD
+#endif /* INETSTL_OS_IS_FREEBSD */
+#ifdef INETSTL_OS_IS_UNKNOWN
+# undef INETSTL_OS_IS_UNKNOWN
+#endif /* INETSTL_OS_IS_UNKNOWN */
+
+#if 0
+#elif 0 ||\
+      defined(__APPLE__) ||\
+      defined(__MACH__) ||\
+      defined(__MACOSX__) ||\
+      0
+# define INETSTL_OS_IS_APPLE
+# define INETSTL_OS_IS_MACOSX
+#elif defined(_AIX)
+# define INETSTL_OS_IS_AIX
+#elif defined(__FreeBSD__)
+# define INETSTL_OS_IS_FREEBSD
+#elif 0 ||\
+      defined(hpux) ||\
+      defined(_hpux) ||\
+      0
+# define INETSTL_OS_IS_HPUX
+#elif 0 ||\
+      defined(__linux__) ||\
+      defined(__linux) ||\
+      defined(linux) ||\
+      0
+# define INETSTL_OS_IS_LINUX
+#elif defined(__NetBSD__)
+# define INETSTL_OS_IS_NETBSD
+#elif defined(__OpenBSD__)
+# define INETSTL_OS_IS_OPENBSD
+#elif 0 ||\
+      defined(sun) ||\
+      defined(__sun) ||\
+      0
+# if defined(INETSTL_OSFAMILY_IS_SVR4)
+#  define INETSTL_OS_IS_SOLARIS
+# else /* ? INETSTL_OSFAMILY_IS_SVR4 */
+#  define INETSTL_OS_IS_SUNOS
+# endif /* INETSTL_OSFAMILY_IS_SVR4 */
+#else /* ? operating system */
+# define INETSTL_OS_IS_UNKNOWN
+#endif /* ? operating system */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes - 2
+ */
+
+#if 0
+#elif defined(INETSTL_OS_IS_UNIX)
+
+# include <arpa/inet.h>
+#elif defined(INETSTL_OS_IS_WINDOWS)
+
+# ifndef STLSOFT_INCL_H_WINDOWS
+#  define STLSOFT_INCL_H_WINDOWS
+#  include <windows.h>   /* Windows base header */
+# endif /* !STLSOFT_INCL_H_WINDOWS */
+# ifndef STLSOFT_INCL_H_WININET
+#  define STLSOFT_INCL_H_WININET
+#  include <wininet.h>
+# endif /* !STLSOFT_INCL_H_WININET */
+#else /* ? OS */
+
+# error Platform not (currently) supported
+#endif /* OS */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -508,67 +796,66 @@ STLSOFT_NS_USING(move_lhs_from_rhs)
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-typedef STLSOFT_NS_QUAL(ss_char_a_t)        is_char_a_t;    /*!< Ansi char type */
-typedef STLSOFT_NS_QUAL(ss_char_w_t)        is_char_w_t;    /*!< Unicode char type */
-typedef STLSOFT_NS_QUAL(ss_sint8_t)         is_sint8_t;     /*!< 8-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint8_t)         is_uint8_t;     /*!< 8-bit unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_int16_t)         is_int16_t;     /*!< 16-bit integer */
-typedef STLSOFT_NS_QUAL(ss_sint16_t)        is_sint16_t;    /*!< 16-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint16_t)        is_uint16_t;    /*!< 16-bit unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_int32_t)         is_int32_t;     /*!< 32-bit integer */
-typedef STLSOFT_NS_QUAL(ss_sint32_t)        is_sint32_t;    /*!< 32-bit signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint32_t)        is_uint32_t;    /*!< 32-bit unsigned integer */
-#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef STLSOFT_NS_QUAL(ss_int64_t)        is_int64_t;     /*!< 64-bit integer */
- typedef STLSOFT_NS_QUAL(ss_sint64_t)       is_sint64_t;    /*!< 64-bit signed integer */
- typedef STLSOFT_NS_QUAL(ss_uint64_t)       is_uint64_t;    /*!< 64-bit unsigned integer */
-#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef STLSOFT_NS_QUAL(ss_int_t)           is_int_t;       /*!< integer */
-typedef STLSOFT_NS_QUAL(ss_sint_t)          is_sint_t;      /*!< signed integer */
-typedef STLSOFT_NS_QUAL(ss_uint_t)          is_uint_t;      /*!< unsigned integer */
-typedef STLSOFT_NS_QUAL(ss_long_t)          is_long_t;      /*!< long */
-typedef STLSOFT_NS_QUAL(ss_byte_t)          is_byte_t;      /*!< byte type */
-#ifdef __cplusplus
-typedef STLSOFT_NS_QUAL(ss_bool_t)          is_bool_t;      /*!< Boolean type */
-#endif /* __cplusplus */
+typedef STLSOFT_NS_QUAL(ss_char_a_t)                        is_char_a_t;    /*!< Ansi char type */
+typedef STLSOFT_NS_QUAL(ss_char_w_t)                        is_char_w_t;    /*!< Unicode char type */
+typedef STLSOFT_NS_QUAL(ss_sint8_t)                         is_sint8_t;     /*!< 8-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint8_t)                         is_uint8_t;     /*!< 8-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_int16_t)                         is_int16_t;     /*!< 16-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint16_t)                        is_sint16_t;    /*!< 16-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint16_t)                        is_uint16_t;    /*!< 16-bit unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_int32_t)                         is_int32_t;     /*!< 32-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint32_t)                        is_sint32_t;    /*!< 32-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint32_t)                        is_uint32_t;    /*!< 32-bit unsigned integer */
+# ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+typedef STLSOFT_NS_QUAL(ss_int64_t)                         is_int64_t;     /*!< 64-bit integer */
+typedef STLSOFT_NS_QUAL(ss_sint64_t)                        is_sint64_t;    /*!< 64-bit signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint64_t)                        is_uint64_t;    /*!< 64-bit unsigned integer */
+# endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+typedef STLSOFT_NS_QUAL(ss_int_t)                           is_int_t;       /*!< integer */
+typedef STLSOFT_NS_QUAL(ss_sint_t)                          is_sint_t;      /*!< signed integer */
+typedef STLSOFT_NS_QUAL(ss_uint_t)                          is_uint_t;      /*!< unsigned integer */
+typedef STLSOFT_NS_QUAL(ss_long_t)                          is_long_t;      /*!< long */
+typedef STLSOFT_NS_QUAL(ss_byte_t)                          is_byte_t;      /*!< byte type */
+# ifdef __cplusplus
+typedef STLSOFT_NS_QUAL(ss_bool_t)                          is_bool_t;      /*!< Boolean type */
+# endif /* __cplusplus */
 # ifdef INETSTL_OS_IS_WINDOWS
-typedef DWORD                               is_dword_t;     /*!< dword */
+typedef DWORD                                               is_dword_t;     /*!< dword */
 # endif /* INETSTL_OS_IS_WINDOWS */
-typedef STLSOFT_NS_QUAL(ss_size_t)          is_size_t;      /*!< size */
-typedef STLSOFT_NS_QUAL(ss_ptrdiff_t)       is_ptrdiff_t;   /*!< ptr diff */
-typedef STLSOFT_NS_QUAL(ss_streampos_t)     is_streampos_t; /*!< streampos */
-typedef STLSOFT_NS_QUAL(ss_streamoff_t)     is_streamoff_t; /*!< streamoff */
+typedef STLSOFT_NS_QUAL(ss_size_t)                          is_size_t;      /*!< size */
+typedef STLSOFT_NS_QUAL(ss_ptrdiff_t)                       is_ptrdiff_t;   /*!< ptr diff */
+typedef STLSOFT_NS_QUAL(ss_streampos_t)                     is_streampos_t; /*!< streampos */
+typedef STLSOFT_NS_QUAL(ss_streamoff_t)                     is_streamoff_t; /*!< streamoff */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef INETSTL_NO_NAMESPACE
-typedef is_char_a_t         char_a_t;           /*!< Ansi char type */
-typedef is_char_w_t         char_w_t;           /*!< Unicode char type */
-typedef is_sint8_t          sint8_t;            /*!< 8-bit signed integer */
-typedef is_uint8_t          uint8_t;            /*!< 8-bit unsigned integer */
-typedef is_int16_t          int16_t;            /*!< 16-bit integer */
-typedef is_sint16_t         sint16_t;           /*!< 16-bit signed integer */
-typedef is_uint16_t         uint16_t;           /*!< 16-bit unsigned integer */
-typedef is_int32_t          int32_t;            /*!< 32-bit integer */
-typedef is_sint32_t         sint32_t;           /*!< 32-bit signed integer */
-typedef is_uint32_t         uint32_t;           /*!< 32-bit unsigned integer */
+typedef is_char_a_t                                         char_a_t;       /*!< Ansi char type */
+typedef is_char_w_t                                         char_w_t;       /*!< Unicode char type */
+typedef is_sint8_t                                          sint8_t;        /*!< 8-bit signed integer */
+typedef is_uint8_t                                          uint8_t;        /*!< 8-bit unsigned integer */
+typedef is_int16_t                                          int16_t;        /*!< 16-bit integer */
+typedef is_sint16_t                                         sint16_t;       /*!< 16-bit signed integer */
+typedef is_uint16_t                                         uint16_t;       /*!< 16-bit unsigned integer */
+typedef is_int32_t                                          int32_t;        /*!< 32-bit integer */
+typedef is_sint32_t                                         sint32_t;       /*!< 32-bit signed integer */
+typedef is_uint32_t                                         uint32_t;       /*!< 32-bit unsigned integer */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef is_int64_t         int64_t;            /*!< 64-bit integer */
- typedef is_sint64_t        sint64_t;           /*!< 64-bit signed integer */
- typedef is_uint64_t        uint64_t;           /*!< 64-bit unsigned integer */
+typedef is_int64_t                                          int64_t;        /*!< 64-bit integer */
+typedef is_sint64_t                                         sint64_t;       /*!< 64-bit signed integer */
+typedef is_uint64_t                                         uint64_t;       /*!< 64-bit unsigned integer */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef is_int_t            int_t;              /*!< integer */
-typedef is_sint_t           sint_t;             /*!< signed integer */
-typedef is_uint_t           uint_t;             /*!< unsigned integer */
-typedef is_long_t           long_t;             /*!< long integer */
-typedef is_byte_t           byte_t;             /*!< byte type */
-typedef is_bool_t           bool_t;             /*!< Boolean type */
+typedef is_int_t                                            int_t;          /*!< integer */
+typedef is_sint_t                                           sint_t;         /*!< signed integer */
+typedef is_uint_t                                           uint_t;         /*!< unsigned integer */
+typedef is_long_t                                           long_t;         /*!< long integer */
+typedef is_byte_t                                           byte_t;         /*!< byte type */
+typedef is_bool_t                                           bool_t;         /*!< Boolean type */
 # ifdef INETSTL_OS_IS_WINDOWS
-typedef is_dword_t          dword_t;            /*!< dword */
+typedef is_dword_t                                          dword_t;        /*!< dword */
 # endif /* INETSTL_OS_IS_WINDOWS */
 # if !defined(STLSOFT_COMPILER_IS_DMC)
-typedef is_streampos_t      streampos_t;        /*!< streampos */
-typedef is_streamoff_t      streamoff_t;        /*!< streamoff */
+typedef is_streampos_t                                      streampos_t;    /*!< streampos */
+typedef is_streamoff_t                                      streamoff_t;    /*!< streamoff */
 # endif /* compiler */
 #endif /* !INETSTL_NO_NAMESPACE */
 

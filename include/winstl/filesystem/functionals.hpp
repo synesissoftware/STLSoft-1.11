@@ -4,11 +4,11 @@
  * Purpose: File-system related functions and predicates.
  *
  * Created: 19th January 2002
- * Updated: 27th December 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR     4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR     2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION  7
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      106
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT      108
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -276,7 +276,10 @@ public: // operations
     ///
     /// \note The comparison is determined by evaluation the full-paths of both \c s1 and \c s2
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
-    template<ss_typename_param_k T1, ss_typename_param_k T2>
+    template<
+        ss_typename_param_k T1
+    ,   ss_typename_param_k T2
+    >
     result_type operator ()(T1 const& s1, T2 const& s2) const
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     result_type operator ()(first_argument_type s1, second_argument_type s2) const
@@ -330,7 +333,10 @@ public: // operations
     ///
     /// \note The comparison is determined by evaluation the full-paths of both \c s1 and \c s2
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
-    template<ss_typename_param_k T1, ss_typename_param_k T2>
+    template<
+        ss_typename_param_k T1
+    ,   ss_typename_param_k T2
+    >
     result_type operator ()(T1 const& s1, T2 const& s2) const
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     result_type operator ()(first_argument_type s1, second_argument_type s2) const
@@ -531,10 +537,10 @@ typedef directory_contains_file                             path_contains_file;
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

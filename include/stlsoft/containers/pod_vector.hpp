@@ -4,7 +4,7 @@
  * Purpose: Contains the pod_vector class.
  *
  * Created: 23rd December 2003
- * Updated: 27th September 2024
+ * Updated: 20th March 2025
  *
  * Thanks:  Chris Newcombe for requesting sufficient enhancements to
  *          auto_buffer such that pod_vector was born. Christian Roessel,
@@ -13,7 +13,7 @@
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        99
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1299,7 +1299,7 @@ pod_vector<T_value, T_allocator, V_internalSize>::erase(
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
@@ -1325,7 +1325,7 @@ namespace std
     {
         lhs.swap(rhs);
     }
-} /* namespace std */
+} // namespace std
 # endif /* INTEL && _MSC_VER < 1310 */
 #endif /* STLSOFT_CF_std_NAMESPACE */
 

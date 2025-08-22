@@ -4,11 +4,11 @@
  * Purpose: Byte formatting functions.
  *
  * Created: 23rd July 2006
- * Updated: 24th December 2024
+ * Updated: 30th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_MINOR     1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_REVISION  13
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      39
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_BYTE_FORMAT_FUNCTIONS_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -228,9 +228,9 @@ inline void format_hex_uint256(char buff[16], ss_byte_t const* py, bool requestU
 
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace impl */
-} /* namespace conversion */
-} /* namespace format */
+} // namespace impl
+} // namespace conversion
+} // namespace format
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /** Formats the contents of a contiguous block of memory into
@@ -243,7 +243,7 @@ inline void format_hex_uint256(char buff[16], ss_byte_t const* py, bool requestU
  * \param buff Pointer to the destination character buffer to receive the
  *   formatted contents
  * \param cchBuff Number of character spaces available in the buffer
- * \param byteGrouping Number of bytes in a group. Must be 0, 1, 2, 4, 6, 16
+ * \param byteGrouping Number of bytes in a group. Must be 0, 1, 2, 4, 8, 16
  *   or 32. If 0, is reevaluated to sizeof(int)
  * \param groupSeparator Group separator. If \c nullptr, defaults to ""
  * \param groupsPerLine Number of groups per line
@@ -482,7 +482,7 @@ format_bytes(
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

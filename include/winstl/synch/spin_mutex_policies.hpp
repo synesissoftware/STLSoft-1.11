@@ -4,11 +4,11 @@
  * Purpose:     Policies for spin mutexes.
  *
  * Created:     25th November 2006
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MAJOR      2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_MINOR      1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_REVISION   3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_EDIT       18
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_POLICIES_EDIT       19
 #endif /* !WINSTL_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -270,10 +270,10 @@ public: // Operations
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

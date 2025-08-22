@@ -5,11 +5,11 @@
  *          platform discriminations, and definitions of types.
  *
  * Created: 12th May 2003
- * Updated: 9th July 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,7 +51,7 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    4
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 3
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     62
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp
@@ -581,10 +581,10 @@ typedef STLSOFT_NS_QUAL(ss_streamoff_t)     ws_streamoff_t; //!< streamoff
 #ifndef WTLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace wtlstl */
+} // namespace wtlstl
 # else
-} /* namespace wtlstl_project */
-} /* namespace stlsoft */
+} // namespace wtlstl_project
+} // namespace stlsoft
 namespace wtlstl = ::stlsoft::wtlstl_project;
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WTLSTL_NO_NAMESPACE */

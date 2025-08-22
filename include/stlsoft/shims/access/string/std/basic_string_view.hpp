@@ -4,7 +4,7 @@
  * Purpose: Contains the c_str_data and c_str_len accessors.
  *
  * Created: 21st October 2020
- * Updated: 26th March 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -59,7 +59,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_MAJOR    1
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_MINOR    0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_REVISION 2
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_EDIT     5
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_VIEW_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -164,7 +164,7 @@ c_str_len(
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 

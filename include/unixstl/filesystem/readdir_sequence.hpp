@@ -4,11 +4,11 @@
  * Purpose: readdir_sequence class.
  *
  * Created: 15th January 2002
- * Updated: 28th December 2024
+ * Updated: 29th May 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       165
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       178
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,9 @@
 #  include <unixstl/exception/unixstl_exception.hpp>
 # endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTION_UNIXSTL_EXCEPTION */
 
+#ifndef STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION
+# include <stlsoft/exception/out_of_memory_exception.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_OUT_OF_MEMORY_EXCEPTION */
 #ifdef __GNUC__
 # ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_HPP_STD_BASIC_STRING
 #  include <stlsoft/shims/access/string/std/basic_string.hpp>
@@ -159,30 +162,40 @@ class readdir_sequence_exception
 /// \name Types
 /// @{
 public:
+    /// The parent class type
     typedef unixstl_exception                               parent_class_type;
+    /// This type
     typedef readdir_sequence_exception                      class_type;
+    /// The string type
     typedef parent_class_type::string_type                  string_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
-    readdir_sequence_exception(us_char_a_t const* message, us_int_t erno)
+    readdir_sequence_exception(
+        us_char_a_t const*  message
+    ,   us_int_t            erno
+    )
         : parent_class_type(message, erno)
         , Directory()
     {}
-    readdir_sequence_exception(us_char_a_t const* message, us_int_t erno, us_char_a_t const* directory)
+    readdir_sequence_exception(
+        us_char_a_t const*  message
+    ,   us_int_t            erno
+    ,   us_char_a_t const*  directory
+    )
         : parent_class_type(message, erno)
-#if 0
-        , Directory(directory)
-#else /* ? 0 */
         , Directory(stlsoft::c_str_ptr(directory))
-#endif /* 0 */
     {}
     ~readdir_sequence_exception() STLSOFT_NOEXCEPT
     {}
 #ifdef STLSOFT_COMPILER_IS_GCC
-    readdir_sequence_exception(class_type const&) = default;
+    //readdir_sequence_exception(class_type const&) = default;
+    readdir_sequence_exception(class_type const& rhs)
+        : parent_class_type(rhs)
+        , Directory(rhs.Directory)
+    {}
 #else
 private:
     void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
@@ -211,7 +224,7 @@ class readdir_sequence
 /// \name Member Types
 /// @{
 public:
-    /// This class
+    /// This type
     typedef readdir_sequence                                class_type;
 private:
     // These make it easy to move to a template, if ever needed
@@ -230,8 +243,8 @@ public:
 #endif /* UNIXSTL_READDIR_SEQUENCE_OLD_VALUE_TYPE */
     /// The flags type
     typedef us_int_t                                        flags_type;
-
 public:
+    /// The string type
     typedef STLSOFT_NS_QUAL(basic_simple_string)<
         char_type
     >                                                       string_type;
@@ -242,15 +255,21 @@ public:
 public:
     enum
     {
-            includeDots     =   0x0008  /*!< Requests that dots directories be included in the returned sequence */
-        ,   directories     =   0x0010  /*!< Causes the search to include directories */
-        ,   files           =   0x0020  /*!< Causes the search to include files */
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-        ,   sockets         =   0x0000  /*!< CURRENTLY UNSUPPORTED : DO NOT USE! This exists for forward compatibility with STLSoft 1.10 test programs, and is subject to change in the future. A future version will support sockets, but it may not use this enumerator name. */
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-        ,   typeMask        =   0x0070
-        ,   fullPath        =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
-        ,   absolutePath    =   0x0200  /*!< The search directory is converted to an absolute path. */
+            none                    =   0x0000
+        ,   includeDots             =   0x0008  /*!< Requests that dots directories be included in the returned sequence. */
+        ,   directories             =   0x0010  /*!< Causes the search to include directories. */
+        ,   files                   =   0x0020  /*!< Causes the search to include files. */
+        ,   sockets                 =   0x0040  /*!< Causes the search to include sockets. */
+        ,   devices                 =   0x0080  /*!< Causes the search to include devices. */
+        ,   typeMask                =   0x00f0
+        ,   typeDefault             =   directories | files | sockets
+        ,   fullPath                =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
+        ,   absolutePath            =   0x0200  /*!< The search directory is converted to an absolute path. */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        ,   noThrowOnAccessFailure  =   0x2000  /*!< Suppresses an exception from being thrown if a directory cannot be accessed. */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        ,   skipHiddenFiles         =   0x4000  //!< Causes the search to skip files (and devices and sockets) marked hidden
+        ,   skipHiddenDirs          =   0x8000  //!< Causes the search to skip directories marked hidden
     };
 /// @}
 
@@ -272,7 +291,10 @@ public:
     /// this reflects the default behaviour of \c readdir(), and also because it is the
     /// most efficient.
     template <ss_typename_param_k S>
-    readdir_sequence(S const& directory, flags_type flags = directories | files)
+    readdir_sequence(
+        S const&    directory
+    ,   flags_type  flags       =   typeDefault
+    )
         : m_flags(validate_flags_(flags))
         , m_directory(prepare_directory_T_(directory, flags))
     {}
@@ -309,13 +331,7 @@ public:
     /// \c fullPath nor \c absolutePath.
     string_type const&  get_directory() const;
 
-    /// The flags used by the sequence
-    ///
-    /// \note This value is the value used by the sequence, which may, as a
-    /// result of the determination of defaults, be different from those
-    /// specified in its constructor. For example, if
-    /// <code>includeDots</code> was specified, this function will instead
-    /// return <code>includeDots | directories | files</code>.
+    /// The flags used by the sequence.
     flags_type          get_flags() const;
 /// @}
 
@@ -539,7 +555,7 @@ inline
 /* static */
 readdir_sequence::flags_type
 readdir_sequence::validate_flags_(
-        readdir_sequence::flags_type flags
+    readdir_sequence::flags_type flags
 )
 {
     const flags_type    validFlags  =   0
@@ -547,17 +563,25 @@ readdir_sequence::validate_flags_(
                                     |   0
                                     |   directories
                                     |   files
+                                    |   devices
+                                    |   sockets
                                     |   0
                                     |   fullPath
                                     |   absolutePath
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                                    |   0
+                                    |   noThrowOnAccessFailure
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+                                    |   skipHiddenFiles
+                                    |   skipHiddenDirs
                                     |   0;
 
     UNIXSTL_MESSAGE_ASSERT("Specification of unrecognised/unsupported flags", flags == (flags & validFlags));
     STLSOFT_SUPPRESS_UNUSED(validFlags);
 
-    if (0 == (flags & (directories | files)))
+    if (0 == (flags & (devices | directories | files | sockets)))
     {
-        flags |= (directories | files);
+        flags |= typeDefault;
     }
 
     return flags;
@@ -666,10 +690,33 @@ readdir_sequence::begin() const
     if (NULL == dir)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(readdir_sequence_exception("failed to enumerate directory", errno, m_directory.c_str()));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-        return const_iterator();
+        int e = (0 != errno) ? errno : ENOMEM;
+
+        if (ENOMEM == e)
+        {
+            STLSOFT_THROW_X(STLSOFT_NS_QUAL(out_of_memory_exception)(STLSoftProjectIdentifier_UNIXSTL, STLSoftLibraryIdentifier_FileSystem, e));
+        }
+
+        bool const  access_denied   =   false
+                                    ||  EACCES == e
+# ifdef ENOTDIR
+                                    ||  ENOTDIR == e
+# endif /* ENOTDIR */
+# ifdef EPERM
+                                    ||  EPERM == e
+# endif /* EPERM */
+                                    ||  false
+                                    ;
+
+        if (!access_denied ||
+            0 == (noThrowOnAccessFailure & m_flags))
+        {
+            STLSOFT_THROW_X(readdir_sequence_exception("failed to enumerate directory", e, m_directory.c_str()));
+        }
+
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+        return const_iterator();
     }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -844,15 +891,29 @@ readdir_sequence::const_iterator::operator ++()
         {
             UNIXSTL_ASSERT(NULL != m_entry->d_name);
 
-            // Check for dots
+            bool const is_hidden = '.' == m_entry->d_name[0];
 
-            if (0 == (m_flags & includeDots))
+            if (is_hidden)
             {
-                if (traits_type::is_dots(m_entry->d_name))
+                // Check for dots
+
+                if (0 == (m_flags & includeDots))
                 {
-                    continue; // Don't want dots; skip it
+                    if (traits_type::is_dots(m_entry->d_name))
+                    {
+                        continue; // Don't want dots; skip it
+                    }
+                }
+
+                if ((skipHiddenDirs | skipHiddenFiles) == ((skipHiddenDirs | skipHiddenFiles) & m_flags))
+                {
+                    // since we aim to elide all hidden things, so we can
+                    // skip now (without needed to call `stat()`)
+
+                    continue;
                 }
             }
+
 
             // If either
             //
@@ -885,15 +946,42 @@ readdir_sequence::const_iterator::operator ++()
                 }
                 else
                 {
-#ifndef _WIN32
-                    // Test for sockets : this version does not support sockets,
-                    // but does elide them from the search results.
-                    if (traits_type::is_socket(&st))
+                    if (is_hidden)
                     {
-                        continue;
+                        if (traits_type::is_directory(&st))
+                        {
+                            if (skipHiddenDirs & m_flags)
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            if (skipHiddenFiles & m_flags)
+                            {
+                                continue;
+                            }
+                        }
+                    }
+
+#ifndef _WIN32
+                    if (m_flags & devices) // want devices
+                    {
+                        if (traits_type::is_device(&st))
+                        {
+                            // It is a device, so accept it
+                            break;
+                        }
+                    }
+                    if (m_flags & sockets) // want sockets
+                    {
+                        if (traits_type::is_socket(&st))
+                        {
+                            // It is a socket, so accept it
+                            break;
+                        }
                     }
 #endif /* !_WIN32 */
-
                     if (m_flags & directories) // Want directories
                     {
                         if (traits_type::is_directory(&st))
@@ -962,10 +1050,10 @@ readdir_sequence::const_iterator::equal(
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

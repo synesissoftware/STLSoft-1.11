@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 28th December 2024
+ * Updated: 30th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,7 +37,9 @@
 #include <numeric>
 #include <stdexcept>
 #include <string>
-#include <type_traits>
+#if __cplusplus >= 201103L
+# include <type_traits>
+#endif
 #include <vector>
 
 /* Standard C header files */
@@ -48,8 +50,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_ctor_default();
 #if __cplusplus >= 201103L
@@ -70,7 +71,6 @@ namespace
     static void test_swap();
     static void test_swap_std();
     static void test_iteration_order_1();
-
 } // anonymous namespace
 
 
@@ -120,8 +120,7 @@ int main(int argc, char *argv[])
  * utility functions
  */
 
-namespace
-{
+namespace {
 
     template<
         ss_typename_param_k C
@@ -139,17 +138,16 @@ namespace
 
         return r;
     }
-}
+} // anonymous namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
-	using stlsoft::ss_uintptr_t;
+    using stlsoft::ss_uintptr_t;
 
     typedef stlsoft::frequency_map<
         int
@@ -1905,7 +1903,6 @@ static void test_iteration_order_1()
     }
 #endif
 }
-
 } // anonymous namespace
 
 

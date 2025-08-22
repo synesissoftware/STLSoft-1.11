@@ -4,7 +4,7 @@
  * Purpose:     Range algorithms.
  *
  * Created:     4th November 2003
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Thanks to:   Pablo Aguilar for requesting r_copy_if(); to Luoyi, for pointing
  *              out some gaps in the compatibility with the sequence_range; to
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -80,7 +80,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_MINOR    3
 # define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_REVISION 10
-# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     59
+# define RANGELIB_VER_RANGELIB_HPP_ALGORITHMS_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -1618,10 +1618,10 @@ inline void r_replace_copy_if(RI ri, RO ro, P pred, T newVal)
 #ifndef RANGELIB_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace rangelib */
+} // namespace rangelib
 # else
-} /* namespace rangelib_project */
-} /* namespace stlsoft */
+} // namespace rangelib_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !RANGELIB_NO_NAMESPACE */
 

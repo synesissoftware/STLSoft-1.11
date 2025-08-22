@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::integer_to_lc_string`.
  *
  * Created: 1st November 2011
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,8 +48,7 @@
  */
 
 
-namespace
-{
+namespace {
 
     static void test_987654321();
 
@@ -98,8 +97,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     struct mapping_t
     {
         int            value;
@@ -329,7 +328,6 @@ static void test_1_6()
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(mappings[i].result, s);
     }}
 }
-
 } // anonymous namespace
 
 

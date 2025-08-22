@@ -4,14 +4,19 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
-MakeCmd=${SIS_CMAKE_COMMAND:-make}
+[[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
+MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
+
 
 Configuration=Release
 ExamplesDisabled=0
 MSVC_MT=0
 MinGW=0
+NO_cstring=0
+NO_shwild=0
 RunMake=0
 TestingDisabled=0
+USE_UNIXem=0
 VerboseMakefile=0
 
 
@@ -21,19 +26,19 @@ VerboseMakefile=0
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    -v|--cmake-verbose-makefile)
+    --cmake-verbose-makefile|-v)
 
       VerboseMakefile=1
       ;;
-    -d|--debug-configuration)
+    --debug-configuration|-d)
 
       Configuration=Debug
       ;;
-    -E|--disable-examples)
+    --disable-examples|-E)
 
       ExamplesDisabled=1
       ;;
-    -T|--disable-testing)
+    --disable-testing|-T)
 
       TestingDisabled=1
       ;;
@@ -45,9 +50,21 @@ while [[ $# -gt 0 ]]; do
 
       MSVC_MT=1
       ;;
-    -m|--run-make)
+    --no-cstring)
+
+      NO_cstring=1
+      ;;
+    --no-shwild)
+
+      NO_shwild=1
+      ;;
+    --run-make|-m)
 
       RunMake=1
+      ;;
+    --use-unixem)
+
+      USE_UNIXem=1
       ;;
     --help)
 
@@ -90,11 +107,21 @@ Flags/options:
 
     --msvc-mt
         when using Visual C++ (MSVC), the static runtime library will be
-        selected; the default is the dynamic runtime library
+        selected; the default is the dynamic runtime library. Has no effect
+        when not using Visual C++
+
+    --no-shwild
+        suppresses discovery of shwild package
 
     -m
     --run-make
         executes make after a successful running of CMake
+
+    --use-unixem
+      when building on Windows, use the UNIXem library and define the
+      preprocessor symbol _STLSOFT_FORCE_ANY_COMPILER so as to emulate and
+      exercise UNIXSTL, not WinSTL (or COMSTL, etc.). Has no effect when not
+      executing on Windows
 
 
     standard flags:
@@ -131,7 +158,10 @@ echo "Executing CMake (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
+if [ $NO_cstring -eq 0 ]; then CMakeNoCstring="OFF" ; else CMakeNoCstring="ON" ; fi
+if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
+if [ $USE_UNIXem -ne 0 ]; then CMakeUSE_UNIXem="ON" ; else CMakeUSE_UNIXem="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
 
 if [ $MinGW -ne 0 ]; then
@@ -140,6 +170,9 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
+    -DNO_CSTRING:BOOL=$CMakeNoCstring \
+    -DNO_SHWILD:BOOL=$CMakeNoShwild \
+    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -152,6 +185,9 @@ else
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+    -DNO_CSTRING:BOOL=$CMakeNoCstring \
+    -DNO_SHWILD:BOOL=$CMakeNoShwild \
+    -DUSE_UNIXEM:BOOL=$CMakeUSE_UNIXem \
     -S $Dir \
     -B $CMakeDir \
     || (cd ->/dev/null ; exit 1)

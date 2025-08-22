@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_path_buffer template class.
  *
  * Created:     12th December 2020
- * Updated:     11th March 2024
+ * Updated:     20th March 2025
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_MAJOR       1
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT        2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_BUFFER_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -165,12 +165,12 @@ typedef path_buffer_generator<
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
 /* There is no stlsoft namespace, so must define ::unixstl */
-} /* namespace unixstl */
+} // namespace unixstl
 # else
 
 /* Define stlsoft::unixstl_project */
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 

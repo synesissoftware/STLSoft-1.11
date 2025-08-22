@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::basic_static_string`.
  *
  * Created: 4th November 2008
- * Updated: 28th December 2024
+ * Updated: 30th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,10 +29,10 @@
  */
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
-#include <stlsoft/stlsoft.h>
+#include <stlsoft/limits/integral_limits.hpp>
 
 /* Standard C++ header files */
 #include <iomanip>
@@ -48,8 +48,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     // construction
 
@@ -149,6 +148,16 @@ namespace
     static void test_substr_throw();
 
 
+    // length-error attempts
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
+    static void TEST_overlong_ctor();
+    static void TEST_overlong_append();
+    static void TEST_overlong_assign();
+    static void TEST_overlong_reserve();
+    static void TEST_overlong_resize();
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
 
     // search
 
@@ -167,8 +176,6 @@ namespace
     // shims : sas
 
     static void test_string_access_shims();
-
-
 } // anonymous namespace
 
 
@@ -281,6 +288,18 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE_THAT_THROWS(test_substr_throw, std::out_of_range);
 
 
+        // length-error attempts
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
+        XTESTS_RUN_CASE(TEST_overlong_ctor);
+        XTESTS_RUN_CASE(TEST_overlong_append);
+        XTESTS_RUN_CASE(TEST_overlong_assign);
+        XTESTS_RUN_CASE(TEST_overlong_reserve);
+        XTESTS_RUN_CASE(TEST_overlong_resize);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+
         // search
 
 
@@ -313,8 +332,8 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     typedef stlsoft::basic_static_string<char, 10>          string_10_t;
     typedef stlsoft::basic_static_string<char, 30>          string_30_t;
     typedef stlsoft::basic_static_string<wchar_t, 10>       wstring_10_t;
@@ -2151,6 +2170,74 @@ static void test_substr_throw()
 }
 
 
+// length-error attempts
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
+static void TEST_overlong_ctor()
+{
+    typedef string_10_t                                     string_t;
+
+    try
+    {
+        string_t s("abcdefghijk");
+
+        TEST_FAIL("should not get here");
+    }
+    catch (std::length_error& x)
+    {
+#ifdef XTESTS_USE_SHWILD
+
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("operation would result in static_string (of 11 element(s)) that is too large for static limit (of 10 element(s))", x.what());
+#else
+
+        STLSOFT_SUPPRESS_UNUSED(x);
+#endif // XTESTS_USE_SHWILD
+    }
+}
+
+static void TEST_overlong_append()
+{
+
+}
+
+static void TEST_overlong_assign()
+{
+
+}
+
+static void TEST_overlong_reserve()
+{
+
+}
+
+static void TEST_overlong_resize()
+{
+    typedef string_10_t                                     string_t;
+
+    try
+    {
+        string_t s("abc");
+
+        TEST_PASSED();
+
+        s.resize(stlsoft::integral_limits<std::size_t>::maximum());
+
+        TEST_FAIL("should not get here");
+    }
+    catch (std::length_error& x)
+    {
+#ifdef XTESTS_USE_SHWILD
+
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("operation would result in static_string (of ?* element(s)) that is too large for static limit (of 10 element(s))", x.what());
+#else
+
+        STLSOFT_SUPPRESS_UNUSED(x);
+#endif // XTESTS_USE_SHWILD
+    }
+}
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+
 // operators : insertion
 
 static void test_insertion_1()
@@ -2305,7 +2392,7 @@ static void test_insertion_4()
 #ifdef FIELD_WIDTH
 # undef FIELD_WIDTH
 #endif
-}
+} // anonymous namespace
 
 
 // shims : sas
@@ -2360,9 +2447,7 @@ static void test_string_access_shims()
 
 //      XTESTS_TEST_POINTER_EQUAL(NULL, stlsoft::c_str_ptr_null(s));
     }
-
 }
-
 } // anonymous namespace
 
 

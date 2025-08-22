@@ -4,11 +4,11 @@
  * Purpose: Directory functions.
  *
  * Created: 1st October 2016
- * Updated: 5th November 2024
+ * Updated: 26th April 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MAJOR       1
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    10
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        22
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_REVISION    13
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_H_DIRECTORY_FUNCTIONS_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,6 +84,10 @@
 #ifndef STLSOFT_INCL_STLSOFT_API_external_h_string
 # include <stlsoft/api/external/string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_API_external_h_string */
+
+#ifdef _WIN32
+# include <windows.h>
+#endif /* _WIN32 */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -210,8 +214,8 @@ unixstl_C_get_home_directory_invoke_getenv_a_(
 STLSOFT_INLINE
 us_size_t
 unixstl_C_get_home_directory_a(
-    us_char_a_t*    buffer
-,   us_size_t       cchBuffer
+    us_char_a_t buffer[]
+,   us_size_t   cchBuffer
 )
 {
     us_char_a_t const* const home = unixstl_C_get_home_directory_invoke_getenv_a_("HOME");
@@ -238,8 +242,8 @@ STLSOFT_INLINE
 #endif
 us_size_t
 unixstl_C_get_home_directory_w(
-    us_char_w_t*    buffer
-,   us_size_t       cchBuffer
+    us_char_w_t buffer[]
+,   us_size_t   cchBuffer
 );
 
 
@@ -252,8 +256,8 @@ unixstl_C_get_home_directory_w(
 inline
 us_size_t
 get_home_directory(
-    us_char_a_t*    buffer
-,   us_size_t       cchBuffer
+    us_char_a_t buffer[]
+,   us_size_t   cchBuffer
 )
 {
     return unixstl_C_get_home_directory_a(buffer, cchBuffer);
@@ -262,8 +266,8 @@ get_home_directory(
 inline
 us_size_t
 get_home_directory(
-    us_char_w_t*    buffer
-,   us_size_t       cchBuffer
+    us_char_w_t buffer[]
+,   us_size_t   cchBuffer
 )
 {
     return unixstl_C_get_home_directory_w(buffer, cchBuffer);

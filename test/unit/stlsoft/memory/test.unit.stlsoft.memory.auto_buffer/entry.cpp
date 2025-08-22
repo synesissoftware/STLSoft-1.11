@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::auto_buffer`.
  *
  * Created: 25th February 2009
- * Updated: 30th December 2024
+ * Updated: 29th June 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -163,8 +163,8 @@ private:
  * forward declarations
  */
 
-namespace
-{
+namespace {
+
     // auto_buffer(size_t)
     static void test_ctor_n_1();
     static void test_ctor_n_2();
@@ -190,7 +190,7 @@ namespace
     static void test_ctor_range_pointers_1();
     static void test_ctor_range_pointers_2();
     static void test_ctor_range_pointers_3();
-#if __cplusplus >= 201702L
+#if __cplusplus >= 201703L
 
     static void test_ctor_range_vec_iters_1();
     static void test_ctor_range_vec_iters_2();
@@ -282,7 +282,7 @@ int main(int argc, char *argv[])
         XTESTS_RUN_CASE(test_ctor_range_pointers_1);
         XTESTS_RUN_CASE(test_ctor_range_pointers_2);
         XTESTS_RUN_CASE(test_ctor_range_pointers_3);
-#if __cplusplus >= 201702L
+#if __cplusplus >= 201703L
 
         XTESTS_RUN_CASE(test_ctor_range_vec_iters_1);
         XTESTS_RUN_CASE(test_ctor_range_vec_iters_2);
@@ -337,8 +337,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     const int INTEGERS[] = {
          0,  1,  2,  3,  4,  5,  6,  7,  8,  9
     ,   10, 11, 12, 13, 14, 15, 16, 17, 18, 19
@@ -569,7 +569,7 @@ static void test_ctor_range_pointers_3()
     XTESTS_TEST_INTEGER_EQUAL(4950, std::accumulate(buff.begin(), buff.end(), 0));
 }
 
-#if __cplusplus >= 201702L
+#if __cplusplus >= 201703L
 
 static void test_ctor_range_vec_iters_1()
 {
@@ -972,7 +972,11 @@ static void test_copy_from()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1286,7 +1290,11 @@ static void test_subscript()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1308,7 +1316,11 @@ static void test_data()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1327,7 +1339,11 @@ static void test_front_and_back()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1349,7 +1365,11 @@ static void test_begin_and_end()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 
@@ -1369,7 +1389,11 @@ static void test_rbegin_and_rend()
 
     assert(buff.size() >= STLSOFT_NUM_ELEMENTS(ints));
     std::copy(
+#if __cplusplus >= 201103L
         std::begin(ints), std::end(ints)
+#else
+        &ints[0], &ints[0] + STLSOFT_NUM_ELEMENTS(ints)
+#endif
     ,   buff.begin()
     );
 

@@ -4,13 +4,13 @@
  * Purpose: TOOLHELP sequence_base class template.
  *
  * Created: 21st May 2005
- * Updated: 5th November 2024
+ * Updated: 21st March 2025
  *
  * Thanks:  To Pablo for contributing this great library.
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2007, Pablo Aguilar
  * Copyright (c) 2006-2007, Matthew Wilson
  * All rights reserved.
@@ -58,7 +58,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  16
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      37
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -128,7 +128,7 @@ namespace winstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-template<ss_typename_param_k V>
+template <ss_typename_param_k V>
 struct th_sequence_value_traits;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -150,7 +150,7 @@ struct th_sequence_value_traits;
  *
  * \ingroup group__library__Windows_Toolhelp
  */
-template<ss_typename_param_k V>
+template <ss_typename_param_k V>
 class th_sequence_const_iterator
     : public STLSOFT_NS_QUAL(iterator_base)<STLSOFT_NS_QUAL_STD(input_iterator_tag)
                                         ,   V
@@ -260,7 +260,7 @@ private:
  *   th_sequence_base that do not require the process Id.
  * \ingroup group__library__Windows_Toolhelp
  */
-template<typename V>
+template <typename V>
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 struct sequence_doesnt_use_pid;
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -399,10 +399,10 @@ private:
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

@@ -4,11 +4,11 @@
  * Purpose: Simple class that converts a relative path to an absolute one.
  *
  * Created: 20th December 2002
- * Updated: 26th December 2024
+ * Updated: 21st March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_MINOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_REVISION    3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        88
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_ABSOLUTE_PATH_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -195,7 +195,7 @@ public:
     {}
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// Constructs an absolute path from \c path
-    template<ss_typename_param_k S>
+    template <ss_typename_param_k S>
     ss_explicit_k basic_absolute_path(S const& path)
         : parent_class_type(STLSOFT_NS_QUAL(c_str_ptr)(path))
     {}
@@ -239,7 +239,7 @@ typedef basic_absolute_path<TCHAR>                          absolute_path;
  *   makes an absolute path variable without needing to qualify the template
  *   parameter.
  */
-template<ss_typename_param_k C>
+template <ss_typename_param_k C>
 inline
 basic_absolute_path<C>
 make_absolute_path(C const* path)
@@ -256,10 +256,10 @@ make_absolute_path(C const* path)
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace winstl */
+} // namespace winstl
 # else
-} /* namespace winstl_project */
-} /* namespace stlsoft */
+} // namespace winstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

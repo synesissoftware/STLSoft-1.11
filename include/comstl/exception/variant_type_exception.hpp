@@ -4,11 +4,11 @@
  * Purpose: COM-related exception classes, and their policy classes
  *
  * Created: 8th December 2004
- * Updated: 10th October 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2004-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MAJOR       3
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_MINOR       0
 # define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_REVISION    5
-# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        60
+# define COMSTL_VER_COMSTL_EXCEPTION_HPP_VARIANT_TYPE_EXCEPTION_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -145,10 +145,10 @@ private:
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace comstl */
+} // namespace comstl
 # else
-} /* namespace comstl_project */
-} /* namespace stlsoft */
+} // namespace comstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
 

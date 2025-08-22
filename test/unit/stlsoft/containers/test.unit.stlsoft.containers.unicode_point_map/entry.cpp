@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::unicode_point_map`.
  *
  * Created: 5th November 2024
- * Updated: 31st December 2024
+ * Updated: 29th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,8 +36,10 @@
 #endif
 #include <numeric>
 #include <stdexcept>
+#if __cplusplus >= 201103L
+# include <type_traits>
+#endif
 #include <string>
-#include <type_traits>
 #include <vector>
 
 /* Standard C header files */
@@ -48,8 +50,7 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_ctor_default_1();
     static void test_ctor_default_2();
@@ -70,7 +71,6 @@ namespace
     static void test_swap_std();
     static void test_iteration_1();
 //     static void test_iteration_order_1();
-
 } // anonymous namespace
 
 
@@ -121,8 +121,8 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
+
     using stlsoft::unicode_point_map;
 
 
@@ -1020,7 +1020,6 @@ static void test_iteration_1()
         XTESTS_TEST(upm.end() == i);
     }
 }
-
 } // anonymous namespace
 
 

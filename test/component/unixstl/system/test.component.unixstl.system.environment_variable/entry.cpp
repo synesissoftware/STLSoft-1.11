@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `unixstl::environment_variable`.
  *
  * Created: 11th August 2010
- * Updated: 28th December 2024
+ * Updated: 20th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,12 +35,9 @@
  * forward declarations
  */
 
-namespace
-{
+namespace {
 
     static void test_1_00();
-
-
 } // anonymous namespace
 
 
@@ -72,8 +69,7 @@ int main(int argc, char *argv[])
  * test function implementations
  */
 
-namespace
-{
+namespace {
 
 static void test_1_00()
 {
@@ -86,7 +82,6 @@ static void test_1_00()
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(PATH, ev_PATH);
     }
 }
-
 } // anonymous namespace
 
 

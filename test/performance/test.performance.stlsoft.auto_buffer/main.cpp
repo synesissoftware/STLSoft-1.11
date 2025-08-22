@@ -4,7 +4,7 @@
  * Purpose: Perf-test for `stlsoft::auto_buffer<>`.
  *
  * Created: ... mid 2010s ...
- * Updated: 29th December 2024
+ * Updated: 29th JuneMay 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -666,6 +666,8 @@ int main(int argc, char* argv[])
 
         // stlsoft::auto_buffer<...>::auto_buffer :
         {
+#if __cplusplus >= 201703L
+
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
                 casename = "stlsoft::auto_buffer<  10>::auto_buffer(from : T const*, to : T const*)";
@@ -752,7 +754,14 @@ int main(int argc, char* argv[])
                     fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
+#endif
         }
+#if __cplusplus < 201703L
+
+        {
+            STLSOFT_SUPPRESS_UNUSED(tm_vec);
+        }
+#endif
     }
 
     // range construction (or as close as can be)
@@ -795,10 +804,18 @@ int main(int argc, char* argv[])
                     tm_vec = duration;
                 }
             }}
+#if __cplusplus < 201703L
+
+            {
+                STLSOFT_SUPPRESS_UNUSED(tm_vec);
+            }
+#endif
         }
 
         // stlsoft::auto_buffer<...>::auto_buffer :
         {
+#if __cplusplus >= 201703L
+
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
                 casename = "stlsoft::auto_buffer<  10>::auto_buffer(from : T const*, to : T const*)";
@@ -885,6 +902,7 @@ int main(int argc, char* argv[])
                     fprintf(stdout, "\t%s: %lu %7.3f %% (%d)\n", casename, static_cast<unsigned long>(duration), (100.0 * duration) / tm_vec, r);
                 }
             }}
+#endif
         }
     }
 
@@ -1075,8 +1093,16 @@ int main(int argc, char* argv[])
                 }
             }}
         }
+#if __cplusplus < 201703L
+
+        {
+            STLSOFT_SUPPRESS_UNUSED(tm_vec);
+        }
+#endif
 
         // stlsoft::auto_buffer<...>::auto_buffer :
+#if __cplusplus >= 201703L
+
         {
             { for (size_t WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
             {
@@ -1186,6 +1212,7 @@ int main(int argc, char* argv[])
                 }
             }}
         }
+#endif
     }
 
 #if 0

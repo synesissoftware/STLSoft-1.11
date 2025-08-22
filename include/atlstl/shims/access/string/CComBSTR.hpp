@@ -4,11 +4,11 @@
  * Purpose: Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created: 27th May 2002
- * Updated: 24th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_MAJOR       4
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_MINOR       0
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_REVISION    7
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_EDIT        110
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_EDIT        111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,13 +106,17 @@ namespace atlstl_project
  * \ingroup group__concept__Shim__string_access
  *
  */
-inline LPCOLESTR c_str_data(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
+inline
+LPCOLESTR
+c_str_data(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
 {
     return c_str_ptr(s);
 }
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-inline LPCOLESTR c_str_data_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
+
+inline
+LPCOLESTR
+c_str_data_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
 {
     return c_str_data(s);
 }
@@ -132,13 +136,17 @@ inline LPCOLESTR c_str_data_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
  * \ingroup group__concept__Shim__string_access
  *
  */
-inline as_size_t c_str_len(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
+inline
+as_size_t
+c_str_len(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
 {
     return s.Length();
 }
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-inline as_size_t c_str_len_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
+
+inline
+as_size_t
+c_str_len_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
 {
     return c_str_len(s);
 }
@@ -158,14 +166,18 @@ inline as_size_t c_str_len_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
  * \ingroup group__concept__Shim__string_access
  *
  */
-inline LPCOLESTR c_str_ptr(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
+inline
+LPCOLESTR
+c_str_ptr(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
 {
     /* NULL is a valid BSTR value, so check for that */
     return (s.m_str != 0) ? s.m_str : L"";
 }
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-inline LPCOLESTR c_str_ptr_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
+
+inline
+LPCOLESTR
+c_str_ptr_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
 {
     return c_str_ptr(s);
 }
@@ -185,14 +197,18 @@ inline LPCOLESTR c_str_ptr_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
  * \ingroup group__concept__Shim__string_access
  *
  */
-inline LPCOLESTR c_str_ptr_null(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
+inline
+LPCOLESTR
+c_str_ptr_null(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
 {
     /* NULL is a valid BSTR value, so may return that */
     return s.m_str;
 }
-
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-inline LPCOLESTR c_str_ptr_null_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
+
+inline
+LPCOLESTR
+c_str_ptr_null_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
 {
     return c_str_ptr_null(s);
 }
@@ -203,10 +219,10 @@ inline LPCOLESTR c_str_ptr_null_w(ATLSTL_NS_QUAL_ATL(CComBSTR) const& s)
 #ifndef ATLSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace atlstl */
+} // namespace atlstl
 # else
-} /* namespace stlsoft::atlstl_project */
-} /* namespace stlsoft */
+} // namespace atlstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !ATLSTL_NO_NAMESPACE */
 
@@ -241,7 +257,7 @@ using ::atlstl::c_str_ptr_null_w;
 
 # if !defined(STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace stlsoft */
+} // namespace stlsoft
 # else /* ? STLSOFT_NO_NAMESPACE */
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !STLSOFT_NO_NAMESPACE */

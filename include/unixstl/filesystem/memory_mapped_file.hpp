@@ -4,11 +4,11 @@
  * Purpose: Memory mapped file class.
  *
  * Created: 15th December 1996
- * Updated: 10th October 2024
+ * Updated: 28th April 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1996-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR    4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR    6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     114
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -424,6 +424,14 @@ public:
 /// \name Implementation
 /// @{
 private:
+
+#ifdef STLSOFT_COMPILER_IS_MSVC
+# if _MSC_VER >= 1200
+#  pragma warning(push)
+# endif /* compiler */
+# pragma warning(disable : 4702)
+#endif /* compiler */
+
     bool_type
     on_failure_(
         char const*         message
@@ -456,6 +464,14 @@ private:
 
         return true;
     }
+
+#ifdef STLSOFT_COMPILER_IS_MSVC
+# if _MSC_VER >= 1200
+#  pragma warning(pop)
+# else /* ? compiler */
+#  pragma warning(default : 4702)
+# endif /* _MSC_VER */
+#endif /* compiler */
 
     bool_type is_valid() const
     {
@@ -532,10 +548,10 @@ swap(
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
@@ -553,7 +569,7 @@ namespace std
         lhs.swap(rhs);
     }
 
-} /* namespace std */
+} // namespace std
 #endif /* STLSOFT_CF_std_NAMESPACE */
 
 

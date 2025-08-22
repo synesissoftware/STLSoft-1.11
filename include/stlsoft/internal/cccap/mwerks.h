@@ -4,11 +4,11 @@
  * Purpose: Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created: 7th February 2003
- * Updated: 25th November 2024
+ * Updated: 28th May 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2003-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -62,7 +62,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MAJOR       3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       20
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    2
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        86
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -160,7 +160,8 @@
  * which indicate that a given type is not used in the size-specific types.
  */
 
-#if defined(__LP64__)
+#if 0
+#elif defined(__LP64__)
 # define _STLSOFT_SIZEOF_CHAR                               (1)
 # define _STLSOFT_SIZEOF_SHORT                              (2)
 # define _STLSOFT_SIZEOF_INT                                (4)

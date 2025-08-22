@@ -4,11 +4,11 @@
  * Purpose: UNIXSTL process-time stopwatch class.
  *
  * Created: 9th June 2006
- * Updated: 17th December 2024
+ * Updated: 20th March 2025
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_MINOR       1
 # define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_REVISION    4
-# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        28
+# define UNIXSTL_VER_UNIXSTL_DIAGNOSTICS_HPP_PROCESSTIMES_STOPWATCH_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -426,10 +426,10 @@ processtimes_stopwatch::get_nanoseconds() const
 #ifndef UNIXSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} /* namespace unixstl */
+} // namespace unixstl
 # else
-} /* namespace unixstl_project */
-} /* namespace stlsoft */
+} // namespace unixstl_project
+} // namespace stlsoft
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !UNIXSTL_NO_NAMESPACE */
 
