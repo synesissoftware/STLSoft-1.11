@@ -4,7 +4,7 @@
  * Purpose: Windows console functions.
  *
  * Created: 3rd December 2005
- * Updated: 14th August 2025
+ * Updated: 22nd August 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     6
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      54
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -494,10 +494,13 @@ winstl_C_write_console_line_m(
     }
     else
     {
+        stlsoft_C_string_slice_w_t slice2;
+
         STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + 0, slice->ptr, sizeof(char_t_) * slice->len);
         STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + slice->len, "\r\n", sizeof(char_t_) * 2);
 
-        stlsoft_C_string_slice_m_t const slice2 = { 2 + slice->len, buff.ptr };
+        slice2.len = 2 + slice->len;
+        slice2.ptr = buff.ptr;
 
         ss_truthy_t r = winstl_C_write_console_string_m(hConsole, &slice2);
 
@@ -540,10 +543,13 @@ winstl_C_write_console_line_w(
     }
     else
     {
+        stlsoft_C_string_slice_w_t slice2;
+
         STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + 0, slice->ptr, sizeof(char_t_) * slice->len);
         STLSOFT_API_EXTERNAL_memfns_memcpy(buff.ptr + slice->len, L"\r\n", sizeof(char_t_) * 2);
 
-        stlsoft_C_string_slice_w_t const slice2 = { 2 + slice->len, buff.ptr };
+        slice2.len = 2 + slice->len;
+        slice2.ptr = buff.ptr;
 
         ss_truthy_t r = winstl_C_write_console_string_w(hConsole, &slice2);
 
