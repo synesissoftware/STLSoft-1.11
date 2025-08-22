@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/comstl/util/test.unit.comstl.util.VARIANT_functions.c
+ * File:    test/unit/comstl/util/test.unit.comstl.util.C.VARIANT_functions.c
  *
  * Purpose: Scratch test for VARIANT functions.
  *
  * Created: 26th October 2008
- * Updated: 30th May 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.comstl.util.VARIANT_functions.VARIANT_equal", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.comstl.util.C.VARIANT_functions", verbosity))
     {
         XTESTS_RUN_CASE(test_VARIANT_equal_VT_EMPTY);
         XTESTS_RUN_CASE(test_VARIANT_equal_VT_NULL);
