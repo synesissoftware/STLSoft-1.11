@@ -1,5 +1,9 @@
 # STLSoft 1.11 <!-- omit in toc -->
 
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![GitHub release](https://img.shields.io/github/v/release/synesissoftware/STLSoft-1.11.svg)](https://github.com/synesissoftware/STLSoft-1.11/releases/latest)
+[![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/STLSoft-1.11)](https://github.com/synesissoftware/STLSoft-1.11/commits/master)
+
 >**NOTE**: until such time as **1.11.0** is released, this repository is considered beta-only, and you should consider [STLSoft-1.10](http://github.com/synesissoftware/STLSoft-1.10/) to be the definitive **STLSoft** repository.
 
 ## Table of Contents <!-- omit in toc -->
