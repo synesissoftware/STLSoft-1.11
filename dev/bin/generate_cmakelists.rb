@@ -7,7 +7,7 @@
 #           compatible with Synesis Information Systems' libraries.
 #
 # Created:  9th January 2025
-# Updated:  24th April 2025
+# Updated:  23rd August 2025
 #
 # Author:   Matthew Wilson
 #
@@ -34,7 +34,7 @@ require 'recls'
 
 PROGRAM_VER_MAJOR = 0
 PROGRAM_VER_MINOR = 1
-PROGRAM_VER_PATCH = 2
+PROGRAM_VER_PATCH = 3
 
 FILES_TO_IGNORE = [
   'implicit_link.c',
@@ -246,8 +246,6 @@ END_of_
 
             f << "add_subdirectory(#{subdir_name})" << "\n"
           end
-
-          f << "\n"
         end
       end
     end

@@ -4,4 +4,3 @@ add_subdirectory(test.unit.stlsoft.memory.auto_buffer)
 add_subdirectory(test.unit.stlsoft.memory.malloc_allocator)
 add_subdirectory(test.unit.stlsoft.memory.new_allocator)
 add_subdirectory(test.unit.stlsoft.memory.null_allocator)
-

@@ -2,4 +2,3 @@
 add_subdirectory(test.component.platformstl.system.environment_variable_scope)
 add_subdirectory(test.component.platformstl.system.environment_variable_traits)
 add_subdirectory(test.component.platformstl.system.system_traits)
-

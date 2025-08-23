@@ -17,6 +17,22 @@ STLSoft - Changes
    **************************************
 
 
+Changes for 1.11.1-rc4 (XXXX August 2025)
+
+General:
+========
+
+ * code generation scripts;
+ * ;
+
+
+Details:
+========
+
+
+
+============================================================================
+
 Changes for 1.11.1-rc3 (23rd August 2025)
 
 General:
