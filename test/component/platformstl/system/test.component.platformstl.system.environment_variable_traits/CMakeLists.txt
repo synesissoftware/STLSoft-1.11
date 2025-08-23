@@ -2,3 +2,4 @@ list(APPEND X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED
 	4273
 )
 define_automated_test_program(test.component.platformstl.system.environment_variable_traits entry.cpp)
+

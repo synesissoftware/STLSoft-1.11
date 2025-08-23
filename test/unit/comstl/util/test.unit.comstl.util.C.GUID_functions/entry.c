@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/comstl/util/test.unit.comstl.util.GUID_functions.c
+ * File:    test.unit.comstl.util.C.GUID_functions/entry.c
  *
  * Purpose: Scratch test for GUID functions.
  *
  * Created: 12th May 2010
- * Updated: 30th May 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.comstl.util.GUID_functions.GUID_equal", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.comstl.util.C.GUID_functions", verbosity))
     {
         XTESTS_RUN_CASE(test_equal);
         XTESTS_RUN_CASE(test_compare);

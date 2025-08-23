@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.comstl.string.BSTR_functions.C.c
+ * File:    test.unit.comstl.string.C.BSTR_functions/entry.c
  *
  * Purpose: Scratch test for BSTR functions.
  *
  * Created: 31st May 2010
- * Updated: 30th May 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,7 +54,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.comstl.string.BSTR_functions.C", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.comstl.string.C.BSTR_functions", verbosity))
     {
         XTESTS_RUN_CASE(test_comstl_C_BSTR_create_w_1);
         XTESTS_RUN_CASE(test_comstl_C_BSTR_create_w_2);

@@ -4,7 +4,7 @@
  * Purpose: Component test for WinSTL atomic_functions.
  *
  * Created: sometime in 2015
- * Updated: 20th March 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -163,7 +163,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.component.winstl.synch.spin_mutex", verbosity))
+    if (XTESTS_START_RUNNER("test.component.winstl.synch.atomic_functions", verbosity))
     {
         XTESTS_RUN_CASE(atomic_decrement::test_check_semantics);
         XTESTS_RUN_CASE(atomic_decrement::test_a_large_number);

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.util.string.sprintf/entry.cpp
+ * File:    test.unit.stlsoft.util.string.snprintf/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::snprintf`, `stlsoft::snwprintf`.
  *
  * Created: 23rd March 2025
- * Updated: 24th March 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.util.string.sprintf", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.util.string.snprintf", verbosity))
     {
         XTESTS_RUN_CASE(TEST_stlsoft_C_snprintf_3);
 #ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT

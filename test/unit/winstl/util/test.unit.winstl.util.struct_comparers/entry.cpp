@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.component.winstl.util.struct_comparers/entry.cpp
+ * File:    test.unit.winstl.util.struct_comparers/entry.cpp
  *
  * Purpose: Component test for `winstl::struct_comparers`.
  *
  * Created: 9th October 2024
- * Updated: 20th March 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.component.winstl.dl.struct_comparers", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.winstl.util.struct_comparers", verbosity))
     {
         XTESTS_RUN_CASE(test_FILETIME);
         XTESTS_RUN_CASE(test_SYSTEMTIME);

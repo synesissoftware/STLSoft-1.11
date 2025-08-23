@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.container.frequency_map/entry.cpp
+ * File:    test.unit.stlsoft.containers.frequency_map/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::frequency_map`.
  *
  * Created: 12th February 2024
- * Updated: 30th May 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.container.frequency_map", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.containers.frequency_map", verbosity))
     {
         XTESTS_RUN_CASE(test_ctor_default);
 #if __cplusplus >= 201103L

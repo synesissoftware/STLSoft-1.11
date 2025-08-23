@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.container.unicode_point_map/entry.cpp
+ * File:    test.unit.stlsoft.containers.unicode_point_map/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::unicode_point_map`.
  *
  * Created: 5th November 2024
- * Updated: 29th May 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.container.unicode_point_map", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.containers.unicode_point_map", verbosity))
     {
         XTESTS_RUN_CASE(test_ctor_default_1);
         XTESTS_RUN_CASE(test_ctor_default_2);

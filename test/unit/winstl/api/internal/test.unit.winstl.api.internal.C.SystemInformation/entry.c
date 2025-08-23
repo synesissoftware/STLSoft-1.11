@@ -1,8 +1,8 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.winstl.api.internal.SystemInformation/entry.c
+ * File:    test.unit.winstl.api.internal.C.SystemInformation/entry.c
  *
  * Created: 25th May 2025
- * Updated: 26th May 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.winstl.api.internal.SystemInformation", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.winstl.api.internal.C.SystemInformation", verbosity))
     {
         XTESTS_RUN_CASE(TEST_GetEnvironmentVariable);
         XTESTS_RUN_CASE(TEST_GetSystemDirectory);
