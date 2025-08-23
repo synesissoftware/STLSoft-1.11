@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.winstl.conversion.number.group_functions/entry.cpp
+ * File:    test.unit.winstl.conversion.number.grouping_functions/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::format_thousands`.
  *
  * Created: 30th November 2024
- * Updated: 20th March 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.number.grouping_functions", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.winstl.conversion.number.grouping_functions", verbosity))
     {
         XTESTS_RUN_CASE(TEST_format_thousands_SIMPLE);
         XTESTS_RUN_CASE(TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS);

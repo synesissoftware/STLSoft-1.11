@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.container.gram_scope/entry.cpp
+ * File:    test.unit.stlsoft.diagnostics.gram_scope/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::gram_scope`.
  *
  * Created: 15th December 2024
- * Updated: 20th March 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.container.doomgram", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.diagnostics.gram_scope", verbosity))
     {
         XTESTS_RUN_CASE(TEST_gram_scope_CONSTRUCT_FROM_INSTANCES);
 

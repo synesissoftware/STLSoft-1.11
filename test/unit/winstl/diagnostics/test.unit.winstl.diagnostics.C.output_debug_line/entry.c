@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.unit.winstl.diagnostics.C.output_debug_line.c
+ * File:        test.unit.winstl.diagnostics.C.output_debug_line/entry.c
  *
  * Purpose: Unit test for `winstl_C_diagnostics_output_debug_line_1_m()`, etc.
  *

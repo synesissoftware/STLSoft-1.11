@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/comstl/util/test.unit.comstl.util.C.GUID_functions.c
+ * File:    test.unit.comstl.util.C.GUID_functions/entry.c
  *
  * Purpose: Scratch test for GUID functions.
  *
