@@ -15,16 +15,32 @@ SkipInteractive=0
 # ##########################################################
 # helpers
 
-example_basename()
+example_stem()
 {
   local p="${1//\\//}"
 
-  basename "${p%.exe}"
+  p="${p##*/}"
+
+  case "$p" in
+    *.exe|*.EXE) p="${p%.*}" ;;
+  esac
+
+  echo "$p"
+}
+
+names_match()
+{
+  local a b
+
+  a=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+  b=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+
+  [ "$a" = "$b" ]
 }
 
 is_skipped_interactive_example()
 {
-  local name f_norm line skip_file="$Dir/.github/ci_skip_interactive_examples.txt"
+  local name f_norm line line_stem skip_file="$Dir/.github/ci_skip_interactive_examples.txt"
 
   [ $SkipInteractive -ne 0 ] || return 1
 
@@ -36,7 +52,7 @@ is_skipped_interactive_example()
   fi
 
   f_norm="${1//\\//}"
-  name=$(example_basename "$1")
+  name=$(example_stem "$f_norm")
 
   while IFS= read -r line || [ -n "$line" ]; do
 
@@ -46,10 +62,9 @@ is_skipped_interactive_example()
       ''|\#*) continue ;;
     esac
 
-    if [ "$name" = "$line" ] \
-      || [ "${f_norm##*/}" = "$line" ] \
-      || [ "${f_norm##*/}" = "$line.exe" ]
-    then
+    line_stem=$(example_stem "$line")
+
+    if names_match "$name" "$line_stem"; then
 
       return 0
     fi
@@ -99,7 +114,8 @@ Flags/options:
 
     --skip-interactive
         skips examples listed in .github/ci_skip_interactive_examples.txt
-        (GUI / desktop-interactive programs unsuitable for headless CI)
+        (GUI / desktop-interactive programs unsuitable for headless CI;
+        list stems or names, e.g. shell_functions or shell_functions.exe)
 
 
     standard flags:

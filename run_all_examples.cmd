@@ -129,10 +129,12 @@ EXIT /B 0
 SET skip_example=0
 IF %SkipInteractive% EQU 0 EXIT /B 0
 IF NOT EXIST "%ScriptDir%.github\ci_skip_interactive_examples.txt" EXIT /B 0
+SET "exe_name=%~n1"
 FOR /F "usebackq eol=# tokens=1" %%s IN ("%ScriptDir%.github\ci_skip_interactive_examples.txt") DO (
     SET "skip_name=%%s"
     SET "skip_name=!skip_name: =!"
-    IF /I "!skip_name!"=="%~n1" SET skip_example=1
+    IF /I "!skip_name!"=="%exe_name%" SET skip_example=1
+    IF /I "!skip_name!"=="%~nx1" SET skip_example=1
 )
 EXIT /B 0
 
