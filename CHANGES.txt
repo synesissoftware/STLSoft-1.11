@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  23rd August 2025
+; Updated:  1st July 2026
 
 ============================================================================
 
@@ -16,6 +16,19 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.11.1-rc4 (1st July 2026)
+
+General:
+========
+
+ * Added GitHub Actions CI (**.github/workflows/ci.yml**) on macOS, Linux, and Windows with **clang**, **gcc**, **MinGW**, and **Visual C++** (**cl**);
+ * CI jobs: examples build + smoke-run, xTests-backed unit tests (STLSoft bootstrap install), and install + **find_package(STLSoft)** smoke consumer;
+
+
+============================================================================
 
 Changes for 1.11.1-rc3 (23rd August 2025)
 

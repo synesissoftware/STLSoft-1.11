@@ -1,0 +1,430 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - ver
+      - _msc_ver
+      - vc17
+  pull_request:
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    name: Build (examples, ${{ matrix.os }}, ${{ matrix.c_compiler }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - os: ubuntu-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - os: macos-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - os: macos-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+          - os: windows-latest
+            c_compiler: mingw
+            cpp_compiler: g++
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Clang (Ubuntu)
+        if: runner.os == 'Linux' && matrix.c_compiler == 'clang'
+        run: sudo apt-get update && sudo apt-get install -y clang
+
+      - name: Setup MSYS2 MinGW
+        if: runner.os == 'Windows' && matrix.c_compiler == 'mingw'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-make
+
+      - name: Configure
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake -B build -S . \
+              -DBUILD_EXAMPLES=ON \
+              -DBUILD_TESTING=OFF
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -B build -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER=gcc \
+              -DCMAKE_CXX_COMPILER=g++ \
+              -DBUILD_EXAMPLES=ON \
+              -DBUILD_TESTING=OFF
+          else
+            cmake -B build -S . \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
+              -DBUILD_EXAMPLES=ON \
+              -DBUILD_TESTING=OFF
+          fi
+
+      - name: Build
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake --build build --config "${{ env.BUILD_TYPE }}" --parallel
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake --build build --parallel
+          else
+            cmake --build build --parallel
+          fi
+
+      - name: Smoke-run portable examples
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            EXE_SUFFIX=.exe
+            EXE_DIR="${{ env.BUILD_TYPE }}"
+          else
+            EXE_SUFFIX=
+            EXE_DIR=.
+          fi
+          run_example() {
+            local path="$1"
+            if [ -x "build/${path}/${EXE_DIR}/$(basename "$path")${EXE_SUFFIX}" ]; then
+              "build/${path}/${EXE_DIR}/$(basename "$path")${EXE_SUFFIX}"
+            fi
+          }
+          run_example "examples/by_library/diagnostics/stopwatch"
+          if [ "${{ runner.os }}" != "Windows" ]; then
+            run_example "examples/by_library/system/pid_sequence"
+          fi
+
+  test:
+    name: Unit tests (${{ matrix.os }}, ${{ matrix.c_compiler }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - os: ubuntu-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - os: macos-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - os: macos-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+          - os: windows-latest
+            c_compiler: mingw
+            cpp_compiler: g++
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Clang (Ubuntu)
+        if: runner.os == 'Linux' && matrix.c_compiler == 'clang'
+        run: sudo apt-get update && sudo apt-get install -y clang
+
+      - name: Setup MSYS2 MinGW
+        if: runner.os == 'Windows' && matrix.c_compiler == 'mingw'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-make
+
+      - name: Install test dependencies (STLSoft bootstrap + xTests)
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          DEPS="${RUNNER_TEMP}/sis-deps"
+          STLSRC="${{ github.workspace }}"
+          XTSRC="${RUNNER_TEMP}/xtests-src"
+          XTBUILD="${RUNNER_TEMP}/xtests-build"
+          STLINSTALL="${RUNNER_TEMP}/stlsoft-install-build"
+
+          mkdir -p "$DEPS"
+
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake -S "$STLSRC" -B "$STLINSTALL" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$STLINSTALL" --config "${{ env.BUILD_TYPE }}" --parallel
+            cmake --install "$STLINSTALL" --config "${{ env.BUILD_TYPE }}"
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -S "$STLSRC" -B "$STLINSTALL" -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$STLINSTALL" --parallel
+            cmake --install "$STLINSTALL"
+          else
+            cmake -S "$STLSRC" -B "$STLINSTALL" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$STLINSTALL" --parallel
+            cmake --install "$STLINSTALL"
+          fi
+
+          git clone --depth 1 https://github.com/synesissoftware/xTests "$XTSRC"
+
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake -S "$XTSRC" -B "$XTBUILD" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF \
+              -DNO_SHWILD=TRUE \
+              -DSTLSOFT="$STLSRC"
+            cmake --build "$XTBUILD" --config "${{ env.BUILD_TYPE }}" --parallel
+            cmake --install "$XTBUILD" --config "${{ env.BUILD_TYPE }}"
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -S "$XTSRC" -B "$XTBUILD" -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF \
+              -DNO_SHWILD=TRUE \
+              -DSTLSOFT="$STLSRC"
+            cmake --build "$XTBUILD" --parallel
+            cmake --install "$XTBUILD"
+          else
+            cmake -S "$XTSRC" -B "$XTBUILD" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF \
+              -DNO_SHWILD=TRUE \
+              -DSTLSOFT="$STLSRC"
+            cmake --build "$XTBUILD" --parallel
+            cmake --install "$XTBUILD"
+          fi
+
+          echo "SIS_CMAKE_DEPS_PREFIX=$DEPS" >> "$GITHUB_ENV"
+
+      - name: Configure
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake -B build -S . \
+              -DCMAKE_PREFIX_PATH="${SIS_CMAKE_DEPS_PREFIX}" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=ON \
+              -DNO_SHWILD=TRUE
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -B build -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER=gcc \
+              -DCMAKE_CXX_COMPILER=g++ \
+              -DCMAKE_PREFIX_PATH="${SIS_CMAKE_DEPS_PREFIX}" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=ON \
+              -DNO_SHWILD=TRUE
+          else
+            cmake -B build -S . \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
+              -DCMAKE_PREFIX_PATH="${SIS_CMAKE_DEPS_PREFIX}" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=ON \
+              -DNO_SHWILD=TRUE
+          fi
+
+      - name: Build
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake --build build --config "${{ env.BUILD_TYPE }}" --parallel
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake --build build --parallel
+          else
+            cmake --build build --parallel
+          fi
+
+      - name: Run unit tests
+        shell: bash
+        run: SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M
+
+  install-smoke:
+    name: Install smoke (${{ matrix.os }}, ${{ matrix.c_compiler }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - os: ubuntu-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - os: macos-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+          - os: windows-latest
+            c_compiler: mingw
+            cpp_compiler: g++
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Clang (Ubuntu)
+        if: runner.os == 'Linux' && matrix.c_compiler == 'clang'
+        run: sudo apt-get update && sudo apt-get install -y clang
+
+      - name: Setup MSYS2 MinGW
+        if: runner.os == 'Windows' && matrix.c_compiler == 'mingw'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-make
+
+      - name: Configure
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake -B build -S . \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -B build -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER=gcc \
+              -DCMAKE_CXX_COMPILER=g++ \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+          else
+            cmake -B build -S . \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+          fi
+
+      - name: Build
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake --build build --config "${{ env.BUILD_TYPE }}" --parallel
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake --build build --parallel
+          else
+            cmake --build build --parallel
+          fi
+
+      - name: Install
+        shell: bash
+        run: |
+          set -euo pipefail
+          PREFIX="${RUNNER_TEMP}/install-prefix"
+          echo "INSTALL_PREFIX=$PREFIX" >> "$GITHUB_ENV"
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake --install build --config "${{ env.BUILD_TYPE }}" --prefix "$PREFIX"
+          else
+            cmake --install build --prefix "$PREFIX"
+          fi
+
+      - name: Verify install tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "${INSTALL_PREFIX}/include/stlsoft/stlsoft.h"
+          test -f "${INSTALL_PREFIX}/lib/cmake/stlsoft/stlsoft-config.cmake"
+
+      - name: Configure and run install smoke consumer
+        shell: bash
+        run: |
+          set -euo pipefail
+          CONSUMER="${RUNNER_TEMP}/consumer"
+          mkdir -p "$CONSUMER"
+          cat > "$CONSUMER/CMakeLists.txt" <<'EOF'
+          cmake_minimum_required(VERSION 3.13)
+          project(stlsoft_install_smoke CXX)
+          find_package(STLSoft REQUIRED)
+          add_executable(consumer consumer.cpp)
+          target_link_libraries(consumer PRIVATE STLSoft::STLSoft)
+          EOF
+          cat > "$CONSUMER/consumer.cpp" <<'EOF'
+          #include <stlsoft/stlsoft.h>
+          int main() { return 0; }
+          EOF
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake -S "$CONSUMER" -B consumer-build \
+              -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}"
+            cmake --build consumer-build --config "${{ env.BUILD_TYPE }}" --parallel
+            consumer-build/${{ env.BUILD_TYPE }}/consumer.exe
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -S "$CONSUMER" -B consumer-build -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}"
+            cmake --build consumer-build --parallel
+            consumer-build/consumer.exe
+          else
+            cmake -S "$CONSUMER" -B consumer-build \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
+              -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}"
+            cmake --build consumer-build --parallel
+            consumer-build/consumer
+          fi
