@@ -101,8 +101,8 @@ jobs:
         shell: bash
         run: SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
 
-  test-build:
-    name: Test build (${{ matrix.os }}, ${{ matrix.c_compiler }})
+  test:
+    name: Tests (${{ matrix.os }}, ${{ matrix.c_compiler }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -272,57 +272,6 @@ jobs:
             cmake --build build --parallel
           fi
 
-      - name: Upload test build
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-build-${{ matrix.os }}-${{ matrix.c_compiler }}
-          path: build
-          retention-days: 1
-
-  test-unit:
-    name: Unit tests (${{ matrix.os }}, ${{ matrix.c_compiler }})
-    needs: test-build
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: macos-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: macos-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-          - os: windows-latest
-            c_compiler: mingw
-            cpp_compiler: g++
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && matrix.c_compiler == 'mingw'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: mingw-w64-x86_64-toolchain
-
-      - name: Download test build
-        uses: actions/download-artifact@v4
-        with:
-          name: test-build-${{ matrix.os }}-${{ matrix.c_compiler }}
-          path: build
-
       - name: Run unit tests
         shell: bash
         run: |
@@ -331,50 +280,6 @@ jobs:
             export PATH="/mingw64/bin:$PATH"
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
-
-  test-component:
-    name: Component tests (${{ matrix.os }}, ${{ matrix.c_compiler }})
-    needs: test-build
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: macos-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: macos-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-          - os: windows-latest
-            c_compiler: mingw
-            cpp_compiler: g++
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && matrix.c_compiler == 'mingw'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: mingw-w64-x86_64-toolchain
-
-      - name: Download test build
-        uses: actions/download-artifact@v4
-        with:
-          name: test-build-${{ matrix.os }}-${{ matrix.c_compiler }}
-          path: build
 
       - name: Run component tests
         shell: bash
@@ -385,52 +290,8 @@ jobs:
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
 
-  test-scratch:
-    name: Scratch tests (${{ matrix.os }}, ${{ matrix.c_compiler }})
-    needs: test-build
-    continue-on-error: true
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: macos-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: macos-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-          - os: windows-latest
-            c_compiler: mingw
-            cpp_compiler: g++
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && matrix.c_compiler == 'mingw'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: mingw-w64-x86_64-toolchain
-
-      - name: Download test build
-        uses: actions/download-artifact@v4
-        with:
-          name: test-build-${{ matrix.os }}-${{ matrix.c_compiler }}
-          path: build
-
       - name: Run scratch tests
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
@@ -439,52 +300,8 @@ jobs:
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
 
-  test-performance:
-    name: Performance tests (${{ matrix.os }}, ${{ matrix.c_compiler }})
-    needs: test-build
-    continue-on-error: true
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: macos-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-          - os: macos-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-          - os: windows-latest
-            c_compiler: mingw
-            cpp_compiler: g++
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && matrix.c_compiler == 'mingw'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: mingw-w64-x86_64-toolchain
-
-      - name: Download test build
-        uses: actions/download-artifact@v4
-        with:
-          name: test-build-${{ matrix.os }}-${{ matrix.c_compiler }}
-          path: build
-
       - name: List performance test programs
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
