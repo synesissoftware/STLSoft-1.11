@@ -26,6 +26,7 @@ General:
 
  * Added GitHub Actions CI (**.github/workflows/ci.yml**) on macOS, Linux, and Windows with **clang**, **gcc**, **MinGW**, and **Visual C++** (**cl**);
  * CI jobs: examples build + smoke-run, xTests-backed unit tests (STLSoft bootstrap install), and install + **find_package(STLSoft)** smoke consumer;
+ * Visual C++ 18.x recognition in **stlsoft.h** (for current MSVC toolsets on **windows-latest**);
 
 
 ============================================================================

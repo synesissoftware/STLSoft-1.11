@@ -5,11 +5,11 @@
  *          and platform discriminations, and definitions of types.
  *
  * Created: 15th January 2002
- * Updated: 23rd August 2025
+ * Updated: 1st July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    57
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 16
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     604
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 17
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     605
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -388,12 +388,13 @@
 # define _STLSOFT_VER_1_11_1_RC1    0x010b01c1  /*!< Version 1.11.1 rc 1 (6th May 2025) */
 # define _STLSOFT_VER_1_11_1_RC2    0x010b01c2  /*!< Version 1.11.1 rc 2 (31st May 2025) */
 # define _STLSOFT_VER_1_11_1_RC3    0x010b01c3  /*!< Version 1.11.1 rc 3 (23rd August 2025) */
+# define _STLSOFT_VER_1_11_1_RC4    0x010b01c4  /*!< Version 1.11.1 rc 4 (1st July 2026) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR          1
 #define _STLSOFT_VER_MINOR          11
 #define _STLSOFT_VER_PATCH          1
-#define _STLSOFT_VER_ALPHABETA      0xc3
+#define _STLSOFT_VER_ALPHABETA      0xc4
 
 #define _STLSOFT_VER \
     (0\
@@ -849,11 +850,13 @@
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 16.x"
 #  elif _MSC_VER <= 1944
 #   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 17.x"
+#  elif _MSC_VER <= 1952
+#   define STLSOFT_COMPILER_VERSION_STRING                  "Visual C++ 18.x"
 #  else
 #   error Visual C++ version that is > vc17 is not recognised
 #  endif
 # else /* ? _MSC_VER */
-#  error Currently only versions 5.0, 6.0, 7.0, 7.1, 8.0, 9.0, 10.0, 11.0, 12.0, 14.0, 15, 16, and 17 of the Visual C++ compiler are supported by the STLSoft libraries
+#  error Currently only versions 5.0, 6.0, 7.0, 7.1, 8.0, 9.0, 10.0, 11.0, 12.0, 14.0, 15, 16, 17, and 18 of the Visual C++ compiler are supported by the STLSoft libraries
 # endif /* _MSC_VER */
 
 #else /* ? compiler */
