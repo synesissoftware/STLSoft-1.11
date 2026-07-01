@@ -31,9 +31,14 @@ General:
  * Fixed **winstl::codepage_sequence::data()** — now returns **m_cpids.data()** (was missing **return**);
  * Fixed **winstl_C_printf_debug_string()** — compare buffer length via **STLSOFT_C_CAST(int, STLSOFT_NUM_ELEMENTS(msg))** (signed/unsigned comparison with **/WX**);
  * **test.unit.versions** — aligned with **1.11.1-rc4** (**_STLSOFT_VER_1_11_1_RC4**);
+ * MinGW compatibility in **winstl/util/struct_comparers.hpp** — omit **NETWORK_APP_INSTANCE_EA** and **POWER_LIMIT_VALUE** byte comparers when **STLSOFT_MINGW** is defined;
 
 Details:
 ========
+
+MinGW compatibility in **winstl/util/struct_comparers.hpp**:
+ * **NETWORK_APP_INSTANCE_EA** — **WINSTL_THE_COMPARABLE_STRUCTURE_** specialisation guarded with **!defined(STLSOFT_MINGW)** (Win10+ NTDDI);
+ * **POWER_LIMIT_VALUE** — same guard (Win11 GA+ NTDDI);
 
 Fixed **winstl::codepage_sequence::data()**:
  * **include/winstl/i18n/codepage_sequence.hpp** — **const_pointer data() const** now returns **m_cpids.data()**;
