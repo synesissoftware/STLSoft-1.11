@@ -25,7 +25,7 @@ General:
 ========
 
  * Added GitHub Actions CI (**.github/workflows/ci.yml**) on macOS, Linux, and Windows with **clang**, **gcc**, **MinGW**, and **Visual C++** (**cl**);
- * CI jobs: examples build + smoke-run, xTests-backed unit tests (STLSoft bootstrap install), and install + **find_package(STLSoft)** smoke consumer;
+ * CI jobs (Phase 2): **build-examples**, **test-build** (artifact upload), **test-unit**, **test-component**, **test-scratch** (non-gating), **test-performance** (list-only, non-gating), and **install-smoke**;
  * MSVC CI disables **find_package(MFC)** (**CMAKE_DISABLE_FIND_PACKAGE_MFC**) — GHA has MFC headers but not **_AFXDLL** / **/MD** linkage for mfcstl tests;
  * Visual C++ 18.x recognition in **stlsoft.h** (for current MSVC toolsets on **windows-latest**);
  * Fixed **winstl::codepage_sequence::data()** — now returns **m_cpids.data()** (was missing **return**);
@@ -44,6 +44,14 @@ Test/example runner scripts:
  * **run_all_examples.sh** / **run_all_examples.cmd** — run (or list) all programs under the CMake **examples/** build tree;
  * **execute_performance_tests.cmd** — aligned with **execute_performance_tests.sh**;
  * **.sis/script_info_lines.txt** — centralised project description/copyright for script **--help** output;
+
+GitHub Actions CI (**.github/workflows/ci.yml**) — Phase 2 job split:
+ * **build-examples** — configure/build examples; **run_all_examples.sh -M**;
+ * **test-build** — STLSoft bootstrap + xTests install; configure/build all tests; upload **build/** artifact per matrix cell;
+ * **test-unit** / **test-component** — download artifact; **run_all_unit_tests.sh -M --unit-only** / **--component-only** (merge-gating);
+ * **test-scratch** — download artifact; **run_all_scratch_tests.sh -M** (**continue-on-error**);
+ * **test-performance** — download artifact; **execute_performance_tests.sh -M --list-only** (**continue-on-error**);
+ * **install-smoke** — unchanged (**find_package(STLSoft)** consumer);
 
 MinGW compatibility in **winstl/util/struct_comparers.hpp**:
  * **NETWORK_APP_INSTANCE_EA** — **WINSTL_THE_COMPARABLE_STRUCTURE_** specialisation guarded with **!defined(STLSOFT_MINGW)** (Win10+ NTDDI);
