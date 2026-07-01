@@ -30,6 +30,7 @@ General:
  * Visual C++ 18.x recognition in **stlsoft.h** (for current MSVC toolsets on **windows-latest**);
  * Fixed **winstl::codepage_sequence::data()** — now returns **m_cpids.data()** (was missing **return**);
  * Fixed **winstl_C_printf_debug_string()** — compare buffer length via **STLSOFT_C_CAST(int, STLSOFT_NUM_ELEMENTS(msg))** (signed/unsigned comparison with **/WX**);
+ * **test.unit.versions** — aligned with **1.11.1-rc4** (**_STLSOFT_VER_1_11_1_RC4**);
 
 Details:
 ========
