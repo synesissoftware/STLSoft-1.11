@@ -64,6 +64,7 @@ jobs:
           set -euo pipefail
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake -B build -S . \
+              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=OFF
           elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
@@ -177,6 +178,7 @@ jobs:
 
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake -S "$STLSRC" -B "$STLINSTALL" \
+              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF
@@ -207,6 +209,7 @@ jobs:
 
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake -S "$XTSRC" -B "$XTBUILD" \
+              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DCMAKE_PREFIX_PATH="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
@@ -250,6 +253,7 @@ jobs:
           set -euo pipefail
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake -B build -S . \
+              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_PREFIX_PATH="${SIS_CMAKE_DEPS_PREFIX}" \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=ON \
@@ -339,6 +343,7 @@ jobs:
           set -euo pipefail
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake -B build -S . \
+              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF
           elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then

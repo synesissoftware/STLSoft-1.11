@@ -26,6 +26,7 @@ General:
 
  * Added GitHub Actions CI (**.github/workflows/ci.yml**) on macOS, Linux, and Windows with **clang**, **gcc**, **MinGW**, and **Visual C++** (**cl**);
  * CI jobs: examples build + smoke-run, xTests-backed unit tests (STLSoft bootstrap install), and install + **find_package(STLSoft)** smoke consumer;
+ * MSVC CI disables **find_package(MFC)** (**CMAKE_DISABLE_FIND_PACKAGE_MFC**) — GHA has MFC headers but not **_AFXDLL** / **/MD** linkage for mfcstl tests;
  * Visual C++ 18.x recognition in **stlsoft.h** (for current MSVC toolsets on **windows-latest**);
  * Fixed **winstl::codepage_sequence::data()** — now returns **m_cpids.data()** (was missing **return**);
  * Fixed **winstl_C_printf_debug_string()** — compare buffer length via **STLSOFT_C_CAST(int, STLSOFT_NUM_ELEMENTS(msg))** (signed/unsigned comparison with **/WX**);
