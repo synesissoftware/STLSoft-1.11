@@ -50,7 +50,7 @@ jobs:
       os: ${{ matrix.os }}
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
-      build-type: ${{ env.BUILD_TYPE }}
+      build-type: Release
     secrets: inherit
 
   install-smoke:
