@@ -28,13 +28,16 @@ General:
  * CI jobs: examples build + smoke-run, xTests-backed unit tests (STLSoft bootstrap install), and install + **find_package(STLSoft)** smoke consumer;
  * Visual C++ 18.x recognition in **stlsoft.h** (for current MSVC toolsets on **windows-latest**);
  * Fixed **winstl::codepage_sequence::data()** — now returns **m_cpids.data()** (was missing **return**);
+ * Fixed **winstl_C_printf_debug_string()** — compare buffer length via **STLSOFT_C_CAST(int, STLSOFT_NUM_ELEMENTS(msg))** (signed/unsigned comparison with **/WX**);
 
 Details:
 ========
 
 Fixed **winstl::codepage_sequence::data()**:
- * **include/winstl/i18n/codepage_sequence.hpp** — **const_pointer data() const**
-   now returns **m_cpids.data()**;
+ * **include/winstl/i18n/codepage_sequence.hpp** — **const_pointer data() const** now returns **m_cpids.data()**;
+
+Fixed **winstl_C_printf_debug_string()**:
+ * **include/winstl/diagnostics/printf_debug_string.h** — overflow check on formatted message length now casts **STLSOFT_NUM_ELEMENTS(msg)** to **int** before comparing with **r**;
 
 
 ============================================================================
