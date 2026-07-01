@@ -25,7 +25,7 @@ General:
 ========
 
  * Added GitHub Actions CI (**.github/workflows/ci.yml**) on macOS, Linux, and Windows with **clang**, **gcc**, **MinGW**, and **Visual C++** (**cl**);
- * CI jobs: per-matrix **build** (examples + tests), then parallel **run-examples**, **test-unit**, **test-component**, **test-scratch**, **test-performance** (each **needs** matching **build** only), plus **install-smoke**;
+ * CI jobs: six independent **ci-cell.yml** reusable workflows (build + parallel run sub-jobs per compiler/OS) plus **install-smoke**;
  * MSVC CI disables **find_package(MFC)** (**CMAKE_DISABLE_FIND_PACKAGE_MFC**) — GHA has MFC headers but not **_AFXDLL** / **/MD** linkage for mfcstl tests;
  * Visual C++ 18.x recognition in **stlsoft.h** (for current MSVC toolsets on **windows-latest**);
  * Fixed **winstl::codepage_sequence::data()** — now returns **m_cpids.data()** (was missing **return**);
@@ -45,11 +45,9 @@ Test/example runner scripts:
  * **execute_performance_tests.cmd** — aligned with **execute_performance_tests.sh**;
  * **.sis/script_info_lines.txt** — centralised project description/copyright for script **--help** output;
 
-GitHub Actions CI (**.github/workflows/ci.yml**) — Phase 2 job split:
- * **build** — per **matrix.id** cell: xTests bootstrap; configure/build with **BUILD_EXAMPLES=ON** and **BUILD_TESTING=ON**; upload **sis-build-*** artifact;
- * **run-examples**, **test-unit**, **test-component** — **needs: build** (matching matrix cell only); download artifact; run respective script (**merge-gating**);
- * **test-scratch**, **test-performance** — same **needs** pattern; **continue-on-error**; performance tests executed (not list-only);
- * **install-smoke** — independent (**find_package(STLSoft)** consumer);
+GitHub Actions CI (**.github/workflows/ci.yml** + **ci-cell.yml**) — Phase 2 job split:
+ * **ci.yml** — matrix of six **workflow_call** invocations (**cell**) plus **install-smoke**;
+ * **ci-cell.yml** (reusable, per **cell-id**): **build** then parallel **run-examples**, **test-unit**, **test-component**, **test-scratch**, **test-performance** — each cell's **needs: build** is scoped to that cell only (not the whole matrix);
 
 MinGW compatibility in **winstl/util/struct_comparers.hpp**:
  * **NETWORK_APP_INSTANCE_EA** — **WINSTL_THE_COMPARABLE_STRUCTURE_** specialisation guarded with **!defined(STLSOFT_MINGW)** (Win10+ NTDDI);
