@@ -25,7 +25,7 @@ General:
 ========
 
  * Added GitHub Actions CI (**.github/workflows/ci.yml**) on macOS, Linux, and Windows with **clang**, **gcc**, **MinGW**, and **Visual C++** (**cl**);
- * CI jobs: **build-examples**, **test** (per-matrix build + unit/component/scratch/performance quartet), and **install-smoke** — each matrix cell is independent (**fail-fast: false**);
+ * CI jobs: per-matrix **build** (examples + tests), then parallel **run-examples**, **test-unit**, **test-component**, **test-scratch**, **test-performance** (each **needs** matching **build** only), plus **install-smoke**;
  * MSVC CI disables **find_package(MFC)** (**CMAKE_DISABLE_FIND_PACKAGE_MFC**) — GHA has MFC headers but not **_AFXDLL** / **/MD** linkage for mfcstl tests;
  * Visual C++ 18.x recognition in **stlsoft.h** (for current MSVC toolsets on **windows-latest**);
  * Fixed **winstl::codepage_sequence::data()** — now returns **m_cpids.data()** (was missing **return**);
@@ -46,9 +46,10 @@ Test/example runner scripts:
  * **.sis/script_info_lines.txt** — centralised project description/copyright for script **--help** output;
 
 GitHub Actions CI (**.github/workflows/ci.yml**) — Phase 2 job split:
- * **build-examples** — configure/build examples; **run_all_examples.sh -M**;
- * **test** — per **(os, compiler)** cell: xTests bootstrap, build all tests, then **run_all_unit_tests.sh -M --unit-only**, **--component-only**, **run_all_scratch_tests.sh -M** (step **continue-on-error**), **execute_performance_tests.sh -M --list-only** (step **continue-on-error**); no cross-matrix **needs** or artifacts;
- * **install-smoke** — unchanged (**find_package(STLSoft)** consumer);
+ * **build** — per **matrix.id** cell: xTests bootstrap; configure/build with **BUILD_EXAMPLES=ON** and **BUILD_TESTING=ON**; upload **sis-build-*** artifact;
+ * **run-examples**, **test-unit**, **test-component** — **needs: build** (matching matrix cell only); download artifact; run respective script (**merge-gating**);
+ * **test-scratch**, **test-performance** — same **needs** pattern; **continue-on-error**; performance tests executed (not list-only);
+ * **install-smoke** — independent (**find_package(STLSoft)** consumer);
 
 MinGW compatibility in **winstl/util/struct_comparers.hpp**:
  * **NETWORK_APP_INSTANCE_EA** — **WINSTL_THE_COMPARABLE_STRUCTURE_** specialisation guarded with **!defined(STLSOFT_MINGW)** (Win10+ NTDDI);
