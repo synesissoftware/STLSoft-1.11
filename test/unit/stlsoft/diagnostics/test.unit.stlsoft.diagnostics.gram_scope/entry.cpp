@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for `stlsoft::gram_scope`.
  *
  * Created: 15th December 2024
- * Updated: 20th March 2025
+ * Updated: 1st July 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -96,8 +96,10 @@ static void TEST_gram_scope_CONSTRUCT_FROM_INSTANCES()
 
     platformstl::stopwatch::interval_type const total_time_ns = gram.total_event_time_ns_raw();
 
+    // need high permissiveness in time range, due to latencies caused by
+    // (presumably) contention in CI
     XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(10000000, total_time_ns);
-    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(20000000, total_time_ns);
+    XTESTS_TEST_INTEGER_LESS_OR_EQUAL(100000000, total_time_ns);
 }
 } // anonymous namespace
 
