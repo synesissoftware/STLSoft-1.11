@@ -33,10 +33,8 @@ while [[ $# -gt 0 ]]; do
       ;;
     --help)
 
+      [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-STLSoft is a suite of libraries that provide STL extensions and facades over operating-system and technology-specific APIs
-Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
-Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
 Runs all (matching) performance-test programs
 
 $ScriptPath [ ... flags/options ... ]
@@ -103,6 +101,8 @@ else
   if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
 
     >&2 echo "$ScriptPath: cannot run in '--no-make' mode without a previous successful build step"
+
+    exit 1
   fi
 fi
 
@@ -116,7 +116,7 @@ if [ $status -eq 0 ]; then
     echo "Running all performance test programs"
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print)
+  for f in $(find "$CMakeDir" -type f '(' -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print | sort)
   do
 
     if [ $ListOnly -ne 0 ]; then
@@ -147,13 +147,9 @@ if [ $status -eq 0 ]; then
       break 1
     fi
   done
-else
-
-  status=$?
 fi
 
 exit $status
 
 
 # ############################## end of file ############################# #
-

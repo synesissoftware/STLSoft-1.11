@@ -32,9 +32,18 @@ General:
  * Fixed **winstl_C_printf_debug_string()** — compare buffer length via **STLSOFT_C_CAST(int, STLSOFT_NUM_ELEMENTS(msg))** (signed/unsigned comparison with **/WX**);
  * **test.unit.versions** — aligned with **1.11.1-rc4** (**_STLSOFT_VER_1_11_1_RC4**);
  * MinGW compatibility in **winstl/util/struct_comparers.hpp** — omit **NETWORK_APP_INSTANCE_EA**, **POWER_LIMIT_VALUE**, **SHUFFLE_FILE_DATA** byte comparers when **STLSOFT_MINGW** is defined;
+ * Test/example runner scripts — **--unit-only** / **--component-only** on **run_all_unit_tests.sh**; new **run_all_examples.sh** / **.cmd**; **run_all_unit_tests.cmd**, **run_all_scratch_tests.cmd**, and **execute_performance_tests.cmd** aligned with shell counterparts;
 
 Details:
 ========
+
+Test/example runner scripts:
+ * **run_all_unit_tests.sh** — + **--unit-only**, **--component-only** (mutually exclusive);
+ * **run_all_unit_tests.cmd** — aligned with **.sh** (**SIS_CMAKE_BUILD_DIR**, **-M**, **--list-only**, unit/component filters, exit status);
+ * **run_all_scratch_tests.cmd** — aligned with **run_all_scratch_tests.sh**;
+ * **run_all_examples.sh** / **run_all_examples.cmd** — run (or list) all programs under the CMake **examples/** build tree;
+ * **execute_performance_tests.cmd** — aligned with **execute_performance_tests.sh**;
+ * **.sis/script_info_lines.txt** — centralised project description/copyright for script **--help** output;
 
 MinGW compatibility in **winstl/util/struct_comparers.hpp**:
  * **NETWORK_APP_INSTANCE_EA** — **WINSTL_THE_COMPARABLE_STRUCTURE_** specialisation guarded with **!defined(STLSOFT_MINGW)** (Win10+ NTDDI);
