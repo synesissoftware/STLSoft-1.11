@@ -71,7 +71,7 @@ jobs:
               -DCMAKE_INSTALL_PREFIX="$DEPS" \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF
-            cmake --build "$STLINSTALL" --parallel
+            cmake --build "$STLINSTALL" --parallel 2
             cmake --install "$STLINSTALL"
           else
             cmake -S "$STLSRC" -B "$STLINSTALL" \
@@ -108,7 +108,7 @@ jobs:
               -DBUILD_TESTING=OFF \
               -DNO_SHWILD=TRUE \
               -DSTLSOFT="$STLSRC"
-            cmake --build "$XTBUILD" --parallel
+            cmake --build "$XTBUILD" --parallel 2
             cmake --install "$XTBUILD"
           else
             cmake -S "$XTSRC" -B "$XTBUILD" \
@@ -165,7 +165,7 @@ jobs:
             cmake --build build --config "${{ inputs.build-type }}" --parallel
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
-            cmake --build build --parallel
+            cmake --build build --parallel 2
           else
             cmake --build build --parallel
           fi
@@ -206,7 +206,7 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M --skip-interactive
 
   test-unit:
     name: Unit tests (${{ inputs.cell-id }})

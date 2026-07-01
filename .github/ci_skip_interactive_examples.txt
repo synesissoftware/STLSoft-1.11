@@ -1,0 +1,3 @@
+# Examples that require an interactive desktop (GUI dialogs, etc.).
+# Skipped when run_all_examples.{sh,cmd} is invoked with --skip-interactive.
+shell_functions

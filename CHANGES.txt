@@ -41,13 +41,13 @@ Test/example runner scripts:
  * **run_all_unit_tests.sh** — + **--unit-only**, **--component-only** (mutually exclusive);
  * **run_all_unit_tests.cmd** — aligned with **.sh** (**SIS_CMAKE_BUILD_DIR**, **-M**, **--list-only**, unit/component filters, exit status);
  * **run_all_scratch_tests.cmd** — aligned with **run_all_scratch_tests.sh**;
- * **run_all_examples.sh** / **run_all_examples.cmd** — run (or list) all programs under the CMake **examples/** build tree;
+ * **run_all_examples.sh** / **run_all_examples.cmd** — run (or list) all programs under the CMake **examples/** build tree; **--skip-interactive** skips GUI examples listed in **.github/ci_skip_interactive_examples.txt** (used by CI on headless runners);
  * **execute_performance_tests.cmd** — aligned with **execute_performance_tests.sh**;
  * **.sis/script_info_lines.txt** — centralised project description/copyright for script **--help** output;
 
 GitHub Actions CI (**.github/workflows/ci.yml** + **ci-cell.yml**) — Phase 2 job split:
  * **ci.yml** — matrix of six **workflow_call** invocations (**cell**) plus **install-smoke**;
- * **ci-cell.yml** (reusable, per **cell-id**): **build** then parallel **run-examples**, **test-unit**, **test-component**, **test-scratch**, **test-performance** — each cell's **needs: build** is scoped to that cell only (not the whole matrix);
+ * **ci-cell.yml** (reusable, per **cell-id**): **build** then parallel **run-examples**, **test-unit**, **test-component**, **test-scratch**, **test-performance** — each cell's **needs: build** is scoped to that cell only (not the whole matrix); **run-examples** uses **--skip-interactive** so **shell_functions** (folder-browser dialog) does not block headless Windows runners; MinGW builds use **cmake --build --parallel 2** to avoid **cc1plus** out-of-memory on GHA (**--parallel** without a job count lets **mingw32-make** run unbounded);
 
 MinGW compatibility in **winstl/util/struct_comparers.hpp**:
  * **NETWORK_APP_INSTANCE_EA** — **WINSTL_THE_COMPARABLE_STRUCTURE_** specialisation guarded with **!defined(STLSOFT_MINGW)** (Win10+ NTDDI);

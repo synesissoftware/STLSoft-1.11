@@ -9,6 +9,40 @@ MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
 
 ListOnly=0
 RunMake=1
+SkipInteractive=0
+
+
+# ##########################################################
+# helpers
+
+example_basename()
+{
+  basename "${1%.exe}"
+}
+
+is_skipped_interactive_example()
+{
+  local name skip_file="$Dir/.github/ci_skip_interactive_examples.txt"
+
+  [ $SkipInteractive -ne 0 ] || return 1
+  [ -f "$skip_file" ] || return 1
+
+  name=$(example_basename "$1")
+
+  while IFS= read -r line || [ -n "$line" ]; do
+
+    case "$line" in
+      ''|\#*) continue ;;
+    esac
+
+    if [ "$name" = "$line" ]; then
+
+      return 0
+    fi
+  done < "$skip_file"
+
+  return 1
+}
 
 
 # ##########################################################
@@ -24,6 +58,10 @@ while [[ $# -gt 0 ]]; do
     --no-make|-M)
 
       RunMake=0
+      ;;
+    --skip-interactive)
+
+      SkipInteractive=1
       ;;
     --help)
 
@@ -44,6 +82,10 @@ Flags/options:
     -M
     --no-make
         does not execute CMake and make before running examples
+
+    --skip-interactive
+        skips examples listed in .github/ci_skip_interactive_examples.txt
+        (GUI / desktop-interactive programs unsuitable for headless CI)
 
 
     standard flags:
@@ -116,6 +158,21 @@ if [ $status -eq 0 ]; then
 
   for f in $(find "$CMakeDir/examples" -type f -exec test -x {} \; -print | sort)
   do
+
+    if is_skipped_interactive_example "$f"; then
+
+      if [ $ListOnly -ne 0 ]; then
+
+        echo "would skip $f (interactive; --skip-interactive)"
+
+      else
+
+        echo
+        echo "skipping $f (interactive; --skip-interactive)"
+      fi
+
+      continue
+    fi
 
     if [ $ListOnly -ne 0 ]; then
 

@@ -128,7 +128,7 @@ jobs:
             cmake --build build --config "${{ env.BUILD_TYPE }}" --parallel
           elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
-            cmake --build build --parallel
+            cmake --build build --parallel 2
           else
             cmake --build build --parallel
           fi
@@ -179,7 +179,7 @@ jobs:
             cmake -S "$CONSUMER" -B consumer-build -G "MinGW Makefiles" \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
               -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}"
-            cmake --build consumer-build --parallel
+            cmake --build consumer-build --parallel 2
             consumer-build/consumer.exe
           else
             cmake -S "$CONSUMER" -B consumer-build \

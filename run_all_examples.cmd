@@ -15,6 +15,7 @@ IF DEFINED SIS_CMAKE_BUILD_DIR (
 
 SET ListOnly=0
 SET RunMake=1
+SET SkipInteractive=0
 
 SET BuildConfig=Release
 IF DEFINED CMAKE_BUILD_TYPE SET BuildConfig=%CMAKE_BUILD_TYPE%
@@ -41,6 +42,10 @@ IF /I "%~1"=="-M" (
 )
 IF /I "%~1"=="--no-make" (
     SET RunMake=0
+    GOTO next_arg
+)
+IF /I "%~1"=="--skip-interactive" (
+    SET SkipInteractive=1
     GOTO next_arg
 )
 
@@ -86,7 +91,15 @@ IF %status% EQU 0 (
     )
 
     FOR /F "usebackq delims=" %%f IN (`DIR /A:-D /B /S "%CMakeDir%\examples\*.exe" 2^>NUL`) DO (
-        IF !ListOnly! NEQ 0 (
+        CALL :is_skipped_interactive "%%~nxf"
+        IF !skip_example! EQU 1 (
+            IF !ListOnly! NEQ 0 (
+                ECHO would skip %%f: (interactive; --skip-interactive)
+            ) ELSE (
+                ECHO.
+                ECHO skipping %%f: (interactive; --skip-interactive)
+            )
+        ) ELSE IF !ListOnly! NEQ 0 (
             ECHO would execute %%f:
         ) ELSE (
             ECHO.
@@ -111,6 +124,15 @@ EXIT /B 0
 
 :: #########################################################
 :: helpers
+
+:is_skipped_interactive
+SET skip_example=0
+IF %SkipInteractive% EQU 0 EXIT /B 0
+IF NOT EXIST "%ScriptDir%.github\ci_skip_interactive_examples.txt" EXIT /B 0
+FOR /F "usebackq eol=# tokens=1" %%s IN ("%ScriptDir%.github\ci_skip_interactive_examples.txt") DO (
+    IF /I "%%s"=="%~1" SET skip_example=1
+)
+EXIT /B 0
 
 :do_build
 IF DEFINED SIS_CMAKE_MAKE_COMMAND (
@@ -155,6 +177,10 @@ ECHO.
 ECHO     -M
 ECHO     --no-make
 ECHO         does not execute CMake and make before running examples
+ECHO.
+ECHO     --skip-interactive
+ECHO         skips examples listed in .github/ci_skip_interactive_examples.txt
+ECHO         (GUI / desktop-interactive programs unsuitable for headless CI)
 ECHO.
 ECHO     standard flags:
 ECHO.
