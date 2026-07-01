@@ -17,25 +17,39 @@ SkipInteractive=0
 
 example_basename()
 {
-  basename "${1%.exe}"
+  local p="${1//\\//}"
+
+  basename "${p%.exe}"
 }
 
 is_skipped_interactive_example()
 {
-  local name skip_file="$Dir/.github/ci_skip_interactive_examples.txt"
+  local name f_norm line skip_file="$Dir/.github/ci_skip_interactive_examples.txt"
 
   [ $SkipInteractive -ne 0 ] || return 1
-  [ -f "$skip_file" ] || return 1
 
+  if [ ! -f "$skip_file" ]; then
+
+    >&2 echo "$ScriptPath: --skip-interactive: skip list not found at '$skip_file'"
+
+    return 1
+  fi
+
+  f_norm="${1//\\//}"
   name=$(example_basename "$1")
 
   while IFS= read -r line || [ -n "$line" ]; do
+
+    line="${line//$'\r'/}"
 
     case "$line" in
       ''|\#*) continue ;;
     esac
 
-    if [ "$name" = "$line" ]; then
+    if [ "$name" = "$line" ] \
+      || [ "${f_norm##*/}" = "$line" ] \
+      || [ "${f_norm##*/}" = "$line.exe" ]
+    then
 
       return 0
     fi

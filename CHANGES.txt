@@ -41,7 +41,7 @@ Test/example runner scripts:
  * **run_all_unit_tests.sh** — + **--unit-only**, **--component-only** (mutually exclusive);
  * **run_all_unit_tests.cmd** — aligned with **.sh** (**SIS_CMAKE_BUILD_DIR**, **-M**, **--list-only**, unit/component filters, exit status);
  * **run_all_scratch_tests.cmd** — aligned with **run_all_scratch_tests.sh**;
- * **run_all_examples.sh** / **run_all_examples.cmd** — run (or list) all programs under the CMake **examples/** build tree; **--skip-interactive** skips GUI examples listed in **.github/ci_skip_interactive_examples.txt** (used by CI on headless runners);
+ * **run_all_examples.sh** / **run_all_examples.cmd** — run (or list) all programs under the CMake **examples/** build tree; **--skip-interactive** skips GUI examples listed in **.github/ci_skip_interactive_examples.txt** (used by CI on headless runners; skip matching normalises Windows paths and CRLF line endings);
  * **execute_performance_tests.cmd** — aligned with **execute_performance_tests.sh**;
  * **.sis/script_info_lines.txt** — centralised project description/copyright for script **--help** output;
 
