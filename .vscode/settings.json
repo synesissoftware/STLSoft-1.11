@@ -6,7 +6,7 @@
 	},
 	"[c]": {
 		"editor.insertSpaces": true,
-		"editor.rulers": [ 60, 76 ],
+		"editor.rulers": [ 60, 64, 68, 72, 76 ],
 		"editor.tabSize": 4,
 	},
 	"[cmake]": {
@@ -15,7 +15,7 @@
 	},
 	"[cpp]": {
 		"editor.insertSpaces": true,
-		"editor.rulers": [ 60, 64, 68, 76 ],
+		"editor.rulers": [ 60, 64, 68, 72, 76 ],
 		"editor.tabSize": 4,
 	},
 	"[json]": {
@@ -28,13 +28,7 @@
 	},
 	"[ruby]": {
 		"editor.insertSpaces": true,
-		"editor.rulers": [ 60, 76 ],
 		"editor.tabSize": 2,
-	},
-	"[rust]": {
-		"editor.insertSpaces": true,
-		"editor.rulers": [ 60, 76 ],
-		"editor.tabSize": 4,
 	},
 	"[shellscript]": {
 		"editor.insertSpaces": true,
@@ -44,7 +38,7 @@
 	"cmake.configureOnOpen": false,
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
-	"editor.renderWhitespace" : "all",
+	"editor.renderWhitespace": "all",
 	"editor.rulers": [ 76 ],
 	"editor.tabSize": 2,
 	"files.associations": {
