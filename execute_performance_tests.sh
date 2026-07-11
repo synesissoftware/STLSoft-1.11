@@ -101,6 +101,8 @@ else
   if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
 
     >&2 echo "$ScriptPath: cannot run in '--no-make' mode without a previous successful build step"
+
+    exit 1
   fi
 fi
 
@@ -114,7 +116,7 @@ if [ $status -eq 0 ]; then
     echo "Running all performance test programs"
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print)
+  for f in $(find "$CMakeDir" -type f '(' -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print | sort)
   do
 
     if [ $ListOnly -ne 0 ]; then
@@ -145,13 +147,9 @@ if [ $status -eq 0 ]; then
       break 1
     fi
   done
-else
-
-  status=$?
 fi
 
 exit $status
 
 
 # ############################## end of file ############################# #
-

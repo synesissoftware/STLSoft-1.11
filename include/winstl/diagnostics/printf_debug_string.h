@@ -4,11 +4,11 @@
  * Purpose: Functions to write lines to the Windows debugger.
  *
  * Created: 18th August 2025
- * Updated: 18th August 2025
+ * Updated: 1st July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2025-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_MAJOR    1
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_MINOR    0
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_REVISION 0
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_EDIT     1
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_REVISION 1
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_PRINTF_DEBUG_LINE_EDIT     2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -156,7 +156,7 @@ winstl_C_printf_debug_string(
         }
     }
 
-    if (r >= STLSOFT_NUM_ELEMENTS(msg))
+    if (r >= STLSOFT_C_CAST(int, STLSOFT_NUM_ELEMENTS(msg)))
     {
         // too large, so we want to add trailing \n if that was present
 
