@@ -19,12 +19,10 @@ IF {%TestVerbosity%} == {} (
 
 FOR %%a IN (%*) DO (
   IF {%%a} == {--help} (
+    IF EXIST "%~dp0.sis\script_info_lines.txt" (
+      type "%~dp0.sis\script_info_lines.txt"
+    )
     ECHO ^
-STLSoft is a suite of libraries that provide STL extensions and facades over operating-system and technology-specific APIs^
-
-Copyright ^(c^) 2019-2024, Matthew Wilson and Synesis Information Systems^
-
-Copyright ^(c^) 2002-2019, Matthew Wilson and Synesis Software^
 
 Runs all ^(matching^) unit-test ^& component-test programs^
 

@@ -68,10 +68,8 @@ while [[ $# -gt 0 ]]; do
       ;;
     --help)
 
+      [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-STLSoft is a suite of libraries that provide STL extensions and facades over operating-system and technology-specific APIs
-Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
-Copyright (c) 2002-2019, Matthew Wilson and Synesis Software
 Creates/reinitialises the CMake build script(s)
 
 $ScriptPath [ ... flags/options ... ]
