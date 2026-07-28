@@ -497,8 +497,9 @@
 
  /* Use `long long` (not `__INT64_TYPE__`) so the 64-bit sized types are
   * always distinct from `long`. On Linux LP64, `__INT64_TYPE__` is `long`,
-  * which collided with overloads guarded by STLSOFT_CF_LONG_DISTINCT_INT_TYPE.
-  * This matches gcc.h and keeps `long` / `long long` overload sets coherent.
+  * which collides with overloads guarded by
+  * STLSOFT_CF_LONG_DISTINCT_INT_TYPE. This matches gcc.h and keeps `long` /
+  * `long long` overload sets coherent.
   */
 # define STLSOFT_CF_64BIT_INT_SUPPORT
 # define STLSOFT_CF_64BIT_INT_IS_long_long
