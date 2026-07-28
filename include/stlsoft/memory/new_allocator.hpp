@@ -4,7 +4,7 @@
  * Purpose: stlsoft_new_allocator class - use new & delete operators.
  *
  * Created: 2nd January 2001
- * Updated: 20th March 2025
+ * Updated: 2nd September 2025
  *
  * Home:    http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_REVISION  9
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      99
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_NEW_ALLOCATOR_EDIT      100
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -154,8 +154,10 @@ private:
 
 #if defined(new) || \
     defined(delete)
+
         return new ss_byte_t[n * sizeof(value_type)];
 #else /* ? new || delete */
+
         return ::operator new (n * sizeof(value_type));
 #endif /* new || delete */
     }
@@ -165,8 +167,10 @@ private:
 
 #if defined(new) || \
     defined(delete)
+
         delete [] static_cast<ss_byte_t*>(pv);
 #else /* ? new || delete */
+
         ::operator delete (pv);
 #endif /* new || delete */
     }
@@ -174,13 +178,14 @@ private:
     {
 #if defined(new) || \
     defined(delete)
+
         delete [] static_cast<ss_byte_t*>(pv);
 #else /* ? new || delete */
+
         ::operator delete (pv);
 #endif /* new || delete */
     }
 };
-
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -190,19 +195,19 @@ STLSOFT_TEMPLATE_SPECIALISATION
 class new_allocator<void>
 {
 public:
-    typedef void                    value_type;
-    typedef new_allocator<void>     class_type;
-    typedef void*                   pointer;
-    typedef void const*             const_pointer;
-    typedef ss_ptrdiff_t            difference_type;
-    typedef ss_size_t               size_type;
+    typedef void                                            value_type;
+    typedef new_allocator<void>                             class_type;
+    typedef void*                                           pointer;
+    typedef void const*                                     const_pointer;
+    typedef ss_ptrdiff_t                                    difference_type;
+    typedef ss_size_t                                       size_type;
 
 #ifdef STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT
     /// The allocator <b><code>rebind</code></b> structure
     template <ss_typename_param_k U>
     struct rebind
     {
-        typedef new_allocator<U>    other;
+        typedef new_allocator<U>                            other;
     };
 #endif /* STLSOFT_CF_ALLOCATOR_REBIND_SUPPORT */
 };
@@ -212,20 +217,32 @@ public:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline ss_bool_t operator ==(const new_allocator<T> &/* lhs */, const new_allocator<T> &/* rhs */)
+inline
+ss_bool_t
+operator ==(
+    const new_allocator<T> &/* lhs */
+,   const new_allocator<T> &/* rhs */
+)
 {
     return ss_true_v;
 }
 
 template <ss_typename_param_k T>
-inline ss_bool_t operator !=(const new_allocator<T> &/* lhs */, const new_allocator<T> &/* rhs */)
+inline
+ss_bool_t
+operator !=(
+    const new_allocator<T> &/* lhs */
+,   const new_allocator<T> &/* rhs */
+)
 {
     return ss_false_v;
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * namespace
+ */
 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
