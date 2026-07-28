@@ -29,6 +29,7 @@ General:
  * Fixed **winstl::codepage_sequence::data()** — now returns **m_cpids.data()** (was missing **return**);
  * Fixed **winstl_C_printf_debug_string()** — compare buffer length via **STLSOFT_C_CAST(int, STLSOFT_NUM_ELEMENTS(msg))** (signed/unsigned comparison with **/WX**);
  * Clang cccap: 64-bit sized types use **`long long`** (not **`__INT64_TYPE__`**) so they stay distinct from **`long`** on Linux LP64 — fixes redefinition of overloads guarded by **STLSOFT_CF_LONG_DISTINCT_INT_TYPE** (e.g. **try_parse_to**);
+ * Allocators: reject element counts above **max_size()** before **`n * sizeof(T)`** (fixes GCC **`-Werror=alloc-size-larger-than=`**); **pid_sequence** avoids **`size() - 1`** underflow when eliding PIDs;
  * **test.unit.versions** — aligned with **1.11.1-rc4** (**_STLSOFT_VER_1_11_1_RC4**);
  * MinGW compatibility in **winstl/util/struct_comparers.hpp** — omit **NETWORK_APP_INSTANCE_EA**, **POWER_LIMIT_VALUE**, **SHUFFLE_FILE_DATA** byte comparers when **STLSOFT_MINGW** is defined;
  * Test/example runner scripts — **--unit-only** / **--component-only** on **run_all_unit_tests.sh**; new **run_all_examples.sh** / **.cmd**; **run_all_unit_tests.cmd**, **run_all_scratch_tests.cmd**, and **execute_performance_tests.cmd** aligned with shell counterparts;
@@ -64,6 +65,11 @@ Fixed **winstl_C_printf_debug_string()**:
 Clang cccap (`include/stlsoft/internal/cccap/clang.h`):
  * **STLSOFT_SI64_T_BASE_TYPE** / **STLSOFT_UI64_T_BASE_TYPE** — use **`signed`/`unsigned long long`** instead of **`__INT64_TYPE__`/`__UINT64_TYPE__`** (align with **gcc.h**); on Linux LP64 Clang those builtins are **`long`**, which made **STLSOFT_CF_LONG_DISTINCT_INT_TYPE** overloads redefine the 64-bit overloads;
  * **STLSOFT_CF_64BIT_INT_IS_long_long** — always defined when 64-bit support is enabled (the base type is now actually **`long long`**);
+
+Allocator overflow / GCC **`-Walloc-size-larger-than=`**:
+ * **include/stlsoft/memory/allocator_base.hpp** — **`allocate()`** rejects **`n > max_size()`** before **`do_allocate()`** (prevents overflow in **`n * sizeof(value_type)`** for all CRTP allocators);
+ * **include/stlsoft/memory/malloc_allocator.hpp** / **new_allocator.hpp** — same guard in **`do_allocate()`** beside the multiply;
+ * **include/unixstl/system/pid_sequence.hpp** — elide-Init/Sched path no longer does **`size() - 1`** when empty (unsigned underflow → **`resize(SIZE_MAX)`**), which was the call that triggered the warning under **`-Werror`**;
 
 
 ============================================================================

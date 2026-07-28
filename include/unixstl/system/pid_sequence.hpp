@@ -4,7 +4,7 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 16th August 2025
- * Updated: 22nd August 2025
+ * Updated: 28th July 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_MAJOR      0
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT       2
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_PID_SEQUENCE_EDIT       3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -436,8 +436,17 @@ pid_sequence::pid_sequence(us_uint32_t flags)
 
             if (m_pids.end() != pInit)
             {
-                std_swap(*pInit, m_pids[m_pids.size() - 1]);
-                m_pids.resize(m_pids.size() - 1);
+                /* size() - 1 must not underflow: an empty buffer would
+                 * turn resize() into an enormous allocation request and
+                 * trip GCC -Walloc-size-larger-than= (as -Werror).
+                 */
+                size_type const size = m_pids.size();
+
+                if (0 != size)
+                {
+                    std_swap(*pInit, m_pids[size - 1]);
+                    m_pids.resize(size - 1);
+                }
             }
         }
 
@@ -447,8 +456,13 @@ pid_sequence::pid_sequence(us_uint32_t flags)
 
             if (m_pids.end() != pSched)
             {
-                std_swap(*pSched, m_pids[m_pids.size() - 1]);
-                m_pids.resize(m_pids.size() - 1);
+                size_type const size = m_pids.size();
+
+                if (0 != size)
+                {
+                    std_swap(*pSched, m_pids[size - 1]);
+                    m_pids.resize(size - 1);
+                }
             }
         }
     }
