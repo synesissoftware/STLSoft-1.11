@@ -9,6 +9,69 @@ MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
 
 ListOnly=0
 RunMake=1
+SkipInteractive=0
+
+
+# ##########################################################
+# helpers
+
+example_stem()
+{
+  local p="${1//\\//}"
+
+  p="${p##*/}"
+
+  case "$p" in
+    *.exe|*.EXE) p="${p%.*}" ;;
+  esac
+
+  echo "$p"
+}
+
+names_match()
+{
+  local a b
+
+  a=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+  b=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+
+  [ "$a" = "$b" ]
+}
+
+is_skipped_interactive_example()
+{
+  local name f_norm line line_stem skip_file="$Dir/.github/ci_skip_interactive_examples.txt"
+
+  [ $SkipInteractive -ne 0 ] || return 1
+
+  if [ ! -f "$skip_file" ]; then
+
+    >&2 echo "$ScriptPath: --skip-interactive: skip list not found at '$skip_file'"
+
+    return 1
+  fi
+
+  f_norm="${1//\\//}"
+  name=$(example_stem "$f_norm")
+
+  while IFS= read -r line || [ -n "$line" ]; do
+
+    line="${line//$'\r'/}"
+
+    case "$line" in
+      ''|\#*) continue ;;
+    esac
+
+    line_stem=$(example_stem "$line")
+
+    if names_match "$name" "$line_stem"; then
+
+      return 0
+    fi
+  done < "$skip_file"
+
+  return 1
+}
 
 
 # ##########################################################
@@ -25,11 +88,15 @@ while [[ $# -gt 0 ]]; do
 
       RunMake=0
       ;;
+    --skip-interactive)
+
+      SkipInteractive=1
+      ;;
     --help)
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Runs all example programs
+Runs all (matching) example programs
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -43,7 +110,12 @@ Flags/options:
 
     -M
     --no-make
-        does not execute CMake and make before running tests
+        does not execute CMake and make before running examples
+
+    --skip-interactive
+        skips examples listed in .github/ci_skip_interactive_examples.txt
+        (GUI / desktop-interactive programs unsuitable for headless CI;
+        list stems or names, e.g. shell_functions or shell_functions.exe)
 
 
     standard flags:
@@ -92,10 +164,19 @@ else
   if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
 
     >&2 echo "$ScriptPath: cannot run in '--no-make' mode without a previous successful build step"
+
+    exit 1
   fi
 fi
 
 if [ $status -eq 0 ]; then
+
+  if [ ! -d "$CMakeDir/examples" ]; then
+
+    >&2 echo "$ScriptPath: examples build tree not found at '$CMakeDir/examples'"
+
+    exit 1
+  fi
 
   if [ $ListOnly -ne 0 ]; then
 
@@ -105,8 +186,23 @@ if [ $status -eq 0 ]; then
     echo "Running all example programs"
   fi
 
-  for f in $(find $CMakeDir/examples -type f -exec test -x {} \; -print)
+  for f in $(find "$CMakeDir/examples" -type f -exec test -x {} \; -print | sort)
   do
+
+    if is_skipped_interactive_example "$f"; then
+
+      if [ $ListOnly -ne 0 ]; then
+
+        echo "would skip $f (interactive; --skip-interactive)"
+
+      else
+
+        echo
+        echo "skipping $f (interactive; --skip-interactive)"
+      fi
+
+      continue
+    fi
 
     if [ $ListOnly -ne 0 ]; then
 
@@ -118,7 +214,15 @@ if [ $status -eq 0 ]; then
     echo
     echo "executing $f:"
 
-    $f
+    if $f; then
+
+      :
+    else
+
+      status=$?
+
+      break 1
+    fi
   done
 fi
 
@@ -126,4 +230,3 @@ exit $status
 
 
 # ############################## end of file ############################# #
-

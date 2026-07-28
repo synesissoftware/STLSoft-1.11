@@ -1,0 +1,4 @@
+# Examples that require an interactive desktop (GUI dialogs, etc.).
+# Skipped when run_all_examples.{sh,cmd} is invoked with --skip-interactive.
+# List executable stems or names (shell_functions and shell_functions.exe are equivalent).
+shell_functions.exe

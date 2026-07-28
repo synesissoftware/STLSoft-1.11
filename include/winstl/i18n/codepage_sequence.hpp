@@ -4,11 +4,11 @@
  * Purpose: Process Id sequence class.
  *
  * Created: 15th August 2025
- * Updated: 23rd August 2025
+ * Updated: 1st July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2025-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

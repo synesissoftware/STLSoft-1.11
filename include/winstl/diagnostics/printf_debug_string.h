@@ -4,11 +4,11 @@
  * Purpose: Functions to write lines to the Windows debugger.
  *
  * Created: 18th August 2025
- * Updated: 23rd August 2025
+ * Updated: 1st July 2026
  *
  * Home:    http://stlsoft.org/
  *
- * Copyright (c) 2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2025-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -156,7 +156,7 @@ winstl_C_printf_debug_string(
         }
     }
 
-    if (r >= (int)STLSOFT_NUM_ELEMENTS(msg))
+    if (r >= STLSOFT_C_CAST(int, STLSOFT_NUM_ELEMENTS(msg)))
     {
         // too large, so we want to add trailing \n if that was present
 
