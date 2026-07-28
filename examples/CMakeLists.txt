@@ -46,10 +46,6 @@ add_subdirectory(by_concept)
 add_subdirectory(by_library)
 add_subdirectory(by_project)
 
-if(WIN32)
-	add_subdirectory(winstl)
-endif(WIN32)
-
 
 # ############################## end of file ############################# #
 
