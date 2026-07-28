@@ -17,9 +17,7 @@ STLSoft - Changes
    **************************************
 
 
-============================================================================
-
-Changes for 1.11.1-rc4 (1st July 2026)
+Changes for 1.11.1-rc4 (XXXX August 2025)
 
 General:
 ========
@@ -33,6 +31,9 @@ General:
  * **test.unit.versions** — aligned with **1.11.1-rc4** (**_STLSOFT_VER_1_11_1_RC4**);
  * MinGW compatibility in **winstl/util/struct_comparers.hpp** — omit **NETWORK_APP_INSTANCE_EA**, **POWER_LIMIT_VALUE**, **SHUFFLE_FILE_DATA** byte comparers when **STLSOFT_MINGW** is defined;
  * Test/example runner scripts — **--unit-only** / **--component-only** on **run_all_unit_tests.sh**; new **run_all_examples.sh** / **.cmd**; **run_all_unit_tests.cmd**, **run_all_scratch_tests.cmd**, and **execute_performance_tests.cmd** aligned with shell counterparts;
+ * code generation scripts;
+ * ;
+
 
 Details:
 ========
