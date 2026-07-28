@@ -205,9 +205,10 @@ struct ximpl_winstl_shims_access_string_time
         // which condition (of invalid value, out-of-range, etc.)
 
         STLSOFT_THROW_X(conversion_error("failed to convert date/time", e));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return 0;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
