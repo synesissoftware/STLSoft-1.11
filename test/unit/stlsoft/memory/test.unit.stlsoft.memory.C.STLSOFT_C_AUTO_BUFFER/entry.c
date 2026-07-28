@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.memory.c.STLSOFT_C_AUTO_BUFFER.c
+ * File:    test.unit.stlsoft.memory.C.STLSOFT_C_AUTO_BUFFER/entry.c
  *
  * Purpose: Scratch test for `STLSOFT_C_AUTO_BUFFER()`, etc.
  *
  * Created: 5th August 2011
- * Updated: 30th May 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

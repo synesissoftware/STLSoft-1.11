@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.winstl.registry.reg_value_sequence/entry.cpp
+ * File:    test.component.winstl.registry.reg_value_sequence/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::reg_value_sequence`.
  *
  * Created: 22nd October 2024
- * Updated: 20th March 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -100,7 +100,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.unit.winstl.registry.reg_value_sequence", verbosity, setup, teardown, NULL))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.registry.reg_value_sequence", verbosity, setup, teardown, NULL))
     {
         XTESTS_RUN_CASE(test_1_12);
 

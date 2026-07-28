@@ -5,7 +5,7 @@
  *          `stlsoft::translate_thousands`.
  *
  * Created: 28th March 2024
- * Updated: 30th April 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.number.grouping_functions", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.conversion.number.group_functions", verbosity))
     {
         XTESTS_RUN_CASE(TEST_format_thousands_SIMPLE);
         XTESTS_RUN_CASE(TEST_format_thousands_987654321_WITH_DEFAULT_SEPARATORS);

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.unixstl.system.environment_variable/entry.cpp
+ * File:    test.component.unixstl.system.environment_variable/entry.cpp
  *
  * Purpose: Unit-tests for `unixstl::environment_variable`.
  *
  * Created: 11th August 2010
- * Updated: 20th March 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

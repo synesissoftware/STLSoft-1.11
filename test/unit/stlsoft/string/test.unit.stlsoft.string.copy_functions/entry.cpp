@@ -4,7 +4,7 @@
  * Purpose: Scratch test for string copy functions.
  *
  * Created: 29th September 2016
- * Updated: 26th April 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.string.copy_functions/entry", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.string.copy_functions", verbosity))
     {
         XTESTS_RUN_CASE(test_string_copy_with_toolarge_destination);
         XTESTS_RUN_CASE(test_string_copy_with_exactlysufficient_destination);

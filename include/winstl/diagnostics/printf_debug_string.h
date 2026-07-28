@@ -152,7 +152,7 @@ winstl_C_printf_debug_string(
         }
         else
         {
-            r = STLSOFT_NUM_ELEMENTS(msg);
+            r = (int)STLSOFT_NUM_ELEMENTS(msg);
         }
     }
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.winstl.registry.reg_value/entry.cpp
+ * File:    test.component.winstl.registry.reg_value/entry.cpp
  *
  * Purpose: Unit-tests for `winstl::reg_value`.
  *
  * Created: 23rd February 2009
- * Updated: 20th March 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.unit.winstl.registry.reg_value", verbosity, setup, teardown, NULL))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.registry.reg_value", verbosity, setup, teardown, NULL))
     {
 #if 0
         XTESTS_RUN_CASE_THAT_THROWS(test_missing_value, winstl::registry_exception);

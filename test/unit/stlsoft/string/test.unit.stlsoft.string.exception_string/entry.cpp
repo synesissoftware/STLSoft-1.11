@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.stlsoft.util.exception_string/entry.cpp
+ * File:    test.unit.stlsoft.string.exception_string/entry.cpp
  *
  * Purpose: Unit-tests for `stlsoft::exception_string`.
  *
  * Created: 3rd February 2011
- * Updated: 30th May 2025
+ * Updated: 23rd August 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.stlsoft.util.exception_string", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.stlsoft.string.exception_string", verbosity))
     {
         XTESTS_RUN_CASE(test_default_instance);
         XTESTS_RUN_CASE(test_ctor_1);

@@ -28,42 +28,6 @@ IF DEFINED CMAKE_BUILD_TYPE SET BuildConfig=%CMAKE_BUILD_TYPE%
 :: #########################################################
 :: command-line handling
 
-FOR %%a IN (%*) DO (
-  IF {%%a} == {--help} (
-    IF EXIST "%~dp0.sis\script_info_lines.txt" (
-      type "%~dp0.sis\script_info_lines.txt"
-    )
-    ECHO ^
-
-Runs all ^(matching^) scratch-test programs^
-
-^
-
-%ScriptPath% ^[ ... flags/options ... ^]^
-
-^
-
-Flags/options:^
-
-^
-
-    standard flags:^
-
-^
-
-    --help^
-
-^
-
-        displays this help and terminates^
-
-
-    EXIT /B 0
-  ) ELSE (
-    ECHO "%ScriptPath%: unrecognised argument '%1'; use --help for usage" 1>&2
-
-    EXIT /B 1
-  )
 :parse_args
 IF "%~1"=="" GOTO args_done
 
