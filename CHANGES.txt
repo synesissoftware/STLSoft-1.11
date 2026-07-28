@@ -28,6 +28,7 @@ General:
  * Visual C++ 18.x recognition in **stlsoft.h** (for current MSVC toolsets on **windows-latest**);
  * Fixed **winstl::codepage_sequence::data()** — now returns **m_cpids.data()** (was missing **return**);
  * Fixed **winstl_C_printf_debug_string()** — compare buffer length via **STLSOFT_C_CAST(int, STLSOFT_NUM_ELEMENTS(msg))** (signed/unsigned comparison with **/WX**);
+ * Clang cccap: 64-bit sized types use **`long long`** (not **`__INT64_TYPE__`**) so they stay distinct from **`long`** on Linux LP64 — fixes redefinition of overloads guarded by **STLSOFT_CF_LONG_DISTINCT_INT_TYPE** (e.g. **try_parse_to**);
  * **test.unit.versions** — aligned with **1.11.1-rc4** (**_STLSOFT_VER_1_11_1_RC4**);
  * MinGW compatibility in **winstl/util/struct_comparers.hpp** — omit **NETWORK_APP_INSTANCE_EA**, **POWER_LIMIT_VALUE**, **SHUFFLE_FILE_DATA** byte comparers when **STLSOFT_MINGW** is defined;
  * Test/example runner scripts — **--unit-only** / **--component-only** on **run_all_unit_tests.sh**; new **run_all_examples.sh** / **.cmd**; **run_all_unit_tests.cmd**, **run_all_scratch_tests.cmd**, and **execute_performance_tests.cmd** aligned with shell counterparts;
@@ -59,6 +60,10 @@ Fixed **winstl::codepage_sequence::data()**:
 
 Fixed **winstl_C_printf_debug_string()**:
  * **include/winstl/diagnostics/printf_debug_string.h** — overflow check on formatted message length now casts **STLSOFT_NUM_ELEMENTS(msg)** to **int** before comparing with **r**;
+
+Clang cccap (`include/stlsoft/internal/cccap/clang.h`):
+ * **STLSOFT_SI64_T_BASE_TYPE** / **STLSOFT_UI64_T_BASE_TYPE** — use **`signed`/`unsigned long long`** instead of **`__INT64_TYPE__`/`__UINT64_TYPE__`** (align with **gcc.h**); on Linux LP64 Clang those builtins are **`long`**, which made **STLSOFT_CF_LONG_DISTINCT_INT_TYPE** overloads redefine the 64-bit overloads;
+ * **STLSOFT_CF_64BIT_INT_IS_long_long** — always defined when 64-bit support is enabled (the base type is now actually **`long long`**);
 
 
 ============================================================================

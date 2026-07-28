@@ -4,7 +4,7 @@
  * Purpose: Compiler feature discrimination for Clang C/C++.
  *
  * Created: 14th March 2015
- * Updated: 31st May 2025
+ * Updated: 28th July 2026
  *
  * Home:    http://stlsoft.org/
  *
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MAJOR    1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_MINOR    11
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     32
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_REVISION 2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_CLANG_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -495,13 +495,15 @@
       0 ||\
       0
 
+ /* Use `long long` (not `__INT64_TYPE__`) so the 64-bit sized types are
+  * always distinct from `long`. On Linux LP64, `__INT64_TYPE__` is `long`,
+  * which collided with overloads guarded by STLSOFT_CF_LONG_DISTINCT_INT_TYPE.
+  * This matches gcc.h and keeps `long` / `long long` overload sets coherent.
+  */
 # define STLSOFT_CF_64BIT_INT_SUPPORT
-# ifdef STLSOFT_LONGLONG_SUPPORT
-#  define STLSOFT_CF_64BIT_INT_IS_long_long
-# endif /* STLSOFT_LONGLONG_SUPPORT */
-
-# define STLSOFT_SI64_T_BASE_TYPE                           __INT64_TYPE__
-# define STLSOFT_UI64_T_BASE_TYPE                           __UINT64_TYPE__
+# define STLSOFT_CF_64BIT_INT_IS_long_long
+# define STLSOFT_SI64_T_BASE_TYPE                           signed      long long
+# define STLSOFT_UI64_T_BASE_TYPE                           unsigned    long long
 #endif /* STLSOFT_LONGLONG_SUPPORT */
 
 /* ptr-bit integer */
