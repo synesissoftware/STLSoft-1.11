@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  29th July 2026
+; Updated:  15th October 2026
 
 ============================================================================
 
@@ -15,6 +15,21 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+Changes for 1.11.1-rc5 (15th October 2026)
+
+General:
+========
+
+ * Semi-frozen / maintenance status: redirect all new work to synesissoftware/STLSoft (tip);
+ * Visual C++ recognition: unknown-newer toolsets warn via #pragma message and continue (no #error) beyond the last validated 18.x band;
+ * Minimal compile smoke targets (C + C++) for recognition regressions;
+ * .sis/project_name.txt for helper-script ProjectName load;
+ * CI push-branch set aligned to canonical Synesis set (no `main`);
+
+
+============================================================================
 
 
 Changes for 1.11.1-rc4 (29th July 2026)

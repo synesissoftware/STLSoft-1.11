@@ -1,5 +1,17 @@
 # STLSoft - FAQ <!-- omit in toc -->
 
+
+> **Semi-frozen / maintenance**
+>
+> **STLSoft-1.11** is a versioned, maintenance-oriented line. It remains available for
+> consumers that must stay on the 1.11 API (for example compatibility matrices),
+> but all **new development** and **new consumers** MUST use
+> **[synesissoftware/STLSoft](https://github.com/synesissoftware/STLSoft)** (tip).
+> Feature work belongs on tip; this repository only receives recognition,
+> packaging, and smoke/CI fixes required by historical consumers.
+
+----
+
 The FAQ list is under (constant) development. If you post a question on the
 Issues forum (https://github.com/synesissoftware/STLSoft-1.11/issues)
 it will be used to create one.

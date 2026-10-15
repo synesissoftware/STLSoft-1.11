@@ -1,8 +1,21 @@
 # STLSoft - News
 
 
+
+> **Semi-frozen / maintenance**
+>
+> **STLSoft-1.11** is a versioned, maintenance-oriented line. It remains available for
+> consumers that must stay on the 1.11 API (for example compatibility matrices),
+> but all **new development** and **new consumers** MUST use
+> **[synesissoftware/STLSoft](https://github.com/synesissoftware/STLSoft)** (tip).
+> Feature work belongs on tip; this repository only receives recognition,
+> packaging, and smoke/CI fixes required by historical consumers.
+
+----
+
 | Date                  | News Item                                                 |
 | --------------------- | --------------------------------------------------------- |
+| 15th October 2026     |   Release of [STLSoft 1.11.1 (release candidate 5)](https://github.com/synesissoftware/STLSoft-1.11/releases/tag/1.11.1-rc5)  |
 | 29th July 2026        |   Release of [STLSoft 1.11.1 (release candidate 4)](https://github.com/synesissoftware/STLSoft-1.11/releases/tag/1.11.1-rc4)  |
 | 23rd August 2025      |   Release of [STLSoft 1.11.1 (release candidate 3)](https://github.com/synesissoftware/STLSoft-1.11/releases/tag/1.11.1-rc3)  |
 | 31st May 2025         |   Release of [STLSoft 1.11.1 (release candidate 2)](https://github.com/synesissoftware/STLSoft-1.11/releases/tag/1.11.1-rc2)  |

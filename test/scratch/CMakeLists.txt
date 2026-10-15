@@ -1,4 +1,5 @@
 
+add_subdirectory(smoke)
 add_subdirectory(platformstl)
 add_subdirectory(stlsoft)
 if(_BUILD_AS_UNIX)

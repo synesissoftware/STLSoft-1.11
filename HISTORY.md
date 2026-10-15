@@ -1,6 +1,27 @@
 # STLSoft - History
 
 
+
+> **Semi-frozen / maintenance**
+>
+> **STLSoft-1.11** is a versioned, maintenance-oriented line. It remains available for
+> consumers that must stay on the 1.11 API (for example compatibility matrices),
+> but all **new development** and **new consumers** MUST use
+> **[synesissoftware/STLSoft](https://github.com/synesissoftware/STLSoft)** (tip).
+> Feature work belongs on tip; this repository only receives recognition,
+> packaging, and smoke/CI fixes required by historical consumers.
+
+----
+
+15th October 2026 - 1.11.1-rc5 released
+-------------------------------------------
+
+ * Unknown-newer Visual C++: warn-not-error beyond last validated 18.x band;
+ * Declared semi-frozen / maintenance; redirect new work to synesissoftware/STLSoft;
+ * Minimal compile smoke targets;
+
+
+
 ----
 
 

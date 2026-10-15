@@ -1,5 +1,24 @@
 # STLSoft - TODO <!-- omit in toc -->
 
+
+> **Semi-frozen / maintenance**
+>
+> **STLSoft-1.11** is a versioned, maintenance-oriented line. It remains available for
+> consumers that must stay on the 1.11 API (for example compatibility matrices),
+> but all **new development** and **new consumers** MUST use
+> **[synesissoftware/STLSoft](https://github.com/synesissoftware/STLSoft)** (tip).
+> Feature work belongs on tip; this repository only receives recognition,
+> packaging, and smoke/CI fixes required by historical consumers.
+
+----
+
+
+## Maintenance policy
+
+* Feature work and new consumers belong on **[synesissoftware/STLSoft](https://github.com/synesissoftware/STLSoft)** (tip).
+* This 1.11 line is **semi-frozen**: recognition, packaging, smoke, and CI fixes for historical consumers only.
+
+
 > **NOTE**: some of the following are very old, stretching back even into the 2000s, so this list will be updated a lot over the coming months. The most glaring of these is to ensure compatiblity with C++-14/17/20 as is necessary.
 
 

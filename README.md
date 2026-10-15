@@ -1,5 +1,18 @@
 # STLSoft 1.11 <!-- omit in toc -->
 
+> **Semi-frozen / maintenance**
+>
+> **STLSoft-1.11** is a versioned, maintenance-oriented line. It remains available for
+> consumers that must stay on the 1.11 API (for example compatibility matrices),
+> but all **new development** and **new consumers** MUST use
+> **[synesissoftware/STLSoft](https://github.com/synesissoftware/STLSoft)** (tip).
+> Feature work belongs on tip; this repository only receives recognition,
+> packaging, and smoke/CI fixes required by historical consumers.
+
+----
+
+[![Status](https://img.shields.io/badge/status-semi--frozen-orange.svg)](https://github.com/synesissoftware/STLSoft)
+[![CI](https://github.com/synesissoftware/STLSoft-1.11/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/STLSoft-1.11/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/STLSoft-1.11.svg)](https://github.com/synesissoftware/STLSoft-1.11/releases/latest)
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/STLSoft-1.11)](https://github.com/synesissoftware/STLSoft-1.11/commits/master)
